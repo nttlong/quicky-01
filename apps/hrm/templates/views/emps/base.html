@@ -1,0 +1,111 @@
+<%page cached="True"/>
+
+<%
+    from quicky import encryptor
+
+%>
+<%
+    self.cols=[
+            ["Code","code"],
+            ["Firstname","first_name"],
+            ["Lastname","last_name"],
+            ["Position","position_name"],
+            ["Department","department_name"],
+            ["Description","description"],
+            ["Created on","created_on"],
+            ["Created by","created_by"],
+            ["Modified on","modified_on"],
+            ["Modified by","modified_by"]
+
+        ]
+
+
+%>
+
+${self.body()}
+<div class="row">
+	<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+        <div class="btn-toolbar pull-right" role="toolbar">
+            <div class="btn-group">
+
+            </div>
+            <div class="btn-group">
+
+            </div>
+            <div class="btn-group">
+                <button type="button" class="btn btn-default" ng-click="$root.$dialog($id).params({source:source}).url(url_editor_dialog).done()">${get_app_res("New")}</button>
+            </div>
+        </div>
+	</div>
+</div>
+<div class="row">
+	<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+		&nbsp;
+	</div>
+</div>
+<div class="row">
+	<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+		<table class="table table-condensed table-hover">
+	<thead>
+		<tr>
+            % for col in self.cols :
+                <th>${get_app_res(col[0])}</th>
+            % endfor
+                <th></th>
+
+		</tr>
+	</thead>
+	<tbody>
+		<tr ng-repeat="p in data.items">
+            % for col in self.cols :
+			    <td>{{p.${col[1]}}}</td>
+            % endfor
+                <td>
+                    <button type="button" class="btn btn-default" ng-click="$root.$dialog($id).params({source:source,item:p}).url(url_editor_dialog).done()">${get_app_res("Edit")}</button>
+                </td>
+		</tr>
+	</tbody>
+</table>
+	</div>
+</div>
+
+
+<script>
+    (function(s){
+        s.url_editor_dialog='${get_app_url("pages/emps/dialogs/"+model["path"].split('/')[1])}';
+        s.source='${encryptor.get_key(model["path"].split('/')[1])}';
+        s.doLoadData=function(){
+            s.$ws.api('${get_api_key('api.categories/get_list')}')
+            .data({
+                source:s.source
+            }).done()
+            .then(function(res){
+                s.data=res;
+                s.$applyAsync();
+            });
+        };
+        s.doLoadData();
+        s.doAddNew=function(item){
+            s.$ws.api('${get_api_key('api.categories/add_new_item')}')
+            .data({
+                source:s.source,
+                item:item
+            }).done()
+            .then(function(res){
+                s.doLoadData();
+            });
+        };
+        s.doUpdate=function(item){
+            s.$ws.api('${get_api_key('api.categories/update_item')}')
+            .data({
+                source:s.source,
+                item:item
+            }).done()
+            .then(function(res){
+                s.doLoadData();
+            });
+        };
+
+
+    });
+</script>

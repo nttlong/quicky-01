@@ -1,0 +1,60 @@
+import json
+import os
+__menu_items__=[
+
+        {
+            "caption":"Customers",
+            "items":[
+                {
+                    "page":"pages/customers",
+                    "caption":"List of customers"
+                },{
+                    "page":"pages/customers_users",
+                    "caption":"List of user"
+                }
+            ]
+
+        },{
+            "caption":"System",
+            "items":[
+                {
+                    "page":"pages/email_settings",
+                    "caption":"Email settings"
+                }
+            ]
+        },{
+            "caption":"content",
+            "items":[
+                {
+                    "page":"Course",
+                    "caption":"Course ware"
+                },{
+                    "page":"Wiki",
+                    "caption":"wiki"
+                }
+            ]
+        },{
+           "caption":"privileges",
+           "items":[
+               {
+                   "page":"pages/privileges/roles",
+                   "caption":"Roles"
+               },{
+                   "page":"pages/privileges/views",
+                   "caption":"Views"
+               },{
+                   "page":"pages/privileges/manage_users",
+                   "caption":"Users"
+               }
+           ]
+        }
+
+]
+
+def load_menu_items():
+    # global __menu_items__
+    # dir= os.path.dirname(__file__)
+    # with open(dir+"/menu.json") as json_data:
+    #     __menu_items__ = json.load(json_data)["items"]
+
+    return __menu_items__
