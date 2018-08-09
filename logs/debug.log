@@ -480,3 +480,159 @@ django_session.find (0.00) {'_id': '2215vf53tna95j1tppff3tboq286kpys', 'expire_d
 django_session.find (0.00) {'_id': '2215vf53tna95j1tppff3tboq286kpys', 'expire_date': {'$gt': datetime.datetime(2018, 8, 9, 8, 54, 19, 467171, tzinfo=<UTC>)}, 'schema': 'hrm'}
 django_session.find (0.00) {'_id': '2215vf53tna95j1tppff3tboq286kpys', 'expire_date': {'$gt': datetime.datetime(2018, 8, 9, 8, 54, 20, 295666, tzinfo=<UTC>)}, 'schema': 'hrm'}
 django_session.find (0.00) {'_id': '2215vf53tna95j1tppff3tboq286kpys', 'expire_date': {'$gt': datetime.datetime(2018, 8, 9, 8, 54, 20, 360093, tzinfo=<UTC>)}, 'schema': 'hrm'}
+Not Found: /testdasdasdas
+Internal Server Error: /test/per
+Traceback (most recent call last):
+  File "/home/hcsadmin/q03/packages/django/django/core/handlers/base.py", line 122, in get_response
+    raise e
+AttributeError: COLL instance has no attribute 'insert_one'
+Internal Server Error: /test/per
+Traceback (most recent call last):
+  File "/home/hcsadmin/q03/packages/django/django/core/handlers/base.py", line 122, in get_response
+    raise e
+AttributeError: COLL instance has no attribute 'insert_one'
+Not Found: /test/per/lv
+Internal Server Error: /test/per
+Traceback (most recent call last):
+  File "/home/hcsadmin/q03/packages/django/django/core/handlers/base.py", line 122, in get_response
+    raise e
+AttributeError: COLL instance has no attribute 'insert_one'
+Internal Server Error: /test/per
+Traceback (most recent call last):
+  File "/home/hcsadmin/q03/packages/django/django/core/handlers/base.py", line 122, in get_response
+    raise e
+AttributeError: COLL instance has no attribute 'insert_one'
+Internal Server Error: /test/per
+Traceback (most recent call last):
+  File "/home/hcsadmin/q03/packages/django/django/core/handlers/base.py", line 122, in get_response
+    raise e
+AttributeError: COLL instance has no attribute 'insert_one'
+Internal Server Error: /test/per
+Traceback (most recent call last):
+  File "/home/hcsadmin/q03/packages/django/django/core/handlers/base.py", line 122, in get_response
+    raise e
+AttributeError: COLL instance has no attribute 'insert_one'
+Internal Server Error: /test/per
+Traceback (most recent call last):
+  File "/home/hcsadmin/q03/packages/django/django/core/handlers/base.py", line 122, in get_response
+    raise e
+AttributeError: COLL instance has no attribute 'insert_one'
+Internal Server Error: /test/per
+Traceback (most recent call last):
+  File "/home/hcsadmin/q03/packages/django/django/core/handlers/base.py", line 122, in get_response
+    raise e
+AttributeError: COLL instance has no attribute 'insert_one'
+django_session.find (0.00) {'_id': '2215vf53tna95j1tppff3tboq286kpys', 'expire_date': {'$gt': datetime.datetime(2018, 8, 9, 9, 17, 8, 136568, tzinfo=<UTC>)}, 'schema': 'per'}
+django_session.save (0.00) {'schema': 'per', '_id': u'tjcb0oqhehz75f7uynliejklrdi1ho46', 'expire_date': datetime.datetime(2018, 8, 23, 9, 17, 8, 157376, tzinfo=<UTC>), 'session_data': u'MjY1MGI5ZjE5YWFjZTM1OTM5NmFkNjA4ODFhYTVmNzUxZDA3ZTkxMjp7fQ=='}
+Internal Server Error: /test/per
+Traceback (most recent call last):
+  File "/home/hcsadmin/q03/packages/django/django/core/handlers/base.py", line 122, in get_response
+    raise e
+AttributeError: COLL instance has no attribute 'insert_one'
+django_session.find (0.00) {'_id': '2215vf53tna95j1tppff3tboq286kpys', 'expire_date': {'$gt': datetime.datetime(2018, 8, 9, 9, 18, 55, 566701, tzinfo=<UTC>)}, 'schema': 'per'}
+django_session.save (0.00) {'schema': 'per', '_id': u'0rv06yhsb1r6th9zpyqfygjn38pum0sk', 'expire_date': datetime.datetime(2018, 8, 23, 9, 18, 55, 594115, tzinfo=<UTC>), 'session_data': u'MjY1MGI5ZjE5YWFjZTM1OTM5NmFkNjA4ODFhYTVmNzUxZDA3ZTkxMjp7fQ=='}
+django_session.save (0.00) {'schema': 'per', '_id': u'0rv06yhsb1r6th9zpyqfygjn38pum0sk', 'expire_date': datetime.datetime(2018, 8, 23, 9, 18, 55, 673619, tzinfo=<UTC>), 'session_data': u'MjY1MGI5ZjE5YWFjZTM1OTM5NmFkNjA4ODFhYTVmNzUxZDA3ZTkxMjp7fQ=='}
+django_session.find (0.00) {'_id': '0rv06yhsb1r6th9zpyqfygjn38pum0sk', 'expire_date': {'$gt': datetime.datetime(2018, 8, 9, 9, 18, 56, 87253, tzinfo=<UTC>)}, 'schema': 'per'}
+django_session.save (0.00) {'schema': 'per', '_id': '0rv06yhsb1r6th9zpyqfygjn38pum0sk', 'expire_date': datetime.datetime(2018, 8, 23, 9, 18, 56, 224493, tzinfo=<UTC>), 'session_data': u'YjAwMTViM2E0OTNjMDE0N2NjMTFiZjIxNzYzNmNkYTg5OGRiZGZjMzp7Imxhbmd1YWdlIjoiZW4ifQ=='}
+Not Found: /test/per/static/js/plugins/slick.js
+Not Found: /test/per/static/js/plugins/slick.js
+django_session.find (0.00) {'_id': '0rv06yhsb1r6th9zpyqfygjn38pum0sk', 'expire_date': {'$gt': datetime.datetime(2018, 8, 9, 9, 19, 17, 278499, tzinfo=<UTC>)}, 'schema': 'per'}
+django_session.save (0.00) {'schema': 'per', '_id': '0rv06yhsb1r6th9zpyqfygjn38pum0sk', 'expire_date': datetime.datetime(2018, 8, 23, 9, 19, 17, 427809, tzinfo=<UTC>), 'session_data': u'YjAwMTViM2E0OTNjMDE0N2NjMTFiZjIxNzYzNmNkYTg5OGRiZGZjMzp7Imxhbmd1YWdlIjoiZW4ifQ=='}
+Not Found: /test/per/static/js/plugins/slick.js
+Not Found: /test/per/static/js/plugins/slick.js
+django_session.find (0.00) {'_id': '0rv06yhsb1r6th9zpyqfygjn38pum0sk', 'expire_date': {'$gt': datetime.datetime(2018, 8, 9, 9, 19, 20, 940837, tzinfo=<UTC>)}, 'schema': 'per'}
+django_session.save (0.00) {'schema': 'per', '_id': '0rv06yhsb1r6th9zpyqfygjn38pum0sk', 'expire_date': datetime.datetime(2018, 8, 23, 9, 19, 21, 21387, tzinfo=<UTC>), 'session_data': u'YjAwMTViM2E0OTNjMDE0N2NjMTFiZjIxNzYzNmNkYTg5OGRiZGZjMzp7Imxhbmd1YWdlIjoiZW4ifQ=='}
+Not Found: /test/per/static/js/plugins/slick.js
+Not Found: /test/per/static/js/plugins/slick.js
+django_session.find (0.00) {'_id': '0rv06yhsb1r6th9zpyqfygjn38pum0sk', 'expire_date': {'$gt': datetime.datetime(2018, 8, 9, 9, 19, 32, 395977, tzinfo=<UTC>)}, 'schema': 'per'}
+django_session.save (0.00) {'schema': 'per', '_id': '0rv06yhsb1r6th9zpyqfygjn38pum0sk', 'expire_date': datetime.datetime(2018, 8, 23, 9, 19, 32, 459184, tzinfo=<UTC>), 'session_data': u'YjAwMTViM2E0OTNjMDE0N2NjMTFiZjIxNzYzNmNkYTg5OGRiZGZjMzp7Imxhbmd1YWdlIjoiZW4ifQ=='}
+Not Found: /test/per/static/js/plugins/slick.js
+Not Found: /test/per/static/js/plugins/slick.js
+django_session.find (0.00) {'_id': '0rv06yhsb1r6th9zpyqfygjn38pum0sk', 'expire_date': {'$gt': datetime.datetime(2018, 8, 9, 9, 19, 33, 679374, tzinfo=<UTC>)}, 'schema': 'per'}
+django_session.save (0.00) {'schema': 'per', '_id': '0rv06yhsb1r6th9zpyqfygjn38pum0sk', 'expire_date': datetime.datetime(2018, 8, 23, 9, 19, 33, 770029, tzinfo=<UTC>), 'session_data': u'YjAwMTViM2E0OTNjMDE0N2NjMTFiZjIxNzYzNmNkYTg5OGRiZGZjMzp7Imxhbmd1YWdlIjoiZW4ifQ=='}
+Not Found: /test/per/static/js/plugins/slick.js
+Not Found: /test/per/static/js/plugins/slick.js
+django_session.find (0.00) {'_id': '0rv06yhsb1r6th9zpyqfygjn38pum0sk', 'expire_date': {'$gt': datetime.datetime(2018, 8, 9, 9, 19, 34, 534671, tzinfo=<UTC>)}, 'schema': 'per'}
+django_session.save (0.00) {'schema': 'per', '_id': '0rv06yhsb1r6th9zpyqfygjn38pum0sk', 'expire_date': datetime.datetime(2018, 8, 23, 9, 19, 34, 643655, tzinfo=<UTC>), 'session_data': u'YjAwMTViM2E0OTNjMDE0N2NjMTFiZjIxNzYzNmNkYTg5OGRiZGZjMzp7Imxhbmd1YWdlIjoiZW4ifQ=='}
+Not Found: /test/per/static/js/plugins/slick.js
+Not Found: /test/per/static/js/plugins/slick.js
+django_session.find (0.00) {'_id': '0rv06yhsb1r6th9zpyqfygjn38pum0sk', 'expire_date': {'$gt': datetime.datetime(2018, 8, 9, 9, 19, 35, 215096, tzinfo=<UTC>)}, 'schema': 'per'}
+django_session.save (0.00) {'schema': 'per', '_id': '0rv06yhsb1r6th9zpyqfygjn38pum0sk', 'expire_date': datetime.datetime(2018, 8, 23, 9, 19, 35, 324107, tzinfo=<UTC>), 'session_data': u'YjAwMTViM2E0OTNjMDE0N2NjMTFiZjIxNzYzNmNkYTg5OGRiZGZjMzp7Imxhbmd1YWdlIjoiZW4ifQ=='}
+Not Found: /test/per/static/js/plugins/slick.js
+Not Found: /test/per/static/js/plugins/slick.js
+django_session.find (0.00) {'_id': '0rv06yhsb1r6th9zpyqfygjn38pum0sk', 'expire_date': {'$gt': datetime.datetime(2018, 8, 9, 9, 19, 36, 165389, tzinfo=<UTC>)}, 'schema': 'per'}
+django_session.save (0.00) {'schema': 'per', '_id': '0rv06yhsb1r6th9zpyqfygjn38pum0sk', 'expire_date': datetime.datetime(2018, 8, 23, 9, 19, 36, 263176, tzinfo=<UTC>), 'session_data': u'YjAwMTViM2E0OTNjMDE0N2NjMTFiZjIxNzYzNmNkYTg5OGRiZGZjMzp7Imxhbmd1YWdlIjoiZW4ifQ=='}
+Not Found: /test/per/static/js/plugins/slick.js
+Not Found: /test/per/static/js/plugins/slick.js
+django_session.find (0.01) {'_id': '0rv06yhsb1r6th9zpyqfygjn38pum0sk', 'expire_date': {'$gt': datetime.datetime(2018, 8, 9, 9, 19, 37, 330296, tzinfo=<UTC>)}, 'schema': 'per'}
+django_session.save (0.00) {'schema': 'per', '_id': '0rv06yhsb1r6th9zpyqfygjn38pum0sk', 'expire_date': datetime.datetime(2018, 8, 23, 9, 19, 37, 450340, tzinfo=<UTC>), 'session_data': u'YjAwMTViM2E0OTNjMDE0N2NjMTFiZjIxNzYzNmNkYTg5OGRiZGZjMzp7Imxhbmd1YWdlIjoiZW4ifQ=='}
+Not Found: /test/per/static/js/plugins/slick.js
+Not Found: /test/per/static/js/plugins/slick.js
+django_session.find (0.00) {'_id': '0rv06yhsb1r6th9zpyqfygjn38pum0sk', 'expire_date': {'$gt': datetime.datetime(2018, 8, 9, 9, 19, 38, 898100, tzinfo=<UTC>)}, 'schema': 'per'}
+django_session.save (0.00) {'schema': 'per', '_id': '0rv06yhsb1r6th9zpyqfygjn38pum0sk', 'expire_date': datetime.datetime(2018, 8, 23, 9, 19, 38, 984120, tzinfo=<UTC>), 'session_data': u'YjAwMTViM2E0OTNjMDE0N2NjMTFiZjIxNzYzNmNkYTg5OGRiZGZjMzp7Imxhbmd1YWdlIjoiZW4ifQ=='}
+Not Found: /test/per/static/js/plugins/slick.js
+Not Found: /test/per/static/js/plugins/slick.js
+django_session.find (0.00) {'_id': '0rv06yhsb1r6th9zpyqfygjn38pum0sk', 'expire_date': {'$gt': datetime.datetime(2018, 8, 9, 9, 20, 7, 959821, tzinfo=<UTC>)}, 'schema': 'per'}
+django_session.save (0.00) {'schema': 'per', '_id': '0rv06yhsb1r6th9zpyqfygjn38pum0sk', 'expire_date': datetime.datetime(2018, 8, 23, 9, 20, 8, 24988, tzinfo=<UTC>), 'session_data': u'YjAwMTViM2E0OTNjMDE0N2NjMTFiZjIxNzYzNmNkYTg5OGRiZGZjMzp7Imxhbmd1YWdlIjoiZW4ifQ=='}
+Not Found: /test/per/static/js/plugins/slick.js
+Not Found: /test/per/static/js/plugins/slick.js
+django_session.find (0.00) {'_id': '0rv06yhsb1r6th9zpyqfygjn38pum0sk', 'expire_date': {'$gt': datetime.datetime(2018, 8, 9, 9, 20, 14, 133986, tzinfo=<UTC>)}, 'schema': 'per'}
+django_session.save (0.00) {'schema': 'per', '_id': '0rv06yhsb1r6th9zpyqfygjn38pum0sk', 'expire_date': datetime.datetime(2018, 8, 23, 9, 20, 14, 240198, tzinfo=<UTC>), 'session_data': u'YjAwMTViM2E0OTNjMDE0N2NjMTFiZjIxNzYzNmNkYTg5OGRiZGZjMzp7Imxhbmd1YWdlIjoiZW4ifQ=='}
+Not Found: /test/per/static/js/plugins/slick.js
+Not Found: /test/per/static/js/plugins/slick.js
+django_session.find (0.00) {'_id': '0rv06yhsb1r6th9zpyqfygjn38pum0sk', 'expire_date': {'$gt': datetime.datetime(2018, 8, 9, 9, 20, 17, 924437, tzinfo=<UTC>)}, 'schema': 'per'}
+django_session.save (0.00) {'schema': 'per', '_id': '0rv06yhsb1r6th9zpyqfygjn38pum0sk', 'expire_date': datetime.datetime(2018, 8, 23, 9, 20, 18, 20791, tzinfo=<UTC>), 'session_data': u'YjAwMTViM2E0OTNjMDE0N2NjMTFiZjIxNzYzNmNkYTg5OGRiZGZjMzp7Imxhbmd1YWdlIjoiZW4ifQ=='}
+Not Found: /test/per/static/js/plugins/slick.js
+Not Found: /test/per/static/js/angular.min.js.map
+Not Found: /test/per/static/js/datatables/pdfmake.min.js.map
+Not Found: /test/per/static/js/plugins/slick.js
+django_session.find (0.00) {'_id': '0rv06yhsb1r6th9zpyqfygjn38pum0sk', 'expire_date': {'$gt': datetime.datetime(2018, 8, 9, 9, 20, 22, 387636, tzinfo=<UTC>)}, 'schema': 'per'}
+django_session.save (0.00) {'schema': 'per', '_id': '0rv06yhsb1r6th9zpyqfygjn38pum0sk', 'expire_date': datetime.datetime(2018, 8, 23, 9, 20, 22, 472865, tzinfo=<UTC>), 'session_data': u'YjAwMTViM2E0OTNjMDE0N2NjMTFiZjIxNzYzNmNkYTg5OGRiZGZjMzp7Imxhbmd1YWdlIjoiZW4ifQ=='}
+Not Found: /test/per/static/js/angular.min.js.map
+Not Found: /test/per/static/js/plugins/slick.js
+Not Found: /test/per/static/js/datatables/pdfmake.min.js.map
+django_session.find (0.00) {'_id': '0rv06yhsb1r6th9zpyqfygjn38pum0sk', 'expire_date': {'$gt': datetime.datetime(2018, 8, 9, 9, 20, 39, 877829, tzinfo=<UTC>)}, 'schema': 'per'}
+django_session.save (0.00) {'schema': 'per', '_id': '0rv06yhsb1r6th9zpyqfygjn38pum0sk', 'expire_date': datetime.datetime(2018, 8, 23, 9, 20, 54, 296751, tzinfo=<UTC>), 'session_data': u'YjAwMTViM2E0OTNjMDE0N2NjMTFiZjIxNzYzNmNkYTg5OGRiZGZjMzp7Imxhbmd1YWdlIjoiZW4ifQ=='}
+Not Found: /test/per/static/js/angular.min.js.map
+Not Found: /test/per/static/js/plugins/slick.js
+Not Found: /test/per/static/js/datatables/pdfmake.min.js.map
+Not Found: /test/per/static/js/plugins/slick.js
+Not Found: /sys-admin/
+Not Found: /sys
+Not Found: /system/
+sys.auth_user.save (0.00) {'username': u'root', 'first_name': u'', 'last_name': u'', '_id': ObjectId('5b55583d85740f3db45197ae'), 'is_active': True, 'email': u'root@root.com', 'is_superuser': True, 'is_staff': True, 'last_login': datetime.datetime(2018, 8, 9, 8, 53, 40, 252000, tzinfo=<UTC>), 'password': u'pbkdf2_sha256$12000$YBXYdG3MuuaI$Q4UoL2PjkHBuOz/90wCpx2jcXUNRJ1nZDcZebZKM5Is=', 'date_joined': datetime.datetime(2018, 7, 23, 4, 23, 24, 991000, tzinfo=<UTC>)}
+django_session.find (0.00) {'_id': '0rv06yhsb1r6th9zpyqfygjn38pum0sk', 'expire_date': {'$gt': datetime.datetime(2018, 8, 9, 9, 21, 12, 269421, tzinfo=<UTC>)}, 'schema': 'sys'}
+django_session.save (0.00) {'schema': 'sys', '_id': u'7gxdpcfdbx1shj6dpligjsz84gkoaco9', 'expire_date': datetime.datetime(2018, 8, 23, 9, 21, 12, 272620, tzinfo=<UTC>), 'session_data': u'MjY1MGI5ZjE5YWFjZTM1OTM5NmFkNjA4ODFhYTVmNzUxZDA3ZTkxMjp7fQ=='}
+django_session.save (0.00) {'schema': 'sys', '_id': u'7gxdpcfdbx1shj6dpligjsz84gkoaco9', 'expire_date': datetime.datetime(2018, 8, 23, 9, 21, 19, 840723, tzinfo=<UTC>), 'session_data': u'MjY1MGI5ZjE5YWFjZTM1OTM5NmFkNjA4ODFhYTVmNzUxZDA3ZTkxMjp7fQ=='}
+sys.auth_user.save (0.00) {'username': u'root', 'first_name': u'', 'last_name': u'', '_id': ObjectId('5b55583d85740f3db45197ae'), 'is_active': True, 'email': u'root@root.com', 'is_superuser': True, 'is_staff': True, 'last_login': datetime.datetime(2018, 8, 9, 8, 53, 40, 252000, tzinfo=<UTC>), 'password': u'pbkdf2_sha256$12000$YBXYdG3MuuaI$Q4UoL2PjkHBuOz/90wCpx2jcXUNRJ1nZDcZebZKM5Is=', 'date_joined': datetime.datetime(2018, 7, 23, 4, 23, 24, 991000, tzinfo=<UTC>)}
+django_session.find (0.00) {'_id': '7gxdpcfdbx1shj6dpligjsz84gkoaco9', 'expire_date': {'$gt': datetime.datetime(2018, 8, 9, 9, 21, 19, 870189, tzinfo=<UTC>)}, 'schema': 'sys'}
+sys.auth_user.save (0.00) {'username': u'root', 'first_name': u'', 'last_name': u'', '_id': ObjectId('5b55583d85740f3db45197ae'), 'is_active': True, 'email': u'root@root.com', 'is_superuser': True, 'is_staff': True, 'last_login': datetime.datetime(2018, 8, 9, 8, 53, 40, 252000, tzinfo=<UTC>), 'password': u'pbkdf2_sha256$12000$YBXYdG3MuuaI$Q4UoL2PjkHBuOz/90wCpx2jcXUNRJ1nZDcZebZKM5Is=', 'date_joined': datetime.datetime(2018, 7, 23, 4, 23, 24, 991000, tzinfo=<UTC>)}
+django_session.save (0.00) {'schema': 'sys', '_id': '7gxdpcfdbx1shj6dpligjsz84gkoaco9', 'expire_date': datetime.datetime(2018, 8, 23, 9, 21, 19, 906179, tzinfo=<UTC>), 'session_data': u'YjAwMTViM2E0OTNjMDE0N2NjMTFiZjIxNzYzNmNkYTg5OGRiZGZjMzp7Imxhbmd1YWdlIjoiZW4ifQ=='}
+Not Found: /test/system
+sys.auth_user.save (0.00) {'username': u'root', 'first_name': u'', 'last_name': u'', '_id': ObjectId('5b55583d85740f3db45197ae'), 'is_active': True, 'email': u'root@root.com', 'is_superuser': True, 'is_staff': True, 'last_login': datetime.datetime(2018, 8, 9, 8, 53, 40, 252000, tzinfo=<UTC>), 'password': u'pbkdf2_sha256$12000$YBXYdG3MuuaI$Q4UoL2PjkHBuOz/90wCpx2jcXUNRJ1nZDcZebZKM5Is=', 'date_joined': datetime.datetime(2018, 7, 23, 4, 23, 24, 991000, tzinfo=<UTC>)}
+django_session.find (0.00) {'_id': '7gxdpcfdbx1shj6dpligjsz84gkoaco9', 'expire_date': {'$gt': datetime.datetime(2018, 8, 9, 9, 21, 31, 416359, tzinfo=<UTC>)}, 'schema': 'sys'}
+sys.auth_user.save (0.00) {'username': u'root', 'first_name': u'', 'last_name': u'', '_id': ObjectId('5b55583d85740f3db45197ae'), 'is_active': True, 'email': u'root@root.com', 'is_superuser': True, 'is_staff': True, 'last_login': datetime.datetime(2018, 8, 9, 8, 53, 40, 252000, tzinfo=<UTC>), 'password': u'pbkdf2_sha256$12000$YBXYdG3MuuaI$Q4UoL2PjkHBuOz/90wCpx2jcXUNRJ1nZDcZebZKM5Is=', 'date_joined': datetime.datetime(2018, 7, 23, 4, 23, 24, 991000, tzinfo=<UTC>)}
+django_session.find (0.00) {'_id': '7gxdpcfdbx1shj6dpligjsz84gkoaco9', 'expire_date': {'$gt': datetime.datetime(2018, 8, 9, 9, 21, 32, 784055, tzinfo=<UTC>)}, 'schema': 'sys'}
+sys.auth_user.save (0.00) {'username': u'root', 'first_name': u'', 'last_name': u'', '_id': ObjectId('5b55583d85740f3db45197ae'), 'is_active': True, 'email': u'root@root.com', 'is_superuser': True, 'is_staff': True, 'last_login': datetime.datetime(2018, 8, 9, 8, 53, 40, 252000, tzinfo=<UTC>), 'password': u'pbkdf2_sha256$12000$YBXYdG3MuuaI$Q4UoL2PjkHBuOz/90wCpx2jcXUNRJ1nZDcZebZKM5Is=', 'date_joined': datetime.datetime(2018, 7, 23, 4, 23, 24, 991000, tzinfo=<UTC>)}
+django_session.save (0.00) {'schema': 'sys', '_id': '7gxdpcfdbx1shj6dpligjsz84gkoaco9', 'expire_date': datetime.datetime(2018, 8, 23, 9, 21, 32, 911915, tzinfo=<UTC>), 'session_data': u'YjAwMTViM2E0OTNjMDE0N2NjMTFiZjIxNzYzNmNkYTg5OGRiZGZjMzp7Imxhbmd1YWdlIjoiZW4ifQ=='}
+sys.auth_user.save (0.00) {'username': u'root', 'first_name': u'', 'last_name': u'', '_id': ObjectId('5b55583d85740f3db45197ae'), 'is_active': True, 'email': u'root@root.com', 'is_superuser': True, 'is_staff': True, 'last_login': datetime.datetime(2018, 8, 9, 8, 53, 40, 252000, tzinfo=<UTC>), 'password': u'pbkdf2_sha256$12000$YBXYdG3MuuaI$Q4UoL2PjkHBuOz/90wCpx2jcXUNRJ1nZDcZebZKM5Is=', 'date_joined': datetime.datetime(2018, 7, 23, 4, 23, 24, 991000, tzinfo=<UTC>)}
+django_session.find (0.00) {'_id': '7gxdpcfdbx1shj6dpligjsz84gkoaco9', 'expire_date': {'$gt': datetime.datetime(2018, 8, 9, 9, 21, 38, 564912, tzinfo=<UTC>)}, 'schema': 'sys'}
+sys.auth_user.save (0.00) {'username': u'root', 'first_name': u'', 'last_name': u'', '_id': ObjectId('5b55583d85740f3db45197ae'), 'is_active': True, 'email': u'root@root.com', 'is_superuser': True, 'is_staff': True, 'last_login': datetime.datetime(2018, 8, 9, 8, 53, 40, 252000, tzinfo=<UTC>), 'password': u'pbkdf2_sha256$12000$YBXYdG3MuuaI$Q4UoL2PjkHBuOz/90wCpx2jcXUNRJ1nZDcZebZKM5Is=', 'date_joined': datetime.datetime(2018, 7, 23, 4, 23, 24, 991000, tzinfo=<UTC>)}
+django_session.save (0.00) {'schema': 'sys', '_id': u'k0qsjyj692483q4ps247c3g2v6ypq3o5', 'expire_date': datetime.datetime(2018, 8, 23, 9, 21, 38, 685887, tzinfo=<UTC>), 'session_data': u'YjAwMTViM2E0OTNjMDE0N2NjMTFiZjIxNzYzNmNkYTg5OGRiZGZjMzp7Imxhbmd1YWdlIjoiZW4ifQ=='}
+django_session.find (0.00) {'_id': '7gxdpcfdbx1shj6dpligjsz84gkoaco9', 'schema': 'sys'}
+django_session.remove (0.00) {'_id': {'$in': [u'7gxdpcfdbx1shj6dpligjsz84gkoaco9']}, 'schema': 'sys'}
+sys.auth_user.save (0.00) {'username': u'root', 'first_name': u'', 'last_name': u'', '_id': ObjectId('5b55583d85740f3db45197ae'), 'is_active': True, 'email': u'root@root.com', 'is_superuser': True, 'is_staff': True, 'last_login': datetime.datetime(2018, 8, 9, 9, 21, 38, 693156, tzinfo=<UTC>), 'password': u'pbkdf2_sha256$12000$YBXYdG3MuuaI$Q4UoL2PjkHBuOz/90wCpx2jcXUNRJ1nZDcZebZKM5Is=', 'date_joined': datetime.datetime(2018, 7, 23, 4, 23, 24, 991000, tzinfo=<UTC>)}
+django_session.save (0.00) {'schema': 'sys', '_id': u'k0qsjyj692483q4ps247c3g2v6ypq3o5', 'expire_date': datetime.datetime(2018, 8, 23, 9, 21, 38, 695888, tzinfo=<UTC>), 'session_data': u'YTEyZjg0Nzk3NjFhODNlN2M0OWY1MTFiOThmMWM2MmFjZGY3NDc1Nzp7Il9hdXRoX3VzZXJfYmFja2VuZCI6InF1aWNreS5iYWNrZW5kcy5IYXNoTW9kZWxCYWNrZW5kIiwiX2F1dGhfdXNlcl9pZCI6IjViNTU1ODNkODU3NDBmM2RiNDUxOTdhZSIsImxhbmd1YWdlIjoiZW4ifQ=='}
+sys.auth_user.save (0.00) {'username': u'root', 'first_name': u'', 'last_name': u'', '_id': ObjectId('5b55583d85740f3db45197ae'), 'is_active': True, 'email': u'root@root.com', 'is_superuser': True, 'is_staff': True, 'last_login': datetime.datetime(2018, 8, 9, 9, 21, 38, 693000, tzinfo=<UTC>), 'password': u'pbkdf2_sha256$12000$YBXYdG3MuuaI$Q4UoL2PjkHBuOz/90wCpx2jcXUNRJ1nZDcZebZKM5Is=', 'date_joined': datetime.datetime(2018, 7, 23, 4, 23, 24, 991000, tzinfo=<UTC>)}
+django_session.find (0.00) {'_id': 'k0qsjyj692483q4ps247c3g2v6ypq3o5', 'expire_date': {'$gt': datetime.datetime(2018, 8, 9, 9, 21, 38, 718993, tzinfo=<UTC>)}, 'schema': 'sys'}
+sys.auth_user.save (0.00) {'username': u'root', 'first_name': u'', 'last_name': u'', '_id': ObjectId('5b55583d85740f3db45197ae'), 'is_active': True, 'email': u'root@root.com', 'is_superuser': True, 'is_staff': True, 'last_login': datetime.datetime(2018, 8, 9, 9, 21, 38, 693000, tzinfo=<UTC>), 'password': u'pbkdf2_sha256$12000$YBXYdG3MuuaI$Q4UoL2PjkHBuOz/90wCpx2jcXUNRJ1nZDcZebZKM5Is=', 'date_joined': datetime.datetime(2018, 7, 23, 4, 23, 24, 991000, tzinfo=<UTC>)}
+django_session.find (0.00) {'_id': 'k0qsjyj692483q4ps247c3g2v6ypq3o5', 'expire_date': {'$gt': datetime.datetime(2018, 8, 9, 9, 21, 42, 613246, tzinfo=<UTC>)}, 'schema': 'sys'}
+django_session.find (0.00) {'_id': 'k0qsjyj692483q4ps247c3g2v6ypq3o5', 'expire_date': {'$gt': datetime.datetime(2018, 8, 9, 9, 21, 44, 195001, tzinfo=<UTC>)}, 'schema': 'hrm'}
+django_session.save (0.00) {'schema': 'hrm', '_id': u't68orwfbyfer0oqulyydnjnr0xuk8qzh', 'expire_date': datetime.datetime(2018, 8, 23, 9, 21, 44, 200321, tzinfo=<UTC>), 'session_data': u'MjY1MGI5ZjE5YWFjZTM1OTM5NmFkNjA4ODFhYTVmNzUxZDA3ZTkxMjp7fQ=='}
+django_session.save (0.00) {'schema': 'hrm', '_id': u't68orwfbyfer0oqulyydnjnr0xuk8qzh', 'expire_date': datetime.datetime(2018, 8, 23, 9, 21, 44, 203594, tzinfo=<UTC>), 'session_data': u'MjY1MGI5ZjE5YWFjZTM1OTM5NmFkNjA4ODFhYTVmNzUxZDA3ZTkxMjp7fQ=='}
+django_session.find (0.00) {'_id': 't68orwfbyfer0oqulyydnjnr0xuk8qzh', 'expire_date': {'$gt': datetime.datetime(2018, 8, 9, 9, 21, 44, 221030, tzinfo=<UTC>)}, 'schema': 'hrm'}
+hrm.auth_user.save (0.00) {'username': u'sys', 'first_name': u'', 'last_name': u'', '_id': ObjectId('5b55580c85740f3ca78ba0ab'), 'is_active': True, 'email': u'sys@beatles.com', 'is_superuser': True, 'is_staff': True, 'last_login': datetime.datetime(2018, 8, 9, 8, 54, 13, 912000, tzinfo=<UTC>), 'password': u'pbkdf2_sha256$12000$P8Ihwsnl8rXp$K+Y47hFpoL1D6IS4a38TDM9gGSt2vapdYU8hMot5y8M=', 'date_joined': datetime.datetime(2018, 7, 23, 4, 22, 36, 366000, tzinfo=<UTC>)}
+django_session.save (0.00) {'schema': 'hrm', '_id': 't68orwfbyfer0oqulyydnjnr0xuk8qzh', 'expire_date': datetime.datetime(2018, 8, 23, 9, 21, 53, 335734, tzinfo=<UTC>), 'session_data': u'YjAwMTViM2E0OTNjMDE0N2NjMTFiZjIxNzYzNmNkYTg5OGRiZGZjMzp7Imxhbmd1YWdlIjoiZW4ifQ=='}
+django_session.find (0.00) {'_id': 't68orwfbyfer0oqulyydnjnr0xuk8qzh', 'expire_date': {'$gt': datetime.datetime(2018, 8, 9, 9, 21, 58, 161018, tzinfo=<UTC>)}, 'schema': 'hrm'}
+hrm.auth_user.save (0.00) {'username': u'sys', 'first_name': u'', 'last_name': u'', '_id': ObjectId('5b55580c85740f3ca78ba0ab'), 'is_active': True, 'email': u'sys@beatles.com', 'is_superuser': True, 'is_staff': True, 'last_login': datetime.datetime(2018, 8, 9, 8, 54, 13, 912000, tzinfo=<UTC>), 'password': u'pbkdf2_sha256$12000$P8Ihwsnl8rXp$K+Y47hFpoL1D6IS4a38TDM9gGSt2vapdYU8hMot5y8M=', 'date_joined': datetime.datetime(2018, 7, 23, 4, 22, 36, 366000, tzinfo=<UTC>)}
+django_session.save (0.00) {'schema': 'hrm', '_id': 't68orwfbyfer0oqulyydnjnr0xuk8qzh', 'expire_date': datetime.datetime(2018, 8, 23, 9, 22, 2, 160195, tzinfo=<UTC>), 'session_data': u'YjAwMTViM2E0OTNjMDE0N2NjMTFiZjIxNzYzNmNkYTg5OGRiZGZjMzp7Imxhbmd1YWdlIjoiZW4ifQ=='}

@@ -2,9 +2,9 @@
     //("===============BEGIN TABLE==================")
     //Cấu hình tên field và caption hiển thị trên UI
     scope.tableFields = [
-        { "data": "award_place_code", "title": "${get_res('award_place_code_table_header','Mã')}" },
-        { "data": "award_place_name", "title": "${get_res('award_place_name_table_header','Tên')}" },
-        { "data": "ordinal", "title": "${get_res('ordinal_table_header','Thứ tự')}" }
+        { "data": "award_place_code", "title": "${get_res('award_place_code_table_header','Mã')}", "className": "text-left" },
+        { "data": "award_place_name", "title": "${get_res('award_place_name_table_header','Tên')}", "className": "text-left" },
+        { "data": "ordinal", "title": "${get_res('ordinal_table_header','Thứ tự')}", "className": "text-center" }
     ];
     //
     scope.$$tableConfig = {};
@@ -90,7 +90,7 @@
     }
 
     function onSearch(val) {
-        scope.tableSearchText = $('#tableAwardPlaceSearchText').val();
+        scope.tableSearchText = val;
         scope.$applyAsync();
     }
 
@@ -137,6 +137,7 @@
                     "pageIndex": iPage - 1,
                     "pageSize": iPageLength,
                     "search": searchText,
+                    "lock": scope.$parent.$parent.$parent.advancedSearch.data_lock,
                     "sort": sort
                 })
                 .done()
@@ -152,15 +153,10 @@
                 })
     }
 
-    $(document).ready(function () {
-        $('#tableAwardPlaceSearchText').on('keypress', function (e) {
-            var code = e.keyCode || e.which;
-            if (code == 13) {
-                scope.tableSearchText = $('#tableAwardPlaceSearchText').val();
-                scope.$applyAsync();
-            }
-        });
-    })
+    scope.$parent.$parent.$parent.$watch("advancedSearch.data_lock", function (val) {
+        var config = scope.$$tableConfig;
+        _tableData(config.iPage, config.iPageLength, config.orderBy, config.searchText, config.fnReloadData);
+    });
 
     //("===============INIT==================")
     //_tableData();

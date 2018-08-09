@@ -1,16 +1,10 @@
-﻿<div class="modal-dialog">
-    <div class="modal-content">
-        <div class="modal-header">
-            <div class="left-content pull-left">
-                <!--<img src="{{$root.logo}}">-->
-                <span class="modal-title">{{title}}</span>
-            </div>
-            <div class="right-content pull-right">
-                <button type="button" class="close" data-dismiss="modal"><i class="la la-close"></i></button>
-                <button type="button" class="close" ng-click="onResizeDialog()"><span class="modal-resize"><i class="la la-expand"></i></span></button>
-            </div>
-        </div>
-        <div class="modal-body">
+﻿
+<%!
+    #_style="width:300px;"
+%>
+<%inherit file="../../commons/dialog_save_close.html"/>
+
+<%block name="modal_body">
             <div class="col-md-{{col_group}} col-sm-{{col_group}}">
                 <collapse-box class="zb-form-common" title="${get_global_res('Common_Information','Thông tin chung')}">
                     <div class="col-md-{{col}}">
@@ -127,50 +121,37 @@
                     </div>
                 </collapse-box>
             </div>
-            <div class="col-md-12" ng-hide="entity.coeff != 2 || __mode == 1">
+            <div class="col-md-12" ng-hide="entity.coeff != 2 && __mode != 1">
                 <collapse-box class="zb-form-common" title="${get_res('setting_acadame','Thiết lập chi tiết Trình độ học vấn')}">
-                    <div class="pull-right hcs-profile-icon-heading-on-table">
-                        <button class="zb-icon-button hcs-profile-group-title" ng-click="deleteDetail()">
-                            <span>
-                                <i class="la la-close"></i>
-                            </span>
+                    <toolbar>
+                        <input-text-icon icon="bowtie-icon bowtie-search"
+                                         on-click="onSearch"></input-text-icon>
+                        <button ng-click="addDetail()" class="zb-btn zb-btn-o-green">
+                            <i class="bowtie-icon bowtie-math-plus"></i>
                         </button>
-                    </div>
-                    <div class="pull-right hcs-profile-icon-heading-on-table">
-                        <button class="zb-icon-button hcs-profile-group-title" ng-click="addDetail()">
-                            <span>
-                                <i class="la la-pencil"></i>
-                            </span>
+                        <button ng-click="editDetail()" class="zb-btn zb-btn-o-blue">
+                            <i class="bowtie-icon bowtie-edit-outline"></i>
                         </button>
-                    </div>
-                    <div class="pull-right hcs-profile-icon-heading-on-table">
-                        <button class="zb-icon-button hcs-profile-group-title" ng-click="addDetail()">
-                            <span>
-                                <i class="la la-plus"></i>
-                            </span>
+                        <button ng-click="deleteDetail()" class="zb-btn zb-btn-o-red">
+                            <i class="bowtie-icon bowtie-trash"></i>
                         </button>
-                    </div>
-                    <div class="form-group zb-form-group">
-                        <div class="col-md-12" style="height:300px;">
-                            <table-data data-source="tableSource" fields="tableFields" type="MultiSelect" 
-                                paging="true" page-length="100" server-side="true" 
-                                press-enter="onSelectTableRow" selected-items="selectedItems"
-                                current-item="currentItem" search-text="tableSearchText"
-                                refresh-row="refreshDataRow">
-                            </table-data>
-                        </div>
+                        <button ng-click="" class="zb-btn">
+                            <i class="bowtie-icon bowtie-navigate-refresh"></i>
+                        </button>
+                    </toolbar>
+                    <div class="col-md-12 no-padding" style="height:230px;">
+                    <table-data data-source="$$table.tableSource" fields="$$table.tableFields" type="MultiSelect" 
+                        paging="true" page-length="100" server-side="true" 
+                        press-enter="$$table.onSelectTableRow" selected-items="$$table.selectedItems"
+                        current-item="$$table.currentItem" search-text="$$table.tableSearchText"
+                        refresh-row="$$table.refreshDataRow">
+                    </table-data>
                     </div>
                 </collapse-box>
             </div>
-        </div>
-        <div class="modal-footer">
-            <div class="right-content pull-right">
-                <button ng-click="saveNAdd($event)"><i class="la la-save"></i>${get_global_res('save_and_add','Lưu & thêm')}</button>
-                <button ng-click="saveNClose($event)"><i class="la la-save"></i>${get_global_res('save_and_close','Lưu & đóng')}</button>
-            </div>
-        </div>
-    </div>
-</div>
+</%block>
+
+<%block name="modal_script">
 <script>
     (function (scope) {
         scope.__mode = scope.$parent.mode;
@@ -189,7 +170,7 @@
         scope.cbbBeginDateCal = scope.$parent.LBeginDateCal;
 
         //Nút lưu và thêm
-        scope.saveNAdd = saveNAdd;
+        scope.saveNNext = saveNNext;
         //Nút lưu
         scope.saveNClose = saveNClose;
         //Nút thêm chi tiết
@@ -200,16 +181,27 @@
         scope.editDetail = editDetail;
 
         //Cấu hình tên field và caption hiển thị trên UI
-        scope.tableFields = [
-            { "data": "seniority_from", "title": "${get_res('seniority_from_table_header','Số tháng từ')}" },
-            { "data": "seniority_to", "title": "${get_res('seniority_to_table_header','Số tháng đến')}" },
-            { "data": "coefficient", "title": "${get_res('coefficient_table_header','Hệ số')}" },
-            { "data": "salary", "title": "${get_res('salary_table_header','Mức lương')}" },
-            { "data": "created_on", "title": "${get_res('created_on_table_header','Ngày tạo')}", "format": "date:" + scope.$root.systemConfig.date_format }
-        ];
-        scope.$$tableConfig = {};
-        //Dữ liệu cho table
-        scope.tableSource = _loadDataServerSide;
+        scope.$$table = {
+            "tableFields" : [
+                { "data": "seniority_from", "title": "${get_res('seniority_from_table_header','Số tháng từ')}", "className": "text-center" },
+                { "data": "seniority_to", "title": "${get_res('seniority_to_table_header','Số tháng đến')}", "className": "text-center" },
+                { "data": "coefficient", "title": "${get_res('coefficient_table_header','Hệ số')}", "className": "text-center" },
+                { "data": "salary", "title": "${get_res('salary_table_header','Mức lương')}", "className": "text-right" },
+                { "data": "created_on", "title": "${get_res('created_on_table_header','Ngày tạo')}", "className": "text-center", "format": "date:" + scope.$root.systemConfig.date_format }
+            ],
+            "$$tableConfig" : {},
+            "tableSource": _loadDataServerSide,
+            "onSelectTableRow" : function ($row) {
+                editDetail();
+            },
+            "selectedItems": [],
+            "currentItem": null,
+            "tableSearchText": "",
+            "refreshDataRow" : function () { /*Do nothing*/ }
+        }
+        scope.SearchText = '';
+        //Refesh table
+        scope._tableData = _tableData;
         function _loadDataServerSide(fnReloadData, iPage, iPageLength, orderBy, searchText) {
             scope.$$tableConfig = {
                 fnReloadData: fnReloadData,
@@ -230,18 +222,6 @@
                 }
             }
         };
-        scope.onSelectTableRow = function ($row) {
-            editDetail();
-        };
-        //Danh sách các dòng đc chọn (nếu là table MultiSelect)
-        scope.selectedItems = [];
-        //Dòng hiện tại đang được focus (nếu table là SingleSelect hoặc MultiSelect)
-        scope.currentItem = null;
-        scope.tableSearchText = '';
-        scope.SearchText = '';
-        //Refesh table
-        scope.refreshDataRow = function () { /*Do nothing*/ };
-        scope._tableData = _tableData;
         function _tableData(iPage, iPageLength, orderBy, searchText, callback) {
             var sort = {};
             $.each(orderBy, function (i, v) {
@@ -265,7 +245,7 @@
                             data: res.items
                         };
                         callback(data);
-                        scope.currentItem = null;
+                        scope.$$table.currentItem = null;
                         scope.$apply();
                     })
         }
@@ -310,7 +290,7 @@
             }
         }
 
-        function saveNAdd() {
+        function saveNNext() {
             if (scope.entity != null) {
                 var rsCheck = checkError();//Kết quả check input
                 if (rsCheck.result) {
@@ -327,13 +307,13 @@
                             scope.$parent.currentItem = scope.entity;
                             scope.$parent.currentItem.modified_on = res.item.modified_on;
                             scope.$parent.currentItem.modified_by = res.item.modified_by;
-                            scope.$parent.$apply();
                             //Refesh datatable
                             scope.$parent.refreshDataRow();
                         }
                         $msg.alert("${get_global_res('Handle_Success','Thao tác thành công')}", $type_alert.INFO);
                         scope.entity = null;
                         scope.__mode = 1;
+                        scope.$parent.$apply();
                     } else {
                         $msg.message("${get_global_res('Notification','Thông báo')}", "${get_global_res('Internal_Server_Error','Có lỗi từ phía máy chủ')}", function () { });
                     }
@@ -347,27 +327,31 @@
         }
 
         function editDetail() {
-            scope.__detailMode = 2;
-            openDialog("${get_res('config_detail_acadame','Thiết lập chi tiết trình độ học vấn')}", 'category/form/dialog/addAcadameDetail', function () { }, "dialogInputAcadameDetail");
+            if (scope.$$table.currentItem) {
+                scope.__detailMode = 2; // set mode chỉnh sửa
+                openDialog("${get_res('config_detail_acadame','Thiết lập chi tiết trình độ học vấn')}", 'category/form/dialog/addAcadameDetail', function () { }, "dialogInputAcadameDetail");
+            } else {
+                $msg.message("${get_global_res('Notification','Thông báo')}", "${get_app_res('No_Row_Selected','Không có dòng được chọn')}", function () { });
+            }
         }
 
         function deleteDetail() {
-            if (!scope.selectedItems || scope.selectedItems.length === 0) {
+            if (!scope.$$table.selectedItems || scope.$$table.selectedItems.length === 0) {
             $msg.message("${get_global_res('Notification','Thông báo')}", "${get_global_res('No_Row_Selected','Không có dòng được chọn')}", function () { });
             } else {
                 $msg.confirm("${get_global_res('Notification','Thông báo')}", "${get_global_res('Do_You_Want_Delete','Bạn có muốn xóa không?')}", function () {
                     services.api("${get_api_key('app_main.api.HCSLS_Acadame/delete_detail')}")
                         .data({
                             "train_level_code":scope.entity.train_level_code,
-                            "rec_id": _.pluck(scope.selectedItems, 'rec_id')
+                            "rec_id": _.pluck(scope.$$table.selectedItems, 'rec_id')
                         })
                         .done()
                         .then(function (res) {
                             if (res.updatedExisting == true) {
-                                _tableData(scope.$$tableConfig.iPage, scope.$$tableConfig.iPageLength, scope.$$tableConfig.orderBy, scope.$$tableConfig.SearchText, scope.$$tableConfig.fnReloadData);
+                                _tableData(scope.$$table.$$tableConfig.iPage, scope.$$table.$$tableConfig.iPageLength, scope.$$table.$$tableConfig.orderBy, scope.$$table.$$tableConfig.SearchText, scope.$$table.$$tableConfig.fnReloadData);
                                 $msg.alert("${get_global_res('Handle_Success','Thao tác thành công')}", $type_alert.INFO);
-                                scope.currentItem = null;
-                                scope.selectedItems = [];
+                                scope.$$table.currentItem = null;
+                                scope.$$table.selectedItems = [];
                             }
                             if (res.error != null || res.updatedExisting == false) {
                                 $msg.alert("${get_global_res('Handle_Failed','Thao tác thất bại')}", $type_alert.DANGER);
@@ -452,12 +436,13 @@
             }
         }
 
-        scope.$watch('entity.coeff', function (val, old) {
-            if (val == 2) {
-                setTimeout(function () {
-                    $(window).trigger('resize');
-                }, 200);
-            }
-        }, true)
+        //scope.$watch('entity.coeff', function (val, old) {
+        //    if (val == 2) {
+        //        setTimeout(function () {
+        //            $(window).trigger('resize');
+        //        }, 200);
+        //    }
+        //}, true)
     });
 </script>
+</%block>

@@ -15,7 +15,8 @@
                 ngModel: "=",
                 placeholder: "@",
                 fieldValue: "@value",
-                fieldCaption: "@caption"
+                fieldCaption: "@caption",
+                ngChange: "="
             },
             //transclude: true,
             //template: function(el, attrs) {
@@ -74,6 +75,9 @@
                             $scope.$watch("selectedItem.selected", function (val, old) {
                                 var retval = (val && val[$scope.fieldValue]) ? val[$scope.fieldValue] : null;
                                 $scope.ngModel = retval;
+                                if (angular.isFunction($scope.ngChange)) {
+                                    ($scope.ngChange)(retval);
+                                }
                             });
                         }
                     }

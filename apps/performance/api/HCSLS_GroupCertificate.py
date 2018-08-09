@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 from bson import ObjectId
 import models
+import common
 from Query import GroupCertificate
 import logging
 import threading
@@ -17,9 +18,14 @@ def get_list_with_searchtext(args):
     pageIndex = (lambda pIndex: pIndex if pIndex != None else 0)(pageIndex)
     pageSize = (lambda pSize: pSize if pSize != None else 20)(pageSize)
     ret=GroupCertificate.display_list_group_cer()
+
+    ret=common.filter_lock(ret, args)
     
     if(searchText != None):
-        ret.match("contains(group_cer_name, @name)",name=searchText)
+        ret.match("contains(group_cer_name, @name) or " + \
+            "contains(group_cer_code, @name) or " + \
+            "contains(note, @name) or " + \
+            "contains(ordinal, @name)",name=searchText.strip())
 
     if(sort != None):
         ret.sort(sort)
@@ -52,11 +58,11 @@ def update(args):
             data =  set_dict_update_data(args)
             ret  =  models.HCSLS_GroupCertificate().update(
                 data, 
-                "_id == {0}", 
-                ObjectId(args['data']['_id']))
+                "group_cer_code == {0}", 
+                args['data']['group_cer_code'])
             if ret['data'].raw_result['updatedExisting'] == True:
                 ret.update(
-                    item = GroupCertificate.display_list_group_cer().match("_id == {0}", ObjectId(args['data']['_id'])).get_item()
+                    item = GroupCertificate.display_list_group_cer().match("group_cer_code == {0}", args['data']['group_cer_code']).get_item()
                     )
             lock.release()
             return ret
@@ -74,7 +80,7 @@ def delete(args):
         lock.acquire()
         ret = {}
         if args['data'] != None:
-            ret  =  models.HCSLS_GroupCertificate().delete("_id in {0}",[ObjectId(x["_id"])for x in args['data']])
+            ret  =  models.HCSLS_GroupCertificate().delete("group_cer_code in {0}",[x["group_cer_code"]for x in args['data']])
             lock.release()
             return ret
 

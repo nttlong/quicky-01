@@ -1,16 +1,10 @@
-﻿<div class="modal-dialog">
-    <div class="modal-content">
-        <div class="modal-header">
-            <div class="left-content pull-left">
-                <!--<img src="{{$root.logo}}">-->
-                <span class="modal-title">{{title}}</span>
-            </div>
-            <div class="right-content pull-right">
-                <button type="button" class="close" data-dismiss="modal"><i class="la la-close"></i></button>
-                <button type="button" class="close" ng-click="onResizeDialog()"><span class="modal-resize"><i class="la la-expand"></i></span></button>
-            </div>
-        </div>
-        <div class="modal-body">
+﻿
+<%!
+    #_style="width:300px;"
+%>
+<%inherit file="../../commons/dialog_save_close.html"/>
+
+<%block name="modal_body">
             <div class="col-md-{{col_group}} col-sm-{{col_group}}">
                 <collapse-box class="zb-form-common" title="${get_global_res('Common_Information','Thông tin chung')}">
                     <div class="col-md-{{col}}">
@@ -121,15 +115,9 @@
                     </div>
                 </collapse-box>
             </div>
-        </div>
-        <div class="modal-footer">
-            <div class="right-content pull-right">
-                <button ng-click="saveNAdd($event)"><i class="la la-save"></i>${get_global_res('save_and_add','Lưu & thêm')}</button>
-                <button ng-click="saveNClose($event)"><i class="la la-save"></i>${get_global_res('save_and_close','Lưu & đóng')}</button>
-            </div>
-        </div>
-    </div>
-</div>
+</%block>
+
+<%block name="modal_script">
 <script>
     (function (scope) {
         scope.__mode = scope.$parent.mode;
@@ -142,7 +130,7 @@
         scope.entity = scope.__mode == 2 ? __entity : null;
 
         //Nút lưu và thêm
-        scope.saveNAdd = saveNAdd;
+        scope.saveNNext = saveNNext;
 
         //Nút lưu
         scope.saveNClose = saveNClose;
@@ -190,7 +178,7 @@
             }
         }
 
-        function saveNAdd() {
+        function saveNNext() {
             if (scope.entity != null) {
                 var rsCheck = checkError();//Kết quả check input
                 if (rsCheck.result) {
@@ -279,3 +267,4 @@
 
     });
 </script>
+</%block>

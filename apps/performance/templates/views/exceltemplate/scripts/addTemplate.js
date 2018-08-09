@@ -161,7 +161,6 @@
     };
 
     function addDetail() {
-        debugger
         openDialog("${ get_res('reference_information', 'Thông tin tra cứu') }", "exceltemplate/form/addDetail", function () { }, "addDetailTemplate");
     }
 

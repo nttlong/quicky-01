@@ -37,7 +37,7 @@ def get_list_with_searchtext(args):
     if(searchText != None):
         ret.match("contains(dd_code, @name) or contains(dd_name, @name)" + \
         "or contains(display_access_mode, @name) or contains(description, @name) " + \
-        "or contains(created_on, @name)",name=searchText)
+        "or contains(created_on, @name)",name=searchText.strip())
 
     if(sort != None):
         ret.sort(sort)
@@ -52,23 +52,25 @@ def insert(args):
     return None
 
 def update(args):
+    domain_code = ""
     if args['data'] != None:
         if args['data']['dd_code'] == None:
             return None
         else:
             if(args['data'].has_key('dd_code')):
+                domain_code = args['data']['dd_code']
                 args['data'].pop('dd_code')
             ret = models.HCSSYS_DataDomain().update(
             args['data'],
-            "_id==@_id",
+            "dd_code==@dd_code",
             dict(
-                _id = ObjectId(args['data']['_id'])
+                dd_code = domain_code
             ))
             return ret
     return None
 
 def delete(args):
     if args['data'] != None:
-        ret = models.HCSSYS_DataDomain().delete("_id in {0}", [ObjectId(x["_id"])for x in args['data']])
+        ret = models.HCSSYS_DataDomain().delete("dd_code in {0}", [x["dd_code"]for x in args['data']])
         return ret
     return None

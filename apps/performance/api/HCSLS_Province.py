@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 from bson import ObjectId
 import models
+import common
 from Query import AdministrativeSubdivisions
 import logging
 import threading
@@ -19,6 +20,8 @@ def get_list_with_searchtext(args):
     pageSize = (lambda pSize: pSize if pSize != None else 20)(pageSize)
     ret=AdministrativeSubdivisions.get_province()
 
+    ret=common.filter_lock(ret, args)
+
     if len(where.keys()) > 0:
         if where.has_key('nation_code') and where['nation_code'] != None:\
            #and where['nation_code'].strip() != "":
@@ -28,7 +31,10 @@ def get_list_with_searchtext(args):
             ret.match("region_code == @reg_code", reg_code = where['region_code'])
 
     if(searchText != None):
-        ret.match("contains(province_name, @name)",name=searchText)
+        ret.match("contains(province_name, @name) or " + \
+            "contains(province_code, @name) or " + \
+            "contains(org_province_code, @name) or " + \
+            "contains(ordinal, @name)",name=searchText.strip())
 
     if(sort != None):
         ret.sort(sort)
@@ -61,11 +67,11 @@ def update(args):
             data =  set_dict_update_data(args)
             ret  =  models.HCSLS_Province().update(
                 data, 
-                "_id == {0}", 
-                ObjectId(args['data']['_id']))
+                "province_code == {0}", 
+                args['data']['province_code'])
             if ret['data'].raw_result['updatedExisting'] == True:
                 ret.update(
-                    item = AdministrativeSubdivisions.get_province().match("_id == {0}", ObjectId(args['data']['_id'])).get_item()
+                    item = AdministrativeSubdivisions.get_province().match("province_code == {0}", args['data']['province_code']).get_item()
                     )
             lock.release()
             return ret
@@ -83,7 +89,7 @@ def delete(args):
         lock.acquire()
         ret = {}
         if args['data'] != None:
-            ret  =  models.HCSLS_Province().delete("_id in {0}",[ObjectId(x["_id"])for x in args['data']])
+            ret  =  models.HCSLS_Province().delete("province_code in {0}",[x["province_code"]for x in args['data']])
             lock.release()
             return ret
 

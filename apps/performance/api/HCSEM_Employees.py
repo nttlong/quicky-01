@@ -79,8 +79,8 @@ def update(args):
             data =  set_dict_update_data(args['data'])
             ret  =  models.HCSEM_Employees().update(
                 data, 
-                "_id == {0}", 
-                ObjectId(args['data']['_id']))
+                "employee_code == {0}", 
+                args['data']['employee_code'])
             #if ret['data'].raw_result['updatedExisting'] == True:
             #    ret.update(
             #        item = AdministrativeSubdivisions.get_district().match("_id == {0}", ObjectId(args['data']['_id'])).get_item()

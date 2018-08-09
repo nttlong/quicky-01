@@ -128,7 +128,7 @@ function dialog($scope, id = 'myModal') {
                         }
                     }
                     watch();
-                    sScope.$element.modal()
+                    sScope.$element.modal({ backdrop: 'static', keyboard: true })
                         .on("hidden.bs.modal", function () {
                             sScope.$element.remove();
 

@@ -21,7 +21,7 @@
                     LEFT: "left"
                 };
                 var config = {};
-                config.ngModel = (attr["ngModel"]) ? attr["ngModel"] : '';
+                config.ngModel = (attr["ngModel"]) ? "ng-model='" + attr["ngModel"] + "'" : '';
                 config.iconAlign = (attr["iconAlign"]) ? attr["iconAlign"].toLowerCase() : ALIGN.RIGHT;
                 config.placeholder = attr["placeholder"] ? attr["placeholder"] : '';
                 config.icon = (attr["icon"]) ? attr["icon"] : 'glyphicon glyphicon-search';
@@ -32,7 +32,7 @@
                     $(elem).wrap("<span zb-required></span>")
                 }
 
-                var sInput = '<input type="text" class="form-control" placeholder="<<placeholder>>" ng-model="<<ngModel>>"></input>';
+                var sInput = '<input type="text" class="form-control" placeholder="<<placeholder>>" <<ngModel>>></input>';
                 sInput = sInput.replace("<<placeholder>>", config.placeholder).replace("<<ngModel>>", config.ngModel);
                 var sIcon = '' +
                     '<div class="input-group-btn">' +
@@ -50,7 +50,7 @@
                     pre: function (scope, elem, attr, controller, transcludeFn) {
                         subLink(scope);
                     },
-                    post: function (scope, element, attributes, controller, transcludeFn) {
+                    post: function (scope, elem, attr, controller, transcludeFn) {
                         if (config.click) {
                             var _search = function () {
                                 var txtSearch = $(elem).find("input").val();

@@ -4,24 +4,17 @@
     box-shadow: 0 2px 6px 0 rgba(0,0,0,0.2),0 1.5px 4px 0 rgba(0,0,0,0.19) !important;
 }
 
-#myInput {
-    border-box: box-sizing;
-    font-size: 16px;
-    margin: 5px;
-    width: 97%;
-}
-
 #dropdownFunction {
-    top: 48px;
+    top: 80px;
     left: 0;
-    margin-left: 8%;
+    margin-left: 85px;
     padding-top: unset;
     height: 400px;
     width: 400px;
     line-height: initial;
     border-width: 1px 1px 20px;
     border-style: solid;
-    border-color: rgb(221, 221, 221) rgb(221, 221, 221) @site_color;
+    border-color: rgb(221, 221, 221) rgb(221, 221, 221) @bg_blue;
     border-image: initial;
     background-color: white;
     z-index: 20;
@@ -35,14 +28,22 @@
     margin-right: unset !important;
 }
 
-#dropdownFunction .dropdown p{
-    margin: 0px 7px 0px 0px;
+#dropdownFunction .dropdown p {
+    font-size: 14px;
     padding: 8px;
+    border-top: 1px solid #eee;
+    margin: unset;
 }
 
-#dropdownFunction .dropdown p:hover {
-    background-color: #428bca;
-    color: white;
+#dropdownFunction .dropdown p.focus {
+    background-color: #ebf9ff;
+    border-bottom: 1px solid #78c4e6;
+}
+
+#dropdownFunction .dropdown p:hover, p:active, p:focus {
+    cursor: pointer;
+    background-color: #ebf9ff;
+    border-bottom: 1px solid #78c4e6;
 }
 
 @media (min-width:768px) {
@@ -52,7 +53,7 @@
         margin-right: unset;
         padding-top: unset;
         width: 100%;
-        margin-left:5px;
+        border-top:1px solid #d9d9d9;
     }
 
     #dropdownFunction .dropdown a {
@@ -73,7 +74,7 @@
         margin-right: unset;
         padding-top: unset;
         width: 100%;
-        margin-left:5px;
+        border-top: 1px solid #eee;
     }
 
     #dropdownFunction .dropdown a {

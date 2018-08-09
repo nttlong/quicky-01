@@ -21,7 +21,9 @@ def insert(args):
         try:
             lock.acquire()
             user_name = args['data']['login_account']
-            if User.objects.filter(username=user_name).exists() == 0:
+            check_exist = models.auth_user_info().aggregate().project(login_account = 1).match("login_account == {0}", user_name).get_list()
+
+            if len(check_exist) == 0:
 
                 args['data']['username'] = generate_user_id()
 
@@ -79,7 +81,6 @@ def update(args):
             if models.auth_user_info().aggregate().match("_id == {0}", ObjectId(args['data']['_id'])).get_item() != None:
 
                 data = dict(
-                    _id              = args['data']['_id'],
                     login_account    = args['data']['login_account'],
                     display_name     = args['data']['display_name'],
                     role_code        = (lambda data: data["role_code"] if data.has_key("role_code") else None)(args['data']),
@@ -94,8 +95,8 @@ def update(args):
 
                 ret = models.auth_user_info().update(
                     data,
-                    "_id == {0}",
-                    ObjectId(data['_id']))
+                    "username == {0}",
+                    args['data']['username'])
 
                 if args['data']['change_password'] != None and args['data']['change_password'] == True:
                     u = User.objects.get(username=args['data']['username'])
@@ -119,7 +120,7 @@ def delete(args):
             user_names = models.auth_user_info().aggregate().project(username = 1).match("_id in {0}", [ObjectId(x["_id"])for x in args['data']]).get_list()
 
             models.auth_user().delete("username in {0}", [x["username"] for x in user_names])
-            ret = models.auth_user_info().delete("_id in {0}", [ObjectId(x["_id"])for x in args['data']])
+            ret = models.auth_user_info().delete("username in {0}", [x["username"]for x in args['data']])
             return ret
         except Exception as ex:
             logger.debug(ex)
@@ -142,11 +143,14 @@ def get_list_with_searchtext(args):
             pageIndex       = (lambda pIndex: pIndex if pIndex != None else 0)(pageIndex)
             pageSize        = (lambda pSize: pSize if pSize != None else 20)(pageSize)
 
-            items = models.auth_user_info().aggregate().project(
+            items = models.auth_user_info().aggregate()
+            items.left_join(models.AD_Roles(), "role_code", "role_code", "role")
+            items.project(
                     login_account       = 1,
                     username            = 1,
                     display_name        = 1,
                     role_code           = 1,
+                    role_name           ="switch(case(role_code!='',role.role_name),'')",
                     is_system           = 1,
                     never_expire        = 1,
                     manlevel_from       = 1,
@@ -160,7 +164,7 @@ def get_list_with_searchtext(args):
             if(searchText != None):
                 items.match("contains(login_account, @name) or contains(display_name, @name) " + \
                     "or contains(role_code, @name) or contains(manlevel_from, @name) " + \
-                    "or contains(manlevel_to, @name) or contains(created_on, @name)",name=searchText)
+                    "or contains(manlevel_to, @name) or contains(created_on, @name)",name=searchText.strip())
 
             if(where != None and where != {}):
                 try:

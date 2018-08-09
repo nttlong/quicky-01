@@ -35,15 +35,13 @@ def admin(request):
 
 @quicky.view.template("login.html")
 def login(request):
-    try:
-        from quicky import tenancy
-        sys_user=User.objects.get(username="sys",schema=tenancy.get_schema())
-    except ObjectDoesNotExist as ex:
-        user = User.objects.create_user('sys', '', '123456',schema=tenancy.get_schema())
-        user.is_active=True
-        user.is_supperuser=True
-        user.save(schema=tenancy.get_schema())
-        auth_user_info().insert_one()
+    #try:
+    #    sys_user=User.objects.get(username="sys")
+    #except ObjectDoesNotExist as ex:
+    #    user = User.objects.create_user('sys', '', '123456')
+    #    user.is_active=True
+    #    user.is_supperuser=True
+    #    user.save()
     _login=models.Login()
     _login.language=request._get_request().get("language","en")
     if request.GET.has_key("next"):
@@ -62,7 +60,7 @@ def login(request):
             if user_login==None:
                 raise (Exception("User was not found"))
 
-            ret=authenticate(username=username_request, password=password_request,schema=tenancy.get_schema())
+            ret=authenticate(username=user_login['username'], password=password_request,schema=tenancy.get_schema())
             form_login(request,ret,schema=tenancy.get_schema())
             return redirect(request.get_app_url(request._get_post().get("site")))
         except Exception as ex:

@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 from bson import ObjectId
 import models
+import common
 from Query import EmployeeType
 import logging
 import threading
@@ -17,9 +18,16 @@ def get_list_with_searchtext(args):
     pageIndex = (lambda pIndex: pIndex if pIndex != None else 0)(pageIndex)
     pageSize = (lambda pSize: pSize if pSize != None else 20)(pageSize)
     ret=EmployeeType.display_list_employee_type()
+
+    ret=common.filter_lock(ret, args)
     
     if(searchText != None):
-        ret.match("contains(emp_type_name, @name)",name=searchText)
+        ret.match("contains(emp_type_code, @name) or " + \
+            "contains(emp_type_name, @name) or " + \
+            "contains(display_true_type, @name) or " + \
+            "contains(rate_main_sal, @name) or " + \
+            "contains(rate_soft_sal, @name) or " + \
+            "contains(ordinal, @name)",name=searchText.strip())
 
     if(sort != None):
         ret.sort(sort)
@@ -52,11 +60,11 @@ def update(args):
             data =  set_dict_update_data(args)
             ret  =  models.HCSLS_EmployeeType().update(
                 data, 
-                "_id == {0}", 
-                ObjectId(args['data']['_id']))
+                "emp_type_code == {0}", 
+                args['data']['emp_type_code'])
             if ret['data'].raw_result['updatedExisting'] == True:
                 ret.update(
-                    item = EmployeeType.display_list_employee_type().match("_id == {0}", ObjectId(args['data']['_id'])).get_item()
+                    item = EmployeeType.display_list_employee_type().match("emp_type_code == {0}", args['data']['emp_type_code']).get_item()
                     )
             lock.release()
             return ret
@@ -74,7 +82,7 @@ def delete(args):
         lock.acquire()
         ret = {}
         if args['data'] != None:
-            ret  =  models.HCSLS_EmployeeType().delete("_id in {0}",[ObjectId(x["_id"])for x in args['data']])
+            ret  =  models.HCSLS_EmployeeType().delete("emp_type_code in {0}",[x["emp_type_code"]for x in args['data']])
             lock.release()
             return ret
 

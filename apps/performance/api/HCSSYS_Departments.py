@@ -55,7 +55,7 @@ def update(args):
         ret = {}
         if args['data'] != None:
             data = set_dict_data(args)
-            ret  =  models.HCSSYS_Departments().update(data, "_id == @id", id = ObjectId(args['data']['_id']))
+            ret  =  models.HCSSYS_Departments().update(data, "department_code == @department_code", department_code = args['data']['department_code'])
             lock.release()
             return ret
 
@@ -72,7 +72,7 @@ def delete(args):
         lock.acquire()
         ret = {}
         if args['data'] != None:
-            ret =  models.HCSSYS_Departments().delete("_id in {0}", [ObjectId(x["_id"])for x in args['data']])
+            ret =  models.HCSSYS_Departments().delete("department_code in {0}", [x["department_code"]for x in args['data']])
             lock.release()
             return ret
 

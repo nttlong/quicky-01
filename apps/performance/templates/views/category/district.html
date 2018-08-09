@@ -1,45 +1,23 @@
 ﻿
     <div id="collapseTableDistrict" class="row">
-        <div class="col-md-12" style="height: 37vh;">
-            <collapse-box class="zb-datatable" title="${get_res('district_caption_toolbar','2. Quận/Huyện')}">
-                <div class="pull-right hcs-profile-icon-heading-on-table">
-                    <button class="zb-icon-button hcs-profile-group-title" ng-click="onReloadDistrict()">
-                        <span>
-                            <i class="la la-refresh"></i>
-                        </span>
+        <div class="col-md-12" style="height: calc((100vh - 120px)/2)">
+            <collapse-box class="zb-form-common" title="${get_res('district_caption_toolbar','2. Quận/Huyện')}">
+                <toolbar>
+                    <input-text-icon icon="bowtie-icon bowtie-search"
+                                     on-click="onSearchDistinct"></input-text-icon>
+                    <button ng-click="onAddDistrict()" class="zb-btn zb-btn-o-green">
+                        <i class="bowtie-icon bowtie-math-plus"></i>
                     </button>
-                </div>
-                <div class="pull-right hcs-profile-icon-heading-on-table">
-                    <button class="zb-icon-button hcs-profile-group-title" ng-click="onDeleteDistrict()">
-                        <span>
-                            <i class="la la-trash"></i>
-                        </span>
+                    <button ng-click="onEditDistrict()" class="zb-btn zb-btn-o-blue">
+                        <i class="bowtie-icon bowtie-edit-outline"></i>
                     </button>
-                </div>
-                <div class="pull-right hcs-profile-icon-heading-on-table">
-                    <button class="zb-icon-button hcs-profile-group-title" ng-click="onEditDistrict()">
-                        <span>
-                            <i class="la la-pencil"></i>
-                        </span>
+                    <button ng-click="onDeleteDistrict()" class="zb-btn zb-btn-o-red">
+                        <i class="bowtie-icon bowtie-trash"></i>
                     </button>
-                </div>
-                <div class="pull-right hcs-profile-icon-heading-on-table">
-                    <button class="zb-icon-button hcs-profile-group-title" ng-click="onAddDistrict()">
-                        <span>
-                            <i class="la la-plus"></i>
-                        </span>
+                    <button ng-click="onReloadDistrict()" class="zb-btn">
+                        <i class="bowtie-icon bowtie-navigate-refresh"></i>
                     </button>
-                </div>
-                <div class="pull-right hcs-profile-icon-heading-on-table" style="width:25px;margin-left:10px;">
-                    <button class="zb-icon-button hcs-profile-group-title">
-                        <span>
-                            <i class="la la-search"></i>
-                        </span>
-                    </button>
-                </div>
-                <div class="pull-right">
-                    <input-text id="tableDistrictSearchText">
-                </div>
+                </toolbar>
                 <table-data data-source="tableDistrictSource" fields="tableDistrictFields" type="MultiSelect" 
                 server-side="true" page-length="100" paging="true" 
                 selected-items="selectedDistricts"
@@ -54,10 +32,10 @@
     (function (scope) {
         //Cấu hình tên field và caption hiển thị trên UI
         scope.tableDistrictFields = [
-            { "data": "district_code", "title": "${get_res('code_table_header','Mã')}" },
-            { "data": "district_name", "title": "${get_res('name_table_header','Tên')}" },
-            { "data": "org_district_code", "title": "${get_res('org_code_header','Mã quy định')}" },
-            { "data": "ordinal", "title": "${get_res('ordinal_table_header','Thứ tự')}" }
+            { "data": "district_code", "title": "${get_res('code_table_header','Mã')}", "className": "text-left" },
+            { "data": "district_name", "title": "${get_res('name_table_header','Tên')}", "className": "text-left" },
+            { "data": "org_district_code", "title": "${get_res('org_code_header','Mã quy định')}", "className": "text-left" },
+            { "data": "ordinal", "title": "${get_res('ordinal_table_header','Thứ tự')}", "className": "text-center" }
         ];
         //
         scope.$$tableDistrictConfig = {};
@@ -100,6 +78,13 @@
         scope.onReloadDistrict = onReloadDistrict;
         scope._tableDistrictData = _tableDistrictData;
 
+        scope.onSearchDistinct = function (txt) {
+            scope.tableDistrictSearchText = txt;
+            scope.$applyAsync();
+        }
+        console.log(scope.districtSearch);
+
+        scope.$applyAsync();
         /**
          * Hàm mở form chỉnh sửa
          */
@@ -178,6 +163,7 @@
                         "pageIndex": iPage - 1,
                         "pageSize": iPageLength,
                         "search": searchText,
+                        "lock": scope.$parent.$parent.$parent.advancedSearch.data_lock,
                         "where": {
                             "province_code": scope.currentProvince ? scope.currentProvince.province_code : " "
                         },
@@ -195,15 +181,5 @@
                         scope.$apply();
                     })
         }
-
-        $(document).ready(function () {
-            $('#tableDistrictSearchText').on('keypress', function(e) {
-                var code = e.keyCode || e.which;
-                if(code==13){
-                    scope.tableDistrictSearchText = $('#tableDistrictSearchText').val();
-                    scope.$applyAsync();
-                }
-            });
-        })
-});
+    });
 </script>

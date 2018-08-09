@@ -141,6 +141,10 @@
                 }
             })
 
+            scope.$watch('listCode', function (val) {
+                getData(function () { assignDataInit(); });
+            })
+
         }
 
     }

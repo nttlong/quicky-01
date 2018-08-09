@@ -4,19 +4,20 @@ import datetime
 import base
 import threading
 _hasCreated=False
-def TMLS_Rank():
+def TMSYS_ConfigChangeObjectPriority():
     global _hasCreated
     if not _hasCreated:
         helpers.extent_model(
-            "TMLS_Rank",
+            "TMSYS_ConfigChangeObjectPriority",
             "base",
-            [["rank_code"]],
-            rec_id = helpers.create_field('text'),
-            valuelist_key = helpers.create_field('numeric'),
+            [[]],
+            value_list_key = helpers.create_field('text'),
             change_object = helpers.create_field('numeric'),
             change_object_name = helpers.create_field('text'),
-            priority_no = helpers.create_field('text'),
-            note = helpers.create_field('numeric'),
+            priority_no = helpers.create_field('numeric'),
+            table_name = helpers.create_field('text'),
+            note = helpers.create_field('text'),
+            language = helpers.create_field('numeric'),
             created_on=helpers.create_field("date"),
             created_by=helpers.create_field("text"),
             modified_on=helpers.create_field("date"),
@@ -24,12 +25,6 @@ def TMLS_Rank():
         )
         _hasCreated=True
 
-    ret = db_context.collection("TMLS_Rank")
+    ret = db_context.collection("TMSYS_ConfigChangeObjectPriority")
 
     return ret
-rec_id   int x
-valuelist_key    string  x
-change_object    int x
-change_object_name    string  
-priority_no  int x
-note    string  

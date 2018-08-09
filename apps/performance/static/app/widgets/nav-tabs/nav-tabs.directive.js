@@ -39,13 +39,21 @@
 
                 //var htmlTransclude = $transclude();
                 var tabContents = $(elem).find(".zb-tab-container>tab-content");
-                console.log(tabContents);
                 //Kiểm tra đã có tab được active chưa, nếu chưa mặc định chọn tab đầu tiên
                 var hasActive = false;
+                //$transclude($scope, function(nodes, scope) {
                 $.each(tabContents, function (i, v) {
                     if (v.tagName && v.tagName.toLocaleLowerCase() === "tab-content") {
                         var name = $(v).attr("name");
                         var title = ($(v).attr("title")) ? $(v).attr("title") : name;
+                        var __check = title.match(/(\{{.*?\}})/gm);
+                        if (__check && __check.length > 0) {
+                            $.each(__check, function (i, v) {
+                                var modelName = v.replace("{{", "").replace("}}", "");
+                                title = title.replace(v, $scope.$eval(modelName));
+                            });
+                        }
+
                         var active = ($(v).attr("active") && $(v).attr("active") === "true") ? true : false;
                         var onSelect = ($(v).attr("select")) ? ($(v).attr("select")) : null;
 
@@ -59,6 +67,8 @@
                         }
                     }
                 });
+                //$compile($(elem).find(".zb-tab-container"))($scope);
+                //});
 
                 $(elem).find("div.zb-tab-container>tab-content").addClass('zb-inactive');
                 if (!hasActive) {
@@ -79,6 +89,8 @@
                         ($scope.$eval(me.attr("select")))();
                     }
                 });
+                //var htmlTransclude = $transclude();
+                //console.log(htmlTransclude)
             }
         };
     }

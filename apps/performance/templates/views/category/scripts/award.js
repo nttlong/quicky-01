@@ -2,11 +2,11 @@
     //("===============BEGIN TABLE==================")
     //Cấu hình tên field và caption hiển thị trên UI
     scope.tableFields = [
-        { "data": "award_code", "title": "${get_res('job_pos_code_table_header','Mã')}" },
-        { "data": "award_name", "title": "${get_res('job_pos_name_table_header','Tên')}" },
-        { "data": "display_award_type", "title": "${get_res('note_table_header','Phân loại')}" },
-        { "data": "display_award_level_code", "title": "${get_res('ordinal_table_header','Cấp')}" },
-        { "data": "is_team", "title": "${get_res('is_team_table_header','Tập thể')}", "format": "checkbox" }
+        { "data": "award_code", "title": "${get_res('job_pos_code_table_header','Mã')}", "className": "text-left" },
+        { "data": "award_name", "title": "${get_res('job_pos_name_table_header','Tên')}", "className": "text-left" },
+        { "data": "display_award_type", "title": "${get_res('note_table_header','Phân loại')}", "className": "text-left" },
+        { "data": "display_award_level_code", "title": "${get_res('ordinal_table_header','Cấp')}", "className": "text-left" },
+        { "data": "is_team", "title": "${get_res('is_team_table_header','Tập thể')}", "className": "text-center", "format": "checkbox" }
     ];
     //
     scope.$$tableConfig = {};
@@ -93,7 +93,7 @@
     }
 
     function onSearch(val) {
-        scope.tableSearchText = $('#tableAwardSearchText').val();
+        scope.tableSearchText = val;
         scope.$applyAsync();
     }
 
@@ -141,6 +141,7 @@
                     "pageIndex": iPage - 1,
                     "pageSize": iPageLength,
                     "search": searchText,
+                    "lock": scope.$parent.$parent.$parent.advancedSearch.data_lock,
                     "sort": sort
                 })
                 .done()
@@ -172,15 +173,10 @@
     }
     _comboboxData();
 
-    $(document).ready(function () {
-        $('#tableAwardSearchText').on('keypress', function (e) {
-            var code = e.keyCode || e.which;
-            if (code == 13) {
-                scope.tableSearchText = $('#tableAwardSearchText').val();
-                scope.$applyAsync();
-            }
-        });
-    })
+    scope.$parent.$parent.$parent.$watch("advancedSearch.data_lock", function (val) {
+        var config = scope.$$tableConfig;
+        _tableData(config.iPage, config.iPageLength, config.orderBy, config.searchText, config.fnReloadData);
+    });
 
     //("===============INIT==================")
     //_tableData();

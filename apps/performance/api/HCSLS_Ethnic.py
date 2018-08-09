@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 from bson import ObjectId
 import models
+import common
 from Query import Ethnic
 import logging
 import threading
@@ -17,9 +18,14 @@ def get_list_with_searchtext(args):
     pageIndex = (lambda pIndex: pIndex if pIndex != None else 0)(pageIndex)
     pageSize = (lambda pSize: pSize if pSize != None else 20)(pageSize)
     ret=Ethnic.display_list_ethnic()
+
+    ret=common.filter_lock(ret, args)
     
     if(searchText != None):
-        ret.match("contains(ethnic_name, @name)",name=searchText)
+        ret.match("contains(ethnic_name, @name) or " + \
+            "contains(ethnic_code, @name) or " + \
+            "contains(note, @name) or " + \
+            "contains(ordinal, @name)",name=searchText.strip())
 
     if(sort != None):
         ret.sort(sort)
@@ -52,11 +58,11 @@ def update(args):
             data =  set_dict_update_data(args)
             ret  =  models.HCSLS_Ethnic().update(
                 data, 
-                "_id == {0}", 
-                ObjectId(args['data']['_id']))
+                "ethnic_code == {0}", 
+                args['data']['ethnic_code'])
             if ret['data'].raw_result['updatedExisting'] == True:
                 ret.update(
-                    item = Ethnic.display_list_ethnic().match("_id == {0}", ObjectId(args['data']['_id'])).get_item()
+                    item = Ethnic.display_list_ethnic().match("ethnic_code == {0}", args['data']['ethnic_code']).get_item()
                     )
             lock.release()
             return ret
@@ -74,7 +80,7 @@ def delete(args):
         lock.acquire()
         ret = {}
         if args['data'] != None:
-            ret  =  models.HCSLS_Ethnic().delete("_id in {0}",[ObjectId(x["_id"])for x in args['data']])
+            ret  =  models.HCSLS_Ethnic().delete("ethnic_code in {0}",[x["ethnic_code"]for x in args['data']])
             lock.release()
             return ret
 

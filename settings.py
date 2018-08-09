@@ -200,18 +200,18 @@ APPS=[
       #      name="lms",
       #      path="apps/lms"),
       #
-      # dict(
-      #     host="per", #"performance",
-      #     name="performance",
-      #     path="apps/performance",
-      #     schema_delete="lacviet"
-      # ),
+      dict(
+          host="per", #"performance",
+          name="performance",
+          path="apps/performance",
+          schema="per"
+      ),
       dict(host="",
            name="hrm",
            path="apps/hrm",
            schema="hrm",
            login="login",
-           ),
+           )
 
       # dict(host="app-main",
       #      name="argo",

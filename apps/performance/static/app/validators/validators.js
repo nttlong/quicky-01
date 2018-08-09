@@ -21,6 +21,8 @@
 
         _Validator.prototype.isDate = isDate;
 
+        _Validator.prototype.isArray = isArray;
+
         _Validator.prototype.isLoginAccount = function () {
             return (isNullOrWhiteSpace() == true || isContainWhiteSpace() == true) ? true : false;
         }
@@ -74,6 +76,10 @@
             return false;
             //return __val instanceof Date && !isNaN(__val.valueOf());
             //return true;
+        }
+
+        function isArray() {
+            return Array.isArray(__val);
         }
 
         return _Validator;

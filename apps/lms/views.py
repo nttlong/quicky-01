@@ -86,3 +86,24 @@ def load_page(request,path):
     return  request.render({
         "path":path.lower()
     })
+
+@quicky.view.template(is_public=True)
+def file_download(request):
+    from api import LMSLS_MaterialManagement as fnMaster
+    id = request.REQUEST['id']
+    if(id != None):
+        data = fnMaster.get_file_by_master_id(str(id))
+        if(data != None):
+            import base64
+            data["files"]["file_data"].decode('base64')
+            from django.http import HttpResponse
+            from wsgiref.util import FileWrapper
+        
+            # generate the file
+            res = HttpResponse(data["files"]["file_data"].split(',')[1].decode('base64'))
+            res['Content-Type'] = data["files"]["file_type"]
+            res['Content-Length'] = data["files"]["file_size"]
+            res['Content-Disposition'] = 'attachment; filename=' + data["files"]["file_name"]
+            return res
+        #return response
+    return request

@@ -1,17 +1,19 @@
 ﻿<div class="modal-dialog" style="width:30%;">
     <div class="modal-content">
         <div class="modal-header">
-            <h4 class="modal-title">
-                <img src="{{$root.logo}}"><span id="title">{{title}}</span>
-                <button type="button" class="close" data-dismiss="modal"><i class="la la-close"></i></button>
-                <button type="button" class="close" ng-click="onResizeDialog()"><span class="modal-resize"><i class="la la-expand"></i></span></button>
-            </h4 > 
+            <div class="left-content pull-left">
+                <span class="modal-title">{{title}}</span>
+            </div>
+            <div class="right-content pull-right">
+                <button type="button" class="close" data-dismiss="modal"><i class="bowtie-icon bowtie-navigate-close"></i></button>
+                <button type="button" class="close" ng-click="onResizeDialog()"><i class="bowtie-icon bowtie-view-full-screen"></i></button>
+            </div>
         </div>
         <div class="modal-body" style="padding:15px;">
             <div class="row">
                 <div class="col-md-{{col_group}} col-sm-{{col_group}}" style="padding-bottom:20px;">
                         <div class="col-md-12">
-                            <div class="form-group row hcs-group-form-group">
+                            <div class="form-group zb-form-group">
                                 <!--Số tháng từ-->
                                 <label for="input_Job_Pos_Code" class="col-sm-5 zb-form-label">${get_res('details_seniority_from','Số tháng từ')}</label>
                                 <div class="col-sm-7">
@@ -20,7 +22,7 @@
                             </div>
                         </div>
                         <div class="col-md-12">
-                            <div class="form-group row hcs-group-form-group">
+                            <div class="form-group zb-form-group">
                                 <!--Số tháng đến-->
                                 <label for="input_Job_Pos_Name" class="col-sm-5 zb-form-label">${get_res('details_seniority_to','Số tháng đến')}</label>
                                 <div class="col-sm-7">
@@ -29,7 +31,7 @@
                             </div>
                         </div>
                         <div class="col-md-12">
-                            <div class="form-group row hcs-group-form-group">
+                            <div class="form-group zb-form-group">
                                 <!--Hệ số-->
                                 <label for="input_Job_Pos_Name2" class="col-sm-5 zb-form-label">${get_res('details_coefficient','Hệ số')}</label>
                                 <div class="col-sm-7">
@@ -38,7 +40,7 @@
                             </div>
                         </div>
                         <div class="col-md-12">
-                            <div class="form-group row hcs-group-form-group">
+                            <div class="form-group zb-form-group">
                                 <!--Mức lương-->
                                 <label for="inputEmp_Man_Level" class="col-sm-5 zb-form-label">${get_res('details_salary','Mức lương')}</label>
                                 <div class="col-sm-7">
@@ -50,8 +52,9 @@
             </div>
         </div>
         <div class="modal-footer">
-            <div class="pull-right"><button class="hcs-form-dialog-icon-button last" data-dismiss="modal"><i class="la la-ban"></i></button></div>
-            <div class="pull-right"><button class="hcs-form-dialog-icon-button" ng-click="saveNClose($event)"><i class="la la-save"></i></button></div>
+            <div class="right-content pull-right">
+                <button ng-click="saveNClose($event)"><i class="bowtie-icon bowtie-check-light"></i></button>
+            </div>
         </div>
     </div>
 </div>

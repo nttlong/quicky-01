@@ -2,11 +2,11 @@
     //("===============BEGIN TABLE==================")
     //Cấu hình tên field và caption hiển thị trên UI
     scope.tableFields = [
-        { "data": "dd_code", "title": "${get_res('dd_code_table_header','Mã vùng dữ liệu')}"},
-        { "data": "dd_name", "title": "${get_res('dd_name_table_header','Tên vùng vùng dữ liệu')}"},
-        { "data": "description", "title": "${get_res('description_table_header','Mô tả chi tiết')}"},
-        { "data": "display_access_mode", "title": "${get_res('display_access_mode_table_header','Phạm vi truy cập')}" },
-        { "data": "created_on", "title": "${get_res('created_on_table_header','Thời điểm tạo')}", "format": "date:" + scope.$root.systemConfig.date_format }
+        { "data": "dd_code", "title": "${get_res('dd_code_table_header','Mã vùng dữ liệu')}", "className": "text-left"},
+        { "data": "dd_name", "title": "${get_res('dd_name_table_header','Tên vùng vùng dữ liệu')}", "className": "text-left"},
+        { "data": "description", "title": "${get_res('description_table_header','Mô tả chi tiết')}", "className": "text-left"},
+        { "data": "display_access_mode", "title": "${get_res('display_access_mode_table_header','Phạm vi truy cập')}", "className": "text-left" },
+        { "data": "created_on", "title": "${get_res('created_on_table_header','Thời điểm tạo')}", "className": "text-center", "format": "date:" + scope.$root.systemConfig.date_format }
     ];
     //
     scope.$$tableConfig = {};

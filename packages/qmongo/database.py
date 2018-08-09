@@ -748,6 +748,19 @@ class COLL():
         ac=self.entity().insert_one(*args,**kwargs)
         ret=ac.commit(self.session)
         return ret
+    def insert_one(self,*args,**kwargs):
+        # type: (dict) -> dict
+        # type: (tuple) -> dict
+        """
+        insert item into database
+        :param args:
+        :param kwargs:
+        :return: dict including data has been inserted and error
+        """
+
+        ac=self.entity().insert_one(*args,**kwargs)
+        ret=ac.commit(self.session)
+        return ret
     def update(self,data,filter,*args,**kwargs):
         # type: (dict,str,int) -> dict
         # type: (dict,str,bool) -> dict

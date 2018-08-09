@@ -5,6 +5,14 @@
     scope.filterFunctionModel = ''
     scope.currentFunction = '';
     scope.mapName = [];
+    scope.cbbSysLock = [];
+    scope.selectFunc = function (event, f) {
+        scope.selectedFunction = f;
+    }
+    scope.advancedSearch = {
+        data_lock: "0",
+    }
+    scope.$applyAsync();
     /*                                                         */
     /* ==================== Property Scope - END ==============*/
     /*                                                         */
@@ -39,6 +47,21 @@
         }
     };
 
+    function _comboboxData() {
+        services.api("${get_api_key('app_main.api.SYS_ValueList/get_list')}")
+            .data({
+                //parameter at here
+                "name": "sysLock"
+            })
+            .done()
+            .then(function (res) {
+                delete res.language;
+                delete res.list_name;
+                scope.cbbSysLock = res.values;
+                scope.$applyAsync();
+            })
+    }
+
     /* Initialize Data */
     function activate() {
 
@@ -48,6 +71,7 @@
         scope.handleData = new handleData();
         scope.mapName = scope.handleData.mapName;
         scope.currentFunction = scope.mapName[0];
+        _comboboxData();
     }
 
     /*                                                                                          */

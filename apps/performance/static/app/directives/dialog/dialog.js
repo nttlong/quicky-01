@@ -64,8 +64,8 @@ function _Dialog() {
                 '</div>' +
                 '<div class="modal-footer">' +
                 '<div class="right-content pull-right">' +
-                '<button type="button">Đồng ý</button>' +
-                '<button type="button">Từ chối</button>' +
+                '<button type="button"><i class="bowtie-icon bowtie-check-light"></i></button>' +
+                '<button type="button"><i class="bowtie-icon bowtie-status-no"></i></button>' +
                 '</div>' +
                 '</div>' +
                 '</div>' +
@@ -87,7 +87,7 @@ function _Dialog() {
                 }
             })
             //Show Dialog
-            $('#myConfirmModal').modal('show');
+            $('#myConfirmModal').modal({backdrop: 'static', keyboard: false});
 
             //Draggble Dialog
             $('#myConfirmModal').ready(function () {
@@ -151,7 +151,7 @@ function _Dialog() {
                 '</div>' +
                 '<div class="modal-footer">' +
                 '<div class="right-content pull-right">' +
-                '<button type="button">Đồng ý</button>' +
+                '<button type="button"><i class="bowtie-icon bowtie-check-light"></i></button>' +
                 '</div>' +
                 '</div>' +
                 '</div>' +
@@ -173,7 +173,7 @@ function _Dialog() {
                 }
             })
             //Show form dialog
-            $('#myMessageModal').modal('show');
+            $('#myMessageModal').modal({backdrop: 'static', keyboard: false});
 
             //Draggble Dialog
             $('#myMessageModal').ready(function () {
@@ -269,7 +269,7 @@ function _Dialog() {
                 '</div>' +
                 '<div class="modal-footer">' +
                 '<div class="right-content pull-right">' +
-                '<button type="button"><i class="la la-info-circle"></i></button>' +
+                '<button type="button"><i class="bowtie-icon bowtie-status-info-outline"></i></button>' +
                 '</div>' +
                 '</div>' +
                 '</div>' +
@@ -291,7 +291,7 @@ function _Dialog() {
                 }
             })
             //Show form dialog
-            $('#myErrorModal').modal('show');
+            $('#myErrorModal').modal({backdrop: 'static', keyboard: false});
 
             //Draggble Dialog
             $('#myErrorModal').ready(function () {
@@ -328,7 +328,7 @@ function _Dialog() {
                     '<div class="modal-content">' +
                     '<div class="modal-header">' +
                     '<div class="left-content pull-left">' +
-                    '<span class="modal-title"><i class="la la-info-circle"></i></span>' +
+                    '<span class="modal-title"><i class="bowtie-icon bowtie-status-info-outline"></i></span>' +
                     '</div>' +
                     '<div class="right-content pull-right">' +
                     '<button type="button" class="close" data-dismiss="modal"><i class="la la-close"></i></button>' +
@@ -353,7 +353,7 @@ function _Dialog() {
                     }
                 })
                 //Show form dialog
-                $('#myErrorDetailModal').modal('show');
+                $('#myErrorDetailModal').modal({backdrop: 'static', keyboard: false});
 
                 //Draggble Dialog
                 $('#myErrorDetailModal').ready(function () {

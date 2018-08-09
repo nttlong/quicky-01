@@ -27,7 +27,8 @@
                 checkAll: "=",
                 disabled: "=",
                 expandAll: "@",
-                collapseAll: "@"
+                collapseAll: "@",
+                selectFirstNode: "@"
             },
             /*
                 @: lấy giá trị trên attrs,
@@ -140,6 +141,10 @@
                 setTimeout(function () {
                     _tree.reload(_dataSourceTree);
                     _setSelectedOnInit(_tree);
+
+                    if (!$scope.selectFirstNode || $scope.selectFirstNode.toLowerCase() != "false") {
+                        _tree.getRootNode().getFirstChild().setActive(true);
+                    }
                 }, 100);
 
                 if ($scope.expandAll) {

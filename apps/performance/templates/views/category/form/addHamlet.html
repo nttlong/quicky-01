@@ -1,16 +1,10 @@
-﻿<div class="modal-dialog">
-    <div class="modal-content">
-        <div class="modal-header">
-            <div class="left-content pull-left">
-                <!--<img src="{{$root.logo}}">-->
-                <span class="modal-title">{{title}}</span>
-            </div>
-            <div class="right-content pull-right">
-                <button type="button" class="close" data-dismiss="modal"><i class="la la-close"></i></button>
-                <button type="button" class="close" ng-click="onResizeDialog()"><span class="modal-resize"><i class="la la-expand"></i></span></button>
-            </div>
-        </div>
-        <div class="modal-body">
+﻿
+<%!
+    #_style="width:300px;"
+%>
+<%inherit file="../../commons/dialog_save_close.html"/>
+
+<%block name="modal_body">
             <div class="col-md-{{col_group}} col-sm-{{col_group}}">
                 <collapse-box class="zb-form-common" title="${get_global_res('Common_Information','Thông tin chung')}">
                    <div class="col-md-{{col}}">
@@ -58,11 +52,25 @@
                                                 placeholder="Tìm kiếm" 
                                                 data-value="value" 
                                                 data-caption="caption"/>-->
-                                <input-combobox api-url="${get_api_key('app_main.api.common/get_dropdown_list')}"
+                                <!--<input-combobox api-url="${get_api_key('app_main.api.common/get_dropdown_list')}"
                                             list-code="${encryptor.get_key('cbb_ward')}"
                                             list-value="[{ '@ward_code': '' }]"
                                             current-item="entity.ward_code"
-                                            multi-select="false" required>
+                                            multi-select="false" required>-->
+                                <combobox load-data="$root.$getComboboxData" 
+                                          ng-model="entity.ward_code"
+                                          params="{key:'${encryptor.get_key('cbb_ward')}', value:[{ '@ward_code': '' }]}"
+                                          on-search-change="false"
+                                          on-search-press="true"
+                                          placeholder=""
+                                          init-data="$$$cbb_ward.value"
+                                          caption-field="{{$$$cbb_ward.caption_field}}"
+                                          paging="true"
+                                          close-on-select="true"
+                                          template-fields="$$$cbb_ward.display_fields"
+                                          reload="false"
+                                          required>
+                                </combobox>
                             </div>
                         </div>
                     </div>
@@ -104,15 +112,9 @@
                     </div>
                 </collapse-box>
             </div>
-        </div>
-        <div class="modal-footer">
-            <div class="right-content pull-right">
-                <button ng-click="saveNAdd($event)"><i class="la la-save"></i>${get_global_res('save_and_add','Lưu & thêm')}</button>
-                <button ng-click="saveNClose($event)"><i class="la la-save"></i>${get_global_res('save_and_close','Lưu & đóng')}</button>
-            </div>
-        </div>
-    </div>
-</div>
+</%block>
+
+<%block name="modal_script">
 <script>
     (function (scope) {
         scope.title = scope.$parent.headerTitle;
@@ -123,7 +125,7 @@
         var __entity = JSON.parse(JSON.stringify(scope.$parent.currentHamlet));
         scope.entity = scope.__hamlet_mode == 2 ? __entity : null;
         scope.saveNClose = saveNClose;
-        scope.saveNAdd = saveNAdd;
+        scope.saveNNext = saveNNext;
 
         /**
          * Thay đỗi kích thước form Dialog và các control trên form dialog
@@ -166,7 +168,7 @@
             }
         }
 
-        function saveNAdd() {
+        function saveNNext() {
             if (scope.entity != null) {
                 var rsCheck = checkError();//Kết quả check input
                 if (rsCheck.result) {
@@ -183,13 +185,13 @@
                             scope.$parent.currentHamlet = scope.entity;
                             scope.$parent.currentHamlet.modified_on = res.item.modified_on;
                             scope.$parent.currentHamlet.modified_by = res.item.modified_by;
-                            scope.$parent.$apply();
                             //Refesh datatable
                             scope.$parent.refreshDataHamletRow();
                         }
                         $msg.alert("${get_global_res('Handle_Success','Thao tác thành công')}", $type_alert.INFO);//Xuất thông báo thành cônng
                         scope.entity = null;
                         scope.__hamlet_mode = 1;
+                        scope.$parent.$apply();
                     } else {
                         $msg.message("${get_global_res('Internal_Server_Error','Có lỗi từ phía máy chủ')}", "${get_global_res('Please_Try_Again','Xin thử vui lòng thử lại')}", function () { });
                     }
@@ -255,5 +257,19 @@
             tableConfig.iPageLength, tableConfig.orderBy,
             tableConfig.searchText, tableConfig.fnReloadData);
         }
+
+        (function _getDataInitCombobox() {
+            scope.$root.$getInitComboboxData(scope,
+                {
+                    "key": "${encryptor.get_key('cbb_ward')}",
+                    "code": scope.entity
+                        && scope.entity.hasOwnProperty('ward_code')
+                        ? scope.entity.ward_code
+                        : null,
+                    "alias":"$$$cbb_ward"
+                }
+            );
+        })();
     });
 </script>
+</%block>

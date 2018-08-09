@@ -2,10 +2,9 @@
 window.set_api_combobox("${get_api_key('app_main.api.common/get_dropdown_list')}")
 angular
     .module("admin", ["c-ui", 'ZebraApp.components', 'ZebraApp.widgets', 'hcs-template'])
-    .factory("systemService", service)
     .controller("admin", controller);
 
-controller.$inject = ["$dialog", "$scope", "systemService"];
+controller.$inject = ["$dialog", "$scope"];
 dialog_root_url('${get_app_url("pages/")}')
 function controller($dialog, $scope, systemService) {
     $scope.$root.systemConfig = null;/*HCSSYS_SystemConfig*/
@@ -26,6 +25,8 @@ function controller($dialog, $scope, systemService) {
 
     $scope.view_path = "${get_view_path()}";
     $scope.services = services = ws($scope);
+    $scope.$root.$getComboboxData = extension().getComboboxData;
+    $scope.$root.$getInitComboboxData = extension().getInitComboboxData;
     $scope.$root.system = systemService;
     $scope.$root.collapseSubMenu = function collapseSubMenu(e) {
         e.stopPropagation();
@@ -133,7 +134,7 @@ function controller($dialog, $scope, systemService) {
                             $scope.$root.currentFunction = currentFunction[0];
                             $scope.$root.currentModule = _.filter(functions, function (d) {
                                 return d["function_id"] == currentFunction[0].parent_id;
-                            })[0];//.custom_name.replace("/", " ");
+                            })[0];
                         }
                     } else {
                         $scope.$root.currentFunction = $scope.$root.currentModule = null;
@@ -157,23 +158,10 @@ function controller($dialog, $scope, systemService) {
      * Init
      */
     activate();
-
-    //Nhấn nút ESC để thoát form dialog
-    $(document).ready(function () {
-        $(document).keydown(function (event) {
-            if (event.keyCode == 27) {
-                setTimeout(function () {
-                    $('.hcs-modal-dialog:last').modal('hide');
-                }, 100)
-                event.stopPropagation();
-            }
-        })
-    })
 }
 
-function service() {
+function extension() {
     var fac = {};
-    var currentRow;
 
     fac.guid = function () {
         function s4() {
@@ -183,6 +171,65 @@ function service() {
         }
         return s4() + s4() + '-' + s4() + '-' + s4() + '-' + s4() + '-' + s4() + s4() + s4();
     };
+
+    fac.getComboboxData = getComboboxData;
+    fac.getInitComboboxData = getInitComboboxData;
+
+    /**
+     * Hàm get combobox data
+     * @param {object} scope
+     * @param {void} cbSetData
+     * @param {number} pgIdx
+     * @param {string} txtSearch
+     */
+    function getComboboxData(scope, cbSetData, pgIdx, txtSearch) {
+        services.api("${get_api_key('app_main.api.common/get_combobox_data')}")
+            .data({
+                //parameter at here
+                "key": scope.params.key,
+                "value": scope.params.value,
+                "pageIndex": pgIdx - 1,
+                "search": txtSearch,
+            })
+            .done()
+            .then(function (res) {
+                scope.captionField = res.caption_field;
+                scope.keyField = res.value_field;
+                scope.title = res.display_name;
+                scope.templateFields = res.display_fields;
+                var data = {
+                    recordsTotal: res.data.total_items,
+                    data: res.data.items
+                };
+                cbSetData(data);
+            });
+    }
+
+    /**
+     * Hàm get data init combobox
+     * @param {object} scope
+     * @param {any} key Trường hợp get nhiều truyền tham số là array object
+     * example:[{key:xxx, code:xxx}, {key:yyy, code:yyy}]
+     * Trường hợp get đơn lẻ truyền tham số là object
+     * example:{key:xxx, code:xxx}
+     */
+    function getInitComboboxData(scope, key) {
+        services.api("${get_api_key('app_main.api.common/get_init_data_combobox')}")
+            .data({
+                name: key
+            })
+            .done()
+            .then(function (res) {
+                if (angular.isArray(res)) {
+                    $.each(res, function (i, v) {
+                        scope[v.alias] = v;
+                    });
+                } else {
+                    scope[res.alias] = res;
+                }
+                scope.$apply();
+            })
+    }
 
     return fac;
 };

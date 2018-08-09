@@ -13,7 +13,7 @@
             scope: {
                 model: "=ngModel",
                 caption: "@",
-                fnChange: "=ngChange",
+                fnChange: "&ngChange",
                 disabled: "="
             },
             //template: function(el, attrs) {

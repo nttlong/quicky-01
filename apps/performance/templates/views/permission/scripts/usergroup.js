@@ -2,11 +2,11 @@
     //("===============BEGIN TABLE==================")
     //Cấu hình tên field và caption hiển thị trên UI
     scope.tableFields = [
-        { "data": "role_code", "title": "${ get_res('role_code_table_header', 'Mã nhóm người dùng') }" },
-        { "data": "role_name", "title": "${ get_res('role_name_table_header', 'Tên nhóm người dùng') }" },
-        { "data": "description", "title": "${ get_res('description_table_header', 'Mô tả chi tiết') }" },
-        { "data": "dd_code", "title": "${ get_res('dd_code_table_header', 'Mã vùng dữ liệu truy cập') }" },
-        { "data": "stop", "title": "${ get_res('stop_table_header', 'Ngưng sử dụng') }", "format" : "checkbox" },
+        { "data": "role_code", "title": "${ get_res('role_code_table_header', 'Mã nhóm người dùng') }", "className": "text-left" },
+        { "data": "role_name", "title": "${ get_res('role_name_table_header', 'Tên nhóm người dùng') }", "className": "text-left" },
+        { "data": "description", "title": "${ get_res('description_table_header', 'Mô tả chi tiết') }", "className": "text-left" },
+        { "data": "dd_name", "title": "${ get_res('dd_name_table_header', 'Vùng dữ liệu truy cập') }", "className": "text-left" },
+        { "data": "stop", "title": "${ get_res('stop_table_header', 'Ngưng sử dụng') }", "className": "text-center", "format" : "checkbox" },
         {
             "data": "created_on",
             "title": "${ get_res('created_on_table_header', 'Thời điểm tạo') }",
@@ -179,6 +179,7 @@
                     "pageIndex": iPage - 1,
                     "pageSize": iPageLength,
                     "search": searchText,
+                    "stop": scope.$parent.$parent.$parent.advancedSearch.data_lock,
                     "sort": sort
                 })
                 .done()
@@ -194,5 +195,10 @@
                     scope.$apply();
                 })
     }
+
+    scope.$parent.$parent.$parent.$watch("advancedSearch.data_lock", function (val) {
+        var config = scope.$$tableConfig;
+        _tableData(config.iPage, config.iPageLength, config.orderBy, config.searchText, config.fnReloadData);
+    });
     //("===============END TABLE==================")
 });

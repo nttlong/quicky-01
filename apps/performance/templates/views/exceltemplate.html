@@ -3,17 +3,27 @@
         <div class="hcs-left-side-department-content">
             <div class="hcs-left-side-department-tree-tool-bar">
                 <div class="pull-left" style="padding-left:10px;">
-                    <input-text-icon style="width:255px;" icon="bowtie-icon bowtie-search" icon-align="right" placeholder="" ng-model="treeSearchText">
-                            </input-text-icon>
+                    <div class="hcs-left-side-department-tree-tool-bar-div-search">
+                       <input class="hcs-left-side-department-tree-tool-bar-input-search" 
+                              placeholder="Filter" ng-model="treeSearchText">
+                       <div class="hcs-left-side-department-tree-tool-bar-input-search-bot"></div>
+                       <div class="hcs-left-side-department-tree-tool-bar-input-search-bot-icon">
+                           <i class="glyphicon glyphicon-search"></i>
+                       </div>
+                    </div>
                 </div>
                 <div class="pull-left" style="padding-left:10px;">
-                    <button class="zb-btn" ng-click="$treeCollapseAll()">
+                    <button class="zb-btn hcs-left-side-department-tree-tool-bar-btn-custom-icon" ng-click="$treeCollapseAll()" style="text-align: center;">
+                        <span>
                         <i class="bowtie-icon bowtie-chevron-up-all"></i>
+                        </span>
                     </button>
                 </div>
                 <div class="pull-left" style="padding-left:5px;">
-                    <button class="zb-btn"  ng-click="$treeExpandAll()">
+                    <button class="zb-btn hcs-left-side-department-tree-tool-bar-btn-custom-icon" ng-click="$treeExpandAll()" style="text-align: center;">
+                        <span>
                         <i class="bowtie-icon bowtie-chevron-down-all"></i>
+                        </span>
                     </button>
                 </div>
                 <div class="clearfix"></div>

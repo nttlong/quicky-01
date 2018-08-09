@@ -2,14 +2,14 @@
     //("===============BEGIN TABLE==================")
     //Cấu hình tên field và caption hiển thị trên UI
     scope.tableFields = [
-        { "data": "rank_code", "title": "${get_res('rank_code_table_header','Mã')}" },
-        { "data": "rank_name", "title": "${get_res('rank_name_table_header','Tên')}" },
-        { "data": "rank_content", "title": "${get_res('rank_content_table_header','Ghi chú')}" },
-        { "data": "total_from", "title": "${get_res('total_from_table_header','Mã')}" },
-        { "data": "total_to", "title": "${get_res('total_to_table_header','Tên')}" },
-        { "data": "is_change_object", "title": "${get_res('is_change_object_table_header','Ghi chú')}" },
-        { "data": "ordinal", "title": "${get_res('ordinal_table_header','Thứ tự')}" },
-        { "data": "lock", "title": "${get_res('lock_table_header','Ngưng SD')}", "format": "checkbox" }
+        { "data": "rank_code", "title": "${get_res('rank_code_table_header','Mã')}", "className": "text-left" },
+        { "data": "rank_name", "title": "${get_res('rank_name_table_header','Tên')}", "className": "text-left" },
+        { "data": "rank_content", "title": "${get_res('rank_content_table_header','Đánh giá chung')}", "className": "text-left" },
+        { "data": "total_from", "title": "${get_res('total_from_table_header','Tổng điểm từ')}", "className": "text-center" },
+        { "data": "total_to", "title": "${get_res('total_to_table_header','Tổng điểm đến')}", "className": "text-center" },
+        { "data": "is_change_object", "title": "${get_res('is_change_object_table_header','Thiết lập riêng')}", "className": "text-center", "format": "checkbox" },
+        { "data": "ordinal", "title": "${get_res('ordinal_table_header','Thứ tự')}", "className": "text-center" },
+        { "data": "lock", "title": "${get_res('lock_table_header','Ngưng SD')}", "className": "text-center", "format": "checkbox" }
     ];
     //
     scope.$$tableConfig = {};
@@ -72,7 +72,9 @@
     function onEdit() {
         if (scope.currentItem) {
             scope.mode = 2; // set mode chỉnh sửa
-            openDialog("${get_res('Detail_Rank_Personal','Chi tiết xếp loại cá nhân')}", 'rankcategory/form/addPersonal', function () { });
+            openDialog("${get_res('Detail_Rank_Personal','Chi tiết xếp loại cá nhân')}", 'rankcategory/form/addPersonal', function () {
+                //$(window).trigger('resize');
+            });
         } else {
             $msg.message("${get_global_res('Notification','Thông báo')}", "${get_app_res('No_Row_Selected','Không có dòng được chọn')}", function () { });
         }
@@ -83,14 +85,16 @@
      */
     function onAdd() {
         scope.mode = 1;// set mode tạo mới
-        openDialog("${get_res('Detail_Rank_Personal','Chi tiết xếp loại cá nhân')}", 'rankcategory/form/addPersonal', function () { });
+        openDialog("${get_res('Detail_Rank_Personal','Chi tiết xếp loại cá nhân')}", 'rankcategory/form/addPersonal', function () {
+            //$(window).trigger('resize');
+        });
     }
     function onDelete() {
         if (!scope.selectedItems || scope.selectedItems.length === 0) {
             $msg.message("${get_global_res('Notification','Thông báo')}", "${get_global_res('No_Row_Selected','Không có dòng được chọn')}", function () { });
         } else {
             $msg.confirm("${get_global_res('Notification','Thông báo')}", "${get_global_res('Do_You_Want_Delete','Bạn có muốn xóa không?')}", function () {
-                services.api("${get_api_key('app_main.api.HCSLS_Nation/delete')}")
+                services.api("${get_api_key('app_main.api.TMLS_Rank/delete')}")
                     .data(scope.selectedItems)
                     .done()
                     .then(function (res) {
@@ -166,6 +170,7 @@
                     "pageIndex": iPage - 1,
                     "pageSize": iPageLength,
                     "search": searchText,
+                    "lock": scope.$parent.$parent.$parent.advancedSearch.data_lock,
                     "sort": sort
                 })
                 .done()
@@ -196,6 +201,11 @@
             })
     }
     _comboboxData();
+
+    scope.$parent.$parent.$parent.$watch("advancedSearch.data_lock", function (val) {
+        var config = scope.$$tableConfig;
+        _tableData(config.iPage, config.iPageLength, config.orderBy, config.searchText, config.fnReloadData);
+    });
     //("===============INIT==================")
     //_tableData();
     //("===============END TABLE==================")

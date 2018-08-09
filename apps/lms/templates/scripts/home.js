@@ -57,7 +57,7 @@
                 })[0].custom_name.replace("/", " ");
                 scope.$root.currentFunction = child.custom_name;
             }
-            location.href = '#page=' + child.url;
+            location.href = '#page=' + child.function_id;
         }
     }
 

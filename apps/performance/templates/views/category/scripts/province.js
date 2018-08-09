@@ -155,6 +155,7 @@
                     "pageIndex": iPage - 1,
                     "pageSize": iPageLength,
                     "search": searchText,
+                    "lock": scope.$parent.$parent.advancedSearch.data_lock,
                     "sort": sort
                 })
                 .done()
@@ -198,7 +199,10 @@
             })
     }
     _comboboxData();
-
+    scope.$parent.$watch("advancedSearch.data_lock", function (val) {
+        var config = scope.$$tableConfig;
+        _tableData(config.iPage, config.iPageLength, config.orderBy, config.searchText, config.fnReloadData);
+    });
     //("===============INIT==================")
     //_tableData();
     //("===============END TABLE==================")

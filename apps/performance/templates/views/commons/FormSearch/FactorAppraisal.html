@@ -1,0 +1,33 @@
+﻿<div class="modal-dialog">
+    <div class="modal-content">
+        <div class="modal-header">
+            <div class="left-content pull-left">
+                <!--<img src="{{$root.logo}}">-->
+                <span class="modal-title">{{title}}</span>
+            </div>
+            <div class="right-content pull-right">
+                <button type="button" class="close" data-dismiss="modal"><i class="bowtie-icon bowtie-navigate-close"></i></button>
+                <button type="button" class="close" ng-click="onResizeDialog()"><i class="bowtie-icon bowtie-view-full-screen"></i></button>
+            </div>
+        </div>
+        <div class="modal-body" style="overflow:unset;">
+            <input-text-icon on-click="change" style="padding:5px;">
+            </input-text-icon>
+            <div style="height:calc(100% - 40px)">
+            TMLS_FactorAppraisal
+            </div>
+        </div>
+        <div class="modal-footer">
+            <div class="right-content pull-right">
+                <button ng-click="save($event)"><i class="la la-check"></i></button>
+                <button ng-click="close($event)"><i class="la la-close"></i></button>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    (function ($scope) {
+
+
+    });
+</script>

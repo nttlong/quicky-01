@@ -2,12 +2,12 @@
     //("===============BEGIN TABLE==================")
     //Cấu hình tên field và caption hiển thị trên UI
     scope.tableFields = [
-        { "data": "quit_job_code", "title": "${get_res('quit_job_code_table_header','Mã')}" },
-        { "data": "quit_job_name", "title": "${get_res('quit_job_name_table_header','Tên')}" },
-        { "data": "note", "title": "${get_res('note_table_header','Ghi chú')}" },
-        { "data": "ordinal", "title": "${get_res('ordinal_table_header','Thứ tự')}" },
-        { "data": "created_on", "title": "${get_res('created_on_table_header','Ngày tạo')}", "format": "date:" + scope.$root.systemConfig.date_format },
-        { "data": "lock", "title": "${get_res('lock_table_header','Ngưng SD')}", "format": "checkbox" }
+        { "data": "quit_job_code", "title": "${get_res('quit_job_code_table_header','Mã')}", "className": "text-left" },
+        { "data": "quit_job_name", "title": "${get_res('quit_job_name_table_header','Tên')}", "className": "text-left" },
+        { "data": "note", "title": "${get_res('note_table_header','Ghi chú')}", "className": "text-left" },
+        { "data": "ordinal", "title": "${get_res('ordinal_table_header','Thứ tự')}", "className": "text-center" },
+        { "data": "created_on", "title": "${get_res('created_on_table_header','Ngày tạo')}", "className": "text-center", "format": "date:" + scope.$root.systemConfig.date_format },
+        { "data": "lock", "title": "${get_res('lock_table_header','Ngưng SD')}", "className": "text-center", "format": "checkbox" }
     ];
     //
     scope.$$tableConfig = {};
@@ -163,6 +163,7 @@
                     "pageIndex": iPage - 1,
                     "pageSize": iPageLength,
                     "search": searchText,
+                    "lock": scope.$parent.$parent.advancedSearch.data_lock,
                     "sort": sort
                 })
                 .done()
@@ -193,7 +194,10 @@
             })
     }
     _comboboxData();
-
+    scope.$parent.$watch("advancedSearch.data_lock", function (val) {
+        var config = scope.$$tableConfig;
+        _tableData(config.iPage, config.iPageLength, config.orderBy, config.searchText, config.fnReloadData);
+    });
     //("===============INIT==================")
     //_tableData();
     //("===============END TABLE==================")

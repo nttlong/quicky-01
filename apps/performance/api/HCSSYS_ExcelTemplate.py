@@ -29,7 +29,7 @@ def get_list_with_searchtext(args):
         ret.match("function_id == @func_id",func_id=where['function_id'])
 
     if(searchText != None):
-        ret.match("contains(template_name, @name)",name=searchText)
+        ret.match("contains(template_name, @name)",name=searchText.strip())
 
     if(sort != None):
         ret.sort(sort)
@@ -54,7 +54,7 @@ def get_datail_with_searchtext(args):
         ret.match("function_id == @func_id",func_id=where['function_id'])
 
     if(searchText != None):
-        ret.match("contains(template_name, @name)",name=searchText)
+        ret.match("contains(template_name, @name)",name=searchText.strip())
 
     if(sort != None):
         ret.sort(sort)

@@ -5,6 +5,9 @@
     scope.filterFunctionModel = ''
     scope.currentFunction = '';
     scope.mapName = [];
+    scope.selectFunc = function (event, f) {
+        scope.selectedFunction = f;
+    }
     /*                                                         */
     /* ==================== Property Scope - END ==============*/
     /*                                                         */

@@ -1,157 +1,148 @@
-﻿<div class="modal-dialog">
-    <div class="modal-content">
-        <div class="modal-header">
-            <div class="left-content pull-left">
-                <span class="modal-title">{{title}}</span>
+﻿
+<%!
+    #_style="width:300px;"
+%>
+<%inherit file="../../commons/dialog_save_close.html"/>
+
+<%block name="modal_body">
+
+    <div class="col-md-{{col_group}} col-sm-{{col_group}}">
+        <collapse-box class="zb-form-common" title="${get_global_res('Common_Information','Thông tin chung')}">
+            <div class="col-md-{{col}}">
+                <div class="form-group zb-form-group">
+                    <!--Tài khoản đăng nhập-->
+                    <label for="inputUserName" class="col-sm-5 zb-form-label">${get_res('login_account','Tài khoản đăng nhập')}</label>
+                    <div class="col-sm-7">
+                        <input-text id="inputUserName" ng-model="entity.login_account" required>
+                    </div>
+                </div>
             </div>
-            <div class="right-content pull-right">
-                <button type="button" class="close" data-dismiss="modal"><i class="la la-close"></i></button>
-                <button type="button" class="close" ng-click="onResizeDialog()"><span class="modal-resize"><i class="la la-expand"></i></span></button>
+            <div class="col-md-{{col}}">
+                <div class="form-group zb-form-group">
+                    <!--Tên hiển thị-->
+                    <label for="inputDisplayName" class="col-sm-5 zb-form-label">${get_res('display_name','Tên hiển thị')}</label>
+                    <div class="col-sm-7">
+                        <input-text id="inputDisplayName" ng-model="entity.display_name" required>
+                    </div>
+                </div>
             </div>
-        </div>
-        <div class="modal-body">
-            <!--<div class="row" style="padding-bottom:20px;" title="${get_res('Add_New_User','Thêm mới người dùng')}">-->
-            <div class="col-md-{{col_group}} col-sm-{{col_group}}">
-                <collapse-box class="zb-form-common" title="${get_global_res('Common_Information','Thông tin chung')}">
-                    <div class="col-md-{{col}}">
-                        <div class="form-group zb-form-group">
-                            <!--Tài khoản đăng nhập-->
-                            <label for="inputUserName" class="col-sm-5 zb-form-label">${get_res('login_account','Tài khoản đăng nhập')}</label>
-                            <div class="col-sm-7">
-                                <input-text id="inputUserName" ng-model="entity.login_account" required>
-                            </div>
-                        </div>
+            <div class="col-md-{{col}}">
+                <div class="form-group zb-form-group">
+                    <!--Thuộc nhóm người dùng-->
+                    <label for="inputGroupUser" class="col-sm-5 zb-form-label">${get_res('role_code','Thuộc nhóm người dùng')}</label>
+                    <div class="col-sm-7">
+                        <input-combobox id="inputEmployeeId" required
+                            list-code="${encryptor.get_key('cbb_ad_roles')}"
+                            list-value="[{ '@lock': true }]"
+                            current-item="entity.role_code">
                     </div>
-                    <div class="col-md-{{col}}">
-                        <div class="form-group zb-form-group">
-                            <!--Tên hiển thị-->
-                            <label for="inputDisplayName" class="col-sm-5 zb-form-label">${get_res('display_name','Tên hiển thị')}</label>
-                            <div class="col-sm-7">
-                                <input-text id="inputDisplayName" ng-model="entity.display_name" required>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-{{col}}">
-                        <div class="form-group zb-form-group">
-                            <!--Thuộc nhóm người dùng-->
-                            <label for="inputGroupUser" class="col-sm-5 zb-form-label">${get_res('role_code','Thuộc nhóm người dùng')}</label>
-                            <div class="col-sm-7">
-                                <input-select data-list="cbbAd_Roles" ng-model="entity.role_code"
-                                              data-value="value" 
-                                              data-caption="caption"/>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-{{col}}">
-                        <div class="form-group zb-form-group">
-                            <!--Email-->
-                            <label for="inputEmail" class="col-sm-5 zb-form-label">${get_res('email','Email')}</label>
-                            <div class="col-sm-7">
-                                <input-text id="inputEmail" ng-model="entity.email">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-{{col}}">
-                        <div class="form-group zb-form-group">
-                            <!--Số điện thọai-->
-                            <label for="inputPhoneNumber" class="col-sm-5 zb-form-label">${get_res('mobile','Số điện thọai')}</label>
-                            <div class="col-sm-7">
-                                <input-text id="inputPhoneNumber" ng-model="entity.mobile">
-                            </div>
-                        </div>
-                    </div>
-                </collapse-box>
+                </div>
             </div>
-            <div class="col-md-{{ 12 - col_group }} col-sm-{{ 12 - col_group }}">
-                <collapse-box class="zb-form-common" title="${get_global_res('Note','Ghi chú')}">
-                    <div class="row">
-                        <div class="col-sm-12">
-                            <!--Ghi chú-->
-                            <input-textarea rows="11" ng-model="entity.description"></input-textarea>
-                        </div>
+            <div class="col-md-{{col}}">
+                <div class="form-group zb-form-group">
+                    <!--Email-->
+                    <label for="inputEmail" class="col-sm-5 zb-form-label">${get_res('email','Email')}</label>
+                    <div class="col-sm-7">
+                        <input-text id="inputEmail" ng-model="entity.email">
                     </div>
-                </collapse-box>
+                </div>
             </div>
-            <div class="col-md-6 col-sm-6">
-                 <collapse-box class="zb-form-common" title="${get_res('manage_level','Cấp quản lí')}">
-                     <div class="col-md-{{col}}">
-                         <div class="form-group zb-form-group">
-                             <!--Là quản trị hệ thống-->
-                             <label class="col-sm-5 zb-form-label">${get_res('is_system','Là quản trị hệ thống')}</label>
-                             <div class="col-md-7">
-                                 <input-checkbox ng-model="entity.is_system"/>
-                             </div>
-                         </div>
-                     </div>
-                     <div class="col-md-{{col}}">
-                         <div class="form-group zb-form-group">
-                             <!--Không bao giờ bị khóa-->
-                             <label class="col-sm-5 zb-form-label">${get_res('never_expire','Không bao giờ bị khóa')}</label>
-                             <div class="col-md-7">
-                                 <input-checkbox ng-model="entity.never_expire"/>
-                             </div>
-                         </div>
-                     </div>
-                     <div class="col-md-{{col}}">
-                         <div class="form-group zb-form-group">
-                             <!--Mức quản lí từ-->
-                             <label for="inputUserName" class="col-sm-5 zb-form-label">${get_res('manlevel_from','Mức quản lí từ')}</label>
-                             <div class="col-sm-7">
-                                 <input-number id="numberbox1" ng-model="entity.manlevel_from"/>
-                             </div>
-                         </div>
-                     </div>
-                     <div class="col-md-{{col}}">
-                         <div class="form-group zb-form-group">
-                             <!--Mức quản lí đến-->
-                             <label for="inputUserName" class="col-sm-5 zb-form-label">${get_res('manlevel_to','Đến')}</label>
-                             <div class="col-sm-7">
-                                 <input-number id="numberbox1" ng-model="entity.manlevel_to"/>
-                             </div>
-                         </div>
-                     </div>
-                 </collapse-box>
-             </div>
-            <div class="col-md-6 col-sm-6">
-                <collapse-box class="zb-form-common" title="${get_res('information_password','Thông tin mật khẩu')}">
-                    <div class="col-md-{{col}}">
-                        <div class="form-group zb-form-group">
-                            <!--Mật khẩu-->
-                            <label for="inputUserName" class="col-sm-5 zb-form-label">${get_res('password','Mật khẩu')}</label>
-                            <div class="col-sm-7">
-                                <input-password id="inputPassword" ng-model="entity.password">
-                            </div>
-                        </div>
+            <div class="col-md-{{col}}">
+                <div class="form-group zb-form-group">
+                    <!--Số điện thọai-->
+                    <label for="inputPhoneNumber" class="col-sm-5 zb-form-label">${get_res('mobile','Số điện thọai')}</label>
+                    <div class="col-sm-7">
+                        <input-text id="inputPhoneNumber" ng-model="entity.mobile">
                     </div>
-                    <div class="col-md-{{col}}">
-                        <div class="form-group zb-form-group">
-                            <!--Xác nhận mật khẩu-->
-                            <label for="inputDisplayName" class="col-sm-5 zb-form-label">${get_res('repassword','Xác nhận mật khẩu')}</label>
-                            <div class="col-sm-7">
-                                <input-password id="inputRePassword" ng-model="entity.repassword">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-{{col}}">
-                        <div class="form-group zb-form-group">
-                            <!--Bạn có muốn thay đỗi mật khẩu-->
-                            <label class="col-sm-5 zb-form-label">${get_res('change_password','Bạn có muốn thay đỗi mật khẩu')}</label>
-                            <div class="col-md-5">
-                                <input-checkbox ng-model="entity.change_password"/>
-                            </div>
-                        </div>
-                    </div>
-                </collapse-box>
+                </div>
             </div>
-        </div>
-        <div class="modal-footer">
-            <div class="right-content pull-right">
-                <button ng-click="saveNClose($event)"><i class="la la-save"></i>${get_global_res('save_and_close','Lưu & đóng')}</button>
-                <button ng-click="saveNNext($event)"><i class="la la-save"></i>${get_global_res('save_and_next','Lưu & tiếp')}</button>
-            </div>
-        </div>
+        </collapse-box>
     </div>
-</div>
+    <div class="col-md-{{ 12 - col_group }} col-sm-{{ 12 - col_group }}">
+        <collapse-box class="zb-form-common" title="${get_global_res('Note','Ghi chú')}">
+            <div class="row">
+                <div class="col-sm-12">
+                    <!--Ghi chú-->
+                    <input-textarea rows="7" ng-model="entity.description"></input-textarea>
+                </div>
+            </div>
+        </collapse-box>
+    </div>
+    <div class="col-md-6 col-sm-6">
+            <collapse-box class="zb-form-common" title="${get_res('manage_level','Cấp quản lí')}">
+                <div class="col-md-{{col}}">
+                    <div class="form-group zb-form-group">
+                        <!--Là quản trị hệ thống-->
+                        <label class="col-sm-5 zb-form-label">${get_res('is_system','Là quản trị hệ thống')}</label>
+                        <div class="col-md-7">
+                            <input-checkbox ng-model="entity.is_system"/>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-{{col}}">
+                    <div class="form-group zb-form-group">
+                        <!--Không bao giờ bị khóa-->
+                        <label class="col-sm-5 zb-form-label">${get_res('never_expire','Không bao giờ bị khóa')}</label>
+                        <div class="col-md-7">
+                            <input-checkbox ng-model="entity.never_expire"/>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-{{col}}">
+                    <div class="form-group zb-form-group">
+                        <!--Mức quản lí từ-->
+                        <label for="inputUserName" class="col-sm-5 zb-form-label">${get_res('manlevel_from','Mức quản lí từ')}</label>
+                        <div class="col-sm-7">
+                            <input-number id="numberbox1" ng-model="entity.manlevel_from"/>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-{{col}}">
+                    <div class="form-group zb-form-group">
+                        <!--Mức quản lí đến-->
+                        <label for="inputUserName" class="col-sm-5 zb-form-label">${get_res('manlevel_to','Đến')}</label>
+                        <div class="col-sm-7">
+                            <input-number id="numberbox1" ng-model="entity.manlevel_to"/>
+                        </div>
+                    </div>
+                </div>
+            </collapse-box>
+        </div>
+    <div class="col-md-6 col-sm-6">
+        <collapse-box class="zb-form-common" title="${get_res('information_password','Thông tin mật khẩu')}">
+            <div class="col-md-{{col}}">
+                <div class="form-group zb-form-group">
+                    <!--Mật khẩu-->
+                    <label for="inputUserName" class="col-sm-5 zb-form-label">${get_res('password','Mật khẩu')}</label>
+                    <div class="col-sm-7">
+                        <input-password id="inputPassword" ng-model="entity.password">
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-{{col}}">
+                <div class="form-group zb-form-group">
+                    <!--Xác nhận mật khẩu-->
+                    <label for="inputDisplayName" class="col-sm-5 zb-form-label">${get_res('repassword','Xác nhận mật khẩu')}</label>
+                    <div class="col-sm-7">
+                        <input-password id="inputRePassword" ng-model="entity.repassword">
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-{{col}}">
+                <div class="form-group zb-form-group">
+                    <!--Bạn có muốn thay đỗi mật khẩu-->
+                    <label class="col-sm-5 zb-form-label">${get_res('change_password','Bạn có muốn thay đỗi mật khẩu')}</label>
+                    <div class="col-md-5">
+                        <input-checkbox ng-model="entity.change_password"/>
+                    </div>
+                </div>
+            </div>
+        </collapse-box>
+    </div>
+
+</%block>
+
+<%block name="modal_script">
 <script>
     (function (scope) {
         scope.onResizeDialog = onResizeDialog;
@@ -445,3 +436,5 @@
         function __init__() { };
     });
 </script>
+
+</%block>

@@ -1,149 +1,155 @@
-﻿<div class="modal-dialog">
-    <div class="modal-content">
-        <div class="modal-header">
-            <div class="left-content pull-left">
-                <span class="modal-title">{{title}}</span>
-            </div>
-            <div class="right-content pull-right">
-                <button type="button" class="close" data-dismiss="modal"><i class="la la-close"></i></button>
-                <button type="button" class="close" ng-click="onResizeDialog()"><span class="modal-resize"><i class="la la-expand"></i></span></button>
-            </div>
-        </div>
-        <div class="modal-body">
-            <div class="col-md-{{col_group}} col-sm-{{col_group}}">
-                <collapse-box class="zb-form-common" title="${get_global_res('Common_Information','Thông tin chung')}">
-                    <div class="col-md-{{col}}">
-                        <div class="form-group zb-form-group">
-                            <!--Mã nhóm người dùng-->
-                            <label for="inputUserName" class="col-sm-5 zb-form-label">${get_res('role_code','Mã nhóm người dùng')}</label>
-                            <div class="col-sm-7">
-                                <input-text id="inputUserName" ng-model="entity.role_code" ng-disabled="{{ __mode === 2 ? 'true' : 'false' }}" required>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-{{col}}">
-                        <div class="form-group zb-form-group">
-                            <!--Tên nhóm người dùng-->
-                            <label for="inputDisplayName" class="col-sm-5 zb-form-label">${get_res('role_name','Tên nhóm người dùng')}</label>
-                            <div class="col-sm-7">
-                                <input-text id="inputDisplayName" ng-model="entity.role_name" required>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-{{col}}">
-                        <div class="form-group zb-form-group">
-                            <!--Vùng dữ liệu truy cập-->
-                            <label for="inputGroupUser" class="col-sm-5 zb-form-label">${get_res('dd_code','Vùng dữ liệu truy cập')}</label>
-                            <div class="col-sm-7">
-                                <input-combobox id="inputEmployeeId" required
-                                    api-url="${get_api_key('app_main.api.common/get_dropdown_list')}"
-                                    list-code="${encryptor.get_key('cbb_ad_roles')}"
-                                    list-value="[{ '@dd_code': '' }]"
-                                    current-item="entity.dd_code"
-                                    multi-select="false">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-{{col}}">
-                        <div class="form-group zb-form-group">
-                            <!--Ngưng sử dụng-->
-                            <label for="inputGroupUser" class="col-sm-5 zb-form-label">${get_res('stop','Ngưng sử dụng')}</label>
-                            <div class="col-md-7">
-                                <input-checkbox ng-model="entity.stop"/>
-                            </div>
-                        </div>
-                    </div>
-                </collapse-box>
-            </div>
-            <div class="col-md-{{ 12 - col_group }} col-sm-{{ 12 - col_group }}">
-                <collapse-box class="zb-form-common" title="${get_global_res('Note','Ghi chú')}">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <!--Ghi chú-->
-                            <input-textarea rows="6" ng-model="entity.description"></input-textarea>
-                        </div>
-                    </div>
-                </collapse-box>
-            </div>
-            <div class="col-md-12">
-                <nav-tabs min-height="52vh" max-height="52vh" style="overflow:unset;" ng-show="__mode != 1">
-                    <tab-content name="tab1" style="height: 48vh;" title="${get_res('list_user','Danh sách người dùng')}">
-                        <div class="col-md-12" style="height: 44vh;padding:0px 6px;">
-                            <div class="zb-right-content pull-right">
-                                <button class="zb-btn zb-btn-o-green" ng-click="addNewUser()">
-                                    <span>
-                                        <i class="bowtie-icon bowtie-math-plus"></i>
-                                    </span>
-                                </button>
-                                <button class="zb-btn zb-btn-o-red" ng-click="deleteUser()">
-                                    <span>
-                                        <i class="bowtie-icon bowtie-edit-remove"></i>
-                                    </span>
-                                </button>
-                            </div>
-                            <!--Table user-->
-                            <table-data data-source="dataTable.tableListUserSource" fields="dataTable.tableListUserFields" type="MultiSelect" 
-                            paging="true" page-length="100" server-side="true" 
-                            press-enter="dataTable.onSelectTableRow" selected-items="dataTable.selectedListUserItems"
-                            current-item="dataTable.ListUserCurrentItem" search-text="dataTable.tableSearchText"
-                            refresh-row="dataTable.refreshDataListUserRow"
-                            ng-if="__mode != 1">
-                            </table-data>
-                        </div>
-                    </tab-content>
-                    <tab-content name="tab2" title="${get_res('function_list','Danh sách tính năng')}">
-                        <div class="pull-right hcs-profile-icon-heading-on-table">
-                            <button class="zb-icon-button hcs-profile-group-title" ng-click="deletePermission()">
-                                <span>
-                                    <i class="la la-close"></i>
-                                </span>
-                            </button>
-                        </div>
-                        <div class="pull-right hcs-profile-icon-heading-on-table">
-                            <button class="zb-icon-button hcs-profile-group-title" ng-click="EditPermission()">
-                                <span>
-                                    <i class="la la-pencil"></i>
-                                </span>
-                            </button>
-                        </div>
-                        <div class="col-md-12 no-padding">
-                            <tree-table data-source="dataTableTree" data-fields="tableFields"
-                                display-field="default_name"
-                                display-name="Tên tính năng"
-                                parent-field="parent_id" key-field="function_id" 
-                                multi-select="treeMultiSelect" select-mode="treeSelectMode"
-                                on-select="selectTreeNode"
-                                current-node="treeCurrentNode"
-                                selected-nodes="treeSelectedNodes"
-                                selected-root-nodes="treeSelectedRootNodes"
-                                search-text="treeSearchText"
-                                checked-field="is_selected"
-                                disabled="treeDisabled"/>
-                        </div>
-                    </tab-content>
-                </nav-tabs>
+﻿
+<%!
+    #_style="width:300px;"
+%>
+<%inherit file="../../commons/dialog_save_close.html"/>
+
+<%block name="modal_body">
+
+<div class="col-md-{{col_group}} col-sm-{{col_group}}">
+    <collapse-box class="zb-form-common" title="${get_global_res('Common_Information','Thông tin chung')}">
+        <div class="col-md-{{col}}">
+            <div class="form-group zb-form-group">
+                <!--Mã nhóm người dùng-->
+                <label for="inputUserName" class="col-sm-5 zb-form-label">${get_res('role_code','Mã nhóm người dùng')}</label>
+                <div class="col-sm-7">
+                    <input-text id="inputUserName" ng-model="entity.role_code" ng-disabled="{{ __mode === 2 ? 'true' : 'false' }}" required>
+                </div>
             </div>
         </div>
-        <div class="modal-footer">
-            <div class="right-content pull-right">
-                <button ng-click="saveNClose($event)"><i class="la la-save"></i>${get_global_res('save_and_close','Lưu & đóng')}</button>
-                <button ng-click="saveNNext($event)"><i class="la la-save"></i>${get_global_res('save_and_next','Lưu & tiếp')}</button>
+        <div class="col-md-{{col}}">
+            <div class="form-group zb-form-group">
+                <!--Tên nhóm người dùng-->
+                <label for="inputDisplayName" class="col-sm-5 zb-form-label">${get_res('role_name','Tên nhóm người dùng')}</label>
+                <div class="col-sm-7">
+                    <input-text id="inputDisplayName" ng-model="entity.role_name" required>
+                </div>
             </div>
         </div>
-    </div>
+        <div class="col-md-{{col}}">
+            <div class="form-group zb-form-group">
+                <!--Vùng dữ liệu truy cập-->
+                <label for="inputGroupUser" class="col-sm-5 zb-form-label">${get_res('dd_code','Vùng dữ liệu truy cập')}</label>
+                <div class="col-sm-7">
+                    <!--<input-combobox id="inputEmployeeId" required
+                        list-code="${encryptor.get_key('cbb_data_domain')}"
+                        list-value="[{ '@dd_code': '' }]"
+                        current-item="entity.dd_code"
+                        multi-select="false">-->
+                    <combobox load-data="$root.$getComboboxData" 
+                              ng-model="entity.dd_code"
+                              params="{key:'${encryptor.get_key('cbb_data_domain')}', value:[{ '@dd_code': '' }]}"
+                              on-search-change="false"
+                              on-search-press="true"
+                              placeholder=""
+                              init-data="$$$cbb_data_domain.value"
+                              caption-field="{{$$$cbb_data_domain.caption_field}}"
+                              paging="true"
+                              close-on-select="true"
+                              template-fields="$$$cbb_data_domain.display_fields"
+                              reload="false"
+                              required>
+                    </combobox>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-{{col}}">
+            <div class="form-group zb-form-group">
+                <!--Ngưng sử dụng-->
+                <label for="inputGroupUser" class="col-sm-5 zb-form-label">${get_res('stop','Ngưng sử dụng')}</label>
+                <div class="col-md-7">
+                    <input-checkbox ng-model="entity.stop"/>
+                </div>
+            </div>
+        </div>
+    </collapse-box>
 </div>
+<div class="col-md-{{ 12 - col_group }} col-sm-{{ 12 - col_group }}">
+    <collapse-box class="zb-form-common" title="${get_global_res('Note','Ghi chú')}">
+        <div class="row">
+            <div class="col-md-12">
+                <!--Ghi chú-->
+                <input-textarea rows="6" ng-model="entity.description"></input-textarea>
+            </div>
+        </div>
+    </collapse-box>
+</div>
+<div class="col-md-12">
+    <nav-tabs min-height="52vh" max-height="52vh" style="overflow:unset;" ng-show="__mode != 1">
+        <tab-content name="tab1" style="height: 48vh;" title="${get_res('list_user','Danh sách người dùng')}">
+            <div class="col-md-12" style="height: 44vh;padding:0px 6px;">
+                <div class="zb-right-content pull-right">
+                    <button class="zb-btn zb-btn-o-green" ng-click="addNewUser()">
+                        <span>
+                            <i class="bowtie-icon bowtie-math-plus"></i>
+                        </span>
+                    </button>
+                    <button class="zb-btn zb-btn-o-red" ng-click="deleteUser()">
+                        <span>
+                            <i class="bowtie-icon bowtie-edit-remove"></i>
+                        </span>
+                    </button>
+                </div>
+                <!--Table user-->
+                <table-data data-source="dataTable.tableListUserSource" fields="dataTable.tableListUserFields" type="MultiSelect" 
+                paging="true" page-length="100" server-side="true" 
+                press-enter="dataTable.onSelectTableRow" selected-items="dataTable.selectedListUserItems"
+                current-item="dataTable.ListUserCurrentItem" search-text="dataTable.tableSearchText"
+                refresh-row="dataTable.refreshDataListUserRow"
+                ng-if="__mode != 1">
+                </table-data>
+            </div>
+        </tab-content>
+        <tab-content name="tab2" title="${get_res('function_list','Danh sách tính năng')}">
+            <div class="pull-right hcs-profile-icon-heading-on-table">
+                <button class="zb-icon-button hcs-profile-group-title" ng-click="deletePermission()">
+                    <span>
+                        <i class="la la-close"></i>
+                    </span>
+                </button>
+            </div>
+            <div class="pull-right hcs-profile-icon-heading-on-table">
+                <button class="zb-icon-button hcs-profile-group-title" ng-click="EditPermission()">
+                    <span>
+                        <i class="la la-pencil"></i>
+                    </span>
+                </button>
+            </div>
+            <div class="col-md-12 no-padding">
+                <tree-table data-source="dataTableTree" data-fields="tableFields"
+                    display-field="default_name"
+                    display-name="Tên tính năng"
+                    parent-field="parent_id" key-field="function_id" 
+                    multi-select="treeMultiSelect" select-mode="treeSelectMode"
+                    on-select="selectTreeNode"
+                    current-node="treeCurrentNode"
+                    selected-nodes="treeSelectedNodes"
+                    selected-root-nodes="treeSelectedRootNodes"
+                    search-text="treeSearchText"
+                    checked-field="is_selected"
+                    disabled="treeDisabled"/>
+            </div>
+        </tab-content>
+    </nav-tabs>
+</div>
+
+</%block>
+
+<%block name="modal_script">
+
 <script>
     (function (scope) {
         //Table danh sách người dùng - START
         scope.dataTable = {
             tableListUserFields : [
-                { "data": "login_account", "title": "${ get_res('table_user_login_account_table_header', 'Mã người dùng') }" },
-                { "data": "display_name", "title": "${ get_res('table_user_display_name_table_header', 'Tên hiển thị') }" },
-                { "data": "manlevel_from", "title": "${ get_res('table_user_manlevel_from_table_header', 'Mức quản lí từ') }" },
-                { "data": "manlevel_to", "title": "${ get_res('table_user_manlevel_to_table_header', 'Mức quản lí đến') }" },
+                { "data": "login_account", "title": "${ get_res('table_user_login_account_table_header', 'Mã người dùng') }", "className": "text-left" },
+                { "data": "display_name", "title": "${ get_res('table_user_display_name_table_header', 'Tên hiển thị') }", "className": "text-left" },
+                { "data": "manlevel_from", "title": "${ get_res('table_user_manlevel_from_table_header', 'Mức quản lí từ') }", "className": "text-center" },
+                { "data": "manlevel_to", "title": "${ get_res('table_user_manlevel_to_table_header', 'Mức quản lí đến') }", "className": "text-center" },
                 {
                     "data": "created_on",
                     "title": "${ get_res('table_user_created_on_table_title', 'Thời điểm tạo') }",
+                    "className": "text-center",
                     "format": "date: " + scope.$root.systemConfig.date_format
                 }
             ],
@@ -209,6 +215,9 @@
         scope.treeMultiSelect = true;
         scope.treeSelectMode = 2;
         scope.treeDisabled = false;
+        scope.$comboboxInit = {
+            dataDomain: null
+        }
 
 
         scope._permissionList = _permissionList;
@@ -327,10 +336,7 @@
                             //Reload table data
                             reloadData();
                         } else if (scope.__mode == 2) {
-                            scope.$parent.currentItem = scope.entity;
-                            scope.$parent.$apply();
-                            //Refesh datatable
-                            scope.$parent.refreshDataRow();
+                            reloadData();
                         }
                     } else {
                         if (res.error.code == 'duplicate') {
@@ -552,6 +558,19 @@
         //Load datatable tree
         _permissionList();
 
+        (function _getDataInitCombobox() {
+            scope.$root.$getInitComboboxData(scope,
+                {
+                    "key": "${encryptor.get_key('cbb_data_domain')}",
+                    "code": scope.entity
+                        && scope.entity.hasOwnProperty('dd_code')
+                        ? scope.entity.dd_code
+                        : null,
+                    "alias": "$$$cbb_data_domain"
+                }
+            );
+        })();
+
         scope.$watch('treeCurrentNode', function(newVal, old) {
             console.log('treeCurrentNode', newVal);
         })
@@ -561,3 +580,5 @@
         })
     });
 </script>
+
+</%block>

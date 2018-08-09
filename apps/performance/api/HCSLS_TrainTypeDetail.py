@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 from bson import ObjectId
 import models
+import common
 from Query import TrainTypeDetail
 import logging
 import threading
@@ -17,9 +18,14 @@ def get_list_with_searchtext(args):
     pageIndex = (lambda pIndex: pIndex if pIndex != None else 0)(pageIndex)
     pageSize = (lambda pSize: pSize if pSize != None else 20)(pageSize)
     ret=TrainTypeDetail.display_list_train_type_detail()
+
+    ret=common.filter_lock(ret, args)
     
     if(searchText != None):
-        ret.match("contains(train_detail_name, @name)",name=searchText)
+        ret.match("contains(train_detail_name, @name) or " + \
+            "contains(train_detail_code, @name) or " + \
+            "contains(note, @name) or " + \
+            "contains(ordinal, @name)",name=searchText.strip())
 
     if(sort != None):
         ret.sort(sort)
@@ -52,11 +58,11 @@ def update(args):
             data =  set_dict_update_data(args)
             ret  =  models.HCSLS_TrainTypeDetail().update(
                 data, 
-                "_id == {0}", 
-                ObjectId(args['data']['_id']))
+                "train_detail_code == {0}", 
+                args['data']['train_detail_code'])
             if ret['data'].raw_result['updatedExisting'] == True:
                 ret.update(
-                    item = TrainTypeDetail.display_list_train_type_detail().match("_id == {0}", ObjectId(args['data']['_id'])).get_item()
+                    item = TrainTypeDetail.display_list_train_type_detail().match("train_detail_code == {0}", args['data']['train_detail_code']).get_item()
                     )
             lock.release()
             return ret
@@ -74,7 +80,7 @@ def delete(args):
         lock.acquire()
         ret = {}
         if args['data'] != None:
-            ret  =  models.HCSLS_TrainTypeDetail().delete("_id in {0}",[ObjectId(x["_id"])for x in args['data']])
+            ret  =  models.HCSLS_TrainTypeDetail().delete("train_detail_code in {0}",[x["train_detail_code"]for x in args['data']])
             lock.release()
             return ret
 

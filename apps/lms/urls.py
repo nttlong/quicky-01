@@ -16,6 +16,7 @@ urlpatterns = [
     url(r'^sign_out',views.sign_out),
     url(r'^api$',"quicky.api.call"),
     url(r'^excel_export$', export.call, name='excel_export'),
+    url(r'^file/download', views.file_download),
     app.get_static_urls()
 ]
 

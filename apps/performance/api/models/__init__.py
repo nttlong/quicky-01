@@ -1,6 +1,6 @@
 import django
 import quicky
-
+# import authorization
 import qmongo
 from qmongo import database, helpers
 app=quicky.applications.get_app_by_file(__file__)
@@ -44,5 +44,39 @@ from HCSLS_Hamlet import HCSLS_Hamlet
 from HCSLS_Discipline import HCSLS_Discipline
 from HCSEM_Employees import HCSEM_Employees
 from HCSLS_JobWorkingGroup import HCSLS_JobWorkingGroup
+from HCSLS_JobWorking import HCSLS_JobWorking
 from TMLS_Rank import TMLS_Rank
+from TMSYS_ConfigChangeObjectPriority import TMSYS_ConfigChangeObjectPriority
+from TMLS_FactorAppraisal import TMLS_FactorAppraisal
+from TMLS_FactorAppraisalGroup import TMLS_FactorAppraisalGroup
+from TMLS_KPIGroup import TMLS_KPIGroup
+from TMLS_KPI import TMLS_KPI
 from tmp_transactions import tmp_transactions
+from HCSEM_EmpWorking import HCSEM_EmpWorking
+from HCSLS_Currency import HCSLS_Currency
+from HCSLS_Unit import HCSLS_Unit
+from HCSEM_Experience import HCSEM_Experience
+
+from ..views import *
+import pymongo
+from pymongo.read_concern import ReadConcern
+from pymongo.write_concern import WriteConcern
+
+def create_session():
+    session = db_context.db.client.start_session()
+    return session
+def start_transaction(session):
+    session.start_transaction(
+        read_concern=ReadConcern("snapshot"),
+        write_concern=WriteConcern(w="majority"))
+    return session
+
+def abort_transaction(session):
+    session.abort_transaction()
+    return  session
+
+def end_session(session):
+    session.end_session()
+
+def commit_transaction(session):
+    session.commit_transaction()

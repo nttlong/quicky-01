@@ -11,7 +11,10 @@
             </div>
         </div>
         <div class="modal-body" style="overflow:unset;">
-            <div style="height:100%;">
+            <div class="col-md-12 no-padding">
+                <input-text-icon id="tableSearchText" class="col-md-12" on-click="onSearch(searchText)" ng-model="searchText"></input-text-icon>
+            </div>
+            <div class="col-md-12 no-padding" style="height:calc(100% - 30px);">
                 <table-data data-source="tableSource" fields="tableFields" type="SingleSelect" 
                                 paging="true" page-length="table_info.page_size" server-side="true" 
                                 press-enter="onSelectTableRow" selected-items="selectedItems" 
@@ -63,6 +66,11 @@
         scope.currentItem = null;
         scope.tableSearchText = '';
         scope.SearchText = '';
+        scope.onSearch = function (val) {
+            scope.tableSearchText = val;
+            var tableConfig = scope.$$tableConfig;
+            _tableData(tableConfig.iPage, tableConfig.iPageLength, tableConfig.orderBy, tableConfig.searchText, tableConfig.fnReloadData);
+        }
         //Refesh table
         scope.refreshDataRow = function () { /*Do nothing*/ };
 

@@ -5,11 +5,16 @@
     scope.filterFunctionModel = ''
     scope.currentFunction = '';
     scope.mapName = [];
-
+    scope.cbbSysLock = [];
+    scope.selectFunc = function (event, f) {
+        scope.selectedFunction = f;
+    }
     scope.advancedSearch = {
         main_region_code: null,
-        main_nation_code: null
+        main_nation_code: null,
+        data_lock: "0"
     }
+    scope.$applyAsync();
 
     /*                                                         */
     /* ==================== Property Scope - END ==============*/
@@ -63,11 +68,42 @@
 
     }
 
+    function _comboboxData() {
+        services.api("${get_api_key('app_main.api.SYS_ValueList/get_list')}")
+            .data({
+                //parameter at here
+                "name": "sysLock"
+            })
+            .done()
+            .then(function (res) {
+                delete res.language;
+                delete res.list_name;
+                scope.cbbSysLock = res.values;
+                scope.$applyAsync();
+            })
+    }
+
     function init() {
         scope.handleData = new handleData();
         scope.mapName = scope.handleData.mapName;
         scope.currentFunction = scope.mapName[0];
+        _comboboxData();
     }
+
+    (function _getDataInitCombobox() {
+        scope.$root.$getInitComboboxData(scope,
+            [{
+                "key": "${encryptor.get_key('cbb_region')}",
+                "code": scope.advancedSearch.main_region_code,
+                "alias": "$$$cbb_region"
+            },
+            {
+                "key": "${encryptor.get_key('cbb_nation')}",
+                "code": scope.advancedSearch.main_nation_code,
+                "alias": "$$$cbb_nation"
+            }]
+        );
+    })();
 
     /*                                                                                          */
     /* ===============================  Implementation - END  ==================================*/

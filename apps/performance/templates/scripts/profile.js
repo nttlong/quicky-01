@@ -5,6 +5,9 @@
     scope.filterFunctionModel = ''
     scope.currentFunction = '';
     scope.mapName = [];
+    scope.selectFunc = function (event, f) {
+        scope.selectedFunction = f;
+    }
     scope.objSearch = {
         $$$modelSearch: null,
         onSearch: onSearch
@@ -22,7 +25,10 @@
     scope.$$tableConfig = {};
     //Dữ liệu cho table
     scope.tableSource = _loadDataServerSide;
-    scope.onSelectTableRow = function ($row) {
+    scope.onSelectTableRow = function ($row) {        
+        scope.$root.$commons = {
+            $current_employee_code: $row.employee_code
+        };
         $('.hcs-profile-list').fadeToggle();
         setTimeout(function () {
             scope.showDetail = scope.showDetail === false ? true : false;
@@ -80,6 +86,8 @@
         setTimeout(function () {
             scope.showDetail = scope.showDetail === false ? true : false;
             scope.mode = 0;
+            scope.$partialpage = scope.mapName[0].url;
+            scope.selectedFunction = scope.mapName[0].function_id;
             $(window).trigger('resize');
         }, 500);
     }
@@ -299,35 +307,42 @@
     })();
 
     scope.$watch("selectedFunction", function (function_id) {
-        console.log(function_id);
         var $his = scope.$root.$history.data();
-        if(scope.currentItem)
-            window.location.href = "#page=" + $his.page + "&f=" + function_id;
+        if (scope.currentItem) {
+            var func = _.filter(scope.mapName, function (f) {
+                return f["function_id"] == function_id;
+            });
+            if (func.length > 0) {
+                scope.$partialpage = func[0].url;
+                scope.currentFunction = func[0];
+            }
+        }
+            //window.location.href = "#page=" + $his.page + "&f=" + function_id;
     });
 
-    scope.$root.$history.onChange(scope, function (data) {
-        if (scope.mapName.length > 0) {
-            if (data.f) {
-                scope.$partialpage = _.filter(scope.$root.$functions, function (f) {
-                    return f.function_id = data.f
-                })[0].url;
-                var func = _.filter(scope.mapName, function (f) {
-                    return f["function_id"] == data.f;
-                });
-                if (func.length > 0) {
-                    scope.$partialpage = func[0].url;
-                    scope.currentFunction = func[0];
-                } else {
-                    window.location.href = "#";
-                }
-            } else {
-                //scope.$partialpage = scope.mapName[0].url;
-            }
-            scope.$apply();
-        } else {
-            window.location.href = "#";
-        }
-    });
+    //scope.$root.$history.onChange(scope, function (data) {
+    //    if (scope.mapName.length > 0) {
+    //        if (data.f) {
+    //            scope.$partialpage = _.filter(scope.$root.$functions, function (f) {
+    //                return f.function_id = data.f
+    //            })[0].url;
+    //            var func = _.filter(scope.mapName, function (f) {
+    //                return f["function_id"] == data.f;
+    //            });
+    //            if (func.length > 0) {
+    //                scope.$partialpage = func[0].url;
+    //                scope.currentFunction = func[0];
+    //            } else {
+    //                window.location.href = "#";
+    //            }
+    //        } else {
+    //            //scope.$partialpage = scope.mapName[0].url;
+    //        }
+    //        scope.$apply();
+    //    } else {
+    //        window.location.href = "#";
+    //    }
+    //});
 
     scope.$watch('treeCurrentNode', function (val) {
         _loadDataServerSide(scope.$$tableConfig.fnReloadData,
