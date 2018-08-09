@@ -1,1 +1,1 @@
-`dasdasdasdsad <http://qmongo.rst>`_
+`dasdasdasdsad <qmongo.rst>`_
