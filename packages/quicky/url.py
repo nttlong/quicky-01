@@ -190,11 +190,15 @@ def build_urls(module_name,*args,**kwargs):
                                 url_regex = url_item.regex.pattern
                                 if ret.host_dir != "":
                                     if url_regex != "^$":
-                                        url_regex = url_regex.replace("^",
-                                                                  "^" + ret.host_dir + "/")
+                                        if host_dir == None:
+                                            url_regex = url_regex.replace("^","^(?i)" + ret.host_dir + "/")
+                                        else:
+                                            url_regex = url_regex.replace("^", "^(?i)"+ host_dir +"/" + ret.host_dir + "/")
                                     else:
-                                        url_regex = url_regex.replace("^",
-                                                                      "^" + ret.host_dir)
+                                        if host_dir == None:
+                                            url_regex = url_regex.replace("^","^(?i)" + ret.host_dir)
+                                        else:
+                                            url_regex = url_regex.replace("^", "^(?i)"+host_dir+"/" + ret.host_dir)
 
                                 map_url = url(
                                     url_regex,
@@ -204,12 +208,30 @@ def build_urls(module_name,*args,**kwargs):
                             else:
                                 url_regex = url_item.regex.pattern
                                 if ret.host_dir != "":
-                                    if url_regex != "^$":
-                                        url_regex = url_regex.replace("^",
-                                                                  "^" + ret.host_dir + "/")
+                                    if host_dir == None:
+                                        if url_regex != "^$":
+                                            url_regex = url_regex.replace("^",
+                                                                      "^(?i)" + ret.host_dir + "/")
+                                        else:
+                                            url_regex = url_regex.replace("^",
+                                                                          "^(?i)" + ret.host_dir)
                                     else:
-                                        url_regex = url_regex.replace("^",
-                                                                      "^" + ret.host_dir)
+                                        if url_regex != "^$":
+                                            url_regex = url_regex.replace("^",
+                                                                      "^(?i)" + host_dir+"/" + ret.host_dir + "/")
+                                        else:
+                                            url_regex = url_regex.replace("^",
+                                                                          "^(?i)"+ host_dir+"/" + ret.host_dir)
+                                else:
+                                    if host_dir != None:
+                                        if url_regex != "^$":
+                                            url_regex = url_regex.replace("^",
+                                                                      "^(?i)" + host_dir+"/")
+                                        else:
+                                            url_regex = url_regex.replace("^",
+                                                                          "^(?i)"+ host_dir+"/")
+
+
 
                                 map_url = url(
                                     url_regex,

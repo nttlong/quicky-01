@@ -68,6 +68,8 @@ def template(fn,*_path,**kwargs):
             is_public = False
             authenticate = None
             request_path=request.path
+            if host_dir != None:
+                request_path = request_path[host_dir.__len__()+1:request_path.__len__()]
             tenancy_code=tenancy.get_customer_code()
             if not not_inclue_tenancy_code and tenancy_code!=None:
                 request_path=request_path[tenancy_code.__len__()+1:request_path.__len__()]
@@ -77,7 +79,9 @@ def template(fn,*_path,**kwargs):
             if app==None and request_path[request_path.__len__() - 4:request_path.__len__()]=="/api":
                 app_name=request_path.split('/')[request_path.split('/').__len__()-2]
                 if app_name==tenancy_code:
-                        app_name="" 
+                    app_name=""
+                if hasattr(settings,"HOST_DIR") and settings.HOST_DIR.lower() == app_name.lower():
+                    app_name = ""
                 from . import applications
                 app=applications.get_app_by_name(app_name)
                 if app != None:
@@ -157,10 +161,21 @@ def template(fn,*_path,**kwargs):
                         cmp_url=login_url
                         if host_dir!=None:
                             cmp_url = "/" + host_dir + login_url
+                        else:
+                            cmp_url =  login_url
                         if request.path_info.lower() == cmp_url.lower():
                             return fn(request, **kwargs)
                         url = request.get_abs_url() + login_url
-                        url += "?next=" + request.get_abs_url() + request.path
+                        _request_path = request.path
+                        if _request_path[0] == '/':
+                            _request_path = _request_path[1:_request_path.__len__()]
+                        if _request_path[request_path.__len__()-1] == '/':
+                            _request_path = _request_path[0:_request_path.__len__()-1]
+
+                        if host_dir != None:
+                            _request_path = _request_path[host_dir.__len__():_request_path.__len__()]
+
+                        url += "?next=" + request.get_abs_url() + _request_path
                         return redirect(url)
                 elif type(ret_auth) is HttpResponseRedirect:
                     return ret_auth

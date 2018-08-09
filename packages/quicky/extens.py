@@ -185,10 +185,11 @@ def apply(request,template_file,app):
                     request.get_full_path(), "")
             if __root_url__[__root_url__.__len__() - 1] == "/":
                 __root_url__ = __root_url__[0:__root_url__.__len__() - 1]
+            __root_url__ = __root_url__ + "/" + host_dir
             _abs_urls.update({
                 request.get_host() + "/" + host_dir: __root_url__
             })
-            return __root_url__+"/"+host_dir
+            return __root_url__
     def get_app():
         return app
     def get_app_name():

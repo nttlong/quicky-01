@@ -13,7 +13,7 @@ https://docs.djangoproject.com/en/1.8/ref/settings/
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
 import sys
-
+HOST_DIR = "test"
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 sys.path.append(BASE_DIR+"/packages")
@@ -127,7 +127,7 @@ USE_TZ = True
 
 USE_MULTI_TENANCY=True
 # MULTI_TENANCY_DEFAULT_SCHEMA="sys"
-MULTI_TENANCY_DEFAULT_SCHEMA="lv"
+MULTI_TENANCY_DEFAULT_SCHEMA="hrm"
 MULTI_TENANCY_CONFIGURATION=dict(
     host="localhost",
     port=27017,
