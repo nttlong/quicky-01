@@ -1,4 +1,5 @@
 # Taken from Python 2.7 with permission from/by the original author.
+# -*- coding: utf-8 -*-
 import sys
 
 from django.utils import six

@@ -68,6 +68,13 @@
             <input type="password" class="form-control" name="password" placeholder="${model['password']}" required="required" value="${model['password']}">
         </div>
         <div class="form-group">
+            <select class="form-control" name="language">
+                %for item in request.get_languages():
+                    <option value="${item['code']}">${item["name"]}</option>
+                %endfor
+            </select>
+        </div>
+        <div class="form-group">
             <button type="submit" class="btn btn-primary btn-lg btn-block">${get_global_res("Sign in")}</button>
         </div>
 

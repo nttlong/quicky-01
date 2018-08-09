@@ -51,8 +51,9 @@ def apply(request,template_file,app):
         else:
             from django.utils import translation
             return translation.get_language()
-
-
+    def set_language(lang):
+        from django.utils.translation import activate
+        activate(lang)
     def get_app_url(path):
         if get_app_host() == "":
             return get_abs_url() + (lambda: "" if path == "" else "/" + path)()
@@ -126,6 +127,26 @@ def apply(request,template_file,app):
                 else:
                     setattr(request, "__view_path", ret)
                     return ret
+
+    def get_languages():
+        from django.conf import settings
+        if not hasattr(settings,"LANGUAGES"):
+            raise (Exception("It looks like you forgot set LANGUAGES in settings.py"))
+        ret = []
+        for x in settings.LANGUAGES:
+            ret.append({
+                "code":x[0],
+                "name":x[1]
+            })
+        return ret
+
+    def get_language_name():
+        from django.conf import settings
+        items = [x for x in settings.LANGUAGES if x[0]==get_language()]
+        if items.__len__()>0:
+            return items[0][1]
+        return "NA"
+
 
     def get_user():
         return request.user
@@ -248,7 +269,10 @@ def apply(request,template_file,app):
             "get_api_path":get_api_path,
             "register_view":register_view,
             "request":request,
-            "encryptor":encryptor
+            "encryptor":encryptor,
+            "set_language":set_language,
+            "get_languages":get_languages,
+            "get_language_name": get_language_name
         }
         # mylookup = TemplateLookup(directories=config._default_settings["TEMPLATES_DIRS"])
         if fileName != None:
@@ -281,7 +305,8 @@ def apply(request,template_file,app):
                                       )
             return HttpResponse(mylookup.get_template(fileName).render(**render_model))
 
-
+    setattr(request, "get_language_name", get_language_name)
+    setattr(request,"get_languages",get_languages)
     setattr(request,"template_file",template_file)
     setattr(request, "render", render)
     setattr(request, "get_user", get_user)
@@ -299,6 +324,7 @@ def apply(request,template_file,app):
     setattr(request, "get_api_key", get_api_key)
     setattr(request, "get_api_path", get_api_path)
     setattr(request,"register_view",register_view)
+    setattr(request,"set_language",set_language)
 
 
 

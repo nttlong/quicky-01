@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 """
 Django settings for app project.
 
@@ -118,8 +119,13 @@ DATABASES = {
 LANGUAGE_CODE = 'en-us'
 
 TIME_ZONE = 'UTC'
-
-USE_I18N = False
+LANGUAGE_CODE = "en"
+USE_I18N = True
+ugettext = lambda s: s
+LANGUAGES = (
+    ('en', ugettext('English')),
+    ('vn', ugettext('Tiếng Việt')),
+)
 
 USE_L10N = True
 
@@ -200,12 +206,12 @@ APPS=[
       #      name="lms",
       #      path="apps/lms"),
       #
-      dict(
-          host="per", #"performance",
-          name="performance",
-          path="apps/performance",
-          schema="per"
-      ),
+      # dict(
+      #     host="per", #"performance",
+      #     name="performance",
+      #     path="apps/performance",
+      #     schema="per"
+      # ),
       dict(host="",
            name="hrm",
            path="apps/hrm",
@@ -272,7 +278,7 @@ language.set_config(
 AUTHORIZATION_ENGINE=quicky.authorize
 
 LANGUAGE_ENGINE=quicky.language
-LANGUAGE_CODE="en-us"
+LANGUAGE_CODE="en"
 
 ROOT_URLCONF = 'apps'
 quicky.url.build_urls(ROOT_URLCONF,APPS)

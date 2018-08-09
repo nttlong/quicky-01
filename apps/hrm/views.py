@@ -112,6 +112,7 @@ def login(request):
         "next":""
     }
     _login["language"] = request._get_request().get("language", "en")
+    request.set_language(_login["language"])
     if dict_utils.has_key(request.GET,"next"):
         _login["next"] = request.GET.get("next",request.get_app_url(""))
     request.session["language"] = _login["language"]
