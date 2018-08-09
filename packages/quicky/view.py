@@ -152,6 +152,7 @@ def template(fn,*_path,**kwargs):
             #             return redirect(url)
             if hasattr(app.settings, "authenticate"):
                 from django.http.response import HttpResponseRedirect
+
                 ret_auth=app.settings.authenticate(request)
                 if ret_auth != True:
 
@@ -175,7 +176,7 @@ def template(fn,*_path,**kwargs):
                         if host_dir != None:
                             _request_path = _request_path[host_dir.__len__():_request_path.__len__()]
 
-                        url += "?next=" + request.get_abs_url() + _request_path
+                        url += "?next=" + request.get_abs_url() + "/"+_request_path
                         return redirect(url)
                 elif type(ret_auth) is HttpResponseRedirect:
                     return ret_auth

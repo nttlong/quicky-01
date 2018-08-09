@@ -1,10 +1,10 @@
 from . create_sys_admin_user import create_sys_admin_user
 import datetime
 def authenticate(request):
-    import threading
-    ct=threading.currentThread()
-    setattr(ct,"__current_schema__","sys")
-    create_sys_admin_user()
+    # import threading
+    # ct=threading.currentThread()
+    # setattr(ct,"__current_schema__","sys")
+    # create_sys_admin_user()
 
     if not request.user.is_anonymous() and \
         request.user.is_active:
