@@ -636,3 +636,28 @@ django_session.save (0.00) {'schema': 'hrm', '_id': 't68orwfbyfer0oqulyydnjnr0xu
 django_session.find (0.00) {'_id': 't68orwfbyfer0oqulyydnjnr0xuk8qzh', 'expire_date': {'$gt': datetime.datetime(2018, 8, 9, 9, 21, 58, 161018, tzinfo=<UTC>)}, 'schema': 'hrm'}
 hrm.auth_user.save (0.00) {'username': u'sys', 'first_name': u'', 'last_name': u'', '_id': ObjectId('5b55580c85740f3ca78ba0ab'), 'is_active': True, 'email': u'sys@beatles.com', 'is_superuser': True, 'is_staff': True, 'last_login': datetime.datetime(2018, 8, 9, 8, 54, 13, 912000, tzinfo=<UTC>), 'password': u'pbkdf2_sha256$12000$P8Ihwsnl8rXp$K+Y47hFpoL1D6IS4a38TDM9gGSt2vapdYU8hMot5y8M=', 'date_joined': datetime.datetime(2018, 7, 23, 4, 22, 36, 366000, tzinfo=<UTC>)}
 django_session.save (0.00) {'schema': 'hrm', '_id': 't68orwfbyfer0oqulyydnjnr0xuk8qzh', 'expire_date': datetime.datetime(2018, 8, 23, 9, 22, 2, 160195, tzinfo=<UTC>), 'session_data': u'YjAwMTViM2E0OTNjMDE0N2NjMTFiZjIxNzYzNmNkYTg5OGRiZGZjMzp7Imxhbmd1YWdlIjoiZW4ifQ=='}
+django_session.find (0.00) {'_id': 't68orwfbyfer0oqulyydnjnr0xuk8qzh', 'expire_date': {'$gt': datetime.datetime(2018, 8, 9, 9, 23, 16, 219000, tzinfo=<UTC>)}, 'schema': 'hrm'}
+Internal Server Error: /
+Traceback (most recent call last):
+  File "/home/hcsadmin/q03/packages/django/django/core/handlers/base.py", line 122, in get_response
+    raise e
+IndexError: string index out of range
+django_session.find (0.01) {'_id': 't68orwfbyfer0oqulyydnjnr0xuk8qzh', 'expire_date': {'$gt': datetime.datetime(2018, 8, 9, 9, 24, 6, 330366, tzinfo=<UTC>)}, 'schema': 'hrm'}
+Internal Server Error: /
+Traceback (most recent call last):
+  File "/home/hcsadmin/q03/packages/django/django/core/handlers/base.py", line 122, in get_response
+    raise e
+IndexError: string index out of range
+django_session.find (0.00) {'_id': 't68orwfbyfer0oqulyydnjnr0xuk8qzh', 'expire_date': {'$gt': datetime.datetime(2018, 8, 9, 9, 24, 34, 34063, tzinfo=<UTC>)}, 'schema': 'hrm'}
+Internal Server Error: /
+Traceback (most recent call last):
+  File "/home/hcsadmin/q03/packages/django/django/core/handlers/base.py", line 122, in get_response
+    raise e
+IndexError: string index out of range
+django_session.find (0.00) {'_id': 't68orwfbyfer0oqulyydnjnr0xuk8qzh', 'expire_date': {'$gt': datetime.datetime(2018, 8, 9, 9, 26, 21, 448330, tzinfo=<UTC>)}, 'schema': 'hrm'}
+django_session.find (0.00) {'_id': 't68orwfbyfer0oqulyydnjnr0xuk8qzh', 'expire_date': {'$gt': datetime.datetime(2018, 8, 9, 9, 26, 22, 426597, tzinfo=<UTC>)}, 'schema': 'hrm'}
+hrm.auth_user.save (0.00) {'username': u'sys', 'first_name': u'', 'last_name': u'', '_id': ObjectId('5b55580c85740f3ca78ba0ab'), 'is_active': True, 'email': u'sys@beatles.com', 'is_superuser': True, 'is_staff': True, 'last_login': datetime.datetime(2018, 8, 9, 8, 54, 13, 912000, tzinfo=<UTC>), 'password': u'pbkdf2_sha256$12000$P8Ihwsnl8rXp$K+Y47hFpoL1D6IS4a38TDM9gGSt2vapdYU8hMot5y8M=', 'date_joined': datetime.datetime(2018, 7, 23, 4, 22, 36, 366000, tzinfo=<UTC>)}
+django_session.save (0.00) {'schema': 'hrm', '_id': 't68orwfbyfer0oqulyydnjnr0xuk8qzh', 'expire_date': datetime.datetime(2018, 8, 23, 9, 26, 22, 495185, tzinfo=<UTC>), 'session_data': u'YjAwMTViM2E0OTNjMDE0N2NjMTFiZjIxNzYzNmNkYTg5OGRiZGZjMzp7Imxhbmd1YWdlIjoiZW4ifQ=='}
+django_session.find (0.00) {'_id': 't68orwfbyfer0oqulyydnjnr0xuk8qzh', 'expire_date': {'$gt': datetime.datetime(2018, 8, 9, 9, 26, 30, 608583, tzinfo=<UTC>)}, 'schema': 'hrm'}
+hrm.auth_user.save (0.00) {'username': u'sys', 'first_name': u'', 'last_name': u'', '_id': ObjectId('5b55580c85740f3ca78ba0ab'), 'is_active': True, 'email': u'sys@beatles.com', 'is_superuser': True, 'is_staff': True, 'last_login': datetime.datetime(2018, 8, 9, 8, 54, 13, 912000, tzinfo=<UTC>), 'password': u'pbkdf2_sha256$12000$P8Ihwsnl8rXp$K+Y47hFpoL1D6IS4a38TDM9gGSt2vapdYU8hMot5y8M=', 'date_joined': datetime.datetime(2018, 7, 23, 4, 22, 36, 366000, tzinfo=<UTC>)}
+django_session.save (0.00) {'schema': 'hrm', '_id': 't68orwfbyfer0oqulyydnjnr0xuk8qzh', 'expire_date': datetime.datetime(2018, 8, 23, 9, 26, 30, 708353, tzinfo=<UTC>), 'session_data': u'YjAwMTViM2E0OTNjMDE0N2NjMTFiZjIxNzYzNmNkYTg5OGRiZGZjMzp7Imxhbmd1YWdlIjoiZW4ifQ=='}
