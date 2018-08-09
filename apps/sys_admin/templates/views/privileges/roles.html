@@ -77,9 +77,9 @@
     (function(scope){
 
         scope.selectedSchema=null;
-        scope.dialog_editor='${get_app_url("pages/privileges/role_edit")}';
-        scope.dialog_list_views='${get_app_url("pages/privileges/role_edit_views_list")}';
-        scope.page_list_apps='${get_app_url("pages/privileges/apps")}';
+        scope.dialog_editor='${get_app_url("dialogs/privileges/role_edit")}';
+        scope.dialog_list_views='${get_app_url("dialogs/privileges/role_edit_views_list")}';
+        scope.page_list_apps='${get_app_url("dialogs/privileges/apps")}';
         scope.doLoadData=function(){
             scope.$ws.api('${get_api_key("api.privileges/get_list_of_roles")}').done()
             .then(function(res){

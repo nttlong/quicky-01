@@ -9,7 +9,7 @@ global _hasCreated
 if not _hasCreated:
     helpers.extent_model(
         model_name,
-        "base",
+        "base_category",
         [],
         dict(
             parent_id=helpers.create_field("object"),

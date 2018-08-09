@@ -10,7 +10,7 @@ def provinces():
     if not _hasCreated:
         helpers.extent_model(
             model_name,
-            "base",
+            "base_category",
             []
         )
         _hasCreated = True

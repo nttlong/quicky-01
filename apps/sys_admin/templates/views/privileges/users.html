@@ -48,7 +48,7 @@
 <script>
     (function(scope){
         scope.filter=$url().data;
-        scope.url_dialog_add_users='${get_app_url("pages/privileges/lookup_users")}';
+        scope.url_dialog_add_users='${get_app_url("dialogs/privileges/lookup_users")}';
         scope.loadData=function(){
             scope.$ws.api('${get_api_key("api.privileges/get_list_of_users_in_role")}')
             .data({

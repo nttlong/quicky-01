@@ -806,3 +806,285 @@ django_session.find (0.00) {'_id': '4rbd0dlzu7htghqczkxxq4er5dzyh7n1', 'expire_d
 django_session.find (0.00) {'_id': '4rbd0dlzu7htghqczkxxq4er5dzyh7n1', 'expire_date': {'$gt': datetime.datetime(2018, 8, 9, 9, 57, 30, 345693, tzinfo=<UTC>)}, 'schema': 'sys'}
 django_session.find (0.00) {'_id': '4rbd0dlzu7htghqczkxxq4er5dzyh7n1', 'expire_date': {'$gt': datetime.datetime(2018, 8, 9, 9, 57, 32, 403007, tzinfo=<UTC>)}, 'schema': 'sys'}
 django_session.find (0.00) {'_id': '4rbd0dlzu7htghqczkxxq4er5dzyh7n1', 'expire_date': {'$gt': datetime.datetime(2018, 8, 9, 9, 57, 39, 652765, tzinfo=<UTC>)}, 'schema': 'sys'}
+django_session.find (0.02) {'_id': '4rbd0dlzu7htghqczkxxq4er5dzyh7n1', 'expire_date': {'$gt': datetime.datetime(2018, 8, 9, 9, 58, 56, 325733, tzinfo=<UTC>)}, 'schema': 'sys'}
+django_session.find (0.01) {'_id': '4rbd0dlzu7htghqczkxxq4er5dzyh7n1', 'expire_date': {'$gt': datetime.datetime(2018, 8, 9, 9, 58, 56, 371103, tzinfo=<UTC>)}, 'schema': 'sys'}
+django_session.find (0.00) {'_id': '4rbd0dlzu7htghqczkxxq4er5dzyh7n1', 'expire_date': {'$gt': datetime.datetime(2018, 8, 9, 9, 58, 56, 380700, tzinfo=<UTC>)}, 'schema': 'sys'}
+django_session.find (0.00) {'_id': '4rbd0dlzu7htghqczkxxq4er5dzyh7n1', 'expire_date': {'$gt': datetime.datetime(2018, 8, 9, 9, 59, 0, 498744, tzinfo=<UTC>)}, 'schema': 'sys'}
+django_session.find (0.00) {'_id': '4rbd0dlzu7htghqczkxxq4er5dzyh7n1', 'expire_date': {'$gt': datetime.datetime(2018, 8, 9, 9, 59, 0, 743323, tzinfo=<UTC>)}, 'schema': 'sys'}
+django_session.find (0.02) {'_id': '4rbd0dlzu7htghqczkxxq4er5dzyh7n1', 'expire_date': {'$gt': datetime.datetime(2018, 8, 9, 9, 59, 4, 614861, tzinfo=<UTC>)}, 'schema': 'sys'}
+django_session.find (0.00) {'_id': '4rbd0dlzu7htghqczkxxq4er5dzyh7n1', 'expire_date': {'$gt': datetime.datetime(2018, 8, 9, 9, 59, 4, 640231, tzinfo=<UTC>)}, 'schema': 'sys'}
+django_session.find (0.00) {'_id': '4rbd0dlzu7htghqczkxxq4er5dzyh7n1', 'expire_date': {'$gt': datetime.datetime(2018, 8, 9, 9, 59, 4, 643797, tzinfo=<UTC>)}, 'schema': 'sys'}
+django_session.find (0.00) {'_id': '4rbd0dlzu7htghqczkxxq4er5dzyh7n1', 'expire_date': {'$gt': datetime.datetime(2018, 8, 9, 9, 59, 12, 711018, tzinfo=<UTC>)}, 'schema': 'sys'}
+django_session.find (0.00) {'_id': '4rbd0dlzu7htghqczkxxq4er5dzyh7n1', 'expire_date': {'$gt': datetime.datetime(2018, 8, 9, 9, 59, 13, 18118, tzinfo=<UTC>)}, 'schema': 'sys'}
+django_session.find (0.01) {'_id': '4rbd0dlzu7htghqczkxxq4er5dzyh7n1', 'expire_date': {'$gt': datetime.datetime(2018, 8, 9, 9, 59, 14, 903880, tzinfo=<UTC>)}, 'schema': 'sys'}
+django_session.find (0.01) {'_id': '4rbd0dlzu7htghqczkxxq4er5dzyh7n1', 'expire_date': {'$gt': datetime.datetime(2018, 8, 9, 9, 59, 14, 928651, tzinfo=<UTC>)}, 'schema': 'sys'}
+django_session.find (0.01) {'_id': '4rbd0dlzu7htghqczkxxq4er5dzyh7n1', 'expire_date': {'$gt': datetime.datetime(2018, 8, 9, 9, 59, 14, 956176, tzinfo=<UTC>)}, 'schema': 'sys'}
+django_session.find (0.00) {'_id': '4rbd0dlzu7htghqczkxxq4er5dzyh7n1', 'expire_date': {'$gt': datetime.datetime(2018, 8, 9, 9, 59, 17, 611791, tzinfo=<UTC>)}, 'schema': 'sys'}
+django_session.find (0.00) {'_id': '4rbd0dlzu7htghqczkxxq4er5dzyh7n1', 'expire_date': {'$gt': datetime.datetime(2018, 8, 9, 9, 59, 17, 857421, tzinfo=<UTC>)}, 'schema': 'sys'}
+django_session.find (0.00) {'_id': '4rbd0dlzu7htghqczkxxq4er5dzyh7n1', 'expire_date': {'$gt': datetime.datetime(2018, 8, 9, 9, 59, 23, 245475, tzinfo=<UTC>)}, 'schema': 'sys'}
+django_session.find (0.00) {'_id': '4rbd0dlzu7htghqczkxxq4er5dzyh7n1', 'expire_date': {'$gt': datetime.datetime(2018, 8, 9, 9, 59, 25, 666227, tzinfo=<UTC>)}, 'schema': 'sys'}
+django_session.find (0.00) {'_id': '4rbd0dlzu7htghqczkxxq4er5dzyh7n1', 'expire_date': {'$gt': datetime.datetime(2018, 8, 9, 10, 1, 1, 245679, tzinfo=<UTC>)}, 'schema': 'sys'}
+django_session.find (0.00) {'_id': '4rbd0dlzu7htghqczkxxq4er5dzyh7n1', 'expire_date': {'$gt': datetime.datetime(2018, 8, 9, 10, 1, 1, 667813, tzinfo=<UTC>)}, 'schema': 'sys'}
+Internal Server Error: /sys/api
+Traceback (most recent call last):
+  File "/home/hcsadmin/q03/packages/django/django/core/handlers/base.py", line 122, in get_response
+    raise e
+Exception: Call  'get_list_of_views' in 'sys_admin.api.privileges' encountered ''nameschema''
+django_session.find (0.00) {'_id': '4rbd0dlzu7htghqczkxxq4er5dzyh7n1', 'expire_date': {'$gt': datetime.datetime(2018, 8, 9, 10, 1, 23, 76234, tzinfo=<UTC>)}, 'schema': 'sys'}
+django_session.find (0.01) {'_id': '4rbd0dlzu7htghqczkxxq4er5dzyh7n1', 'expire_date': {'$gt': datetime.datetime(2018, 8, 9, 10, 1, 23, 81384, tzinfo=<UTC>)}, 'schema': 'sys'}
+django_session.find (0.01) {'_id': '4rbd0dlzu7htghqczkxxq4er5dzyh7n1', 'expire_date': {'$gt': datetime.datetime(2018, 8, 9, 10, 1, 23, 83805, tzinfo=<UTC>)}, 'schema': 'sys'}
+django_session.find (0.00) {'_id': '4rbd0dlzu7htghqczkxxq4er5dzyh7n1', 'expire_date': {'$gt': datetime.datetime(2018, 8, 9, 10, 1, 26, 477409, tzinfo=<UTC>)}, 'schema': 'sys'}
+django_session.find (0.00) {'_id': '4rbd0dlzu7htghqczkxxq4er5dzyh7n1', 'expire_date': {'$gt': datetime.datetime(2018, 8, 9, 10, 1, 39, 494677, tzinfo=<UTC>)}, 'schema': 'sys'}
+django_session.find (0.00) {'_id': '4rbd0dlzu7htghqczkxxq4er5dzyh7n1', 'expire_date': {'$gt': datetime.datetime(2018, 8, 9, 10, 1, 57, 849590, tzinfo=<UTC>)}, 'schema': 'sys'}
+django_session.find (0.00) {'_id': '4rbd0dlzu7htghqczkxxq4er5dzyh7n1', 'expire_date': {'$gt': datetime.datetime(2018, 8, 9, 10, 1, 57, 885030, tzinfo=<UTC>)}, 'schema': 'sys'}
+Internal Server Error: /sys/api
+Traceback (most recent call last):
+  File "/home/hcsadmin/q03/packages/django/django/core/handlers/base.py", line 122, in get_response
+    raise e
+Exception: Call  'get_list_of_users_in_schema' in 'sys_admin.api.privileges' encountered 'unsupported operand type(s) for +: 'dict' and 'str''
+django_session.find (0.00) {'_id': '4rbd0dlzu7htghqczkxxq4er5dzyh7n1', 'expire_date': {'$gt': datetime.datetime(2018, 8, 9, 10, 2, 16, 728342, tzinfo=<UTC>)}, 'schema': 'sys'}
+django_session.find (0.00) {'_id': '4rbd0dlzu7htghqczkxxq4er5dzyh7n1', 'expire_date': {'$gt': datetime.datetime(2018, 8, 9, 10, 7, 44, 949712, tzinfo=<UTC>)}, 'schema': 'sys'}
+django_session.find (0.02) {'_id': '4rbd0dlzu7htghqczkxxq4er5dzyh7n1', 'expire_date': {'$gt': datetime.datetime(2018, 8, 9, 10, 7, 44, 935998, tzinfo=<UTC>)}, 'schema': 'sys'}
+django_session.find (0.01) {'_id': '4rbd0dlzu7htghqczkxxq4er5dzyh7n1', 'expire_date': {'$gt': datetime.datetime(2018, 8, 9, 10, 7, 44, 953050, tzinfo=<UTC>)}, 'schema': 'sys'}
+django_session.find (0.00) {'_id': '4rbd0dlzu7htghqczkxxq4er5dzyh7n1', 'expire_date': {'$gt': datetime.datetime(2018, 8, 9, 10, 13, 9, 943907, tzinfo=<UTC>)}, 'schema': 'sys'}
+django_session.find (0.00) {'_id': '4rbd0dlzu7htghqczkxxq4er5dzyh7n1', 'expire_date': {'$gt': datetime.datetime(2018, 8, 9, 10, 13, 10, 445768, tzinfo=<UTC>)}, 'schema': 'sys'}
+django_session.find (0.00) {'_id': '4rbd0dlzu7htghqczkxxq4er5dzyh7n1', 'expire_date': {'$gt': datetime.datetime(2018, 8, 9, 10, 13, 10, 491969, tzinfo=<UTC>)}, 'schema': 'sys'}
+Internal Server Error: /sys/api
+Traceback (most recent call last):
+  File "/home/hcsadmin/q03/packages/django/django/core/handlers/base.py", line 122, in get_response
+    raise e
+Exception: Call  'get_list_of_roles' in 'sys_admin.api.privileges' encountered ''nameschema''
+django_session.find (0.00) {'_id': '4rbd0dlzu7htghqczkxxq4er5dzyh7n1', 'expire_date': {'$gt': datetime.datetime(2018, 8, 9, 10, 13, 10, 488147, tzinfo=<UTC>)}, 'schema': 'sys'}
+Internal Server Error: /sys/dialogs/pages/privileges/role_edit
+Traceback (most recent call last):
+  File "/home/hcsadmin/q03/packages/django/django/core/handlers/base.py", line 122, in get_response
+    raise e
+TemplateLookupException: Cant locate template for uri u'views/pages/privileges/role_edit.html'
+Not Found: /polyfills/promise-6.1.0.js.map
+Not Found: /sys/static/angular.min.js.map
+Internal Server Error: /sys/dialogs/pages/privileges/role_edit
+Traceback (most recent call last):
+  File "/home/hcsadmin/q03/packages/django/django/core/handlers/base.py", line 122, in get_response
+    raise e
+TemplateLookupException: Cant locate template for uri u'views/pages/privileges/role_edit.html'
+Internal Server Error: /sys/dialogs/pages/privileges/role_edit
+Traceback (most recent call last):
+  File "/home/hcsadmin/q03/packages/django/django/core/handlers/base.py", line 122, in get_response
+    raise e
+TemplateLookupException: Cant locate template for uri u'views/pages/privileges/role_edit.html'
+django_session.find (0.00) {'_id': '4rbd0dlzu7htghqczkxxq4er5dzyh7n1', 'expire_date': {'$gt': datetime.datetime(2018, 8, 9, 10, 14, 42, 106048, tzinfo=<UTC>)}, 'schema': 'sys'}
+Not Found: /sys/static/angular.min.js.map
+Not Found: /polyfills/promise-6.1.0.js.map
+django_session.find (0.00) {'_id': '4rbd0dlzu7htghqczkxxq4er5dzyh7n1', 'expire_date': {'$gt': datetime.datetime(2018, 8, 9, 10, 14, 42, 965150, tzinfo=<UTC>)}, 'schema': 'sys'}
+django_session.find (0.01) {'_id': '4rbd0dlzu7htghqczkxxq4er5dzyh7n1', 'expire_date': {'$gt': datetime.datetime(2018, 8, 9, 10, 14, 43, 1902, tzinfo=<UTC>)}, 'schema': 'sys'}
+django_session.find (0.02) {'_id': '4rbd0dlzu7htghqczkxxq4er5dzyh7n1', 'expire_date': {'$gt': datetime.datetime(2018, 8, 9, 10, 14, 43, 15924, tzinfo=<UTC>)}, 'schema': 'sys'}
+django_session.find (0.00) {'_id': '4rbd0dlzu7htghqczkxxq4er5dzyh7n1', 'expire_date': {'$gt': datetime.datetime(2018, 8, 9, 10, 14, 56, 19604, tzinfo=<UTC>)}, 'schema': 'sys'}
+django_session.find (0.00) {'_id': '4rbd0dlzu7htghqczkxxq4er5dzyh7n1', 'expire_date': {'$gt': datetime.datetime(2018, 8, 9, 10, 14, 56, 291434, tzinfo=<UTC>)}, 'schema': 'sys'}
+django_session.find (0.00) {'_id': '4rbd0dlzu7htghqczkxxq4er5dzyh7n1', 'expire_date': {'$gt': datetime.datetime(2018, 8, 9, 10, 14, 57, 553061, tzinfo=<UTC>)}, 'schema': 'sys'}
+django_session.find (0.00) {'_id': '4rbd0dlzu7htghqczkxxq4er5dzyh7n1', 'expire_date': {'$gt': datetime.datetime(2018, 8, 9, 10, 15, 4, 456684, tzinfo=<UTC>)}, 'schema': 'sys'}
+django_session.find (0.00) {'_id': '4rbd0dlzu7htghqczkxxq4er5dzyh7n1', 'expire_date': {'$gt': datetime.datetime(2018, 8, 9, 10, 15, 6, 294372, tzinfo=<UTC>)}, 'schema': 'sys'}
+django_session.find (0.00) {'_id': '4rbd0dlzu7htghqczkxxq4er5dzyh7n1', 'expire_date': {'$gt': datetime.datetime(2018, 8, 9, 10, 15, 9, 667468, tzinfo=<UTC>)}, 'schema': 'sys'}
+Internal Server Error: /sys/dialogs/pages/privileges/lookup_users
+Traceback (most recent call last):
+  File "/home/hcsadmin/q03/packages/django/django/core/handlers/base.py", line 122, in get_response
+    raise e
+TemplateLookupException: Cant locate template for uri u'views/pages/privileges/lookup_users.html'
+Not Found: /sys/static/angular.min.js.map
+Not Found: /polyfills/promise-6.1.0.js.map
+Internal Server Error: /sys/dialogs/pages/privileges/lookup_users
+Traceback (most recent call last):
+  File "/home/hcsadmin/q03/packages/django/django/core/handlers/base.py", line 122, in get_response
+    raise e
+TemplateLookupException: Cant locate template for uri u'views/pages/privileges/lookup_users.html'
+django_session.find (0.00) {'_id': '4rbd0dlzu7htghqczkxxq4er5dzyh7n1', 'expire_date': {'$gt': datetime.datetime(2018, 8, 9, 10, 15, 44, 170051, tzinfo=<UTC>)}, 'schema': 'sys'}
+Not Found: /sys/static/angular.min.js.map
+Not Found: /polyfills/promise-6.1.0.js.map
+django_session.find (0.01) {'_id': '4rbd0dlzu7htghqczkxxq4er5dzyh7n1', 'expire_date': {'$gt': datetime.datetime(2018, 8, 9, 10, 15, 44, 919391, tzinfo=<UTC>)}, 'schema': 'sys'}
+django_session.find (0.00) {'_id': '4rbd0dlzu7htghqczkxxq4er5dzyh7n1', 'expire_date': {'$gt': datetime.datetime(2018, 8, 9, 10, 15, 47, 49249, tzinfo=<UTC>)}, 'schema': 'sys'}
+django_session.find (0.00) {'_id': '4rbd0dlzu7htghqczkxxq4er5dzyh7n1', 'expire_date': {'$gt': datetime.datetime(2018, 8, 9, 10, 15, 52, 616212, tzinfo=<UTC>)}, 'schema': 'sys'}
+django_session.find (0.00) {'_id': '4rbd0dlzu7htghqczkxxq4er5dzyh7n1', 'expire_date': {'$gt': datetime.datetime(2018, 8, 9, 10, 16, 0, 902139, tzinfo=<UTC>)}, 'schema': 'sys'}
+django_session.find (0.00) {'_id': '4rbd0dlzu7htghqczkxxq4er5dzyh7n1', 'expire_date': {'$gt': datetime.datetime(2018, 8, 9, 10, 16, 3, 413410, tzinfo=<UTC>)}, 'schema': 'sys'}
+django_session.find (0.00) {'_id': '4rbd0dlzu7htghqczkxxq4er5dzyh7n1', 'expire_date': {'$gt': datetime.datetime(2018, 8, 9, 10, 16, 5, 308942, tzinfo=<UTC>)}, 'schema': 'sys'}
+django_session.find (0.00) {'_id': '4rbd0dlzu7htghqczkxxq4er5dzyh7n1', 'expire_date': {'$gt': datetime.datetime(2018, 8, 9, 10, 16, 9, 733433, tzinfo=<UTC>)}, 'schema': 'sys'}
+django_session.find (0.00) {'_id': '4rbd0dlzu7htghqczkxxq4er5dzyh7n1', 'expire_date': {'$gt': datetime.datetime(2018, 8, 9, 10, 16, 9, 768043, tzinfo=<UTC>)}, 'schema': 'sys'}
+Internal Server Error: /sys/api
+Traceback (most recent call last):
+  File "/home/hcsadmin/q03/packages/django/django/core/handlers/base.py", line 122, in get_response
+    raise e
+Exception: Call  'get_list_of_users_in_schema' in 'sys_admin.api.privileges' encountered 'unsupported operand type(s) for +: 'dict' and 'str''
+django_session.find (0.00) {'_id': '4rbd0dlzu7htghqczkxxq4er5dzyh7n1', 'expire_date': {'$gt': datetime.datetime(2018, 8, 9, 10, 16, 12, 753201, tzinfo=<UTC>)}, 'schema': 'sys'}
+Internal Server Error: /sys/dialogs/pages/privileges/user
+Traceback (most recent call last):
+  File "/home/hcsadmin/q03/packages/django/django/core/handlers/base.py", line 122, in get_response
+    raise e
+TemplateLookupException: Cant locate template for uri u'views/pages/privileges/user.html'
+django_session.find (0.00) {'_id': '4rbd0dlzu7htghqczkxxq4er5dzyh7n1', 'expire_date': {'$gt': datetime.datetime(2018, 8, 9, 10, 16, 32, 352416, tzinfo=<UTC>)}, 'schema': 'sys'}
+django_session.find (0.00) {'_id': '4rbd0dlzu7htghqczkxxq4er5dzyh7n1', 'expire_date': {'$gt': datetime.datetime(2018, 8, 9, 10, 16, 32, 766543, tzinfo=<UTC>)}, 'schema': 'sys'}
+django_session.find (0.00) {'_id': '4rbd0dlzu7htghqczkxxq4er5dzyh7n1', 'expire_date': {'$gt': datetime.datetime(2018, 8, 9, 10, 16, 32, 815523, tzinfo=<UTC>)}, 'schema': 'sys'}
+Internal Server Error: /sys/api
+Traceback (most recent call last):
+  File "/home/hcsadmin/q03/packages/django/django/core/handlers/base.py", line 122, in get_response
+    raise e
+Exception: Call  'get_list_of_users_in_schema' in 'sys_admin.api.privileges' encountered 'unsupported operand type(s) for +: 'dict' and 'str''
+django_session.find (0.00) {'_id': '4rbd0dlzu7htghqczkxxq4er5dzyh7n1', 'expire_date': {'$gt': datetime.datetime(2018, 8, 9, 10, 16, 38, 339415, tzinfo=<UTC>)}, 'schema': 'sys'}
+django_session.find (0.01) {'_id': '4rbd0dlzu7htghqczkxxq4er5dzyh7n1', 'expire_date': {'$gt': datetime.datetime(2018, 8, 9, 10, 16, 45, 915779, tzinfo=<UTC>)}, 'schema': 'sys'}
+django_session.find (0.01) {'_id': '4rbd0dlzu7htghqczkxxq4er5dzyh7n1', 'expire_date': {'$gt': datetime.datetime(2018, 8, 9, 10, 16, 45, 920061, tzinfo=<UTC>)}, 'schema': 'sys'}
+django_session.find (0.01) {'_id': '4rbd0dlzu7htghqczkxxq4er5dzyh7n1', 'expire_date': {'$gt': datetime.datetime(2018, 8, 9, 10, 16, 45, 940363, tzinfo=<UTC>)}, 'schema': 'sys'}
+django_session.find (0.00) {'_id': '4rbd0dlzu7htghqczkxxq4er5dzyh7n1', 'expire_date': {'$gt': datetime.datetime(2018, 8, 9, 10, 16, 45, 948522, tzinfo=<UTC>)}, 'schema': 'sys'}
+Internal Server Error: /sys/api
+Traceback (most recent call last):
+  File "/home/hcsadmin/q03/packages/django/django/core/handlers/base.py", line 122, in get_response
+    raise e
+Exception: Call  'get_list_of_users_in_schema' in 'sys_admin.api.privileges' encountered 'unsupported operand type(s) for +: 'NoneType' and 'str''
+django_session.find (0.00) {'_id': '4rbd0dlzu7htghqczkxxq4er5dzyh7n1', 'expire_date': {'$gt': datetime.datetime(2018, 8, 9, 10, 16, 47, 392457, tzinfo=<UTC>)}, 'schema': 'sys'}
+django_session.find (0.00) {'_id': '4rbd0dlzu7htghqczkxxq4er5dzyh7n1', 'expire_date': {'$gt': datetime.datetime(2018, 8, 9, 10, 16, 48, 598158, tzinfo=<UTC>)}, 'schema': 'sys'}
+django_session.find (0.00) {'_id': '4rbd0dlzu7htghqczkxxq4er5dzyh7n1', 'expire_date': {'$gt': datetime.datetime(2018, 8, 9, 10, 16, 48, 629118, tzinfo=<UTC>)}, 'schema': 'sys'}
+Internal Server Error: /sys/api
+Traceback (most recent call last):
+  File "/home/hcsadmin/q03/packages/django/django/core/handlers/base.py", line 122, in get_response
+    raise e
+Exception: Call  'get_list_of_users_in_schema' in 'sys_admin.api.privileges' encountered 'unsupported operand type(s) for +: 'dict' and 'str''
+django_session.find (0.00) {'_id': '4rbd0dlzu7htghqczkxxq4er5dzyh7n1', 'expire_date': {'$gt': datetime.datetime(2018, 8, 9, 10, 16, 49, 725364, tzinfo=<UTC>)}, 'schema': 'sys'}
+django_session.find (0.00) {'_id': '4rbd0dlzu7htghqczkxxq4er5dzyh7n1', 'expire_date': {'$gt': datetime.datetime(2018, 8, 9, 10, 16, 50, 854252, tzinfo=<UTC>)}, 'schema': 'sys'}
+django_session.find (0.01) {'_id': '4rbd0dlzu7htghqczkxxq4er5dzyh7n1', 'expire_date': {'$gt': datetime.datetime(2018, 8, 9, 10, 16, 50, 863767, tzinfo=<UTC>)}, 'schema': 'sys'}
+django_session.find (0.00) {'_id': '4rbd0dlzu7htghqczkxxq4er5dzyh7n1', 'expire_date': {'$gt': datetime.datetime(2018, 8, 9, 10, 16, 50, 896264, tzinfo=<UTC>)}, 'schema': 'sys'}
+django_session.find (0.00) {'_id': '4rbd0dlzu7htghqczkxxq4er5dzyh7n1', 'expire_date': {'$gt': datetime.datetime(2018, 8, 9, 10, 16, 52, 211120, tzinfo=<UTC>)}, 'schema': 'sys'}
+django_session.find (0.00) {'_id': '4rbd0dlzu7htghqczkxxq4er5dzyh7n1', 'expire_date': {'$gt': datetime.datetime(2018, 8, 9, 10, 16, 55, 19891, tzinfo=<UTC>)}, 'schema': 'sys'}
+django_session.find (0.00) {'_id': '4rbd0dlzu7htghqczkxxq4er5dzyh7n1', 'expire_date': {'$gt': datetime.datetime(2018, 8, 9, 10, 16, 56, 658513, tzinfo=<UTC>)}, 'schema': 'sys'}
+django_session.find (0.00) {'_id': '4rbd0dlzu7htghqczkxxq4er5dzyh7n1', 'expire_date': {'$gt': datetime.datetime(2018, 8, 9, 10, 19, 41, 105335, tzinfo=<UTC>)}, 'schema': 'sys'}
+django_session.find (0.00) {'_id': '4rbd0dlzu7htghqczkxxq4er5dzyh7n1', 'expire_date': {'$gt': datetime.datetime(2018, 8, 9, 10, 19, 41, 547851, tzinfo=<UTC>)}, 'schema': 'sys'}
+Internal Server Error: /sys/api
+Traceback (most recent call last):
+  File "/home/hcsadmin/q03/packages/django/django/core/handlers/base.py", line 122, in get_response
+    raise e
+Exception: Call  'get_list_of_users_in_role' in 'sys_admin.api.privileges' encountered ''nameschema''
+django_session.find (0.00) {'_id': '4rbd0dlzu7htghqczkxxq4er5dzyh7n1', 'expire_date': {'$gt': datetime.datetime(2018, 8, 9, 10, 19, 45, 647236, tzinfo=<UTC>)}, 'schema': 'hrm'}
+django_session.save (0.00) {'schema': 'hrm', '_id': u'bk04ohvlbm7mv8vz38a6dsk04m5xip7n', 'expire_date': datetime.datetime(2018, 8, 23, 10, 19, 45, 653881, tzinfo=<UTC>), 'session_data': u'MjY1MGI5ZjE5YWFjZTM1OTM5NmFkNjA4ODFhYTVmNzUxZDA3ZTkxMjp7fQ=='}
+django_session.save (0.00) {'schema': 'hrm', '_id': u'bk04ohvlbm7mv8vz38a6dsk04m5xip7n', 'expire_date': datetime.datetime(2018, 8, 23, 10, 19, 49, 567735, tzinfo=<UTC>), 'session_data': u'MjY1MGI5ZjE5YWFjZTM1OTM5NmFkNjA4ODFhYTVmNzUxZDA3ZTkxMjp7fQ=='}
+django_session.find (0.00) {'_id': 'bk04ohvlbm7mv8vz38a6dsk04m5xip7n', 'expire_date': {'$gt': datetime.datetime(2018, 8, 9, 10, 19, 49, 600643, tzinfo=<UTC>)}, 'schema': 'hrm'}
+hrm.auth_user.save (0.00) {'username': u'sys', 'first_name': u'', 'last_name': u'', '_id': ObjectId('5b55580c85740f3ca78ba0ab'), 'is_active': True, 'email': u'sys@beatles.com', 'is_superuser': True, 'is_staff': True, 'last_login': datetime.datetime(2018, 8, 9, 8, 54, 13, 912000, tzinfo=<UTC>), 'password': u'pbkdf2_sha256$12000$P8Ihwsnl8rXp$K+Y47hFpoL1D6IS4a38TDM9gGSt2vapdYU8hMot5y8M=', 'date_joined': datetime.datetime(2018, 7, 23, 4, 22, 36, 366000, tzinfo=<UTC>)}
+django_session.save (0.00) {'schema': 'hrm', '_id': 'bk04ohvlbm7mv8vz38a6dsk04m5xip7n', 'expire_date': datetime.datetime(2018, 8, 23, 10, 19, 49, 649360, tzinfo=<UTC>), 'session_data': u'YjAwMTViM2E0OTNjMDE0N2NjMTFiZjIxNzYzNmNkYTg5OGRiZGZjMzp7Imxhbmd1YWdlIjoiZW4ifQ=='}
+django_session.find (0.00) {'_id': 'bk04ohvlbm7mv8vz38a6dsk04m5xip7n', 'expire_date': {'$gt': datetime.datetime(2018, 8, 9, 10, 19, 59, 256176, tzinfo=<UTC>)}, 'schema': 'hrm'}
+hrm.auth_user.save (0.00) {'username': u'sys', 'first_name': u'', 'last_name': u'', '_id': ObjectId('5b55580c85740f3ca78ba0ab'), 'is_active': True, 'email': u'sys@beatles.com', 'is_superuser': True, 'is_staff': True, 'last_login': datetime.datetime(2018, 8, 9, 8, 54, 13, 912000, tzinfo=<UTC>), 'password': u'pbkdf2_sha256$12000$P8Ihwsnl8rXp$K+Y47hFpoL1D6IS4a38TDM9gGSt2vapdYU8hMot5y8M=', 'date_joined': datetime.datetime(2018, 7, 23, 4, 22, 36, 366000, tzinfo=<UTC>)}
+django_session.save (0.00) {'schema': 'hrm', '_id': u'dt8pxrg3m4j8obrbhtv43btcwtt4oajs', 'expire_date': datetime.datetime(2018, 8, 23, 10, 19, 59, 387380, tzinfo=<UTC>), 'session_data': u'YjAwMTViM2E0OTNjMDE0N2NjMTFiZjIxNzYzNmNkYTg5OGRiZGZjMzp7Imxhbmd1YWdlIjoiZW4ifQ=='}
+django_session.find (0.00) {'_id': 'bk04ohvlbm7mv8vz38a6dsk04m5xip7n', 'schema': 'hrm'}
+django_session.remove (0.00) {'_id': {'$in': [u'bk04ohvlbm7mv8vz38a6dsk04m5xip7n']}, 'schema': 'hrm'}
+hrm.auth_user.save (0.00) {'username': u'sys', 'first_name': u'', 'last_name': u'', '_id': ObjectId('5b55580c85740f3ca78ba0ab'), 'is_active': True, 'email': u'sys@beatles.com', 'is_superuser': True, 'is_staff': True, 'last_login': datetime.datetime(2018, 8, 9, 10, 19, 59, 396903, tzinfo=<UTC>), 'password': u'pbkdf2_sha256$12000$P8Ihwsnl8rXp$K+Y47hFpoL1D6IS4a38TDM9gGSt2vapdYU8hMot5y8M=', 'date_joined': datetime.datetime(2018, 7, 23, 4, 22, 36, 366000, tzinfo=<UTC>)}
+django_session.save (0.00) {'schema': 'hrm', '_id': u'dt8pxrg3m4j8obrbhtv43btcwtt4oajs', 'expire_date': datetime.datetime(2018, 8, 23, 10, 19, 59, 400236, tzinfo=<UTC>), 'session_data': u'ZjhlNDM5YjM0OGQyZjYzZmRlZTk4NjAzMTMyMjgwNGQwOTFlMmRiYTp7Il9hdXRoX3VzZXJfYmFja2VuZCI6InF1aWNreS5iYWNrZW5kcy5IYXNoTW9kZWxCYWNrZW5kIiwiX2F1dGhfdXNlcl9pZCI6IjViNTU1ODBjODU3NDBmM2NhNzhiYTBhYiIsImxhbmd1YWdlIjoiZW4ifQ=='}
+django_session.find (0.00) {'_id': 'dt8pxrg3m4j8obrbhtv43btcwtt4oajs', 'expire_date': {'$gt': datetime.datetime(2018, 8, 9, 10, 19, 59, 424995, tzinfo=<UTC>)}, 'schema': 'hrm'}
+django_session.find (0.00) {'_id': 'dt8pxrg3m4j8obrbhtv43btcwtt4oajs', 'expire_date': {'$gt': datetime.datetime(2018, 8, 9, 10, 19, 59, 634481, tzinfo=<UTC>)}, 'schema': 'hrm'}
+django_session.find (0.00) {'_id': 'dt8pxrg3m4j8obrbhtv43btcwtt4oajs', 'expire_date': {'$gt': datetime.datetime(2018, 8, 9, 10, 20, 1, 547367, tzinfo=<UTC>)}, 'schema': 'hrm'}
+django_session.find (0.00) {'_id': 'dt8pxrg3m4j8obrbhtv43btcwtt4oajs', 'expire_date': {'$gt': datetime.datetime(2018, 8, 9, 10, 20, 1, 634028, tzinfo=<UTC>)}, 'schema': 'hrm'}
+django_session.find (0.00) {'_id': 'dt8pxrg3m4j8obrbhtv43btcwtt4oajs', 'expire_date': {'$gt': datetime.datetime(2018, 8, 9, 10, 20, 3, 864756, tzinfo=<UTC>)}, 'schema': 'hrm'}
+django_session.find (0.00) {'_id': 'dt8pxrg3m4j8obrbhtv43btcwtt4oajs', 'expire_date': {'$gt': datetime.datetime(2018, 8, 9, 10, 20, 6, 871333, tzinfo=<UTC>)}, 'schema': 'hrm'}
+django_session.find (0.00) {'_id': 'dt8pxrg3m4j8obrbhtv43btcwtt4oajs', 'expire_date': {'$gt': datetime.datetime(2018, 8, 9, 10, 20, 6, 930844, tzinfo=<UTC>)}, 'schema': 'hrm'}
+Internal Server Error: /api
+Traceback (most recent call last):
+  File "/home/hcsadmin/q03/packages/django/django/core/handlers/base.py", line 122, in get_response
+    raise e
+Exception: Call  'get_item' in 'hrm.api.categories' encountered 'What is bellow list of fields?:
+code
+ 
+ Your selected fields now is bellow list: 
+modified_on
+created_on
+_id
+modified_by
+created_by
+'
+django_session.find (0.00) {'_id': 'dt8pxrg3m4j8obrbhtv43btcwtt4oajs', 'expire_date': {'$gt': datetime.datetime(2018, 8, 9, 10, 20, 22, 281635, tzinfo=<UTC>)}, 'schema': 'hrm'}
+django_session.find (0.00) {'_id': 'dt8pxrg3m4j8obrbhtv43btcwtt4oajs', 'expire_date': {'$gt': datetime.datetime(2018, 8, 9, 10, 20, 22, 334637, tzinfo=<UTC>)}, 'schema': 'hrm'}
+Internal Server Error: /api
+Traceback (most recent call last):
+  File "/home/hcsadmin/q03/packages/django/django/core/handlers/base.py", line 122, in get_response
+    raise e
+Exception: Call  'get_item' in 'hrm.api.categories' encountered 'What is bellow list of fields?:
+code
+ 
+ Your selected fields now is bellow list: 
+modified_on
+created_on
+_id
+modified_by
+created_by
+'
+django_session.find (0.00) {'_id': 'dt8pxrg3m4j8obrbhtv43btcwtt4oajs', 'expire_date': {'$gt': datetime.datetime(2018, 8, 9, 10, 20, 32, 415071, tzinfo=<UTC>)}, 'schema': 'hrm'}
+django_session.find (0.00) {'_id': 'dt8pxrg3m4j8obrbhtv43btcwtt4oajs', 'expire_date': {'$gt': datetime.datetime(2018, 8, 9, 10, 20, 32, 481858, tzinfo=<UTC>)}, 'schema': 'hrm'}
+Internal Server Error: /api
+Traceback (most recent call last):
+  File "/home/hcsadmin/q03/packages/django/django/core/handlers/base.py", line 122, in get_response
+    raise e
+Exception: Call  'get_item' in 'hrm.api.categories' encountered 'What is bellow list of fields?:
+code
+ 
+ Your selected fields now is bellow list: 
+modified_on
+created_on
+_id
+modified_by
+created_by
+'
+django_session.find (0.00) {'_id': 'dt8pxrg3m4j8obrbhtv43btcwtt4oajs', 'expire_date': {'$gt': datetime.datetime(2018, 8, 9, 10, 21, 18, 793116, tzinfo=<UTC>)}, 'schema': 'hrm'}
+django_session.find (0.00) {'_id': 'dt8pxrg3m4j8obrbhtv43btcwtt4oajs', 'expire_date': {'$gt': datetime.datetime(2018, 8, 9, 10, 21, 18, 862146, tzinfo=<UTC>)}, 'schema': 'hrm'}
+django_session.find (0.00) {'_id': 'dt8pxrg3m4j8obrbhtv43btcwtt4oajs', 'expire_date': {'$gt': datetime.datetime(2018, 8, 9, 10, 21, 21, 773182, tzinfo=<UTC>)}, 'schema': 'hrm'}
+django_session.find (0.00) {'_id': 'dt8pxrg3m4j8obrbhtv43btcwtt4oajs', 'expire_date': {'$gt': datetime.datetime(2018, 8, 9, 10, 21, 21, 830743, tzinfo=<UTC>)}, 'schema': 'hrm'}
+django_session.find (0.00) {'_id': 'dt8pxrg3m4j8obrbhtv43btcwtt4oajs', 'expire_date': {'$gt': datetime.datetime(2018, 8, 9, 10, 21, 23, 52264, tzinfo=<UTC>)}, 'schema': 'hrm'}
+django_session.find (0.00) {'_id': 'dt8pxrg3m4j8obrbhtv43btcwtt4oajs', 'expire_date': {'$gt': datetime.datetime(2018, 8, 9, 10, 21, 30, 239159, tzinfo=<UTC>)}, 'schema': 'hrm'}
+django_session.find (0.00) {'_id': 'dt8pxrg3m4j8obrbhtv43btcwtt4oajs', 'expire_date': {'$gt': datetime.datetime(2018, 8, 9, 10, 21, 33, 604363, tzinfo=<UTC>)}, 'schema': 'hrm'}
+django_session.find (0.00) {'_id': 'dt8pxrg3m4j8obrbhtv43btcwtt4oajs', 'expire_date': {'$gt': datetime.datetime(2018, 8, 9, 10, 21, 33, 656559, tzinfo=<UTC>)}, 'schema': 'hrm'}
+django_session.find (0.00) {'_id': 'dt8pxrg3m4j8obrbhtv43btcwtt4oajs', 'expire_date': {'$gt': datetime.datetime(2018, 8, 9, 10, 21, 35, 177070, tzinfo=<UTC>)}, 'schema': 'hrm'}
+django_session.find (0.00) {'_id': 'dt8pxrg3m4j8obrbhtv43btcwtt4oajs', 'expire_date': {'$gt': datetime.datetime(2018, 8, 9, 10, 21, 35, 222709, tzinfo=<UTC>)}, 'schema': 'hrm'}
+Internal Server Error: /api
+Traceback (most recent call last):
+  File "/home/hcsadmin/q03/packages/django/django/core/handlers/base.py", line 122, in get_response
+    raise e
+Exception: Call  'get_item' in 'hrm.api.categories' encountered 'What is bellow list of fields?:
+code
+ 
+ Your selected fields now is bellow list: 
+modified_on
+created_on
+_id
+modified_by
+created_by
+'
+django_session.find (0.00) {'_id': 'dt8pxrg3m4j8obrbhtv43btcwtt4oajs', 'expire_date': {'$gt': datetime.datetime(2018, 8, 9, 10, 21, 38, 898098, tzinfo=<UTC>)}, 'schema': 'hrm'}
+django_session.find (0.00) {'_id': 'dt8pxrg3m4j8obrbhtv43btcwtt4oajs', 'expire_date': {'$gt': datetime.datetime(2018, 8, 9, 10, 21, 41, 673641, tzinfo=<UTC>)}, 'schema': 'hrm'}
+django_session.find (0.00) {'_id': 'dt8pxrg3m4j8obrbhtv43btcwtt4oajs', 'expire_date': {'$gt': datetime.datetime(2018, 8, 9, 10, 21, 41, 705807, tzinfo=<UTC>)}, 'schema': 'hrm'}
+Internal Server Error: /api
+Traceback (most recent call last):
+  File "/home/hcsadmin/q03/packages/django/django/core/handlers/base.py", line 122, in get_response
+    raise e
+Exception: Call  'get_item' in 'hrm.api.categories' encountered 'What is bellow list of fields?:
+code
+ 
+ Your selected fields now is bellow list: 
+modified_on
+created_on
+_id
+modified_by
+created_by
+'
+django_session.find (0.00) {'_id': 'dt8pxrg3m4j8obrbhtv43btcwtt4oajs', 'expire_date': {'$gt': datetime.datetime(2018, 8, 9, 10, 21, 59, 957176, tzinfo=<UTC>)}, 'schema': 'hrm'}
+django_session.find (0.00) {'_id': 'dt8pxrg3m4j8obrbhtv43btcwtt4oajs', 'expire_date': {'$gt': datetime.datetime(2018, 8, 9, 10, 22, 0, 17512, tzinfo=<UTC>)}, 'schema': 'hrm'}
+django_session.find (0.00) {'_id': 'dt8pxrg3m4j8obrbhtv43btcwtt4oajs', 'expire_date': {'$gt': datetime.datetime(2018, 8, 9, 10, 24, 1, 816482, tzinfo=<UTC>)}, 'schema': 'hrm'}
+django_session.find (0.00) {'_id': 'dt8pxrg3m4j8obrbhtv43btcwtt4oajs', 'expire_date': {'$gt': datetime.datetime(2018, 8, 9, 10, 24, 1, 887802, tzinfo=<UTC>)}, 'schema': 'hrm'}
+django_session.find (0.00) {'_id': 'dt8pxrg3m4j8obrbhtv43btcwtt4oajs', 'expire_date': {'$gt': datetime.datetime(2018, 8, 9, 10, 25, 47, 674504, tzinfo=<UTC>)}, 'schema': 'hrm'}
+django_session.find (0.00) {'_id': 'dt8pxrg3m4j8obrbhtv43btcwtt4oajs', 'expire_date': {'$gt': datetime.datetime(2018, 8, 9, 10, 25, 47, 763175, tzinfo=<UTC>)}, 'schema': 'hrm'}
+django_session.find (0.00) {'_id': 'dt8pxrg3m4j8obrbhtv43btcwtt4oajs', 'expire_date': {'$gt': datetime.datetime(2018, 8, 9, 10, 27, 2, 562483, tzinfo=<UTC>)}, 'schema': 'hrm'}
+django_session.find (0.00) {'_id': 'dt8pxrg3m4j8obrbhtv43btcwtt4oajs', 'expire_date': {'$gt': datetime.datetime(2018, 8, 9, 10, 27, 2, 645354, tzinfo=<UTC>)}, 'schema': 'hrm'}
+django_session.find (0.00) {'_id': 'dt8pxrg3m4j8obrbhtv43btcwtt4oajs', 'expire_date': {'$gt': datetime.datetime(2018, 8, 9, 10, 28, 13, 44084, tzinfo=<UTC>)}, 'schema': 'hrm'}
+django_session.find (0.00) {'_id': 'dt8pxrg3m4j8obrbhtv43btcwtt4oajs', 'expire_date': {'$gt': datetime.datetime(2018, 8, 9, 10, 28, 13, 118746, tzinfo=<UTC>)}, 'schema': 'hrm'}
+django_session.find (0.00) {'_id': 'dt8pxrg3m4j8obrbhtv43btcwtt4oajs', 'expire_date': {'$gt': datetime.datetime(2018, 8, 9, 10, 30, 3, 352570, tzinfo=<UTC>)}, 'schema': 'hrm'}
+django_session.find (0.00) {'_id': 'dt8pxrg3m4j8obrbhtv43btcwtt4oajs', 'expire_date': {'$gt': datetime.datetime(2018, 8, 9, 10, 30, 3, 416829, tzinfo=<UTC>)}, 'schema': 'hrm'}
+django_session.find (0.00) {'_id': 'dt8pxrg3m4j8obrbhtv43btcwtt4oajs', 'expire_date': {'$gt': datetime.datetime(2018, 8, 9, 10, 30, 40, 695955, tzinfo=<UTC>)}, 'schema': 'hrm'}
+django_session.find (0.00) {'_id': 'dt8pxrg3m4j8obrbhtv43btcwtt4oajs', 'expire_date': {'$gt': datetime.datetime(2018, 8, 9, 10, 30, 40, 768046, tzinfo=<UTC>)}, 'schema': 'hrm'}
+django_session.find (0.00) {'_id': 'dt8pxrg3m4j8obrbhtv43btcwtt4oajs', 'expire_date': {'$gt': datetime.datetime(2018, 8, 9, 10, 36, 8, 448809, tzinfo=<UTC>)}, 'schema': 'hrm'}
+django_session.find (0.00) {'_id': 'dt8pxrg3m4j8obrbhtv43btcwtt4oajs', 'expire_date': {'$gt': datetime.datetime(2018, 8, 9, 10, 36, 8, 510552, tzinfo=<UTC>)}, 'schema': 'hrm'}
+django_session.find (0.00) {'_id': 'dt8pxrg3m4j8obrbhtv43btcwtt4oajs', 'expire_date': {'$gt': datetime.datetime(2018, 8, 9, 10, 36, 19, 255162, tzinfo=<UTC>)}, 'schema': 'hrm'}
+django_session.find (0.00) {'_id': 'dt8pxrg3m4j8obrbhtv43btcwtt4oajs', 'expire_date': {'$gt': datetime.datetime(2018, 8, 9, 10, 36, 19, 296059, tzinfo=<UTC>)}, 'schema': 'hrm'}
+django_session.find (0.00) {'_id': 'dt8pxrg3m4j8obrbhtv43btcwtt4oajs', 'expire_date': {'$gt': datetime.datetime(2018, 8, 9, 10, 36, 31, 350545, tzinfo=<UTC>)}, 'schema': 'hrm'}
+django_session.find (0.00) {'_id': 'dt8pxrg3m4j8obrbhtv43btcwtt4oajs', 'expire_date': {'$gt': datetime.datetime(2018, 8, 9, 10, 36, 31, 405632, tzinfo=<UTC>)}, 'schema': 'hrm'}
+django_session.find (0.00) {'_id': 'dt8pxrg3m4j8obrbhtv43btcwtt4oajs', 'expire_date': {'$gt': datetime.datetime(2018, 8, 9, 10, 36, 44, 953097, tzinfo=<UTC>)}, 'schema': 'hrm'}
+django_session.find (0.00) {'_id': 'dt8pxrg3m4j8obrbhtv43btcwtt4oajs', 'expire_date': {'$gt': datetime.datetime(2018, 8, 9, 10, 36, 45, 22101, tzinfo=<UTC>)}, 'schema': 'hrm'}
+django_session.find (0.00) {'_id': 'dt8pxrg3m4j8obrbhtv43btcwtt4oajs', 'expire_date': {'$gt': datetime.datetime(2018, 8, 9, 10, 36, 47, 533624, tzinfo=<UTC>)}, 'schema': 'hrm'}

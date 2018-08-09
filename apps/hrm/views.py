@@ -76,6 +76,19 @@ def load_page(request,path):
     return request.render({
         "path": path.lower()
     })
+@quicky.view.template("dynamic.html")
+def load_dialog(request,path):
+    import os
+    dir=os.path.dirname(application.mdl.__file__)
+    html_file=dir+os.sep+"templates"+os.sep+"views"+os.sep+path+".html"
+    html_file=html_file.replace('/',os.sep)
+    if not os.path.isfile(html_file):
+        f = open(html_file, 'w')
+        f.write("<%inherit file=\"base.html\"/>\r<div>\r</div>")
+        f.close()
+    return request.render({
+        "path": path.lower()
+    })
 @quicky.view.template("login.html")
 def login(request):
     from django.contrib.auth.models import User

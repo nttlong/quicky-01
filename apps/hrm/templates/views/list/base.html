@@ -72,8 +72,8 @@ ${self.body()}
 
 <script>
     (function(s){
-        s.url_editor_dialog='${get_app_url("pages/dialogs/"+model["path"].split('/')[1])}';
-        s.url_export_dialog='${get_app_url("pages/exports/download_excel")}';
+        s.url_editor_dialog='${get_app_url("dialogs/dialogs/"+model["path"].split('/')[1])}';
+        s.url_export_dialog='${get_app_url("dialogs/exports/download_excel")}';
         s.source='${encryptor.get_key(model["path"].split('/')[1])}';
         s.doLoadData=function(){
             s.$ws.api('${get_api_key('api.categories/get_list')}')

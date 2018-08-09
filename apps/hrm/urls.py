@@ -9,6 +9,7 @@ urlpatterns = [
     url(r'^$', views.index, name='index'),
     # url(r'^login$',views.login,name='logn'),
     url(r'^(?i)pages/(?P<path>.*)$', views.load_page, name='singleshop'),
+    url(r'^(?i)dialogs/(?P<path>.*)$', views.load_dialog, name='singleshop'),
     url(r'^(?i)categories/(?P<path>.*)$', views.load_categories, name='singleshop'),
     # url(r'^(?i)category/(?P<path>.*)$', views.load_category),
     url(r'^api$', "quicky.api.call"),

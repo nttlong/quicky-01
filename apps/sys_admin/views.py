@@ -93,6 +93,15 @@ def load_page(request,path):
     return  request.render({
         "path":path.lower()
     })
+@quicky.view.template(
+    file="dynamic.html",
+    is_public=True
+
+)
+def load_dialog(request,path):
+    return  request.render({
+        "path":path.lower()
+    })
 @quicky.view.template("logout.html")
 def logout(request):
     from quicky.api import logout
