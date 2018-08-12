@@ -1,0 +1,25 @@
+ <div class="table-responsive">
+	<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+		<table class="table table-condensed table-hover">
+	<thead>
+		<tr>
+            % for col in self.cols :
+                <th>${get_app_res(col[0])}</th>
+            % endfor
+                <th></th>
+
+		</tr>
+	</thead>
+	<tbody>
+		<tr ng-repeat="p in data.items">
+            % for col in self.cols :
+			    <td>{{p.${col[1]}}}</td>
+            % endfor
+                <td>
+                    <button type="button" class="btn btn-default" ng-click="$root.$dialog($id).params({source:source,item:p}).url(url_editor_dialog).done()">${get_app_res("Edit")}</button>
+                </td>
+		</tr>
+	</tbody>
+</table>
+	</div>
+    </div>

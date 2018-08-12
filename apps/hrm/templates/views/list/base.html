@@ -5,20 +5,27 @@
 
 %>
 <%
+    import json
     self.cols=[
-            ["Code","code"],
-            ["Name","name"],
-            ["Description","description"],
-            ["Created on","created_on"],
-            ["Created by","created_by"],
-            ["Modified on","modified_on"],
-            ["Modified by","modified_by"]
+            {"headerName": request.get_app_res("Code"), "field": "code"},
+            {"headerName": request.get_app_res("Name"), "field": "name"},
+            {"headerName": request.get_app_res("Description"), "field": "description"},
+            {"headerName": request.get_app_res("Created on"), "field": "created_on"},
+            {"headerName": request.get_app_res("Created by"), "field": "created_by"},
+            {"headerName": request.get_app_res("Modified on"), "field": "modified_on"},
+            {"headerName": request.get_app_res("Modified by"), "field": "modified_by"}
 
         ]
 
 
 %>
 
+<script>
+    (function(s){
+        s.columns=${json.dumps(self.cols)};
+
+    });
+</script>
 ${self.body()}
 <div class="row">
 	<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
@@ -42,31 +49,7 @@ ${self.body()}
 	</div>
 </div>
 <div class="row">
-    <div class="table-responsive">
-	<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-		<table class="table table-condensed table-hover">
-	<thead>
-		<tr>
-            % for col in self.cols :
-                <th>${get_app_res(col[0])}</th>
-            % endfor
-                <th></th>
-
-		</tr>
-	</thead>
-	<tbody>
-		<tr ng-repeat="p in data.items">
-            % for col in self.cols :
-			    <td>{{p.${col[1]}}}</td>
-            % endfor
-                <td>
-                    <button type="button" class="btn btn-default" ng-click="$root.$dialog($id).params({source:source,item:p}).url(url_editor_dialog).done()">${get_app_res("Edit")}</button>
-                </td>
-		</tr>
-	</tbody>
-</table>
-	</div>
-    </div>
+<div ag-grid="gridOptions" class="ag-theme-balham" style="height: 100%;"></div>
 </div>
 
 
@@ -75,17 +58,18 @@ ${self.body()}
         s.url_editor_dialog='${get_app_url("dialogs/dialogs/"+model["path"].split('/')[1])}';
         s.url_export_dialog='${get_app_url("dialogs/exports/download_excel")}';
         s.source='${encryptor.get_key(model["path"].split('/')[1])}';
-        s.doLoadData=function(){
+        s.doLoadData=function(params,cb){
             s.$ws.api('${get_api_key('api.categories/get_list')}')
             .data({
-                source:s.source
+                source:s.source,
+                params:params
             }).done()
             .then(function(res){
-                s.data=res;
-                s.$applyAsync();
+
+                cb(null,res);
             });
         };
-        s.doLoadData();
+
         s.doAddNew=function(item,callback){
             s.$ws.api('${get_api_key('api.categories/add_new_item')}')
             .data({
@@ -93,7 +77,7 @@ ${self.body()}
                 item:item
             }).done()
             .then(function(res){
-                alert(JSON.stringify(res))
+
                 s.doLoadData();
             });
         };
@@ -104,8 +88,51 @@ ${self.body()}
                 item:item
             }).done()
             .then(function(res){
+                debugger;
                 s.doLoadData();
             });
+        };
+
+
+
+        var dataSource = {
+            rowCount: null,
+            getRows: function (params) {
+                pageIndex=params.endRow/100 -1;
+                s.doLoadData({
+                    filter:params.filterModel,
+                    sort:params.sortModel,
+                    pageIndex:pageIndex
+                },function(ex,res){
+                        console.log(res);
+                        params.successCallback(res.items, res.total_items);
+                });
+
+            }
+        };
+
+        s.gridOptions = {
+            columnDefs: s.columns,
+            enableServerSideFilter: true,
+            floatingFilter:true,
+            enableServerSideSorting: true,
+            enableColResize: true,
+            rowBuffer: 0,
+            debug: true,
+            rowSelection: 'multiple',
+            rowDeselection: true,
+            rowModelType: 'infinite',
+            paginationPageSize: 20,
+            cacheOverflowSize: 2,
+            maxConcurrentDatasourceRequests: 2,
+            infiniteInitialRowCount: 1,
+            maxBlocksInCache: 2,
+            onGridReady: function(params) {
+                console.log(params);
+                debugger;
+                params.api.sizeColumnsToFit();
+                params.api.setDatasource(dataSource);
+            }
         };
 
 

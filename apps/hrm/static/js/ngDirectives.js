@@ -476,11 +476,12 @@ mdl.directive("cTemplate", ["$compile", function ($compile) {
                     fn(subScope);
                 }
                 catch (ex) {
-                    throw ({
+
+                    console.log(scripts[i]);
+                     throw ({
                         error: ex,
                         url: url
                     })
-                    console.log(scripts[i])
                 }
             }
         }

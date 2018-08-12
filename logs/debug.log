@@ -1572,3 +1572,815 @@ django_session.find (0.00) {'_id': 'scq10eg01bohjoebuc1cgtd2tp1kfvmc', 'expire_d
 django_session.find (0.00) {'_id': 'scq10eg01bohjoebuc1cgtd2tp1kfvmc', 'expire_date': {'$gt': datetime.datetime(2018, 8, 9, 14, 18, 27, 366000, tzinfo=<UTC>)}, 'schema': 'hrm'}
 django_session.find (0.00) {'_id': 'scq10eg01bohjoebuc1cgtd2tp1kfvmc', 'expire_date': {'$gt': datetime.datetime(2018, 8, 9, 14, 18, 29, 628000, tzinfo=<UTC>)}, 'schema': 'hrm'}
 django_session.find (0.00) {'_id': 'scq10eg01bohjoebuc1cgtd2tp1kfvmc', 'expire_date': {'$gt': datetime.datetime(2018, 8, 9, 14, 18, 29, 697000, tzinfo=<UTC>)}, 'schema': 'hrm'}
+django_session.find (0.00) {'_id': 'scq10eg01bohjoebuc1cgtd2tp1kfvmc', 'expire_date': {'$gt': datetime.datetime(2018, 8, 9, 14, 22, 59, 877000, tzinfo=<UTC>)}, 'schema': 'hrm'}
+django_session.find (0.00) {'_id': 'scq10eg01bohjoebuc1cgtd2tp1kfvmc', 'expire_date': {'$gt': datetime.datetime(2018, 8, 9, 14, 23, 6, 820000, tzinfo=<UTC>)}, 'schema': 'hrm'}
+django_session.find (0.00) {'_id': 'scq10eg01bohjoebuc1cgtd2tp1kfvmc', 'expire_date': {'$gt': datetime.datetime(2018, 8, 9, 14, 23, 6, 830000, tzinfo=<UTC>)}, 'schema': 'hrm'}
+django_session.find (0.00) {'_id': 'scq10eg01bohjoebuc1cgtd2tp1kfvmc', 'expire_date': {'$gt': datetime.datetime(2018, 8, 9, 14, 23, 6, 909000, tzinfo=<UTC>)}, 'schema': 'hrm'}
+django_session.find (0.00) {'_id': 'scq10eg01bohjoebuc1cgtd2tp1kfvmc', 'expire_date': {'$gt': datetime.datetime(2018, 8, 9, 14, 23, 12, 421000, tzinfo=<UTC>)}, 'schema': 'hrm'}
+django_session.find (0.00) {'_id': 'scq10eg01bohjoebuc1cgtd2tp1kfvmc', 'expire_date': {'$gt': datetime.datetime(2018, 8, 9, 14, 23, 12, 478000, tzinfo=<UTC>)}, 'schema': 'hrm'}
+django_session.find (0.00) {'_id': 'scq10eg01bohjoebuc1cgtd2tp1kfvmc', 'expire_date': {'$gt': datetime.datetime(2018, 8, 9, 14, 23, 15, 11000, tzinfo=<UTC>)}, 'schema': 'hrm'}
+django_session.find (0.00) {'_id': 'scq10eg01bohjoebuc1cgtd2tp1kfvmc', 'expire_date': {'$gt': datetime.datetime(2018, 8, 9, 14, 23, 15, 77000, tzinfo=<UTC>)}, 'schema': 'hrm'}
+django_session.find (0.00) {'_id': 'scq10eg01bohjoebuc1cgtd2tp1kfvmc', 'expire_date': {'$gt': datetime.datetime(2018, 8, 9, 14, 23, 18, 106000, tzinfo=<UTC>)}, 'schema': 'hrm'}
+django_session.find (0.00) {'_id': 'scq10eg01bohjoebuc1cgtd2tp1kfvmc', 'expire_date': {'$gt': datetime.datetime(2018, 8, 9, 14, 23, 18, 164000, tzinfo=<UTC>)}, 'schema': 'hrm'}
+django_session.find (0.00) {'_id': 'scq10eg01bohjoebuc1cgtd2tp1kfvmc', 'expire_date': {'$gt': datetime.datetime(2018, 8, 9, 14, 23, 22, 430000, tzinfo=<UTC>)}, 'schema': 'hrm'}
+django_session.find (0.00) {'_id': 'scq10eg01bohjoebuc1cgtd2tp1kfvmc', 'expire_date': {'$gt': datetime.datetime(2018, 8, 9, 14, 23, 22, 504000, tzinfo=<UTC>)}, 'schema': 'hrm'}
+django_session.find (0.00) {'_id': 'scq10eg01bohjoebuc1cgtd2tp1kfvmc', 'expire_date': {'$gt': datetime.datetime(2018, 8, 9, 14, 23, 25, 434000, tzinfo=<UTC>)}, 'schema': 'hrm'}
+django_session.find (0.00) {'_id': 'scq10eg01bohjoebuc1cgtd2tp1kfvmc', 'expire_date': {'$gt': datetime.datetime(2018, 8, 9, 14, 23, 25, 494000, tzinfo=<UTC>)}, 'schema': 'hrm'}
+django_session.find (0.00) {'_id': 'scq10eg01bohjoebuc1cgtd2tp1kfvmc', 'expire_date': {'$gt': datetime.datetime(2018, 8, 9, 14, 23, 29, 950000, tzinfo=<UTC>)}, 'schema': 'hrm'}
+hrm.auth_user.save (0.48) {'username': u'sys', 'first_name': u'', 'last_name': u'', '_id': ObjectId('5b587491367cc43c08105612'), 'is_active': True, 'email': u'sys@beatles.com', 'is_superuser': True, 'is_staff': True, 'last_login': datetime.datetime(2018, 8, 9, 14, 10, 2, 122000, tzinfo=<UTC>), 'password': u'pbkdf2_sha256$12000$m2jOatm5Cr9w$A43rhOMVMVGwaYy34PfKV3Ve0ioJwywh/AZmuKbJDuM=', 'date_joined': datetime.datetime(2018, 7, 25, 13, 1, 5, 103000, tzinfo=<UTC>)}
+django_session.save (0.00) {'schema': 'hrm', '_id': u'se6n86hpy87qkthku7gd3uvytkuffp6e', 'expire_date': datetime.datetime(2018, 8, 26, 6, 7, 47, 132000, tzinfo=<UTC>), 'session_data': u'YjAwMTViM2E0OTNjMDE0N2NjMTFiZjIxNzYzNmNkYTg5OGRiZGZjMzp7Imxhbmd1YWdlIjoiZW4ifQ=='}
+hrm.auth_user.save (0.00) {'username': u'sys', 'first_name': u'', 'last_name': u'', '_id': ObjectId('5b587491367cc43c08105612'), 'is_active': True, 'email': u'sys@beatles.com', 'is_superuser': True, 'is_staff': True, 'last_login': datetime.datetime(2018, 8, 9, 14, 10, 2, 122000, tzinfo=<UTC>), 'password': u'pbkdf2_sha256$12000$m2jOatm5Cr9w$A43rhOMVMVGwaYy34PfKV3Ve0ioJwywh/AZmuKbJDuM=', 'date_joined': datetime.datetime(2018, 7, 25, 13, 1, 5, 103000, tzinfo=<UTC>)}
+django_session.save (0.00) {'schema': 'hrm', '_id': u'tnjenq5rl2suuahqq1xtiza4be72xobv', 'expire_date': datetime.datetime(2018, 8, 26, 6, 8, 0, 87000, tzinfo=<UTC>), 'session_data': u'YjAwMTViM2E0OTNjMDE0N2NjMTFiZjIxNzYzNmNkYTg5OGRiZGZjMzp7Imxhbmd1YWdlIjoiZW4ifQ=='}
+Not Found: /favicon.ico
+Not Found: /favicon.ico
+django_session.find (0.00) {'_id': 'tnjenq5rl2suuahqq1xtiza4be72xobv', 'expire_date': {'$gt': datetime.datetime(2018, 8, 12, 6, 8, 11, 301000, tzinfo=<UTC>)}, 'schema': 'hrm'}
+hrm.auth_user.save (0.00) {'username': u'sys', 'first_name': u'', 'last_name': u'', '_id': ObjectId('5b587491367cc43c08105612'), 'is_active': True, 'email': u'sys@beatles.com', 'is_superuser': True, 'is_staff': True, 'last_login': datetime.datetime(2018, 8, 9, 14, 10, 2, 122000, tzinfo=<UTC>), 'password': u'pbkdf2_sha256$12000$m2jOatm5Cr9w$A43rhOMVMVGwaYy34PfKV3Ve0ioJwywh/AZmuKbJDuM=', 'date_joined': datetime.datetime(2018, 7, 25, 13, 1, 5, 103000, tzinfo=<UTC>)}
+django_session.save (0.00) {'schema': 'hrm', '_id': u'eylkqu3t1bwl267mi1hmig1a9b1i4kzw', 'expire_date': datetime.datetime(2018, 8, 26, 6, 8, 11, 451000, tzinfo=<UTC>), 'session_data': u'YjAwMTViM2E0OTNjMDE0N2NjMTFiZjIxNzYzNmNkYTg5OGRiZGZjMzp7Imxhbmd1YWdlIjoiZW4ifQ=='}
+django_session.find (0.00) {'_id': 'tnjenq5rl2suuahqq1xtiza4be72xobv', 'schema': 'hrm'}
+django_session.remove (0.01) {'_id': {'$in': [u'tnjenq5rl2suuahqq1xtiza4be72xobv']}, 'schema': 'hrm'}
+hrm.auth_user.save (0.00) {'username': u'sys', 'first_name': u'', 'last_name': u'', '_id': ObjectId('5b587491367cc43c08105612'), 'is_active': True, 'email': u'sys@beatles.com', 'is_superuser': True, 'is_staff': True, 'last_login': datetime.datetime(2018, 8, 12, 6, 8, 11, 471000, tzinfo=<UTC>), 'password': u'pbkdf2_sha256$12000$m2jOatm5Cr9w$A43rhOMVMVGwaYy34PfKV3Ve0ioJwywh/AZmuKbJDuM=', 'date_joined': datetime.datetime(2018, 7, 25, 13, 1, 5, 103000, tzinfo=<UTC>)}
+django_session.save (0.00) {'schema': 'hrm', '_id': u'eylkqu3t1bwl267mi1hmig1a9b1i4kzw', 'expire_date': datetime.datetime(2018, 8, 26, 6, 8, 11, 473000, tzinfo=<UTC>), 'session_data': u'ZTY4ZGUyMjFjZTY1M2NiNWEyZjU0YTI0NjJjYjU2Y2MxZGVkNjAyMTp7Il9hdXRoX3VzZXJfYmFja2VuZCI6InF1aWNreS5iYWNrZW5kcy5IYXNoTW9kZWxCYWNrZW5kIiwiX2F1dGhfdXNlcl9pZCI6IjViNTg3NDkxMzY3Y2M0M2MwODEwNTYxMiIsImxhbmd1YWdlIjoiZW4ifQ=='}
+django_session.find (0.00) {'_id': 'eylkqu3t1bwl267mi1hmig1a9b1i4kzw', 'expire_date': {'$gt': datetime.datetime(2018, 8, 12, 6, 8, 11, 498000, tzinfo=<UTC>)}, 'schema': 'hrm'}
+django_session.find (0.00) {'_id': 'eylkqu3t1bwl267mi1hmig1a9b1i4kzw', 'expire_date': {'$gt': datetime.datetime(2018, 8, 12, 6, 8, 12, 18000, tzinfo=<UTC>)}, 'schema': 'hrm'}
+django_session.find (0.00) {'_id': 'eylkqu3t1bwl267mi1hmig1a9b1i4kzw', 'expire_date': {'$gt': datetime.datetime(2018, 8, 12, 6, 8, 15, 840000, tzinfo=<UTC>)}, 'schema': 'hrm'}
+django_session.find (0.00) {'_id': 'eylkqu3t1bwl267mi1hmig1a9b1i4kzw', 'expire_date': {'$gt': datetime.datetime(2018, 8, 12, 6, 8, 16, 122000, tzinfo=<UTC>)}, 'schema': 'hrm'}
+django_session.find (0.00) {'_id': 'eylkqu3t1bwl267mi1hmig1a9b1i4kzw', 'expire_date': {'$gt': datetime.datetime(2018, 8, 12, 6, 8, 18, 258000, tzinfo=<UTC>)}, 'schema': 'hrm'}
+django_session.find (0.00) {'_id': 'eylkqu3t1bwl267mi1hmig1a9b1i4kzw', 'expire_date': {'$gt': datetime.datetime(2018, 8, 12, 6, 8, 18, 380000, tzinfo=<UTC>)}, 'schema': 'hrm'}
+django_session.find (0.00) {'_id': 'eylkqu3t1bwl267mi1hmig1a9b1i4kzw', 'expire_date': {'$gt': datetime.datetime(2018, 8, 12, 6, 11, 17, 967000, tzinfo=<UTC>)}, 'schema': 'hrm'}
+django_session.find (0.00) {'_id': 'eylkqu3t1bwl267mi1hmig1a9b1i4kzw', 'expire_date': {'$gt': datetime.datetime(2018, 8, 12, 6, 11, 18, 402000, tzinfo=<UTC>)}, 'schema': 'hrm'}
+django_session.find (0.00) {'_id': 'eylkqu3t1bwl267mi1hmig1a9b1i4kzw', 'expire_date': {'$gt': datetime.datetime(2018, 8, 12, 6, 11, 18, 466000, tzinfo=<UTC>)}, 'schema': 'hrm'}
+hrm.auth_user.save (0.00) {'username': u'sys', 'first_name': u'', 'last_name': u'', '_id': ObjectId('5b587491367cc43c08105612'), 'is_active': True, 'email': u'sys@beatles.com', 'is_superuser': True, 'is_staff': True, 'last_login': datetime.datetime(2018, 8, 12, 6, 8, 11, 471000, tzinfo=<UTC>), 'password': u'pbkdf2_sha256$12000$m2jOatm5Cr9w$A43rhOMVMVGwaYy34PfKV3Ve0ioJwywh/AZmuKbJDuM=', 'date_joined': datetime.datetime(2018, 7, 25, 13, 1, 5, 103000, tzinfo=<UTC>)}
+django_session.save (0.00) {'schema': 'hrm', '_id': u'o3mdfcy7qltr6llm3r0uirazwqpvv6rv', 'expire_date': datetime.datetime(2018, 8, 26, 6, 12, 35, 16000, tzinfo=<UTC>), 'session_data': u'YjAwMTViM2E0OTNjMDE0N2NjMTFiZjIxNzYzNmNkYTg5OGRiZGZjMzp7Imxhbmd1YWdlIjoiZW4ifQ=='}
+django_session.find (0.00) {'_id': 'eylkqu3t1bwl267mi1hmig1a9b1i4kzw', 'expire_date': {'$gt': datetime.datetime(2018, 8, 12, 6, 12, 55, 621000, tzinfo=<UTC>)}, 'schema': 'hrm'}
+django_session.find (0.00) {'_id': 'eylkqu3t1bwl267mi1hmig1a9b1i4kzw', 'expire_date': {'$gt': datetime.datetime(2018, 8, 12, 6, 12, 56, 155000, tzinfo=<UTC>)}, 'schema': 'hrm'}
+django_session.find (0.00) {'_id': 'eylkqu3t1bwl267mi1hmig1a9b1i4kzw', 'expire_date': {'$gt': datetime.datetime(2018, 8, 12, 6, 12, 56, 269000, tzinfo=<UTC>)}, 'schema': 'hrm'}
+django_session.find (0.00) {'_id': 'eylkqu3t1bwl267mi1hmig1a9b1i4kzw', 'expire_date': {'$gt': datetime.datetime(2018, 8, 12, 6, 14, 28, 708000, tzinfo=<UTC>)}, 'schema': 'hrm'}
+django_session.find (0.00) {'_id': 'eylkqu3t1bwl267mi1hmig1a9b1i4kzw', 'expire_date': {'$gt': datetime.datetime(2018, 8, 12, 6, 14, 29, 147000, tzinfo=<UTC>)}, 'schema': 'hrm'}
+django_session.find (0.00) {'_id': 'eylkqu3t1bwl267mi1hmig1a9b1i4kzw', 'expire_date': {'$gt': datetime.datetime(2018, 8, 12, 6, 14, 29, 362000, tzinfo=<UTC>)}, 'schema': 'hrm'}
+django_session.find (0.00) {'_id': 'eylkqu3t1bwl267mi1hmig1a9b1i4kzw', 'expire_date': {'$gt': datetime.datetime(2018, 8, 12, 6, 15, 26, 281000, tzinfo=<UTC>)}, 'schema': 'hrm'}
+django_session.find (0.00) {'_id': 'eylkqu3t1bwl267mi1hmig1a9b1i4kzw', 'expire_date': {'$gt': datetime.datetime(2018, 8, 12, 6, 15, 26, 682000, tzinfo=<UTC>)}, 'schema': 'hrm'}
+django_session.find (0.00) {'_id': 'eylkqu3t1bwl267mi1hmig1a9b1i4kzw', 'expire_date': {'$gt': datetime.datetime(2018, 8, 12, 6, 15, 26, 788000, tzinfo=<UTC>)}, 'schema': 'hrm'}
+django_session.find (0.00) {'_id': 'eylkqu3t1bwl267mi1hmig1a9b1i4kzw', 'expire_date': {'$gt': datetime.datetime(2018, 8, 12, 6, 15, 51, 768000, tzinfo=<UTC>)}, 'schema': 'hrm'}
+django_session.find (0.00) {'_id': 'eylkqu3t1bwl267mi1hmig1a9b1i4kzw', 'expire_date': {'$gt': datetime.datetime(2018, 8, 12, 6, 15, 52, 189000, tzinfo=<UTC>)}, 'schema': 'hrm'}
+django_session.find (0.00) {'_id': 'eylkqu3t1bwl267mi1hmig1a9b1i4kzw', 'expire_date': {'$gt': datetime.datetime(2018, 8, 12, 6, 15, 52, 257000, tzinfo=<UTC>)}, 'schema': 'hrm'}
+django_session.find (0.00) {'_id': 'eylkqu3t1bwl267mi1hmig1a9b1i4kzw', 'expire_date': {'$gt': datetime.datetime(2018, 8, 12, 6, 18, 19, 96000, tzinfo=<UTC>)}, 'schema': 'hrm'}
+django_session.find (0.00) {'_id': 'eylkqu3t1bwl267mi1hmig1a9b1i4kzw', 'expire_date': {'$gt': datetime.datetime(2018, 8, 12, 6, 18, 19, 500000, tzinfo=<UTC>)}, 'schema': 'hrm'}
+django_session.find (0.00) {'_id': 'eylkqu3t1bwl267mi1hmig1a9b1i4kzw', 'expire_date': {'$gt': datetime.datetime(2018, 8, 12, 6, 18, 19, 693000, tzinfo=<UTC>)}, 'schema': 'hrm'}
+django_session.find (0.00) {'_id': 'eylkqu3t1bwl267mi1hmig1a9b1i4kzw', 'expire_date': {'$gt': datetime.datetime(2018, 8, 12, 6, 18, 38, 233000, tzinfo=<UTC>)}, 'schema': 'hrm'}
+django_session.find (0.00) {'_id': 'eylkqu3t1bwl267mi1hmig1a9b1i4kzw', 'expire_date': {'$gt': datetime.datetime(2018, 8, 12, 6, 18, 38, 652000, tzinfo=<UTC>)}, 'schema': 'hrm'}
+django_session.find (0.00) {'_id': 'eylkqu3t1bwl267mi1hmig1a9b1i4kzw', 'expire_date': {'$gt': datetime.datetime(2018, 8, 12, 6, 18, 38, 836000, tzinfo=<UTC>)}, 'schema': 'hrm'}
+django_session.find (0.00) {'_id': 'eylkqu3t1bwl267mi1hmig1a9b1i4kzw', 'expire_date': {'$gt': datetime.datetime(2018, 8, 12, 6, 19, 36, 580000, tzinfo=<UTC>)}, 'schema': 'hrm'}
+django_session.find (0.00) {'_id': 'eylkqu3t1bwl267mi1hmig1a9b1i4kzw', 'expire_date': {'$gt': datetime.datetime(2018, 8, 12, 6, 19, 37, 27000, tzinfo=<UTC>)}, 'schema': 'hrm'}
+django_session.find (0.00) {'_id': 'eylkqu3t1bwl267mi1hmig1a9b1i4kzw', 'expire_date': {'$gt': datetime.datetime(2018, 8, 12, 6, 19, 37, 209000, tzinfo=<UTC>)}, 'schema': 'hrm'}
+django_session.find (0.00) {'_id': 'eylkqu3t1bwl267mi1hmig1a9b1i4kzw', 'expire_date': {'$gt': datetime.datetime(2018, 8, 12, 6, 20, 48, 565000, tzinfo=<UTC>)}, 'schema': 'hrm'}
+django_session.find (0.00) {'_id': 'eylkqu3t1bwl267mi1hmig1a9b1i4kzw', 'expire_date': {'$gt': datetime.datetime(2018, 8, 12, 6, 20, 49, 37000, tzinfo=<UTC>)}, 'schema': 'hrm'}
+django_session.find (0.00) {'_id': 'eylkqu3t1bwl267mi1hmig1a9b1i4kzw', 'expire_date': {'$gt': datetime.datetime(2018, 8, 12, 6, 20, 49, 232000, tzinfo=<UTC>)}, 'schema': 'hrm'}
+django_session.find (0.00) {'_id': 'eylkqu3t1bwl267mi1hmig1a9b1i4kzw', 'expire_date': {'$gt': datetime.datetime(2018, 8, 12, 6, 21, 27, 346000, tzinfo=<UTC>)}, 'schema': 'hrm'}
+django_session.find (0.00) {'_id': 'eylkqu3t1bwl267mi1hmig1a9b1i4kzw', 'expire_date': {'$gt': datetime.datetime(2018, 8, 12, 6, 21, 49, 244000, tzinfo=<UTC>)}, 'schema': 'hrm'}
+django_session.find (0.00) {'_id': 'eylkqu3t1bwl267mi1hmig1a9b1i4kzw', 'expire_date': {'$gt': datetime.datetime(2018, 8, 12, 6, 21, 49, 617000, tzinfo=<UTC>)}, 'schema': 'hrm'}
+django_session.find (0.00) {'_id': 'eylkqu3t1bwl267mi1hmig1a9b1i4kzw', 'expire_date': {'$gt': datetime.datetime(2018, 8, 12, 6, 21, 54, 9000, tzinfo=<UTC>)}, 'schema': 'hrm'}
+django_session.find (0.00) {'_id': 'eylkqu3t1bwl267mi1hmig1a9b1i4kzw', 'expire_date': {'$gt': datetime.datetime(2018, 8, 12, 6, 21, 54, 203000, tzinfo=<UTC>)}, 'schema': 'hrm'}
+django_session.find (0.00) {'_id': 'eylkqu3t1bwl267mi1hmig1a9b1i4kzw', 'expire_date': {'$gt': datetime.datetime(2018, 8, 12, 6, 21, 56, 26000, tzinfo=<UTC>)}, 'schema': 'hrm'}
+django_session.find (0.00) {'_id': 'eylkqu3t1bwl267mi1hmig1a9b1i4kzw', 'expire_date': {'$gt': datetime.datetime(2018, 8, 12, 6, 21, 56, 95000, tzinfo=<UTC>)}, 'schema': 'hrm'}
+django_session.find (0.00) {'_id': 'eylkqu3t1bwl267mi1hmig1a9b1i4kzw', 'expire_date': {'$gt': datetime.datetime(2018, 8, 12, 6, 21, 59, 394000, tzinfo=<UTC>)}, 'schema': 'hrm'}
+django_session.find (0.00) {'_id': 'eylkqu3t1bwl267mi1hmig1a9b1i4kzw', 'expire_date': {'$gt': datetime.datetime(2018, 8, 12, 6, 21, 59, 464000, tzinfo=<UTC>)}, 'schema': 'hrm'}
+django_session.find (0.00) {'_id': 'eylkqu3t1bwl267mi1hmig1a9b1i4kzw', 'expire_date': {'$gt': datetime.datetime(2018, 8, 12, 6, 22, 2, 129000, tzinfo=<UTC>)}, 'schema': 'hrm'}
+django_session.find (0.00) {'_id': 'eylkqu3t1bwl267mi1hmig1a9b1i4kzw', 'expire_date': {'$gt': datetime.datetime(2018, 8, 12, 6, 22, 2, 176000, tzinfo=<UTC>)}, 'schema': 'hrm'}
+hrm.auth_user.save (0.00) {'username': u'sys', 'first_name': u'', 'last_name': u'', '_id': ObjectId('5b587491367cc43c08105612'), 'is_active': True, 'email': u'sys@beatles.com', 'is_superuser': True, 'is_staff': True, 'last_login': datetime.datetime(2018, 8, 12, 6, 8, 11, 471000, tzinfo=<UTC>), 'password': u'pbkdf2_sha256$12000$m2jOatm5Cr9w$A43rhOMVMVGwaYy34PfKV3Ve0ioJwywh/AZmuKbJDuM=', 'date_joined': datetime.datetime(2018, 7, 25, 13, 1, 5, 103000, tzinfo=<UTC>)}
+django_session.save (0.00) {'schema': 'hrm', '_id': u'41yjsl1sm0yu4x96yazfxz7gphtukz9f', 'expire_date': datetime.datetime(2018, 8, 26, 6, 22, 35, 66000, tzinfo=<UTC>), 'session_data': u'YjAwMTViM2E0OTNjMDE0N2NjMTFiZjIxNzYzNmNkYTg5OGRiZGZjMzp7Imxhbmd1YWdlIjoiZW4ifQ=='}
+django_session.find (0.00) {'_id': 'eylkqu3t1bwl267mi1hmig1a9b1i4kzw', 'expire_date': {'$gt': datetime.datetime(2018, 8, 12, 6, 23, 56, 513000, tzinfo=<UTC>)}, 'schema': 'hrm'}
+django_session.find (0.00) {'_id': 'eylkqu3t1bwl267mi1hmig1a9b1i4kzw', 'expire_date': {'$gt': datetime.datetime(2018, 8, 12, 6, 23, 56, 572000, tzinfo=<UTC>)}, 'schema': 'hrm'}
+django_session.find (0.00) {'_id': 'eylkqu3t1bwl267mi1hmig1a9b1i4kzw', 'expire_date': {'$gt': datetime.datetime(2018, 8, 12, 6, 23, 58, 947000, tzinfo=<UTC>)}, 'schema': 'hrm'}
+django_session.find (0.00) {'_id': 'eylkqu3t1bwl267mi1hmig1a9b1i4kzw', 'expire_date': {'$gt': datetime.datetime(2018, 8, 12, 6, 23, 59, 10000, tzinfo=<UTC>)}, 'schema': 'hrm'}
+django_session.find (0.00) {'_id': 'eylkqu3t1bwl267mi1hmig1a9b1i4kzw', 'expire_date': {'$gt': datetime.datetime(2018, 8, 12, 6, 24, 0, 948000, tzinfo=<UTC>)}, 'schema': 'hrm'}
+django_session.find (0.00) {'_id': 'eylkqu3t1bwl267mi1hmig1a9b1i4kzw', 'expire_date': {'$gt': datetime.datetime(2018, 8, 12, 6, 24, 1, 5000, tzinfo=<UTC>)}, 'schema': 'hrm'}
+django_session.find (0.00) {'_id': 'eylkqu3t1bwl267mi1hmig1a9b1i4kzw', 'expire_date': {'$gt': datetime.datetime(2018, 8, 12, 6, 34, 4, 319000, tzinfo=<UTC>)}, 'schema': 'hrm'}
+django_session.find (0.00) {'_id': 'eylkqu3t1bwl267mi1hmig1a9b1i4kzw', 'expire_date': {'$gt': datetime.datetime(2018, 8, 12, 6, 34, 4, 794000, tzinfo=<UTC>)}, 'schema': 'hrm'}
+django_session.find (0.00) {'_id': 'eylkqu3t1bwl267mi1hmig1a9b1i4kzw', 'expire_date': {'$gt': datetime.datetime(2018, 8, 12, 6, 34, 4, 867000, tzinfo=<UTC>)}, 'schema': 'hrm'}
+django_session.find (0.00) {'_id': 'eylkqu3t1bwl267mi1hmig1a9b1i4kzw', 'expire_date': {'$gt': datetime.datetime(2018, 8, 12, 6, 34, 12, 107000, tzinfo=<UTC>)}, 'schema': 'hrm'}
+django_session.find (0.00) {'_id': 'eylkqu3t1bwl267mi1hmig1a9b1i4kzw', 'expire_date': {'$gt': datetime.datetime(2018, 8, 12, 6, 34, 12, 671000, tzinfo=<UTC>)}, 'schema': 'hrm'}
+django_session.find (0.00) {'_id': 'eylkqu3t1bwl267mi1hmig1a9b1i4kzw', 'expire_date': {'$gt': datetime.datetime(2018, 8, 12, 6, 34, 12, 814000, tzinfo=<UTC>)}, 'schema': 'hrm'}
+django_session.find (0.00) {'_id': 'eylkqu3t1bwl267mi1hmig1a9b1i4kzw', 'expire_date': {'$gt': datetime.datetime(2018, 8, 12, 6, 35, 45, 739000, tzinfo=<UTC>)}, 'schema': 'hrm'}
+django_session.find (0.00) {'_id': 'eylkqu3t1bwl267mi1hmig1a9b1i4kzw', 'expire_date': {'$gt': datetime.datetime(2018, 8, 12, 6, 35, 46, 193000, tzinfo=<UTC>)}, 'schema': 'hrm'}
+django_session.find (0.00) {'_id': 'eylkqu3t1bwl267mi1hmig1a9b1i4kzw', 'expire_date': {'$gt': datetime.datetime(2018, 8, 12, 6, 35, 46, 260000, tzinfo=<UTC>)}, 'schema': 'hrm'}
+django_session.find (0.00) {'_id': 'eylkqu3t1bwl267mi1hmig1a9b1i4kzw', 'expire_date': {'$gt': datetime.datetime(2018, 8, 12, 6, 36, 29, 198000, tzinfo=<UTC>)}, 'schema': 'hrm'}
+django_session.find (0.00) {'_id': 'eylkqu3t1bwl267mi1hmig1a9b1i4kzw', 'expire_date': {'$gt': datetime.datetime(2018, 8, 12, 6, 36, 29, 726000, tzinfo=<UTC>)}, 'schema': 'hrm'}
+django_session.find (0.00) {'_id': 'eylkqu3t1bwl267mi1hmig1a9b1i4kzw', 'expire_date': {'$gt': datetime.datetime(2018, 8, 12, 6, 36, 29, 796000, tzinfo=<UTC>)}, 'schema': 'hrm'}
+django_session.find (0.00) {'_id': 'eylkqu3t1bwl267mi1hmig1a9b1i4kzw', 'expire_date': {'$gt': datetime.datetime(2018, 8, 12, 6, 37, 23, 830000, tzinfo=<UTC>)}, 'schema': 'hrm'}
+django_session.find (0.00) {'_id': 'eylkqu3t1bwl267mi1hmig1a9b1i4kzw', 'expire_date': {'$gt': datetime.datetime(2018, 8, 12, 6, 37, 24, 267000, tzinfo=<UTC>)}, 'schema': 'hrm'}
+django_session.find (0.00) {'_id': 'eylkqu3t1bwl267mi1hmig1a9b1i4kzw', 'expire_date': {'$gt': datetime.datetime(2018, 8, 12, 6, 37, 24, 325000, tzinfo=<UTC>)}, 'schema': 'hrm'}
+django_session.find (0.00) {'_id': 'eylkqu3t1bwl267mi1hmig1a9b1i4kzw', 'expire_date': {'$gt': datetime.datetime(2018, 8, 12, 6, 37, 46, 575000, tzinfo=<UTC>)}, 'schema': 'hrm'}
+django_session.find (0.00) {'_id': 'eylkqu3t1bwl267mi1hmig1a9b1i4kzw', 'expire_date': {'$gt': datetime.datetime(2018, 8, 12, 6, 37, 47, 157000, tzinfo=<UTC>)}, 'schema': 'hrm'}
+django_session.find (0.00) {'_id': 'eylkqu3t1bwl267mi1hmig1a9b1i4kzw', 'expire_date': {'$gt': datetime.datetime(2018, 8, 12, 6, 37, 47, 238000, tzinfo=<UTC>)}, 'schema': 'hrm'}
+django_session.find (0.00) {'_id': 'eylkqu3t1bwl267mi1hmig1a9b1i4kzw', 'expire_date': {'$gt': datetime.datetime(2018, 8, 12, 6, 38, 26, 715000, tzinfo=<UTC>)}, 'schema': 'hrm'}
+django_session.find (0.00) {'_id': 'eylkqu3t1bwl267mi1hmig1a9b1i4kzw', 'expire_date': {'$gt': datetime.datetime(2018, 8, 12, 6, 38, 27, 270000, tzinfo=<UTC>)}, 'schema': 'hrm'}
+django_session.find (0.00) {'_id': 'eylkqu3t1bwl267mi1hmig1a9b1i4kzw', 'expire_date': {'$gt': datetime.datetime(2018, 8, 12, 6, 38, 27, 344000, tzinfo=<UTC>)}, 'schema': 'hrm'}
+django_session.find (0.00) {'_id': 'eylkqu3t1bwl267mi1hmig1a9b1i4kzw', 'expire_date': {'$gt': datetime.datetime(2018, 8, 12, 6, 39, 54, 570000, tzinfo=<UTC>)}, 'schema': 'hrm'}
+django_session.find (0.00) {'_id': 'eylkqu3t1bwl267mi1hmig1a9b1i4kzw', 'expire_date': {'$gt': datetime.datetime(2018, 8, 12, 6, 39, 55, 91000, tzinfo=<UTC>)}, 'schema': 'hrm'}
+django_session.find (0.00) {'_id': 'eylkqu3t1bwl267mi1hmig1a9b1i4kzw', 'expire_date': {'$gt': datetime.datetime(2018, 8, 12, 6, 39, 55, 163000, tzinfo=<UTC>)}, 'schema': 'hrm'}
+django_session.find (0.00) {'_id': 'eylkqu3t1bwl267mi1hmig1a9b1i4kzw', 'expire_date': {'$gt': datetime.datetime(2018, 8, 12, 6, 40, 11, 620000, tzinfo=<UTC>)}, 'schema': 'hrm'}
+django_session.find (0.00) {'_id': 'eylkqu3t1bwl267mi1hmig1a9b1i4kzw', 'expire_date': {'$gt': datetime.datetime(2018, 8, 12, 6, 40, 12, 95000, tzinfo=<UTC>)}, 'schema': 'hrm'}
+django_session.find (0.00) {'_id': 'eylkqu3t1bwl267mi1hmig1a9b1i4kzw', 'expire_date': {'$gt': datetime.datetime(2018, 8, 12, 6, 40, 12, 156000, tzinfo=<UTC>)}, 'schema': 'hrm'}
+django_session.find (0.00) {'_id': 'eylkqu3t1bwl267mi1hmig1a9b1i4kzw', 'expire_date': {'$gt': datetime.datetime(2018, 8, 12, 6, 41, 41, 533000, tzinfo=<UTC>)}, 'schema': 'hrm'}
+django_session.find (0.00) {'_id': 'eylkqu3t1bwl267mi1hmig1a9b1i4kzw', 'expire_date': {'$gt': datetime.datetime(2018, 8, 12, 6, 41, 42, 52000, tzinfo=<UTC>)}, 'schema': 'hrm'}
+django_session.find (0.00) {'_id': 'eylkqu3t1bwl267mi1hmig1a9b1i4kzw', 'expire_date': {'$gt': datetime.datetime(2018, 8, 12, 6, 41, 43, 189000, tzinfo=<UTC>)}, 'schema': 'hrm'}
+Not Found: /xxx.js
+django_session.find (0.00) {'_id': 'eylkqu3t1bwl267mi1hmig1a9b1i4kzw', 'expire_date': {'$gt': datetime.datetime(2018, 8, 12, 6, 42, 4, 93000, tzinfo=<UTC>)}, 'schema': 'hrm'}
+django_session.find (0.00) {'_id': 'eylkqu3t1bwl267mi1hmig1a9b1i4kzw', 'expire_date': {'$gt': datetime.datetime(2018, 8, 12, 6, 42, 4, 610000, tzinfo=<UTC>)}, 'schema': 'hrm'}
+Internal Server Error: /pages/list/provinces
+Traceback (most recent call last):
+  File "E:\code\quicky-01\packages/django\django\core\handlers\base.py", line 122, in get_response
+    raise e
+Exception: 
+
+
+<html>
+<head>
+    <title>Mako Runtime Error</title>
+    <style>
+        body { font-family:verdana; margin:10px 30px 10px 30px;}
+        .stacktrace { margin:5px 5px 5px 5px; }
+        .highlight { padding:0px 10px 0px 10px; background-color:#9F9FDF; }
+        .nonhighlight { padding:0px; background-color:#DFDFDF; }
+        .sample { padding:10px; margin:10px 10px 10px 10px;
+                  font-family:monospace; }
+        .sampleline { padding:0px 10px 0px 10px; }
+        .sourceline { margin:5px 5px 10px 5px; font-family:monospace;}
+        .location { font-size:80%; }
+        .highlight { white-space:pre; }
+        .sampleline { white-space:pre; }
+
+
+    </style>
+</head>
+<body>
+
+<h2>Error !</h2>
+
+<h3>NameError: Undefined</h3>
+
+    <div class="sample">
+    <div class="nonhighlight">
+    
+        &lt;script src=&#34;xxx.js&#34;&gt;&lt;/script&gt;
+    
+        &lt;script&gt;
+    
+            (function(s){
+    
+    
+                alert(&#39;${cols}&#39;);
+    
+    
+        
+    
+            });
+    
+        &lt;/script&gt;
+    
+        ${self.body()}
+    
+        &lt;div class=&#34;row&#34;&gt;
+    </div>
+    </div>
+
+<div class="stacktrace">
+    <div class="location">E:\code\quicky-01\venv02\lib\site-packages\mako\runtime.py, line 226:</div>
+    <div class="nonhighlight">
+    
+      <div class="sourceline">raise NameError(&#34;Undefined&#34;)</div>
+    </div>
+    <div class="location">E:\code\quicky-01\venv02\lib\site-packages\mako\filters.py, line 78:</div>
+    <div class="nonhighlight">
+    
+      <div class="sourceline">return decode(str(x))</div>
+    </div>
+    <div class="location">E:/code/quicky-01/apps/hrm/templates/views/list/base.html, line 24:</div>
+    <div class="nonhighlight">
+    
+      <div class="sourceline">        alert(&#39;${cols}&#39;);</div>
+    </div>
+    <div class="location">E:/code/quicky-01/apps/hrm/templates/views/list/base.html, line 83:</div>
+    <div class="nonhighlight">
+    
+      <div class="sourceline">            s.$ws.api(&#39;${get_api_key(&#39;api.categories/update_item&#39;)}&#39;)</div>
+    </div>
+    <div class="location">E:\code\quicky-01\venv02\lib\site-packages\beaker\container.py, line 380:</div>
+    <div class="nonhighlight">
+    
+      <div class="sourceline">v = self.createfunc()</div>
+    </div>
+    <div class="location">E:\code\quicky-01\venv02\lib\site-packages\beaker\cache.py, line 322:</div>
+    <div class="nonhighlight">
+    
+      <div class="sourceline">return self._get_value(key, **kw).get_value()</div>
+    </div>
+    <div class="location">E:\code\quicky-01\venv02\lib\site-packages\mako\ext\beaker_cache.py, line 64:</div>
+    <div class="nonhighlight">
+    
+      <div class="sourceline">return cache.get(key, createfunc=creation_function, **kw)</div>
+    </div>
+    <div class="location">E:\code\quicky-01\venv02\lib\site-packages\mako\cache.py, line 95:</div>
+    <div class="nonhighlight">
+    
+      <div class="sourceline">**self._get_cache_kw(kw, context))</div>
+    </div>
+    <div class="location">E:/code/quicky-01/apps/hrm/templates/views/list/base.html, line 83:</div>
+    <div class="nonhighlight">
+    
+      <div class="sourceline">            s.$ws.api(&#39;${get_api_key(&#39;api.categories/update_item&#39;)}&#39;)</div>
+    </div>
+    <div class="location">E:\code\quicky-01\venv02\lib\site-packages\mako\runtime.py, line 761:</div>
+    <div class="nonhighlight">
+    
+      <div class="sourceline">callable_(ctx, **kwargs)</div>
+    </div>
+    <div class="location">E:/code/quicky-01/apps/hrm/templates/dynamic.html, line 11:</div>
+    <div class="nonhighlight">
+    
+      <div class="sourceline">&lt;%include file=&#39;views/${model[&#34;path&#34;]+&#34;.html&#34;}&#39; /&gt;</div>
+    </div>
+    <div class="location">E:\code\quicky-01\venv02\lib\site-packages\mako\runtime.py, line 899:</div>
+    <div class="nonhighlight">
+    
+      <div class="sourceline">callable_(context, *args, **kwargs)</div>
+    </div>
+    <div class="location">E:\code\quicky-01\venv02\lib\site-packages\mako\runtime.py, line 873:</div>
+    <div class="nonhighlight">
+    
+      <div class="sourceline">_exec_template(inherit, lclcontext, args=args, kwargs=kwargs)</div>
+    </div>
+    <div class="location">E:\code\quicky-01\venv02\lib\site-packages\mako\runtime.py, line 838:</div>
+    <div class="nonhighlight">
+    
+      <div class="sourceline">**_kwargs_for_callable(callable_, data))</div>
+    </div>
+    <div class="location">E:\code\quicky-01\venv02\lib\site-packages\mako\template.py, line 462:</div>
+    <div class="nonhighlight">
+    
+      <div class="sourceline">return runtime._render(self, self.callable_, args, data)</div>
+    </div>
+    <div class="location">E:\code\quicky-01\packages\quicky\extens.py, line 285:</div>
+    <div class="nonhighlight">
+    
+      <div class="sourceline">ret_res=mylookup.get_template(fileName).render(**render_model)</div>
+    </div>
+</div>
+
+</body>
+</html>
+
+django_session.find (0.00) {'_id': 'eylkqu3t1bwl267mi1hmig1a9b1i4kzw', 'expire_date': {'$gt': datetime.datetime(2018, 8, 12, 6, 42, 11, 198000, tzinfo=<UTC>)}, 'schema': 'hrm'}
+django_session.find (0.00) {'_id': 'eylkqu3t1bwl267mi1hmig1a9b1i4kzw', 'expire_date': {'$gt': datetime.datetime(2018, 8, 12, 6, 42, 11, 854000, tzinfo=<UTC>)}, 'schema': 'hrm'}
+Internal Server Error: /pages/list/provinces
+Traceback (most recent call last):
+  File "E:\code\quicky-01\packages/django\django\core\handlers\base.py", line 122, in get_response
+    raise e
+Exception: 
+
+
+<html>
+<head>
+    <title>Mako Runtime Error</title>
+    <style>
+        body { font-family:verdana; margin:10px 30px 10px 30px;}
+        .stacktrace { margin:5px 5px 5px 5px; }
+        .highlight { padding:0px 10px 0px 10px; background-color:#9F9FDF; }
+        .nonhighlight { padding:0px; background-color:#DFDFDF; }
+        .sample { padding:10px; margin:10px 10px 10px 10px;
+                  font-family:monospace; }
+        .sampleline { padding:0px 10px 0px 10px; }
+        .sourceline { margin:5px 5px 10px 5px; font-family:monospace;}
+        .location { font-size:80%; }
+        .highlight { white-space:pre; }
+        .sampleline { white-space:pre; }
+
+
+    </style>
+</head>
+<body>
+
+<h2>Error !</h2>
+
+<h3>NameError: Undefined</h3>
+
+    <div class="sample">
+    <div class="nonhighlight">
+    
+        &lt;script src=&#34;xxx.js&#34;&gt;&lt;/script&gt;
+    
+        &lt;script&gt;
+    
+            (function(s){
+    
+    
+                alert(&#39;${cols}&#39;);
+    
+    
+        
+    
+            });
+    
+        &lt;/script&gt;
+    
+        ${self.body()}
+    
+        &lt;div class=&#34;row&#34;&gt;
+    </div>
+    </div>
+
+<div class="stacktrace">
+    <div class="location">E:\code\quicky-01\venv02\lib\site-packages\mako\runtime.py, line 226:</div>
+    <div class="nonhighlight">
+    
+      <div class="sourceline">raise NameError(&#34;Undefined&#34;)</div>
+    </div>
+    <div class="location">E:\code\quicky-01\venv02\lib\site-packages\mako\filters.py, line 78:</div>
+    <div class="nonhighlight">
+    
+      <div class="sourceline">return decode(str(x))</div>
+    </div>
+    <div class="location">E:/code/quicky-01/apps/hrm/templates/views/list/base.html, line 24:</div>
+    <div class="nonhighlight">
+    
+      <div class="sourceline">        alert(&#39;${cols}&#39;);</div>
+    </div>
+    <div class="location">E:/code/quicky-01/apps/hrm/templates/views/list/base.html, line 83:</div>
+    <div class="nonhighlight">
+    
+      <div class="sourceline">            s.$ws.api(&#39;${get_api_key(&#39;api.categories/update_item&#39;)}&#39;)</div>
+    </div>
+    <div class="location">E:\code\quicky-01\venv02\lib\site-packages\beaker\container.py, line 380:</div>
+    <div class="nonhighlight">
+    
+      <div class="sourceline">v = self.createfunc()</div>
+    </div>
+    <div class="location">E:\code\quicky-01\venv02\lib\site-packages\beaker\cache.py, line 322:</div>
+    <div class="nonhighlight">
+    
+      <div class="sourceline">return self._get_value(key, **kw).get_value()</div>
+    </div>
+    <div class="location">E:\code\quicky-01\venv02\lib\site-packages\mako\ext\beaker_cache.py, line 64:</div>
+    <div class="nonhighlight">
+    
+      <div class="sourceline">return cache.get(key, createfunc=creation_function, **kw)</div>
+    </div>
+    <div class="location">E:\code\quicky-01\venv02\lib\site-packages\mako\cache.py, line 95:</div>
+    <div class="nonhighlight">
+    
+      <div class="sourceline">**self._get_cache_kw(kw, context))</div>
+    </div>
+    <div class="location">E:/code/quicky-01/apps/hrm/templates/views/list/base.html, line 83:</div>
+    <div class="nonhighlight">
+    
+      <div class="sourceline">            s.$ws.api(&#39;${get_api_key(&#39;api.categories/update_item&#39;)}&#39;)</div>
+    </div>
+    <div class="location">E:\code\quicky-01\venv02\lib\site-packages\mako\runtime.py, line 761:</div>
+    <div class="nonhighlight">
+    
+      <div class="sourceline">callable_(ctx, **kwargs)</div>
+    </div>
+    <div class="location">E:/code/quicky-01/apps/hrm/templates/dynamic.html, line 11:</div>
+    <div class="nonhighlight">
+    
+      <div class="sourceline">&lt;%include file=&#39;views/${model[&#34;path&#34;]+&#34;.html&#34;}&#39; /&gt;</div>
+    </div>
+    <div class="location">E:\code\quicky-01\venv02\lib\site-packages\mako\runtime.py, line 899:</div>
+    <div class="nonhighlight">
+    
+      <div class="sourceline">callable_(context, *args, **kwargs)</div>
+    </div>
+    <div class="location">E:\code\quicky-01\venv02\lib\site-packages\mako\runtime.py, line 873:</div>
+    <div class="nonhighlight">
+    
+      <div class="sourceline">_exec_template(inherit, lclcontext, args=args, kwargs=kwargs)</div>
+    </div>
+    <div class="location">E:\code\quicky-01\venv02\lib\site-packages\mako\runtime.py, line 838:</div>
+    <div class="nonhighlight">
+    
+      <div class="sourceline">**_kwargs_for_callable(callable_, data))</div>
+    </div>
+    <div class="location">E:\code\quicky-01\venv02\lib\site-packages\mako\template.py, line 462:</div>
+    <div class="nonhighlight">
+    
+      <div class="sourceline">return runtime._render(self, self.callable_, args, data)</div>
+    </div>
+    <div class="location">E:\code\quicky-01\packages\quicky\extens.py, line 285:</div>
+    <div class="nonhighlight">
+    
+      <div class="sourceline">ret_res=mylookup.get_template(fileName).render(**render_model)</div>
+    </div>
+</div>
+
+</body>
+</html>
+
+django_session.find (0.00) {'_id': 'eylkqu3t1bwl267mi1hmig1a9b1i4kzw', 'expire_date': {'$gt': datetime.datetime(2018, 8, 12, 6, 42, 22, 666000, tzinfo=<UTC>)}, 'schema': 'hrm'}
+Internal Server Error: /pages/list/provinces
+Traceback (most recent call last):
+  File "E:\code\quicky-01\packages/django\django\core\handlers\base.py", line 122, in get_response
+    raise e
+Exception: 
+
+
+<html>
+<head>
+    <title>Mako Runtime Error</title>
+    <style>
+        body { font-family:verdana; margin:10px 30px 10px 30px;}
+        .stacktrace { margin:5px 5px 5px 5px; }
+        .highlight { padding:0px 10px 0px 10px; background-color:#9F9FDF; }
+        .nonhighlight { padding:0px; background-color:#DFDFDF; }
+        .sample { padding:10px; margin:10px 10px 10px 10px;
+                  font-family:monospace; }
+        .sampleline { padding:0px 10px 0px 10px; }
+        .sourceline { margin:5px 5px 10px 5px; font-family:monospace;}
+        .location { font-size:80%; }
+        .highlight { white-space:pre; }
+        .sampleline { white-space:pre; }
+
+
+    </style>
+</head>
+<body>
+
+<h2>Error !</h2>
+
+<h3>NameError: Undefined</h3>
+
+    <div class="sample">
+    <div class="nonhighlight">
+    
+        &lt;script src=&#34;xxx.js&#34;&gt;&lt;/script&gt;
+    
+        &lt;script&gt;
+    
+            (function(s){
+    
+    
+                alert(&#39;${cols}&#39;);
+    
+    
+        
+    
+            });
+    
+        &lt;/script&gt;
+    
+        ${self.body()}
+    
+        &lt;div class=&#34;row&#34;&gt;
+    </div>
+    </div>
+
+<div class="stacktrace">
+    <div class="location">E:\code\quicky-01\venv02\lib\site-packages\mako\runtime.py, line 226:</div>
+    <div class="nonhighlight">
+    
+      <div class="sourceline">raise NameError(&#34;Undefined&#34;)</div>
+    </div>
+    <div class="location">E:\code\quicky-01\venv02\lib\site-packages\mako\filters.py, line 78:</div>
+    <div class="nonhighlight">
+    
+      <div class="sourceline">return decode(str(x))</div>
+    </div>
+    <div class="location">E:/code/quicky-01/apps/hrm/templates/views/list/base.html, line 24:</div>
+    <div class="nonhighlight">
+    
+      <div class="sourceline">        alert(&#39;${cols}&#39;);</div>
+    </div>
+    <div class="location">E:/code/quicky-01/apps/hrm/templates/views/list/base.html, line 83:</div>
+    <div class="nonhighlight">
+    
+      <div class="sourceline">            s.$ws.api(&#39;${get_api_key(&#39;api.categories/update_item&#39;)}&#39;)</div>
+    </div>
+    <div class="location">E:\code\quicky-01\venv02\lib\site-packages\beaker\container.py, line 380:</div>
+    <div class="nonhighlight">
+    
+      <div class="sourceline">v = self.createfunc()</div>
+    </div>
+    <div class="location">E:\code\quicky-01\venv02\lib\site-packages\beaker\cache.py, line 322:</div>
+    <div class="nonhighlight">
+    
+      <div class="sourceline">return self._get_value(key, **kw).get_value()</div>
+    </div>
+    <div class="location">E:\code\quicky-01\venv02\lib\site-packages\mako\ext\beaker_cache.py, line 64:</div>
+    <div class="nonhighlight">
+    
+      <div class="sourceline">return cache.get(key, createfunc=creation_function, **kw)</div>
+    </div>
+    <div class="location">E:\code\quicky-01\venv02\lib\site-packages\mako\cache.py, line 95:</div>
+    <div class="nonhighlight">
+    
+      <div class="sourceline">**self._get_cache_kw(kw, context))</div>
+    </div>
+    <div class="location">E:/code/quicky-01/apps/hrm/templates/views/list/base.html, line 83:</div>
+    <div class="nonhighlight">
+    
+      <div class="sourceline">            s.$ws.api(&#39;${get_api_key(&#39;api.categories/update_item&#39;)}&#39;)</div>
+    </div>
+    <div class="location">E:\code\quicky-01\venv02\lib\site-packages\mako\runtime.py, line 761:</div>
+    <div class="nonhighlight">
+    
+      <div class="sourceline">callable_(ctx, **kwargs)</div>
+    </div>
+    <div class="location">E:/code/quicky-01/apps/hrm/templates/dynamic.html, line 11:</div>
+    <div class="nonhighlight">
+    
+      <div class="sourceline">&lt;%include file=&#39;views/${model[&#34;path&#34;]+&#34;.html&#34;}&#39; /&gt;</div>
+    </div>
+    <div class="location">E:\code\quicky-01\venv02\lib\site-packages\mako\runtime.py, line 899:</div>
+    <div class="nonhighlight">
+    
+      <div class="sourceline">callable_(context, *args, **kwargs)</div>
+    </div>
+    <div class="location">E:\code\quicky-01\venv02\lib\site-packages\mako\runtime.py, line 873:</div>
+    <div class="nonhighlight">
+    
+      <div class="sourceline">_exec_template(inherit, lclcontext, args=args, kwargs=kwargs)</div>
+    </div>
+    <div class="location">E:\code\quicky-01\venv02\lib\site-packages\mako\runtime.py, line 838:</div>
+    <div class="nonhighlight">
+    
+      <div class="sourceline">**_kwargs_for_callable(callable_, data))</div>
+    </div>
+    <div class="location">E:\code\quicky-01\venv02\lib\site-packages\mako\template.py, line 462:</div>
+    <div class="nonhighlight">
+    
+      <div class="sourceline">return runtime._render(self, self.callable_, args, data)</div>
+    </div>
+    <div class="location">E:\code\quicky-01\packages\quicky\extens.py, line 285:</div>
+    <div class="nonhighlight">
+    
+      <div class="sourceline">ret_res=mylookup.get_template(fileName).render(**render_model)</div>
+    </div>
+</div>
+
+</body>
+</html>
+
+django_session.find (0.00) {'_id': 'eylkqu3t1bwl267mi1hmig1a9b1i4kzw', 'expire_date': {'$gt': datetime.datetime(2018, 8, 12, 6, 43, 1, 433000, tzinfo=<UTC>)}, 'schema': 'hrm'}
+django_session.find (0.00) {'_id': 'eylkqu3t1bwl267mi1hmig1a9b1i4kzw', 'expire_date': {'$gt': datetime.datetime(2018, 8, 12, 6, 43, 1, 501000, tzinfo=<UTC>)}, 'schema': 'hrm'}
+django_session.find (0.00) {'_id': 'eylkqu3t1bwl267mi1hmig1a9b1i4kzw', 'expire_date': {'$gt': datetime.datetime(2018, 8, 12, 6, 43, 34, 753000, tzinfo=<UTC>)}, 'schema': 'hrm'}
+django_session.find (0.00) {'_id': 'eylkqu3t1bwl267mi1hmig1a9b1i4kzw', 'expire_date': {'$gt': datetime.datetime(2018, 8, 12, 6, 43, 35, 550000, tzinfo=<UTC>)}, 'schema': 'hrm'}
+django_session.find (0.00) {'_id': 'eylkqu3t1bwl267mi1hmig1a9b1i4kzw', 'expire_date': {'$gt': datetime.datetime(2018, 8, 12, 6, 43, 37, 498000, tzinfo=<UTC>)}, 'schema': 'hrm'}
+Not Found: /xxx.js
+django_session.find (0.00) {'_id': 'eylkqu3t1bwl267mi1hmig1a9b1i4kzw', 'expire_date': {'$gt': datetime.datetime(2018, 8, 12, 6, 44, 53, 384000, tzinfo=<UTC>)}, 'schema': 'hrm'}
+django_session.find (0.00) {'_id': 'eylkqu3t1bwl267mi1hmig1a9b1i4kzw', 'expire_date': {'$gt': datetime.datetime(2018, 8, 12, 6, 44, 53, 477000, tzinfo=<UTC>)}, 'schema': 'hrm'}
+django_session.find (0.00) {'_id': 'eylkqu3t1bwl267mi1hmig1a9b1i4kzw', 'expire_date': {'$gt': datetime.datetime(2018, 8, 12, 6, 54, 3, 201000, tzinfo=<UTC>)}, 'schema': 'hrm'}
+django_session.find (0.00) {'_id': 'eylkqu3t1bwl267mi1hmig1a9b1i4kzw', 'expire_date': {'$gt': datetime.datetime(2018, 8, 12, 6, 54, 4, 21000, tzinfo=<UTC>)}, 'schema': 'hrm'}
+django_session.find (0.00) {'_id': 'eylkqu3t1bwl267mi1hmig1a9b1i4kzw', 'expire_date': {'$gt': datetime.datetime(2018, 8, 12, 6, 55, 4, 555000, tzinfo=<UTC>)}, 'schema': 'hrm'}
+django_session.find (0.00) {'_id': 'eylkqu3t1bwl267mi1hmig1a9b1i4kzw', 'expire_date': {'$gt': datetime.datetime(2018, 8, 12, 6, 55, 10, 255000, tzinfo=<UTC>)}, 'schema': 'hrm'}
+django_session.find (0.00) {'_id': 'eylkqu3t1bwl267mi1hmig1a9b1i4kzw', 'expire_date': {'$gt': datetime.datetime(2018, 8, 12, 6, 55, 10, 851000, tzinfo=<UTC>)}, 'schema': 'hrm'}
+django_session.find (0.00) {'_id': 'eylkqu3t1bwl267mi1hmig1a9b1i4kzw', 'expire_date': {'$gt': datetime.datetime(2018, 8, 12, 6, 57, 22, 539000, tzinfo=<UTC>)}, 'schema': 'hrm'}
+django_session.find (0.00) {'_id': 'eylkqu3t1bwl267mi1hmig1a9b1i4kzw', 'expire_date': {'$gt': datetime.datetime(2018, 8, 12, 6, 57, 27, 881000, tzinfo=<UTC>)}, 'schema': 'hrm'}
+django_session.find (0.00) {'_id': 'eylkqu3t1bwl267mi1hmig1a9b1i4kzw', 'expire_date': {'$gt': datetime.datetime(2018, 8, 12, 6, 57, 28, 451000, tzinfo=<UTC>)}, 'schema': 'hrm'}
+django_session.find (0.00) {'_id': 'eylkqu3t1bwl267mi1hmig1a9b1i4kzw', 'expire_date': {'$gt': datetime.datetime(2018, 8, 12, 6, 57, 28, 532000, tzinfo=<UTC>)}, 'schema': 'hrm'}
+Not Found: /xxx.js
+django_session.find (0.00) {'_id': 'eylkqu3t1bwl267mi1hmig1a9b1i4kzw', 'expire_date': {'$gt': datetime.datetime(2018, 8, 12, 6, 57, 42, 875000, tzinfo=<UTC>)}, 'schema': 'hrm'}
+django_session.find (0.00) {'_id': 'eylkqu3t1bwl267mi1hmig1a9b1i4kzw', 'expire_date': {'$gt': datetime.datetime(2018, 8, 12, 6, 57, 43, 367000, tzinfo=<UTC>)}, 'schema': 'hrm'}
+django_session.find (0.00) {'_id': 'eylkqu3t1bwl267mi1hmig1a9b1i4kzw', 'expire_date': {'$gt': datetime.datetime(2018, 8, 12, 6, 57, 43, 440000, tzinfo=<UTC>)}, 'schema': 'hrm'}
+Not Found: /xxx.js
+django_session.find (0.00) {'_id': 'eylkqu3t1bwl267mi1hmig1a9b1i4kzw', 'expire_date': {'$gt': datetime.datetime(2018, 8, 12, 6, 58, 38, 677000, tzinfo=<UTC>)}, 'schema': 'hrm'}
+Internal Server Error: /pages/list/provinces
+Traceback (most recent call last):
+  File "E:\code\quicky-01\packages/django\django\core\handlers\base.py", line 122, in get_response
+    raise e
+SyntaxException: (SyntaxError) invalid syntax (<unknown>, line 3) (u'import json\nself.cols=[\n        (headerName=reques') in file 'E:/code/quicky-01/apps/hrm/templates/views/list/base.html' at line: 7 char: 1
+django_session.find (0.00) {'_id': 'eylkqu3t1bwl267mi1hmig1a9b1i4kzw', 'expire_date': {'$gt': datetime.datetime(2018, 8, 12, 6, 58, 45, 258000, tzinfo=<UTC>)}, 'schema': 'hrm'}
+Internal Server Error: /pages/list/provinces
+Traceback (most recent call last):
+  File "E:\code\quicky-01\packages/django\django\core\handlers\base.py", line 122, in get_response
+    raise e
+SyntaxException: (SyntaxError) invalid syntax (<unknown>, line 3) (u'import json\nself.cols=[\n        (headerName=reques') in file 'E:/code/quicky-01/apps/hrm/templates/views/list/base.html' at line: 7 char: 1
+django_session.find (0.00) {'_id': 'eylkqu3t1bwl267mi1hmig1a9b1i4kzw', 'expire_date': {'$gt': datetime.datetime(2018, 8, 12, 6, 59, 3, 507000, tzinfo=<UTC>)}, 'schema': 'hrm'}
+django_session.find (0.00) {'_id': 'eylkqu3t1bwl267mi1hmig1a9b1i4kzw', 'expire_date': {'$gt': datetime.datetime(2018, 8, 12, 6, 59, 3, 578000, tzinfo=<UTC>)}, 'schema': 'hrm'}
+django_session.find (0.00) {'_id': 'eylkqu3t1bwl267mi1hmig1a9b1i4kzw', 'expire_date': {'$gt': datetime.datetime(2018, 8, 12, 6, 59, 7, 352000, tzinfo=<UTC>)}, 'schema': 'hrm'}
+django_session.find (0.00) {'_id': 'eylkqu3t1bwl267mi1hmig1a9b1i4kzw', 'expire_date': {'$gt': datetime.datetime(2018, 8, 12, 6, 59, 41, 645000, tzinfo=<UTC>)}, 'schema': 'hrm'}
+django_session.find (0.00) {'_id': 'eylkqu3t1bwl267mi1hmig1a9b1i4kzw', 'expire_date': {'$gt': datetime.datetime(2018, 8, 12, 6, 59, 46, 1000, tzinfo=<UTC>)}, 'schema': 'hrm'}
+django_session.find (0.00) {'_id': 'eylkqu3t1bwl267mi1hmig1a9b1i4kzw', 'expire_date': {'$gt': datetime.datetime(2018, 8, 12, 6, 59, 46, 479000, tzinfo=<UTC>)}, 'schema': 'hrm'}
+django_session.find (0.00) {'_id': 'eylkqu3t1bwl267mi1hmig1a9b1i4kzw', 'expire_date': {'$gt': datetime.datetime(2018, 8, 12, 6, 59, 46, 543000, tzinfo=<UTC>)}, 'schema': 'hrm'}
+django_session.find (0.00) {'_id': 'eylkqu3t1bwl267mi1hmig1a9b1i4kzw', 'expire_date': {'$gt': datetime.datetime(2018, 8, 12, 7, 0, 1, 297000, tzinfo=<UTC>)}, 'schema': 'hrm'}
+django_session.find (0.00) {'_id': 'eylkqu3t1bwl267mi1hmig1a9b1i4kzw', 'expire_date': {'$gt': datetime.datetime(2018, 8, 12, 7, 0, 1, 815000, tzinfo=<UTC>)}, 'schema': 'hrm'}
+django_session.find (0.00) {'_id': 'eylkqu3t1bwl267mi1hmig1a9b1i4kzw', 'expire_date': {'$gt': datetime.datetime(2018, 8, 12, 7, 0, 1, 879000, tzinfo=<UTC>)}, 'schema': 'hrm'}
+django_session.find (0.00) {'_id': 'eylkqu3t1bwl267mi1hmig1a9b1i4kzw', 'expire_date': {'$gt': datetime.datetime(2018, 8, 12, 7, 1, 30, 515000, tzinfo=<UTC>)}, 'schema': 'hrm'}
+django_session.find (0.00) {'_id': 'eylkqu3t1bwl267mi1hmig1a9b1i4kzw', 'expire_date': {'$gt': datetime.datetime(2018, 8, 12, 7, 1, 31, 7000, tzinfo=<UTC>)}, 'schema': 'hrm'}
+django_session.find (0.00) {'_id': 'eylkqu3t1bwl267mi1hmig1a9b1i4kzw', 'expire_date': {'$gt': datetime.datetime(2018, 8, 12, 7, 1, 31, 75000, tzinfo=<UTC>)}, 'schema': 'hrm'}
+django_session.find (0.00) {'_id': 'eylkqu3t1bwl267mi1hmig1a9b1i4kzw', 'expire_date': {'$gt': datetime.datetime(2018, 8, 12, 7, 3, 46, 192000, tzinfo=<UTC>)}, 'schema': 'hrm'}
+django_session.find (0.00) {'_id': 'eylkqu3t1bwl267mi1hmig1a9b1i4kzw', 'expire_date': {'$gt': datetime.datetime(2018, 8, 12, 7, 3, 46, 682000, tzinfo=<UTC>)}, 'schema': 'hrm'}
+django_session.find (0.00) {'_id': 'eylkqu3t1bwl267mi1hmig1a9b1i4kzw', 'expire_date': {'$gt': datetime.datetime(2018, 8, 12, 7, 3, 46, 742000, tzinfo=<UTC>)}, 'schema': 'hrm'}
+django_session.find (0.00) {'_id': 'eylkqu3t1bwl267mi1hmig1a9b1i4kzw', 'expire_date': {'$gt': datetime.datetime(2018, 8, 12, 7, 8, 57, 478000, tzinfo=<UTC>)}, 'schema': 'hrm'}
+django_session.find (0.00) {'_id': 'eylkqu3t1bwl267mi1hmig1a9b1i4kzw', 'expire_date': {'$gt': datetime.datetime(2018, 8, 12, 7, 9, 0, 104000, tzinfo=<UTC>)}, 'schema': 'hrm'}
+django_session.find (0.00) {'_id': 'eylkqu3t1bwl267mi1hmig1a9b1i4kzw', 'expire_date': {'$gt': datetime.datetime(2018, 8, 12, 7, 9, 2, 45000, tzinfo=<UTC>)}, 'schema': 'hrm'}
+django_session.find (0.00) {'_id': 'eylkqu3t1bwl267mi1hmig1a9b1i4kzw', 'expire_date': {'$gt': datetime.datetime(2018, 8, 12, 7, 9, 3, 611000, tzinfo=<UTC>)}, 'schema': 'hrm'}
+django_session.find (0.00) {'_id': 'eylkqu3t1bwl267mi1hmig1a9b1i4kzw', 'expire_date': {'$gt': datetime.datetime(2018, 8, 12, 7, 9, 5, 359000, tzinfo=<UTC>)}, 'schema': 'hrm'}
+django_session.find (0.00) {'_id': 'eylkqu3t1bwl267mi1hmig1a9b1i4kzw', 'expire_date': {'$gt': datetime.datetime(2018, 8, 12, 7, 20, 13, 55000, tzinfo=<UTC>)}, 'schema': 'hrm'}
+django_session.find (0.00) {'_id': 'eylkqu3t1bwl267mi1hmig1a9b1i4kzw', 'expire_date': {'$gt': datetime.datetime(2018, 8, 12, 7, 20, 13, 508000, tzinfo=<UTC>)}, 'schema': 'hrm'}
+django_session.find (0.00) {'_id': 'eylkqu3t1bwl267mi1hmig1a9b1i4kzw', 'expire_date': {'$gt': datetime.datetime(2018, 8, 12, 7, 20, 23, 24000, tzinfo=<UTC>)}, 'schema': 'hrm'}
+django_session.find (0.00) {'_id': 'eylkqu3t1bwl267mi1hmig1a9b1i4kzw', 'expire_date': {'$gt': datetime.datetime(2018, 8, 12, 7, 20, 23, 615000, tzinfo=<UTC>)}, 'schema': 'hrm'}
+Not Found: /polyfills/promise-6.1.0.js.map
+Not Found: /hrm/static/js/angular.min.js.map
+django_session.find (0.00) {'_id': 'eylkqu3t1bwl267mi1hmig1a9b1i4kzw', 'expire_date': {'$gt': datetime.datetime(2018, 8, 12, 7, 20, 53, 413000, tzinfo=<UTC>)}, 'schema': 'hrm'}
+Not Found: /hrm/static/js/angular.min.js.map
+django_session.find (0.00) {'_id': 'eylkqu3t1bwl267mi1hmig1a9b1i4kzw', 'expire_date': {'$gt': datetime.datetime(2018, 8, 12, 7, 20, 54, 5000, tzinfo=<UTC>)}, 'schema': 'hrm'}
+Not Found: /polyfills/promise-6.1.0.js.map
+django_session.find (0.00) {'_id': 'eylkqu3t1bwl267mi1hmig1a9b1i4kzw', 'expire_date': {'$gt': datetime.datetime(2018, 8, 12, 7, 21, 9, 295000, tzinfo=<UTC>)}, 'schema': 'hrm'}
+django_session.find (0.00) {'_id': 'eylkqu3t1bwl267mi1hmig1a9b1i4kzw', 'expire_date': {'$gt': datetime.datetime(2018, 8, 12, 7, 21, 10, 500000, tzinfo=<UTC>)}, 'schema': 'hrm'}
+django_session.find (0.00) {'_id': 'eylkqu3t1bwl267mi1hmig1a9b1i4kzw', 'expire_date': {'$gt': datetime.datetime(2018, 8, 12, 7, 21, 29, 444000, tzinfo=<UTC>)}, 'schema': 'hrm'}
+Not Found: /hrm/static/js/angular.min.js.map
+django_session.find (0.00) {'_id': 'eylkqu3t1bwl267mi1hmig1a9b1i4kzw', 'expire_date': {'$gt': datetime.datetime(2018, 8, 12, 7, 21, 30, 48000, tzinfo=<UTC>)}, 'schema': 'hrm'}
+Not Found: /polyfills/promise-6.1.0.js.map
+django_session.find (0.00) {'_id': 'eylkqu3t1bwl267mi1hmig1a9b1i4kzw', 'expire_date': {'$gt': datetime.datetime(2018, 8, 12, 7, 22, 20, 115000, tzinfo=<UTC>)}, 'schema': 'hrm'}
+Not Found: /hrm/static/js/angular.min.js.map
+django_session.find (0.00) {'_id': 'eylkqu3t1bwl267mi1hmig1a9b1i4kzw', 'expire_date': {'$gt': datetime.datetime(2018, 8, 12, 7, 22, 20, 710000, tzinfo=<UTC>)}, 'schema': 'hrm'}
+Not Found: /polyfills/promise-6.1.0.js.map
+django_session.find (0.00) {'_id': 'eylkqu3t1bwl267mi1hmig1a9b1i4kzw', 'expire_date': {'$gt': datetime.datetime(2018, 8, 12, 7, 22, 32, 401000, tzinfo=<UTC>)}, 'schema': 'hrm'}
+Not Found: /hrm/static/js/angular.min.js.map
+django_session.find (0.00) {'_id': 'eylkqu3t1bwl267mi1hmig1a9b1i4kzw', 'expire_date': {'$gt': datetime.datetime(2018, 8, 12, 7, 22, 32, 986000, tzinfo=<UTC>)}, 'schema': 'hrm'}
+Not Found: /polyfills/promise-6.1.0.js.map
+django_session.find (0.00) {'_id': 'eylkqu3t1bwl267mi1hmig1a9b1i4kzw', 'expire_date': {'$gt': datetime.datetime(2018, 8, 12, 7, 22, 56, tzinfo=<UTC>)}, 'schema': 'hrm'}
+Not Found: /hrm/static/js/angular.min.js.map
+django_session.find (0.00) {'_id': 'eylkqu3t1bwl267mi1hmig1a9b1i4kzw', 'expire_date': {'$gt': datetime.datetime(2018, 8, 12, 7, 22, 56, 581000, tzinfo=<UTC>)}, 'schema': 'hrm'}
+Not Found: /polyfills/promise-6.1.0.js.map
+django_session.find (0.00) {'_id': 'eylkqu3t1bwl267mi1hmig1a9b1i4kzw', 'expire_date': {'$gt': datetime.datetime(2018, 8, 12, 7, 23, 21, 471000, tzinfo=<UTC>)}, 'schema': 'hrm'}
+Not Found: /hrm/static/js/angular.min.js.map
+django_session.find (0.00) {'_id': 'eylkqu3t1bwl267mi1hmig1a9b1i4kzw', 'expire_date': {'$gt': datetime.datetime(2018, 8, 12, 7, 23, 22, 90000, tzinfo=<UTC>)}, 'schema': 'hrm'}
+Not Found: /polyfills/promise-6.1.0.js.map
+django_session.find (0.00) {'_id': 'eylkqu3t1bwl267mi1hmig1a9b1i4kzw', 'expire_date': {'$gt': datetime.datetime(2018, 8, 12, 7, 23, 26, 44000, tzinfo=<UTC>)}, 'schema': 'hrm'}
+Not Found: /hrm/static/js/angular.min.js.map
+django_session.find (0.00) {'_id': 'eylkqu3t1bwl267mi1hmig1a9b1i4kzw', 'expire_date': {'$gt': datetime.datetime(2018, 8, 12, 7, 23, 26, 637000, tzinfo=<UTC>)}, 'schema': 'hrm'}
+Not Found: /polyfills/promise-6.1.0.js.map
+django_session.find (0.00) {'_id': 'eylkqu3t1bwl267mi1hmig1a9b1i4kzw', 'expire_date': {'$gt': datetime.datetime(2018, 8, 12, 7, 23, 33, 408000, tzinfo=<UTC>)}, 'schema': 'hrm'}
+Not Found: /hrm/static/js/angular.min.js.map
+django_session.find (0.00) {'_id': 'eylkqu3t1bwl267mi1hmig1a9b1i4kzw', 'expire_date': {'$gt': datetime.datetime(2018, 8, 12, 7, 23, 33, 998000, tzinfo=<UTC>)}, 'schema': 'hrm'}
+Not Found: /polyfills/promise-6.1.0.js.map
+django_session.find (0.00) {'_id': 'eylkqu3t1bwl267mi1hmig1a9b1i4kzw', 'expire_date': {'$gt': datetime.datetime(2018, 8, 12, 7, 23, 38, 258000, tzinfo=<UTC>)}, 'schema': 'hrm'}
+django_session.find (0.00) {'_id': 'eylkqu3t1bwl267mi1hmig1a9b1i4kzw', 'expire_date': {'$gt': datetime.datetime(2018, 8, 12, 7, 23, 42, 286000, tzinfo=<UTC>)}, 'schema': 'hrm'}
+django_session.find (0.00) {'_id': 'eylkqu3t1bwl267mi1hmig1a9b1i4kzw', 'expire_date': {'$gt': datetime.datetime(2018, 8, 12, 7, 24, 0, 520000, tzinfo=<UTC>)}, 'schema': 'hrm'}
+django_session.find (0.00) {'_id': 'eylkqu3t1bwl267mi1hmig1a9b1i4kzw', 'expire_date': {'$gt': datetime.datetime(2018, 8, 12, 7, 24, 23, 73000, tzinfo=<UTC>)}, 'schema': 'hrm'}
+django_session.find (0.00) {'_id': 'eylkqu3t1bwl267mi1hmig1a9b1i4kzw', 'expire_date': {'$gt': datetime.datetime(2018, 8, 12, 7, 24, 30, 419000, tzinfo=<UTC>)}, 'schema': 'hrm'}
+Not Found: /hrm/static/js/angular.min.js.map
+django_session.find (0.00) {'_id': 'eylkqu3t1bwl267mi1hmig1a9b1i4kzw', 'expire_date': {'$gt': datetime.datetime(2018, 8, 12, 7, 24, 31, 280000, tzinfo=<UTC>)}, 'schema': 'hrm'}
+Not Found: /polyfills/promise-6.1.0.js.map
+django_session.find (0.00) {'_id': 'eylkqu3t1bwl267mi1hmig1a9b1i4kzw', 'expire_date': {'$gt': datetime.datetime(2018, 8, 12, 7, 25, 14, 474000, tzinfo=<UTC>)}, 'schema': 'hrm'}
+Not Found: /hrm/static/js/angular.min.js.map
+django_session.find (0.00) {'_id': 'eylkqu3t1bwl267mi1hmig1a9b1i4kzw', 'expire_date': {'$gt': datetime.datetime(2018, 8, 12, 7, 25, 15, 167000, tzinfo=<UTC>)}, 'schema': 'hrm'}
+Not Found: /polyfills/promise-6.1.0.js.map
+django_session.find (0.00) {'_id': 'eylkqu3t1bwl267mi1hmig1a9b1i4kzw', 'expire_date': {'$gt': datetime.datetime(2018, 8, 12, 7, 25, 30, 456000, tzinfo=<UTC>)}, 'schema': 'hrm'}
+Not Found: /hrm/static/js/angular.min.js.map
+django_session.find (0.00) {'_id': 'eylkqu3t1bwl267mi1hmig1a9b1i4kzw', 'expire_date': {'$gt': datetime.datetime(2018, 8, 12, 7, 25, 31, 43000, tzinfo=<UTC>)}, 'schema': 'hrm'}
+Not Found: /polyfills/promise-6.1.0.js.map
+django_session.find (0.00) {'_id': 'eylkqu3t1bwl267mi1hmig1a9b1i4kzw', 'expire_date': {'$gt': datetime.datetime(2018, 8, 12, 7, 26, 15, 671000, tzinfo=<UTC>)}, 'schema': 'hrm'}
+Not Found: /hrm/static/js/angular.min.js.map
+django_session.find (0.00) {'_id': 'eylkqu3t1bwl267mi1hmig1a9b1i4kzw', 'expire_date': {'$gt': datetime.datetime(2018, 8, 12, 7, 26, 16, 311000, tzinfo=<UTC>)}, 'schema': 'hrm'}
+Not Found: /polyfills/promise-6.1.0.js.map
+django_session.find (0.00) {'_id': 'eylkqu3t1bwl267mi1hmig1a9b1i4kzw', 'expire_date': {'$gt': datetime.datetime(2018, 8, 12, 7, 26, 43, 82000, tzinfo=<UTC>)}, 'schema': 'hrm'}
+Not Found: /hrm/static/js/angular.min.js.map
+django_session.find (0.00) {'_id': 'eylkqu3t1bwl267mi1hmig1a9b1i4kzw', 'expire_date': {'$gt': datetime.datetime(2018, 8, 12, 7, 26, 43, 676000, tzinfo=<UTC>)}, 'schema': 'hrm'}
+Not Found: /polyfills/promise-6.1.0.js.map
+django_session.find (0.00) {'_id': 'eylkqu3t1bwl267mi1hmig1a9b1i4kzw', 'expire_date': {'$gt': datetime.datetime(2018, 8, 12, 7, 26, 58, 950000, tzinfo=<UTC>)}, 'schema': 'hrm'}
+Not Found: /hrm/static/js/angular.min.js.map
+django_session.find (0.00) {'_id': 'eylkqu3t1bwl267mi1hmig1a9b1i4kzw', 'expire_date': {'$gt': datetime.datetime(2018, 8, 12, 7, 26, 59, 544000, tzinfo=<UTC>)}, 'schema': 'hrm'}
+Not Found: /polyfills/promise-6.1.0.js.map
+hrm.auth_user.save (0.00) {'username': u'sys', 'first_name': u'', 'last_name': u'', '_id': ObjectId('5b587491367cc43c08105612'), 'is_active': True, 'email': u'sys@beatles.com', 'is_superuser': True, 'is_staff': True, 'last_login': datetime.datetime(2018, 8, 12, 6, 8, 11, 471000, tzinfo=<UTC>), 'password': u'pbkdf2_sha256$12000$m2jOatm5Cr9w$A43rhOMVMVGwaYy34PfKV3Ve0ioJwywh/AZmuKbJDuM=', 'date_joined': datetime.datetime(2018, 7, 25, 13, 1, 5, 103000, tzinfo=<UTC>)}
+django_session.save (0.00) {'schema': 'hrm', '_id': u'b4nqp7qo5w0rn1ko4bnpur7o1vebr4vn', 'expire_date': datetime.datetime(2018, 8, 26, 7, 27, 21, 764000, tzinfo=<UTC>), 'session_data': u'YjAwMTViM2E0OTNjMDE0N2NjMTFiZjIxNzYzNmNkYTg5OGRiZGZjMzp7Imxhbmd1YWdlIjoiZW4ifQ=='}
+django_session.find (0.00) {'_id': 'b4nqp7qo5w0rn1ko4bnpur7o1vebr4vn', 'expire_date': {'$gt': datetime.datetime(2018, 8, 12, 7, 27, 29, 191000, tzinfo=<UTC>)}, 'schema': 'hrm'}
+hrm.auth_user.save (0.00) {'username': u'sys', 'first_name': u'', 'last_name': u'', '_id': ObjectId('5b587491367cc43c08105612'), 'is_active': True, 'email': u'sys@beatles.com', 'is_superuser': True, 'is_staff': True, 'last_login': datetime.datetime(2018, 8, 12, 6, 8, 11, 471000, tzinfo=<UTC>), 'password': u'pbkdf2_sha256$12000$m2jOatm5Cr9w$A43rhOMVMVGwaYy34PfKV3Ve0ioJwywh/AZmuKbJDuM=', 'date_joined': datetime.datetime(2018, 7, 25, 13, 1, 5, 103000, tzinfo=<UTC>)}
+django_session.save (0.00) {'schema': 'hrm', '_id': u'jps71hgphni9l4dijjrzv149zpmzazo7', 'expire_date': datetime.datetime(2018, 8, 26, 7, 27, 29, 295000, tzinfo=<UTC>), 'session_data': u'YjAwMTViM2E0OTNjMDE0N2NjMTFiZjIxNzYzNmNkYTg5OGRiZGZjMzp7Imxhbmd1YWdlIjoiZW4ifQ=='}
+django_session.find (0.00) {'_id': 'b4nqp7qo5w0rn1ko4bnpur7o1vebr4vn', 'schema': 'hrm'}
+django_session.remove (0.00) {'_id': {'$in': [u'b4nqp7qo5w0rn1ko4bnpur7o1vebr4vn']}, 'schema': 'hrm'}
+hrm.auth_user.save (0.00) {'username': u'sys', 'first_name': u'', 'last_name': u'', '_id': ObjectId('5b587491367cc43c08105612'), 'is_active': True, 'email': u'sys@beatles.com', 'is_superuser': True, 'is_staff': True, 'last_login': datetime.datetime(2018, 8, 12, 7, 27, 29, 300000, tzinfo=<UTC>), 'password': u'pbkdf2_sha256$12000$m2jOatm5Cr9w$A43rhOMVMVGwaYy34PfKV3Ve0ioJwywh/AZmuKbJDuM=', 'date_joined': datetime.datetime(2018, 7, 25, 13, 1, 5, 103000, tzinfo=<UTC>)}
+django_session.save (0.00) {'schema': 'hrm', '_id': u'jps71hgphni9l4dijjrzv149zpmzazo7', 'expire_date': datetime.datetime(2018, 8, 26, 7, 27, 29, 303000, tzinfo=<UTC>), 'session_data': u'ZTY4ZGUyMjFjZTY1M2NiNWEyZjU0YTI0NjJjYjU2Y2MxZGVkNjAyMTp7Il9hdXRoX3VzZXJfYmFja2VuZCI6InF1aWNreS5iYWNrZW5kcy5IYXNoTW9kZWxCYWNrZW5kIiwiX2F1dGhfdXNlcl9pZCI6IjViNTg3NDkxMzY3Y2M0M2MwODEwNTYxMiIsImxhbmd1YWdlIjoiZW4ifQ=='}
+django_session.find (0.00) {'_id': 'jps71hgphni9l4dijjrzv149zpmzazo7', 'expire_date': {'$gt': datetime.datetime(2018, 8, 12, 7, 27, 29, 325000, tzinfo=<UTC>)}, 'schema': 'hrm'}
+django_session.find (0.00) {'_id': 'jps71hgphni9l4dijjrzv149zpmzazo7', 'expire_date': {'$gt': datetime.datetime(2018, 8, 12, 7, 27, 29, 708000, tzinfo=<UTC>)}, 'schema': 'hrm'}
+django_session.find (0.00) {'_id': 'jps71hgphni9l4dijjrzv149zpmzazo7', 'expire_date': {'$gt': datetime.datetime(2018, 8, 12, 7, 27, 33, 147000, tzinfo=<UTC>)}, 'schema': 'hrm'}
+Not Found: /polyfills/promise-6.1.0.js.map
+Not Found: /hrm/static/js/angular.min.js.map
+hrm.auth_user.save (0.00) {'username': u'sys', 'first_name': u'', 'last_name': u'', '_id': ObjectId('5b587491367cc43c08105612'), 'is_active': True, 'email': u'sys@beatles.com', 'is_superuser': True, 'is_staff': True, 'last_login': datetime.datetime(2018, 8, 12, 7, 27, 29, 300000, tzinfo=<UTC>), 'password': u'pbkdf2_sha256$12000$m2jOatm5Cr9w$A43rhOMVMVGwaYy34PfKV3Ve0ioJwywh/AZmuKbJDuM=', 'date_joined': datetime.datetime(2018, 7, 25, 13, 1, 5, 103000, tzinfo=<UTC>)}
+django_session.save (0.00) {'schema': 'hrm', '_id': u'h5b1fi5rc5p3eaehju1jbl9559c71u5l', 'expire_date': datetime.datetime(2018, 8, 26, 7, 27, 37, 744000, tzinfo=<UTC>), 'session_data': u'YjAwMTViM2E0OTNjMDE0N2NjMTFiZjIxNzYzNmNkYTg5OGRiZGZjMzp7Imxhbmd1YWdlIjoiZW4ifQ=='}
+django_session.find (0.00) {'_id': 'jps71hgphni9l4dijjrzv149zpmzazo7', 'expire_date': {'$gt': datetime.datetime(2018, 8, 12, 7, 28, 9, 553000, tzinfo=<UTC>)}, 'schema': 'hrm'}
+hrm.auth_user.save (0.00) {'username': u'sys', 'first_name': u'', 'last_name': u'', '_id': ObjectId('5b587491367cc43c08105612'), 'is_active': True, 'email': u'sys@beatles.com', 'is_superuser': True, 'is_staff': True, 'last_login': datetime.datetime(2018, 8, 12, 7, 27, 29, 300000, tzinfo=<UTC>), 'password': u'pbkdf2_sha256$12000$m2jOatm5Cr9w$A43rhOMVMVGwaYy34PfKV3Ve0ioJwywh/AZmuKbJDuM=', 'date_joined': datetime.datetime(2018, 7, 25, 13, 1, 5, 103000, tzinfo=<UTC>)}
+django_session.save (0.00) {'schema': 'hrm', '_id': u'gkkj3q4xi834w32xifk9h5ahb449mjut', 'expire_date': datetime.datetime(2018, 8, 26, 7, 28, 10, 8000, tzinfo=<UTC>), 'session_data': u'YjAwMTViM2E0OTNjMDE0N2NjMTFiZjIxNzYzNmNkYTg5OGRiZGZjMzp7Imxhbmd1YWdlIjoiZW4ifQ=='}
+Not Found: /hrm/static/js/angular.min.js.map
+Not Found: /polyfills/promise-6.1.0.js.map
+django_session.find (0.00) {'_id': 'jps71hgphni9l4dijjrzv149zpmzazo7', 'expire_date': {'$gt': datetime.datetime(2018, 8, 12, 7, 28, 10, 777000, tzinfo=<UTC>)}, 'schema': 'hrm'}
+django_session.find (0.00) {'_id': 'eylkqu3t1bwl267mi1hmig1a9b1i4kzw', 'expire_date': {'$gt': datetime.datetime(2018, 8, 12, 7, 29, 35, 627000, tzinfo=<UTC>)}, 'schema': 'hrm'}
+django_session.find (0.00) {'_id': 'jps71hgphni9l4dijjrzv149zpmzazo7', 'expire_date': {'$gt': datetime.datetime(2018, 8, 12, 7, 29, 56, 734000, tzinfo=<UTC>)}, 'schema': 'hrm'}
+django_session.find (0.00) {'_id': 'jps71hgphni9l4dijjrzv149zpmzazo7', 'expire_date': {'$gt': datetime.datetime(2018, 8, 12, 7, 29, 57, 242000, tzinfo=<UTC>)}, 'schema': 'hrm'}
+Not Found: /hrm/static/js/angular.min.js.map
+Not Found: /polyfills/promise-6.1.0.js.map
+django_session.find (0.00) {'_id': 'jps71hgphni9l4dijjrzv149zpmzazo7', 'expire_date': {'$gt': datetime.datetime(2018, 8, 12, 7, 30, 11, 43000, tzinfo=<UTC>)}, 'schema': 'hrm'}
+hrm.auth_user.save (0.00) {'username': u'sys', 'first_name': u'', 'last_name': u'', '_id': ObjectId('5b587491367cc43c08105612'), 'is_active': True, 'email': u'sys@beatles.com', 'is_superuser': True, 'is_staff': True, 'last_login': datetime.datetime(2018, 8, 12, 7, 27, 29, 300000, tzinfo=<UTC>), 'password': u'pbkdf2_sha256$12000$m2jOatm5Cr9w$A43rhOMVMVGwaYy34PfKV3Ve0ioJwywh/AZmuKbJDuM=', 'date_joined': datetime.datetime(2018, 7, 25, 13, 1, 5, 103000, tzinfo=<UTC>)}
+django_session.save (0.01) {'schema': 'hrm', '_id': u'2n5rghrfds9bzbsm0yaxmq3ivs8v9h5c', 'expire_date': datetime.datetime(2018, 8, 26, 7, 30, 11, 192000, tzinfo=<UTC>), 'session_data': u'YjAwMTViM2E0OTNjMDE0N2NjMTFiZjIxNzYzNmNkYTg5OGRiZGZjMzp7Imxhbmd1YWdlIjoiZW4ifQ=='}
+Not Found: /hrm/static/js/angular.min.js.map
+Not Found: /polyfills/promise-6.1.0.js.map
+django_session.find (0.00) {'_id': 'jps71hgphni9l4dijjrzv149zpmzazo7', 'expire_date': {'$gt': datetime.datetime(2018, 8, 12, 7, 30, 11, 978000, tzinfo=<UTC>)}, 'schema': 'hrm'}
+django_session.find (0.00) {'_id': 'eylkqu3t1bwl267mi1hmig1a9b1i4kzw', 'expire_date': {'$gt': datetime.datetime(2018, 8, 12, 7, 31, 48, 614000, tzinfo=<UTC>)}, 'schema': 'hrm'}
+Not Found: /hrm/static/js/angular.min.js.map
+django_session.find (0.00) {'_id': 'eylkqu3t1bwl267mi1hmig1a9b1i4kzw', 'expire_date': {'$gt': datetime.datetime(2018, 8, 12, 7, 31, 49, 189000, tzinfo=<UTC>)}, 'schema': 'hrm'}
+Not Found: /polyfills/promise-6.1.0.js.map
+django_session.find (0.00) {'_id': 'eylkqu3t1bwl267mi1hmig1a9b1i4kzw', 'expire_date': {'$gt': datetime.datetime(2018, 8, 12, 7, 32, 40, 427000, tzinfo=<UTC>)}, 'schema': 'hrm'}
+Not Found: /hrm/static/js/angular.min.js.map
+django_session.find (0.00) {'_id': 'eylkqu3t1bwl267mi1hmig1a9b1i4kzw', 'expire_date': {'$gt': datetime.datetime(2018, 8, 12, 7, 32, 41, 20000, tzinfo=<UTC>)}, 'schema': 'hrm'}
+Not Found: /polyfills/promise-6.1.0.js.map
+django_session.find (0.00) {'_id': 'eylkqu3t1bwl267mi1hmig1a9b1i4kzw', 'expire_date': {'$gt': datetime.datetime(2018, 8, 12, 7, 32, 41, 142000, tzinfo=<UTC>)}, 'schema': 'hrm'}
+Not Found: /hrm/static/js/angular.min.js.map
+Not Found: /polyfills/promise-6.1.0.js.map
+django_session.find (0.00) {'_id': 'eylkqu3t1bwl267mi1hmig1a9b1i4kzw', 'expire_date': {'$gt': datetime.datetime(2018, 8, 12, 7, 36, 3, 135000, tzinfo=<UTC>)}, 'schema': 'hrm'}
+Not Found: /hrm/static/js/angular.min.js.map
+django_session.find (0.00) {'_id': 'eylkqu3t1bwl267mi1hmig1a9b1i4kzw', 'expire_date': {'$gt': datetime.datetime(2018, 8, 12, 7, 36, 4, 162000, tzinfo=<UTC>)}, 'schema': 'hrm'}
+Not Found: /polyfills/promise-6.1.0.js.map
+Not Found: /hrm/static/js/angular.min.js.map
+Not Found: /polyfills/promise-6.1.0.js.map
+django_session.find (0.00) {'_id': 'eylkqu3t1bwl267mi1hmig1a9b1i4kzw', 'expire_date': {'$gt': datetime.datetime(2018, 8, 12, 7, 36, 33, 42000, tzinfo=<UTC>)}, 'schema': 'hrm'}
+Not Found: /hrm/static/js/angular.min.js.map
+django_session.find (0.00) {'_id': 'eylkqu3t1bwl267mi1hmig1a9b1i4kzw', 'expire_date': {'$gt': datetime.datetime(2018, 8, 12, 7, 36, 33, 966000, tzinfo=<UTC>)}, 'schema': 'hrm'}
+Not Found: /polyfills/promise-6.1.0.js.map
+django_session.find (0.00) {'_id': 'eylkqu3t1bwl267mi1hmig1a9b1i4kzw', 'expire_date': {'$gt': datetime.datetime(2018, 8, 12, 7, 37, 52, 470000, tzinfo=<UTC>)}, 'schema': 'hrm'}
+Not Found: /hrm/static/js/angular.min.js.map
+Not Found: /polyfills/promise-6.1.0.js.map
+django_session.find (0.00) {'_id': 'eylkqu3t1bwl267mi1hmig1a9b1i4kzw', 'expire_date': {'$gt': datetime.datetime(2018, 8, 12, 7, 37, 53, 309000, tzinfo=<UTC>)}, 'schema': 'hrm'}
+django_session.find (0.00) {'_id': 'eylkqu3t1bwl267mi1hmig1a9b1i4kzw', 'expire_date': {'$gt': datetime.datetime(2018, 8, 12, 7, 37, 56, 975000, tzinfo=<UTC>)}, 'schema': 'hrm'}
+django_session.find (0.00) {'_id': 'eylkqu3t1bwl267mi1hmig1a9b1i4kzw', 'expire_date': {'$gt': datetime.datetime(2018, 8, 12, 7, 38, 10, 925000, tzinfo=<UTC>)}, 'schema': 'hrm'}
+django_session.find (0.00) {'_id': 'eylkqu3t1bwl267mi1hmig1a9b1i4kzw', 'expire_date': {'$gt': datetime.datetime(2018, 8, 12, 7, 38, 21, 578000, tzinfo=<UTC>)}, 'schema': 'hrm'}
+django_session.find (0.00) {'_id': 'eylkqu3t1bwl267mi1hmig1a9b1i4kzw', 'expire_date': {'$gt': datetime.datetime(2018, 8, 12, 7, 38, 21, 730000, tzinfo=<UTC>)}, 'schema': 'hrm'}
+django_session.find (0.00) {'_id': 'eylkqu3t1bwl267mi1hmig1a9b1i4kzw', 'expire_date': {'$gt': datetime.datetime(2018, 8, 12, 7, 38, 21, 898000, tzinfo=<UTC>)}, 'schema': 'hrm'}
+django_session.find (0.00) {'_id': 'eylkqu3t1bwl267mi1hmig1a9b1i4kzw', 'expire_date': {'$gt': datetime.datetime(2018, 8, 12, 7, 38, 22, 868000, tzinfo=<UTC>)}, 'schema': 'hrm'}
+django_session.find (0.00) {'_id': 'eylkqu3t1bwl267mi1hmig1a9b1i4kzw', 'expire_date': {'$gt': datetime.datetime(2018, 8, 12, 7, 38, 25, 792000, tzinfo=<UTC>)}, 'schema': 'hrm'}
+django_session.find (0.00) {'_id': 'eylkqu3t1bwl267mi1hmig1a9b1i4kzw', 'expire_date': {'$gt': datetime.datetime(2018, 8, 12, 7, 38, 54, 144000, tzinfo=<UTC>)}, 'schema': 'hrm'}
+django_session.find (0.00) {'_id': 'eylkqu3t1bwl267mi1hmig1a9b1i4kzw', 'expire_date': {'$gt': datetime.datetime(2018, 8, 12, 7, 38, 54, 581000, tzinfo=<UTC>)}, 'schema': 'hrm'}
+django_session.find (0.00) {'_id': 'eylkqu3t1bwl267mi1hmig1a9b1i4kzw', 'expire_date': {'$gt': datetime.datetime(2018, 8, 12, 7, 38, 54, 755000, tzinfo=<UTC>)}, 'schema': 'hrm'}
+django_session.find (0.00) {'_id': 'eylkqu3t1bwl267mi1hmig1a9b1i4kzw', 'expire_date': {'$gt': datetime.datetime(2018, 8, 12, 7, 39, 6, 739000, tzinfo=<UTC>)}, 'schema': 'hrm'}
+django_session.find (0.00) {'_id': 'eylkqu3t1bwl267mi1hmig1a9b1i4kzw', 'expire_date': {'$gt': datetime.datetime(2018, 8, 12, 7, 39, 42, 389000, tzinfo=<UTC>)}, 'schema': 'hrm'}
+django_session.find (0.00) {'_id': 'eylkqu3t1bwl267mi1hmig1a9b1i4kzw', 'expire_date': {'$gt': datetime.datetime(2018, 8, 12, 7, 39, 42, 825000, tzinfo=<UTC>)}, 'schema': 'hrm'}
+django_session.find (0.00) {'_id': 'eylkqu3t1bwl267mi1hmig1a9b1i4kzw', 'expire_date': {'$gt': datetime.datetime(2018, 8, 12, 7, 39, 42, 987000, tzinfo=<UTC>)}, 'schema': 'hrm'}
+django_session.find (0.00) {'_id': 'eylkqu3t1bwl267mi1hmig1a9b1i4kzw', 'expire_date': {'$gt': datetime.datetime(2018, 8, 12, 7, 40, 4, 652000, tzinfo=<UTC>)}, 'schema': 'hrm'}
+django_session.find (0.00) {'_id': 'eylkqu3t1bwl267mi1hmig1a9b1i4kzw', 'expire_date': {'$gt': datetime.datetime(2018, 8, 12, 7, 40, 5, 148000, tzinfo=<UTC>)}, 'schema': 'hrm'}
+django_session.find (0.00) {'_id': 'eylkqu3t1bwl267mi1hmig1a9b1i4kzw', 'expire_date': {'$gt': datetime.datetime(2018, 8, 12, 7, 40, 5, 301000, tzinfo=<UTC>)}, 'schema': 'hrm'}
+Not Found: /hrm/static/js/angular.min.js.map
+Not Found: /polyfills/promise-6.1.0.js.map
+django_session.find (0.00) {'_id': 'eylkqu3t1bwl267mi1hmig1a9b1i4kzw', 'expire_date': {'$gt': datetime.datetime(2018, 8, 12, 7, 40, 31, 947000, tzinfo=<UTC>)}, 'schema': 'hrm'}
+Not Found: /hrm/static/js/angular.min.js.map
+Not Found: /polyfills/promise-6.1.0.js.map
+django_session.find (0.00) {'_id': 'eylkqu3t1bwl267mi1hmig1a9b1i4kzw', 'expire_date': {'$gt': datetime.datetime(2018, 8, 12, 7, 40, 32, 766000, tzinfo=<UTC>)}, 'schema': 'hrm'}
+django_session.find (0.00) {'_id': 'eylkqu3t1bwl267mi1hmig1a9b1i4kzw', 'expire_date': {'$gt': datetime.datetime(2018, 8, 12, 7, 40, 33, 618000, tzinfo=<UTC>)}, 'schema': 'hrm'}
+Not Found: /hrm/static/js/angular.min.js.map
+Not Found: /polyfills/promise-6.1.0.js.map
+Not Found: /hrm/static/js/ngDirectives.js line 475 > Function
+django_session.find (0.00) {'_id': 'eylkqu3t1bwl267mi1hmig1a9b1i4kzw', 'expire_date': {'$gt': datetime.datetime(2018, 8, 12, 7, 42, 20, 709000, tzinfo=<UTC>)}, 'schema': 'hrm'}
+Not Found: /hrm/static/js/angular.min.js.map
+Not Found: /polyfills/promise-6.1.0.js.map
+django_session.find (0.00) {'_id': 'eylkqu3t1bwl267mi1hmig1a9b1i4kzw', 'expire_date': {'$gt': datetime.datetime(2018, 8, 12, 7, 42, 21, 481000, tzinfo=<UTC>)}, 'schema': 'hrm'}
+django_session.find (0.00) {'_id': 'eylkqu3t1bwl267mi1hmig1a9b1i4kzw', 'expire_date': {'$gt': datetime.datetime(2018, 8, 12, 7, 42, 30, 834000, tzinfo=<UTC>)}, 'schema': 'hrm'}
+django_session.find (0.00) {'_id': 'eylkqu3t1bwl267mi1hmig1a9b1i4kzw', 'expire_date': {'$gt': datetime.datetime(2018, 8, 12, 7, 42, 33, 709000, tzinfo=<UTC>)}, 'schema': 'hrm'}
+django_session.find (0.00) {'_id': 'eylkqu3t1bwl267mi1hmig1a9b1i4kzw', 'expire_date': {'$gt': datetime.datetime(2018, 8, 12, 7, 42, 34, 413000, tzinfo=<UTC>)}, 'schema': 'hrm'}
+django_session.find (0.00) {'_id': 'eylkqu3t1bwl267mi1hmig1a9b1i4kzw', 'expire_date': {'$gt': datetime.datetime(2018, 8, 12, 7, 42, 35, 22000, tzinfo=<UTC>)}, 'schema': 'hrm'}
+django_session.find (0.00) {'_id': 'eylkqu3t1bwl267mi1hmig1a9b1i4kzw', 'expire_date': {'$gt': datetime.datetime(2018, 8, 12, 7, 42, 35, 627000, tzinfo=<UTC>)}, 'schema': 'hrm'}
+django_session.find (0.00) {'_id': 'eylkqu3t1bwl267mi1hmig1a9b1i4kzw', 'expire_date': {'$gt': datetime.datetime(2018, 8, 12, 7, 42, 36, 190000, tzinfo=<UTC>)}, 'schema': 'hrm'}
+django_session.find (0.00) {'_id': 'eylkqu3t1bwl267mi1hmig1a9b1i4kzw', 'expire_date': {'$gt': datetime.datetime(2018, 8, 12, 7, 42, 36, 712000, tzinfo=<UTC>)}, 'schema': 'hrm'}
+django_session.find (0.00) {'_id': 'eylkqu3t1bwl267mi1hmig1a9b1i4kzw', 'expire_date': {'$gt': datetime.datetime(2018, 8, 12, 7, 42, 37, 356000, tzinfo=<UTC>)}, 'schema': 'hrm'}
+django_session.find (0.00) {'_id': 'eylkqu3t1bwl267mi1hmig1a9b1i4kzw', 'expire_date': {'$gt': datetime.datetime(2018, 8, 12, 7, 42, 38, 59000, tzinfo=<UTC>)}, 'schema': 'hrm'}
+django_session.find (0.00) {'_id': 'eylkqu3t1bwl267mi1hmig1a9b1i4kzw', 'expire_date': {'$gt': datetime.datetime(2018, 8, 12, 7, 42, 38, 592000, tzinfo=<UTC>)}, 'schema': 'hrm'}
+django_session.find (0.00) {'_id': 'eylkqu3t1bwl267mi1hmig1a9b1i4kzw', 'expire_date': {'$gt': datetime.datetime(2018, 8, 12, 7, 42, 39, 799000, tzinfo=<UTC>)}, 'schema': 'hrm'}
+django_session.find (0.00) {'_id': 'eylkqu3t1bwl267mi1hmig1a9b1i4kzw', 'expire_date': {'$gt': datetime.datetime(2018, 8, 12, 7, 42, 40, 363000, tzinfo=<UTC>)}, 'schema': 'hrm'}
+django_session.find (0.00) {'_id': 'eylkqu3t1bwl267mi1hmig1a9b1i4kzw', 'expire_date': {'$gt': datetime.datetime(2018, 8, 12, 7, 42, 41, 262000, tzinfo=<UTC>)}, 'schema': 'hrm'}
+django_session.find (0.00) {'_id': 'eylkqu3t1bwl267mi1hmig1a9b1i4kzw', 'expire_date': {'$gt': datetime.datetime(2018, 8, 12, 7, 42, 41, 742000, tzinfo=<UTC>)}, 'schema': 'hrm'}
+django_session.find (0.00) {'_id': 'eylkqu3t1bwl267mi1hmig1a9b1i4kzw', 'expire_date': {'$gt': datetime.datetime(2018, 8, 12, 7, 42, 42, 323000, tzinfo=<UTC>)}, 'schema': 'hrm'}
+django_session.find (0.00) {'_id': 'eylkqu3t1bwl267mi1hmig1a9b1i4kzw', 'expire_date': {'$gt': datetime.datetime(2018, 8, 12, 7, 42, 42, 996000, tzinfo=<UTC>)}, 'schema': 'hrm'}
+django_session.find (0.00) {'_id': 'eylkqu3t1bwl267mi1hmig1a9b1i4kzw', 'expire_date': {'$gt': datetime.datetime(2018, 8, 12, 7, 42, 43, 615000, tzinfo=<UTC>)}, 'schema': 'hrm'}
+django_session.find (0.00) {'_id': 'eylkqu3t1bwl267mi1hmig1a9b1i4kzw', 'expire_date': {'$gt': datetime.datetime(2018, 8, 12, 7, 45, 29, 174000, tzinfo=<UTC>)}, 'schema': 'hrm'}
+django_session.find (0.00) {'_id': 'eylkqu3t1bwl267mi1hmig1a9b1i4kzw', 'expire_date': {'$gt': datetime.datetime(2018, 8, 12, 7, 45, 29, 609000, tzinfo=<UTC>)}, 'schema': 'hrm'}
+django_session.find (0.00) {'_id': 'eylkqu3t1bwl267mi1hmig1a9b1i4kzw', 'expire_date': {'$gt': datetime.datetime(2018, 8, 12, 7, 45, 30, 887000, tzinfo=<UTC>)}, 'schema': 'hrm'}
+django_session.find (0.00) {'_id': 'eylkqu3t1bwl267mi1hmig1a9b1i4kzw', 'expire_date': {'$gt': datetime.datetime(2018, 8, 12, 7, 45, 49, 42000, tzinfo=<UTC>)}, 'schema': 'hrm'}
+django_session.find (0.00) {'_id': 'eylkqu3t1bwl267mi1hmig1a9b1i4kzw', 'expire_date': {'$gt': datetime.datetime(2018, 8, 12, 7, 45, 49, 480000, tzinfo=<UTC>)}, 'schema': 'hrm'}
+django_session.find (0.00) {'_id': 'eylkqu3t1bwl267mi1hmig1a9b1i4kzw', 'expire_date': {'$gt': datetime.datetime(2018, 8, 12, 7, 45, 49, 674000, tzinfo=<UTC>)}, 'schema': 'hrm'}
+django_session.find (0.00) {'_id': 'eylkqu3t1bwl267mi1hmig1a9b1i4kzw', 'expire_date': {'$gt': datetime.datetime(2018, 8, 12, 7, 45, 51, 252000, tzinfo=<UTC>)}, 'schema': 'hrm'}
+django_session.find (0.00) {'_id': 'eylkqu3t1bwl267mi1hmig1a9b1i4kzw', 'expire_date': {'$gt': datetime.datetime(2018, 8, 12, 7, 45, 51, 827000, tzinfo=<UTC>)}, 'schema': 'hrm'}
+django_session.find (0.00) {'_id': 'eylkqu3t1bwl267mi1hmig1a9b1i4kzw', 'expire_date': {'$gt': datetime.datetime(2018, 8, 12, 7, 45, 52, 329000, tzinfo=<UTC>)}, 'schema': 'hrm'}
+django_session.find (0.00) {'_id': 'eylkqu3t1bwl267mi1hmig1a9b1i4kzw', 'expire_date': {'$gt': datetime.datetime(2018, 8, 12, 7, 45, 52, 878000, tzinfo=<UTC>)}, 'schema': 'hrm'}
+django_session.find (0.00) {'_id': 'eylkqu3t1bwl267mi1hmig1a9b1i4kzw', 'expire_date': {'$gt': datetime.datetime(2018, 8, 12, 7, 45, 53, 462000, tzinfo=<UTC>)}, 'schema': 'hrm'}
+django_session.find (0.00) {'_id': 'eylkqu3t1bwl267mi1hmig1a9b1i4kzw', 'expire_date': {'$gt': datetime.datetime(2018, 8, 12, 7, 45, 54, 174000, tzinfo=<UTC>)}, 'schema': 'hrm'}
+django_session.find (0.00) {'_id': 'eylkqu3t1bwl267mi1hmig1a9b1i4kzw', 'expire_date': {'$gt': datetime.datetime(2018, 8, 12, 7, 45, 54, 732000, tzinfo=<UTC>)}, 'schema': 'hrm'}
+django_session.find (0.00) {'_id': 'eylkqu3t1bwl267mi1hmig1a9b1i4kzw', 'expire_date': {'$gt': datetime.datetime(2018, 8, 12, 7, 45, 55, 535000, tzinfo=<UTC>)}, 'schema': 'hrm'}
+django_session.find (0.00) {'_id': 'eylkqu3t1bwl267mi1hmig1a9b1i4kzw', 'expire_date': {'$gt': datetime.datetime(2018, 8, 12, 7, 45, 56, 222000, tzinfo=<UTC>)}, 'schema': 'hrm'}
+django_session.find (0.00) {'_id': 'eylkqu3t1bwl267mi1hmig1a9b1i4kzw', 'expire_date': {'$gt': datetime.datetime(2018, 8, 12, 7, 45, 56, 914000, tzinfo=<UTC>)}, 'schema': 'hrm'}
+django_session.find (0.00) {'_id': 'eylkqu3t1bwl267mi1hmig1a9b1i4kzw', 'expire_date': {'$gt': datetime.datetime(2018, 8, 12, 7, 45, 57, 485000, tzinfo=<UTC>)}, 'schema': 'hrm'}
+django_session.find (0.00) {'_id': 'eylkqu3t1bwl267mi1hmig1a9b1i4kzw', 'expire_date': {'$gt': datetime.datetime(2018, 8, 12, 7, 46, 5, 381000, tzinfo=<UTC>)}, 'schema': 'hrm'}
+django_session.find (0.00) {'_id': 'eylkqu3t1bwl267mi1hmig1a9b1i4kzw', 'expire_date': {'$gt': datetime.datetime(2018, 8, 12, 7, 46, 5, 555000, tzinfo=<UTC>)}, 'schema': 'hrm'}
+django_session.find (0.00) {'_id': 'eylkqu3t1bwl267mi1hmig1a9b1i4kzw', 'expire_date': {'$gt': datetime.datetime(2018, 8, 12, 7, 46, 7, 678000, tzinfo=<UTC>)}, 'schema': 'hrm'}
+django_session.find (0.00) {'_id': 'eylkqu3t1bwl267mi1hmig1a9b1i4kzw', 'expire_date': {'$gt': datetime.datetime(2018, 8, 12, 7, 46, 7, 827000, tzinfo=<UTC>)}, 'schema': 'hrm'}
+django_session.find (0.00) {'_id': 'eylkqu3t1bwl267mi1hmig1a9b1i4kzw', 'expire_date': {'$gt': datetime.datetime(2018, 8, 12, 7, 46, 9, 552000, tzinfo=<UTC>)}, 'schema': 'hrm'}
+django_session.find (0.00) {'_id': 'eylkqu3t1bwl267mi1hmig1a9b1i4kzw', 'expire_date': {'$gt': datetime.datetime(2018, 8, 12, 7, 46, 9, 691000, tzinfo=<UTC>)}, 'schema': 'hrm'}
+django_session.find (0.00) {'_id': 'eylkqu3t1bwl267mi1hmig1a9b1i4kzw', 'expire_date': {'$gt': datetime.datetime(2018, 8, 12, 7, 46, 11, 140000, tzinfo=<UTC>)}, 'schema': 'hrm'}
+django_session.find (0.00) {'_id': 'eylkqu3t1bwl267mi1hmig1a9b1i4kzw', 'expire_date': {'$gt': datetime.datetime(2018, 8, 12, 7, 46, 11, 290000, tzinfo=<UTC>)}, 'schema': 'hrm'}
+django_session.find (0.00) {'_id': 'eylkqu3t1bwl267mi1hmig1a9b1i4kzw', 'expire_date': {'$gt': datetime.datetime(2018, 8, 12, 7, 46, 13, 624000, tzinfo=<UTC>)}, 'schema': 'hrm'}
+django_session.find (0.00) {'_id': 'eylkqu3t1bwl267mi1hmig1a9b1i4kzw', 'expire_date': {'$gt': datetime.datetime(2018, 8, 12, 7, 46, 13, 749000, tzinfo=<UTC>)}, 'schema': 'hrm'}
+django_session.find (0.00) {'_id': 'eylkqu3t1bwl267mi1hmig1a9b1i4kzw', 'expire_date': {'$gt': datetime.datetime(2018, 8, 12, 7, 46, 15, 592000, tzinfo=<UTC>)}, 'schema': 'hrm'}
+django_session.find (0.00) {'_id': 'eylkqu3t1bwl267mi1hmig1a9b1i4kzw', 'expire_date': {'$gt': datetime.datetime(2018, 8, 12, 7, 46, 15, 725000, tzinfo=<UTC>)}, 'schema': 'hrm'}
+django_session.find (0.00) {'_id': 'eylkqu3t1bwl267mi1hmig1a9b1i4kzw', 'expire_date': {'$gt': datetime.datetime(2018, 8, 12, 7, 46, 18, 122000, tzinfo=<UTC>)}, 'schema': 'hrm'}
+django_session.find (0.00) {'_id': 'eylkqu3t1bwl267mi1hmig1a9b1i4kzw', 'expire_date': {'$gt': datetime.datetime(2018, 8, 12, 7, 46, 18, 181000, tzinfo=<UTC>)}, 'schema': 'hrm'}
+django_session.find (0.00) {'_id': 'eylkqu3t1bwl267mi1hmig1a9b1i4kzw', 'expire_date': {'$gt': datetime.datetime(2018, 8, 12, 7, 46, 19, 776000, tzinfo=<UTC>)}, 'schema': 'hrm'}
+django_session.find (0.00) {'_id': 'eylkqu3t1bwl267mi1hmig1a9b1i4kzw', 'expire_date': {'$gt': datetime.datetime(2018, 8, 12, 7, 46, 19, 907000, tzinfo=<UTC>)}, 'schema': 'hrm'}
+django_session.find (0.00) {'_id': 'eylkqu3t1bwl267mi1hmig1a9b1i4kzw', 'expire_date': {'$gt': datetime.datetime(2018, 8, 12, 7, 46, 46, 721000, tzinfo=<UTC>)}, 'schema': 'hrm'}
+django_session.find (0.00) {'_id': 'eylkqu3t1bwl267mi1hmig1a9b1i4kzw', 'expire_date': {'$gt': datetime.datetime(2018, 8, 12, 7, 46, 47, 332000, tzinfo=<UTC>)}, 'schema': 'hrm'}
+django_session.find (0.00) {'_id': 'eylkqu3t1bwl267mi1hmig1a9b1i4kzw', 'expire_date': {'$gt': datetime.datetime(2018, 8, 12, 7, 46, 57, 996000, tzinfo=<UTC>)}, 'schema': 'hrm'}
