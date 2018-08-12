@@ -33,6 +33,40 @@ def get_coll(source_id):
 def get_list(params):
     coll = get_coll(params["data"]["source"])
     qr = coll().aggregate()
+    if params["data"].get("params",None) != None:
+        for x in params["data"]["params"].get("sort",[]):
+            qr=qr.sort({
+                x["colId"]:(lambda p: 1 if p["sort"]=="asc" else -1)(x)
+            })
+        if params["data"]["params"].get("filter") != {}:
+            for x in params["data"]["params"]["filter"].keys():
+                f= params["data"]["params"]["filter"][x]
+                if f["type"] == "contains":
+                    expr="contains("+x+",{0})"
+                    qr=qr.match(expr,f["filter"])
+                if f["type"] == "notEqual":
+                    expr=x+"!={0}"
+                    qr=qr.match(expr,f["filter"])
+                if f["type"] == "equals":
+                    expr=x+"=={0}"
+                    qr=qr.match(expr,f["filter"])
+                if f["type"] == "notEqual":
+                    expr=x+"!={0}"
+                    qr=qr.match(expr,f["filter"])
+                if f["type"] == "startsWith":
+                    expr = "start(" + x + ",{0})"
+                    qr = qr.match(expr, f["filter"])
+                if f["type"] == "endsWith":
+                    expr = "end(" + x + ",{0})"
+                    qr = qr.match(expr, f["filter"])
+                if f["type"] == "notContains":
+                    expr = "notContains(" + x + ",{0})"
+                    qr = qr.match(expr, f["filter"])
+
+
+
+
+
     data =qr.get_page(params["data"].get("pageIndex",0),params["data"].get("pageSize",50))
     return data
 def update_item(args):

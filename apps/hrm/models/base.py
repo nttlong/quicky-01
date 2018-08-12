@@ -37,6 +37,6 @@ helpers.define_model(
     modified_on_utc=helpers.create_field("date", False),
     modified_by=helpers.create_field("text", False)
 )
-helpers.events("base")\
+helpers.events("base_category")\
     .on_before_insert(on_before_insert)\
     .on_before_update(on_before_update)

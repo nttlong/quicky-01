@@ -398,21 +398,72 @@ def get_tree(expr,*params,**kwargs):
             "left":get_left(cmp.value.values[0],*params),
             "right": get_left(cmp.value.values[1],*params)
         }
-    if type(cmp.value) is _ast.Call and \
-            cmp.value.func.id=="contains":
-        if type(cmp.value.args[1]) is _ast.Call and \
-                cmp.value.args[1].func.id=="get_params":
-            return {
-                "left": cmp.value.args[0].id,
-                "operator": "$contains",
-                "right": params[cmp.value.args[1].args[0].n]
-            }
+    if type(cmp.value) is _ast.Call:
+        if cmp.value.func.id=="contains":
+            if type(cmp.value.args[1]) is _ast.Call and \
+                    cmp.value.args[1].func.id=="get_params":
+                return {
+                    "left": cmp.value.args[0].id,
+                    "operator": "$contains",
+                    "right": params[cmp.value.args[1].args[0].n]
+                }
+            else:
+                return {
+                    "left":cmp.value.args[0].id,
+                    "operator":"$contains",
+                    "right":cmp.value.args[1].s
+                }
+        elif cmp.value.func.id=="start":
+            if type(cmp.value.args[1]) is _ast.Call and \
+                    cmp.value.args[1].func.id=="get_params":
+                return {
+                    "left": cmp.value.args[0].id,
+                    "operator": "$start",
+                    "right": params[cmp.value.args[1].args[0].n]
+                }
+            else:
+                return {
+                    "left":cmp.value.args[0].id,
+                    "operator":"$start",
+                    "right":cmp.value.args[1].s
+                }
+        elif cmp.value.func.id=="end":
+            if type(cmp.value.args[1]) is _ast.Call and \
+                    cmp.value.args[1].func.id=="get_params":
+                return {
+                    "left": cmp.value.args[0].id,
+                    "operator": "$end",
+                    "right": params[cmp.value.args[1].args[0].n]
+                }
+            else:
+                return {
+                    "left":cmp.value.args[0].id,
+                    "operator":"$end",
+                    "right":cmp.value.args[1].s
+                }
+        elif cmp.value.func.id=="notContains":
+            if type(cmp.value.args[1]) is _ast.Call and \
+                    cmp.value.args[1].func.id=="get_params":
+                return {
+                    "left": cmp.value.args[0].id,
+                    "operator": "$notContains",
+                    "right": params[cmp.value.args[1].args[0].n]
+                }
+            else:
+                return {
+                    "left":cmp.value.args[0].id,
+                    "operator":"$notContains",
+                    "right":cmp.value.args[1].s
+                }
         else:
-            return {
-                "left":cmp.value.args[0].id,
-                "operator":"$contains",
-                "right":cmp.value.args[1].s
-            }
+            support_funcs="contains(field name,text value)\n" \
+                          "notContains(field name,text value)" \
+                          "start(field name,text value)\n" \
+                          "end(field name,text value)\n"
+
+
+
+            raise (Exception("unknown function '{0}'. Validate function in match are bellow:\n{1}".format(cmp.value.func.id,support_funcs)))
 
 
 
@@ -446,6 +497,21 @@ def get_expr(fx,*params):
         if fx["operator"]=="$contains":
             return {
                 fx["left"]:re.compile(fx["right"],re.IGNORECASE)
+
+            }
+        if fx["operator"]=="$start":
+            return {
+                fx["left"]:re.compile(r"^"+fx["right"],re.IGNORECASE)
+
+            }
+        if fx["operator"]=="$end":
+            return {
+                fx["left"]:re.compile(fx["right"]+r"$",re.IGNORECASE)
+
+            }
+        if fx["operator"]=="$notContains":
+            return {
+                fx["left"]:re.compile(r"^(?!.*?"+fx["right"]+r").*$" ,re.IGNORECASE)
 
             }
 
