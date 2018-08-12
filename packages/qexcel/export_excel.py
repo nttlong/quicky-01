@@ -1,4 +1,4 @@
-def do_export(lan,app_name,schema,source,coll):
+def do_export(lan,app_name,schema,source,coll,cols_caption=None):
     from . import language
 
     if not hasattr(coll,"get_list"):
@@ -17,16 +17,34 @@ def do_export(lan,app_name,schema,source,coll):
         })
 
     caption_list = [ x.get("caption") for x in col_of_fields]
+    field_list =[ x.get("field") for x in col_of_fields]
+
     coll.project(projector)
     lst = coll.get_list()
     from openpyxl import Workbook
+    from openpyxl import utils
     wb = Workbook()
     ws = wb.active
+    ws.title = "data"
     ws.append(caption_list)
+    col_index = 1
+    for x in field_list:
+        wb.create_named_range(
+            x,
+            ws,
+            "$"+utils.get_column_letter(col_index)+":$"+
+            utils.get_column_letter(col_index)
+        )
+    # for x in header_attr:
+    #     wb.create_named_range(x, ws,
+    #                           "$" + utils.get_column_letter(col_index) + ":$" + utils.get_column_letter(col_index))
+
+
+    # col_index = col_index + 1
     for x in lst:
         items =[]
-        for k,v in x.items():
-            items.append(v)
+        for f in field_list:
+            items.append(x.get(f,None))
         ws.append(items)
     from openpyxl.writer.excel import save_virtual_workbook
     from django.http import HttpResponse

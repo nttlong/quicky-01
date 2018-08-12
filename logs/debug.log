@@ -2619,3 +2619,215 @@ django_session.find (0.00) {'_id': 'eylkqu3t1bwl267mi1hmig1a9b1i4kzw', 'expire_d
 django_session.find (0.00) {'_id': 'eylkqu3t1bwl267mi1hmig1a9b1i4kzw', 'expire_date': {'$gt': datetime.datetime(2018, 8, 12, 9, 6, 39, 509000, tzinfo=<UTC>)}, 'schema': 'hrm'}
 django_session.find (0.00) {'_id': 'eylkqu3t1bwl267mi1hmig1a9b1i4kzw', 'expire_date': {'$gt': datetime.datetime(2018, 8, 12, 9, 6, 40, 127000, tzinfo=<UTC>)}, 'schema': 'hrm'}
 django_session.find (0.00) {'_id': 'eylkqu3t1bwl267mi1hmig1a9b1i4kzw', 'expire_date': {'$gt': datetime.datetime(2018, 8, 12, 9, 6, 45, 599000, tzinfo=<UTC>)}, 'schema': 'hrm'}
+django_session.find (0.00) {'_id': 'eylkqu3t1bwl267mi1hmig1a9b1i4kzw', 'expire_date': {'$gt': datetime.datetime(2018, 8, 12, 9, 15, 23, 122000, tzinfo=<UTC>)}, 'schema': 'hrm'}
+django_session.find (0.00) {'_id': 'eylkqu3t1bwl267mi1hmig1a9b1i4kzw', 'expire_date': {'$gt': datetime.datetime(2018, 8, 12, 9, 15, 23, 421000, tzinfo=<UTC>)}, 'schema': 'hrm'}
+django_session.find (0.00) {'_id': 'eylkqu3t1bwl267mi1hmig1a9b1i4kzw', 'expire_date': {'$gt': datetime.datetime(2018, 8, 12, 9, 15, 25, 904000, tzinfo=<UTC>)}, 'schema': 'hrm'}
+django_session.find (0.00) {'_id': 'eylkqu3t1bwl267mi1hmig1a9b1i4kzw', 'expire_date': {'$gt': datetime.datetime(2018, 8, 12, 9, 15, 27, 970000, tzinfo=<UTC>)}, 'schema': 'hrm'}
+Internal Server Error: /download/excel/ba304315-b3d1-42b1-91af-7443b9fab750
+Traceback (most recent call last):
+  File "E:\code\quicky-01\packages/django\django\core\handlers\base.py", line 122, in get_response
+    raise e
+TypeError: 'NoneType' object is not iterable
+django_session.find (0.00) {'_id': 'eylkqu3t1bwl267mi1hmig1a9b1i4kzw', 'expire_date': {'$gt': datetime.datetime(2018, 8, 12, 9, 16, 28, 184000, tzinfo=<UTC>)}, 'schema': 'hrm'}
+django_session.find (0.00) {'_id': 'eylkqu3t1bwl267mi1hmig1a9b1i4kzw', 'expire_date': {'$gt': datetime.datetime(2018, 8, 12, 9, 21, 45, 585000, tzinfo=<UTC>)}, 'schema': 'hrm'}
+Internal Server Error: /download/excel/ba304315-b3d1-42b1-91af-7443b9fab750
+Traceback (most recent call last):
+  File "E:\code\quicky-01\packages/django\django\core\handlers\base.py", line 122, in get_response
+    raise e
+  File "E:\code\quicky-01\packages\qexcel\export_excel.py", line 34
+    for x in lst:
+    ^
+IndentationError: unexpected indent
+django_session.find (0.00) {'_id': 'eylkqu3t1bwl267mi1hmig1a9b1i4kzw', 'expire_date': {'$gt': datetime.datetime(2018, 8, 12, 9, 22, 5, 691000, tzinfo=<UTC>)}, 'schema': 'hrm'}
+Internal Server Error: /download/excel/ba304315-b3d1-42b1-91af-7443b9fab750
+Traceback (most recent call last):
+  File "E:\code\quicky-01\packages/django\django\core\handlers\base.py", line 122, in get_response
+    raise e
+  File "E:\code\quicky-01\packages\qexcel\export_excel.py", line 34
+    for x in lst:
+    ^
+IndentationError: unexpected indent
+django_session.find (0.00) {'_id': 'eylkqu3t1bwl267mi1hmig1a9b1i4kzw', 'expire_date': {'$gt': datetime.datetime(2018, 8, 12, 9, 22, 38, 408000, tzinfo=<UTC>)}, 'schema': 'hrm'}
+django_session.find (0.00) {'_id': 'eylkqu3t1bwl267mi1hmig1a9b1i4kzw', 'expire_date': {'$gt': datetime.datetime(2018, 8, 12, 9, 25, 6, 851000, tzinfo=<UTC>)}, 'schema': 'hrm'}
+django_session.find (0.00) {'_id': 'eylkqu3t1bwl267mi1hmig1a9b1i4kzw', 'expire_date': {'$gt': datetime.datetime(2018, 8, 12, 9, 26, 41, 186000, tzinfo=<UTC>)}, 'schema': 'hrm'}
+django_session.find (0.00) {'_id': 'eylkqu3t1bwl267mi1hmig1a9b1i4kzw', 'expire_date': {'$gt': datetime.datetime(2018, 8, 12, 9, 26, 58, 465000, tzinfo=<UTC>)}, 'schema': 'hrm'}
+django_session.find (0.00) {'_id': 'eylkqu3t1bwl267mi1hmig1a9b1i4kzw', 'expire_date': {'$gt': datetime.datetime(2018, 8, 12, 9, 28, 8, 390000, tzinfo=<UTC>)}, 'schema': 'hrm'}
+django_session.find (0.00) {'_id': 'eylkqu3t1bwl267mi1hmig1a9b1i4kzw', 'expire_date': {'$gt': datetime.datetime(2018, 8, 12, 9, 29, 40, 784000, tzinfo=<UTC>)}, 'schema': 'hrm'}
+django_session.find (0.00) {'_id': 'eylkqu3t1bwl267mi1hmig1a9b1i4kzw', 'expire_date': {'$gt': datetime.datetime(2018, 8, 12, 9, 29, 41, 140000, tzinfo=<UTC>)}, 'schema': 'hrm'}
+django_session.find (0.00) {'_id': 'eylkqu3t1bwl267mi1hmig1a9b1i4kzw', 'expire_date': {'$gt': datetime.datetime(2018, 8, 12, 9, 29, 42, 254000, tzinfo=<UTC>)}, 'schema': 'hrm'}
+django_session.find (0.00) {'_id': 'eylkqu3t1bwl267mi1hmig1a9b1i4kzw', 'expire_date': {'$gt': datetime.datetime(2018, 8, 12, 9, 29, 42, 392000, tzinfo=<UTC>)}, 'schema': 'hrm'}
+django_session.find (0.00) {'_id': 'eylkqu3t1bwl267mi1hmig1a9b1i4kzw', 'expire_date': {'$gt': datetime.datetime(2018, 8, 12, 9, 29, 44, 412000, tzinfo=<UTC>)}, 'schema': 'hrm'}
+django_session.find (0.00) {'_id': 'eylkqu3t1bwl267mi1hmig1a9b1i4kzw', 'expire_date': {'$gt': datetime.datetime(2018, 8, 12, 9, 29, 45, 924000, tzinfo=<UTC>)}, 'schema': 'hrm'}
+django_session.find (0.00) {'_id': 'eylkqu3t1bwl267mi1hmig1a9b1i4kzw', 'expire_date': {'$gt': datetime.datetime(2018, 8, 12, 9, 30, 58, 380000, tzinfo=<UTC>)}, 'schema': 'hrm'}
+django_session.find (0.00) {'_id': 'eylkqu3t1bwl267mi1hmig1a9b1i4kzw', 'expire_date': {'$gt': datetime.datetime(2018, 8, 12, 9, 31, 21, 831000, tzinfo=<UTC>)}, 'schema': 'hrm'}
+django_session.find (0.00) {'_id': 'eylkqu3t1bwl267mi1hmig1a9b1i4kzw', 'expire_date': {'$gt': datetime.datetime(2018, 8, 12, 9, 34, 43, 194000, tzinfo=<UTC>)}, 'schema': 'hrm'}
+django_session.find (0.00) {'_id': 'eylkqu3t1bwl267mi1hmig1a9b1i4kzw', 'expire_date': {'$gt': datetime.datetime(2018, 8, 12, 9, 44, 2, 197000, tzinfo=<UTC>)}, 'schema': 'hrm'}
+django_session.find (0.00) {'_id': 'eylkqu3t1bwl267mi1hmig1a9b1i4kzw', 'expire_date': {'$gt': datetime.datetime(2018, 8, 12, 9, 45, 28, 537000, tzinfo=<UTC>)}, 'schema': 'hrm'}
+django_session.find (0.00) {'_id': 'eylkqu3t1bwl267mi1hmig1a9b1i4kzw', 'expire_date': {'$gt': datetime.datetime(2018, 8, 12, 9, 46, 51, 791000, tzinfo=<UTC>)}, 'schema': 'hrm'}
+django_session.find (0.00) {'_id': 'eylkqu3t1bwl267mi1hmig1a9b1i4kzw', 'expire_date': {'$gt': datetime.datetime(2018, 8, 12, 9, 48, 35, 543000, tzinfo=<UTC>)}, 'schema': 'hrm'}
+django_session.find (0.00) {'_id': 'eylkqu3t1bwl267mi1hmig1a9b1i4kzw', 'expire_date': {'$gt': datetime.datetime(2018, 8, 12, 9, 48, 35, 883000, tzinfo=<UTC>)}, 'schema': 'hrm'}
+django_session.find (0.00) {'_id': 'eylkqu3t1bwl267mi1hmig1a9b1i4kzw', 'expire_date': {'$gt': datetime.datetime(2018, 8, 12, 9, 48, 46, 159000, tzinfo=<UTC>)}, 'schema': 'hrm'}
+django_session.find (0.00) {'_id': 'eylkqu3t1bwl267mi1hmig1a9b1i4kzw', 'expire_date': {'$gt': datetime.datetime(2018, 8, 12, 9, 48, 47, 626000, tzinfo=<UTC>)}, 'schema': 'hrm'}
+django_session.find (0.00) {'_id': 'eylkqu3t1bwl267mi1hmig1a9b1i4kzw', 'expire_date': {'$gt': datetime.datetime(2018, 8, 12, 9, 56, 6, 242000, tzinfo=<UTC>)}, 'schema': 'hrm'}
+django_session.find (0.00) {'_id': 'eylkqu3t1bwl267mi1hmig1a9b1i4kzw', 'expire_date': {'$gt': datetime.datetime(2018, 8, 12, 9, 58, 20, 450000, tzinfo=<UTC>)}, 'schema': 'hrm'}
+django_session.find (0.00) {'_id': 'eylkqu3t1bwl267mi1hmig1a9b1i4kzw', 'expire_date': {'$gt': datetime.datetime(2018, 8, 12, 9, 58, 27, 430000, tzinfo=<UTC>)}, 'schema': 'hrm'}
+django_session.find (0.00) {'_id': 'eylkqu3t1bwl267mi1hmig1a9b1i4kzw', 'expire_date': {'$gt': datetime.datetime(2018, 8, 12, 9, 58, 28, 185000, tzinfo=<UTC>)}, 'schema': 'hrm'}
+django_session.find (0.00) {'_id': 'eylkqu3t1bwl267mi1hmig1a9b1i4kzw', 'expire_date': {'$gt': datetime.datetime(2018, 8, 12, 9, 58, 28, 979000, tzinfo=<UTC>)}, 'schema': 'hrm'}
+django_session.find (0.00) {'_id': 'eylkqu3t1bwl267mi1hmig1a9b1i4kzw', 'expire_date': {'$gt': datetime.datetime(2018, 8, 12, 9, 58, 29, 577000, tzinfo=<UTC>)}, 'schema': 'hrm'}
+django_session.find (0.00) {'_id': 'eylkqu3t1bwl267mi1hmig1a9b1i4kzw', 'expire_date': {'$gt': datetime.datetime(2018, 8, 12, 9, 58, 30, 196000, tzinfo=<UTC>)}, 'schema': 'hrm'}
+django_session.find (0.00) {'_id': 'eylkqu3t1bwl267mi1hmig1a9b1i4kzw', 'expire_date': {'$gt': datetime.datetime(2018, 8, 12, 9, 58, 30, 845000, tzinfo=<UTC>)}, 'schema': 'hrm'}
+django_session.find (0.00) {'_id': 'eylkqu3t1bwl267mi1hmig1a9b1i4kzw', 'expire_date': {'$gt': datetime.datetime(2018, 8, 12, 9, 58, 31, 502000, tzinfo=<UTC>)}, 'schema': 'hrm'}
+django_session.find (0.00) {'_id': 'eylkqu3t1bwl267mi1hmig1a9b1i4kzw', 'expire_date': {'$gt': datetime.datetime(2018, 8, 12, 9, 58, 32, 16000, tzinfo=<UTC>)}, 'schema': 'hrm'}
+django_session.find (0.00) {'_id': 'eylkqu3t1bwl267mi1hmig1a9b1i4kzw', 'expire_date': {'$gt': datetime.datetime(2018, 8, 12, 9, 58, 32, 597000, tzinfo=<UTC>)}, 'schema': 'hrm'}
+django_session.find (0.00) {'_id': 'eylkqu3t1bwl267mi1hmig1a9b1i4kzw', 'expire_date': {'$gt': datetime.datetime(2018, 8, 12, 9, 58, 35, 590000, tzinfo=<UTC>)}, 'schema': 'hrm'}
+django_session.find (0.00) {'_id': 'eylkqu3t1bwl267mi1hmig1a9b1i4kzw', 'expire_date': {'$gt': datetime.datetime(2018, 8, 12, 9, 58, 36, 322000, tzinfo=<UTC>)}, 'schema': 'hrm'}
+django_session.find (0.00) {'_id': 'eylkqu3t1bwl267mi1hmig1a9b1i4kzw', 'expire_date': {'$gt': datetime.datetime(2018, 8, 12, 9, 58, 38, 27000, tzinfo=<UTC>)}, 'schema': 'hrm'}
+django_session.find (0.00) {'_id': 'eylkqu3t1bwl267mi1hmig1a9b1i4kzw', 'expire_date': {'$gt': datetime.datetime(2018, 8, 12, 9, 58, 38, 997000, tzinfo=<UTC>)}, 'schema': 'hrm'}
+django_session.find (0.00) {'_id': 'eylkqu3t1bwl267mi1hmig1a9b1i4kzw', 'expire_date': {'$gt': datetime.datetime(2018, 8, 12, 9, 58, 40, 925000, tzinfo=<UTC>)}, 'schema': 'hrm'}
+django_session.find (0.00) {'_id': 'eylkqu3t1bwl267mi1hmig1a9b1i4kzw', 'expire_date': {'$gt': datetime.datetime(2018, 8, 12, 9, 58, 41, 689000, tzinfo=<UTC>)}, 'schema': 'hrm'}
+django_session.find (0.00) {'_id': 'eylkqu3t1bwl267mi1hmig1a9b1i4kzw', 'expire_date': {'$gt': datetime.datetime(2018, 8, 12, 9, 58, 43, 861000, tzinfo=<UTC>)}, 'schema': 'hrm'}
+django_session.find (0.00) {'_id': 'eylkqu3t1bwl267mi1hmig1a9b1i4kzw', 'expire_date': {'$gt': datetime.datetime(2018, 8, 12, 9, 58, 44, 540000, tzinfo=<UTC>)}, 'schema': 'hrm'}
+django_session.find (0.00) {'_id': 'eylkqu3t1bwl267mi1hmig1a9b1i4kzw', 'expire_date': {'$gt': datetime.datetime(2018, 8, 12, 9, 58, 45, 350000, tzinfo=<UTC>)}, 'schema': 'hrm'}
+django_session.find (0.00) {'_id': 'eylkqu3t1bwl267mi1hmig1a9b1i4kzw', 'expire_date': {'$gt': datetime.datetime(2018, 8, 12, 9, 58, 46, 912000, tzinfo=<UTC>)}, 'schema': 'hrm'}
+django_session.find (0.00) {'_id': 'eylkqu3t1bwl267mi1hmig1a9b1i4kzw', 'expire_date': {'$gt': datetime.datetime(2018, 8, 12, 9, 58, 49, 300000, tzinfo=<UTC>)}, 'schema': 'hrm'}
+django_session.find (0.00) {'_id': 'eylkqu3t1bwl267mi1hmig1a9b1i4kzw', 'expire_date': {'$gt': datetime.datetime(2018, 8, 12, 9, 58, 50, 342000, tzinfo=<UTC>)}, 'schema': 'hrm'}
+django_session.find (0.00) {'_id': 'eylkqu3t1bwl267mi1hmig1a9b1i4kzw', 'expire_date': {'$gt': datetime.datetime(2018, 8, 12, 9, 58, 50, 987000, tzinfo=<UTC>)}, 'schema': 'hrm'}
+django_session.find (0.00) {'_id': 'eylkqu3t1bwl267mi1hmig1a9b1i4kzw', 'expire_date': {'$gt': datetime.datetime(2018, 8, 12, 9, 58, 52, 166000, tzinfo=<UTC>)}, 'schema': 'hrm'}
+django_session.find (0.00) {'_id': 'eylkqu3t1bwl267mi1hmig1a9b1i4kzw', 'expire_date': {'$gt': datetime.datetime(2018, 8, 12, 9, 58, 52, 843000, tzinfo=<UTC>)}, 'schema': 'hrm'}
+django_session.find (0.00) {'_id': 'eylkqu3t1bwl267mi1hmig1a9b1i4kzw', 'expire_date': {'$gt': datetime.datetime(2018, 8, 12, 9, 58, 53, 994000, tzinfo=<UTC>)}, 'schema': 'hrm'}
+django_session.find (0.00) {'_id': 'eylkqu3t1bwl267mi1hmig1a9b1i4kzw', 'expire_date': {'$gt': datetime.datetime(2018, 8, 12, 9, 58, 54, 588000, tzinfo=<UTC>)}, 'schema': 'hrm'}
+django_session.find (0.00) {'_id': 'eylkqu3t1bwl267mi1hmig1a9b1i4kzw', 'expire_date': {'$gt': datetime.datetime(2018, 8, 12, 9, 59, 22, 635000, tzinfo=<UTC>)}, 'schema': 'hrm'}
+django_session.find (0.00) {'_id': 'eylkqu3t1bwl267mi1hmig1a9b1i4kzw', 'expire_date': {'$gt': datetime.datetime(2018, 8, 12, 9, 59, 27, 81000, tzinfo=<UTC>)}, 'schema': 'hrm'}
+django_session.find (0.00) {'_id': 'eylkqu3t1bwl267mi1hmig1a9b1i4kzw', 'expire_date': {'$gt': datetime.datetime(2018, 8, 12, 9, 59, 29, 383000, tzinfo=<UTC>)}, 'schema': 'hrm'}
+django_session.find (0.00) {'_id': 'eylkqu3t1bwl267mi1hmig1a9b1i4kzw', 'expire_date': {'$gt': datetime.datetime(2018, 8, 12, 9, 59, 44, 529000, tzinfo=<UTC>)}, 'schema': 'hrm'}
+django_session.find (0.00) {'_id': 'eylkqu3t1bwl267mi1hmig1a9b1i4kzw', 'expire_date': {'$gt': datetime.datetime(2018, 8, 12, 9, 59, 45, 253000, tzinfo=<UTC>)}, 'schema': 'hrm'}
+django_session.find (0.00) {'_id': 'eylkqu3t1bwl267mi1hmig1a9b1i4kzw', 'expire_date': {'$gt': datetime.datetime(2018, 8, 12, 9, 59, 45, 941000, tzinfo=<UTC>)}, 'schema': 'hrm'}
+django_session.find (0.00) {'_id': 'eylkqu3t1bwl267mi1hmig1a9b1i4kzw', 'expire_date': {'$gt': datetime.datetime(2018, 8, 12, 9, 59, 47, 815000, tzinfo=<UTC>)}, 'schema': 'hrm'}
+django_session.find (0.00) {'_id': 'eylkqu3t1bwl267mi1hmig1a9b1i4kzw', 'expire_date': {'$gt': datetime.datetime(2018, 8, 12, 9, 59, 49, 90000, tzinfo=<UTC>)}, 'schema': 'hrm'}
+django_session.find (0.00) {'_id': 'eylkqu3t1bwl267mi1hmig1a9b1i4kzw', 'expire_date': {'$gt': datetime.datetime(2018, 8, 12, 10, 2, 13, 235000, tzinfo=<UTC>)}, 'schema': 'hrm'}
+django_session.find (0.00) {'_id': 'eylkqu3t1bwl267mi1hmig1a9b1i4kzw', 'expire_date': {'$gt': datetime.datetime(2018, 8, 12, 10, 2, 13, 859000, tzinfo=<UTC>)}, 'schema': 'hrm'}
+django_session.find (0.00) {'_id': 'eylkqu3t1bwl267mi1hmig1a9b1i4kzw', 'expire_date': {'$gt': datetime.datetime(2018, 8, 12, 10, 2, 14, 92000, tzinfo=<UTC>)}, 'schema': 'hrm'}
+django_session.find (0.00) {'_id': 'eylkqu3t1bwl267mi1hmig1a9b1i4kzw', 'expire_date': {'$gt': datetime.datetime(2018, 8, 12, 10, 2, 15, 746000, tzinfo=<UTC>)}, 'schema': 'hrm'}
+django_session.find (0.00) {'_id': 'eylkqu3t1bwl267mi1hmig1a9b1i4kzw', 'expire_date': {'$gt': datetime.datetime(2018, 8, 12, 10, 2, 18, 343000, tzinfo=<UTC>)}, 'schema': 'hrm'}
+django_session.find (0.00) {'_id': 'eylkqu3t1bwl267mi1hmig1a9b1i4kzw', 'expire_date': {'$gt': datetime.datetime(2018, 8, 12, 10, 2, 23, 378000, tzinfo=<UTC>)}, 'schema': 'hrm'}
+django_session.find (0.00) {'_id': 'eylkqu3t1bwl267mi1hmig1a9b1i4kzw', 'expire_date': {'$gt': datetime.datetime(2018, 8, 12, 10, 2, 33, 478000, tzinfo=<UTC>)}, 'schema': 'hrm'}
+django_session.find (0.00) {'_id': 'eylkqu3t1bwl267mi1hmig1a9b1i4kzw', 'expire_date': {'$gt': datetime.datetime(2018, 8, 12, 10, 2, 33, 782000, tzinfo=<UTC>)}, 'schema': 'hrm'}
+django_session.find (0.00) {'_id': 'eylkqu3t1bwl267mi1hmig1a9b1i4kzw', 'expire_date': {'$gt': datetime.datetime(2018, 8, 12, 10, 2, 33, 965000, tzinfo=<UTC>)}, 'schema': 'hrm'}
+django_session.find (0.00) {'_id': 'eylkqu3t1bwl267mi1hmig1a9b1i4kzw', 'expire_date': {'$gt': datetime.datetime(2018, 8, 12, 10, 2, 40, 776000, tzinfo=<UTC>)}, 'schema': 'hrm'}
+django_session.find (0.00) {'_id': 'eylkqu3t1bwl267mi1hmig1a9b1i4kzw', 'expire_date': {'$gt': datetime.datetime(2018, 8, 12, 10, 2, 41, 209000, tzinfo=<UTC>)}, 'schema': 'hrm'}
+django_session.find (0.00) {'_id': 'eylkqu3t1bwl267mi1hmig1a9b1i4kzw', 'expire_date': {'$gt': datetime.datetime(2018, 8, 12, 10, 2, 41, 440000, tzinfo=<UTC>)}, 'schema': 'hrm'}
+django_session.find (0.00) {'_id': 'eylkqu3t1bwl267mi1hmig1a9b1i4kzw', 'expire_date': {'$gt': datetime.datetime(2018, 8, 12, 10, 3, 9, 969000, tzinfo=<UTC>)}, 'schema': 'hrm'}
+django_session.find (0.00) {'_id': 'eylkqu3t1bwl267mi1hmig1a9b1i4kzw', 'expire_date': {'$gt': datetime.datetime(2018, 8, 12, 10, 3, 10, 359000, tzinfo=<UTC>)}, 'schema': 'hrm'}
+django_session.find (0.00) {'_id': 'eylkqu3t1bwl267mi1hmig1a9b1i4kzw', 'expire_date': {'$gt': datetime.datetime(2018, 8, 12, 10, 3, 10, 578000, tzinfo=<UTC>)}, 'schema': 'hrm'}
+django_session.find (0.00) {'_id': 'eylkqu3t1bwl267mi1hmig1a9b1i4kzw', 'expire_date': {'$gt': datetime.datetime(2018, 8, 12, 10, 3, 11, 770000, tzinfo=<UTC>)}, 'schema': 'hrm'}
+Internal Server Error: /dialogs/imports/upload_excel
+Traceback (most recent call last):
+  File "E:\code\quicky-01\packages/django\django\core\handlers\base.py", line 122, in get_response
+    raise e
+IOError: [Errno 2] No such file or directory: u'E:\\code\\quicky-01\\apps\\hrm\\templates\\views\\imports\\upload_excel.html'
+django_session.find (0.00) {'_id': 'eylkqu3t1bwl267mi1hmig1a9b1i4kzw', 'expire_date': {'$gt': datetime.datetime(2018, 8, 12, 10, 3, 12, 936000, tzinfo=<UTC>)}, 'schema': 'hrm'}
+django_session.find (0.00) {'_id': 'eylkqu3t1bwl267mi1hmig1a9b1i4kzw', 'expire_date': {'$gt': datetime.datetime(2018, 8, 12, 10, 3, 16, 188000, tzinfo=<UTC>)}, 'schema': 'hrm'}
+Internal Server Error: /dialogs/imports/upload_excel
+Traceback (most recent call last):
+  File "E:\code\quicky-01\packages/django\django\core\handlers\base.py", line 122, in get_response
+    raise e
+IOError: [Errno 2] No such file or directory: u'E:\\code\\quicky-01\\apps\\hrm\\templates\\views\\imports\\upload_excel.html'
+django_session.find (0.00) {'_id': 'eylkqu3t1bwl267mi1hmig1a9b1i4kzw', 'expire_date': {'$gt': datetime.datetime(2018, 8, 12, 10, 3, 18, 859000, tzinfo=<UTC>)}, 'schema': 'hrm'}
+Internal Server Error: /dialogs/imports/upload_excel
+Traceback (most recent call last):
+  File "E:\code\quicky-01\packages/django\django\core\handlers\base.py", line 122, in get_response
+    raise e
+IOError: [Errno 2] No such file or directory: u'E:\\code\\quicky-01\\apps\\hrm\\templates\\views\\imports\\upload_excel.html'
+django_session.find (0.00) {'_id': 'eylkqu3t1bwl267mi1hmig1a9b1i4kzw', 'expire_date': {'$gt': datetime.datetime(2018, 8, 12, 10, 3, 22, 550000, tzinfo=<UTC>)}, 'schema': 'hrm'}
+Internal Server Error: /dialogs/imports/upload_excel
+Traceback (most recent call last):
+  File "E:\code\quicky-01\packages/django\django\core\handlers\base.py", line 122, in get_response
+    raise e
+IOError: [Errno 2] No such file or directory: u'E:\\code\\quicky-01\\apps\\hrm\\templates\\views\\imports\\upload_excel.html'
+django_session.find (0.00) {'_id': 'eylkqu3t1bwl267mi1hmig1a9b1i4kzw', 'expire_date': {'$gt': datetime.datetime(2018, 8, 12, 10, 3, 52, 609000, tzinfo=<UTC>)}, 'schema': 'hrm'}
+django_session.find (0.00) {'_id': 'eylkqu3t1bwl267mi1hmig1a9b1i4kzw', 'expire_date': {'$gt': datetime.datetime(2018, 8, 12, 10, 3, 53, 362000, tzinfo=<UTC>)}, 'schema': 'hrm'}
+Not Found: /hrm/static/js/angular.min.js.map
+Not Found: /polyfills/promise-6.1.0.js.map
+django_session.find (0.00) {'_id': 'eylkqu3t1bwl267mi1hmig1a9b1i4kzw', 'expire_date': {'$gt': datetime.datetime(2018, 8, 12, 10, 3, 58, 129000, tzinfo=<UTC>)}, 'schema': 'hrm'}
+django_session.find (0.00) {'_id': 'eylkqu3t1bwl267mi1hmig1a9b1i4kzw', 'expire_date': {'$gt': datetime.datetime(2018, 8, 12, 10, 3, 59, 45000, tzinfo=<UTC>)}, 'schema': 'hrm'}
+Internal Server Error: /dialogs/imports/upload_excel
+Traceback (most recent call last):
+  File "E:\code\quicky-01\packages/django\django\core\handlers\base.py", line 122, in get_response
+    raise e
+IOError: [Errno 2] No such file or directory: u'E:\\code\\quicky-01\\apps\\hrm\\templates\\views\\imports\\upload_excel.html'
+Not Found: /hrm/static/js/angular.min.js.map
+Not Found: /polyfills/promise-6.1.0.js.map
+django_session.find (0.00) {'_id': 'eylkqu3t1bwl267mi1hmig1a9b1i4kzw', 'expire_date': {'$gt': datetime.datetime(2018, 8, 12, 10, 5, 13, 510000, tzinfo=<UTC>)}, 'schema': 'hrm'}
+Internal Server Error: /dialogs/imports/upload_excel
+Traceback (most recent call last):
+  File "E:\code\quicky-01\packages/django\django\core\handlers\base.py", line 122, in get_response
+    raise e
+IOError: [Errno 2] No such file or directory: u'E:\\code\\quicky-01\\apps\\hrm\\templates\\views\\imports\\upload_excel.html'
+django_session.find (0.00) {'_id': 'eylkqu3t1bwl267mi1hmig1a9b1i4kzw', 'expire_date': {'$gt': datetime.datetime(2018, 8, 12, 10, 5, 20, 574000, tzinfo=<UTC>)}, 'schema': 'hrm'}
+Internal Server Error: /dialogs/imports/upload_excel
+Traceback (most recent call last):
+  File "E:\code\quicky-01\packages/django\django\core\handlers\base.py", line 122, in get_response
+    raise e
+IOError: [Errno 2] No such file or directory: u'E:\\code\\quicky-01\\apps\\hrm\\templates\\views\\imports\\upload_excel.html'
+django_session.find (0.00) {'_id': 'eylkqu3t1bwl267mi1hmig1a9b1i4kzw', 'expire_date': {'$gt': datetime.datetime(2018, 8, 12, 10, 6, 26, 505000, tzinfo=<UTC>)}, 'schema': 'hrm'}
+django_session.find (0.00) {'_id': 'eylkqu3t1bwl267mi1hmig1a9b1i4kzw', 'expire_date': {'$gt': datetime.datetime(2018, 8, 12, 10, 6, 32, 307000, tzinfo=<UTC>)}, 'schema': 'hrm'}
+django_session.find (0.00) {'_id': 'eylkqu3t1bwl267mi1hmig1a9b1i4kzw', 'expire_date': {'$gt': datetime.datetime(2018, 8, 12, 10, 7, 22, 416000, tzinfo=<UTC>)}, 'schema': 'hrm'}
+django_session.find (0.00) {'_id': 'eylkqu3t1bwl267mi1hmig1a9b1i4kzw', 'expire_date': {'$gt': datetime.datetime(2018, 8, 12, 10, 9, 4, 184000, tzinfo=<UTC>)}, 'schema': 'hrm'}
+django_session.find (0.00) {'_id': 'eylkqu3t1bwl267mi1hmig1a9b1i4kzw', 'expire_date': {'$gt': datetime.datetime(2018, 8, 12, 10, 9, 18, 873000, tzinfo=<UTC>)}, 'schema': 'hrm'}
+django_session.find (0.00) {'_id': 'eylkqu3t1bwl267mi1hmig1a9b1i4kzw', 'expire_date': {'$gt': datetime.datetime(2018, 8, 12, 10, 9, 21, 626000, tzinfo=<UTC>)}, 'schema': 'hrm'}
+django_session.find (0.00) {'_id': 'eylkqu3t1bwl267mi1hmig1a9b1i4kzw', 'expire_date': {'$gt': datetime.datetime(2018, 8, 12, 10, 32, 26, 465000, tzinfo=<UTC>)}, 'schema': 'hrm'}
+django_session.find (0.00) {'_id': 'eylkqu3t1bwl267mi1hmig1a9b1i4kzw', 'expire_date': {'$gt': datetime.datetime(2018, 8, 12, 10, 32, 28, 267000, tzinfo=<UTC>)}, 'schema': 'hrm'}
+django_session.find (0.00) {'_id': 'eylkqu3t1bwl267mi1hmig1a9b1i4kzw', 'expire_date': {'$gt': datetime.datetime(2018, 8, 12, 10, 33, 18, 569000, tzinfo=<UTC>)}, 'schema': 'hrm'}
+django_session.find (0.00) {'_id': 'eylkqu3t1bwl267mi1hmig1a9b1i4kzw', 'expire_date': {'$gt': datetime.datetime(2018, 8, 12, 10, 33, 26, 151000, tzinfo=<UTC>)}, 'schema': 'hrm'}
+Internal Server Error: /api
+Traceback (most recent call last):
+  File "E:\code\quicky-01\packages/django\django\core\handlers\base.py", line 122, in get_response
+    raise e
+ImportError: No module named data_source
+django_session.find (0.00) {'_id': 'eylkqu3t1bwl267mi1hmig1a9b1i4kzw', 'expire_date': {'$gt': datetime.datetime(2018, 8, 12, 10, 35, 20, 489000, tzinfo=<UTC>)}, 'schema': 'hrm'}
+django_session.find (0.00) {'_id': 'eylkqu3t1bwl267mi1hmig1a9b1i4kzw', 'expire_date': {'$gt': datetime.datetime(2018, 8, 12, 10, 39, 32, 735000, tzinfo=<UTC>)}, 'schema': 'hrm'}
+Internal Server Error: /api
+Traceback (most recent call last):
+  File "E:\code\quicky-01\packages/django\django\core\handlers\base.py", line 122, in get_response
+    raise e
+Exception: Call  'do_import_data' in 'hrm.api.data_source' encountered ''dict' object has no attribute 'data''
+django_session.find (0.00) {'_id': 'eylkqu3t1bwl267mi1hmig1a9b1i4kzw', 'expire_date': {'$gt': datetime.datetime(2018, 8, 12, 10, 40, 1, 752000, tzinfo=<UTC>)}, 'schema': 'hrm'}
+Internal Server Error: /api
+Traceback (most recent call last):
+  File "E:\code\quicky-01\packages/django\django\core\handlers\base.py", line 122, in get_response
+    raise e
+Exception: Call  'do_import_data' in 'hrm.api.data_source' encountered ''dict' object has no attribute 'data''
+django_session.find (0.00) {'_id': 'eylkqu3t1bwl267mi1hmig1a9b1i4kzw', 'expire_date': {'$gt': datetime.datetime(2018, 8, 12, 10, 40, 11, 984000, tzinfo=<UTC>)}, 'schema': 'hrm'}
+Internal Server Error: /api
+Traceback (most recent call last):
+  File "E:\code\quicky-01\packages/django\django\core\handlers\base.py", line 122, in get_response
+    raise e
+Exception: Call  'do_import_data' in 'hrm.api.data_source' encountered ''dict' object has no attribute 'data''
+django_session.find (0.00) {'_id': 'eylkqu3t1bwl267mi1hmig1a9b1i4kzw', 'expire_date': {'$gt': datetime.datetime(2018, 8, 12, 10, 40, 31, 149000, tzinfo=<UTC>)}, 'schema': 'hrm'}
+Internal Server Error: /api
+Traceback (most recent call last):
+  File "E:\code\quicky-01\packages/django\django\core\handlers\base.py", line 122, in get_response
+    raise e
+Exception: Call  'do_import_data' in 'hrm.api.data_source' encountered ''dict' object has no attribute 'data''
+django_session.find (0.00) {'_id': 'eylkqu3t1bwl267mi1hmig1a9b1i4kzw', 'expire_date': {'$gt': datetime.datetime(2018, 8, 12, 10, 41, 4, 122000, tzinfo=<UTC>)}, 'schema': 'hrm'}
+Internal Server Error: /api
+Traceback (most recent call last):
+  File "E:\code\quicky-01\packages/django\django\core\handlers\base.py", line 122, in get_response
+    raise e
+Exception: Call  'do_import_data' in 'hrm.api.data_source' encountered ''dict' object has no attribute 'data''
+django_session.find (0.00) {'_id': 'eylkqu3t1bwl267mi1hmig1a9b1i4kzw', 'expire_date': {'$gt': datetime.datetime(2018, 8, 12, 10, 41, 15, 167000, tzinfo=<UTC>)}, 'schema': 'hrm'}
+django_session.find (0.00) {'_id': 'eylkqu3t1bwl267mi1hmig1a9b1i4kzw', 'expire_date': {'$gt': datetime.datetime(2018, 8, 12, 10, 41, 17, 502000, tzinfo=<UTC>)}, 'schema': 'hrm'}
+django_session.find (0.00) {'_id': 'eylkqu3t1bwl267mi1hmig1a9b1i4kzw', 'expire_date': {'$gt': datetime.datetime(2018, 8, 12, 10, 41, 17, 769000, tzinfo=<UTC>)}, 'schema': 'hrm'}
+django_session.find (0.00) {'_id': 'eylkqu3t1bwl267mi1hmig1a9b1i4kzw', 'expire_date': {'$gt': datetime.datetime(2018, 8, 12, 10, 41, 25, 78000, tzinfo=<UTC>)}, 'schema': 'hrm'}
+django_session.find (0.00) {'_id': 'eylkqu3t1bwl267mi1hmig1a9b1i4kzw', 'expire_date': {'$gt': datetime.datetime(2018, 8, 12, 10, 41, 30, 191000, tzinfo=<UTC>)}, 'schema': 'hrm'}
+Internal Server Error: /api
+Traceback (most recent call last):
+  File "E:\code\quicky-01\packages/django\django\core\handlers\base.py", line 122, in get_response
+    raise e
+Exception: Call  'do_import_data' in 'hrm.api.data_source' encountered ''dict' object has no attribute 'data''
+django_session.find (0.00) {'_id': 'eylkqu3t1bwl267mi1hmig1a9b1i4kzw', 'expire_date': {'$gt': datetime.datetime(2018, 8, 12, 10, 41, 39, 98000, tzinfo=<UTC>)}, 'schema': 'hrm'}
+Internal Server Error: /api
+Traceback (most recent call last):
+  File "E:\code\quicky-01\packages/django\django\core\handlers\base.py", line 122, in get_response
+    raise e
+Exception: Call  'do_import_data' in 'hrm.api.data_source' encountered ''dict' object has no attribute 'data''
