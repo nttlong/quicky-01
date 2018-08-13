@@ -2,10 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="bfd5eb4f-0a05-43db-a9cd-d06dab74d432" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/packages/qmongo/help/view_declare.rst" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/qmongo/help/expressiion_compiler_services.rst" beforeDir="false" afterPath="$PROJECT_DIR$/packages/qmongo/help/expressiion_compiler_services.rst" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/qmongo/qview.py" beforeDir="false" afterPath="$PROJECT_DIR$/packages/qmongo/qview.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/logs/debug.log" beforeDir="false" afterPath="$PROJECT_DIR$/logs/debug.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/quicky/view.py" beforeDir="false" afterPath="$PROJECT_DIR$/packages/quicky/view.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -71,7 +69,7 @@
         <counts>
           <entry key="html" value="8" />
           <entry key="log" value="1" />
-          <entry key="py" value="48" />
+          <entry key="py" value="49" />
           <entry key="rst" value="7" />
           <entry key="txt" value="1" />
         </counts>
@@ -81,7 +79,7 @@
           <entry key="ANSI Aware" value="1" />
           <entry key="HTML" value="8" />
           <entry key="PLAIN_TEXT" value="1" />
-          <entry key="Python" value="48" />
+          <entry key="Python" value="49" />
           <entry key="ReST" value="7" />
         </counts>
       </usages-collector>
@@ -128,9 +126,18 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/packages/qmongo/help/view_declare.rst">
           <provider selected="true" editor-type-id="restructured-text-editor" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/packages/quicky/view.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="350">
+              <caret line="181" column="35" lean-forward="true" selection-start-line="181" selection-start-column="35" selection-end-line="181" selection-end-column="35" />
+            </state>
+          </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
@@ -195,25 +202,6 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/packages/qmongo/helpers/aggregate_expression.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="340">
-              <caret line="26" column="20" selection-start-line="26" selection-start-column="20" selection-end-line="26" selection-end-column="20" />
-              <folding>
-                <element signature="e#100#157#1" />
-                <element signature="e#1696#3784#0" />
-                <element signature="e#3817#4036#0" />
-                <element signature="e#4070#4292#0" />
-                <element signature="e#4334#4731#0" />
-                <element signature="e#4788#4829#0" />
-                <element signature="e#5255#5684#1" />
-                <element signature="e#5780#5874#0" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
     </leaf>
   </component>
   <component name="FileTemplateManagerImpl">
@@ -252,7 +240,6 @@
         <option value="$PROJECT_DIR$/apps/lms/api/models/config.py" />
         <option value="$PROJECT_DIR$/apps/lms/api/models/__init__.py" />
         <option value="$PROJECT_DIR$/packages/qmongo/database.py" />
-        <option value="$PROJECT_DIR$/packages/quicky/view.py" />
         <option value="$PROJECT_DIR$/apps/sys_admin/settings.py" />
         <option value="$PROJECT_DIR$/apps/sys_admin/urls.py" />
         <option value="$PROJECT_DIR$/apps/sys_admin/views.py" />
@@ -291,6 +278,7 @@
         <option value="$PROJECT_DIR$/packages/qmongo/help/expressiion_compiler_services.rst" />
         <option value="$PROJECT_DIR$/packages/qmongo/qview.py" />
         <option value="$PROJECT_DIR$/packages/qmongo/help/view_declare.rst" />
+        <option value="$PROJECT_DIR$/packages/quicky/view.py" />
       </list>
     </option>
   </component>
@@ -313,25 +301,13 @@
             <path>
               <item name="q03" type="b2602c69:ProjectViewProjectNode" />
               <item name="q03" type="462c0819:PsiDirectoryNode" />
-              <item name="apps" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="q03" type="b2602c69:ProjectViewProjectNode" />
-              <item name="q03" type="462c0819:PsiDirectoryNode" />
               <item name="packages" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="q03" type="b2602c69:ProjectViewProjectNode" />
               <item name="q03" type="462c0819:PsiDirectoryNode" />
               <item name="packages" type="462c0819:PsiDirectoryNode" />
-              <item name="qmongo" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="q03" type="b2602c69:ProjectViewProjectNode" />
-              <item name="q03" type="462c0819:PsiDirectoryNode" />
-              <item name="packages" type="462c0819:PsiDirectoryNode" />
-              <item name="qmongo" type="462c0819:PsiDirectoryNode" />
-              <item name="help" type="462c0819:PsiDirectoryNode" />
+              <item name="quicky" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -405,7 +381,7 @@
     <frame x="67" y="25" width="1853" height="1055" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.13224044" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.2644809" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -416,9 +392,9 @@
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Version Control" order="7" />
-      <window_info anchor="bottom" id="Terminal" order="8" sideWeight="0.67431694" weight="0.47783783" />
-      <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.13989072" side_tool="true" weight="0.32864866" />
-      <window_info active="true" anchor="bottom" id="Python Console" order="10" sideWeight="0.86010927" visible="true" weight="0.32864866" />
+      <window_info anchor="bottom" id="Terminal" order="8" sideWeight="0.6737705" visible="true" weight="0.27135134" />
+      <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.3262295" side_tool="true" weight="0.27135134" />
+      <window_info anchor="bottom" id="Python Console" order="10" sideWeight="0.86010927" weight="0.32864866" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -599,13 +575,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="179">
           <caret line="19" selection-start-line="19" selection-end-line="19" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/packages/quicky/view.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="80">
-          <caret line="184" selection-start-line="184" selection-end-line="184" />
         </state>
       </provider>
     </entry>
@@ -875,6 +844,13 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/packages/qmongo/help/view_declare.rst">
       <provider selected="true" editor-type-id="restructured-text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/packages/quicky/view.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="350">
+          <caret line="181" column="35" lean-forward="true" selection-start-line="181" selection-start-column="35" selection-end-line="181" selection-end-column="35" />
+        </state>
+      </provider>
     </entry>
   </component>
 </project>

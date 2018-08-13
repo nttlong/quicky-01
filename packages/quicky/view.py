@@ -170,7 +170,7 @@ def template(fn,*_path,**kwargs):
                         _request_path = request.path
                         if _request_path[0] == '/':
                             _request_path = _request_path[1:_request_path.__len__()]
-                        if _request_path.__len__() > 0 and request_path[_request_path.__len__()-1] == '/':
+                        if _request_path.__len__() > 0 and _request_path[_request_path.__len__()-1] == '/':
                             _request_path = _request_path[0:_request_path.__len__()-1]
 
                         if host_dir != None:
