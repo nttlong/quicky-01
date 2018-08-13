@@ -138,18 +138,6 @@ def template(fn,*_path,**kwargs):
                         login_url = "/" + app.host_dir + "/" + _path["login_url"]
                     else:
                         login_url = "/" + _path["login_url"]
-
-            # if login_url != None:
-            #     cmp_url = login_url
-            #     if host_dir != None:
-            #         cmp_url = "/"+host_dir +  login_url
-            #     if request.user.is_anonymous():
-            #         if request.path_info.lower() == cmp_url.lower():
-            #             return fn(request, **kwargs)
-            #         else:
-            #             url = request.get_abs_url() + login_url
-            #             url += "?next=" + request.get_abs_url() + request.path
-            #             return redirect(url)
             if hasattr(app.settings, "authenticate"):
                 from django.http.response import HttpResponseRedirect
 
