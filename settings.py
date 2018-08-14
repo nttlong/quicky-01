@@ -14,25 +14,27 @@ https://docs.djangoproject.com/en/1.8/ref/settings/
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
 import sys
-HOST_DIR_ = "test"
+
+
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-sys.path.append(BASE_DIR+"/packages")
-sys.path.append(os.getcwd()+"/packages/mongo")
-sys.path.append(BASE_DIR+"/packages/django")
 
-sys.path.append(os.getcwd()+"/packages")
 
-sys.path.append(os.getcwd()+"/packages/django")
+sys.path.append(BASE_DIR + "/packages")
+sys.path.append(os.getcwd() + "/packages/mongo")
+sys.path.append(BASE_DIR + "/packages/django")
+
+sys.path.append(os.getcwd() + "/packages")
+
+sys.path.append(os.getcwd() + "/packages/django")
 from django.conf.urls import url, include
 
 import quicky
-
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.8/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
+HOST_DIR = "test"
 SECRET_KEY = 'bw(lu4t*o&*ot4&gf^&74ksjz3r+ji6bxr_9$y0sacg*ks0m0w'
 
 # SECURITY WARNING: don't run with debug turned on in production!
@@ -90,18 +92,18 @@ WSGI_APPLICATION = 'wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/1.8/ref/settings/#databases
-DATABASES_ = {
+DATABASES = {
    'default' : {
        'ENGINE': 'django_mongodb_engine',
-       'NAME': 'lv01_lms',
-       'HOST': '172.16.7.63',
+       'NAME': 'lms',
+       'HOST': '172.16.7.67',
        'PORT': 27017,
        'USER': 'sys',
        'PASSWORD': '123456'
    }
 
 }
-DATABASES = {
+DATABASES_ = {
    'default' : {
        'ENGINE': 'django_mongodb_engine',
        'NAME': 'test',
@@ -133,7 +135,7 @@ USE_TZ = True
 
 USE_MULTI_TENANCY=True
 # MULTI_TENANCY_DEFAULT_SCHEMA="sys"
-MULTI_TENANCY_DEFAULT_SCHEMA="hrm"
+MULTI_TENANCY_DEFAULT_SCHEMA="lv"
 MULTI_TENANCY_CONFIGURATION=dict(
     host="localhost",
     port=27017,
@@ -202,22 +204,24 @@ APPS=[
            name="sys-admin",
            path="apps/sys_admin",
            schema="sys"),
-      # dict(host="lms",
-      #      name="lms",
-      #      path="apps/lms"),
-      #
-      # dict(
-      #     host="per", #"performance",
-      #     name="performance",
-      #     path="apps/performance",
-      #     schema="per"
-      # ),
-      dict(host="",
-           name="hrm",
-           path="apps/hrm",
-           schema="hrm",
-           login="login",
-           )
+      dict(host="lms",
+           name="lms",
+           path="apps/lms",
+           login_url="/../login",
+           static_dir="apps/performance/static"),
+
+      dict(
+          host="", #"performance",
+          name="performance",
+          path="apps/performance"
+
+      ),
+      # dict(host="",
+      #      name="hrm",
+      #      path="apps/hrm",
+      #      schema="hrm",
+      #      login="login",
+      #      )
 
       # dict(host="app-main",
       #      name="argo",
@@ -333,3 +337,5 @@ LOGGING = {
     },
 }
 STATIC_ROOT = os.path.join(*(BASE_DIR.split(os.path.sep) + ['apps/static','apps/app_main/static']))
+
+

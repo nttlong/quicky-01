@@ -34,7 +34,8 @@ class AuthenticationMiddleware(object):
 
         import threading
         import sys
-        settings=sys.modules["settings"]
+        from django.conf import settings
+
         ct=threading.currentThread()
         schema=settings.MULTI_TENANCY_DEFAULT_SCHEMA
         if hasattr(ct,"tenancy_code"):

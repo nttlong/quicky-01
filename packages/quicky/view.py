@@ -98,7 +98,8 @@ def template(fn,*_path,**kwargs):
 
 
                 else:
-                    if sys.modules["settings"].MULTI_TENANCY_DEFAULT_SCHEMA == app_name:
+                    from django.conf import settings as g_settings
+                    if g_settings.MULTI_TENANCY_DEFAULT_SCHEMA == app_name:
                         app = applications.get_app_by_host_dir("")
                         if app != None:
 
