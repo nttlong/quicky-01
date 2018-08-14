@@ -10,7 +10,7 @@ def sys_multi_tenancy():
     :return:
     """
     import sys
-    settings = sys.modules["settings"]
+    from django.conf import settings
     global _hasCreated
     if not _hasCreated:
 
@@ -31,6 +31,7 @@ def sys_multi_tenancy():
             description = helpers.create_field("text",False)
         )
         _hasCreated=True
-    ret = applications.get_settings().database.collection(settings.MULTI_TENANCY_CONFIGURATION["collection"])
+    from qmongo import database
+    ret = database.connect(settings.MULTI_TENANCY_CONFIGURATION).collection(settings.MULTI_TENANCY_CONFIGURATION["collection"])
     ret.turn_never_use_schema_on()
     return ret

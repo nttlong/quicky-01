@@ -32,3 +32,22 @@ def create_mongodb_view(aggregate,name):
         )
     ret=aggregate.qr.collection(name)
     return ret
+def create_mongod_view_from_pipeline(db,pipe_line,from_collection,schema,view_name):
+
+    global _cach_view
+    import json
+    view_name = "{0}.views.{1}".format(schema, view_name)
+    command_object = (
+        view_name,
+        "{0}.{1}".format(schema,from_collection),
+        pipe_line
+    )
+    if not _cach_view.has_key(view_name):
+        db.drop_collection(view_name)
+        param_text = json.dumps(command_object)
+        param_text = param_text[1:param_text.__len__() - 1]
+        command_text = "db.createView(" + param_text + ")"
+        db.eval(command_text)
+        _cach_view[view_name] = 1
+        view_model_fields={}
+    return view_name

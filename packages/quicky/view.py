@@ -98,7 +98,8 @@ def template(fn,*_path,**kwargs):
 
 
                 else:
-                    if sys.modules["settings"].MULTI_TENANCY_DEFAULT_SCHEMA == app_name:
+                    from django.conf import settings as g_settings
+                    if g_settings.MULTI_TENANCY_DEFAULT_SCHEMA == app_name:
                         app = applications.get_app_by_host_dir("")
                         if app != None:
 
@@ -138,18 +139,6 @@ def template(fn,*_path,**kwargs):
                         login_url = "/" + app.host_dir + "/" + _path["login_url"]
                     else:
                         login_url = "/" + _path["login_url"]
-
-            # if login_url != None:
-            #     cmp_url = login_url
-            #     if host_dir != None:
-            #         cmp_url = "/"+host_dir +  login_url
-            #     if request.user.is_anonymous():
-            #         if request.path_info.lower() == cmp_url.lower():
-            #             return fn(request, **kwargs)
-            #         else:
-            #             url = request.get_abs_url() + login_url
-            #             url += "?next=" + request.get_abs_url() + request.path
-            #             return redirect(url)
             if hasattr(app.settings, "authenticate"):
                 from django.http.response import HttpResponseRedirect
 
@@ -170,7 +159,7 @@ def template(fn,*_path,**kwargs):
                         _request_path = request.path
                         if _request_path[0] == '/':
                             _request_path = _request_path[1:_request_path.__len__()]
-                        if _request_path.__len__() > 0 and request_path[_request_path.__len__()-1] == '/':
+                        if _request_path.__len__() > 0 and _request_path[_request_path.__len__()-1] == '/':
                             _request_path = _request_path[0:_request_path.__len__()-1]
 
                         if host_dir != None:

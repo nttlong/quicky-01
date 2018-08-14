@@ -69,6 +69,11 @@ class app_config():
         self.template_dir = config.get("templates", os.path.join(path, "templates"))
         self.client_static=config.get("client_static",path+ "/static")
         self.static=config.get("static_dir",os.path.join(path, "static"))
+        if config.has_key("login_url"):
+            setattr(self.settings,"login_url",config.get("login_url"))
+        if config.has_key("DATABASE"):
+            setattr(self.settings, "DATABASE", config.get("DATABASE"))
+
     def get_static_urls(self):
         """
         get static url of application for client

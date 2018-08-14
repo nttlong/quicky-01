@@ -107,7 +107,8 @@ def get_settings():
     """
     global _settings
     if _settings==None:
-        _settings = sys.modules.get("settings")
+        from django.conf import settings as st
+        _settings = st
         STATIC_URL = getattr(_settings, "STATIC_URL")
         if STATIC_URL == None:
             setattr(_settings, "STATIC_URL", "/static/")

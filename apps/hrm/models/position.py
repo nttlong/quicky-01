@@ -2,7 +2,7 @@
 from quicky import applications
 from qmongo import helpers, database
 from . import base
-
+from .. import settings
 _hasCreated = False
 model_name="position"
 def position():
@@ -14,7 +14,7 @@ def position():
             []
         )
         _hasCreated = True
-    ret = applications.get_settings().database.collection(model_name)
+    ret = settings.db().collection(model_name)
     # ret.turn_never_use_schema_on()
 
     return ret

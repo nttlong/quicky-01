@@ -23,6 +23,8 @@ class aggregate_expression():
         :param kwargs:
         :return:
         """
+        print args
+        print kwargs
         _project = {}
         if kwargs == {}:
             kwargs = args[0]
@@ -174,7 +176,7 @@ class aggregate_expression():
             return self
         if type(expression) is str:
             self._pipe.append({
-                "$match": expr.parse_expression_to_json_expression(expression,args)
+                "$match": expr.parse_expression_to_json_expression(expression,*args,**kwargs)
             })
             return self
 
@@ -228,6 +230,8 @@ class aggregate_expression():
         :param kwargs:
         :return:
         """
+        if args.__len__() > 0:
+            kwargs = args[0]
         self._pipe.append({
             "$sort":kwargs
         })

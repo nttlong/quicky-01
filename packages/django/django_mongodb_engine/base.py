@@ -278,7 +278,8 @@ class DatabaseWrapper(NonrelDatabaseWrapper):
 
         self.connected = True
         import sys
-        st = sys.modules["settings"]
+        from django.conf import settings as st
+
         if not hasattr(st,"MULTI_TENANCY_DEFAULT_SCHEMA"):
             raise (Exception("It look like you forgot declare 'MULTI_TENANCY_DEFAULT_SCHEMA' in 'settings.py'"))
         connection_created.send(sender=self.__class__, connection=self,schema = st.MULTI_TENANCY_DEFAULT_SCHEMA)

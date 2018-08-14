@@ -191,14 +191,14 @@ def build_urls(module_name,*args,**kwargs):
                                 if ret.host_dir != "":
                                     if url_regex != "^$":
                                         if host_dir == None:
-                                            url_regex = url_regex.replace("^","^(?i)" + ret.host_dir + "/")
+                                            url_regex = url_regex.replace("^","^(?i)(?P<tenancy_code>"+get_tenancy_code_regex()+")/" + ret.host_dir+"/" )
                                         else:
-                                            url_regex = url_regex.replace("^", "^(?i)"+ host_dir +"/" + ret.host_dir + "/")
+                                            url_regex = url_regex.replace("^", "^(?i)"+ host_dir +"/(?P<tenancy_code>"+get_tenancy_code_regex()+")/" + ret.host_dir + "/")
                                     else:
                                         if host_dir == None:
-                                            url_regex = url_regex.replace("^","^(?i)" + ret.host_dir)
+                                            url_regex = url_regex.replace("^","^(?i)(?P<tenancy_code>"+get_tenancy_code_regex()+")/" + ret.host_dir+"/")
                                         else:
-                                            url_regex = url_regex.replace("^", "^(?i)"+host_dir+"/" + ret.host_dir)
+                                            url_regex = url_regex.replace("^", "^(?i)"+host_dir+"/(?P<tenancy_code>"+get_tenancy_code_regex()+")/" + ret.host_dir+"/")
 
                                 map_url = url(
                                     url_regex,
@@ -214,7 +214,7 @@ def build_urls(module_name,*args,**kwargs):
                                                                       "^(?i)" + ret.host_dir + "/")
                                         else:
                                             url_regex = url_regex.replace("^",
-                                                                          "^(?i)" + ret.host_dir)
+                                                                          "^(?i)" + ret.host_dir+"/")
                                     else:
                                         if url_regex != "^$":
                                             url_regex = url_regex.replace("^",

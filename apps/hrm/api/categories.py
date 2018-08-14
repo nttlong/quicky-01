@@ -5,6 +5,7 @@ from qmongo import database
 from quicky import encryptor
 import threading
 from bson import *
+from .. import settings
 app=quicky.applications.get_app_by_file(__file__)
 db=database.connect(app.settings.Database)
 

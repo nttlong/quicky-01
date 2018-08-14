@@ -12,6 +12,17 @@ Database=dict(
     password="123456",
     name="test"
 )
+from qmongo import database
+def db():
+    from django.conf import settings
+    return database.connect(
+        host=settings.DATABASES["default"]['HOST'],
+        port=settings.DATABASES["default"]['PORT'],
+        name=settings.DATABASES["default"]['NAME'],
+        user=settings.DATABASES["default"]['USER'],
+        password=settings.DATABASES["default"]['PASSWORD'],
+    )
+
 Database_=dict(
     host="172.16.7.63",
     port=27017,

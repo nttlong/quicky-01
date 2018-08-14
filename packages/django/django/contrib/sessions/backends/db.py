@@ -27,7 +27,7 @@ class SessionStore(SessionBase):
                 logger.warning(force_text(e))
 
             import sys
-            settings=sys.modules["settings"]
+            from django.conf import settings
             if not hasattr(settings,"MULTI_TENANCY_DEFAULT_SCHEMA"):
                 raise (Exception("It look like you forgot declare 'MULTI_TENANCY_DEFAULT_SCHEMA' in settings.py"))
 

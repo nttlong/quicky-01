@@ -192,7 +192,7 @@ class WSGIHandler(base.BaseHandler):
 
         set_script_prefix(base.get_script_name(environ))
         import sys
-        settings = sys.modules["settings"]
+        from django.conf import settings
         if not hasattr(settings,"MULTI_TENANCY_DEFAULT_SCHEMA"):
             raise (Exception("It look like you forgot delcare 'MULTI_TENANCY_DEFAULT_SCHEMA' in settings.py"))
         signals.request_started.send(sender=self.__class__,schema =settings.MULTI_TENANCY_DEFAULT_SCHEMA )
