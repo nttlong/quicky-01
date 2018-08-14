@@ -71,6 +71,9 @@ class app_config():
         self.static=config.get("static_dir",os.path.join(path, "static"))
         if config.has_key("login_url"):
             setattr(self.settings,"login_url",config.get("login_url"))
+        if config.has_key("DATABASE"):
+            setattr(self.settings, "DATABASE", config.get("DATABASE"))
+
     def get_static_urls(self):
         """
         get static url of application for client

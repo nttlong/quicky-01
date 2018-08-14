@@ -21,7 +21,9 @@ def sys_customers():
             admin_user=helpers.create_field("text", True),# link to auth_user
         )
         _hasCreated=True
-    ret = applications.get_settings().database.collection("customers")
+    from qmongo import database
+    from django.conf import settings
+    ret = database.connect(settings.MULTI_TENANCY_CONFIGURATION).collection("customers")
     # ret.turn_never_use_schema_on()
 
     return ret

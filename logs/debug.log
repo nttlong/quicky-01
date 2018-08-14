@@ -3229,3 +3229,11 @@ django_session.find (0.00) {'_id': 'wao86b13y0fp8jnixoimbsvxvcs7mi07', 'expire_d
 django_session.save (0.00) {'schema': u'lv', '_id': 'wao86b13y0fp8jnixoimbsvxvcs7mi07', 'expire_date': datetime.datetime(2018, 8, 28, 2, 14, 42, 739187, tzinfo=<UTC>), 'session_data': u'YjAwMTViM2E0OTNjMDE0N2NjMTFiZjIxNzYzNmNkYTg5OGRiZGZjMzp7Imxhbmd1YWdlIjoiZW4ifQ=='}
 Not Found: /test/performance/static/js/plugins/slick.js
 Not Found: /test/performance/static/js/plugins/slick.js
+Not Found: /
+django_session.find (0.00) {'_id': '0gxysaowboytir06phq72l3h5fhivrlh', 'expire_date': {'$gt': datetime.datetime(2018, 8, 14, 7, 17, 51, 653873, tzinfo=<UTC>)}, 'schema': 'lv'}
+django_session.save (0.00) {'schema': 'lv', '_id': u'6y8oiw9vkprbckkkbkoy6klttu9f3bmb', 'expire_date': datetime.datetime(2018, 8, 28, 7, 17, 51, 680011, tzinfo=<UTC>), 'session_data': u'MjY1MGI5ZjE5YWFjZTM1OTM5NmFkNjA4ODFhYTVmNzUxZDA3ZTkxMjp7fQ=='}
+django_session.save (0.00) {'schema': 'lv', '_id': u'6y8oiw9vkprbckkkbkoy6klttu9f3bmb', 'expire_date': datetime.datetime(2018, 8, 28, 7, 17, 51, 689653, tzinfo=<UTC>), 'session_data': u'MjY1MGI5ZjE5YWFjZTM1OTM5NmFkNjA4ODFhYTVmNzUxZDA3ZTkxMjp7fQ=='}
+django_session.find (0.00) {'_id': '6y8oiw9vkprbckkkbkoy6klttu9f3bmb', 'expire_date': {'$gt': datetime.datetime(2018, 8, 14, 7, 17, 51, 719928, tzinfo=<UTC>)}, 'schema': u'lv'}
+django_session.save (0.00) {'schema': u'lv', '_id': '6y8oiw9vkprbckkkbkoy6klttu9f3bmb', 'expire_date': datetime.datetime(2018, 8, 28, 7, 17, 51, 790611, tzinfo=<UTC>), 'session_data': u'YjAwMTViM2E0OTNjMDE0N2NjMTFiZjIxNzYzNmNkYTg5OGRiZGZjMzp7Imxhbmd1YWdlIjoiZW4ifQ=='}
+Not Found: /test/performance/static/js/plugins/slick.js
+Not Found: /test/performance/static/js/plugins/slick.js

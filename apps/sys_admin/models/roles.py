@@ -42,5 +42,7 @@ def role():
 
         )
         _hasCreated=True
-    ret = app.settings.DB.collection("roles")
+    from qmongo import database
+    from django.conf import settings
+    ret = database.connect(settings.MULTI_TENANCY_CONFIGURATION).collection("roles")
     return ret

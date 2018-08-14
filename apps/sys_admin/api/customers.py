@@ -96,7 +96,8 @@ def get_list_of_users_by_customer(args):
     schema=None
     if args["data"]["customerCode"] == "-":
         import sys
-        schema=sys.modules["settings"].MULTI_TENANCY_DEFAULT_SCHEMA
+        from django.conf import settings
+        schema=settings.MULTI_TENANCY_DEFAULT_SCHEMA
     elif args["data"]["customerCode"]== "system":
         from quicky import applications
         schema =applications.get_app_by_file(__file__).mdl.settings.DEFAULT_DB_SCHEMA

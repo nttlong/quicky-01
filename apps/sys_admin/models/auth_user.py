@@ -20,6 +20,7 @@ def auth_user():
             date_joined =helpers.create_field("date")
         )
         _hasCreated=True
-    ret = applications.get_settings().database.collection("auth_user")
+    from django.conf import settings
+    ret = database.connect(settings.MULTI_TENANCY_CONFIGURATION).collection("auth_user")
 
     return ret
