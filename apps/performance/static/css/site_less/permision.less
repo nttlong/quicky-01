@@ -28,26 +28,28 @@
     margin-right: unset !important;
 }
 
-#dropdownFunction .dropdown p {
+#dropdownFunction > .dropdown > p {
     font-size: 14px;
     padding: 8px;
     border-top: 1px solid #eee;
     margin: unset;
 }
 
-#dropdownFunction .dropdown p.focus {
+#dropdownFunction > .dropdown > p.focus {
     background-color: #ebf9ff;
     border-bottom: 1px solid #78c4e6;
 }
 
-#dropdownFunction .dropdown p:hover, p:active, p:focus {
+#dropdownFunction > .dropdown > p:hover,
+#dropdownFunction > .dropdown > p:active,
+#dropdownFunction > .dropdown > p:focus {
     cursor: pointer;
     background-color: #ebf9ff;
     border-bottom: 1px solid #78c4e6;
 }
 
 @media (min-width:768px) {
-    #dropdownFunction .dropdown {
+    #dropdownFunction > .dropdown {
         overflow: auto;
         height: 345px;
         margin-right: unset;
@@ -56,19 +58,19 @@
         border-top:1px solid #d9d9d9;
     }
 
-    #dropdownFunction .dropdown a {
+    #dropdownFunction > .dropdown > a {
         margin-top: unset !important;
         padding: 4px;
         display: block;
     }
 
-    #dropdownFunction .dropdown p {
+    #dropdownFunction > .dropdown > p {
         color: #000;
     }
 }
 
 @media (max-width:550px) {
-    #dropdownFunction .dropdown {
+    #dropdownFunction > .dropdown {
         overflow: auto;
         height: 200px;
         margin-right: unset;
@@ -77,13 +79,13 @@
         border-top: 1px solid #eee;
     }
 
-    #dropdownFunction .dropdown a {
+    #dropdownFunction > .dropdown > a {
         margin-top: unset !important;
         padding: 4px;
         display: block;
     }
 
-    #dropdownFunction .dropdown p {
+    #dropdownFunction > .dropdown > p {
         color: #000;
     }
 }

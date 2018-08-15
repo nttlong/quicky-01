@@ -208,9 +208,9 @@
         scope.$parent.$parent.$parent.$parent.detail.$partialpage = scope.$parent.$parent.$parent.$parent.detail.mapName[0].url;
         if (mode === 2) {
             scope.$parent.$parent.$parent.$parent.detail.$job_w_code = scope.$$table.currentItem.job_w_code;
-            scope.$parent.$parent.$parent.$parent.detail.$job_w_name = scope.$$table.currentItem.job_w_name;
-            scope.$parent.$parent.$parent.$parent.detail.$mode = mode;
+            scope.$parent.$parent.$parent.$parent.detail.$job_w_name = scope.$$table.currentItem.job_w_name;            
         }
+        scope.$parent.$parent.$parent.$parent.detail.$mode = mode;
         scope.$parent.$parent.$parent.$parent.detail.$gjw_name = scope.$$tree.treeCurrentNode.gjw_name;
         scope.$parent.$parent.$parent.$parent.detail.$gjw_code = scope.$$tree.treeCurrentNode.gjw_code;
         scope.$applyAsync();

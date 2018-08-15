@@ -4,9 +4,21 @@
     scope.gjw_code = scope.$parent.$parent.$parent.$parent.detail.$gjw_code;
     //scope.gjw_name = scope.$parent.$parent.$parent.$parent.$$currentJobWorkingGroupName;
 
-    scope.set_job_w_code = function () {
+    scope.set_job_w_change = function () {
         var frm = lv.FormSearch(scope, "$$$job_working");
         frm.JobWorking(scope.entity, "job_w_change", "${get_res('job_w_change','CDCV có thể thuyên chuyển')}", true);
+        frm.openDialog;
+    }
+
+    scope.set_job_w_next = function () {
+        var frm = lv.FormSearch(scope, "$$$job_working_next");
+        frm.JobWorking(scope.entity, "job_w_next", "${get_res('job_w_next','CDCV thuyên chuyển')}", false);
+        frm.openDialog;
+    }
+
+    scope.set_report_to_job_w = function () {
+        var frm = lv.FormSearch(scope, "$$$job_working_report_to_job_w");
+        frm.JobWorking(scope.entity, "report_to_job_w", "${get_res('report_to_job_w','Báo cáo cho')}", false);
         frm.openDialog;
     }
 
@@ -27,9 +39,16 @@
                 if (res.error == null) {
                     $msg.alert("${get_global_res('Handle_Success','Thao tác thành công')}", $type_alert.INFO);
                     scope.entity = res.data;
-                    if (scope.__mode == 1)
+                    if (scope.__mode == 1) {
                         scope.__mode = 2;
+                        scope.$parent.$parent.$parent.$parent.detail.$mode = 2;
+                        scope.$parent.$parent.$parent.$parent.detail.$gjw_code = scope.entity.gjw_code;
+                        scope.$parent.$parent.$parent.$parent.detail.$job_w_code = scope.entity.job_w_code;
+
+                    }
                     scope.$parent.$parent.$parent.currentJobWorkingName = res.data.job_w_name;
+                    scope.$parent.$parent.$parent.detail.$gjw_name = res.data.gjw_name;
+                    scope.$parent.$parent.$parent.detail.$job_w_name = res.data.job_w_name;
                     scope.$apply();
                 } else {
                     $msg.message("${get_global_res('Notification','Thông báo')}", "${get_global_res('Internal_Server_Error','Có lỗi từ phía máy chủ')}", function () { });
@@ -39,7 +58,7 @@
     }
 
     function editData(callback) {
-        var url = getUrl();
+        var url = getUrl();  
         services.api(url)
             .data(scope.entity)
             .done()
@@ -49,7 +68,7 @@
     }
 
     function beforeCallToServer() {
-        scope.entity.gjw_code = scope.gjw_code;
+        //scope.entity.gjw_code = scope.gjw_code;
     }
 
     function getUrl() {
@@ -104,8 +123,8 @@
             [{
                 "key": "${encryptor.get_key('cbb_position')}",
                 "code": scope.entity
-                    && scope.entity.hasOwnProperty('province_code')
-                    ? scope.entity.province_code
+                    && scope.entity.hasOwnProperty('job_pos_code')
+                    ? scope.entity.job_pos_code
                     : null,
                 "alias": "$$$cbb_position"
             },
@@ -116,7 +135,48 @@
                     ? scope.entity.job_w_change
                     : null,
                 "alias": "$$$job_working"
-            }]
+            },
+            {
+                "key": "${encryptor.get_key('cbb_job_working_single_check')}",
+                "code": scope.entity
+                    && scope.entity.hasOwnProperty('job_w_next')
+                    ? scope.entity.job_w_next
+                    : null,
+                "alias": "$$$job_working_next"
+            },
+            {
+                "key": "${encryptor.get_key('cbb_job_working_single_check')}",
+                "code": scope.entity
+                    && scope.entity.hasOwnProperty('report_to_job_w')
+                    ? scope.entity.report_to_job_w
+                    : null,
+                "alias": "$$$job_working_report_to_job_w"
+            },
+            {
+                "key": "${encryptor.get_key('cbb_job_working_group')}",
+                "code": scope.entity
+                    && scope.entity.hasOwnProperty('gjw_code')
+                    ? scope.entity.gjw_code
+                    : null,
+                "alias": "$$$cbb_job_working_group"
+            },
+            {
+                "key": "${encryptor.get_key('cbb_departments_multi_select')}",
+                "code": scope.entity
+                    && scope.entity.hasOwnProperty('dept_contact')
+                    ? scope.entity.dept_contact
+                    : null,
+                "alias": "$$$cbb_departments_multi_select"
+            },
+            {
+                "key": "${encryptor.get_key('cbb_departments_multi_select')}",
+                "code": scope.entity
+                    && scope.entity.hasOwnProperty('dept_apply')
+                    ? scope.entity.dept_apply
+                    : null,
+                "alias": "$$$dept_apply"
+            }
+            ]
         );
     }
 
@@ -127,6 +187,10 @@
                 _getDataInitCombobox();
                 scope.$applyAsync();
             })
+        } else {
+            scope.entity = {};
+            scope.entity.gjw_code = scope.gjw_code;
+            _getDataInitCombobox();
         }
     })();
 });

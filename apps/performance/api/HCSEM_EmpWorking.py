@@ -6,6 +6,7 @@ import logging
 import threading
 import common
 from Query import EmpWorking
+from Query import Employee
 import views
 logger = logging.getLogger(__name__)
 global lock
@@ -75,6 +76,30 @@ def get_empworking_by_emp_code(args):
     except Exception as ex:
         raise(ex)
 
+def get_default_value_curent_employee(args):
+    try:
+        ret = {}
+        if args['data'] != None:
+            if args['data'].has_key('employee_code') and args['data']['employee_code'] != None and args['data']['employee_code'] != "":               
+
+                ret = EmpWorking.get_default_value_curent_employee(args['data']['employee_code'])
+                if len(ret) > 0:
+                    return ret[0]
+                else:
+                    ret = {}
+
+            else:
+                return dict(
+                    error = "parameter 'employee_code' is not exist"
+                )
+            return ret
+
+        return dict(
+            error = "request parameter is not exist"
+        )
+    except Exception as ex:
+        raise(ex)
+
 def insert(args):
     try:
         lock.acquire()
@@ -120,22 +145,22 @@ def update(args):
         lock.release()
         raise(ex)
 
-#def delete(args):
-#    try:
-#        lock.acquire()
-#        ret = {}
-#        if args['data'] != None:
-#            ret  =  models.HCSEM_Employees().delete("_id in {0}",[ObjectId(x["_id"])for x in args['data']])
-#            lock.release()
-#            return ret
+def delete(args):
+    try:
+        lock.acquire()
+        ret = {}
+        if args['data'] != None:
+            ret  =  models.HCSEM_EmpWorking().delete("_id in {0}",[ObjectId(x["_id"])for x in args['data']])
+            lock.release()
+            return ret
 
-#        lock.release()
-#        return dict(
-#            error = "request parameter is not exist"
-#        )
-#    except Exception as ex:
-#        lock.release()
-#        raise(ex)
+        lock.release()
+        return dict(
+            error = "request parameter is not exist"
+        )
+    except Exception as ex:
+        lock.release()
+        raise(ex)
 
 def set_dict_insert_data(args):
     ret_dict = dict()
@@ -171,4 +196,38 @@ def set_dict_insert_data(args):
 def set_dict_update_data(args):
     ret_dict = set_dict_insert_data(args)
     #del ret_dict['_id']
+    return ret_dict
+############Update Employee###############
+def update_employee(args):
+    try:
+        lock.acquire()
+        ret = {}
+        if args['data'] != None:
+            data =  set_dict_update_employee(args['data'])
+            ret  =  models.HCSEM_Employees().update(
+                data, 
+                "employee_code == {0}", 
+                args['data']['employee_code'])
+            lock.release()
+            if ret['data'].raw_result['updatedExisting'] == True:
+                ret.update(entity=Employee.get_employee_by_employee_code(args['data']['employee_code']))
+            return ret
+        lock.release()
+        return dict(
+            error = "request parameter is not exist"
+        )
+    except Exception as ex:
+        lock.release()
+        raise(ex)
+
+def set_dict_update_employee(args):
+    ret_dict = dict()
+
+    ret_dict.update(
+        employee_code             = (lambda x: x['employee_code']             if x.has_key('employee_code')               else None)(args),
+        department_code           = (lambda x: x['department_code']           if x.has_key('department_code')             else None)(args),
+        job_pos_code              = (lambda x: x['job_pos_code']              if x.has_key('job_pos_code')                else None)(args),
+        job_w_code                = (lambda x: x['job_w_code']                if x.has_key('job_w_code')                  else None)(args),
+        #region_code              = (lambda x: x['region_code']           if x.has_key('region_code')             else None)(args),
+    )
     return ret_dict

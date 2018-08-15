@@ -7,6 +7,7 @@ import threading
 logger = logging.getLogger(__name__)
 global lock
 lock = threading.Lock()
+from Query import DepartmentGroup
 
 def get_list(args):
     items = models.HCSSYS_Departments().aggregate().project(
@@ -17,6 +18,62 @@ def get_list(args):
     
     return items.get_list()
 
+def get_list_department_by_parent_code(args):
+    searchText = args['data'].get('search', '')
+    pageSize = args['data'].get('pageSize', 0)
+    pageIndex = args['data'].get('pageIndex', 20)
+    sort = args['data'].get('sort', 20)
+
+    pageIndex = (lambda pIndex: pIndex if pIndex != None else 0)(pageIndex)
+    pageSize = (lambda pSize: pSize if pSize != None else 20)(pageSize)
+    ret= models.HCSSYS_Departments().aggregate().project(
+        department_code = 1,
+        department_name = 1,
+        department_alias = 1,
+        department_tel = 1,
+        level_code = 1
+        )
+    ret.match("level_code == {0}", args['data']['where']['department_code'])
+
+    if(searchText != None):
+        ret.match("contains(department_code, @name) or contains(department_name, @name)" + \
+        "or contains(department_alias, @name) or contains(department_tel, @name)",name=searchText.strip())
+
+    if(sort != None):
+        ret.sort(sort)
+        
+    return ret.get_page(pageIndex, pageSize)
+
+def get_tree(args):
+    ret=DepartmentGroup.get_department_group()
+    return ret.get_list()
+
+
+
+def get_department_group():
+    ret=models.HCSSYS_Departments().aggregate()
+    ret.left_join(models.auth_user_info(), "created_by", "username", "uc")
+    ret.left_join(models.auth_user_info(), "modified_by", "username", "um")
+    ret.project(
+        _id = "_id",
+        department_code = "department_code",
+        factor_group_name = "factor_group_name",
+        factor_group_name2 = "factor_group_name2",
+        parent_code = "parent_code",
+        level = "level",
+        level_code = "level_code",
+        ordinal = "ordinal",
+        note = "note",
+        lock = "lock",
+        created_by="uc.login_account",
+        created_on= "created_on",
+        modified_on="switch(case(modified_on!='',modified_on),'')",
+        modified_by="switch(case(modified_by!='',um.login_account),'')",
+        )
+    ret.sort(dict(
+        ordinal = 1
+    )) 
+    return ret
 def insert(args):
     try:
         lock.acquire()

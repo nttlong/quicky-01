@@ -109,8 +109,9 @@
                                 on-select="$combobox.selectCombobox"
                                 on-accept="$combobox.acceptCombobox"
                                 close-on-select="true">
-                    </combobox>-->
-                    <input-text-icon ng-model="$$$job_working.value.job_w_name" on-click="set_job_w_code()" style="padding:5px;">
+                    </combobox>
+                    <input-text-icon ng-model="$$$job_working.value.job_w_name" on-click="set_job_w_code()" style="padding:5px;">-->
+                        <form-search ng-model="entity.job_w_code" open="set_job_w_code()" init-data="$$$job_working" multi="false" required></form-search>
                 </div>
             </div>
             <div class="form-group zb-form-group">
@@ -321,8 +322,8 @@
         }
 
         function getUrl() {
-            return scope.__mode == 1 || scope.__mode == 3 ? "${get_api_key('app_main.api.HCSEM_Experience/insert')}" /*Mode 1: Tạo mới*/
-                : "${get_api_key('app_main.api.HCSEM_Experience/update')}" /*Mode 2: Cập nhật*/
+            return scope.__mode == 1 || scope.__mode == 3 ? "${get_api_key('app_main.api.HCSEM_EmpExperience/insert')}" /*Mode 1: Tạo mới*/
+                : "${get_api_key('app_main.api.HCSEM_EmpExperience/update')}" /*Mode 2: Cập nhật*/
         }
 
         function reloadData() {

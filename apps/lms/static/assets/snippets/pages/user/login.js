@@ -1,6 +1,6 @@
 //== Class Definition
-var SnippetLogin = function() {
-
+var SnippetLogin = function () {
+	debugger
     var login = $('#m_login');
 
     var showErrorMsg = function(form, type, msg) {

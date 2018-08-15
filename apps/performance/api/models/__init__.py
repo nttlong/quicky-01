@@ -1,6 +1,6 @@
 import django
 import quicky
-# import authorization
+
 import qmongo
 from qmongo import database, helpers
 app=quicky.applications.get_app_by_file(__file__)
@@ -55,7 +55,11 @@ from tmp_transactions import tmp_transactions
 from HCSEM_EmpWorking import HCSEM_EmpWorking
 from HCSLS_Currency import HCSLS_Currency
 from HCSLS_Unit import HCSLS_Unit
-from HCSEM_Experience import HCSEM_Experience
+from HCSEM_EmpExperience import HCSEM_EmpExperience
+from TMPER_AprPeriod import TMPER_AprPeriod
+from TMPER_AprPeriodRank import TMPER_AprPeriodRank
+from TMPER_AprPeriodEmpOut import TMPER_AprPeriodEmpOut
+
 
 from ..views import *
 import pymongo

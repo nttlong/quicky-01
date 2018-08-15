@@ -14,6 +14,7 @@ urlpatterns = [
     url(r'^pages/(?P<path>.*)$', views.load_page, name='singleshop'),
     #url(r'^list/(?P<path>.*)$', views.load_list, name='singleshop'),
     url(r'^logout',views.logout_view),
+    url(r'^language',views.change_language),
     url(r'^api$',"quicky.api.call"),
     url(r'^excel_export$', export.call, name='excel_export'),
     app.get_static_urls()

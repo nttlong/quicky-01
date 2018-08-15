@@ -1,6 +1,7 @@
 from .. import models
 def display_list_cer():
     ret=models.HCSLS_Certificate().aggregate()
+    ret.left_join(models.HCSLS_GroupCertificate(), "group_cer_code", "group_cer_code", "gr_cer")
     ret.left_join(models.auth_user_info(), "created_by", "username", "uc")
     ret.left_join(models.auth_user_info(), "modified_by", "username", "um")
     ret.project(
@@ -10,6 +11,7 @@ def display_list_cer():
         cer_name2="cer_name2",
         expired_time="expired_time",
         group_cer_code="group_cer_code",
+        group_cer_name="gr_cer.group_cer_name",
         cers_time_limit="cers_time_limit",
         scer_code="scer_code",
         cers_replace_code="cers_replace_code",

@@ -11,30 +11,32 @@ global lock
 lock = threading.Lock()
 
 def get_list_with_searchtext(args):
-    searchText = args['data'].get('search', '')
-    pageSize = args['data'].get('pageSize', 0)
-    pageIndex = args['data'].get('pageIndex', 20)
-    sort = args['data'].get('sort', 20)
+    if args['data'].has_key('gjw_code') and args['data']['gjw_code'] != None and args['data']['gjw_code'] != "":
+        searchText = args['data'].get('search', '')
+        pageSize = args['data'].get('pageSize', 0)
+        pageIndex = args['data'].get('pageIndex', 20)
+        sort = args['data'].get('sort', 20)
 
-    pageIndex = (lambda pIndex: pIndex if pIndex != None else 0)(pageIndex)
-    pageSize = (lambda pSize: pSize if pSize != None else 20)(pageSize)
+        pageIndex = (lambda pIndex: pIndex if pIndex != None else 0)(pageIndex)
+        pageSize = (lambda pSize: pSize if pSize != None else 20)(pageSize)
 
-    ret=JobWorking.display_list_job_working(args['data']['gjw_code'])
+        ret=JobWorking.display_list_job_working(args['data']['gjw_code'])
 
-    ret=common.filter_lock(ret, args)
+        ret=common.filter_lock(ret, args)
     
-    if(searchText != None):
-        ret.match("contains(job_w_name, @name) or contains(report_to_job_w, @name)" + \
-            " or contains(job_w_code, @name) or contains(ordinal, @name)",name=searchText.strip())
+        if(searchText != None):
+            ret.match("contains(job_w_name, @name) or contains(report_to_job_w, @name)" + \
+                " or contains(job_w_code, @name) or contains(ordinal, @name)",name=searchText.strip())
 
-    if(sort != None):
-        ret.sort(sort)
+        if(sort != None):
+            ret.sort(sort)
         
-    return ret.get_page(pageIndex, pageSize)
+        return ret.get_page(pageIndex, pageSize)
+    return None
 
 def get_job_working_group_by_group_code(args):
     try:
-        if args['data'].has_key('gjw_code'):
+        if args['data'].has_key('gjw_code') and args['data']['gjw_code'] != None and args['data']['gjw_code'] != "":
             return JobWorking.get_job_working_group_by_group_code(args['data']['gjw_code'])
         return None
     except Exception as ex:
@@ -113,7 +115,7 @@ def update(args):
                 data, 
                 "job_w_code == {0}", 
                 args['data']['job_w_code'])
-            if ret['data'].raw_result['updatedExisting'] == True:
+            if (ret.has_key('error') and ret['error'] == None) and ret['data'].raw_result['updatedExisting'] == True:
                 ret.update(
                     data = get_job_description({"data":{"job_w_code":args['data']['job_w_code']}})
                     )
@@ -492,6 +494,7 @@ def insert_factor_appraisal(args):
                         for x in args['data']['factor_appraisal']['factor_code']:
                             try:
                                 param = {
+                                    "job_w_code":args['data']['job_w_code'],
                                     "factor_code":str(x).format(),
                                     "weight":(lambda x: x['weight'] if x.has_key('weight') else None)(args['data']['factor_appraisal']),
                                     }
@@ -509,7 +512,10 @@ def insert_factor_appraisal(args):
                 else:
                     lock.release()
                     return dict(
-                        error = "request parameter job_w_code is not exist"
+                        error=dict(
+                                fields=['factor_code'],
+                                code="missing"
+                            )
                     )
 
             lock.release()
@@ -597,6 +603,7 @@ def set_dict_insert_factor_appraisal(args):
     ret_dict = dict()
     ret_dict.update(
             rec_id            = common.generate_guid(),
+            jow_w_code        = (lambda x: x['jow_w_code']      if x.has_key('jow_w_code')      else None)(args),
             factor_code       = (lambda x: x['factor_code']     if x.has_key('factor_code')     else None)(args),
             weight            = (lambda x: x['weight']          if x.has_key('weight')          else None)(args),
             created_on        = datetime.datetime.now(),

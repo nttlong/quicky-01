@@ -83,7 +83,7 @@ def get_list_with_searchtext(args):
         ret.match("(level_code==@folder_id)",folder_id=where['folder_id'])
 
     if(searchText != None):
-        ret.match("contains(folder_name, @name)",name=searchText)
+        ret.match("contains(folder_name, @name) or contains(moderator_id, @name)",name=searchText)
 
     if(sort != None):
         ret.sort(sort)

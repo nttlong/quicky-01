@@ -99,6 +99,10 @@
                             scope.selectedItems = [];
                         }
                     })
+            }).cancel(function () {
+                alert('cancel');
+            }).deny(function () {
+                alert('deny');
             });
         }
     }

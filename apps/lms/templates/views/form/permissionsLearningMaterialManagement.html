@@ -21,34 +21,48 @@
         <label for="inputEmp_Train_Mode_Name" class="col-sm-5 zb-form-label">Group or user names</label>
     </div>
 </div>
+    <div class="col-md-12"> 
+        <table class="display zb-data-table responsive nowrap dataTable no-footer">
+        <thead>
+            <tr>
+                <th style="text-align:center"></th>
+                <th style="color:dodgerblue;text-align:center"> 
+                </th>
+                <th style="color:red;text-align:center">
+                    <button class="btn btn-default" ng-click="delUser()" style="float:right; margin-left:10px;" >
+                        <span><i class="glyphicon glyphicon-remove"></i></span> Delete
+                    </button>
+                    <button class="btn btn-default" ng-click="addUserDlg()" style="float:right; margin-left:10px;">
+                        <span><i class="glyphicon glyphicon-plus"></i></span> Add
+                    </button>
+                </th>
+            </tr>
+        </thead>
+        </table>
+    </div>
 
 <!---->
 <div class="col-md-12 " style="height:160px;  overflow-y: scroll;">
     <table class="display zb-data-table responsive nowrap dataTable no-footer">
         <tbody>
-            <tr ng-repeat="elem in user_list track by $index">
-                <td><input-checkbox ng-model="elem.select_user" id={{$index}}/></td>
-                <td for={{$index}}>
-                    <img src="../HRP2018/static/performance/img/icon/Administrator-icon.png" /> {{elem.login_account ? elem.login_account : elem.role_name}}
+            <tr role= "row" ng-repeat="elem in user_list track by $index">
+                <td ><input-checkbox ng-model="elem.select_user"/></td>
+                <td class="ng-binding">
+                    <i class="fa fa-{{elem.login_account ? 'user':'users'}}" style="font-size:24px"></i> {{elem.login_account ? elem.login_account : elem.role_name}}
                 </td>
-                <td>Full Control</td>
+                
+                <td>
+                    <span ng-repeat="data in elem.list_permision" style="color:black">
+                        <i class="bowtie-icon bowtie-checkbox"></i> 
+                        {{data.allow === true ? data.name + "; " : null}}
+                    </span>
+                </td>
             </tr>
         </tbody>
     </table>
 </div>
 <!---->
-<div class="col-md-12">
-    <br />
-    <button class="btn btn-default" ng-click="delUser()" style="float:right; margin-left:10px;" >
-        <span><i class="glyphicon glyphicon-remove"></i></span> Delete
-    </button>
-    <!--<button ng-click="addUserDlg()" class="btn btn-default" type="button" style="float:right;">
-        <span><i class="glyphicon glyphicon-plus"></i></span> Add
-    </button>-->
-    <button class="btn btn-default" ng-click="addUserDlg()" style="float:right; margin-left:10px;">
-        <span><i class="glyphicon glyphicon-plus"></i></span> Add
-    </button>
-</div>
+
 </div>
 <div class="col-md-12 col-sm-12">
 <collapse-box class="zb-form-common" title="${get_res('permission_for_selected_user','Permission for selected user')}">
@@ -68,9 +82,9 @@
             </tr>
         </thead>
         <tbody>
-            <tr ng-repeat="item in listPermissions">
+            <tr role= "row"  ng-repeat="item in listPermissions track by $index">
                
-                <td>{{item.name}}</td>
+                <td>{{item.name =="Full control"? "Full control (User can read, write, modify or delete the file.)" :item.name}}</td>
                 <td style="text-align: center; color:red">
                     <input-checkbox ng-model="item.allow" ng-change="changeAllow(item, item.allow)"/>
                 </td>
@@ -92,8 +106,8 @@
         scope._currentItem = scope.$parent.currentItem;
         scope.changeAllow = function (model, val) {
             
-            if (model.name == "Full control (User can read, write, modify or delete the file.)") {
-                for (let i = 0; i < scope.listPermissions.length; i++) {
+            if (model.name == "Full control") {
+                for (var i = 0; i < scope.listPermissions.length; i++) {
                     scope.listPermissions[i].allow = val
                     scope.listPermissions[i].deny = !val
                     }
@@ -102,8 +116,8 @@
            scope.$applyAsync();
         }
         scope.changeDeny = function (model, val) {
-            if (model.name == "Full control (User can read, write, modify or delete the file.)") {
-                for (let i = 0; i < scope.listPermissions.length; i++) {
+            if (model.name == "Full control") {
+                for (var i = 0; i < scope.listPermissions.length; i++) {
                     scope.listPermissions[i].deny = val
                     scope.listPermissions[i].allow = !val
                     }
@@ -111,12 +125,12 @@
             model.allow= !val;
            scope.$applyAsync();
         }
-        scope.dataItemSelects = [];
+        //scope.dataItemSelects = [];
 		scope.col_group = 6;
 		scope.col = 12;
 		scope.onResizeDialog = onResizeDialog;
 		scope.listPermissions = [
-			{ name: "Full control (User can read, write, modify or delete the file.)", allow: false, deny: false },
+			{ name: "Full control", allow: false, deny: false },
 			{ name: "Modify" , allow:false, deny:false},
 			{ name: "Read-Only" , allow:false, deny:false},
 			{ name: "Read & Excute" , allow:false, deny:false},
@@ -127,17 +141,10 @@
 			
 		]
         scope.delUser = function () {
-            debugger
             
+            debugger
             if (scope.user_list && scope.user_list.length) {
-                var temp_list_user = scope.user_list;
-                for (let j = 0; j < temp_list_user.length; j++) {
-                    for (let i = 0; i < scope.user_list.length; i++) {
-                        if (scope.user_list[i].select_user == true) {
-                            scope.user_list.splice(i, 1)
-                        }
-                    }
-                }
+                scope.user_list = _.reject(scope.user_list , { "select_user" : true});
                 
             }
             scope.$applyAsync();
@@ -167,98 +174,65 @@
             scope.col_group = scope.col_group == 6 ? 8 : 6;
         }
 
-        scope.$watch("dataItemSelects", function (data) {
-            debugger
-            console.log(data)
+        //scope.$watch("dataItemSelects", function (data) {
+
+        //    debugger
             
-                scope.user_list.push(...data);
+        //    console.log(data)
             
-        })
+        //        scope.user_list.push(...data);
+            
+        //})
 
         scope.saveNClose = saveNClose;
             
-        function saveNClose() {   
-           debugger
-            if (scope.sharing != null) {
-                services.api("${get_api_key('app_main.api.LMSLS_MaterialManagement/update_info_sharing_file')}")
+        function saveNClose() {
+            debugger
+            if (scope.user_list && scope.user_list.length && scope.listPermissions && scope.listPermissions.length) {
+
+                scope.user_list = _.map(scope.user_list, function (user) {
+                        if (user.select_user === true) {
+                             user.list_permision = scope.listPermissions
+                        }
+                        return user
+                })
+            }
+            scope.$applyAsync();
+                services.api("${get_api_key('app_main.api.LMSLS_MaterialManagement/update_info_permission')}")
                 .data({
                     "where": {
                         'id': scope._currentItem['_id'],
-                        'sharing_info': scope.sharing 
+                        'permission': scope.user_list,
                     }
                 })
                 .done()
-                .then(function (res) {
-                    
+                    .then(function (res) {
+                    scope.$applyAsync();
+                    $msg.alert("${get_global_res('Handle_Success','Thao tác thành công')}", $type_alert.INFO);
+                    $dialog.closeDialog();
                 })
-            } else {
-                $msg.message("${get_global_res('Input_Error','Mời nhập comment')}", rsCheck.errorMsg, function () { });
-            }
         }
-
-
-
-
-
-
-
-
-        scope.initComboMulti = [];
-        scope.$combobox = {
-            loadData: (cbSetData, pgIdx, txtSearch) => {
-                setTimeout(function() {
-                    var data = _cbbData(pgIdx, txtSearch, cbSetData, data);
-                    
-                }, 1000);
-            },
-            selectCombobox: function(item) {
-                console.log("selectCombobox", item);
-            },
-            acceptCombobox: item => {
-                console.log("acceptCombobox", item);
-            },
-            onSearchPress: function(txtSearch) {
-                console.log("onSearchPress: ", txtSearch)
-            },
-            onSearchChange: function(txtSearch) {
-                console.log("onSearchChange: ", txtSearch)
-            },
-            // onPaging: function(pageIndex) {
-            //     console.log("pageIndex: ", pageIndex);
-            // },
-            //numberItems: 2000,
-            //numberOnPage: 30,
-            //pageIndex: 1
-        }
-
-        function _cbbData(pgIdx, txtSearch, cbSetData, data) {
-            onLoadDataCbb(function (res) {
-                var data = res;
-                if (txtSearch) {
-                    data = _.filter(data, d => {
-                        return d.Name.toLowerCase().startsWith(txtSearch);
-                    });
-                    console.log(data);
-                }
-                return {
-                    "recordsTotal": data.length,
-                    "data": (pgIdx % 2 == 0) ? data.splice(0, 30) : data.reverse().splice(0, 30) //giả lập lấy theo phân trang
-                }
-            });
-        }
-        
-        function onLoadDataCbb(callback) {
-            services.api("${get_api_key('app_main.api.LMSLS_MaterialManagement/get_list_employees')}")
-                .data()
+        scope.loadDataPermission = function () {
+           debugger
+            services.api("${get_api_key('app_main.api.LMSLS_MaterialManagement/get_data_permission')}")
+                .data({
+                    "where": {
+                        'id': scope._currentItem['_id']
+                    }
+                })
                 .done()
                 .then(function (res) {
                     debugger
-                    if (callback) {
-                        callback(res);
+                    if (scope.user_list.length == 0) {
+                        if (res.permission.length > 0) {
+                            scope.user_list = _.map(res.permission, function (user) { user.select_user = false; return user })
+                        }
                     }
+                   
+                    scope.$applyAsync();
                 })
         }
-
+        scope.loadDataPermission();
 	});
 
 </script>

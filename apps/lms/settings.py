@@ -30,4 +30,5 @@ Database=dict(
     user="sys",
     password="123456"
 )
-login_url="login"
+
+login_url="/../login"

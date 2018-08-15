@@ -127,6 +127,10 @@ def get_list_with_searchtext(args):
     # nếu không có advance search thì bỏ qua
     isWhereAdvance = False
     if(where != None):
+
+        if(where['folder_id'] != None):
+            ret.match("(level_code==@level_code)",level_code=where["folder_id"])
+
         #search text
         if(where.has_key('searchAdvance') and where["searchAdvance"] != None):
             isWhereAdvance = True
@@ -180,7 +184,7 @@ def get_list_with_searchtext(args):
             ret.match("created_by == @contributed_by", contributed_by=where["searchAdvance"]['contributed_by'])
 
     if(searchText != None):
-        ret.match("contains(material_name, @name)",name=searchText)
+        ret.match("contains(material_name, @name) or contains(material_id, @name) or contains(version, @name) or contains(creator, @name)",name=searchText)
 
     if(sort != None):
         ret.sort(sort)
@@ -189,7 +193,7 @@ def get_list_with_searchtext(args):
             material_id=1,
             material_name=1,
             material_name2=1,
-            material_version=1,
+            #material_version=1,
             submit_user_id=1,
             submit_date=1,
             approve_user_id=1,
@@ -213,15 +217,17 @@ def get_list_with_searchtext(args):
             language=1,
             coverage=1,
             rights=1,
-            relations=1,
+            #relations=1,
             files=1,
             version=1,
-            comments=1,
+            #comments=1,
             identifier=1,           
             material_type=1,           
-            source=1,                 
+            source=1,    
+            #views=1,
             material_format=1,
             total_rating="avg(comments.rating)",
+            comments="comments.content",
             created_by="uc.login_account",
             created_on="created_on",
             modified_on="switch(case(modified_on!='',modified_on),'')",
@@ -294,6 +300,7 @@ def get_data_info_details(args):
             material_type=1,           
             source=1,                 
             material_format=1,
+            views=1,
             category_name="mf.folder_name",
             created_by="uc.login_account",
             created_on="created_on",
@@ -387,83 +394,7 @@ def get_data_info_history_download(args):
             downloads=1, 
         )
     return ret.get_page(0, 100)
-def get_list_with_select_node(args):
-    searchText = args['data'].get('search', '')
-    pageSize = args['data'].get('pageSize', 0)
-    pageIndex = args['data'].get('pageIndex', 20)
-    sort = args['data'].get('sort', 20)
 
-    pageIndex = (lambda pIndex: pIndex if pIndex != None else 0)(pageIndex)
-    pageSize = (lambda pSize: pSize if pSize != None else 20)(pageSize)
-    collection = common.get_collection('LMSLS_MaterialManagement')
-    where = args['data'].get('where')
-    arrayData = []
-    match = {}
-    if(where['folder_id'] != None or searchText != None):
-        match = {
-                "$match": {
-                }
-            }
-    if(where['folder_id'] != None):
-        match["$match"]["level_code"] = where['folder_id']
-
-    if(searchText != None):
-        match["$match"]["material_name"] = { "$regex": ".*" + searchText + "*" }
-
-    if(where['folder_id'] != None or searchText != None):
-        arrayData.append(match)
-    arrayData.append({
-                "$project": {
-                    "material_id":1,
-                    "material_name":1,
-                    "material_name2":1,
-                    "material_version":1,
-                    "submit_user_id":1,
-                    "submit_date":1,
-                    "approve_user_id":1,
-                    "approve_date":1,
-                    "ordinal":1,
-                    "note":1,
-                    "lock":1,
-                    "folder_id":1,
-                    "author_name":1,
-                    "course_name": 1,
-                    "size":1,
-                    "version":1,
-                    "creator":1,
-                    "category":1,
-                    "level_code":1,
-                    "description":1,
-                    "publisher_name":1,
-                    "publisher_date":1,
-                    "date_valid_from":1,
-                    "date_valid_to":1,
-                    "course_id":1,
-                    "language":1,
-                    "coverage":1,
-                    "rights":1,
-                    "relations":1,
-                    "files":1,
-                    "comments":1,
-                    "identifier":1,           
-                    "material_type":1,           
-                    "source":1,                 
-                    "material_format":1,        
-                   
-                }
-            })
-
-    if(sort != None):
-        arrayData.append({
-            "$sort": sort    
-        })
-    ret=collection.aggregate(arrayData)
-    return dict(
-        items=list(ret),
-        page_index=pageIndex,
-        page_size=pageSize,
-        total_items=list(ret).__len__()
-    )
 
 def insert(args):
     try:
@@ -561,6 +492,47 @@ def update_info_sharing_file(args):
                     {
                         '$push': {
                             "sharing_info": data['sharing_info']
+                        }
+                    }
+                )
+            lock.release()
+            return ret
+
+        lock.release()
+        return dict(
+            error = "request parameter is not exist"
+        )
+    except Exception as ex:
+        lock.release()
+        raise(ex)
+def update_info_permission(args):
+    try:
+        lock.acquire()
+        ret = {}
+        if args['data'] != None:
+            data = args['data']['where']
+            for i in data['permission']:                 
+                if i.has_key('$$regKey'):
+                    del i['$$regKey']
+                if i.has_key('$$selectKey'):
+                    del i['$$selectKey']
+                if i.has_key('$$hashKey'):
+                    del i['$$hashKey']
+                if i.has_key('list_permision'):
+                    for a in i['list_permision']:
+                        if a.has_key('$$regKey'):
+                            del a['$$regKey']
+                        if a.has_key('$$selectKey'):
+                            del a['$$selectKey']
+                        if a.has_key('$$hashKey'):
+                            del a['$$hashKey']
+
+            collection  =  common.get_collection('LMSLS_MaterialManagement')
+            ret = collection.update(
+                    { "_id": ObjectId(data['id']) },
+                    {
+                        '$set': {
+                            "permission": data['permission']
                         }
                     }
                 )
@@ -687,7 +659,7 @@ def set_dict_insert_data(args):
         submit_date             = (lambda x: x['submit_date']           if x.has_key('submit_date')             else None)(args['data']),
         approve_user_id         = (lambda x: x['approve_user_id']       if x.has_key('approve_user_id')         else None)(args['data']),
         approve_date            = (lambda x: x['approve_date']          if x.has_key('approve_date')            else None)(args['data']),
-        ordinal                 = (lambda x: x['ordinal']               if x.has_key('ordinal')                 else None)(args['data']),
+        ordinal                 = (lambda x: x['ordinal']               if x.has_key('ordinal')                 else 0)(args['data']),
         note                    = (lambda x: x['note']                  if x.has_key('note')                    else None)(args['data']),
         lock                    = (lambda x: x['lock']                  if x.has_key('lock')                    else False)(args['data']),
         folder_id               = (lambda x: x['folder_id']             if x.has_key('folder_id')               else None)(args['data']),
@@ -737,6 +709,7 @@ def set_dict_insert_data_comment(args):
     )
 
     return ret_dict
+
 def get_data_info_login_account(args):
     user = "application"
     login_account= ""
@@ -763,6 +736,7 @@ def set_dict_insert_data_reply(args):
 
     return ret_dict
 
+
 def set_dict_update_data(args):
     ret_dict = set_dict_insert_data(args)
     del ret_dict['folder_id']
@@ -774,6 +748,7 @@ def set_dict_update_data_comment(args):
 def set_dict_update_data_reply(args):
     ret_dict = set_dict_insert_data_reply(args)
     return ret_dict
+
 
 def get_login_account(args):
     ret=models.models.auth_user_info().aggregate()
@@ -1149,3 +1124,226 @@ def get_list_group_user(args):
             )
     except Exception as ex:
         raise(ex)
+def get_data_permission(args):
+    where = args['data'].get('where')
+    ret=models.LMSLS_MaterialManagement().aggregate()
+    if(where != None):
+        ret.match("(_id==@id)",id=ObjectId(where['id']))
+    ret.project(
+            permission=1, 
+        )
+    return ret.get_item()
+
+def get_data_dash_board_page(args):
+        
+    ret=models.LMSLS_MaterialManagement().aggregate()
+    len_ret =len(ret.get_list())
+    ret_fold=models.LMSLS_MaterialFolder().aggregate()
+    len_ret_fold =len(ret_fold.get_list())
+    list_folder = []
+    
+    for j in range(len_ret_fold): 
+        folder_id= ret_fold.get_list()[j]['folder_id']
+        item_folder=get_list_with_select_node(folder_id)
+        list_folder.insert(len(list_folder),item_folder)
+    arr_folder =[]
+    max_foder =0
+    for i in range(5):
+        max_foder =0
+        for x in list_folder:
+                if len(x['items']) > max_foder:
+                    max_foder=len(x['items'])
+
+                    arr_folder.insert(len(arr_folder),{'views':x['items'],'folder_id':x['folder_id']})
+                    list_folder.remove(x)
+                    
+    len_download = 0
+    len_share    = 0
+    for x in ret.get_list():
+        if x.has_key('downloads'):
+            len_download+=len(x['downloads'])
+    for x in ret.get_list():
+        if x.has_key('sharing_info'):
+            len_share+=len(x['sharing_info'])
+    for x in ret.get_list():
+        if x.has_key('sharing_social'):
+            len_share+=len(x['sharing_social'])
+    list_element = ret.get_list()
+    arr =[]
+    
+    for i in range(5):
+        max=0
+        for x in list_element:
+            if x.has_key('views'):
+                if len(x['views']) > max:
+                    max=len(x['views'])
+
+                    arr.insert(len(arr),{'views':x['views'],'material_name':x['material_name']})
+                    list_element.remove(x)
+    down_share_view = get_list_down_share_view()    
+    
+    
+    return dict(
+        number_material= len_ret,
+        number_folder= len_ret_fold,
+        number_download =len_download,
+        number_share =len_share,
+        top_five_material = arr,
+        top_five_folder = arr_folder,
+        dynamic_chart =down_share_view,
+        )
+def get_list_with_select_node(args):
+
+    collection = common.get_collection('LMSLS_MaterialManagement')
+    arrayData = []
+    match = {}
+    if(args != None):
+        match = {
+                "$match": {
+                }
+            }
+        match["$match"]["level_code"] = args
+        arrayData.append(match)
+    arrayData.append({
+                "$project": {
+                    "folder_id":1,
+                    "views":1,
+                }
+            })
+
+
+    ret=collection.aggregate(arrayData)
+    return dict(
+        items=list(ret),
+        folder_id=args
+    )
+
+def update_view_file(args):
+    try:
+        lock.acquire()
+        ret = {}
+        user = "application"
+        login_account= ""
+        if hasattr(threading.current_thread(),"user"):
+            user = threading.current_thread().user.username
+            login_account = get_login_account(user)
+        if args['data'] != None:
+            where = args['data']['where']
+            collection  =  common.get_collection('LMSLS_MaterialManagement')
+            ret = collection.update(
+                    { "_id": ObjectId(where['id']) },
+                    {
+                        '$push': {
+                            "views": {
+                                    "id_user": user,
+                                    "login_account": login_account,
+                                    "date_created": datetime.datetime.now(),
+                                }
+                        }
+                    }
+                )
+            lock.release()
+            return ret
+
+        lock.release()
+        return dict(
+            error = "request parameter is not exist"
+        )
+    except Exception as ex:
+        lock.release()
+        raise(ex)
+def get_list_down_share_view():
+    ret=models.LMSLS_MaterialManagement().aggregate()
+    ret.project(
+            views=1,
+            downloads=1,
+            sharing_info=1,
+            sharing_social=1,
+        )
+    return ret.get_list()
+def get_list_download_history(args):
+    if args['data'] != None:
+        try:
+            searchText      = (lambda x: "" if x == None else x)(args['data'].get('search', ''))
+            pageSize        = args['data'].get('pageSize', 0)
+            pageIndex       = args['data'].get('pageIndex', 20)
+            sort            = args['data'].get('sort', 20)
+            where           = (lambda data: data["where"] if data.has_key("where") else {})(args['data'])
+            page_index       = (lambda pIndex: pIndex if pIndex != None else 0)(pageIndex)
+            page_size        = (lambda pSize: pSize if pSize != None else 20)(pageSize)
+            items = common.get_collection('LMSLS_MaterialManagement').aggregate([
+                   
+                    {
+                        "$project": {
+                        "num_downloads":{"$ifNull": [{"$toString": {"$size":"$downloads"}}, "0"]},
+                        "last_downloads":{"$ifNull": [{ "$arrayElemAt": [ "$downloads.date_created", -1 ] }, ""]},
+                        "size_files":"$files.file_size",
+                        "creator":1,
+                        "material_id":1,
+                        "material_type":1,
+                        "material_name":1
+                        }
+                    },
+                    {
+                        "$match":{
+                            "$or":[
+                                    { "num_downloads": { "$regex": searchText, "$options": 'i' } },
+                                    { "last_downloads": { "$regex": searchText, "$options": 'i' } },
+                                    { "size_files": { "$regex": searchText, "$options": 'i' } },
+                                    { "creator": { "$regex": searchText, "$options": 'i' } },
+                                    { "material_id": { "$regex": searchText, "$options": 'i' } },
+                                    { "material_type": { "$regex": searchText, "$options": 'i' } },
+                                    { "material_name": { "$regex": searchText, "$options": 'i' } }
+                                ]
+                            }
+                    },
+                    {
+                        "$sort":sort
+                    },
+                    {
+                    "$facet": {
+                        "metadata": [{ "$count": "total" }, { "$addFields": { "page_index": page_index, "page_size": page_size } }],
+                        "data": [{ "$skip": page_size * page_index }, { "$limit": page_size }]
+                    }
+                    },
+                    { 
+                        "$unwind": { "path": '$metadata', "preserveNullAndEmptyArrays": False } 
+                    },
+                    {
+                        "$project": {
+                            'page_size': '$metadata.page_size',
+                            'page_index': '$metadata.page_index',
+                            'total_items': '$metadata.total',
+                            'items': '$data'
+                        }
+                    }])
+            
+          
+
+            #if(searchText != None):
+            #    items.match("contains(material_id, @name) or contains(material_name, @name) " + \
+            #        "or contains(material_type, @name) or contains(file_size, @name) " + \
+            #        "or contains(creator, @name) or contains(date_downloads, @name)",name=searchText.strip())
+
+            #if(where != None and where != {}):
+            #    try:
+            #        if where.has_key('filter') and  where.has_key('value') and len(where['filter']) and len(where['value']):
+            #            items.match(where["filter"],where["value"])
+            #    except Exception as ex:
+            #        raise(Exception("syntax where error"))
+
+            #if(sort != None):
+            #    items.sort(sort)
+
+            #return items.get_page(pageIndex, pageSize)
+            return (lambda x : x[0] if x!= None and len(x) > 0 else {"page_size":page_size,
+                                                                     "page_index":page_index,
+                                                                     "total_items":0,
+                                                                     "items":[]})(list(items))
+        except Exception as ex:
+            raise(ex)
+
+    return dict(
+            error = "request parameter is not exist"
+        )
+

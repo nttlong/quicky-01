@@ -1,4 +1,5 @@
 ﻿(function (scope) {
+    scope.$root.extendToolbar = true;
     //(function reSize() {
     //    debugger
     //    var width = $(window).width();
@@ -304,7 +305,8 @@
     };
 
 	scope._tableData = _tableData;
-	function _tableData(iPage, iPageLength, orderBy, searchText, callback, objSearchAdvance) {
+    function _tableData(iPage, iPageLength, orderBy, searchText, callback, objSearchAdvance) {
+
         //if (scope.treeCurrentNode.hasOwnProperty('folder_id')) {
         var sort = {};
         $.each(orderBy, function (i, v) {
@@ -324,28 +326,28 @@
 					"sort": sort,
                 })
                 .done()
-                .then(function (res) {
+            .then(function (res) {
                     var data = {
                         recordsTotal: res.total_items,
                         recordsFiltered: res.total_items,
                         data: res.items
                     };
-                    scope.__tableSource = JSON.parse(JSON.stringify(res.items));
-					scope.ItemTables = JSON.parse(JSON.stringify(res.items));
-					var total_rating = 0;
-					for (var i = 0; i < scope.ItemTables.length; i++) {
-						var Ratings = [];
-						if (data.data[i].comments == null) {
-							data.data[i]["total_rating"] = 0;
-						}
-						else if (data.data[i].comments && data.data[i].comments.length > 0) {
-							for (var j = 0; j < data.data[i].comments.length; j++) {
-								Ratings.push(data.data[i].comments[j].rating)
-							}
-							var sum = Ratings.reduce((previous, current) => current += previous);
-							data.data[i]["total_rating"] = sum / Ratings.length;
-						}
-					}
+     //               scope.__tableSource = JSON.parse(JSON.stringify(res.items));
+					//scope.ItemTables = JSON.parse(JSON.stringify(res.items));
+					//var total_rating = 0;
+					//for (var i = 0; i < scope.ItemTables.length; i++) {
+					//	var Ratings = [];
+					//	if (data.data[i].comments == null) {
+					//		data.data[i]["total_rating"] = 0;
+					//	}
+					//	else if (data.data[i].comments && data.data[i].comments.length > 0) {
+					//		for (var j = 0; j < data.data[i].comments.length; j++) {
+					//			Ratings.push(data.data[i].comments[j].rating)
+					//		}
+					//		var sum = Ratings.reduce((previous, current) => current += previous);
+					//		data.data[i]["total_rating"] = sum / Ratings.length;
+					//	}
+					//}
 					scope.ItemTables = JSON.parse(JSON.stringify(data.data));
                     callback(data);
                     scope.currentItem = null;
@@ -439,10 +441,19 @@
             window.location.href = "#page=" + $his.page + "&f=" + function_id;
     });
 
-    scope.$watch("currentItem", function () {
-        scope.$root.currentItem.push(scope.currentItem);
+    scope.$watch("$parent.searchText", function (val) {
+        _loadDataServerSide(scope.$$tableConfig.fnReloadData,
+            1, scope.$$tableConfig.iPageLength,
+            scope.$$tableConfig.orderBy, val)
+        /*debugger
+        scope.SearchText =val*/
         scope.$applyAsync();
     });
+   /* scope.$watch("objSearch.onSearch", function () {
+        debugger
+        scope.$root.currentItem.push(scope.currentItem);
+        scope.$applyAsync();
+    });*/
 
     //scope.$root.$history.onChange(scope, function (data) {
     //    if (scope.mapName.length > 0) {
@@ -476,7 +487,18 @@
 
     scope.$root.viewDetailsLearningMaterial = function () {
         
-        if (scope.currentItem) {
+        if (scope.currentItem) {   
+                services.api("${get_api_key('app_main.api.LMSLS_MaterialManagement/update_view_file')}")
+                    .data({
+                        "where": {
+                            'id': scope.currentItem['_id'],
+                            'views': 1,
+                        }
+                    })
+                    .done()
+                    .then(function (res) {
+                    })
+            
             scope.mode = 2; // set mode chỉnh sửa
             openDialog("${get_res('Detail_LearningMaterial','Create New Folder')}", 'form/viewDetailsLearningMaterialManagement', function () {
                 setTimeout(function () {

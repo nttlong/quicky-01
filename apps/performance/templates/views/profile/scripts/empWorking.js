@@ -3,7 +3,7 @@
     console.log(scope.$currentEmployeeCode);
     scope.$tableEmpWorking = {
         tableField: [
-            { "data": "appoint", "title": "${get_res('appoint','Loại')}" },
+            { "data": "appoint_name", "title": "${get_res('appoint','Loại')}" },
             { "data": "decision_no", "title": "${get_res('decision_no','Số QĐ')}" },
             { "data": "effect_date", "title": "${get_res('effect_date','Ngày QĐ')}", "format": "date:" + scope.$root.systemConfig.date_format },
             { "data": "begin_date", "title": "${get_res('begin_date','Từ ngày')}", "format": "date:" + scope.$root.systemConfig.date_format },
@@ -22,7 +22,11 @@
             onEdit();
         },
         refreshDataRow: function () { /*Do nothing*/ },
-        $$tableConfig: {}
+        $$tableConfig: {},
+        latestRecordEmpWorking:[],
+        empInfor:[]
+
+
     }
 
     scope.$tableEmpExperience = {
@@ -63,6 +67,7 @@
         }
     }
     scope.triggerResize = triggerResize;
+    scope._tableData = _tableData;
     scope._tableDataEmpExperience = _tableDataEmpExperience;
 
     function triggerResize() {
@@ -108,14 +113,41 @@
                 })
                 .done()
             .then(function (res) {
-                console.log("data", res);
-                    var data = {
-                        recordsTotal: res.total_items,
-                        recordsFiltered: res.total_items,
-                        data: res.items
-                    };
-                    callback(data);
-                    scope.$apply();
+                var data = {
+                    recordsTotal: res.total_items,
+                    recordsFiltered: res.total_items,
+                    data: res.items
+                };     
+                console.log("data", data.data);
+                //lấy giá trị mặc định của nhân viên nếu chưa có quyết định bn-dc
+                services.api("${get_api_key('app_main.api.HCSEM_EmpWorking/get_default_value_curent_employee')}")
+                    .data({
+                        "employee_code": scope.$currentEmployeeCode
+                    })
+                    .done()
+                    .then(function (r) {
+                        scope.$tableEmpWorking.empInfor = r;
+                        if (res.items.length > 0) {
+                            //lấy giá trị có ngày hiệu lực mới nhất
+                            var max = res.items[0];
+                            for (var i = 0; i < res.items.length; i++) {
+                                if (res.items[i].effect_date > max.effect_date) {
+                                    max = res.items[i];
+                                }
+                            }
+                            scope.$tableEmpWorking.latestRecordEmpWorking = max;
+                        }
+                        else {
+                            res.effect_date = null;
+                            scope.$tableEmpWorking.latestRecordEmpWorking = r;
+                            scope.$applyAsync();
+                        }
+                            
+                    })
+                
+               
+                callback(data);
+                scope.$apply();
                 })
     }
     function _loadDataEmpExperience(fnReloadData, iPage, iPageLength, orderBy, searchText) {
@@ -146,7 +178,7 @@
             sort[v.columns] = (v.type === "asc") ? 1 : -1;
         });
         sort[orderBy[0].columns] =
-            services.api("${get_api_key('app_main.api.HCSEM_Experience/get_list_with_searchtext')}")
+            services.api("${get_api_key('app_main.api.HCSEM_EmpExperience/get_list_with_searchtext')}")
                 .data({
                     //parameter at here
                     "pageIndex": iPage - 1,
@@ -186,12 +218,38 @@
      * Hàm mở form tạo moi
      */
     function onAdd() {
-        scope.mode = 1;// set mode tạo mới
+        scope.mode = 1;// set mode tạo mới        
+        //if (scope.$tableEmpWorking.latestRecordEmpWorking.length > 0) {
+
+        //}
+        //else {
+
+        //}
         openDialog("${get_res('add_empworking','Chi tiết Bổ nhiệm điều chuyển')}", 'profile/form/addEmpWorking', function () {
         });
     }
     function onDelete() {
-
+        if (!scope.$tableEmpWorking.selectedItems || scope.$tableEmpWorking.selectedItems.length === 0) {
+            $msg.message("${get_global_res('Notification','Thông báo')}", "${get_global_res('No_Row_Selected','Không có dòng được chọn')}", function () { });
+        } else {
+            $msg.confirm("${get_global_res('Notification','Thông báo')}", "${get_global_res('Do_You_Want_Delete','Bạn có muốn xóa không?')}", function () {
+                services.api("${get_api_key('app_main.api.HCSEM_EmpWorking/delete')}")
+                    .data(scope.$tableEmpWorking.selectedItems)
+                    .done()
+                    .then(function (res) {
+                        if (res.deleted > 0) {
+                            _tableData(scope.$tableEmpWorking.$$tableConfig.iPage,
+                                scope.$tableEmpWorking.$$tableConfig.iPageLength,
+                                scope.$tableEmpWorking.$$tableConfig.orderBy,
+                                scope.$tableEmpWorking.$$tableConfig.SearchText,
+                                scope.$tableEmpWorking.$$tableConfig.fnReloadData);
+                            $msg.alert("${get_global_res('Handle_Success','Thao tác thành công')}", $type_alert.INFO);
+                        } else {
+                            $msg.message("${get_global_res('Notification','Thông báo')}", "${get_app_res('No_Row_Delete','Không có dòng được xóa')}", function () { });
+                        }
+                    })
+            });
+        }
     }
 
     /**
@@ -222,7 +280,7 @@
             $msg.message("${get_global_res('Notification','Thông báo')}", "${get_global_res('No_Row_Selected','Không có dòng được chọn')}", function () { });
         } else {
             $msg.confirm("${get_global_res('Notification','Thông báo')}", "${get_global_res('Do_You_Want_Delete','Bạn có muốn xóa không?')}", function () {
-                services.api("${get_api_key('app_main.api.HCSEM_Experience/delete')}")
+                services.api("${get_api_key('app_main.api.HCSEM_EmpExperience/delete')}")
                     .data(scope.$tableEmpExperience.selectedItems)
                     .done()
                     .then(function (res) {
@@ -250,7 +308,11 @@
     }
 
     function onRefresh() {
-        
+        _tableData(scope.$tableEmpWorking.$$tableConfig.iPage,
+            scope.$tableEmpWorking.$$tableConfig.iPageLength,
+            scope.$tableEmpWorking.$$tableConfig.orderBy,
+            scope.$tableEmpWorking.$$tableConfig.SearchText,
+            scope.$tableEmpWorking.$$tableConfig.fnReloadData);
     }
 
     function onRefreshExperience() {

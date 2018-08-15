@@ -101,7 +101,7 @@
     overflow: hidden;  
     }
     .detail-title {
-        color:rgb(88, 172, 250);;
+        color:rgb(88, 172, 250);
         font-weight:bold;
     }
   
@@ -109,14 +109,31 @@
 </style>
 <script>
     (function (scope) {
-        debugger
-        scope.list_temp_relation = [{ ref_relation: "1", intro_relation: "abc" }, { ref_relation: "2", intro_relation: "abc" }, { ref_relation: "3", intro_relation: "abc" }, { ref_relation: "4", intro_relation: "abc" }]
         
-        scope.list_temp_courses = [{ course_name: "Python for system", author: "Nguyen van ", status: "hong hanh", startdate: "20/10/2018", enddate: "10/10/2017" }];
+        scope.list_temp_relation = [{ ref_relation: "1", intro_relation: "abc" }, { ref_relation: "2", intro_relation: "abc" }, { ref_relation: "3", intro_relation: "abc" }, { ref_relation: "4", intro_relation: "abc" }]
+
+		scope.list_temp_courses = [{ course_name: scope._currentItem.course_name, author: scope._currentItem.author_name, status: "hong hanh", startdate: scope._currentItem.valid_from, enddate: scope._currentItem.date_valid_to }];
         scope.list_courses = scope.list_temp_courses;
         scope.list_relation = [{}]
         scope._currentItem = scope.$parent.currentItem;
-       
+        loadValueList();
+        function loadValueList() {
+            services.api("${get_api_key('app_main.api.SYS_ValueList/get_list')}")
+            .data({
+                "name": [
+                    "LMSLRelation",
+                ]
+            })
+            .done()
+                .then(function (res) {
+                debugger
+                scope.cbbLMSLRelation = getValue(res.values, "LMSLRelation");
+                scope.$applyAsync();
+                function getValue(response, listName) {
+                    return _.findWhere(response, { "list_name": listName }) ? _.findWhere(response, { "list_name": listName }).values : [];
+                }
+            })
+        }
         (function getData() {
             services.api("${get_api_key('app_main.api.LMSLS_MaterialManagement/get_data_info_details')}")
                 .data({
@@ -142,7 +159,7 @@
         }
          scope.addCourses = function () {
             if (scope.list_courses.length < scope.list_temp_relation.length) {
-                scope.list_courses.push({course_name:"Python for system", author:"Nguyen van ", status:"hong hanh",startdate:"20/10/2018",enddate:"10/10/2017"});
+                scope.list_courses.push({course_name:scope._currentItem.course_name, author:scope._currentItem.author_name, status:"hong hanh",startdate:scope._currentItem.date_valid_from.substring(0, 10),enddate:scope._currentItem.date_valid_to.substring(0, 10)});
             }
         }
         scope.delCourses = function (index) {

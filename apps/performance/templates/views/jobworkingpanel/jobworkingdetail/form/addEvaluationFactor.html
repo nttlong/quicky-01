@@ -14,7 +14,8 @@
                 <!--Yếu tố đánh giá-->
                 <label class="col-sm-4 zb-form-label">${get_res('factor_code','Yếu tố đánh giá')}</label>
                 <div class="col-sm-8">
-                    <input-text ng-model="entity.factor_code" required>
+                    <!--<input-text ng-model="entity.factor_code" required>-->
+                    <form-search ng-model="entity.factor_code" placeholder="test" open="set_factor_code()" init-data="$$$factor_code" multi="frnSearchMode" required></form-search>
                 </div>
             </div>
             <div class="form-group zb-form-group">
@@ -49,8 +50,16 @@
         scope.saveNNext = saveNNext;
         scope.__mode = scope.$parent.mode;
         var __entity = JSON.parse(JSON.stringify(scope.$parent.$$table.currentItem));
-        scope.entity = scope.__mode === 2 ? __entity : null;
+        scope.entity = scope.__mode === 2 ? __entity : {};
         scope.job_w_code = scope.$parent.$job_w_code;
+        scope.frnSearchMode = scope.__mode == 1 ? true : false;
+
+        scope.set_factor_code = function () {
+            debugger
+            var frm = lv.FormSearch(scope, "$$$factor_code");
+            frm.FactorAppraisal(scope.entity, "factor_code", "${get_res('factor_code','Yếu tố đánh giá')}", scope.frnSearchMode);
+            frm.openDialog;
+        }
 
         function saveNClose() {
             if (scope.entity != null) {
@@ -157,6 +166,20 @@
             tableConfig.iPageLength, tableConfig.orderBy,
             tableConfig.searchText, tableConfig.fnReloadData);
         }
+
+        (function _getDataInitCombobox() {
+            scope.$root.$getInitComboboxData(scope,
+                {
+                    "key": scope.frnSearchMode === true ? "${encryptor.get_key('cbb_tmls_factor_appraisal')}"
+                        : "${encryptor.get_key('cbb_tmls_factor_appraisal_single_select')}",
+                    "code": scope.entity
+                        && scope.entity.hasOwnProperty('factor_code')
+                        ? scope.entity.factor_code
+                        : null,
+                    "alias": "$$$factor_code"
+                }
+            );
+        })();
     });
 </script>
 

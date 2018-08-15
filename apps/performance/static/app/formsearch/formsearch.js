@@ -9,12 +9,29 @@
             //__scope.$root.$frmSearch = {};
         }
 
-        _FormSearch.prototype.JobWorking = JobWorking;
+        _FormSearch.prototype.cancel = function (callback) {
+            __scope.$frmSearch[__alias]['event']['cancel'] = callback;
+        }
 
-        function setConfigFrmSearch(title = "", multiCheck = false) {
-            __scope.title = title;
-            __scope.multi = multiCheck;
-            __scope.alias = __alias;
+        _FormSearch.prototype.accept = function (callback) {
+            __scope.$frmSearch[__alias]['event']['accept'] = callback;
+        }
+        _FormSearch.prototype.JobWorking = JobWorking;
+        _FormSearch.prototype.FactorAppraisal = FactorAppraisal;
+
+        function setConfigFrmSearch(ngModel, title = "", multiCheck = false, prop) {
+            ngModel = !ngModel ? {} : ngModel;
+            __scope.$frmSearch = {
+            };
+            __scope.$frmSearch[__alias] = {};
+            __scope.$frmSearch[__alias].title = title;
+            __scope.$frmSearch[__alias].multi = multiCheck;
+            __scope.$frmSearch.alias = __alias;
+            __scope.$frmSearch[__alias].prop = prop;
+            __scope.$frmSearch[__alias]['event'] = {
+                "accept": function () { },
+                "cancel": function () { }
+            }
         }
 
         function JobWorking(ngModel, prop, title, multi) {
@@ -22,18 +39,29 @@
             me.title = title;
             me.path = "commons/FormSearch/JobWorking";
             me.multi = multi;
+            me.prop = prop;
             me.openDialog = openDialog(me.title, me.path, function () { });
-            setConfigFrmSearch(me.title, me.multi);
-            __scope.$watch(__alias + '.value', function (val) {
-                if (val && ngModel[prop] != val[prop]) {
-                    if (me.multi === true) {
-                        ngModel[prop] = _.pluck(val, __scope[__alias]['value_field']);
-                    } else {
-                        ngModel[prop] = val[__scope[__alias]['value_field']];
-                    }
-                    __scope.$apply();
-                }
-            })
+            setConfigFrmSearch(ngModel, me.title, me.multi, me.prop);
+            __scope.$frmSearch[__alias].selected = ngModel[prop];
+            __scope.$frmSearch[__alias].setValue = function (val) {
+                ngModel[prop] = val;
+            }
+
+            return me;
+        }
+
+        function FactorAppraisal(ngModel, prop, title, multi) {
+            var me = this;
+            me.title = title;
+            me.path = "commons/FormSearch/FactorAppraisal";
+            me.multi = multi;
+            me.prop = prop;
+            me.openDialog = openDialog(me.title, me.path, function () { });
+            setConfigFrmSearch(ngModel, me.title, me.multi, me.prop);
+            __scope.$frmSearch[__alias].selected = ngModel[prop];
+            __scope.$frmSearch[__alias].setValue = function (val) {
+                ngModel[prop] = val;
+            }
 
             return me;
         }

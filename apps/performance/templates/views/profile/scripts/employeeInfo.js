@@ -7,6 +7,17 @@
     scope.$parent.$parent.$parent.onPrint = onPrint;
     scope.$parent.$parent.$parent.onRefresh = onRefresh;
 
+    scope.set_job_w_code = function () {
+        var frm = lv.FormSearch(scope, "$$$job_working");
+        frm.JobWorking(scope.entity, "job_w_code", "${get_res('job_w_code','Chức danh')}", false);
+        frm.openDialog;
+    }
+    scope.set_job_w_hold_code = function () {
+        var frm = lv.FormSearch(scope, "$$$job_w_hold");
+        frm.JobWorking(scope.entity, "job_w_hold_code", "${get_res('job_w_hold_code','Chức danh kiêm nhiệm')}", false);
+        frm.openDialog;
+    }
+
     function onSave() {
         if (scope.entity != null) {
             var rsCheck = checkError();//Kết quả check input
@@ -387,6 +398,22 @@
                     ? scope.entity.signed_person
                     : null,
                 "alias": "$$$signed_person"
+            },
+            {
+                "key": "${encryptor.get_key('cbb_job_working_single_check')}",
+                "code": scope.entity
+                    && scope.entity.hasOwnProperty('job_w_code')
+                    ? scope.entity.job_w_code
+                    : null,
+                "alias": "$$$job_working"
+            },
+            {
+                "key": "${encryptor.get_key('cbb_job_working_single_check')}",
+                "code": scope.entity
+                    && scope.entity.hasOwnProperty('job_w_hold_code')
+                    ? scope.entity.job_w_hold_code
+                    : null,
+                "alias": "$$$job_w_hold"
             }
             ]
             

@@ -51,7 +51,7 @@ def insert(args):
         ret = {}
         if args['data'] != None:
             data =  set_dict_insert_data(args['data'])
-            ret  =  models.HCSEM_Experience().insert(data)
+            ret  =  models.HCSEM_EmpExperience().insert(data)
             lock.release()
             return ret
 
@@ -69,7 +69,7 @@ def update(args):
         ret = {}
         if args['data'] != None:
             data =  set_dict_update_data(args['data'])
-            ret  =  models.HCSEM_Experience().update(
+            ret  =  models.HCSEM_EmpExperience().update(
                 data, 
                 "_id == {0}", 
                 ObjectId(args['data']['_id']))
@@ -89,7 +89,7 @@ def delete(args):
         lock.acquire()
         ret = {}
         if args['data'] != None:
-            ret  =  models.HCSEM_Experience().delete("_id in {0}",[ObjectId(x["_id"])for x in args['data']])
+            ret  =  models.HCSEM_EmpExperience().delete("_id in {0}",[ObjectId(x["_id"])for x in args['data']])
             lock.release()
             return ret
 

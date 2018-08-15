@@ -25,6 +25,7 @@ def get_job_working_group_by_group_code(gjw_code):
 
 def get_job_description_by_job_working_code(job_w_code):
     ret=models.HCSLS_JobWorking().aggregate()
+    ret.join(models.HCSLS_JobWorkingGroup(), "gjw_code", "gjw_code", "gjw")
     ret.left_join(models.auth_user_info(), "created_by", "username", "uc")
     ret.left_join(models.auth_user_info(), "modified_by", "username", "um")
     ret.project(
@@ -32,6 +33,7 @@ def get_job_description_by_job_working_code(job_w_code):
         job_w_name="job_w_name",
         job_w_name2="job_w_name2",
         gjw_code="gjw_code",
+        gjw_name="gjw.gjw_name",
         effect_date="effect_date",
         job_pos_code="job_pos_code",
         is_job_w_main_staff="is_job_w_main_staff",

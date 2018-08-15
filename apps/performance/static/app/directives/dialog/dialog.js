@@ -39,6 +39,16 @@ function _Dialog() {
     function ret() {
         var me = this;
 
+        me.cancel = function (callback) {
+            me._cancel = callback;
+            return me;
+        }
+
+        me.deny = function (callback) {
+            me._deny = callback;
+            return me;
+        }
+
         /**
          * Hộp thoại thông báo xác nhận
          * @param {string} title Tiêu đề của hộp thoại thông báo
@@ -109,12 +119,18 @@ function _Dialog() {
             var btnDeny = $('#myConfirmModal .modal-footer button:last');
             btnDeny.click(function () {
                 closeDialog();
+                if (me._deny) {
+                    me._deny();
+                }
             })
 
             //Event nhấn nút thoát
             var btnClose = $('#myConfirmModal .close');
             btnClose.click(function () {
                 closeDialog();
+                if (me._cancel) {
+                    me._cancel();
+                }
             })
 
             //Thoát Dialog

@@ -1,4 +1,5 @@
 ﻿(function (scope) {
+    scope.$root.extendToolbar = true;
     scope.__tableSource = [];
     scope.$root.isDisplay = false;
     scope.mode = 0;
@@ -361,4 +362,11 @@
             1, scope.$$tableConfig.iPageLength,
             scope.$$tableConfig.orderBy, scope.$$tableConfig.searchText)
     })
+    scope.$watch("$parent.searchText", function (val) {
+        _loadDataServerSide(scope.$$tableConfig.fnReloadData,
+            1, scope.$$tableConfig.iPageLength,
+            scope.$$tableConfig.orderBy, val)
+
+        scope.$applyAsync();
+    });
 });

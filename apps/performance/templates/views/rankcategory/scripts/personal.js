@@ -170,7 +170,7 @@
                     "pageIndex": iPage - 1,
                     "pageSize": iPageLength,
                     "search": searchText,
-                    "lock": scope.$parent.$parent.$parent.advancedSearch.data_lock,
+                    "lock": scope.$parent.advancedSearch.data_lock,
                     "sort": sort
                 })
                 .done()
@@ -202,7 +202,7 @@
     }
     _comboboxData();
 
-    scope.$parent.$parent.$parent.$watch("advancedSearch.data_lock", function (val) {
+    scope.$parent.$watch("advancedSearch.data_lock", function (val) {
         var config = scope.$$tableConfig;
         _tableData(config.iPage, config.iPageLength, config.orderBy, config.searchText, config.fnReloadData);
     });

@@ -1,14 +1,21 @@
 ﻿window.set_component_template_url('${get_static("app/directives/")}')
 window.set_api_combobox("${get_api_key('app_main.api.common/get_dropdown_list')}")
+window.get_static = "${get_static('/')}"
 angular
     .module("admin", ["c-ui", 'ZebraApp.components', 'ZebraApp.widgets', 'hcs-template'])
-    .controller("admin", controller);
+    .controller("admin", controller)
 
-controller.$inject = ["$dialog", "$scope"];
+controller.$inject = ["$dialog", "$scope", "$filter"];
 dialog_root_url('${get_app_url("pages/")}')
-function controller($dialog, $scope, systemService) {
+<%
+    import json
+%>
+function controller($dialog, $scope, $filter, systemService) {
+    $scope.$root.$$absUrl = window.location.href;
+    $scope.$root.url_static = "${get_static('/')}";
     $scope.$root.systemConfig = null;/*HCSSYS_SystemConfig*/
     $scope.$root.language = "${get_language()}";
+    $scope.$root.languages = ${ json.dumps(get_languages()) };
     $scope.VIEW_ID = "${register_view()}"
     $dialog($scope)
     ws_set_url("${get_app_url('api')}")
@@ -28,6 +35,9 @@ function controller($dialog, $scope, systemService) {
     $scope.$root.$getComboboxData = extension().getComboboxData;
     $scope.$root.$getInitComboboxData = extension().getInitComboboxData;
     $scope.$root.system = systemService;
+    window.DateFormat = {
+        "format": $filter('date')
+    };
     $scope.$root.collapseSubMenu = function collapseSubMenu(e) {
         e.stopPropagation();
         $('#hcs-top-bar-menu ul li ul').slideUp();
@@ -56,6 +66,7 @@ function controller($dialog, $scope, systemService) {
     });
 
     $scope.$root.doLogout = function () {
+        $scope.$root.__USER__ = null;
         window.location = "${get_app_url('logout')}";
     }
 
@@ -125,6 +136,7 @@ function controller($dialog, $scope, systemService) {
                         : "${get_app_url('')}/pages/home";
                 }
                 $scope.$root.$history.change(function (data) {
+                    $scope.$root.$$absUrl = window.location.href;
                     if (data.page) {
                         var currentFunction = _.filter(functions, function (d) {
                             return d["function_id"] == data.page;
@@ -152,6 +164,17 @@ function controller($dialog, $scope, systemService) {
             .then(function (res) {
                 //Set HCSSYS_SystemConfig
                 $scope.$root.systemConfig = res;
+            })
+
+        //Current user
+        services.api("${get_api_key('app_main.api.auth_user/get_user_info_by_user_name')}")
+            .data({
+                "username": "${get_user()}"
+            })
+            .done()
+            .then(function (res) {
+                //Set HCSSYS_SystemConfig
+                $scope.$root.__USER__ = res;
             })
     }
     /**
@@ -197,10 +220,16 @@ function extension() {
                 scope.keyField = res.value_field;
                 scope.title = res.display_name;
                 scope.templateFields = res.display_fields;
-                var data = {
-                    recordsTotal: res.data.total_items,
-                    data: res.data.items
-                };
+                var data = {};
+                if (res.hasOwnProperty('parent_field') && res['parent_field']) {
+                    data = res.data.items;
+                }
+                else {
+                    data = {
+                        recordsTotal: res.data.total_items,
+                        data: res.data.items
+                    };
+                }
                 cbSetData(data);
             });
     }

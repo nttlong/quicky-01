@@ -17,7 +17,7 @@
             <a><span>{{$root.currentFunction.default_name}}</span></a>
             <span><i class="bowtie-icon bowtie-chevron-right"></i></span>
             <span>{{currentFunction.default_name}}</span></site-map>
-        <extend-toolbar>
+        <extend-toolbar ng-if="$root.extendToolbar">
             <div style="display: grid; grid-template-columns: {{$root.isDisplay ? 'auto 1fr 1fr' : '1fr 1fr'}} ">
                 <div style="float: left;" ng-if="$root.isDisplay">
                     <button class="zb-btn" ng-click="onDisplayListData()">
@@ -30,9 +30,9 @@
                 <div class="col-md-6" style="padding-right: 0; top: 2px;">
                     <!--<input-text-icon id="tableSearchText" on-click="objSearch.onSearch" ng-model="objSearch.$$$modelSearch"></input-text-icon>-->
                      <div class="hcs-left-side-department-tree-tool-bar-div-search">
-                        <input class="hcs-left-side-department-tree-tool-bar-input-search" on-click="objSearch.onSearch" ng-model="objSearch.$$$modelSearch">
+                        <input class="hcs-left-side-department-tree-tool-bar-input-search" ng-model="objSearch.$$$modelSearch">
                         <div class="hcs-left-side-department-tree-tool-bar-input-search-bot"></div>
-                        <div class="hcs-left-side-department-tree-tool-bar-input-search-bot-icon">
+                        <div class="hcs-left-side-department-tree-tool-bar-input-search-bot-icon" ng-click="onSearchText()">
                             <i class="glyphicon glyphicon-search"></i>
                         </div>
                     </div>

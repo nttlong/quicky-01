@@ -39,11 +39,23 @@
                     <!--Thuộc nhóm-->
                     <label class="col-sm-5 zb-form-label">${get_res('parent_code','Thuộc nhóm')}</label>
                     <div class="col-sm-7">
-                        <input-combobox 
+                        <!--<input-combobox 
                                 list-code="${encryptor.get_key('cbb_hcsls_kpi_group')}"
                                 list-value="[{ '@lock': true }]"
                                 current-item="entity.kpi_group_code"
-                                multi-select="false">
+                                multi-select="false">-->
+                         <tree-combobox
+                            load-data="$root.$getComboboxData" 
+                            ng-model="entity.parent_code"
+                            placeholder=""
+                            init-data="$$$cbb_hcsls_kpi_group.value"
+                            caption-field="{{$$$cbb_hcsls_kpi_group.caption_field}}"
+                            key-field="{{$$$cbb_hcsls_kpi_group.value_field}}"
+                            parent-field="{{$$$cbb_hcsls_kpi_group.parent_field}}"
+                            multi-select="false"
+                            on-accept=""
+                            params="{key:'${encryptor.get_key('cbb_hcsls_kpi_group')}', value:[{ '@lock': true }]}">
+                    </tree-combobox>
                     </div>
                 </div>
             </div>
@@ -249,6 +261,18 @@
             }
             return rs;
         }
+        (function _getDataInitCombobox() {
+            scope.$root.$getInitComboboxData(scope,
+                {
+                    "key": "${encryptor.get_key('cbb_hcsls_kpi_group')}",
+                    "code": scope.entity
+                        && scope.entity.hasOwnProperty('parent_code')
+                        ? scope.entity.parent_code
+                        : null,
+                    "alias": "$$$cbb_hcsls_kpi_group"
+                }
+            );
+        })();
     });
 </script>
 

@@ -43,12 +43,12 @@ def login(request):
     #    user.is_supperuser=True
     #    user.save()
     _login=models.Login()
-    _login.language=request._get_request().get("language","en")
+    from django.conf import settings as st
+    _login.language=request._get_request().get("language", st.LANGUAGE_CODE)
     if request.GET.has_key("next"):
         _login.url_next=request.GET["next"]
         if request._get_post().get("site") != None and request._get_post().get("site") != "":
             _login.url_next= request.GET["next"] + request._get_post().get("site")
-    request.session["language"] = _login.language
     if request._get_post().keys().__len__()>0:
         username_request=request._get_post().get("username")
         password_request=request._get_post().get("password")
@@ -62,6 +62,7 @@ def login(request):
 
             ret=authenticate(username=user_login['username'], password=password_request,schema=tenancy.get_schema())
             form_login(request,ret,schema=tenancy.get_schema())
+            request.session["language"] = _login.language
             return redirect(request.get_app_url(request._get_post().get("site")))
         except Exception as ex:
             _login.is_error=True
@@ -79,6 +80,15 @@ def load_page(request,path):
 def logout_view(request):
     logout(request, request.user.schema)
     request.session.clear()
+    return redirect(request.get_app_url(""))
+
+@quicky.view.template(is_public=True)
+def change_language(request):
+    import quicky
+    from django.conf import settings as st
+    lan = request.GET.get('language', st.LANGUAGE_CODE)
+    request.session['language'] = lan
+    quicky.language.set_language(lan)
     return redirect(request.get_app_url(""))
 
 #@quicky.view.template("list.html")

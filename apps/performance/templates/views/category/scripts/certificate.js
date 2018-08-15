@@ -4,6 +4,7 @@
     scope.tableFields = [
         { "data": "cer_code", "title": "${get_res('cer_code_table_header','Mã')}", "className": "text-left" },
         { "data": "cer_name", "title": "${get_res('cer_name_table_header','Tên')}", "className": "text-left" },
+        { "data": "group_cer_name", "title": "${get_res('group_cer_name','Nhóm chứng chỉ')}", "className": "text-left" },
         { "data": "note", "title": "${get_res('note_table_header','Ghi chú')}", "className": "text-left" },
         { "data": "ordinal", "title": "${get_res('ordinal_table_header','Thứ tự')}", "className": "text-center" },
         { "data": "created_on", "title": "${get_res('created_on_table_header','Ngày tạo')}", "className": "text-center", "format": "date:" + scope.$root.systemConfig.date_format },

@@ -23,7 +23,7 @@ def get_list_with_searchtext(args):
 
     ret=common.filter_lock(ret, args)
 
-    if(searchText != None):
+    if(searchText != None  and searchText !=''):
         ret.match("contains(rank_code, @name) or contains(rank_name, @name)" + \
             "contains(rank_content, @name) or contains(total_from, @name)" + \
             "contains(total_to, @name) or contains(ordinal, @name)" ,name=searchText.strip())
@@ -33,6 +33,9 @@ def get_list_with_searchtext(args):
         
     return ret.get_page(pageIndex, pageSize)
 
+def getListRankcode(args):
+    ret=TMLS_Rank.display_list_rank()
+    return ret.get_list()
 def get_list_details_with_searchtext(args):
 
     if args['data'].has_key('rank_code'):

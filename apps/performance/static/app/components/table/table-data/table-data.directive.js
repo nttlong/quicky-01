@@ -132,21 +132,36 @@
                         let _fnFormatRender = null;
                         if (v.format) {
                             var $s = v.format.split(":");
+                            var dateFormat = "";
+                            $.each($s, function (i, v) {
+                                if (i == 1) {
+                                    dateFormat += v;
+                                }
+                                if (i > 1) {
+                                    dateFormat += ":" + v;
+                                }
+                            });
+
                             if ($s[0].toLowerCase() === 'date') {
                                 //Add function render to columns
                                 //$filter('date')(date, format, timezone)
                                 _fnFormatRender = function (data, type, row) {
                                     let $r;
-                                    switch ($s.length) {
-                                        case 3:
-                                            $r = $filter('date')(data, $s[1], $s[2]);
-                                            break;
-                                        case 2:
-                                            $r = $filter('date')(data, $s[1]);
-                                            break;
-                                        default:
-                                            $r = $filter('date')(data);
+                                    if ($s.length > 1) {
+                                        $r = $filter('date')(data, dateFormat);
+                                    } else {
+                                        $r = $filter('date')(data);
                                     }
+                                    //switch ($s.length) {
+                                    //    case 3:
+                                    //        $r = $filter('date')(data, $s[1], $s[2]);
+                                    //        break;
+                                    //    case 2:
+                                    //        $r = $filter('date')(data, $s[1]);
+                                    //        break;
+                                    //    default:
+                                    //        $r = $filter('date')(data);
+                                    //}
                                     return $r;
                                 }
                             } else if ($s[0].toLowerCase() === 'number') {

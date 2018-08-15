@@ -43,6 +43,7 @@ def HCSLS_JobWorking():
             factor_appraisal = helpers.create_field("list",False,dict(
                 rec_id = helpers.create_field("text"),
                 factor_code = helpers.create_field("text"),
+                job_w_code = helpers.create_field("text"),
                 weight = helpers.create_field("numeric"),
                 created_on=helpers.create_field("date"),
                 created_by=helpers.create_field("text"),

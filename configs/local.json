@@ -141,6 +141,11 @@
       "login_url":"login",
       "schema":"hrm"
 
+    },{
+      "host":"per",
+      "name":"performance",
+      "path":"apps/performance",
+      "schema":"lv"
     }
   ]
 

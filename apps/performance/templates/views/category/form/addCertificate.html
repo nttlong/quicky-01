@@ -30,7 +30,28 @@
                             <!--Tên khác-->
                             <label for="inputEmp_Certificate_Name2" class="col-sm-5 zb-form-label">${get_res('cer_name2','Tên khác')}</label>
                             <div class="col-sm-7">
-                                <input-text id="inputEmp_Certificate_Name2" ng-model="entity.cer_name2">
+                                 <input-text id="inputEmp_Certificate_Name2" ng-model="entity.cer_name2">
+                            </div>
+                        </div>
+                    </div>
+                     <div class="col-md-{{col}}">
+                        <div class="form-group zb-form-group">
+                            <!--Nhóm CC-->
+                            <label for="inputEmp_Group_Certificate" class="col-sm-5 zb-form-label">${get_res('group_cer_code','Thuộc nhóm CC')}</label>
+                            <div class="col-sm-7">
+                                 <combobox   load-data="$root.$getComboboxData"  
+                                ng-model="entity.group_cer_code"
+                                params="{key:'${encryptor.get_key('cbb_group_certificate')}', value:[{ '@lock': true }]}"
+                                on-search-change="false"
+                                on-search-press="true"
+                                placeholder=""
+                                init-data="$$$group_cer_code.value"
+                                caption-field="{{$$$group_cer_code.caption_field}}" 
+                                paging="true"
+                                close-on-select="true"
+                                template-fields="$$$group_cer_code.display_fields"
+                                reload="false" required>
+                    </combobox>
                             </div>
                         </div>
                     </div>
@@ -221,18 +242,38 @@
             };
             valid = lv.Validate(scope.entity.cer_code);
             rs.result = valid.isNullOrWhiteSpace();
-            rs.errorMsg = rs.result === true ? "${get_res('cer_code_is_not_null','Mã nghề nghiệp không được để trống')}" + '\n' : "" ;
+            rs.errorMsg = rs.result === true ? "${get_res('cer_code_is_not_null','Mã chứng chỉ không được để trống')}" + '\n' : "" ;
             if(rs.result === true){
                 return rs;
             }
             valid = lv.Validate(scope.entity.cer_name);
             rs.result = valid.isNullOrWhiteSpace();
-            rs.errorMsg = rs.result === true ? "${get_res('cer_name_is_not_null','Tên nghề nghiệp không được để trống')}" + '\n' : "" ;
+            rs.errorMsg = rs.result === true ? "${get_res('cer_name_is_not_null','Tên chứng chỉ không được để trống')}" + '\n' : "" ;
+            if(rs.result === true){
+                return rs;
+            }
+            valid = lv.Validate(scope.entity.group_cer_code);
+            rs.result = valid.isNullOrWhiteSpace();
+            rs.errorMsg = rs.result === true ? "${get_res('group_cer_code_is_not_null','Nhóm chứng chỉ không được để trống')}" + '\n' : "" ;
             if(rs.result === true){
                 return rs;
             }
             return rs;
         }
+
+        (function _getDataInitCombobox() {
+            scope.$root.$getInitComboboxData(scope,
+                [{
+                    "key": "${encryptor.get_key('cbb_group_certificate')}",
+                    "code": scope.entity
+                        && scope.entity.hasOwnProperty('group_cer_code')
+                        ? scope.entity.group_cer_code
+                        : null,
+                    "alias": "$$$group_cer_code"
+                }
+                ]
+            );
+        })();
 
     });
 </script>

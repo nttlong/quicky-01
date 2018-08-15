@@ -28,6 +28,7 @@
                 halfStar: "=",
                 readOnly: "=",
                 controlItem: "=",
+                extendData: "="
             },
             templateUrl: templateService.getTemplatePath('rating')
         };
@@ -54,7 +55,7 @@
                     var rating = $rateYo.rateYo("rating");
                     scope.currentItem = rating;
                     if (scope.ngClick) {
-                        scope.ngClick(rating, scope.controlItem);
+                        scope.ngClick(rating, scope.controlItem, scope.extendData);
                     }
                     scope.$applyAsync();
                 }

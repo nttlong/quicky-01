@@ -37,6 +37,11 @@ def LMSLS_MaterialManagement():
             folder_id=helpers.create_field("text"),
             author_name=helpers.create_field("text"),
             course_name=helpers.create_field("text"),
+            views=helpers.create_field("list",False,dict(
+                id_user=helpers.create_field("text"),
+                login_account=helpers.create_field("text"),
+                date_created=helpers.create_field("date"),
+            )),
             size=helpers.create_field("text"),
             creator=helpers.create_field("text"),
             category=helpers.create_field("text",True),
@@ -53,6 +58,7 @@ def LMSLS_MaterialManagement():
             coverage=helpers.create_field("text"),
             rights=helpers.create_field("text",True),
             link_file=helpers.create_field("text"),
+            permission=helpers.create_field("list"),
             relations=helpers.create_field("list",False,dict(
                 ref_relation=helpers.create_field("text"),
                 intro_relation=helpers.create_field("text"),

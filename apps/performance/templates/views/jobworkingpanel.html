@@ -60,11 +60,11 @@
         <site-map>
             <a ng-click="masterPage()"><span>{{$root.currentFunction.default_name}}</span></a>
             <span><i class="bowtie-icon bowtie-chevron-right"></i></span>
-            <span>{{detail.currentFunction.default_name}}</span>
-            <span><i class="bowtie-icon bowtie-chevron-right"></i></span>
             <span>(${get_global_res('group', 'Nhóm')} {{detail.$gjw_name}}</span>
             <span><i class="bowtie-icon bowtie-chevron-right"></i></span>
             <span>${get_res('job_w_name', 'Tên chức danh')} {{detail.$job_w_name}})</span>
+            <span><i class="bowtie-icon bowtie-chevron-right"></i></span>
+            <span>{{detail.currentFunction.default_name}}</span>
             <a data-target="#dropdownFunction" style="color:#333" data-toggle="collapse"><i class="bowtie-icon bowtie-chevron-down"></i></a>
             <div id="dropdownFunction" class="dropdown-content">
                 <div class="filter">

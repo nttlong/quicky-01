@@ -11,15 +11,17 @@
                         <div class="clearfix login_header">
                           <p><img src="http://surehcs.lacviet.vn/WS2017/Customers/default/logo.png" alt="logo"></p>
                           <ul class="clearfix language">
-                            <a href="?language=en">
-                              <div class="mail-content"><img src="${get_static('css/images/login/ic_en.jpg')}" alt="img user" class="img-circle ic_flag"></div>
-                            </a>
-                            <a href="?language=vn">
-                                <div class="mail-content"><img src="${get_static('css/images/login/ic_vn.jpg')}" alt="img user" class="img-circle ic_flag"></div>
-                            </a>
+                              %for x in request.get_languages():
+                                   <% 
+                                        img = 'css/images/login/ic_' + x['code'] + '.jpg'
+                                    %>
+                                   <a href="./login?language=${x['code']}&next=${model.url_next}">
+                                    <div class="mail-content"><img src="${get_static(img)}" alt="img user" class="img-circle ic_flag"></div>
+                                   </a>
+                              %endfor
                           </ul>
                         </div>
-                        <form action="./login?next=${model.url_next}" method="POST" role="form">
+                        <form action="./login?next=${model.url_next}&language=${model.language}" method="POST" role="form">
                             <input type="hidden" name="csrfmiddlewaretoken" value="${get_csrftoken()}"/>
                         <ul class="clearfix login_frm" data-select2-id="9">
                           <li>

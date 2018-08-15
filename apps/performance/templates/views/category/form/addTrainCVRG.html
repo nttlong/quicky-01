@@ -30,12 +30,25 @@
                             <!--Tên vùng làm việc-->
                             <label for="inputEmp_Domain_Ccode" class="col-sm-5 zb-form-label">${get_res('domain_code','Lĩnh vực đào tạo')}</label>
                             <div class="col-sm-7">
-                                <input-combobox id="inputEmp_Domain_Code" required
+                                <!--<input-combobox id="inputEmp_Domain_Code" required
                                     api-url="${get_api_key('app_main.api.common/get_dropdown_list')}"
                                     list-code="${encryptor.get_key('cbb_traindomain')}"
                                     list-value="[{ '@lock': true }]"
                                     current-item="entity.domain_code"
-                                    multi-select="false">
+                                    multi-select="false">-->
+                                <combobox   load-data="$root.$getComboboxData"  
+                                    ng-model="entity.domain_code"
+                                    params="{key:'${encryptor.get_key('cbb_traindomain')}', value:[{ '@lock': true }]}"
+                                    on-search-change="false"
+                                    on-search-press="true"
+                                    placeholder=""
+                                    init-data="$$$cbb_traindomain.value"
+                                    caption-field="{{$$$cbb_traindomain.caption_field}}" 
+                                    paging="true"
+                                    close-on-select="true"
+                                    template-fields="$$$cbb_traindomain.display_fields"
+                                    reload="false" required>
+                            </combobox>
                             </div>
                         </div>
                     </div>
@@ -192,19 +205,30 @@
         }
 
         function _comboboxData() {
-        services.api("${get_api_key('app_main.api.SYS_ValueList/get_list')}")
-            .data({
-                //parameter at here
-                "name": "LQuitJobType"
-            })
-            .done()
-            .then(function (res) {
-                delete res.language;
-                delete res.list_name;
-                scope.cbbEmployeeType = res.values;
-                console.log(res);
-                scope.$applyAsync();
-            })
+            services.api("${get_api_key('app_main.api.SYS_ValueList/get_list')}")
+                .data({
+                    //parameter at here
+                    "name": "LQuitJobType"
+                })
+                .done()
+                .then(function (res) {
+                    delete res.language;
+                    delete res.list_name;
+                    scope.cbbEmployeeType = res.values;
+                    console.log(res);
+                    scope.$applyAsync();
+                });
+            scope.$root.$getInitComboboxData(scope,
+                [{
+                    "key": "${encryptor.get_key('cbb_traindomain')}",
+                    "code": scope.entity
+                        && scope.entity.hasOwnProperty('domain_code')
+                        ? scope.entity.domain_code
+                        : null,
+                    "alias": "$$$cbb_traindomain"
+                }
+                ]
+            );
         }
         _comboboxData();
 
@@ -214,14 +238,14 @@
 
         function getUrl() {
             return scope.__mode == 1 || scope.__mode == 3 ? "${get_api_key('app_main.api.HCSLS_TrainCVRG/insert')}" /*Mode 1: Tạo mới*/
-                    : "${get_api_key('app_main.api.HCSLS_TrainCVRG/update')}" /*Mode 2: Cập nhật*/
+                : "${get_api_key('app_main.api.HCSLS_TrainCVRG/update')}" /*Mode 2: Cập nhật*/
         }
 
         function reloadData() {
             var tableConfig = scope.$parent.$$tableConfig;
             scope.$parent._tableData(tableConfig.iPage,
-            tableConfig.iPageLength, tableConfig.orderBy,
-            tableConfig.searchText, tableConfig.fnReloadData);
+                tableConfig.iPageLength, tableConfig.orderBy,
+                tableConfig.searchText, tableConfig.fnReloadData);
         }
 
         /**
@@ -236,20 +260,20 @@
             };
             valid = lv.Validate(scope.entity.train_cvrg_code);
             rs.result = valid.isNullOrWhiteSpace();
-            rs.errorMsg = rs.result === true ? "${get_res('train_cvrg_code_is_not_null','Mã ngành nghề đào tạo không được để trống')}" + '\n' : "" ;
-            if(rs.result === true){
+            rs.errorMsg = rs.result === true ? "${get_res('train_cvrg_code_is_not_null','Mã ngành nghề đào tạo không được để trống')}" + '\n' : "";
+            if (rs.result === true) {
                 return rs;
             }
             valid = lv.Validate(scope.entity.train_cvrg_name);
             rs.result = valid.isNullOrWhiteSpace();
-            rs.errorMsg = rs.result === true ? "${get_res('train_cvrg_name_is_not_null','Tên ngành nghề đào tạo không được để trống')}" + '\n' : "" ;
-            if(rs.result === true){
+            rs.errorMsg = rs.result === true ? "${get_res('train_cvrg_name_is_not_null','Tên ngành nghề đào tạo không được để trống')}" + '\n' : "";
+            if (rs.result === true) {
                 return rs;
             }
             valid = lv.Validate(scope.entity.domain_code);
             rs.result = valid.isNullOrWhiteSpace();
-            rs.errorMsg = rs.result === true ? "${get_res('domain_code_is_not_null','Lĩnh vực đào tạo không được để trống')}" + '\n' : "" ;
-            if(rs.result === true){
+            rs.errorMsg = rs.result === true ? "${get_res('domain_code_is_not_null','Lĩnh vực đào tạo không được để trống')}" + '\n' : "";
+            if (rs.result === true) {
                 return rs;
             }
             return rs;

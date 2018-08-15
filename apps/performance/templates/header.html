@@ -84,21 +84,24 @@
                 </button>
                 <ul class="dropdown-menu hcs-home-button-language-menu">
                     <li>
-                        <span class="language-title">Ngôn ngữ</span>
+                        <span class="language-title">${get_global_res('language', 'Ngôn ngữ')}</span>
                     </li>
-                    <li>
-                        <a class="active">
-                            <img class="language-icon" src="${get_static('css/images/login/ic_vn.jpg')}" />
-                            <span>Tiếng Việt</span>
-                        </a>
-                    </li>
-                    <li class="divider"></li>
-                    <li>
-                        <a href="javascript:void(0)">
-                            <img class="language-icon" src="${get_static('css/images/login/ic_en.jpg')}" />
-                            <span>English</span>
-                        </a>
-                    </li>
+                    %for x in request.get_languages():
+                        <% 
+                            img = 'css/images/login/ic_' + x['code'] + '.jpg'
+                            class_name = ""
+                            if x['code'] == request.get_language():
+                                class_name = "active"
+                        %>
+                        <li>
+                            <a href='${get_app_url("language") + "?language=" + x["code"] + "&next="}{{$root.$$absUrl}}' class="${class_name}">
+                                <img class="language-icon" src="${get_static(img)}" />
+                                <span>${ x['name'] }</span>
+                           </a>
+                                <input type="hidden" name="site" value='{{$root.$$absUrl}}' hidden/>
+                        </li>
+                        <li class="divider"></li>
+                    %endfor
                 </ul>
             </div>
             <!--<button class="btn btn-primary hcs-home-header-button">
@@ -108,7 +111,7 @@
                 <button class="btn btn-primary hcs-home-button-user" type="button" data-toggle="dropdown">
                     <!--<span class="glyphicon glyphicon-user"></span>-->
                     <span class="img-user"><i class="bowtie-icon bowtie-user"></i></span>
-                    <span class="hcs-header-username">Bùi Hữu Tiến</span>
+                    <span class="hcs-header-username">{{$root.__USER__.display_name}}</span>
                     <span class="hcs-header-chevron"><i class="bowtie-icon bowtie-chevron-down"></i></span>
                 </button>
                 <ul class="dropdown-menu hcs-home-button-user-menu">

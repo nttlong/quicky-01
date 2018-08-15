@@ -124,11 +124,11 @@
                    
                     scope.temp_downloads = res.items[0];
                     if (scope.temp_downloads.downloads) {
-                        for (let i = 0; i < scope.temp_downloads.downloads.length; i++) {
-                            let date_created = scope.temp_downloads.downloads[i].date_created
-                            let value_date_created = moment(date_created, 'YYYY-MM-DD')
-                            let rangeTime = moment.preciseDiff(date_now, value_date_created, true)
-                            let rangeDay = rangeTime.years * 365 + rangeTime.months * 30 + rangeTime.days
+                        for (var i = 0; i < scope.temp_downloads.downloads.length; i++) {
+                            var date_created = scope.temp_downloads.downloads[i].date_created
+                            var value_date_created = moment(date_created, 'YYYY-MM-DD')
+                            var rangeTime = moment.preciseDiff(date_now, value_date_created, true)
+                            var rangeDay = rangeTime.years * 365 + rangeTime.months * 30 + rangeTime.days
                             if (rangeDay == 0) {
                                 scope.currentItemData[0].items.push(scope.temp_downloads.downloads[i])
                             }

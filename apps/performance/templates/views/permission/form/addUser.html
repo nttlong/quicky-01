@@ -31,10 +31,20 @@
                     <!--Thuộc nhóm người dùng-->
                     <label for="inputGroupUser" class="col-sm-5 zb-form-label">${get_res('role_code','Thuộc nhóm người dùng')}</label>
                     <div class="col-sm-7">
-                        <input-combobox id="inputEmployeeId" required
-                            list-code="${encryptor.get_key('cbb_ad_roles')}"
-                            list-value="[{ '@lock': true }]"
-                            current-item="entity.role_code">
+                        <combobox load-data="$root.$getComboboxData" 
+                              ng-model="entity.role_code"
+                              params="{key:'${encryptor.get_key('cbb_ad_roles')}', value:[{ '@lock': true }]}"
+                              on-search-change="false"
+                              on-search-press="true"
+                              placeholder=""
+                              init-data="$$$role_code.value"
+                              caption-field="{{$$$role_code.caption_field}}"
+                              paging="true"
+                              close-on-select="true"
+                              template-fields="$$$role_code.display_fields"
+                              reload="false"
+                              required>
+                    </combobox>
                     </div>
                 </div>
             </div>
@@ -432,6 +442,19 @@
                 })
         }
         _comboboxData();
+
+        (function _getDataInitCombobox() {
+            scope.$root.$getInitComboboxData(scope,
+                {
+                    "key": "${encryptor.get_key('cbb_ad_roles')}",
+                    "code": scope.entity
+                        && scope.entity.hasOwnProperty('role_code')
+                        ? scope.entity.role_code
+                        : null,
+                    "alias": "$$$role_code"
+                }
+            );
+        })();
     
         function __init__() { };
     });

@@ -12,9 +12,9 @@
         </div>
         <div class="modal-body" style="overflow:unset;">
             <div class="col-md-12" style="margin-top: 10px;">
-    <nav-tabs min-height="52vh" max-height="52vh" style="overflow:unset;" >
-        <tab-content name="tab1" style="height: 48vh;" title="${get_res('list_user','Người dùng')}" select="onSelectTabOne">
-            <div class="col-md-12" style="height: 44vh;padding:0px 6px;" select="onSelectTab">
+    <nav-tabs min-height="72vh" max-height="72vh" style="overflow:unset;" >
+        <tab-content name="tab1"  title="${get_res('list_user','Người dùng')}" select="onSelectTabOne">
+            <div class="col-md-12" style="height: 66vh;padding:0px 6px;" select="onSelectTab">
                
                 <!--Table user-->
           <input-text-icon on-click="change" style="padding:5px;">
@@ -30,7 +30,7 @@
             </div>
         </tab-content>
         <tab-content name="tab2" title="${get_res('list_group_user','Nhóm người dùng')}" select="onSelectTabTwo">
-            <div class="col-md-12" style="height: 44vh;padding:0px 6px;">
+            <div class="col-md-12" style="height: 66vh;padding:0px 6px;">
             <input-text-icon on-click="change" style="padding:5px;">
             </input-text-icon>
             <div style="height:calc(100% - 40px)">
@@ -154,11 +154,13 @@
             
             
             if (scope.onTabOne) {
-                scope.$parent.dataItemSelects = scope.$table.selectedItems;
+                //scope.$parent.dataItemSelects = scope.$table.selectedItems;
+                scope.$parent.user_list.push(...scope.$table.selectedItems) 
                 scope.$parent.$applyAsync();
             }
             else {
-                scope.$parent.dataItemSelects = scope.$table_group._selectedItems;
+                //scope.$parent.dataItemSelects = scope.$table_group._selectedItems;
+                scope.$parent.user_list = scope.$table_group._selectedItems;
                 scope.$parent.$applyAsync();
             }
             $dialog.closeDialog();

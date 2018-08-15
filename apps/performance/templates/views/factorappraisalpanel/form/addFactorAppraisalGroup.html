@@ -44,19 +44,18 @@
                                             list-value="[{ '@award_level_code': '' }]"
                                             current-item="entity.parent_code"
                                             multi-select="false">-->
-                                    <combobox load-data="$root.$getComboboxData" 
-                                              ng-model="entity.parent_code"
-                                              params="{key:'${encryptor.get_key('cbb_tmls_factor_appraisal_group')}', value:[{ '@lock': true }]}"
-                                              on-search-change="false"
-                                              on-search-press="true"
-                                              placeholder=""
-                                              init-data="$$$cbb_tmls_factor_appraisal_group.value"
-                                              paging="true"
-                                              close-on-select="true"
-                                              template-fields="$$$cbb_tmls_factor_appraisal_group.display_fields"
-                                              reload="false"
-                                              required>
-                                    </combobox>
+                                    <tree-combobox
+                                            load-data="$root.$getComboboxData" 
+                                            ng-model="entity.factor_group_code"
+                                            placeholder=""
+                                            init-data="$$$cbb_tmls_factor_appraisal_group.value"
+                                            caption-field="{{$$$cbb_tmls_factor_appraisal_group.caption_field}}"
+                                            key-field="{{$$$cbb_tmls_factor_appraisal_group.value_field}}"
+                                            parent-field="{{$$$cbb_tmls_factor_appraisal_group.parent_field}}"
+                                            on-accept=""
+                                            params="{key:'${encryptor.get_key('cbb_tmls_factor_appraisal_group')}', value:[{ '@lock': true }]}"
+                                            required>
+                                    </tree-combobox>
                                 </div>
                             </div>
                         </div>

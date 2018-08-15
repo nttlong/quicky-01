@@ -4,12 +4,12 @@ from ...api import common
 import datetime
 _hasCreated=False
 
-def HCSEM_Experience():
+def HCSEM_EmpExperience():
     global _hasCreated
     if not _hasCreated:
         dict_permission = dict()
         helpers.extent_model(
-            "HCSEM_Experience",
+            "HCSEM_EmpExperience",
             "base",
             [['rec_id']],
             rec_id =helpers.create_field("text", True),
@@ -44,9 +44,9 @@ def HCSEM_Experience():
         def on_before_update(data):
             pass
 
-        helpers.events("HCSEM_Experience").on_before_insert(on_before_insert).on_before_update(on_before_update)
+        helpers.events("HCSEM_EmpExperience").on_before_insert(on_before_insert).on_before_update(on_before_update)
 
         _hasCreated=True
-    ret = db_context.collection("HCSEM_Experience")
+    ret = db_context.collection("HCSEM_EmpExperience")
 
     return ret

@@ -1,6 +1,6 @@
 from .. import models
 def get_emp_experience_by_emp_code(emp_code):
-    ret=models.HCSEM_Experience().aggregate()
+    ret=models.HCSEM_EmpExperience().aggregate()
     ret.match("employee_code == {0}", emp_code)
     ret.left_join(models.HCSLS_Position(), "job_pos_code", "job_pos_code", "pos")
     ret.left_join(models.HCSLS_JobWorking(), "job_w_code", "job_w_code", "job")

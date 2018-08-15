@@ -165,7 +165,7 @@
                          </div>
                          <!--Tình trạng hôn nhân-->
                          <div class="form-group zb-form-group">
-                             <label class="col-sm-4 zb-form-label">Tình trạng hôn nhân</label>
+                             <label class="col-sm-4 zb-form-label">${get_res('marital_code','Tình trạng hôn nhân')}</label>
                              <div class="col-sm-8">
                                  <combobox load-data="$root.$getComboboxData" 
                                     ng-model="entity.marital_code"
@@ -186,14 +186,14 @@
                      <div class="col-md-4">
                          <!--Số CMND-->
                          <div class="form-group zb-form-group">
-                             <label class="col-sm-4 zb-form-label">Số CMND</label>
+                             <label class="col-sm-4 zb-form-label">${get_res('id_card_no','Số CMND')}</label>
                              <div class="col-sm-8">
                                  <input-text ng-model="entity.id_card_no">
                              </div>
                          </div>
                          <!--Ngày cấp-->
                          <div class="form-group zb-form-group">
-                             <label class="col-sm-4 zb-form-label">Ngày cấp</label>
+                             <label class="col-sm-4 zb-form-label">${get_res('issued_date','Ngày cấp')}</label>
                              <div class="col-sm-8">
                                  <!--<input type="date" class="form-control hcs-input-textbox" id="inputBeginningDate"/>-->
                                  <date-picker ng-model="entity.issued_date" data-format="{{$root.systemConfig.date_format}}" />
@@ -201,7 +201,7 @@
                          </div>
                          <!--Nơi cấp-->
                          <div class="form-group zb-form-group">
-                             <label class="col-sm-4 zb-form-label">Nơi cấp</label>
+                             <label class="col-sm-4 zb-form-label">${get_res('issued_place_code','Nơi cấp')}</label>
                              <div class="col-sm-8">
                                  <!--<input-select data-list="" ng-model="entity.issued_place_code" data-value="value" data-caption="caption" />-->
                                  <combobox load-data="$root.$getComboboxData" 
@@ -221,14 +221,14 @@
                          </div>
                          <!--Điện thoại di động-->
                          <div class="form-group zb-form-group">
-                             <label class="col-sm-4 zb-form-label">Điện thoại di động</label>
+                             <label class="col-sm-4 zb-form-label">${get_res('mobile','Điện thoại di động')}</label>
                              <div class="col-sm-8">
                                  <input-text ng-model="entity.mobile">
                              </div>
                          </div>
                          <!--Điện thoại khác-->
                          <div class="form-group zb-form-group">
-                             <label class="col-sm-4 zb-form-label">Điện thoại khác</label>
+                             <label class="col-sm-4 zb-form-label">${get_res('p_phone','Điện thoại khác')}</label>
                              <div class="col-sm-8">
                                  <input-text ng-model="entity.p_phone">
                              </div>
@@ -242,7 +242,7 @@
                          </div>
                          <!--Email cá nhân-->
                          <div class="form-group zb-form-group">
-                             <label class="col-sm-4 zb-form-label">Email cá nhân</label>
+                             <label class="col-sm-4 zb-form-label">${get_res('personal_email','Email cá nhân')}</label>
                              <div class="col-sm-8">
                                  <input-text id="personal_email" ng-model="entity.personal_email">
                              </div>
@@ -435,42 +435,42 @@
                      <div class="col-md-4">
                          <!--Số lưu hồ sơ-->
                          <div class="form-group zb-form-group">
-                             <label class="col-sm-4 zb-form-label">Số lưu hồ sơ</label>
+                             <label class="col-sm-4 zb-form-label">${get_res('document_no','Số lưu hồ sơ')}</label>
                              <div class="col-sm-8">
                                  <input-text ng-model="entity.document_no">
                              </div>
                          </div>
                          <!--Ngày vào làm-->
                          <div class="form-group zb-form-group">
-                             <label class="col-sm-4 zb-form-label">Ngày vào làm</label>
+                             <label class="col-sm-4 zb-form-label">${get_res('join_date','Ngày vào làm')}</label>
                              <div class="col-sm-8">
                                  <date-picker ng-model="entity.join_date" data-format="{{$root.systemConfig.date_format}}" required/>
                              </div>
                          </div>
                          <!--Thành NV chính thức-->
                          <div class="form-group zb-form-group">
-                             <label class="col-sm-4 zb-form-label">Thành NV chính thức</label>
+                             <label class="col-sm-4 zb-form-label">${get_res('official_date','Thành NV chính thức')}</label>
                              <div class="col-sm-8">
                                  <date-picker ng-model="entity.official_date" data-format="{{$root.systemConfig.date_format}}" />
                              </div>
                          </div>
                          <!--Ngày vào nghành-->
                          <div class="form-group zb-form-group">
-                             <label class="col-sm-4 zb-form-label">Ngày vào ngành</label>
+                             <label class="col-sm-4 zb-form-label">${get_res('career_date','Ngày vào ngành')}</label>
                              <div class="col-sm-8">
                                  <date-picker ng-model="entity.career_date" data-format="{{$root.systemConfig.date_format}}" />
                              </div>
                          </div>
                          <!--Ngày vào biên chế-->
                          <div class="form-group zb-form-group">
-                             <label class="col-sm-4 zb-form-label">Ngày vào biên chế</label>
+                             <label class="col-sm-4 zb-form-label">${get_res('personnel_date','Ngày vào biên chế')}</label>
                              <div class="col-sm-8">
                                  <date-picker ng-model="entity.personnel_date" data-format="{{$root.systemConfig.date_format}}" />
                              </div>
                          </div>
                          <!--Loại nhân viên-->
                          <div class="form-group zb-form-group">
-                             <label class="col-sm-4 zb-form-label">Loại nhân viên</label>
+                             <label class="col-sm-4 zb-form-label">${get_res('emp_type_code','Loại nhân viên')}</label>
                              <div class="col-sm-8">
                                  <!--<input-select data-list="" ng-model="entity.emp_type_code" data-value="value" data-caption="caption" />-->
                                  <combobox load-data="$root.$getComboboxData" 
@@ -490,7 +490,7 @@
                          </div>
                          <!--Loại lao động-->
                          <div class="form-group zb-form-group">
-                             <label class="col-sm-4 zb-form-label">Loại lao động</label>
+                             <label class="col-sm-4 zb-form-label">${get_res('labour_type','Loại lao động')}</label>
                              <div class="col-sm-8">
                                  <input-select data-list="$parent.$parent.$parent.cbbWorkingType" ng-model="entity.labour_type" data-value="value" data-caption="caption" />
                              </div>
@@ -499,9 +499,9 @@
                      <div class="col-md-4">
                          <!--Bộ phận làm việc-->
                          <div class="form-group zb-form-group">
-                             <label class="col-sm-4 zb-form-label">Bộ phận làm việc</label>
+                             <label class="col-sm-4 zb-form-label">${get_res('department_code','Bộ phận làm việc')}</label>
                              <div class="col-sm-8">
-                                 <combobox load-data="$root.$getComboboxData" 
+                                 <!--<combobox load-data="$root.$getComboboxData" 
                                           ng-model="entity.department_code"
                                           params="{key:'${encryptor.get_key('cbb_departments')}', value:[{ '@lock': true }]}"
                                           on-search-change="false"
@@ -514,12 +514,25 @@
                                           template-fields="$$$department_code.display_fields"
                                           reload="false"
                                           required>
-                                </combobox>
+                                </combobox>-->
+                                  <tree-combobox
+                                    load-data="$root.$getComboboxData" 
+                                    ng-model="entity.department_code"
+                                    placeholder=""
+                                    init-data="$$$department_code.value"
+                                    caption-field="{{$$$department_code.caption_field}}"
+                                    key-field="{{$$$department_code.value_field}}"
+                                    parent-field="{{$$$department_code.parent_field}}"
+                                    multi-select="false"
+                                    on-accept=""
+                                    params="{key:'${encryptor.get_key('cbb_departments')}', value:[{ '@lock': true }]}"
+                                    required>
+                                </tree-combobox>
                              </div>
                          </div>
                          <!--Chức vụ-->
                          <div class="form-group zb-form-group">
-                             <label class="col-sm-4 zb-form-label">Chức vụ</label>
+                             <label class="col-sm-4 zb-form-label">${get_res('job_pos_code','Chức vụ')}</label>
                              <div class="col-sm-8">
                                  <combobox load-data="$root.$getComboboxData" 
                                           ng-model="entity.job_pos_code"
@@ -538,22 +551,24 @@
                          </div>
                          <!--Ngày bổ nhiệm CV-->
                          <div class="form-group zb-form-group">
-                             <label class="col-sm-4 zb-form-label">Ngày bổ nhiệm CV</label>
+                             <label class="col-sm-4 zb-form-label">${get_res('job_pos_date','Ngày bổ nhiệm CV')}</label>
                              <div class="col-sm-8">
                                  <!--<input type="date" class="form-control hcs-input-textbox" id="inputBeginningDate"/>-->
-                                 <date-picker ng-model="entity.job_w_date" data-format="{{$root.systemConfig.date_format}}" />
+                                 <date-picker ng-model="entity.job_pos_date" data-format="{{$root.systemConfig.date_format}}" />
                              </div>
                          </div>
                          <!--Chức danh-->
                          <div class="form-group zb-form-group">
-                             <label class="col-sm-4 zb-form-label">Chức danh</label>
+                             <label class="col-sm-4 zb-form-label">${get_res('job_w_code','Chức danh')}</label>
                              <div class="col-sm-8">
-                                 <input-select data-list="" ng-model="entity.job_w_code" data-value="value" data-caption="caption" required/>
+                                <!-- <input-select data-list="" ng-model="entity.job_w_code" data-value="value" data-caption="caption" required/> -->
+                                 <!--<input-text-icon ng-model="$$$job_working.value.job_w_name" on-click="set_job_w_code()" style="padding:5px;">-->
+                                 <form-search ng-model="entity.job_w_code" open="set_job_w_code()" init-data="$$$job_working" multi="false" required></form-search>
                              </div>
                          </div>
                          <!--Ngày đảm nhiệm CD-->
                          <div class="form-group zb-form-group">
-                             <label class="col-sm-4 zb-form-label">Ngày đảm nhiệm CD</label>
+                             <label class="col-sm-4 zb-form-label">${get_res('job_w_date','Ngày đảm nhiệm CD')}</label>
                              <div class="col-sm-8">
                                  <!--<input type="date" class="form-control hcs-input-textbox" id="inputBeginningDate"/>-->
                                  <date-picker ng-model="entity.job_w_date" data-format="{{$root.systemConfig.date_format}}" />
@@ -561,7 +576,7 @@
                          </div>
                          <!--Chuyên môn-->
                          <div class="form-group zb-form-group">
-                             <label class="col-sm-4 zb-form-label">Chuyên môn</label>
+                             <label class="col-sm-4 zb-form-label">${get_res('profession_code','Chuyên môn')}</label>
                              <div class="col-sm-8">
                                  <combobox load-data="$root.$getComboboxData" 
                                           ng-model="entity.profession_code"
@@ -580,7 +595,7 @@
                          </div>
                          <!--Trình độ q.lý nhà nước-->
                          <div class="form-group zb-form-group">
-                             <label class="col-sm-4 zb-form-label">Trình độ q.lý nhà nước</label>
+                             <label class="col-sm-4 zb-form-label">${get_res('level_management','Trình độ q.lý nhà nước')}</label>
                              <div class="col-sm-8">
                                  <input-select data-list="$parent.$parent.$parent.cbbLevelManagement" ng-model="entity.level_management" data-value="value" data-caption="caption" />
                              </div>
@@ -589,28 +604,28 @@
                      <div class="col-md-4">
                          <!--Là cán bộ chủ chốt-->
                          <div class="form-group zb-form-group">
-                             <label class="col-sm-4 zb-form-label">Là cán bộ chủ chốt</label>
+                             <label class="col-sm-4 zb-form-label">${get_res('is_cbcc','Là cán bộ chủ chốt')}<</label>
                              <div class="col-sm-8">
                                  <input-checkbox ng-model="entity.is_cbcc">
                              </div>
                          </div>
                          <!--Chuyên gia Tuyển dụng-->
                          <div class="form-group zb-form-group">
-                             <label class="col-sm-4 zb-form-label">Chuyên gia Tuyển dụng</label>
+                             <label class="col-sm-4 zb-form-label">${get_res('is_expert_recruit','Chuyên gia Tuyển dụng')}</label>
                              <div class="col-sm-8">
                                  <input-checkbox ng-model="entity.is_expert_recruit">
                              </div>
                          </div>
                          <!--Chuyên gia Đào tạo-->
                          <div class="form-group zb-form-group">
-                             <label class="col-sm-4 zb-form-label">Chuyên gia Đào tạo</label>
+                             <label class="col-sm-4 zb-form-label">${get_res('is_expert_train','Chuyên gia Đào tạo')}</label>
                              <div class="col-sm-8">
                                  <input-checkbox ng-model="entity.is_expert_train">
                              </div>
                          </div>
                          <!--Quản lý trực tiếp-->
                          <div class="form-group zb-form-group">
-                             <label class="col-sm-4 zb-form-label">Quản lý trực tiếp</label>
+                             <label class="col-sm-4 zb-form-label">${get_res('manager_code','Quản lý trực tiếp')}</label>
                              <div class="col-sm-8">
                                  <combobox load-data="$root.$getComboboxData" 
                                           ng-model="entity.manager_code"
@@ -629,7 +644,7 @@
                          </div>
                          <!--Quản lý gián tiếp-->
                          <div class="form-group zb-form-group">
-                             <label class="col-sm-4 zb-form-label">Quản lý gián tiếp</label>
+                             <label class="col-sm-4 zb-form-label">${get_res('manager_sub_code','Quản lý gián tiếp')}</label>
                              <div class="col-sm-8">
                                  <combobox load-data="$root.$getComboboxData" 
                                           ng-model="entity.manager_sub_code"
@@ -648,7 +663,7 @@
                          </div>
                          <!--Tài khoản WEB-->
                          <div class="form-group zb-form-group">
-                             <label class="col-sm-4 zb-form-label">Tài khoản WEB</label>
+                             <label class="col-sm-4 zb-form-label">${get_res('user_id','Tài khoản WEB')}</label>
                              <div class="col-sm-8">
                                  <combobox load-data="$root.$getComboboxData" 
                                           ng-model="entity.user_id"
@@ -674,7 +689,7 @@
                      <div class="col-md-12">
                          <!--Chức vụ kiêm nhiệm-->
                          <div class="form-group zb-form-group">
-                             <label class="col-sm-4 zb-form-label">Chức vụ kiêm nhiệm</label>
+                             <label class="col-sm-4 zb-form-label">${get_res('job_pos_hold_code','Chức vụ kiêm nhiệm')}</label>
                              <div class="col-sm-8">
                                  <combobox load-data="$root.$getComboboxData" 
                                           ng-model="entity.job_pos_hold_code"
@@ -693,14 +708,15 @@
                          </div>
                          <!--Chức danh kiêm nhiệm-->
                          <div class="form-group zb-form-group">
-                             <label class="col-sm-4 zb-form-label">Chức danh kiêm nhiệm</label>
+                             <label class="col-sm-4 zb-form-label">${get_res('job_w_hold_code','Chức danh kiêm nhiệm')}</label>
                              <div class="col-sm-8">
-                                 <input-select data-list="" ng-model="entity.job_w_hold_code" data-value="value" data-caption="caption" />
+                                 <!--<input-select data-list="" ng-model="entity.job_w_hold_code" data-value="value" data-caption="caption" />-->
+                                 <form-search ng-model="entity.job_w_hold_code" open="set_job_w_hold_code()" init-data="$$$job_w_hold" multi="false"></form-search>
                              </div>
                          </div>
                          <!--Bộ phận kiêm nhiệm-->
                          <div class="form-group zb-form-group">
-                             <label class="col-sm-4 zb-form-label">Bộ phận kiêm nhiệm</label>
+                             <label class="col-sm-4 zb-form-label">${get_res('department_code_hold','Bộ phận kiêm nhiệm')}</label>
                              <div class="col-sm-8">
                                  <combobox load-data="$root.$getComboboxData" 
                                           ng-model="entity.department_code_hold"
@@ -715,22 +731,22 @@
                                           template-fields="$$$department_code_hold.display_fields"
                                           reload="false">
                                 </combobox>
-                                 <input-combobox id="inputEmployeeId"
+                                <!-- <input-combobox id="inputEmployeeId"
                                     list-code="${encryptor.get_key('cbb_departments')}"
                                     list-value="[{ '@lock': true }]"
-                                    current-item="entity.department_code_hold">
+                                    current-item="entity.department_code_hold">-->
                              </div>
                          </div>
                          <!--Kiêm nhiệm từ-->
                          <div class="form-group zb-form-group">
-                             <label class="col-sm-4 zb-form-label">Kiêm nhiệm từ</label>
+                             <label class="col-sm-4 zb-form-label">${get_res('job_pos_hold_from_date','Kiêm nhiệm từ')}</label>
                              <div class="col-sm-8">
                                  <date-picker ng-model="entity.job_pos_hold_from_date" data-format="{{$root.systemConfig.date_format}}" />
                              </div>
                          </div>
                          <!--Kiêm nhiệm đến-->
                          <div class="form-group zb-form-group">
-                             <label class="col-sm-4 zb-form-label">Kiêm nhiệm đến</label>
+                             <label class="col-sm-4 zb-form-label">${get_res('job_pos_hold_to_date','Kiêm nhiệm đến')}</label>
                              <div class="col-sm-8">
                                  <date-picker id="job_pos_hold_to_date" ng-model="entity.job_pos_hold_to_date" data-format="{{$root.systemConfig.date_format}}" />
                              </div>
@@ -743,28 +759,28 @@
                                title="Thông tin thôi việc">
                      <!--Ngày thôi việc-->
                      <div class="form-group zb-form-group">
-                         <label class="col-sm-4 zb-form-label">Ngày thôi việc</label>
+                         <label class="col-sm-4 zb-form-label">${get_res('end_date','Ngày thôi việc')}</label>
                          <div class="col-sm-8">
                              <date-picker ng-model="entity.end_date" data-format="{{$root.systemConfig.date_format}}" />
                          </div>
                      </div>
                      <!--Số quyết định-->
                      <div class="form-group zb-form-group">
-                         <label class="col-sm-4 zb-form-label">Số quyết định</label>
+                         <label class="col-sm-4 zb-form-label">${get_res('retire_ref_no','Số quyết định')}Số quyết định</label>
                          <div class="col-sm-8">
                              <input-text ng-model="entity.retire_ref_no">
                          </div>
                      </div>
                      <!--Ngày ký-->
                      <div class="form-group zb-form-group">
-                         <label class="col-sm-4 zb-form-label">Ngày ký</label>
+                         <label class="col-sm-4 zb-form-label">${get_res('signed_date','Ngày ký')}Ngày ký</label>
                          <div class="col-sm-8">
                              <date-picker ng-model="entity.signed_date" data-format="{{$root.systemConfig.date_format}}" />
                          </div>
                      </div>
                      <!--Người ký-->
                      <div class="form-group zb-form-group">
-                         <label class="col-sm-4 zb-form-label">Người ký</label>
+                         <label class="col-sm-4 zb-form-label">${get_res('signed_person','Người ký')}</label>
                          <div class="col-sm-8">
                              <combobox load-data="$root.$getComboboxData" 
                                           ng-model="entity.signed_person"
@@ -783,7 +799,7 @@
                      </div>
                      <!--Đã thôi việc-->
                      <div class="form-group zb-form-group">
-                         <label class="col-sm-4 zb-form-label">Đã thôi việc</label>
+                         <label class="col-sm-4 zb-form-label">${get_res('active','Đã thôi việc')}</label>
                          <div class="col-sm-8">
                              <input-checkbox ng-model="entity.active">
                          </div>

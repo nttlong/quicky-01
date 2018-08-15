@@ -932,7 +932,7 @@ table.zb-data-table thead th:first-child {
 }
 table.zb-data-table thead th,
 table.zb-data-table thead td {
-  padding: 6px 15px !important;
+  padding: 6px 15px 6px 8px !important;
   border-bottom: 1px solid #78C4E6 !important;
   /*border-bottom: 1px solid #01638f!important;*/
 }
@@ -2058,6 +2058,7 @@ body {
     position: relative;*/
   width: 100%;
   padding: 30px 10px 10px 30px;
+  height: 100%;
   background: #ebf9ff;
 }
 #hcs-system-admin-control-menu a:hover {
@@ -2086,25 +2087,25 @@ body {
   padding-top: unset !important;
   margin-right: unset !important;
 }
-#dropdownFunction .dropdown p {
+#dropdownFunction > .dropdown > p {
   font-size: 14px;
   padding: 8px;
   border-top: 1px solid #eee;
   margin: unset;
 }
-#dropdownFunction .dropdown p.focus {
+#dropdownFunction > .dropdown > p.focus {
   background-color: #ebf9ff;
   border-bottom: 1px solid #78c4e6;
 }
-#dropdownFunction .dropdown p:hover,
-p:active,
-p:focus {
+#dropdownFunction > .dropdown > p:hover,
+#dropdownFunction > .dropdown > p:active,
+#dropdownFunction > .dropdown > p:focus {
   cursor: pointer;
   background-color: #ebf9ff;
   border-bottom: 1px solid #78c4e6;
 }
 @media (min-width: 768px) {
-  #dropdownFunction .dropdown {
+  #dropdownFunction > .dropdown {
     overflow: auto;
     height: 345px;
     margin-right: unset;
@@ -2112,17 +2113,17 @@ p:focus {
     width: 100%;
     border-top: 1px solid #d9d9d9;
   }
-  #dropdownFunction .dropdown a {
+  #dropdownFunction > .dropdown > a {
     margin-top: unset !important;
     padding: 4px;
     display: block;
   }
-  #dropdownFunction .dropdown p {
+  #dropdownFunction > .dropdown > p {
     color: #000;
   }
 }
 @media (max-width: 550px) {
-  #dropdownFunction .dropdown {
+  #dropdownFunction > .dropdown {
     overflow: auto;
     height: 200px;
     margin-right: unset;
@@ -2130,12 +2131,12 @@ p:focus {
     width: 100%;
     border-top: 1px solid #eee;
   }
-  #dropdownFunction .dropdown a {
+  #dropdownFunction > .dropdown > a {
     margin-top: unset !important;
     padding: 4px;
     display: block;
   }
-  #dropdownFunction .dropdown p {
+  #dropdownFunction > .dropdown > p {
     color: #000;
   }
 }

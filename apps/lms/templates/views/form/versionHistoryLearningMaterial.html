@@ -97,11 +97,11 @@
                    
                     scope.temp_version = res.items[0];
                     if (scope.temp_version.material_version) {
-                        for (let i = 0; i < scope.temp_version.material_version.length; i++) {
-                            let date_created = scope.temp_version.material_version[i].data_version.submit_date
-                            let value_date_created = moment(date_created, 'YYYY-MM-DD')
-                            let rangeTime = moment.preciseDiff(date_now, value_date_created, true)
-                            let rangeDay = rangeTime.years * 365 + rangeTime.months * 30 + rangeTime.days
+                        for (var i = 0; i < scope.temp_version.material_version.length; i++) {
+                            var date_created = scope.temp_version.material_version[i].data_version.submit_date
+                            var value_date_created = moment(date_created, 'YYYY-MM-DD')
+                            var rangeTime = moment.preciseDiff(date_now, value_date_created, true)
+                            var rangeDay = rangeTime.years * 365 + rangeTime.months * 30 + rangeTime.days
                             if (rangeDay == 0) {
                                 scope.currentItem[0].items.push(scope.temp_version.material_version[i])
                             }

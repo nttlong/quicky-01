@@ -5,7 +5,7 @@
                 <span class="modal-title">{{title}}</span>
             </div>
             <div class="right-content pull-right">
-                <button type="button" class="close" data-dismiss="modal"><i class="bowtie-icon bowtie-navigate-close"></i></button>
+                <button type="button" ng-click="onClose()" class="close" data-dismiss="modal"><i class="bowtie-icon bowtie-navigate-close"></i></button>
             </div>
         </div>
         <div class="modal-body" style="overflow:unset;">
@@ -70,7 +70,8 @@
                                         selected-items="$$table.selectedItems" 
                                         current-item="$$table.currentItem" 
                                         search-text="$$table.tableSearchText"
-                                        refresh-row="$$table.refreshDataRow">
+                                        refresh-row="$$table.refreshDataRow"
+                                        selected-field="row_checked">
                             </table-data>
                         </div>
                     </div>
@@ -86,17 +87,18 @@
 </div>
 <script>
     (function ($scope) {
-        $scope.title = $scope.$parent.title;
-        $scope.checkMode = $scope.$parent.multi === true ? 'MultiSelect' : 'SingleSelect';
+        $scope.title = $scope.$parent.$frmSearch[$scope.$parent.$frmSearch.alias].title;
+        $scope.checkMode = $scope.$parent.$frmSearch[$scope.$parent.$frmSearch.alias].multi === true ? 'MultiSelect' : 'SingleSelect';
         $scope.save = save;
+        $scope.onClose = onClose;
         var __url_get_data_table = "${get_api_key('app_main.api.HCSLS_JobWorking/get_list_with_searchtext')}";
         var __url_get_data_tree = "${get_api_key('app_main.api.HCSLS_JobWorkingGroup/get_tree')}";
         $scope.$$table = {
             tableFields: [
-                { "data": "job_w_code", "title": "${get_res('job_w_code_table_header','Mã chức danh')}", "className": "text-left" },
-                { "data": "job_w_name", "title": "${get_res('job_w_name_table_header','Tên chức danh')}", "className": "text-left" },
-                { "data": "report_to_job_w", "title": "${get_res('report_to_job_w_table_header','Báo cáo cho')}", "className": "text-left" },
-                { "data": "ordinal", "title": "${get_res('ordinal_table_header','Thứ tự')}", "className": "text-center" }
+                { "data": "job_w_code", "title": "${get_global_res('job_w_code_table_header','Mã chức danh')}", "className": "text-left" },
+                { "data": "job_w_name", "title": "${get_global_res('job_w_name_table_header','Tên chức danh')}", "className": "text-left" },
+                { "data": "report_to_job_w", "title": "${get_global_res('report_to_job_w_table_header','Báo cáo cho')}", "className": "text-left" },
+                { "data": "ordinal", "title": "${get_global_res('ordinal_table_header','Thứ tự')}", "className": "text-center" }
             ],
             $$tableConfig: {},
             tableSource: _loadDataServerSide,
@@ -121,12 +123,38 @@
 
         function save() {
             if ($scope.checkMode === 'MultiSelect') {
-                $scope.$parent[$scope.$parent.alias]['value'] = $scope.$$table.selectedItems;
+                var value = _.pluck($scope.$$table.selectedItems, $scope.$parent[$scope.$parent.$frmSearch.alias].value_field);
+                $scope.$parent.$frmSearch[$scope.$parent.$frmSearch.alias].setValue(value);
+                var lst = [];
+                _.each($scope.$$table.selectedItems, function (val) {
+                    var obj = {};
+                    obj[$scope.$parent[$scope.$parent.$frmSearch.alias].value_field] = val[$scope.$parent[$scope.$parent.$frmSearch.alias].value_field];
+                    obj[$scope.$parent[$scope.$parent.$frmSearch.alias].caption_field] = val[$scope.$parent[$scope.$parent.$frmSearch.alias].caption_field];
+                    lst.push(obj);
+                });
+                var temp = JSON.parse(JSON.stringify($scope.$parent[$scope.$parent.$frmSearch.alias]));
+                $scope.$parent[$scope.$parent.$frmSearch.alias] = null;
+                temp['value'] = lst;
+                $scope.$parent[$scope.$parent.$frmSearch.alias] = temp;
             } else {
-                $scope.$parent[$scope.$parent.alias]['value'] = $scope.$$table.currentItem;
+                var value = $scope.$$table.currentItem[$scope.$parent[$scope.$parent.$frmSearch.alias].value_field];
+                $scope.$parent.$frmSearch[$scope.$parent.$frmSearch.alias].setValue(value);
+                var obj = {};
+                obj[$scope.$parent[$scope.$parent.$frmSearch.alias].value_field] = $scope.$$table.currentItem[$scope.$parent[$scope.$parent.$frmSearch.alias].value_field];
+                obj[$scope.$parent[$scope.$parent.$frmSearch.alias].caption_field] = $scope.$$table.currentItem[$scope.$parent[$scope.$parent.$frmSearch.alias].caption_field];
+                var temp = JSON.parse(JSON.stringify($scope.$parent[$scope.$parent.$frmSearch.alias]));
+                $scope.$parent[$scope.$parent.$frmSearch.alias] = null;
+                temp['value'] = obj;
+                $scope.$parent[$scope.$parent.$frmSearch.alias] = temp;
             }
+            $scope.$applyAsync();
+            $scope.$parent.$frmSearch[$scope.$parent.$frmSearch.alias].event.accept();
             $dialog.closeDialog();
         };
+
+        function onClose() {
+            $scope.$parent.$frmSearch[$scope.$parent.$frmSearch.alias].event.cancel();
+        }
 
         function _loadDataServerSide(fnReloadData, iPage, iPageLength, orderBy, searchText) {
             $scope.$$table.$$tableConfig = {
@@ -166,6 +194,16 @@
                     })
                     .done()
                     .then(function (res) {
+                        if ($scope.checkMode === 'MultiSelect') {
+                            var checked = $scope.$parent.$frmSearch[$scope.$parent.$frmSearch.alias].selected;
+                            _.each(res.items, function (val) {
+                                if (_.contains(checked, val[$scope.$parent[$scope.$parent.$frmSearch.alias].value_field])) {
+                                    val['row_checked'] = true;
+                                } else {
+                                    val['row_checked'] = false;
+                                }
+                            });
+                        }
                         var data = {
                             recordsTotal: res.total_items,
                             recordsFiltered: res.total_items,

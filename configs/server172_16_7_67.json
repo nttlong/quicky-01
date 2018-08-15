@@ -5,7 +5,7 @@
     "/packages/django"
   ],
   "AUTHORIZATION_ENGINE":"quicky.authorize",
-  "HOST_DIR":"test",
+  "HOST_DIR_":"test",
   "SECRET_KEY":"12jds*3210d)9",
   "DEBUG":true,
   "ALLOWED_HOSTS": [
@@ -139,10 +139,19 @@
         }
       }
     },{
-      "host":"",
+      "host":"per",
       "name":"performance",
       "path":"apps/performance",
-      "login_url":"login"
+      "login_url":"login",
+      "schema":"lv"
+
+    },{
+      "host":"lms",
+      "name":"lms",
+      "path":"apps/lms",
+      "login_url":"/../login",
+      "schema":"lv",
+      "static_dir":"apps/performance/static"
 
     }
   ]

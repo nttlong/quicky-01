@@ -8,7 +8,7 @@ def HCSSYS_ComboboxList():
         helpers.extent_model(
             "HCSSYS_ComboboxList",
             "base",
-            [["combobox_code"]],
+            [["combobox_code", "language"]],
             combobox_code = helpers.create_field("text",True),
             language=helpers.create_field("text", True),
             display_name=helpers.create_field("text"),
@@ -25,6 +25,7 @@ def HCSSYS_ComboboxList():
             sorting_field=helpers.create_field("object"),
             filter_field=helpers.create_field("text"),
             multi_select=helpers.create_field("bool"),
+            parent_field=helpers.create_field("text"),
             page_size=helpers.create_field("int"),
             created_on=helpers.create_field("date"),
             created_by=helpers.create_field("text"),

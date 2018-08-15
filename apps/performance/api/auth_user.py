@@ -184,6 +184,9 @@ def get_list_with_searchtext(args):
             error = "request parameter is not exist"
         )
 
+def get_user_info_by_user_name(args):
+    return models.auth_user_info().aggregate().project(display_name = 1, login_account = 1, username = 1).match('username == {0}', args['data']['username']).get_item()
+
 def update_role_code(args):
     try:
         if args['data'] != None:

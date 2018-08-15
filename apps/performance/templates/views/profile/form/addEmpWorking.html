@@ -85,8 +85,8 @@
                      <combobox load-data="$root.$getComboboxData" 
                                 ng-model="entity.signer_code"
                                 params="{key:'${encryptor.get_key('cbb_employees')}', value:[{ '@signer_code': '' }]}"
-                                on-search-change="false"
-                                on-search-press="true"
+                                on-search-change="        false"
+                                on-search-press="        true"
                                 placeholder=""
                                 init-data="$$$signer_code.value"
                                 caption-field="{{$$$signer_code.caption_field}}" 
@@ -104,8 +104,8 @@
                     <combobox   load-data="$root.$getComboboxData"  
                                 ng-model="entity.province_code"
                                 params="{key:'${encryptor.get_key('cbb_province')}', value:[{ '@lock': true }]}"
-                                on-search-change="false"
-                                on-search-press="true"
+                                on-search-change="        false"
+                                on-search-press="        true"
                                 placeholder=""
                                 init-data="$$$province_code.value"
                                 caption-field="{{$$$province_code.caption_field}}" 
@@ -124,11 +124,11 @@
                 <!--Mã chỉ tiêu-->
                 <label class="col-sm-5 zb-form-label">${get_res('department_code','Bộ phận làm việc')}</label>
                 <div class="col-sm-7">
-                    <combobox load-data="$root.$getComboboxData"  
+                    <!--<combobox load-data="$root.$getComboboxData"  
                               ng-model="entity.department_code"
                               params="{key:'${encryptor.get_key('cbb_departments')}', value:[{ '@lock': true }]}"
-                              on-search-change="false"
-                              on-search-press="true"
+                              on-search-change="        false"
+                              on-search-press="        true"
                               placeholder=""
                               init-data="$$$department_code.value"
                               caption-field="{{$$$department_code.caption_field}}" 
@@ -136,7 +136,20 @@
                               close-on-select="true"
                               template-fields="$$$department_code.display_fields"
                               reload="false">
-                    </combobox>
+                    </combobox>-->
+                     <tree-combobox
+                        load-data="$root.$getComboboxData" 
+                        ng-model="entity.department_code"
+                        placeholder=""
+                        init-data="$$$department_code.value"
+                        caption-field="{{$$$department_code.caption_field}}"
+                        key-field="{{$$$department_code.value_field}}"
+                        parent-field="{{$$$department_code.parent_field}}"
+                        multi-select="false"
+                        on-accept=""
+                        params="{key:'${encryptor.get_key('cbb_departments')}', value:[{ '@lock': true }]}"
+                        required>
+                    </tree-combobox>
                 </div>
             </div>
 
@@ -144,7 +157,7 @@
                 <!--Tên chỉ tiêu-->
                 <label class="col-sm-5 zb-form-label">${get_res('department_code_old','Bộ phận cũ')}</label>
                 <div class="col-sm-7">
-                    <input-text ng-model="entity.department_code_old">
+                    <input-text ng-model="entity.department_name_old" ng-disabled="true">
                 </div>
             </div>
 
@@ -155,8 +168,8 @@
                     <combobox load-data="$root.$getComboboxData"  
                               ng-model="entity.job_pos_code"
                               params="{key:'${encryptor.get_key('cbb_position')}', value:[{ '@lock': true }]}"
-                              on-search-change="false"
-                              on-search-press="true"
+                              on-search-change="        false"
+                              on-search-press="        true"
                               placeholder=""
                               init-data="$$$job_pos_code.value"
                               caption-field="{{$$$job_pos_code.caption_field}}" 
@@ -172,7 +185,7 @@
                 <!--Thuộc nhóm-->
                 <label class="col-sm-5 zb-form-label">${get_res('job_pos_code_old','Chức vụ cũ')}</label>
                 <div class="col-sm-7">
-                   <input-text ng-model="entity.job_pos_code_old">
+                   <input-text ng-model="entity.job_pos_name_old" ng-disabled="true">
                 </div>
             </div>
 
@@ -180,25 +193,20 @@
                 <!--Trọng số-->
                 <label class="col-sm-5 zb-form-label">${get_res('job_w_code','Chức danh')}</label>
                 <div class="col-sm-7">
-                     <combobox title="{{comboboxInfo.title}}" 
-                                load-data="$combobox.loadData" 
-                                ng-model="entity.job_w_code"
-                                key-field="{{comboboxInfo.valueField}}"
-                                caption-field="{{comboboxInfo.captionField}}"
-                                on-search-change="false"
-                                on-search-press="true"
-                                placeholder="${get_res('job_w_code','Chức danh')}"                               
-                                paging="true"
-                                on-select="$combobox.selectCombobox"
-                                on-accept="$combobox.acceptCombobox"
-                                close-on-select="true">
-                            <div class="zb-list-common">
-                                <div>
-                                    <span class="zb-list-title">##employee_code##</span>
-                                    <span class="zb-list-info">##full_name##</span>                                    
-                                </div>
-                            </div>
-                    </combobox>
+                    <!--<combobox load-data="$root.$getComboboxData"  
+                              ng-model="entity.job_w_code"
+                              params="{key:'${encryptor.get_key('cbb_job_working_single_check')}', value:[{ '@lock': true }]}"
+                              on-search-change="        false"
+                              on-search-press="        true"
+                              placeholder=""
+                              init-data="$$$job_w_code.value"
+                              caption-field="{{$$$job_w_code.caption_field}}" 
+                              paging="true"
+                              close-on-select="true"
+                              template-fields="$$$job_w_code.display_fields"
+                              reload="false">
+                    </combobox>-->
+                    <form-search ng-model="entity.job_w_code" open="set_job_w_code()" init-data="$$$job_w_code" multi="false" required></form-search>
                 </div>
             </div>
 
@@ -206,7 +214,7 @@
                 <!--Áp dụng toàn công ty-->
                 <label class="col-sm-5 zb-form-label">${get_res('job_w_code_old','Chức danh cũ')}</label>
                 <div class="col-sm-7">
-                    <input-text ng-model="entity.job_w_code_old">
+                    <input-text ng-model="entity.job_w_name_old" ng-disabled="true">
                 </div>
             </div>
 
@@ -217,8 +225,8 @@
                     <combobox load-data="$root.$getComboboxData"  
                               ng-model="entity.region_code"
                               params="{key:'${encryptor.get_key('cbb_region')}', value:[{ '@lock': true }]}"
-                              on-search-change="false"
-                              on-search-press="true"
+                              on-search-change="        false"
+                              on-search-press="        true"
                               placeholder=""
                               init-data="$$$region_code.value"
                               caption-field="{{$$$region_code.caption_field}}" 
@@ -234,7 +242,7 @@
                 <!--Ngưng sử dụng-->
             <label class="col-sm-5 zb-form-label">${get_res('region_code_old','Vùng làm việc cũ')}</label>
             <div class="col-sm-7">
-                <input-text ng-model="entity.region_code_old">
+                <input-text ng-model="entity.region_name_old" ng-disabled="true">
             </div>
             </div>
 
@@ -290,6 +298,8 @@
 <%block name="modal_script">
 <script>
     (function (scope) {
+        scope.empInfor = scope.$parent.$tableEmpWorking.empInfor; //thông tin nhân viên hiện tại
+        scope.latestRecordEmpWorking = scope.$parent.$tableEmpWorking.latestRecordEmpWorking;//dữ liệu có ngày hiệu lực mới nhất
         var __default = {
             employee_code: scope.$root.$commons.$current_employee_code,
             appoint: null,
@@ -305,19 +315,27 @@
             department_code: null,
             job_pos_code: null,
             job_w_code: null,
-            emp_type_code: null,
             region_code: null,
-            department_code_old: null,
-            job_pos_code_old: null,
-            job_w_code_old: null,
-            emp_type_code_old: null,
-            region_code_old: null,
+
+            department_code_old: scope.latestRecordEmpWorking.department_code,
+            job_pos_code_old: scope.latestRecordEmpWorking.job_pos_code,
+            job_w_code_old: scope.latestRecordEmpWorking.job_pos_code,
+            region_code_old: scope.latestRecordEmpWorking.region_code,
+
+            department_name_old: scope.latestRecordEmpWorking.department_name,
+            job_pos_name_old: scope.latestRecordEmpWorking.job_pos_name,
+            job_w_name_old: scope.latestRecordEmpWorking.job_w_name,
+            emp_type_name_old: scope.latestRecordEmpWorking.emp_type_name,
+            region_name_old: scope.latestRecordEmpWorking.region_name,
+
             province_code: null,
             created_on: null,
             created_by: null,
             modified_on: null,
-            modified_bys: null
+            modified_by: null
         };
+
+        scope.isUpdateEmployee = false;
         scope.__mode = scope.$parent.mode;
         scope.title = scope.$parent.headerTitle;
         scope.col = 12;
@@ -329,33 +347,41 @@
         //Nút lưu
         scope.saveNClose = saveNClose;
 
+        scope.set_job_w_code = function () {
+            var frm = lv.FormSearch(scope, "$$$job_w_code");
+            frm.JobWorking(scope.entity, "job_w_code", "${get_res('job_w_code','Chức danh')}", false);
+            frm.openDialog;
+        }
+
         function onResizeDialog() {
             $dialog.fullScreen();
             scope.col = scope.col == 12 ? 6 : 12;
             scope.col_group = scope.col_group == 6 ? 6 : 6;
         }
 
-        function saveNClose() {            
+        function saveNClose() {
             if (scope.entity != null) {
                 var rsCheck = checkError();//Kết quả check input
                 if (!rsCheck.result) {
                     $msg.message("${get_global_res('Input_Error','Nhập liệu sai')}", rsCheck.errorMsg, function () { });
                     return;
                 }
-                beforeCallToServer();
-                editData(function (res) {
-                    if (res.error == null) {
-                        $dialog.closeDialog();//Đóng form input
-                        $msg.alert("${get_global_res('Handle_Success','Thao tác thành công')}", $type_alert.INFO);//Xuất thông báo thành cônng
-                        if (scope.__mode == 1 || scope.__mode == 3) {
-                            //Reload table data
-                            reloadData();
-                        } else if (scope.__mode == 2) {
-                            reloadData();
+                beforeCallToServer(function () {
+                    editData(function (res) {
+                        //alert("Lưu nè")
+                        if (res.error == null) {
+                            $dialog.closeDialog();//Đóng form input
+                            $msg.alert("${get_global_res('Handle_Success','Thao tác thành công')}", $type_alert.INFO);//Xuất thông báo thành cônng
+                            if (scope.__mode == 1 || scope.__mode == 3) {
+                                //Reload table data
+                                reloadData();
+                            } else if (scope.__mode == 2) {
+                                reloadData();
+                            }
+                        } else {
+                            $msg.message("${get_global_res('Internal_Server_Error','Có lỗi từ phía máy chủ')}", "${get_global_res('Please_Try_Again','Xin thử vui lòng thử lại')}", function () { });
                         }
-                    } else {
-                        $msg.message("${get_global_res('Internal_Server_Error','Có lỗi từ phía máy chủ')}", "${get_global_res('Please_Try_Again','Xin thử vui lòng thử lại')}", function () { });
-                    }
+                    });
                 });
             }
         }
@@ -363,7 +389,7 @@
         function saveNNext() {
             if (scope.entity != null) {
                 var rsCheck = checkError();//Kết quả check input
-                if (rsCheck.result) {
+                if (!rsCheck.result) {
                     //Nhập sai: break khỏi hàm
                     $msg.message("${get_global_res('Input_Error','Nhập liệu sai')}", rsCheck.errorMsg, function () { });
                     return;
@@ -396,12 +422,91 @@
                 .data(scope.entity)
                 .done()
                 .then(function (res) {
-                    callback(res);
+                    debugger
+                    if (scope.isUpdateEmployee) {
+                        var data = {
+                            employee_code: scope.entity.employee_code,
+                            department_code: (scope.entity.department_code) ? scope.entity.department_code : scope.empInfor.department_code,
+                            job_pos_code: (scope.entity.job_pos_code) ? scope.entity.job_pos_code : scope.empInfor.job_pos_code,
+                            job_w_code: (scope.entity.job_w_code) ? scope.entity.job_w_code : scope.empInfor.job_w_code,
+                            region_code: (scope.entity.region_code) ? scope.entity.region_code : scope.empInfor.region_code
+                        }
+                        services.api("${get_api_key('app_main.api.HCSEM_EmpWorking/update_employee')}")
+                            .data(data)
+                            .done()
+                            .then(function (res) {
+                                callback(res);
+                            })
+                    }
+                    else {
+                        callback(res);
+                    }
                 })
         }
 
-        function beforeCallToServer() {
+        function beforeCallToServer(fnCallBack) {
+            if (scope.entity.department_code == null || scope.entity.department_code == "") {
+                scope.entity.department_code = scope.empInfor.department_code;
+                scope.entity.department_code_old = null;
+            }
+            if (scope.entity.job_w_code == null || scope.entity.job_w_code == "") {
+                scope.entity.job_w_code = scope.empInfor.job_w_code;
+                scope.entity.job_w_code_old = null;
+            }
+            if (scope.entity.job_pos_code == null || scope.entity.job_pos_code == "") {
+                scope.entity.job_pos_code = scope.empInfor.job_pos_code;
+                scope.entity.job_pos_code_old = null;
+            }
+            if (scope.entity.region_code == null || scope.entity.region_code == "") {
+                scope.entity.region_code = scope.empInfor.region_code;
+                scope.entity.region_code_old = null;
+            }
+            //
+            if (scope.entity.appoint == 1 || scope.entity.appoint == 2 || scope.entity.appoint == 3) {
+                if ((scope.__mode == 1 &&
+                    (scope.entity.department_code != null || scope.entity.job_pos_code != null || scope.entity.job_w_code != null || scope.entity.region_code != null)
+                    //&& 
+                )) {
+                    console.log(new Date(scope.entity.effect_date), new Date(scope.latestRecordEmpWorking.effect_date));
 
+                    //kiem tra dữ liệu thêm mới có ngày hiệu lực mới nhất ko?
+                    if (scope.latestRecordEmpWorking.effect_date != null &&
+                        new Date(scope.entity.effect_date) <= new Date(scope.latestRecordEmpWorking.effect_date)
+                    ) {
+                        $msg.confirm("${get_global_res('Notification','Thông báo')}", "${get_global_res('empworking_validate_2','Bạn vừa thêm 1 dòng dữ liệu trong quá khứ. Bạn có muốn tiếp tục ?')}", function () {
+                            scope.entity.department_code_old = null;
+                            scope.entity.job_w_code_old = null;
+                            scope.entity.job_pos_code_old = null;
+                            scope.entity.region_code_old = null;
+
+                            scope.$applyAsync();
+                            continuteSave();
+                        });
+                    }
+                    else {
+                        $msg.confirm("${get_global_res('Notification','Thông báo')}", "${get_global_res('upadte_employee','Bạn có muốn cập nhật sang Thông tin công việc không ?')}", function () {
+                            scope.isUpdateEmployee = true;
+                            continuteSave();
+                        })
+                            .cancel(function () {
+                                //do something
+                            })
+                            .deny(function () {
+                                scope.isUpdateEmployee = false;
+                                continuteSave();
+                            })
+                    }
+                }
+                else {
+                    continuteSave();
+                }
+            }
+            function continuteSave() {
+                console.log(scope.entity)
+                if (fnCallBack)
+                    fnCallBack();
+
+            }
         }
 
         function getUrl() {
@@ -410,7 +515,7 @@
         }
 
         function reloadData() {
-            var tableConfig = scope.$parent.$$table.$$tableConfig;
+            var tableConfig = scope.$parent.$tableEmpWorking.$$tableConfig;
             scope.$parent._tableData(tableConfig.iPage,
                 tableConfig.iPageLength, tableConfig.orderBy,
                 tableConfig.searchText, tableConfig.fnReloadData);
@@ -425,7 +530,7 @@
             var rs = {
                 "result": false,
                 "errorMsg": ''
-            };            
+            };
             valid = lv.Validate(scope.entity.appoint);
             rs.result = valid.isNumber();
             rs.errorMsg = rs.result === false ? "${get_res('appoint_is_not_null','Loại quyết định không được để trống')}" + '\n' : "";
@@ -434,8 +539,9 @@
             }
             valid = lv.Validate(scope.entity.decision_no);
             rs.result = valid.isNullOrWhiteSpace();
-            rs.errorMsg = rs.result === false ? "${get_res('decision_no_is_not_null','Số quyết định không được để trống')}" + '\n' : "";
+            rs.errorMsg = rs.result === true ? "${get_res('decision_no_is_not_null','Số quyết định không được để trống')}" + '\n' : "";
             if (rs.result === true) {
+                rs.result = false;
                 return rs;
             }
             valid = lv.Validate(scope.entity.effect_date);
@@ -444,12 +550,19 @@
             if (rs.result === false) {
                 return rs;
             }
-             valid = lv.Validate(scope.entity.begin_date);
+            valid = lv.Validate(scope.entity.begin_date);
             rs.result = valid.isDate();
             rs.errorMsg = rs.result === false ? "${get_res('begin_date_is_not_null','Từ ngày không được để trống')}" + '\n' : "";
             if (rs.result === false) {
                 return rs;
             }
+            if ((scope.entity.department_code == null && scope.entity.job_w_code == null && scope.entity.job_pos_code == null && scope.entity.region_code == null) ||
+                (scope.entity.department_code == "" && scope.entity.job_w_code == "" && scope.entity.job_pos_code == "" && scope.entity.region_code == "")) {
+                rs.result = false;
+                rs.errorMsg = "${get_res('empworking_validate_1', 'Vui lòng nhập Bộ phận mới hoặc Chức danh mới hoặc Chức vụ mới hoặc Vùng làm việc mới')}"
+                return rs;
+            }
+
             return rs;
         }
         function _comboboxData() {
@@ -467,36 +580,6 @@
                     console.log(res);
                     scope.$applyAsync();
                 })
-            ////combo Người ký
-            //scope.comboboxInfo = {
-            //    title: "",
-            //    captionField: "",
-            //    valueField: ""
-            //};
-            //scope.$combobox = {
-            //    loadData: (cbSetData, pgIdx, txtSearch) => {
-            //        var data = services.extension.getComboboxData(pgIdx, txtSearch, "${encryptor.get_key('cbb_employees')}", [], cbSetData, function (res) {
-            //            scope.comboboxInfo.title = res.display_name;
-            //            scope.comboboxInfo.captionField = res.caption_field;
-            //            scope.comboboxInfo.valueField = res.value_field;
-            //            scope.$applyAsync();
-            //        });
-            //    },
-            //    selectCombobox: function (item) {
-            //        console.log("selectCombobox", item);
-            //    },
-            //    acceptCombobox: function (item) {
-            //        console.log("acceptCombobox", item);
-            //    },
-            //    onSearchPress: function (txtSearch) {
-            //        console.log("onSearchPress: ", txtSearch)
-            //    },
-            //    onSearchChange: function (txtSearch) {
-            //        console.log("onSearchChange: ", txtSearch)
-            //    },
-            //}
-            ////Tinh thanh cbb_province
-
         }
         _comboboxData();
         (function _getDataInitCombobox() {
@@ -515,7 +598,7 @@
                         && scope.entity.hasOwnProperty('region_code')
                         ? scope.entity.region_code
                         : null,
-                    "alias" :"$$$cbb_region"
+                    "alias": "$$$cbb_region"
                 },
                 {
                     "key": "${encryptor.get_key('cbb_province')}",
@@ -540,6 +623,14 @@
                         ? scope.entity.job_pos_code
                         : null,
                     "alias": "$$$job_pos_code"
+                },
+                {
+                    "key": "${encryptor.get_key('cbb_job_working_single_check')}",
+                    "code": scope.entity
+                        && scope.entity.hasOwnProperty('job_w_code')
+                        ? scope.entity.job_w_code
+                        : null,
+                    "alias": "$$$job_w_code"
                 },
                 {
                     "key": "${encryptor.get_key('cbb_region')}",

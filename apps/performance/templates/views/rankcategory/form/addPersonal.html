@@ -66,7 +66,7 @@
                             <!--Thiết lập riêng-->
                             <label class="col-sm-5 zb-form-label">${get_res('is_change_object','Thiết lập riêng')}</label>
                             <div class="col-sm-7">
-                                <input-checkbox ng-model="entity.is_change_object" ng-disabled="__mode == 2 || __mode == 3">
+                                <input-checkbox ng-model="entity.is_change_object" ng-change="onChangeObject()" ng-disabled="__mode == 2 || __mode == 3">
                             </div>
                         </div>
                     </div>
@@ -136,7 +136,7 @@
     (function (scope) {
         scope.$$table = {
             "tableSource": _loadDataServerSide,
-            "tableFields" : [
+            "tableFields": [
                 { "data": "object_code", "title": "${get_res('rank_code_table_header','Đối tượng')}", "className": "text-left" },
                 { "data": "object_name", "title": "${get_res('rank_name_table_header','Tên chi tiết')}", "className": "text-left" },
                 { "data": "total_from", "title": "${get_res('rank_content_table_header','Tổng điểm từ')}", "className": "text-center" },
@@ -320,12 +320,12 @@
                 $msg.confirm("${get_global_res('Notification','Thông báo')}", "${get_global_res('Do_You_Want_Delete','Bạn có muốn xóa không?')}", function () {
                     services.api("${get_api_key('app_main.api.TMLS_Rank/delete_detail')}")
                         .data({
-                            "rank_code":scope.entity.rank_code,
+                            "rank_code": scope.entity.rank_code,
                             "rec_id": _.pluck(scope.$$table.selectedItems, 'rec_id')
                         })
                         .done()
                         .then(function (res) {
-                            if (res.updatedExisting ==  true) {
+                            if (res.updatedExisting == true) {
                                 _tableData(scope.$$table.$$tableConfig.iPage, scope.$$table.$$tableConfig.iPageLength, scope.$$table.$$tableConfig.orderBy, scope.$$table.$$tableConfig.SearchText, scope.$$table.$$tableConfig.fnReloadData);
                                 $msg.alert("${get_global_res('Handle_Success','Thao tác thành công')}", $type_alert.INFO);
                                 scope.$$table.currentItem = null;
@@ -359,14 +359,14 @@
 
         function getUrl() {
             return scope.__mode == 1 || scope.__mode == 3 ? "${get_api_key('app_main.api.TMLS_Rank/insert')}" /*Mode 1: Tạo mới*/
-                    : "${get_api_key('app_main.api.TMLS_Rank/update')}" /*Mode 2: Cập nhật*/
+                : "${get_api_key('app_main.api.TMLS_Rank/update')}" /*Mode 2: Cập nhật*/
         }
 
         function reloadData() {
             var tableConfig = scope.$parent.$$tableConfig;
             scope.$parent._tableData(tableConfig.iPage,
-            tableConfig.iPageLength, tableConfig.orderBy,
-            tableConfig.searchText, tableConfig.fnReloadData);
+                tableConfig.iPageLength, tableConfig.orderBy,
+                tableConfig.searchText, tableConfig.fnReloadData);
         }
 
         /**
@@ -402,19 +402,22 @@
             };
             valid = lv.Validate(scope.entity.rank_code);
             rs.result = valid.isNullOrWhiteSpace();
-            rs.errorMsg = rs.result === true ? "${get_res('nation_code_is_not_null','Mã xếp loại không được để trống')}" + '\n' : "" ;
-            if(rs.result === true){
+            rs.errorMsg = rs.result === true ? "${get_res('nation_code_is_not_null','Mã xếp loại không được để trống')}" + '\n' : "";
+            if (rs.result === true) {
                 return rs;
             }
             valid = lv.Validate(scope.entity.rank_name);
             rs.result = valid.isNullOrWhiteSpace();
-            rs.errorMsg = rs.result === true ? "${get_res('nation_name_is_not_null','Tên xếp loại không được để trống')}" + '\n' : "" ;
-            if(rs.result === true){
+            rs.errorMsg = rs.result === true ? "${get_res('nation_name_is_not_null','Tên xếp loại không được để trống')}" + '\n' : "";
+            if (rs.result === true) {
                 return rs;
             }
             return rs;
         }
 
+        scope.onChangeObject = function () {
+             $(window).trigger('resize');
+        }
     });
 </script>
 </%block>

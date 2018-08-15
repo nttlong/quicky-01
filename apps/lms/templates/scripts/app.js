@@ -1,12 +1,13 @@
 ﻿window.set_component_template_url('${get_static("app/directives/")}')
 window.set_api_combobox("${get_api_key('app_main.api.common/get_dropdown_list')}")
 angular
-    .module("admin", ["c-ui", 'ZebraApp.components', 'ZebraApp.widgets', 'hcs-template', 'ngclipboard'])
+    .module("admin", ["c-ui", 'ZebraApp.components', 'ZebraApp.widgets', 'hcs-template', 'ngclipboard', 'chart.js'])
     .controller("admin", controller);
 
 controller.$inject = ["$dialog", "$scope"];
 dialog_root_url('${get_app_url("pages/")}')
 function controller($dialog, $scope, systemService) {
+    $scope.$root.url_static = "${get_static('/')}";
     $scope.$root.systemConfig = null;/*HCSSYS_SystemConfig*/
     $scope.$root.language = "${get_language()}";
     $scope.$root.APP_URL = "${get_app_url('')}";

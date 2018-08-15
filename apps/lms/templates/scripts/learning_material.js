@@ -2,6 +2,7 @@
     /*                                                         */
     /* ==================== Property Scope - START=============*/
     /*                                                         */
+    scope.$root.extendToolbar = false;
     scope.filterFunctionModel = ''
     scope.currentFunction = '';
     scope.mapName = [];
@@ -9,6 +10,7 @@
     scope.isDisplayGird = false;
     scope.isList = true;
     scope.isGrid = false;
+    scope.objSearch = {};
     scope.onDisplayListData = function () {
         scope.isList = true;
         scope.isGrid = false;
@@ -19,7 +21,11 @@
         scope.isGrid = true;
         scope.$root.onDisplayGridData();
     }
+    scope.onSearchText = function () {
+        
+        scope.searchText = scope.objSearch.$$$modelSearch
 
+    }
     scope.advancedSearch = {
         main_region_code: null,
         main_nation_code: null

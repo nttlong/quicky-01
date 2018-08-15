@@ -12,14 +12,23 @@
                             <!--Mã trình độ-->
                             <label for="inputEmp_Train_Mode_Code" class="col-sm-5 zb-form-label">${get_res('parent_code','Parent')}</label>
                             <div class="col-sm-7">
-                                <input-combobox-custom 
+                                <!--<input-combobox-custom 
                                     list-code="${encryptor.get_key('cbb_lmsls_materialfolder')}"
                                     list-value="[{ '@lock': true }, { '@parent_code': null }]"
                                     list-data="[{'folder_id': 'root', 'folder_name': 'root'}]"
                                     is-push-data="true"
                                     item-custom = "entity.customData"
                                     current-item="entity.parent_code"
-                                    current-item-other="currentItemOther" required /> 
+                                    current-item-other="currentItemOther" required /> -->
+                                
+                                <combobox load-data="$root.$getComboboxData" 
+                                          ng-model="entity.category_id" 
+                                          params="{key:'${encryptor.get_key('cbb_lmsls_materialfolder')}', value:[{ '@lock': true }]}" 
+                                          on-search-change="false" on-search-press="true" placeholder="" 
+                                          init-data="cbb_lmsls_materialfolder.value" paging="true" 
+                                          close-on-select="true" template-fields="cbb_lmsls_materialfolder.display_fields" 
+                                          reload="false">
+                                </combobox>
                             </div>
                         </div>
                     </div>
@@ -45,10 +54,18 @@
                         <div class="form-group zb-form-group">
                             <label for="inputEmp_QuitJob_Type" class="col-sm-5 zb-form-label">${get_res('moderator','Moderator')}</label>
                             <div class="col-sm-7">
-                                <input-combobox 
+                                <!-- <input-combobox 
                                     list-code="${encryptor.get_key('cbb_employees')}"
                                     list-value="[{ '@is_cbcc': true }]"
-                                    current-item="entity.moderator_id" required /> 
+                                    current-item="entity.moderator_id" required /> -->
+                                <combobox load-data="$root.$getComboboxData" 
+                                          ng-model="entity.moderator_id" 
+                                          params="{key:'${encryptor.get_key('lms_cbb_employees')}', value:[{ '@is_cbcc': true }]}" 
+                                          on-search-change="false" on-search-press="true" placeholder="" 
+                                          init-data="cbb_employees.value" paging="true" 
+                                          close-on-select="true" template-fields="cbb_employees.display_fields" 
+                                          reload="false">
+                                </combobox>
                             </div>
                         </div>
                     </div>
@@ -65,10 +82,18 @@
                             <!--Tên khác-->
                             <label for="inputEmp_Train_Mode_Name2" class="col-sm-5 zb-form-label">${get_res('approver','Approver(s)')}</label>
                             <div class="col-sm-7">
-                                <input-combobox 
+                                <!--<input-combobox 
                                     list-code="${encryptor.get_key('cbb_employees')}"
                                     list-value="[{ '@is_cbcc': false }]"
-                                    current-item="entity.approver_id" required />
+                                    current-item="entity.approver_id" required />-->
+                                <combobox load-data="$root.$getComboboxData" 
+                                          ng-model="entity.moderator_id" 
+                                          params="{key:'${encryptor.get_key('lms_cbb_employees')}', value:[{ '@is_cbcc': false }]}" 
+                                          on-search-change="false" on-search-press="true" placeholder="" 
+                                          init-data="$cbb_employees.value" paging="true" 
+                                          close-on-select="true" template-fields="$cbb_employees.display_fields" 
+                                          reload="false">
+                                </combobox>
                                 <div>
                                     <p class="zb-form-label" style="cursor: pointer; font-size: 11px !important;">Add new appover</p>
                                 </div>
@@ -513,6 +538,23 @@
                 });
             }
         }
+
+        function _getDataInitCombobox() {
+            scope.$root.$getInitComboboxData(scope, [{
+                "key": "${encryptor.get_key('cbb_lmsls_materialfolder')}",
+                "code": scope.entity.parent_code ? scope.entity.parent_code : null,
+                "alias": "cbb_lmsls_materialfolder"
+            }, {
+                "key": "${encryptor.get_key('lms_cbb_employees')}",
+                "code": scope.entity.moderator_id ? scope.entity.moderator_id : null,
+                "alias": "cbb_employees"
+            }, {
+                "key": "${encryptor.get_key('lms_cbb_employees')}",
+                "code": scope.entity.moderator_id ? scope.entity.moderator_id : null,
+                "alias": "$cbb_employees"
+            }]);
+        }
+        _getDataInitCombobox();
     });
 </script>
 </%block>

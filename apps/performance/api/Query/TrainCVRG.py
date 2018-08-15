@@ -1,6 +1,7 @@
 from .. import models
 def display_list_train_cvrg():
     ret=models.HCSLS_TrainCVRG().aggregate()
+    ret.left_join(models.HCSLS_TrainDomain(), "domain_code", "domain_code", "domain")
     ret.left_join(models.auth_user_info(), "created_by", "username", "uc")
     ret.left_join(models.auth_user_info(), "modified_by", "username", "um")
     ret.project(
@@ -11,6 +12,7 @@ def display_list_train_cvrg():
         #is_lang="is_lang",
         #is_bhld="is_bhld",
         domain_code="domain_code",
+        domain_name="domain.domain_name",
         ordinal="ordinal",
         note="note",
         lock="lock",

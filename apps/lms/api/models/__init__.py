@@ -1,6 +1,6 @@
 import django
 import quicky
-# import authorization
+import authorization
 import qmongo
 from qmongo import database, helpers
 from performance.api import models as extend
