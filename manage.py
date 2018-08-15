@@ -102,7 +102,7 @@ def start_app(file_name):
     api.connect(config_from_file["DB_API_CACHE"])
     from quicky import backends
     backends.set_config(config_from_file["DB_BACK_END"])
-    quicky.url.build_urls(settings.ROOT_URLCONF, config_from_file["APPS"])
+    quicky.url.build_urls(settings.ROOT_URLCONF,[x for x in config_from_file["APPS"] if not x.get("disable",False)] )
     from django.core.management import execute_from_command_line
     args = [x for x in sys.argv if x[0:2] != "--"]
 

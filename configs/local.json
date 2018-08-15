@@ -145,7 +145,8 @@
       "host":"per",
       "name":"performance",
       "path":"apps/performance",
-      "schema":"lv"
+      "schema":"lv",
+      "disable":true
     }
   ]
 
