@@ -86,7 +86,7 @@
     "port":27017,
     "user":"root",
     "password":"123456",
-    "name":"test",
+    "name":"hrm",
     "collection":"sys.auth_token"
   },
   "DB_API_CACHE":{
@@ -94,7 +94,7 @@
     "port":27017,
     "user":"root",
     "password":"123456",
-    "name":"test",
+    "name":"hrm",
     "collection":"sys.api_cache"
   },
   "DB_AUTH":{
@@ -102,7 +102,7 @@
     "port":27017,
     "user":"root",
     "password":"123456",
-    "name":"test",
+    "name":"hrm",
     "schema":"sys"
   },
   "DB_LANGUAGE":{
@@ -110,7 +110,7 @@
     "port":27017,
     "user":"root",
     "password":"123456",
-    "name":"test",
+    "name":"hrm",
     "collection":"sys.languages"
   },
   "DB_ENCRYPTOR_CACHE":{
@@ -118,7 +118,7 @@
     "port":27017,
     "user":"root",
     "password":"123456",
-    "name":"test",
+    "name":"hrm",
     "collection":"sys.encryptors"
   },
   "APPS":[

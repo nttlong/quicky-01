@@ -38,10 +38,9 @@ def template(fn,*_path,**kwargs):
     is_multi_tenancy = get_django_settings_module().__dict__.get("USE_MULTI_TENANCY", False)
     def exec_request(request, **kwargs):
         from . import applications as apps
-        from django.conf import settings as st
+
         from . import language
-        lang = request.session.get('language',st.LANGUAGE_CODE)
-        language.set_language(lang)
+
         setattr(threading.current_thread(), "user", request.user)
         setattr(threading.currentThread(), "user", request.user)
         _app = None
@@ -53,6 +52,7 @@ def template(fn,*_path,**kwargs):
         if _app != None:
             if hasattr(_app.settings, "DEFAULT_DB_SCHEMA"):
                 tenancy.set_schema(_app.settings.DEFAULT_DB_SCHEMA)
+
         global  settings
         if settings==None:
             from . import get_django_settings_module
@@ -172,7 +172,9 @@ def template(fn,*_path,**kwargs):
                         return redirect(url)
                 elif type(ret_auth) is HttpResponseRedirect:
                     return ret_auth
-
+            from django.conf import settings as st
+            lang = request.session.get('language', st.LANGUAGE_CODE)
+            language.set_language(lang)
             return fn(request, **kwargs)
         except Exception as ex:
             logger.debug(ex)
@@ -190,7 +192,9 @@ def template(fn,*_path,**kwargs):
         setattr(threading.currentThread(), "request_tenancy_code", tenancy_code)
         setattr(threading.current_thread(),"user",request.user)
         setattr(threading.currentThread(), "user", request.user)
-
+        from django.conf import settings as st
+        lang = request.session.get('language', st.LANGUAGE_CODE)
+        language.set_language(lang)
         return exec_request(request,**kwargs)
     if is_multi_tenancy:
         if app == None:
