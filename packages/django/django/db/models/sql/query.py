@@ -194,6 +194,7 @@ class Query(object):
 
     def get_compiler(self, using=None, connection=None, schema = None):
         if schema == None:  # add schema
+            return
             import inspect
             fx = inspect.stack()
             error_detail = ""
@@ -214,7 +215,7 @@ class Query(object):
         for alias, aggregate in self.aggregate_select.items():
             connection.ops.check_aggregate_support(aggregate)
 
-        return connection.ops.compiler(self.compiler,schema=schema)(self, connection, using)
+        return connection.ops.compiler(self.compiler,schema=schema)(self, connection, using,schema = schema)
 
     def get_meta(self):
         """
@@ -324,10 +325,12 @@ class Query(object):
             # Return value depends on the type of the field being processed.
             return self.convert_values(value, aggregate.field, connection)
 
-    def get_aggregation(self, using):
+    def get_aggregation(self, using,schema = None):
         """
         Returns the dictionary with the values of the existing aggregations.
         """
+        if schema == None:
+            return
         if not self.aggregate_select:
             return {}
 
@@ -367,7 +370,7 @@ class Query(object):
         query.select_related = False
         query.related_select_cols = []
 
-        result = query.get_compiler(using).execute_sql(SINGLE)
+        result = query.get_compiler(using,schema=schema).execute_sql(SINGLE,schema=schema)
         if result is None:
             result = [None for q in query.aggregate_select.items()]
 
@@ -377,7 +380,7 @@ class Query(object):
             in zip(query.aggregate_select.items(), result)
         ])
 
-    def get_count(self, using):
+    def get_count(self, using,schema = None):
         """
         Performs a COUNT() query using the current filter constraints.
         """
@@ -401,7 +404,7 @@ class Query(object):
                 return 0
 
         obj.add_count_column()
-        number = obj.get_aggregation(using=using)[None]
+        number = obj.get_aggregation(using=using,schema=schema)[None]
 
         # Apply offset and limit constraints manually, since using LIMIT/OFFSET
         # in SQL (in variants that provide them) doesn't change the COUNT

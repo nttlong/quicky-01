@@ -18,7 +18,7 @@ from django.utils import timezone
 
 
 class SQLCompiler(object):
-    def __init__(self, query, connection, using):
+    def __init__(self, query, connection, using,schema = None):
         self.query = query
         self.connection = connection
         self.using = using
@@ -29,6 +29,7 @@ class SQLCompiler(object):
         # masking away the ordering selects from the returned row.
         self.ordering_aliases = []
         self.ordering_params = []
+        self.schema = schema
 
     def pre_sql_setup(self):
         """

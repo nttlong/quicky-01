@@ -151,11 +151,15 @@ class Manager(six.with_metaclass(RenameManagerMethods)):
     def none(self):
         return self.get_queryset().none()
 
-    def all(self):
-        return self.get_queryset()
+    def all(self,schema = None):
+        qr = self.get_queryset()
+        qr.set_db_schema(schema)
+        return qr
 
-    def count(self):
-        return self.get_queryset().count()
+    def count(self,schema = None):
+        qr = self.get_queryset()
+        qr.set_db_schema(schema)
+        return qr
 
     def dates(self, *args, **kwargs):
         return self.get_queryset().dates(*args, **kwargs)
@@ -214,7 +218,12 @@ class Manager(six.with_metaclass(RenameManagerMethods)):
         return self.get_queryset().bulk_create(*args, **kwargs)
 
     def filter(self, *args, **kwargs):
-        return self.get_queryset().filter(*args, **kwargs)
+        if kwargs.has_key("schema"):
+            qr=self.get_queryset().filter(*args, **kwargs)
+            qr.set_db_schema(kwargs["schema"])
+            return qr
+        else:
+            return self.get_queryset().filter(*args, **kwargs)
 
     def aggregate(self, *args, **kwargs):
         return self.get_queryset().aggregate(*args, **kwargs)
@@ -290,8 +299,19 @@ class Manager(six.with_metaclass(RenameManagerMethods)):
         return self.get_queryset().using(*args, **kwargs)
 
     def exists(self, *args, **kwargs):
-        kwargs.update({"schema": self.get_db_schema()})
-        return self.get_queryset().exists(*args, **kwargs)
+        if kwargs.has_key("schema"):
+            qr=self.get_queryset()
+            kw={}
+            for k,v in kwargs.items():
+                if k !="schema":
+                    kw.update({k,v})
+            qr=qr.exists(*args, **kwargs)
+            qr.set_db_schema(kwargs["schema"])
+            return qr
+        else:
+            return self.get_queryset().exists(*args, **kwargs)
+
+
 
     def _insert(self, objs, fields,schema = None, **kwargs):
         if schema == None:  # add schema

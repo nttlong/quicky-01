@@ -384,11 +384,11 @@ class NonrelCompiler(SQLCompiler):
     TODO: Separate FetchCompiler from the abstract NonrelCompiler.
     """
 
-    def __init__(self, query, connection, using):
+    def __init__(self, query, connection, using,schema = None):
         """
         Initializes the underlying SQLCompiler.
         """
-        super(NonrelCompiler, self).__init__(query, connection, using)
+        super(NonrelCompiler, self).__init__(query, connection, using, schema = schema)
         self.ops = self.connection.ops
 
     # ----------------------------------------------

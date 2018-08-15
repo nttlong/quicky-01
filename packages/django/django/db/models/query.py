@@ -102,7 +102,7 @@ class QuerySet(object):
             3. self.iterator()
                - Responsible for turning the rows into model objects.
         """
-        self._fetch_all()
+        self._fetch_all(schema=self.get_db_schema())
         return iter(self._result_cache)
 
     def __nonzero__(self):
@@ -305,7 +305,7 @@ class QuerySet(object):
         if self._result_cache is not None:
             return len(self._result_cache)
 
-        return self.query.get_count(using=self.db)
+        return self.query.get_count(using=self.db,schema = self.get_db_schema())
 
     def get(self, *args, **kwargs):
         """

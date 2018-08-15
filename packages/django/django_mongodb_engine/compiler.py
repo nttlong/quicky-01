@@ -108,6 +108,7 @@ class MongoQuery(NonrelQuery):
                         __file__, "MongoQuery.init",
                         error_detail
                     )))
+        self.schema=schema
         import threading
         ct=threading.currentThread()
         if hasattr(ct,"tenancy_code"):
@@ -186,9 +187,16 @@ class MongoQuery(NonrelQuery):
 
         fields = get_selected_fields(self.query)
         if self.collection.collection.name != "django_session" and hasattr(self,"__schema_filter__"):
-            collection_name=self.collection.collection.name.split('.')[1]
 
-            self.collection=self.collection.collection.database.get_collection(self.__schema_filter__+"."+collection_name)
+            if self.collection.collection.name.split('.').__len__()>1:
+                collection_name=self.collection.collection.name.split('.')[1]
+            else:
+                collection_name = self.collection.collection.name
+            if self.__schema_filter__ !="":
+                self.collection=self.collection.collection.database.get_collection(self.__schema_filter__+"."+collection_name)
+            else:
+                self.collection = self.collection.collection.database.get_collection(
+                    self.schema + "." + collection_name)
         print("Exec query on {0} with filter {1}".format(self.collection.collection.name,self.mongo_query.__str__()))
         cursor = self.collection.find(self.mongo_query, fields)
         if self.ordering:
@@ -379,11 +387,25 @@ class SQLCompiler(NonrelCompiler):
         return self.connection.get_collection(coll_name)
 
 
-    def execute_sql(self, result_type=MULTI):
+    def execute_sql(self, result_type=MULTI,schema = None):
         """
         Handles aggregate/count queries.
         """
-        collection = self.get_collection()
+        if schema == None:
+            schema = self.schema
+        if schema == None:  # add schema
+            import inspect
+            fx = inspect.stack()
+            error_detail = ""
+            for x in fx:
+                error_detail += "\n\t {0}, line {1}".format(fx[1], fx[2])
+            raise (
+                Exception(
+                    "can not call ''{1}'' without schema in '{0}'.\nDetail:\n{2}".format(
+                        __file__, "insert_query",
+                        error_detail
+                    )))
+        collection = self.get_collection(schema=schema)
         aggregations = self.query.aggregate_select.items()
 
         if len(aggregations) == 1 and isinstance(aggregations[0][1],
@@ -391,9 +413,9 @@ class SQLCompiler(NonrelCompiler):
             # Ne need for full-featured aggregation processing if we
             # only want to count().
             if result_type is MULTI:
-                return [[self.get_count()]]
+                return [[self.get_count(schema = schema)]]
             else:
-                return [self.get_count()]
+                return [self.get_count(schema = schema)]
 
         counts, reduce, finalize, order, initial = [], [], [], [], {}
         try:
