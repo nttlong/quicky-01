@@ -29,6 +29,8 @@ def start_app(file_name):
         setattr(settings, "SECRET_KEY", config_from_file["SECRET_KEY"])
         for key in config_from_file.keys():
             try:
+                if key == "LOGS":
+                    pass
                 if key == "PACKAGES":
                     pass
                 elif key == "DB_BACK_END":
@@ -74,6 +76,25 @@ def start_app(file_name):
     setattr(settings, "STATIC_URL", 'static/')
     setattr(settings, "STATIC_ROOT",
             os.path.join(*(BASE_DIR.split(os.path.sep) + ['apps/static', 'apps/app_main/static'])))
+    LOGGING = {
+        'version': 1,
+        'disable_existing_loggers': False,
+        'handlers': {
+            'file': {
+                'level': 'DEBUG',
+                'class': 'logging.FileHandler',
+                'filename': BASE_DIR + os.sep+config_from_file.get("LOGS", 'logs' + os.sep + 'debug.log'),
+            },
+        },
+        'loggers': {
+            'django': {
+                'handlers': ['file'],
+                'level': 'DEBUG',
+                'propagate': False,
+            },
+        },
+    }
+    setattr(settings, "LOGGING",LOGGING)
     sys.modules.update({file_name: {"settings": settings}})
     sys.modules.update({file_name + ".settings": settings})
     os.environ.setdefault("DJANGO_SETTINGS_MODULE", file_name + ".settings")
@@ -84,6 +105,7 @@ def start_app(file_name):
     quicky.url.build_urls(settings.ROOT_URLCONF, config_from_file["APPS"])
     from django.core.management import execute_from_command_line
     args = [x for x in sys.argv if x[0:2] != "--"]
+
     execute_from_command_line(args)
 
 

@@ -1,0 +1,29 @@
+django_session.find (0.00) {'_id': 'wzx6vl8s3uljl6q2127wekcb257u8met', 'expire_date': {'$gt': datetime.datetime(2018, 8, 15, 10, 57, 7, 809731, tzinfo=<UTC>)}, 'schema': u'hrm'}
+django_session.find (0.00) {'_id': 'wzx6vl8s3uljl6q2127wekcb257u8met', 'expire_date': {'$gt': datetime.datetime(2018, 8, 15, 10, 57, 8, 235631, tzinfo=<UTC>)}, 'schema': u'hrm'}
+django_session.find (0.00) {'_id': 'wzx6vl8s3uljl6q2127wekcb257u8met', 'expire_date': {'$gt': datetime.datetime(2018, 8, 15, 10, 57, 8, 382151, tzinfo=<UTC>)}, 'schema': u'hrm'}
+Internal Server Error: /api
+Traceback (most recent call last):
+  File "/home/hcsadmin/q03/packages/django/django/core/handlers/base.py", line 122, in get_response
+    raise e
+Exception: Call  'get_list' in 'hrm.api.categories' encountered ''Settings' object has no attribute 'database''
+django_session.find (0.00) {'_id': 'wzx6vl8s3uljl6q2127wekcb257u8met', 'expire_date': {'$gt': datetime.datetime(2018, 8, 15, 10, 58, 39, 42042, tzinfo=<UTC>)}, 'schema': u'hrm'}
+django_session.find (0.00) {'_id': 'wzx6vl8s3uljl6q2127wekcb257u8met', 'expire_date': {'$gt': datetime.datetime(2018, 8, 15, 10, 58, 39, 233578, tzinfo=<UTC>)}, 'schema': u'hrm'}
+django_session.find (0.00) {'_id': 'wzx6vl8s3uljl6q2127wekcb257u8met', 'expire_date': {'$gt': datetime.datetime(2018, 8, 15, 10, 58, 49, 342868, tzinfo=<UTC>)}, 'schema': u'hrm'}
+django_session.find (0.00) {'_id': 'wzx6vl8s3uljl6q2127wekcb257u8met', 'expire_date': {'$gt': datetime.datetime(2018, 8, 15, 10, 58, 49, 487789, tzinfo=<UTC>)}, 'schema': u'hrm'}
+django_session.find (0.01) {'_id': 'wzx6vl8s3uljl6q2127wekcb257u8met', 'expire_date': {'$gt': datetime.datetime(2018, 8, 15, 11, 0, 33, 221626, tzinfo=<UTC>)}, 'schema': u'hrm'}
+django_session.find (0.00) {'_id': 'wzx6vl8s3uljl6q2127wekcb257u8met', 'expire_date': {'$gt': datetime.datetime(2018, 8, 15, 11, 0, 33, 748357, tzinfo=<UTC>)}, 'schema': u'hrm'}
+django_session.find (0.00) {'_id': 'wzx6vl8s3uljl6q2127wekcb257u8met', 'expire_date': {'$gt': datetime.datetime(2018, 8, 15, 11, 0, 33, 913253, tzinfo=<UTC>)}, 'schema': u'hrm'}
+django_session.find (0.00) {'_id': 'wzx6vl8s3uljl6q2127wekcb257u8met', 'expire_date': {'$gt': datetime.datetime(2018, 8, 15, 11, 0, 53, 834610, tzinfo=<UTC>)}, 'schema': u'hrm'}
+django_session.find (0.00) {'_id': 'wzx6vl8s3uljl6q2127wekcb257u8met', 'expire_date': {'$gt': datetime.datetime(2018, 8, 15, 11, 1, 11, 368491, tzinfo=<UTC>)}, 'schema': u'hrm'}
+django_session.find (0.00) {'_id': 'wzx6vl8s3uljl6q2127wekcb257u8met', 'expire_date': {'$gt': datetime.datetime(2018, 8, 15, 11, 1, 11, 411808, tzinfo=<UTC>)}, 'schema': u'hrm'}
+django_session.find (0.00) {'_id': 'wzx6vl8s3uljl6q2127wekcb257u8met', 'expire_date': {'$gt': datetime.datetime(2018, 8, 15, 11, 1, 13, 686545, tzinfo=<UTC>)}, 'schema': u'hrm'}
+django_session.find (0.00) {'_id': 'wzx6vl8s3uljl6q2127wekcb257u8met', 'expire_date': {'$gt': datetime.datetime(2018, 8, 15, 11, 1, 13, 776798, tzinfo=<UTC>)}, 'schema': u'hrm'}
+django_session.find (0.00) {'_id': 'wzx6vl8s3uljl6q2127wekcb257u8met', 'expire_date': {'$gt': datetime.datetime(2018, 8, 15, 11, 1, 15, 687950, tzinfo=<UTC>)}, 'schema': u'hrm'}
+django_session.find (0.00) {'_id': 'wzx6vl8s3uljl6q2127wekcb257u8met', 'expire_date': {'$gt': datetime.datetime(2018, 8, 15, 11, 1, 15, 772887, tzinfo=<UTC>)}, 'schema': u'hrm'}
+django_session.find (0.00) {'_id': 'wzx6vl8s3uljl6q2127wekcb257u8met', 'expire_date': {'$gt': datetime.datetime(2018, 8, 15, 11, 1, 17, 989673, tzinfo=<UTC>)}, 'schema': u'hrm'}
+django_session.find (0.00) {'_id': 'wzx6vl8s3uljl6q2127wekcb257u8met', 'expire_date': {'$gt': datetime.datetime(2018, 8, 15, 11, 1, 18, 112458, tzinfo=<UTC>)}, 'schema': u'hrm'}
+django_session.find (0.00) {'_id': 'wzx6vl8s3uljl6q2127wekcb257u8met', 'expire_date': {'$gt': datetime.datetime(2018, 8, 15, 11, 1, 20, 344265, tzinfo=<UTC>)}, 'schema': u'hrm'}
+django_session.find (0.00) {'_id': 'wzx6vl8s3uljl6q2127wekcb257u8met', 'expire_date': {'$gt': datetime.datetime(2018, 8, 15, 11, 1, 20, 463570, tzinfo=<UTC>)}, 'schema': u'hrm'}
+django_session.find (0.00) {'_id': 'wzx6vl8s3uljl6q2127wekcb257u8met', 'expire_date': {'$gt': datetime.datetime(2018, 8, 15, 11, 1, 22, 473779, tzinfo=<UTC>)}, 'schema': u'hrm'}
+django_session.find (0.00) {'_id': 'wzx6vl8s3uljl6q2127wekcb257u8met', 'expire_date': {'$gt': datetime.datetime(2018, 8, 15, 11, 1, 22, 692141, tzinfo=<UTC>)}, 'schema': u'hrm'}
+django_session.find (0.00) {'_id': 'wzx6vl8s3uljl6q2127wekcb257u8met', 'expire_date': {'$gt': datetime.datetime(2018, 8, 15, 11, 1, 25, 294024, tzinfo=<UTC>)}, 'schema': u'hrm'}

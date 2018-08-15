@@ -25,6 +25,8 @@ def create_settings_from_file(BASE_DIR,file_name):
         setattr(settings, "SECRET_KEY", config_from_file["SECRET_KEY"])
         for key in config_from_file.keys():
             try:
+                if key == "LOGS":
+                    pass
                 if key == "PACKAGES":
                     pass
                 elif key == "DB_BACK_END":
@@ -71,6 +73,25 @@ def create_settings_from_file(BASE_DIR,file_name):
     import importlib
     setattr(settings, "AUTHORIZATION_ENGINE", importlib.import_module(config_from_file["AUTHORIZATION_ENGINE"]))
     setattr(settings, "ROOT_URLCONF", 'apps')
+    LOGGING = {
+        'version': 1,
+        'disable_existing_loggers': False,
+        'handlers': {
+            'file': {
+                'level': 'DEBUG',
+                'class': 'logging.FileHandler',
+                'filename': BASE_DIR + os.sep + config_from_file.get("LOGS", 'logs' + os.sep + 'debug.log'),
+            },
+        },
+        'loggers': {
+            'django': {
+                'handlers': ['file'],
+                'level': 'DEBUG',
+                'propagate': False,
+            },
+        },
+    }
+    setattr(settings, "LOGGING", LOGGING)
     # setattr(settings, "STATIC_URL", 'static/')
     # setattr(settings, "STATIC_ROOT",
     #        os.path.join(*(BASE_DIR.split(os.path.sep) + ['apps/static', 'apps/app_main/static'])))

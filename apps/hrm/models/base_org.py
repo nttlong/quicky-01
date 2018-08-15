@@ -2,7 +2,7 @@
 from quicky import applications
 from qmongo import helpers, database
 from . import base
-
+from .. import settings
 _hasCreated = False
 model_name="base_org"
 global _hasCreated
@@ -18,4 +18,4 @@ if not _hasCreated:
 
     )
     _hasCreated = True
-ret = applications.get_settings().database.collection(model_name)
+ret = settings.db().collection(model_name)
