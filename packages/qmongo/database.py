@@ -954,6 +954,7 @@ class AGGREGATE():
         """
         if self._selected_fields==None:
             self._selected_fields=self._coll._model.get_fields()
+            self._selected_fields.append("_id")
         return self._selected_fields
     def descibe_fields(self,tabs,fields):
         # type: (str,list) -> str
