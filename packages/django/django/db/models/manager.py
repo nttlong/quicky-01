@@ -179,7 +179,7 @@ class Manager(six.with_metaclass(RenameManagerMethods)):
                 _schema=threading.currentThread().tenancy_code
             else:
                 import sys
-                settings = sys.modules["settings"]
+                from django.conf import settings
                 if not hasattr(settings,"MULTI_TENANCY_DEFAULT_SCHEMA"):
                     if not hasattr(settings,"MULTI_TENANCY_DEFAULT_SCHEMA"):
                         raise (Exception("It look like you forgot decalre 'MULTI_TENANCY_DEFAULT_SCHEMA' in settings.py\n"

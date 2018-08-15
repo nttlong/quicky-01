@@ -2,6 +2,8 @@ import re
 import sys
 from pymongo import MongoClient
 import datetime
+import threading
+import applications
 
 _coll=None
 _db=None
@@ -77,3 +79,21 @@ def get_language_item(schema,lan,app,view,key,value):
         return value
     else:
         return item["Value"]
+
+def get_language():
+    "Get language code"
+    if hasattr(threading.currentThread(),"language_code"):
+        return threading.currentThread().language_code
+    else:
+        return None
+
+def set_language(lan_code):
+    "Set language code"
+    if not hasattr(threading.currentThread(),"language_code"):
+        if lan_code != None and lan_code != "":
+            setattr(threading.currentThread(),"language_code",lan_code)
+            setattr(threading.current_thread(), "language_code", lan_code)
+        else:
+            language = applications.get_settings().LANGUAGE_CODE
+            setattr(threading.currentThread(),"language_code", language)
+            setattr(threading.current_thread(), "language_code", language)

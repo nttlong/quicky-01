@@ -46,12 +46,16 @@ def apply(request,template_file,app):
     from . import api
     from django.core.context_processors import csrf
     def get_language():
+        from django.conf import settings as st
         from django.utils import translation
-        return request.session.get("language", translation.get_language())
-
+        return request.session.get('language',st.LANGUAGE_CODE)
+    
     def set_language(lang):
-        from django.utils.translation import activate
-        activate(lang)
+        #from django.utils.translation import activate
+        #activate(lang)
+        request.session['language'] = lang
+        from .import language
+        language.set_language(lang)
     def get_app_url(path):
         if get_app_host() == "":
             return get_abs_url() + (lambda: "" if path == "" else "/" + path)()

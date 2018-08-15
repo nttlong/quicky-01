@@ -1,5 +1,6 @@
 from . import extens
 from . import applications
+from . import language
 
 from . import authorize
 import threading
@@ -37,8 +38,10 @@ def template(fn,*_path,**kwargs):
     is_multi_tenancy = get_django_settings_module().__dict__.get("USE_MULTI_TENANCY", False)
     def exec_request(request, **kwargs):
         from . import applications as apps
-
-
+        from django.conf import settings as st
+        from . import language
+        lang = request.session.get('language',st.LANGUAGE_CODE)
+        language.set_language(lang)
         setattr(threading.current_thread(), "user", request.user)
         setattr(threading.currentThread(), "user", request.user)
         _app = None
