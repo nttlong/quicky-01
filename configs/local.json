@@ -121,6 +121,14 @@
     "name":"hrm",
     "collection":"sys.encryptors"
   },
+  "DB_EXCEL_EXPORT_CONFIG":{
+    "host":"localhost",
+    "port":27017,
+    "user":"root",
+    "password":"123456",
+    "name":"hrm",
+    "collection":"sys.excel_config"
+  },
   "APPS":[
     {"host":"sys",
      "name":"sys-admin",

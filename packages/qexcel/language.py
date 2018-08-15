@@ -47,6 +47,9 @@ def set_config(*args,**kwargs):
             _collection_name=args["collection"]
 
 def get_columns(language,app_name,schema,source,cols):
+    global _coll
+    if _coll == None:
+        raise (Exception("It looks like you forgot set 'DB_EXCEL_EXPORT_CONFIG' in settings.py"))
     columns =[]
     ord=1000
     for x in cols:
