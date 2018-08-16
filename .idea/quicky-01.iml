@@ -9,7 +9,7 @@
       <excludeFolder url="file://$MODULE_DIR$/uvenv2" />
       <excludeFolder url="file://$MODULE_DIR$/uvenv3" />
     </content>
-    <orderEntry type="jdk" jdkName="Python 2.7 (quicky-01)" jdkType="Python SDK" />
+    <orderEntry type="jdk" jdkName="Python 2.7 (q03)" jdkType="Python SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="R User Library" level="project" />
     <orderEntry type="library" name="R Skeletons" level="application" />

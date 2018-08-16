@@ -88,26 +88,42 @@ class excel_config(object):
         tmp_data=self.get_oject_template()
         for i in range(1,rows_count):
             yield extract_data(sorted_names,tmp_data,rows)
-
+def load_from_string_64(base64_content):
+    import binascii
+    import struct
+    import base64
+    data = base64_content.split("base64,")[1]
+    buffer_array = base64.decodestring(data)
+    from io import BytesIO
+    filename = BytesIO(buffer_array)
+    import openpyxl
+    from openpyxl import utils
+    wb = openpyxl.load_workbook(filename=filename, data_only=True)
+    return load_from_workbook(wb)
 def load_from_file(file):
-    ret = excel_config()
+
     file = open(file, 'rb')
     wb = openpyxl.load_workbook(filename=file)
-    ws_data =[ws for ws in wb.worksheets if ws.title =="data"]
-    if ws_data.__len__()==0:
+    ret = load_from_workbook(wb)
+    return ret
+
+
+def load_from_workbook(wb):
+    ret = excel_config()
+    ws_data = [ws for ws in wb.worksheets if ws.title == "data"]
+    if ws_data.__len__() == 0:
         raise (Exception("Invalid workbook. The workbook must contains one worksheet with name is 'data'"))
-    ret.workbook=wb
-    ret.data_sheet=ws_data[0]
-    ret.names=[]
+    ret.workbook = wb
+    ret.data_sheet = ws_data[0]
+    ret.names = []
     for x in wb.defined_names.definedName:
         from openpyxl.utils import coordinate_from_string, column_index_from_string
-        if hasattr(x,"name"):
-            item= excel_name_range()
-            item.address=x.value
-            item.name=x.name
-            item.col=column_index_from_string(x.value.split("!")[1].split(":")[0].replace("$",""))-1
+        if hasattr(x, "name"):
+            item = excel_name_range()
+            item.address = x.value
+            item.name = x.name
+            item.col = column_index_from_string(x.value.split("!")[1].split(":")[0].replace("$", "")) - 1
             ret.names.append(item)
-
     ret.names = sorted(ret.names, key=lambda x: x.name)
     return ret
 

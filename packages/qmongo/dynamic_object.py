@@ -1,0 +1,33 @@
+class dynamic_object(object):
+    pass
+
+
+def create_from_dict(dict_data):
+    ret = dynamic_object()
+    for k, v in dict_data.items():
+        if type(v) is dict:
+            setattr(ret, k, create_from_dict(v))
+        else:
+            setattr(ret, k, v)
+    return ret
+def create():
+    return dynamic_object()
+def create_object_from_fields(fields):
+    fields=sorted(fields, key=lambda x: x)
+    ret = dynamic_object()
+    for x in fields:
+        f= x.split('.')
+        tmp = ret
+        i = 0
+        for n in f:
+            if not hasattr(tmp,n):
+                setattr(tmp,n,None)
+            else:
+                if i == f.__len__() - 1:
+                    setattr(tmp, n, None)
+                else:
+                    setattr(tmp, n, dynamic_object())
+            tmp = getattr(tmp,n)
+
+    return ret
+
