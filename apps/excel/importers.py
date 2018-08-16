@@ -1,13 +1,9 @@
 import openpyxl
 class excel_name_range(object):
     def __init__(self):
-
         self.name=None
         self.address=None
         self.col = -1
-
-
-
 class excel_config(object):
     def __init__(self):
         self.names=[]
@@ -28,7 +24,71 @@ class excel_config(object):
                         else:
                             ret.update({y:{}})
                             ret=ret[y]
+                    else:
+                        ret = ret[y]
         return ret_data
+    def get_oject_template(self):
+        class Obj(object):
+            pass
+        ret_data =Obj()
+        ret=ret_data
+        for x in self.names:
+            ret=ret_data
+            if x.name.split('.').__len__() ==1:
+                setattr(ret,x.name, (x.name, x.col))
+            else:
+                for y in x.name.split('.'):
+                    if not hasattr(ret,y):
+                        if x.name.split('.').index(y)==x.name.split('.').__len__()-1:
+                            setattr(ret,y,(x.name , x.col))
+                        else:
+                            setattr(ret,y,Obj())
+                            ret=getattr(ret,y)
+                    else:
+                        ret = getattr(ret,y)
+        return ret_data
+    def extract_data_as_list_of_dict(self):
+        def extract_data(sorted_names,tmp_data,rows):
+            data_item = tmp_data.copy()
+            for name_item in sorted_names:
+
+                tmp = data_item
+                j=0
+                for x in range(0,name_item["n_count"]):
+                    tmp = tmp[name_item["names"][x]]
+                tmp[name_item["names"][name_item["n_count"]]] = rows[i][name_item["idx"] - 1].value
+            return data_item
+
+        sorted_names= sorted(self.names,key = lambda x:x.col)
+        sorted_names = [{"names":x.name.split('.'),"n_count":x.name.split('.').__len__()-1,"idx":x.col} for x in sorted_names]
+        rows = list(self.data_sheet.rows)
+        rows_count =rows.__len__()
+        ret_data=[]
+        tmp_data=self.get_data_template()
+        for i in range(1,rows_count):
+            yield extract_data(sorted_names,tmp_data,rows)
+    def extract_data_as_list_of_object(self):
+        def extract_data(sorted_names,tmp_data,rows):
+            import copy
+            data_item = copy.copy(tmp_data)
+            for name_item in sorted_names:
+
+                tmp = data_item
+                j=0
+                for x in range(0,name_item["n_count"]):
+                    tmp =getattr(tmp,name_item["names"][x])
+                setattr(tmp,name_item["names"][name_item["n_count"]],rows[i][name_item["idx"] - 1].value)
+            return data_item
+
+        sorted_names= sorted(self.names,key = lambda x:x.col)
+        sorted_names = [{"names":x.name.split('.'),"n_count":x.name.split('.').__len__()-1,"idx":x.col} for x in sorted_names]
+        rows = list(self.data_sheet.rows)
+        rows_count =rows.__len__()
+        ret_data=[]
+        tmp_data=self.get_oject_template()
+        for i in range(1,rows_count):
+            yield extract_data(sorted_names,tmp_data,rows)
+
 def load_from_file(file):
     ret = excel_config()
     file = open(file, 'rb')
@@ -45,7 +105,7 @@ def load_from_file(file):
             item= excel_name_range()
             item.address=x.value
             item.name=x.name
-            item.col=coordinate_from_string(x.value.split("!")[1].split(":")[0].replace("$","")+"1")[1]
+            item.col=column_index_from_string(x.value.split("!")[1].split(":")[0].replace("$",""))-1
             ret.names.append(item)
 
     ret.names = sorted(ret.names, key=lambda x: x.name)

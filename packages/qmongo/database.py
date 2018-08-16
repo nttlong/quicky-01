@@ -449,6 +449,11 @@ class WHERE():
             return self._coll.get_list()
         else:
             return self._coll.find(self._get_where())
+    def load_objects(self):
+        if self._where_list.__len__()==0:
+            return self._coll.load_objects()
+        else:
+            return self._coll.find(self._get_where())
     def get_item(self):
         if self._where_list.__len__() == 0:
             return self._coll.get_item()
@@ -670,6 +675,47 @@ class COLL():
             filter = expr.parse_expression_to_json_expression(exprression, kwargs)
             ret=self.get_collection().find_one(filter)
             return ret
+    def objects(self,exprression=None,*args,**kwargs):
+        from . import dynamic_object
+        iters= self.cursors(exprression,*args,**kwargs)
+        continue_fetch = True
+        while continue_fetch:
+            try:
+                item = iters.next()
+                yield dynamic_object.create_from_dict(item)
+            except StopIteration as ex:
+                continue_fetch  = False
+
+    def cursors(self,exprression = None,*args,**kwargs):
+        # type: (str,dict) -> dict
+        # type: (str,tuple) -> dict
+        # type: (str,int) -> dict
+        # type: (str,bool) -> dict
+        # type: (str,float) -> dict
+        # type: (str,datetime) -> dict
+        # type: (str,list) -> dict
+        """find and get a list of items item with conditional ex: find("Username={0}","admin"),
+                    find("Username='admin'"),
+                    find("Username=@username",username="admin")
+                 """
+        if exprression == None:
+            return self.get_collection().find()
+        unknown_fields = self._model.validate_expression(exprression, None, *args, **kwargs)
+        if unknown_fields.__len__() > 0:
+            raise (Exception("What is bellow list of fields?:\n" + self.descibe_fields("\t\t", unknown_fields) +
+                             " \n Your selected fields now is bellow list: \n" +
+                             self.descibe_fields("\t\t\t", self._model.get_fields())))
+        if type(exprression) is dict:
+            ret = self.get_collection().find(exprression)
+            return ret
+        elif type(exprression) is tuple:
+            ret = self.get_collection().find(exprression[0])
+            return ret
+        else:
+            x = expr.get_tree(exprression, *args, **kwargs)
+            y = expr.get_expr(x, *args, **kwargs)
+            ret = self.get_collection().find(y)
+            return ret
     def find(self,exprression,*args,**kwargs):
         # type: (str,dict) -> dict
         # type: (str,tuple) -> dict
@@ -682,22 +728,7 @@ class COLL():
                     find("Username='admin'"),
                     find("Username=@username",username="admin")
                  """
-        unknown_fields = self._model.validate_expression(exprression,None,*args,**kwargs)
-        if unknown_fields.__len__() > 0:
-            raise (Exception("What is bellow list of fields?:\n" + self.descibe_fields("\t\t", unknown_fields) +
-                             " \n Your selected fields now is bellow list: \n" +
-                             self.descibe_fields("\t\t\t", self._model.get_fields())))
-        if type(exprression) is dict:
-            ret = self.get_collection().find(exprression)
-            return list(ret)
-        elif type(exprression) is tuple:
-            ret = self.get_collection().find(exprression[0])
-            return list(ret)
-        else:
-            x=expr.get_tree(exprression,params)
-            y=expr.get_expr(x,params)
-            ret=self.get_collection().find(y)
-            return list(ret)
+        return list(self.cursors(exprression,*args,**kwargs))
     def get_list(self):
         # type: () -> list
         """
@@ -706,6 +737,22 @@ class COLL():
         """
         ret = self.get_collection().find()
         return list(ret)
+    def get_objects(self):
+        # type: () -> list
+        """
+        get list of items from mongodb
+        :return:
+        """
+        from . import dynamic_object
+        ret = self.get_collection().find()
+        m= True
+        while m:
+            try:
+                item = ret.next()
+                yield dynamic_object.create_from_dict(item)
+            except StopIteration as ex:
+                m = False
+
     def get_item(self):
         # type : ()-> dict
         """
@@ -714,6 +761,17 @@ class COLL():
         """
         ret = self.get_collection().find_one()
         return ret
+    def get_object(self):
+        # type : ()-> dict
+        """
+        Get one item from mongodb and return object without filtering
+        :return:
+        """
+        from . import dynamic_object
+        ret = self.get_collection().find_one()
+        ret_object = dynamic_object.create_from_dict(ret)
+
+        return ret_object
     def where(self,exprression,*params):
         # type: (str,dict) -> COLL
         # type: (str,tuple) -> COLL
@@ -735,6 +793,11 @@ class COLL():
     def aggregate(self):
         """create aggregate before create pipeline"""
         return AGGREGATE(self,self.qr,self.name,self.session)
+    def insert_object(self,obj_item):
+        from . import dynamic_object
+        if not type(obj_item) is dynamic_object.dynamic_object:
+            raise (Exception("parameter must be '{0}".format('qmonog.dynamic_object.dynamic_object')))
+        return self.insert(obj_item._dict_)
     def insert(self,*args,**kwargs):
         # type: (dict) -> dict
         # type: (tuple) -> dict
@@ -761,6 +824,11 @@ class COLL():
         ac=self.entity().insert_one(*args,**kwargs)
         ret=ac.commit(self.session)
         return ret
+    def update_object(self,obj_item,filter,*args,**kwargs):
+        from . import dynamic_object
+        if not type(obj_item) is dynamic_object.dynamic_object:
+            raise (Exception("parameter must be '{0}".format('qmonog.dynamic_object.dynamic_object')))
+        return self.update(obj_item._dict_,filter,*args,**kwargs)
     def update(self,data,filter,*args,**kwargs):
         # type: (dict,str,int) -> dict
         # type: (dict,str,bool) -> dict
@@ -789,6 +857,12 @@ class COLL():
         ac.update_many(data)
         ret=ac.commit(self.session)
         return ret
+
+    def push_object(self, obj_item, filter, *args, **kwargs):
+        from . import dynamic_object
+        if not type(obj_item) is dynamic_object.dynamic_object:
+            raise (Exception("parameter must be '{0}".format('qmonog.dynamic_object.dynamic_object')))
+        return self.push(obj_item._dict_, filter, *args, **kwargs)
     def push(self,data,filter,*args,**kwargs):
         # type: (dict,str,int) -> dict
         # type: (dict,str,bool) -> dict
@@ -817,6 +891,12 @@ class COLL():
         ac.push(data)
         ret=ac.commit(self.session)
         return ret
+
+    def pull_object(self, obj_item, filter, *args, **kwargs):
+        from . import dynamic_object
+        if not type(obj_item) is dynamic_object.dynamic_object:
+            raise (Exception("parameter must be '{0}".format('qmonog.dynamic_object.dynamic_object')))
+        return self.pull(obj_item._dict_, filter, *args, **kwargs)
     def pull(self,data,filter,*args,**kwargs):
         # type: (dict,str,int) -> dict
         # type: (dict,str,bool) -> dict
@@ -954,7 +1034,8 @@ class AGGREGATE():
         """
         if self._selected_fields==None:
             self._selected_fields=self._coll._model.get_fields()
-            self._selected_fields.append("_id")
+            if self._selected_fields.count("_id") == 0:
+                self._selected_fields.append("_id")
         return self._selected_fields
     def descibe_fields(self,tabs,fields):
         # type: (str,list) -> str
@@ -1335,6 +1416,30 @@ class AGGREGATE():
             return None
         else:
             return ret[0]
+    def get_object(self):
+        from . import dynamic_object
+        ret = dynamic_object.create_from_dict(self.get_item())
+        return  ret
+
+    def get_all_documents_as_objects(self):
+        # type: () -> list
+        """
+        get all items from mongodb
+        Caution: this method will return what is collection store. For example the collection maybe store different schema in each doc
+        :return:
+        """
+        # coll = self.qr.db.get_collection(self.name).with_options(codec_options=self.qr._codec_options)
+        coll = self._coll.get_collection()
+        coll_ret = coll.aggregate(self._pipe)
+        ret=coll.aggregate(self._pipe)
+        continue_fetch =True
+        from . import dynamic_object
+        while continue_fetch:
+            try:
+                yield dynamic_object.create_from_dict(ret.next())
+            except StopIteration as ex:
+                continue_fetch =False
+
     def get_all_documents(self):
         # type: () -> list
         """
@@ -1347,6 +1452,38 @@ class AGGREGATE():
         coll_ret = coll.aggregate(self._pipe)
         ret=list(coll.aggregate(self._pipe))
         return ret
+    def cursor_list(self):
+        # type: () -> list
+        """
+        Get list of item in mongodb
+        Caution: this method will return the same schema for each item even the collection contains different schema for each item
+        :return:
+        """
+        # try:
+        #     return self.qr.db.get_collection(self.name).aggregate(self._pipe,explain=False)["cursor"]["firstBatch"]
+        # except Exception as ex:
+        #     return list(self.qr.db.get_collection(self.name).aggregate(self._pipe))
+        # coll=self.qr.db.get_collection(self.name).with_options(codec_options=self.qr._codec_options)
+        coll = self._coll.get_collection()
+        coll_ret = coll.aggregate(self._pipe, self.session)
+        return coll_ret
+    def get_objects(self):
+        def fect_obj(tmp_obj,d):
+            for k,v in d.items():
+                tmp_obj.__dict__.update({
+                    k:v
+                })
+        import dynamic_object
+        tmp = dynamic_object.create_object_from_fields(self.get_selected_fields())
+        iters = self.cursor_list()
+        continue_fetch = True
+        while continue_fetch:
+            try:
+                yield dynamic_object.create_from_dict(iters.next())
+            except StopIteration as ex:
+                continue_fetch =False
+
+
     def get_list(self):
         # type: () -> list
         """
@@ -1360,7 +1497,7 @@ class AGGREGATE():
         #     return list(self.qr.db.get_collection(self.name).aggregate(self._pipe))
         # coll=self.qr.db.get_collection(self.name).with_options(codec_options=self.qr._codec_options)
         coll = self._coll.get_collection()
-        coll_ret=coll.aggregate(self._pipe,self.session)
+        coll_ret=self.cursor_list()
 
         ret=[]
         if sys.version_info[0]<=2:
@@ -1384,6 +1521,36 @@ class AGGREGATE():
         self._pipe=[]
         self._selected_fields=[]
         return ret
+    def get_page_of_objects(self,page_index,page_size):
+        # type: (int,int) -> dict
+        """
+        get page of item according to page_index and page_size
+        Caution: this method will return the same schema for each item even the collection contains different schema for each item
+        :param page_index:
+        :param page_size:
+        :return: dict including: page_size, page_index, total_items, items
+        """
+        _tmp_pipe = [x for x in self._pipe]
+        _count_pipe=[]
+        if sys.version_info[0]<=2:
+            _count_pipe=[x for x in self._pipe if self._pipe.index(x)<self._pipe.__len__() and x.keys()[0]!="$sort"]
+        else:
+            _count_pipe = [x for x in self._pipe if self._pipe.index(x) < self._pipe.__len__() and list(x.keys())[0] != "$sort"]
+        self._pipe = _count_pipe
+        _sel_fields=self._selected_fields
+        total_items_agg=self.count("total_items")
+        total_items=total_items_agg.get_item()
+        self._selected_fields=_sel_fields
+        self._pipe=_tmp_pipe
+        items=self.skip(page_index*page_size).limit(page_size).get_objects()
+        class ret_cls(object):
+            pass
+        ret_obj=ret_cls()
+        ret_obj.page_size = page_size;
+        ret_obj.page_index = page_index;
+        ret_obj.total_items = (lambda x: x["total_items"] if x != None else 0) (total_items);
+        ret_obj.items = items;
+        return ret_obj
     def get_page(self,page_index,page_size):
         # type: (int,int) -> dict
         """
