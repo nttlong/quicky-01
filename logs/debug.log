@@ -27,3 +27,292 @@ django_session.find (0.00) {'_id': 'wzx6vl8s3uljl6q2127wekcb257u8met', 'expire_d
 django_session.find (0.00) {'_id': 'wzx6vl8s3uljl6q2127wekcb257u8met', 'expire_date': {'$gt': datetime.datetime(2018, 8, 15, 11, 1, 22, 473779, tzinfo=<UTC>)}, 'schema': u'hrm'}
 django_session.find (0.00) {'_id': 'wzx6vl8s3uljl6q2127wekcb257u8met', 'expire_date': {'$gt': datetime.datetime(2018, 8, 15, 11, 1, 22, 692141, tzinfo=<UTC>)}, 'schema': u'hrm'}
 django_session.find (0.00) {'_id': 'wzx6vl8s3uljl6q2127wekcb257u8met', 'expire_date': {'$gt': datetime.datetime(2018, 8, 15, 11, 1, 25, 294024, tzinfo=<UTC>)}, 'schema': u'hrm'}
+django_session.find (0.00) {'_id': 'wzx6vl8s3uljl6q2127wekcb257u8met', 'expire_date': {'$gt': datetime.datetime(2018, 8, 16, 10, 4, 35, 641005, tzinfo=<UTC>)}, 'schema': u'hrm'}
+django_session.find (0.00) {'_id': 'wzx6vl8s3uljl6q2127wekcb257u8met', 'expire_date': {'$gt': datetime.datetime(2018, 8, 16, 10, 4, 36, 368901, tzinfo=<UTC>)}, 'schema': u'hrm'}
+Not Found: /favicon.ico
+django_session.find (0.00) {'_id': 'wzx6vl8s3uljl6q2127wekcb257u8met', 'expire_date': {'$gt': datetime.datetime(2018, 8, 16, 10, 4, 38, 929957, tzinfo=<UTC>)}, 'schema': u'hrm'}
+django_session.find (0.00) {'_id': 'wzx6vl8s3uljl6q2127wekcb257u8met', 'expire_date': {'$gt': datetime.datetime(2018, 8, 16, 10, 4, 39, 223656, tzinfo=<UTC>)}, 'schema': u'hrm'}
+django_session.find (0.00) {'_id': 'wzx6vl8s3uljl6q2127wekcb257u8met', 'expire_date': {'$gt': datetime.datetime(2018, 8, 16, 10, 4, 42, 951074, tzinfo=<UTC>)}, 'schema': u'hrm'}
+Internal Server Error: /api
+Traceback (most recent call last):
+  File "/home/hcsadmin/q03/packages/django/django/core/handlers/base.py", line 122, in get_response
+    raise e
+Exception: Call  'get_list' in 'hrm.api.categories' encountered 'bogus escape (end of line)'
+django_session.find (0.00) {'_id': 'wzx6vl8s3uljl6q2127wekcb257u8met', 'expire_date': {'$gt': datetime.datetime(2018, 8, 16, 10, 4, 52, 647772, tzinfo=<UTC>)}, 'schema': u'hrm'}
+django_session.find (0.00) {'_id': 'wzx6vl8s3uljl6q2127wekcb257u8met', 'expire_date': {'$gt': datetime.datetime(2018, 8, 16, 10, 4, 53, 402031, tzinfo=<UTC>)}, 'schema': u'hrm'}
+django_session.find (0.00) {'_id': 'wzx6vl8s3uljl6q2127wekcb257u8met', 'expire_date': {'$gt': datetime.datetime(2018, 8, 16, 10, 4, 54, 674581, tzinfo=<UTC>)}, 'schema': u'hrm'}
+django_session.find (0.00) {'_id': 'wzx6vl8s3uljl6q2127wekcb257u8met', 'expire_date': {'$gt': datetime.datetime(2018, 8, 16, 10, 4, 55, 619847, tzinfo=<UTC>)}, 'schema': u'hrm'}
+django_session.find (0.00) {'_id': 'wzx6vl8s3uljl6q2127wekcb257u8met', 'expire_date': {'$gt': datetime.datetime(2018, 8, 16, 10, 4, 57, 173119, tzinfo=<UTC>)}, 'schema': u'hrm'}
+Internal Server Error: /api
+Traceback (most recent call last):
+  File "/home/hcsadmin/q03/packages/django/django/core/handlers/base.py", line 122, in get_response
+    raise e
+Exception: Call  'get_list' in 'hrm.api.categories' encountered 'bogus escape (end of line)'
+django_session.find (0.00) {'_id': 'wzx6vl8s3uljl6q2127wekcb257u8met', 'expire_date': {'$gt': datetime.datetime(2018, 8, 16, 10, 6, 4, 145826, tzinfo=<UTC>)}, 'schema': u'hrm'}
+django_session.find (0.00) {'_id': 'wzx6vl8s3uljl6q2127wekcb257u8met', 'expire_date': {'$gt': datetime.datetime(2018, 8, 16, 10, 6, 4, 980052, tzinfo=<UTC>)}, 'schema': u'hrm'}
+Internal Server Error: /api
+Traceback (most recent call last):
+  File "/home/hcsadmin/q03/packages/django/django/core/handlers/base.py", line 122, in get_response
+    raise e
+Exception: Call  'get_list' in 'hrm.api.categories' encountered 'bogus escape (end of line)'
+django_session.find (0.00) {'_id': 'wzx6vl8s3uljl6q2127wekcb257u8met', 'expire_date': {'$gt': datetime.datetime(2018, 8, 16, 10, 19, 59, 743438, tzinfo=<UTC>)}, 'schema': u'hrm'}
+django_session.find (0.00) {'_id': 'wzx6vl8s3uljl6q2127wekcb257u8met', 'expire_date': {'$gt': datetime.datetime(2018, 8, 16, 10, 20, 0, 547422, tzinfo=<UTC>)}, 'schema': u'hrm'}
+django_session.find (0.00) {'_id': 'wzx6vl8s3uljl6q2127wekcb257u8met', 'expire_date': {'$gt': datetime.datetime(2018, 8, 16, 10, 20, 1, 165711, tzinfo=<UTC>)}, 'schema': u'hrm'}
+django_session.find (0.00) {'_id': 'wzx6vl8s3uljl6q2127wekcb257u8met', 'expire_date': {'$gt': datetime.datetime(2018, 8, 16, 10, 20, 18, 510954, tzinfo=<UTC>)}, 'schema': u'hrm'}
+django_session.find (0.00) {'_id': 'wzx6vl8s3uljl6q2127wekcb257u8met', 'expire_date': {'$gt': datetime.datetime(2018, 8, 16, 10, 20, 20, 111272, tzinfo=<UTC>)}, 'schema': u'hrm'}
+Not Found: /hrm/static/js/angular.min.js.map
+Not Found: /polyfills/promise-6.1.0.js.map
+Internal Server Error: /api
+Traceback (most recent call last):
+  File "/home/hcsadmin/q03/packages/django/django/core/handlers/base.py", line 122, in get_response
+    raise e
+Exception: Call  'get_list' in 'hrm.api.categories' encountered 'bogus escape (end of line)'
+django_session.find (0.00) {'_id': 'wzx6vl8s3uljl6q2127wekcb257u8met', 'expire_date': {'$gt': datetime.datetime(2018, 8, 16, 10, 27, 2, 68758, tzinfo=<UTC>)}, 'schema': u'hrm'}
+django_session.find (0.00) {'_id': 'wzx6vl8s3uljl6q2127wekcb257u8met', 'expire_date': {'$gt': datetime.datetime(2018, 8, 16, 10, 27, 16, 183857, tzinfo=<UTC>)}, 'schema': u'hrm'}
+django_session.find (0.00) {'_id': 'wzx6vl8s3uljl6q2127wekcb257u8met', 'expire_date': {'$gt': datetime.datetime(2018, 8, 16, 10, 27, 20, 565797, tzinfo=<UTC>)}, 'schema': u'hrm'}
+django_session.find (0.00) {'_id': 'wzx6vl8s3uljl6q2127wekcb257u8met', 'expire_date': {'$gt': datetime.datetime(2018, 8, 16, 10, 27, 23, 532167, tzinfo=<UTC>)}, 'schema': u'hrm'}
+django_session.find (0.00) {'_id': 'wzx6vl8s3uljl6q2127wekcb257u8met', 'expire_date': {'$gt': datetime.datetime(2018, 8, 16, 10, 28, 36, 754673, tzinfo=<UTC>)}, 'schema': u'hrm'}
+django_session.find (0.00) {'_id': 'wzx6vl8s3uljl6q2127wekcb257u8met', 'expire_date': {'$gt': datetime.datetime(2018, 8, 16, 10, 28, 50, 806640, tzinfo=<UTC>)}, 'schema': u'hrm'}
+django_session.find (0.00) {'_id': 'wzx6vl8s3uljl6q2127wekcb257u8met', 'expire_date': {'$gt': datetime.datetime(2018, 8, 16, 10, 29, 3, 223702, tzinfo=<UTC>)}, 'schema': u'hrm'}
+django_session.find (0.00) {'_id': 'wzx6vl8s3uljl6q2127wekcb257u8met', 'expire_date': {'$gt': datetime.datetime(2018, 8, 16, 10, 29, 47, 933613, tzinfo=<UTC>)}, 'schema': u'hrm'}
+django_session.find (0.00) {'_id': 'wzx6vl8s3uljl6q2127wekcb257u8met', 'expire_date': {'$gt': datetime.datetime(2018, 8, 16, 10, 29, 57, 259824, tzinfo=<UTC>)}, 'schema': u'hrm'}
+django_session.find (0.00) {'_id': 'wzx6vl8s3uljl6q2127wekcb257u8met', 'expire_date': {'$gt': datetime.datetime(2018, 8, 16, 10, 30, 55, 283358, tzinfo=<UTC>)}, 'schema': u'hrm'}
+django_session.find (0.01) {'_id': 'wzx6vl8s3uljl6q2127wekcb257u8met', 'expire_date': {'$gt': datetime.datetime(2018, 8, 16, 10, 31, 6, 832426, tzinfo=<UTC>)}, 'schema': u'hrm'}
+django_session.find (0.00) {'_id': 'wzx6vl8s3uljl6q2127wekcb257u8met', 'expire_date': {'$gt': datetime.datetime(2018, 8, 16, 10, 32, 1, 105604, tzinfo=<UTC>)}, 'schema': u'hrm'}
+django_session.find (0.00) {'_id': 'wzx6vl8s3uljl6q2127wekcb257u8met', 'expire_date': {'$gt': datetime.datetime(2018, 8, 16, 10, 32, 6, 586664, tzinfo=<UTC>)}, 'schema': u'hrm'}
+django_session.find (0.00) {'_id': 'wzx6vl8s3uljl6q2127wekcb257u8met', 'expire_date': {'$gt': datetime.datetime(2018, 8, 16, 10, 32, 25, 382944, tzinfo=<UTC>)}, 'schema': u'hrm'}
+Internal Server Error: /api
+Traceback (most recent call last):
+  File "/home/hcsadmin/q03/packages/django/django/core/handlers/base.py", line 122, in get_response
+    raise e
+Exception: Call  'get_list' in 'hrm.api.categories' encountered 'bogus escape (end of line)'
+django_session.find (0.00) {'_id': 'wzx6vl8s3uljl6q2127wekcb257u8met', 'expire_date': {'$gt': datetime.datetime(2018, 8, 16, 10, 32, 47, 775133, tzinfo=<UTC>)}, 'schema': u'hrm'}
+django_session.find (0.00) {'_id': 'wzx6vl8s3uljl6q2127wekcb257u8met', 'expire_date': {'$gt': datetime.datetime(2018, 8, 16, 10, 32, 55, 426950, tzinfo=<UTC>)}, 'schema': u'hrm'}
+Internal Server Error: /api
+Traceback (most recent call last):
+  File "/home/hcsadmin/q03/packages/django/django/core/handlers/base.py", line 122, in get_response
+    raise e
+Exception: Call  'get_list' in 'hrm.api.categories' encountered 'bogus escape (end of line)'
+django_session.find (0.00) {'_id': 'wzx6vl8s3uljl6q2127wekcb257u8met', 'expire_date': {'$gt': datetime.datetime(2018, 8, 16, 10, 46, 46, 357608, tzinfo=<UTC>)}, 'schema': u'hrm'}
+Not Found: /hrm/static/js/angular.min.js.map
+Not Found: /polyfills/promise-6.1.0.js.map
+django_session.find (0.00) {'_id': 'wzx6vl8s3uljl6q2127wekcb257u8met', 'expire_date': {'$gt': datetime.datetime(2018, 8, 16, 10, 46, 47, 169746, tzinfo=<UTC>)}, 'schema': u'hrm'}
+django_session.find (0.00) {'_id': 'wzx6vl8s3uljl6q2127wekcb257u8met', 'expire_date': {'$gt': datetime.datetime(2018, 8, 16, 10, 46, 48, 924277, tzinfo=<UTC>)}, 'schema': u'hrm'}
+django_session.find (0.00) {'_id': 'wzx6vl8s3uljl6q2127wekcb257u8met', 'expire_date': {'$gt': datetime.datetime(2018, 8, 16, 10, 46, 54, 711936, tzinfo=<UTC>)}, 'schema': u'hrm'}
+django_session.find (0.00) {'_id': 'wzx6vl8s3uljl6q2127wekcb257u8met', 'expire_date': {'$gt': datetime.datetime(2018, 8, 16, 10, 47, 3, 119351, tzinfo=<UTC>)}, 'schema': u'hrm'}
+django_session.find (0.00) {'_id': 'wzx6vl8s3uljl6q2127wekcb257u8met', 'expire_date': {'$gt': datetime.datetime(2018, 8, 16, 10, 47, 6, 375306, tzinfo=<UTC>)}, 'schema': u'hrm'}
+django_session.find (0.00) {'_id': 'wzx6vl8s3uljl6q2127wekcb257u8met', 'expire_date': {'$gt': datetime.datetime(2018, 8, 16, 10, 47, 27, 778114, tzinfo=<UTC>)}, 'schema': u'hrm'}
+django_session.find (0.00) {'_id': 'wzx6vl8s3uljl6q2127wekcb257u8met', 'expire_date': {'$gt': datetime.datetime(2018, 8, 16, 10, 47, 28, 799650, tzinfo=<UTC>)}, 'schema': u'hrm'}
+django_session.find (0.00) {'_id': 'wzx6vl8s3uljl6q2127wekcb257u8met', 'expire_date': {'$gt': datetime.datetime(2018, 8, 16, 10, 47, 34, 693752, tzinfo=<UTC>)}, 'schema': u'hrm'}
+django_session.find (0.00) {'_id': 'wzx6vl8s3uljl6q2127wekcb257u8met', 'expire_date': {'$gt': datetime.datetime(2018, 8, 16, 10, 47, 40, 201894, tzinfo=<UTC>)}, 'schema': u'hrm'}
+django_session.find (0.00) {'_id': 'wzx6vl8s3uljl6q2127wekcb257u8met', 'expire_date': {'$gt': datetime.datetime(2018, 8, 16, 10, 47, 46, 939002, tzinfo=<UTC>)}, 'schema': u'hrm'}
+Internal Server Error: /api
+Traceback (most recent call last):
+  File "/home/hcsadmin/q03/packages/django/django/core/handlers/base.py", line 122, in get_response
+    raise e
+Exception: Call  'get_list' in 'hrm.api.categories' encountered 'Regular expression is invalid: PCRE does not support \L, \l, \N{name}, \U, or \u'
+django_session.find (0.00) {'_id': 'wzx6vl8s3uljl6q2127wekcb257u8met', 'expire_date': {'$gt': datetime.datetime(2018, 8, 16, 10, 48, 46, 178752, tzinfo=<UTC>)}, 'schema': u'hrm'}
+django_session.find (0.00) {'_id': 'wzx6vl8s3uljl6q2127wekcb257u8met', 'expire_date': {'$gt': datetime.datetime(2018, 8, 16, 10, 48, 49, 656622, tzinfo=<UTC>)}, 'schema': u'hrm'}
+Internal Server Error: /api
+Traceback (most recent call last):
+  File "/home/hcsadmin/q03/packages/django/django/core/handlers/base.py", line 122, in get_response
+    raise e
+Exception: Call  'get_list' in 'hrm.api.categories' encountered 'Regular expression is invalid: PCRE does not support \L, \l, \N{name}, \U, or \u'
+django_session.find (0.01) {'_id': 'wzx6vl8s3uljl6q2127wekcb257u8met', 'expire_date': {'$gt': datetime.datetime(2018, 8, 16, 10, 48, 55, 927346, tzinfo=<UTC>)}, 'schema': u'hrm'}
+django_session.find (0.00) {'_id': 'wzx6vl8s3uljl6q2127wekcb257u8met', 'expire_date': {'$gt': datetime.datetime(2018, 8, 16, 10, 51, 2, 106093, tzinfo=<UTC>)}, 'schema': u'hrm'}
+django_session.find (0.00) {'_id': 'wzx6vl8s3uljl6q2127wekcb257u8met', 'expire_date': {'$gt': datetime.datetime(2018, 8, 16, 10, 51, 2, 632571, tzinfo=<UTC>)}, 'schema': u'hrm'}
+django_session.find (0.00) {'_id': 'wzx6vl8s3uljl6q2127wekcb257u8met', 'expire_date': {'$gt': datetime.datetime(2018, 8, 16, 10, 51, 2, 790137, tzinfo=<UTC>)}, 'schema': u'hrm'}
+django_session.find (0.00) {'_id': 'wzx6vl8s3uljl6q2127wekcb257u8met', 'expire_date': {'$gt': datetime.datetime(2018, 8, 16, 10, 51, 6, 555118, tzinfo=<UTC>)}, 'schema': u'hrm'}
+Internal Server Error: /api
+Traceback (most recent call last):
+  File "/home/hcsadmin/q03/packages/django/django/core/handlers/base.py", line 122, in get_response
+    raise e
+Exception: Call  'get_list' in 'hrm.api.categories' encountered 'Regular expression is invalid: PCRE does not support \L, \l, \N{name}, \U, or \u'
+django_session.find (0.00) {'_id': 'wzx6vl8s3uljl6q2127wekcb257u8met', 'expire_date': {'$gt': datetime.datetime(2018, 8, 16, 10, 51, 33, 973611, tzinfo=<UTC>)}, 'schema': u'hrm'}
+django_session.find (0.00) {'_id': 'wzx6vl8s3uljl6q2127wekcb257u8met', 'expire_date': {'$gt': datetime.datetime(2018, 8, 16, 10, 52, 2, 620264, tzinfo=<UTC>)}, 'schema': u'hrm'}
+django_session.find (0.00) {'_id': 'wzx6vl8s3uljl6q2127wekcb257u8met', 'expire_date': {'$gt': datetime.datetime(2018, 8, 16, 10, 52, 3, 743057, tzinfo=<UTC>)}, 'schema': u'hrm'}
+Internal Server Error: /api
+Traceback (most recent call last):
+  File "/home/hcsadmin/q03/packages/django/django/core/handlers/base.py", line 122, in get_response
+    raise e
+Exception: Call  'get_list' in 'hrm.api.categories' encountered 'Regular expression is invalid: PCRE does not support \L, \l, \N{name}, \U, or \u'
+django_session.find (0.00) {'_id': 'wzx6vl8s3uljl6q2127wekcb257u8met', 'expire_date': {'$gt': datetime.datetime(2018, 8, 16, 10, 52, 28, 614662, tzinfo=<UTC>)}, 'schema': u'hrm'}
+Internal Server Error: /api
+Traceback (most recent call last):
+  File "/home/hcsadmin/q03/packages/django/django/core/handlers/base.py", line 122, in get_response
+    raise e
+Exception: Call  'get_list' in 'hrm.api.categories' encountered 'Regular expression is invalid: PCRE does not support \L, \l, \N{name}, \U, or \u'
+django_session.find (0.00) {'_id': 'wzx6vl8s3uljl6q2127wekcb257u8met', 'expire_date': {'$gt': datetime.datetime(2018, 8, 16, 10, 53, 28, 450131, tzinfo=<UTC>)}, 'schema': u'hrm'}
+Internal Server Error: /api
+Traceback (most recent call last):
+  File "/home/hcsadmin/q03/packages/django/django/core/handlers/base.py", line 122, in get_response
+    raise e
+Exception: Call  'get_list' in 'hrm.api.categories' encountered 'Regular expression is invalid: PCRE does not support \L, \l, \N{name}, \U, or \u'
+django_session.find (0.00) {'_id': 'wzx6vl8s3uljl6q2127wekcb257u8met', 'expire_date': {'$gt': datetime.datetime(2018, 8, 16, 10, 54, 51, 696494, tzinfo=<UTC>)}, 'schema': u'hrm'}
+Internal Server Error: /api
+Traceback (most recent call last):
+  File "/home/hcsadmin/q03/packages/django/django/core/handlers/base.py", line 122, in get_response
+    raise e
+Exception: Call  'get_list' in 'hrm.api.categories' encountered 'Regular expression is invalid: PCRE does not support \L, \l, \N{name}, \U, or \u'
+django_session.find (0.00) {'_id': 'wzx6vl8s3uljl6q2127wekcb257u8met', 'expire_date': {'$gt': datetime.datetime(2018, 8, 16, 10, 56, 49, 675787, tzinfo=<UTC>)}, 'schema': u'hrm'}
+Internal Server Error: /api
+Traceback (most recent call last):
+  File "/home/hcsadmin/q03/packages/django/django/core/handlers/base.py", line 122, in get_response
+    raise e
+Exception: Call  'get_list' in 'hrm.api.categories' encountered 'Regular expression is invalid: PCRE does not support \L, \l, \N{name}, \U, or \u'
+django_session.find (0.00) {'_id': 'wzx6vl8s3uljl6q2127wekcb257u8met', 'expire_date': {'$gt': datetime.datetime(2018, 8, 16, 10, 57, 2, 846085, tzinfo=<UTC>)}, 'schema': u'hrm'}
+Internal Server Error: /api
+Traceback (most recent call last):
+  File "/home/hcsadmin/q03/packages/django/django/core/handlers/base.py", line 122, in get_response
+    raise e
+Exception: Call  'get_list' in 'hrm.api.categories' encountered 'Regular expression is invalid: PCRE does not support \L, \l, \N{name}, \U, or \u'
+django_session.find (0.00) {'_id': 'wzx6vl8s3uljl6q2127wekcb257u8met', 'expire_date': {'$gt': datetime.datetime(2018, 8, 16, 10, 58, 37, 283490, tzinfo=<UTC>)}, 'schema': u'hrm'}
+Internal Server Error: /api
+Traceback (most recent call last):
+  File "/home/hcsadmin/q03/packages/django/django/core/handlers/base.py", line 122, in get_response
+    raise e
+Exception: Call  'get_list' in 'hrm.api.categories' encountered 'Regular expression is invalid: PCRE does not support \L, \l, \N{name}, \U, or \u'
+django_session.find (0.00) {'_id': 'wzx6vl8s3uljl6q2127wekcb257u8met', 'expire_date': {'$gt': datetime.datetime(2018, 8, 16, 11, 2, 3, 543143, tzinfo=<UTC>)}, 'schema': u'hrm'}
+Internal Server Error: /api
+Traceback (most recent call last):
+  File "/home/hcsadmin/q03/packages/django/django/core/handlers/base.py", line 122, in get_response
+    raise e
+Exception: Call  'get_list' in 'hrm.api.categories' encountered 'Regular expression is invalid: PCRE does not support \L, \l, \N{name}, \U, or \u'
+django_session.find (0.00) {'_id': 'wzx6vl8s3uljl6q2127wekcb257u8met', 'expire_date': {'$gt': datetime.datetime(2018, 8, 16, 11, 3, 27, 13244, tzinfo=<UTC>)}, 'schema': u'hrm'}
+Internal Server Error: /api
+Traceback (most recent call last):
+  File "/home/hcsadmin/q03/packages/django/django/core/handlers/base.py", line 122, in get_response
+    raise e
+Exception: Call  'get_list' in 'hrm.api.categories' encountered 'Regular expression is invalid: PCRE does not support \L, \l, \N{name}, \U, or \u'
+django_session.find (0.00) {'_id': 'wzx6vl8s3uljl6q2127wekcb257u8met', 'expire_date': {'$gt': datetime.datetime(2018, 8, 16, 11, 3, 51, 334221, tzinfo=<UTC>)}, 'schema': u'hrm'}
+Internal Server Error: /api
+Traceback (most recent call last):
+  File "/home/hcsadmin/q03/packages/django/django/core/handlers/base.py", line 122, in get_response
+    raise e
+Exception: Call  'get_list' in 'hrm.api.categories' encountered 'Regular expression is invalid: PCRE does not support \L, \l, \N{name}, \U, or \u'
+django_session.find (0.00) {'_id': 'wzx6vl8s3uljl6q2127wekcb257u8met', 'expire_date': {'$gt': datetime.datetime(2018, 8, 16, 11, 4, 30, 163402, tzinfo=<UTC>)}, 'schema': u'hrm'}
+Internal Server Error: /api
+Traceback (most recent call last):
+  File "/home/hcsadmin/q03/packages/django/django/core/handlers/base.py", line 122, in get_response
+    raise e
+Exception: Call  'get_list' in 'hrm.api.categories' encountered 'Regular expression is invalid: PCRE does not support \L, \l, \N{name}, \U, or \u'
+django_session.find (0.00) {'_id': 'wzx6vl8s3uljl6q2127wekcb257u8met', 'expire_date': {'$gt': datetime.datetime(2018, 8, 16, 11, 5, 7, 707364, tzinfo=<UTC>)}, 'schema': u'hrm'}
+Internal Server Error: /api
+Traceback (most recent call last):
+  File "/home/hcsadmin/q03/packages/django/django/core/handlers/base.py", line 122, in get_response
+    raise e
+Exception: Call  'get_list' in 'hrm.api.categories' encountered 'Regular expression is invalid: PCRE does not support \L, \l, \N{name}, \U, or \u'
+django_session.find (0.00) {'_id': 'wzx6vl8s3uljl6q2127wekcb257u8met', 'expire_date': {'$gt': datetime.datetime(2018, 8, 16, 11, 7, 23, 726943, tzinfo=<UTC>)}, 'schema': u'hrm'}
+Internal Server Error: /api
+Traceback (most recent call last):
+  File "/home/hcsadmin/q03/packages/django/django/core/handlers/base.py", line 122, in get_response
+    raise e
+Exception: Call  'get_list' in 'hrm.api.categories' encountered 'Regular expression is invalid: PCRE does not support \L, \l, \N{name}, \U, or \u'
+django_session.find (0.00) {'_id': 'wzx6vl8s3uljl6q2127wekcb257u8met', 'expire_date': {'$gt': datetime.datetime(2018, 8, 16, 11, 8, 21, 896785, tzinfo=<UTC>)}, 'schema': u'hrm'}
+Internal Server Error: /api
+Traceback (most recent call last):
+  File "/home/hcsadmin/q03/packages/django/django/core/handlers/base.py", line 122, in get_response
+    raise e
+Exception: Call  'get_list' in 'hrm.api.categories' encountered 'Regular expression is invalid: PCRE does not support \L, \l, \N{name}, \U, or \u'
+django_session.find (0.00) {'_id': 'wzx6vl8s3uljl6q2127wekcb257u8met', 'expire_date': {'$gt': datetime.datetime(2018, 8, 16, 11, 9, 37, 87219, tzinfo=<UTC>)}, 'schema': u'hrm'}
+Internal Server Error: /api
+Traceback (most recent call last):
+  File "/home/hcsadmin/q03/packages/django/django/core/handlers/base.py", line 122, in get_response
+    raise e
+Exception: Call  'get_list' in 'hrm.api.categories' encountered 'Regular expression is invalid: PCRE does not support \L, \l, \N{name}, \U, or \u'
+django_session.find (0.00) {'_id': 'wzx6vl8s3uljl6q2127wekcb257u8met', 'expire_date': {'$gt': datetime.datetime(2018, 8, 16, 11, 10, 14, 605839, tzinfo=<UTC>)}, 'schema': u'hrm'}
+django_session.find (0.00) {'_id': 'wzx6vl8s3uljl6q2127wekcb257u8met', 'expire_date': {'$gt': datetime.datetime(2018, 8, 16, 11, 11, 24, 827338, tzinfo=<UTC>)}, 'schema': u'hrm'}
+django_session.find (0.00) {'_id': 'wzx6vl8s3uljl6q2127wekcb257u8met', 'expire_date': {'$gt': datetime.datetime(2018, 8, 16, 11, 11, 26, 265644, tzinfo=<UTC>)}, 'schema': u'hrm'}
+django_session.find (0.00) {'_id': 'wzx6vl8s3uljl6q2127wekcb257u8met', 'expire_date': {'$gt': datetime.datetime(2018, 8, 16, 11, 11, 27, 253033, tzinfo=<UTC>)}, 'schema': u'hrm'}
+django_session.find (0.00) {'_id': 'wzx6vl8s3uljl6q2127wekcb257u8met', 'expire_date': {'$gt': datetime.datetime(2018, 8, 16, 11, 11, 38, 929441, tzinfo=<UTC>)}, 'schema': u'hrm'}
+django_session.find (0.00) {'_id': 'wzx6vl8s3uljl6q2127wekcb257u8met', 'expire_date': {'$gt': datetime.datetime(2018, 8, 16, 11, 11, 55, 846529, tzinfo=<UTC>)}, 'schema': u'hrm'}
+django_session.find (0.00) {'_id': 'wzx6vl8s3uljl6q2127wekcb257u8met', 'expire_date': {'$gt': datetime.datetime(2018, 8, 16, 11, 12, 14, 867546, tzinfo=<UTC>)}, 'schema': u'hrm'}
+django_session.find (0.00) {'_id': 'wzx6vl8s3uljl6q2127wekcb257u8met', 'expire_date': {'$gt': datetime.datetime(2018, 8, 16, 11, 13, 11, 285931, tzinfo=<UTC>)}, 'schema': u'hrm'}
+django_session.find (0.00) {'_id': 'wzx6vl8s3uljl6q2127wekcb257u8met', 'expire_date': {'$gt': datetime.datetime(2018, 8, 16, 11, 13, 12, 85656, tzinfo=<UTC>)}, 'schema': u'hrm'}
+django_session.find (0.00) {'_id': 'wzx6vl8s3uljl6q2127wekcb257u8met', 'expire_date': {'$gt': datetime.datetime(2018, 8, 16, 11, 13, 24, 615685, tzinfo=<UTC>)}, 'schema': u'hrm'}
+django_session.find (0.00) {'_id': 'wzx6vl8s3uljl6q2127wekcb257u8met', 'expire_date': {'$gt': datetime.datetime(2018, 8, 16, 11, 13, 25, 567636, tzinfo=<UTC>)}, 'schema': u'hrm'}
+django_session.find (0.00) {'_id': 'wzx6vl8s3uljl6q2127wekcb257u8met', 'expire_date': {'$gt': datetime.datetime(2018, 8, 16, 11, 13, 27, 261687, tzinfo=<UTC>)}, 'schema': u'hrm'}
+django_session.find (0.00) {'_id': 'wzx6vl8s3uljl6q2127wekcb257u8met', 'expire_date': {'$gt': datetime.datetime(2018, 8, 16, 11, 13, 28, 347214, tzinfo=<UTC>)}, 'schema': u'hrm'}
+django_session.find (0.00) {'_id': 'wzx6vl8s3uljl6q2127wekcb257u8met', 'expire_date': {'$gt': datetime.datetime(2018, 8, 16, 11, 13, 43, 987876, tzinfo=<UTC>)}, 'schema': u'hrm'}
+django_session.find (0.00) {'_id': 'wzx6vl8s3uljl6q2127wekcb257u8met', 'expire_date': {'$gt': datetime.datetime(2018, 8, 16, 11, 13, 46, 12531, tzinfo=<UTC>)}, 'schema': u'hrm'}
+django_session.find (0.00) {'_id': 'wzx6vl8s3uljl6q2127wekcb257u8met', 'expire_date': {'$gt': datetime.datetime(2018, 8, 16, 11, 13, 46, 520374, tzinfo=<UTC>)}, 'schema': u'hrm'}
+django_session.find (0.00) {'_id': 'wzx6vl8s3uljl6q2127wekcb257u8met', 'expire_date': {'$gt': datetime.datetime(2018, 8, 16, 11, 13, 47, 915814, tzinfo=<UTC>)}, 'schema': u'hrm'}
+Internal Server Error: /api
+Traceback (most recent call last):
+  File "/home/hcsadmin/q03/packages/django/django/core/handlers/base.py", line 122, in get_response
+    raise e
+Exception: Call  'get_list' in 'hrm.api.categories' encountered 'bogus escape: u'\\8''
+django_session.find (0.00) {'_id': 'wzx6vl8s3uljl6q2127wekcb257u8met', 'expire_date': {'$gt': datetime.datetime(2018, 8, 16, 11, 14, 24, 487543, tzinfo=<UTC>)}, 'schema': u'hrm'}
+django_session.find (0.00) {'_id': 'wzx6vl8s3uljl6q2127wekcb257u8met', 'expire_date': {'$gt': datetime.datetime(2018, 8, 16, 11, 14, 28, 801394, tzinfo=<UTC>)}, 'schema': u'hrm'}
+django_session.find (0.00) {'_id': 'wzx6vl8s3uljl6q2127wekcb257u8met', 'expire_date': {'$gt': datetime.datetime(2018, 8, 16, 11, 14, 32, 123610, tzinfo=<UTC>)}, 'schema': u'hrm'}
+django_session.find (0.00) {'_id': 'wzx6vl8s3uljl6q2127wekcb257u8met', 'expire_date': {'$gt': datetime.datetime(2018, 8, 16, 11, 14, 35, 808751, tzinfo=<UTC>)}, 'schema': u'hrm'}
+django_session.find (0.00) {'_id': 'wzx6vl8s3uljl6q2127wekcb257u8met', 'expire_date': {'$gt': datetime.datetime(2018, 8, 16, 11, 14, 37, 211115, tzinfo=<UTC>)}, 'schema': u'hrm'}
+django_session.find (0.00) {'_id': 'wzx6vl8s3uljl6q2127wekcb257u8met', 'expire_date': {'$gt': datetime.datetime(2018, 8, 16, 11, 14, 38, 223389, tzinfo=<UTC>)}, 'schema': u'hrm'}
+django_session.find (0.00) {'_id': 'wzx6vl8s3uljl6q2127wekcb257u8met', 'expire_date': {'$gt': datetime.datetime(2018, 8, 16, 11, 14, 40, 508063, tzinfo=<UTC>)}, 'schema': u'hrm'}
+django_session.find (0.00) {'_id': 'wzx6vl8s3uljl6q2127wekcb257u8met', 'expire_date': {'$gt': datetime.datetime(2018, 8, 16, 11, 14, 41, 483619, tzinfo=<UTC>)}, 'schema': u'hrm'}
+django_session.find (0.00) {'_id': 'wzx6vl8s3uljl6q2127wekcb257u8met', 'expire_date': {'$gt': datetime.datetime(2018, 8, 16, 11, 14, 43, 401687, tzinfo=<UTC>)}, 'schema': u'hrm'}
+django_session.find (0.00) {'_id': 'wzx6vl8s3uljl6q2127wekcb257u8met', 'expire_date': {'$gt': datetime.datetime(2018, 8, 16, 11, 14, 44, 527129, tzinfo=<UTC>)}, 'schema': u'hrm'}
+django_session.find (0.00) {'_id': 'wzx6vl8s3uljl6q2127wekcb257u8met', 'expire_date': {'$gt': datetime.datetime(2018, 8, 16, 11, 14, 45, 551086, tzinfo=<UTC>)}, 'schema': u'hrm'}
+django_session.find (0.00) {'_id': 'wzx6vl8s3uljl6q2127wekcb257u8met', 'expire_date': {'$gt': datetime.datetime(2018, 8, 16, 11, 14, 46, 767502, tzinfo=<UTC>)}, 'schema': u'hrm'}
+django_session.find (0.00) {'_id': 'wzx6vl8s3uljl6q2127wekcb257u8met', 'expire_date': {'$gt': datetime.datetime(2018, 8, 16, 11, 14, 47, 754192, tzinfo=<UTC>)}, 'schema': u'hrm'}
+django_session.find (0.00) {'_id': 'wzx6vl8s3uljl6q2127wekcb257u8met', 'expire_date': {'$gt': datetime.datetime(2018, 8, 16, 11, 14, 49, 459905, tzinfo=<UTC>)}, 'schema': u'hrm'}
+django_session.find (0.00) {'_id': 'wzx6vl8s3uljl6q2127wekcb257u8met', 'expire_date': {'$gt': datetime.datetime(2018, 8, 16, 11, 14, 50, 320629, tzinfo=<UTC>)}, 'schema': u'hrm'}
+django_session.find (0.00) {'_id': 'wzx6vl8s3uljl6q2127wekcb257u8met', 'expire_date': {'$gt': datetime.datetime(2018, 8, 16, 11, 14, 52, 586635, tzinfo=<UTC>)}, 'schema': u'hrm'}
+django_session.find (0.00) {'_id': 'wzx6vl8s3uljl6q2127wekcb257u8met', 'expire_date': {'$gt': datetime.datetime(2018, 8, 16, 11, 14, 55, 255246, tzinfo=<UTC>)}, 'schema': u'hrm'}
+django_session.find (0.00) {'_id': 'wzx6vl8s3uljl6q2127wekcb257u8met', 'expire_date': {'$gt': datetime.datetime(2018, 8, 16, 11, 14, 57, 234437, tzinfo=<UTC>)}, 'schema': u'hrm'}
+Internal Server Error: /api
+Traceback (most recent call last):
+  File "/home/hcsadmin/q03/packages/django/django/core/handlers/base.py", line 122, in get_response
+    raise e
+Exception: Call  'get_list' in 'hrm.api.categories' encountered 'bogus escape: u'\\8''
+django_session.find (0.00) {'_id': 'wzx6vl8s3uljl6q2127wekcb257u8met', 'expire_date': {'$gt': datetime.datetime(2018, 8, 16, 11, 15, 19, 974797, tzinfo=<UTC>)}, 'schema': u'hrm'}
+django_session.find (0.00) {'_id': 'wzx6vl8s3uljl6q2127wekcb257u8met', 'expire_date': {'$gt': datetime.datetime(2018, 8, 16, 11, 15, 20, 753771, tzinfo=<UTC>)}, 'schema': u'hrm'}
+django_session.find (0.00) {'_id': 'wzx6vl8s3uljl6q2127wekcb257u8met', 'expire_date': {'$gt': datetime.datetime(2018, 8, 16, 11, 15, 22, 840666, tzinfo=<UTC>)}, 'schema': u'hrm'}
+django_session.find (0.00) {'_id': 'wzx6vl8s3uljl6q2127wekcb257u8met', 'expire_date': {'$gt': datetime.datetime(2018, 8, 16, 11, 15, 23, 977499, tzinfo=<UTC>)}, 'schema': u'hrm'}
+django_session.find (0.00) {'_id': 'wzx6vl8s3uljl6q2127wekcb257u8met', 'expire_date': {'$gt': datetime.datetime(2018, 8, 16, 11, 15, 27, 769716, tzinfo=<UTC>)}, 'schema': u'hrm'}
+django_session.find (0.00) {'_id': 'wzx6vl8s3uljl6q2127wekcb257u8met', 'expire_date': {'$gt': datetime.datetime(2018, 8, 16, 11, 15, 29, 453952, tzinfo=<UTC>)}, 'schema': u'hrm'}
+django_session.find (0.00) {'_id': 'wzx6vl8s3uljl6q2127wekcb257u8met', 'expire_date': {'$gt': datetime.datetime(2018, 8, 16, 11, 15, 33, 289598, tzinfo=<UTC>)}, 'schema': u'hrm'}
+django_session.find (0.00) {'_id': 'wzx6vl8s3uljl6q2127wekcb257u8met', 'expire_date': {'$gt': datetime.datetime(2018, 8, 16, 11, 15, 35, 30176, tzinfo=<UTC>)}, 'schema': u'hrm'}
+django_session.find (0.00) {'_id': 'wzx6vl8s3uljl6q2127wekcb257u8met', 'expire_date': {'$gt': datetime.datetime(2018, 8, 16, 11, 15, 35, 757753, tzinfo=<UTC>)}, 'schema': u'hrm'}
+django_session.find (0.00) {'_id': 'wzx6vl8s3uljl6q2127wekcb257u8met', 'expire_date': {'$gt': datetime.datetime(2018, 8, 16, 11, 15, 36, 435698, tzinfo=<UTC>)}, 'schema': u'hrm'}
+Internal Server Error: /api
+Traceback (most recent call last):
+  File "/home/hcsadmin/q03/packages/django/django/core/handlers/base.py", line 122, in get_response
+    raise e
+Exception: Call  'get_list' in 'hrm.api.categories' encountered 'bogus escape: u'\\8''
+django_session.find (0.00) {'_id': 'wzx6vl8s3uljl6q2127wekcb257u8met', 'expire_date': {'$gt': datetime.datetime(2018, 8, 16, 11, 15, 44, 872164, tzinfo=<UTC>)}, 'schema': u'hrm'}
+django_session.find (0.00) {'_id': 'wzx6vl8s3uljl6q2127wekcb257u8met', 'expire_date': {'$gt': datetime.datetime(2018, 8, 16, 11, 15, 46, 41582, tzinfo=<UTC>)}, 'schema': u'hrm'}
+django_session.find (0.00) {'_id': 'wzx6vl8s3uljl6q2127wekcb257u8met', 'expire_date': {'$gt': datetime.datetime(2018, 8, 16, 11, 15, 46, 656083, tzinfo=<UTC>)}, 'schema': u'hrm'}
+Internal Server Error: /api
+Traceback (most recent call last):
+  File "/home/hcsadmin/q03/packages/django/django/core/handlers/base.py", line 122, in get_response
+    raise e
+Exception: Call  'get_list' in 'hrm.api.categories' encountered 'bogus escape: u'\\1''
+django_session.find (0.00) {'_id': 'wzx6vl8s3uljl6q2127wekcb257u8met', 'expire_date': {'$gt': datetime.datetime(2018, 8, 16, 11, 16, 47, 158404, tzinfo=<UTC>)}, 'schema': u'hrm'}
+django_session.find (0.01) {'_id': 'wzx6vl8s3uljl6q2127wekcb257u8met', 'expire_date': {'$gt': datetime.datetime(2018, 8, 16, 11, 16, 47, 946598, tzinfo=<UTC>)}, 'schema': u'hrm'}
+django_session.find (0.00) {'_id': 'wzx6vl8s3uljl6q2127wekcb257u8met', 'expire_date': {'$gt': datetime.datetime(2018, 8, 16, 11, 16, 50, 658320, tzinfo=<UTC>)}, 'schema': u'hrm'}
+django_session.find (0.00) {'_id': 'wzx6vl8s3uljl6q2127wekcb257u8met', 'expire_date': {'$gt': datetime.datetime(2018, 8, 16, 11, 16, 51, 939087, tzinfo=<UTC>)}, 'schema': u'hrm'}
+django_session.find (0.00) {'_id': 'wzx6vl8s3uljl6q2127wekcb257u8met', 'expire_date': {'$gt': datetime.datetime(2018, 8, 16, 11, 16, 52, 563495, tzinfo=<UTC>)}, 'schema': u'hrm'}
+django_session.find (0.00) {'_id': 'wzx6vl8s3uljl6q2127wekcb257u8met', 'expire_date': {'$gt': datetime.datetime(2018, 8, 16, 11, 16, 54, 939087, tzinfo=<UTC>)}, 'schema': u'hrm'}
+django_session.find (0.00) {'_id': 'wzx6vl8s3uljl6q2127wekcb257u8met', 'expire_date': {'$gt': datetime.datetime(2018, 8, 16, 11, 16, 55, 483034, tzinfo=<UTC>)}, 'schema': u'hrm'}
+django_session.find (0.00) {'_id': 'wzx6vl8s3uljl6q2127wekcb257u8met', 'expire_date': {'$gt': datetime.datetime(2018, 8, 16, 11, 16, 59, 695174, tzinfo=<UTC>)}, 'schema': u'hrm'}
+Internal Server Error: /api
+Traceback (most recent call last):
+  File "/home/hcsadmin/q03/packages/django/django/core/handlers/base.py", line 122, in get_response
+    raise e
+Exception: Call  'get_list' in 'hrm.api.categories' encountered 'Regular expression is invalid: PCRE does not support \L, \l, \N{name}, \U, or \u'
+django_session.find (0.00) {'_id': 'wzx6vl8s3uljl6q2127wekcb257u8met', 'expire_date': {'$gt': datetime.datetime(2018, 8, 16, 11, 17, 5, 670731, tzinfo=<UTC>)}, 'schema': u'hrm'}
+django_session.find (0.00) {'_id': 'wzx6vl8s3uljl6q2127wekcb257u8met', 'expire_date': {'$gt': datetime.datetime(2018, 8, 16, 11, 17, 6, 421671, tzinfo=<UTC>)}, 'schema': u'hrm'}
+Internal Server Error: /api
+Traceback (most recent call last):
+  File "/home/hcsadmin/q03/packages/django/django/core/handlers/base.py", line 122, in get_response
+    raise e
+Exception: Call  'get_list' in 'hrm.api.categories' encountered 'Regular expression is invalid: PCRE does not support \L, \l, \N{name}, \U, or \u'
+django_session.find (0.00) {'_id': 'wzx6vl8s3uljl6q2127wekcb257u8met', 'expire_date': {'$gt': datetime.datetime(2018, 8, 16, 11, 22, 31, 351146, tzinfo=<UTC>)}, 'schema': u'hrm'}
+django_session.find (0.00) {'_id': 'wzx6vl8s3uljl6q2127wekcb257u8met', 'expire_date': {'$gt': datetime.datetime(2018, 8, 16, 11, 22, 40, 703238, tzinfo=<UTC>)}, 'schema': u'hrm'}
+django_session.find (0.00) {'_id': 'wzx6vl8s3uljl6q2127wekcb257u8met', 'expire_date': {'$gt': datetime.datetime(2018, 8, 16, 11, 23, 57, 698905, tzinfo=<UTC>)}, 'schema': u'hrm'}
+django_session.find (0.01) {'_id': 'wzx6vl8s3uljl6q2127wekcb257u8met', 'expire_date': {'$gt': datetime.datetime(2018, 8, 16, 11, 24, 1, 611172, tzinfo=<UTC>)}, 'schema': u'hrm'}
+django_session.find (0.00) {'_id': 'wzx6vl8s3uljl6q2127wekcb257u8met', 'expire_date': {'$gt': datetime.datetime(2018, 8, 16, 11, 24, 2, 756479, tzinfo=<UTC>)}, 'schema': u'hrm'}
+django_session.find (0.00) {'_id': 'wzx6vl8s3uljl6q2127wekcb257u8met', 'expire_date': {'$gt': datetime.datetime(2018, 8, 16, 11, 24, 14, 509809, tzinfo=<UTC>)}, 'schema': u'hrm'}
+django_session.find (0.00) {'_id': 'wzx6vl8s3uljl6q2127wekcb257u8met', 'expire_date': {'$gt': datetime.datetime(2018, 8, 16, 11, 24, 26, 551050, tzinfo=<UTC>)}, 'schema': u'hrm'}
+django_session.find (0.00) {'_id': 'wzx6vl8s3uljl6q2127wekcb257u8met', 'expire_date': {'$gt': datetime.datetime(2018, 8, 16, 11, 24, 43, 757645, tzinfo=<UTC>)}, 'schema': u'hrm'}

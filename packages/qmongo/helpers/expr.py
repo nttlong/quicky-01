@@ -470,6 +470,18 @@ def get_tree(expr,*params,**kwargs):
 
 
     return ret
+def raw_string(s):
+    for c in ['$','^','?','*']:
+        s = s.replace(c,'\\'+c)
+    s=s.replace('/','\/')
+    if isinstance(s, str):
+        if s[s.__len__()-1] in ['\\','/8']:
+            s=s[0:s.__len__()-1]+ s[s.__len__()-1].encode('string-escape')
+    elif isinstance(s, unicode):
+        if s[s.__len__() - 1] == '\\':
+            s = s[0:s.__len__() - 1] + s[s.__len__() - 1].encode('unicode-escape')
+    return s
+
 def get_expr(fx,*params):
     """
     Convert tree of expression into mongodb aggregate pipe
@@ -496,22 +508,22 @@ def get_expr(fx,*params):
     if fx.has_key("operator"):
         if fx["operator"]=="$contains":
             return {
-                fx["left"]:re.compile(fx["right"],re.IGNORECASE)
+                fx["left"]:re.compile(raw_string(fx["right"]),re.IGNORECASE)
 
             }
         if fx["operator"]=="$start":
             return {
-                fx["left"]:re.compile(r"^"+fx["right"],re.IGNORECASE)
+                fx["left"]:re.compile(r"^"+raw_string(fx["right"]),re.IGNORECASE)
 
             }
         if fx["operator"]=="$end":
             return {
-                fx["left"]:re.compile(fx["right"]+r"$",re.IGNORECASE)
+                fx["left"]:re.compile(raw_string(fx["right"])+r"$",re.IGNORECASE)
 
             }
         if fx["operator"]=="$notContains":
             return {
-                fx["left"]:re.compile(r"^(?!.*?"+fx["right"]+r").*$" ,re.IGNORECASE)
+                fx["left"]:re.compile(r"^(?!.*?"+raw_string(fx["right"])+r").*$" ,re.IGNORECASE)
 
             }
 
@@ -520,13 +532,13 @@ def get_expr(fx,*params):
                 if fx["left"].has_key("type")and fx["left"]["type"]=="field":
                     return {
                         fx["left"]["id"]: {
-                            "$regex": re.compile(fx["right"], re.IGNORECASE)
+                            "$regex": re.compile(raw_string(fx["right"]), re.IGNORECASE)
                         }
                     }
                 else:
                     return {
                         fx["left"]: {
-                            "$regex": re.compile(fx["right"], re.IGNORECASE)
+                            "$regex": re.compile(raw_string(fx["right"]), re.IGNORECASE)
                         }
                     }
             else:
@@ -536,13 +548,13 @@ def get_expr(fx,*params):
                         if type(fx["left"]) in [str,unicode]:
                             return {
                                 fx["left"]: {
-                                    "$regex": re.compile("^" + val + "$", re.IGNORECASE)
+                                    "$regex": re.compile("^" + raw_string(val) + "$", re.IGNORECASE)
                                 }
                             }
                         else:
                             return {
                                 fx["left"]["id"]:{
-                                    "$regex":re.compile("^"+val+"$",re.IGNORECASE)
+                                    "$regex":re.compile("^"+raw_string(val)+"$",re.IGNORECASE)
                                 }
                             }
                     else:
@@ -550,14 +562,14 @@ def get_expr(fx,*params):
                             if type(fx["left"]) in [str,unicode]:
                                 return {
                                     fx["left"]: {
-                                        "$regex":re.compile("^"+val+"$",re.IGNORECASE)
+                                        "$regex":re.compile("^"+raw_string(val)+"$",re.IGNORECASE)
                                     }
 
                                 }
                             if type(fx["left"]) is dict:
                                 return {
                                     fx["left"]["id"]:{
-                                        "$regex":re.compile("^"+val+"$",re.IGNORECASE)
+                                        "$regex":re.compile("^"+raw_string(val)+"$",re.IGNORECASE)
                                     }
 
                                 }
@@ -583,7 +595,7 @@ def get_expr(fx,*params):
                     if type(val) in [str,unicode]:
                         return {
                             fx["left"]["id"]: {
-                                "$regex": re.compile("^" + val + "$", re.IGNORECASE)
+                                "$regex": re.compile("^" + raw_string(val) + "$", re.IGNORECASE)
                             }
                         }
                     else:
@@ -672,11 +684,11 @@ def get_expr(fx,*params):
                fx["params"][1]["type"]=="function" and\
                 fx["params"][1]["id"]=="get_params":
                 return {
-                    fx["params"][0]["id"]:{"$regex":re.compile(params[fx["params"][1]["value"]],re.IGNORECASE)}
+                    fx["params"][0]["id"]:{"$regex":re.compile(raw_string(params[fx["params"][1]["value"]]),re.IGNORECASE)}
                 }
             else:
                 return {
-                    fx["params"][0]["id"]:{"$regex":re.compile(fx["params"][1]["value"],re.IGNORECASE)}
+                    fx["params"][0]["id"]:{"$regex":re.compile(raw_string(fx["params"][1]["value"]),re.IGNORECASE)}
                 }
 
     if fx.has_key("operator"):
