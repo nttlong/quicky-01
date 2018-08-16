@@ -769,6 +769,8 @@ class COLL():
         """
         from . import dynamic_object
         ret = self.get_collection().find_one()
+        if ret == None:
+            return None
         ret_object = dynamic_object.create_from_dict(ret)
 
         return ret_object
