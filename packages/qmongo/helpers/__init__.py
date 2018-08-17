@@ -6,6 +6,11 @@ from . aggregate_expression import aggregate_expression
 from . import  aggregate_validators as query_validator
 from . import validators
 from .. import dict_utils
+
+class _obj(object):
+    pass
+global models
+models=_obj()
 from . model_events import model_event
 _model_caching_={}
 _model_index_={}
@@ -29,7 +34,16 @@ class data_field():
         self.is_require=is_require
         self.data_type=data_type
         self.details=detail
-
+def create_obj_fields(data):
+    if data == None:
+        return None
+    ret = _obj()
+    for k,v in data.items():
+        if v["type"] == "list":
+            setattr(ret,v,[])
+        elif v["type"] == "object":
+            setattr(ret, v, create_obj_fields(v))
+    return ret
 def filter(expression,*args,**kwargs):
     # type: (str, tuple, dict) -> filter()
     # type: (str,str) -> filter_expression
@@ -131,8 +145,11 @@ def define_model(_name,keys=None,*args,**kwargs):
     global _model_index_
     global _model_caching_params
     name=_name
+
     if dict_utils.has_key(_model_caching_,name):
         return _model_caching_[name]
+    _obj_model = _obj()
+    setattr(models, name, _obj_model)
     params=kwargs
     if type(args) is tuple and args.__len__()>0:
         params=args[0]
@@ -145,6 +162,12 @@ def define_model(_name,keys=None,*args,**kwargs):
     ])
     validate_dict={}
     for x in list_of_fields.keys():
+        if list_of_fields[x]["type"] =="list":
+            setattr(_obj_model,x,[])
+        elif list_of_fields[x]["type"] =="object":
+            setattr(_obj_model, x,create_obj_fields(list_of_fields[x].get("details",None)))
+        else:
+            setattr(_obj_model, x, list_of_fields[x]["type"])
         validate_dict.update(
             {
                 x:list_of_fields[x]["type"]
@@ -173,6 +196,7 @@ def extent_model(name,from_name,keys=None,*args,**kwargs):
     :param kwargs:
     :return:
     """
+    # global models
     source_model=get_model(from_name)
     source_model_params=_model_caching_params[from_name]
     if type(args) is tuple and args.__len__()>0:

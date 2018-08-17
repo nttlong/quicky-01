@@ -6,15 +6,13 @@ from . import base_org
 from .. import settings
 _hasCreated = False
 model_name="departments"
+helpers.extent_model(
+        model_name,
+        "base_org",
+        []
+    )
 def departments():
-    global _hasCreated
-    if not _hasCreated:
-        helpers.extent_model(
-            model_name,
-            "base_org",
-            []
-        )
-        _hasCreated = True
+
     ret = settings.db().collection(model_name)
     # ret.turn_never_use_schema_on()
 

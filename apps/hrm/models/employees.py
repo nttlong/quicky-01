@@ -3,12 +3,8 @@ from quicky import applications
 from qmongo import helpers, database
 from . import base_employee
 from .. import settings
-_hasCreated = False
 model_name="employees"
-def employees():
-    global _hasCreated
-    if not _hasCreated:
-        helpers.extent_model(
+helpers.extent_model(
             model_name,
             "base_employee",
             [],
@@ -17,8 +13,6 @@ def employees():
             department_id =helpers.create_field("object",True),
             position_id =helpers.create_field("object",True)
         )
-        _hasCreated = True
+def employees():
     ret = settings.db().collection(model_name)
-    # ret.turn_never_use_schema_on()
-
     return ret

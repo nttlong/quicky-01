@@ -66,7 +66,6 @@ def get_dict_of_instance(ins):
                 k: v
             })
     return ret
-
 class QR():
     """
     Define queryable
@@ -460,8 +459,6 @@ class WHERE():
     """
     This class define where for Entity will be remove on the next version
     """
-
-
     def _get_where(self):
         i = 0
         x = expr.get_tree(self._where_list[i]["expression"], *self._where_list[i].get("params", []))
@@ -478,7 +475,6 @@ class WHERE():
             }
             i += 1
         return y
-
     def __init__(self, coll):
         self.name = ""
         self._coll = None
@@ -856,6 +852,7 @@ class COLL():
         ret=ac.commit(self.session)
         return ret
     def insert_one(self,*args,**kwargs):
+        import dynamic_object
         # type: (dict) -> dict
         # type: (tuple) -> dict
         """
@@ -864,7 +861,12 @@ class COLL():
         :param kwargs:
         :return: dict including data has been inserted and error
         """
-
+        if type(args) is tuple and args.__len__() >0:
+            if hasattr(args[0],"__dict__"):
+                _args = dynamic_object.convert_to_dict(args[0])
+                ac = self.entity().insert_one(*_args, **kwargs)
+                ret = ac.commit(self.session)
+                return ret
         ac=self.entity().insert_one(*args,**kwargs)
         ret=ac.commit(self.session)
         return ret
@@ -890,6 +892,7 @@ class COLL():
         :param kwargs:
         :return: dict with data and error
         """
+        import dynamic_object
         unknown_fields = self._model.validate_expression(filter,None,*args,**kwargs)
         if unknown_fields.__len__() > 0:
             raise (Exception("What is bellow list of fields?:\n" + self.descibe_fields("\t\t", unknown_fields) +
@@ -897,6 +900,8 @@ class COLL():
                              self.descibe_fields("\t\t\t", self._model.get_fields())))
         if type(args) is tuple and args.__len__()>0 and kwargs=={}:
             kwargs=args[0]
+            if hasattr(kwargs,"__dict__"):
+                kwargs=dynamic_object.convert_to_dict(kwargs)
         ac=self.entity().filter(filter,kwargs)
         ac.update_many(data)
         ret=ac.commit(self.session)
@@ -908,6 +913,7 @@ class COLL():
             raise (Exception("parameter must be '{0}".format('qmonog.dynamic_object.dynamic_object')))
         return self.push(obj_item._dict_, filter, *args, **kwargs)
     def push(self,data,filter,*args,**kwargs):
+
         # type: (dict,str,int) -> dict
         # type: (dict,str,bool) -> dict
         # type: (dict,str,datetime) -> dict
@@ -931,6 +937,9 @@ class COLL():
                              self.descibe_fields("\t\t\t", self._model.get_fields())))
         if type(args) is tuple and args.__len__()>0 and kwargs=={}:
             kwargs=args[0]
+            if hasattr(kwargs,"__dict__"):
+                from . import dynamic_object
+                kwargs=dynamic_object.convert_to_dict(kwargs)
         ac=self.entity().filter(filter,kwargs)
         ac.push(data)
         ret=ac.commit(self.session)
@@ -965,6 +974,9 @@ class COLL():
                              self.descibe_fields("\t\t\t", self._model.get_fields())))
         if type(args) is tuple and args.__len__()>0 and kwargs=={}:
             kwargs=args[0]
+            if hasattr(kwargs,"__dict__"):
+                from . import dynamic_object
+                kwargs=dynamic_object.convert_to_dict(kwargs)
         ac=self.entity().filter(filter,kwargs)
         ac.pull(data)
         ret=ac.commit(self.session)
@@ -1029,6 +1041,9 @@ class COLL():
             ret+="("+key+"==@"+key+")and"
         return ret[0:ret.__len__()-3]
     def save(self,data,keys):
+        if hasattr(data, "__dict__"):
+            from . import dynamic_object
+            data = dynamic_object.convert_to_dict(data)
         filter_key=self.get_filter_keys(keys)
         data_item=self.find_one(filter_key,data)
         ret={}

@@ -15,3 +15,25 @@ def create(*args,**kwargs):
         else:
             setattr(ret, k, v)
     return ret
+def convert_to_dict(obj):
+    if obj == None:
+        return None
+    ret = {}
+    for k, v in obj.__dict__.items():
+        if type(v) is list:
+            ret.update({
+                k:[convert_to_dict(_v) for _v in v]
+            })
+        elif hasattr(v,"__dict__"):
+            ret.update({
+                k:convert_to_dict(v)
+            })
+        else:
+            ret.update({
+                k: v
+            })
+    return ret
+
+
+
+
