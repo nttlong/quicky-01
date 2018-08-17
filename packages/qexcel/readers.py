@@ -104,9 +104,11 @@ def load_from_string_64(base64_content):
 def load_from_file(file):
 
     file = open(file, 'rb')
-    wb = openpyxl.load_workbook(filename=file)
+    wb = openpyxl.load_workbook(filename=file,data_only=True)
     ret = load_from_workbook(wb)
     return ret
+
+
 def load_from_workbook(wb):
     ret = excel_config()
     ws_data = [ws for ws in wb.worksheets if ws.title == "data"]
