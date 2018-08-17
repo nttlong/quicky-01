@@ -52,6 +52,21 @@ def extract_data(data):
                 key:data[key]
             })
     return ret
+def get_dict_of_instance(ins):
+    if ins.__dict__.items().__len__() ==0:
+        return  None
+    ret = {}
+    for k,v in ins.__dict__.items():
+        if hasattr(v,"__dict__"):
+            ret.update({
+                k:get_dict_of_instance(v)
+            })
+        else:
+            ret.update({
+                k: v
+            })
+    return ret
+
 class QR():
     """
     Define queryable
@@ -101,7 +116,10 @@ class ENTITY():
         if args==():
             self._data=kwargs
         else:
-            self._data = args[0]
+            if hasattr(args[0],"__dict__"):
+                self._data = get_dict_of_instance(args[0])
+            else:
+                self._data = args[0]
 
         self._action="insert_one"
 
@@ -123,16 +141,20 @@ class ENTITY():
         :param data:
         :return:
         """
+        if hasattr(data, "__dict__"):
+            _data = get_dict_of_instance(data)
+        else:
+            _data = data
         self._action="update_one"
         if not self._data.has_key("$set"):
             self._data.update({
-                "$set":data
+                "$set":_data
             })
         else:
             x=self._data["$set"]
             for key in data.keys():
                 x.update({
-                    key:data[key]
+                    key:_data[key]
                 })
         return self
     def update_many(self,data,*params):
@@ -143,16 +165,20 @@ class ENTITY():
         :param params:
         :return:
         """
+        if hasattr(data, "__dict__"):
+            _data = get_dict_of_instance(data)
+        else:
+            _data = data
         self._action = "update_many"
         if not self._data.has_key("$set"):
             self._data.update({
-                "$set": data
+                "$set": _data
             })
         else:
             x = self._data["$set"]
-            for key in data.keys():
+            for key in _data.keys():
                 x.update({
-                    key: data[key]
+                    key: _data[key]
                 })
         return self
     def push(self,data):
@@ -161,59 +187,75 @@ class ENTITY():
         :param data:
         :return:
         """
+        if hasattr(data, "__dict__"):
+            _data = get_dict_of_instance(data)
+        else:
+            _data = data
         if self._action==None:
             self._action="update_many"
         if not self._data.has_key("$push"):
             self._data.update({
-                "$push": data
+                "$push": _data
             })
         else:
             x = self._data["$push"]
-            for key in data.keys():
+            for key in _data.keys():
                 x.update({
-                    key: data[key]
+                    key: _data[key]
                 })
         return self
     def pull(self,data):
+        if hasattr(data, "__dict__"):
+            _data = get_dict_of_instance(data)
+        else:
+            _data = data
         if self._action==None:
             self._action="update_many"
         if not self._data.has_key("$pull"):
             self._data.update({
-                "$pull": data
+                "$pull": _data
             })
         else:
             x = self._data["$pull"]
-            for key in data.keys():
+            for key in _data.keys():
                 x.update({
-                    key: data[key]
+                    key: _data[key]
                 })
         return self
     def inc(self,data):
+        if hasattr(data, "__dict__"):
+            _data = get_dict_of_instance(data)
+        else:
+            _data = data
         if self._action==None:
             self._action="update_many"
         if not self._data.has_key("$inc"):
             self._data.update({
-                "$inc": data
+                "$inc": _data
             })
         else:
             x = self._data["$inc"]
-            for key in data.keys():
+            for key in _data.keys():
                 x.update({
-                    key: data[key]
+                    key: _data[key]
                 })
         return self
     def dec(self,data):
+        if hasattr(data, "__dict__"):
+            _data = get_dict_of_instance(data)
+        else:
+            _data = data
         if self._action == None:
             self._action = "update_many"
         if not self._data.has_key("$dec"):
             self._data.update({
-                "$dec": data
+                "$dec": _data
             })
         else:
             x = self._data["$dec"]
-            for key in data.keys():
+            for key in _data.keys():
                 x.update({
-                    key: data[key]
+                    key: _data[key]
                 })
         return self
     def filter(self,expression,*args,**kwargs):
@@ -1665,3 +1707,5 @@ def connect(*args,**kwargs):
     except Exception as ex:
         logger.debug(ex)
         raise (ex)
+
+

@@ -23,5 +23,9 @@ items = provinces.provinces().aggregate().project(
 ).get_list()
 xls.fetch_data(items)
 from qexcel import readers
-wb = readers.load_from_file("E:\\code\\quicky-01\\xls\\province.xlsx")
+wb = readers.load_from_file("/home/hcsadmin/q03/xls/province.xlsx")
+for x in wb.extract_data_as_list_of_object():
+    import pprint
+    ret=provinces.provinces().insert_one(x)
+    pprint.pprint(ret)
 
