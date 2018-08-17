@@ -7,6 +7,8 @@ def create_from_dict(dict_data):
     for k, v in dict_data.items():
         if type(v) is dict:
             setattr(ret, k, create_from_dict(v))
+        elif type(v) is list:
+            setattr(ret, k, [create_from_dict(_v) for _v in v])
         else:
             setattr(ret, k, v)
     return ret

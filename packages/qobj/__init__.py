@@ -10,6 +10,8 @@ def create(*args,**kwargs):
     for k,v in data.items():
         if type(v) is dict:
             setattr(ret,k,create(v))
+        elif type(v) is list:
+            setattr(ret, k, [create(_v) for _v in v])
         else:
             setattr(ret, k, v)
     return ret
