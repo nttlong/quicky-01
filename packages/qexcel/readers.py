@@ -107,8 +107,6 @@ def load_from_file(file):
     wb = openpyxl.load_workbook(filename=file)
     ret = load_from_workbook(wb)
     return ret
-
-
 def load_from_workbook(wb):
     ret = excel_config()
     ws_data = [ws for ws in wb.worksheets if ws.title == "data"]
