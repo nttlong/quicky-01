@@ -71,12 +71,13 @@ class QR():
     Define queryable
     """
 
-    def __init__(self,config):
+    def __init__(self,config = None):
         self.db = None
         self._entity = None
         self._codec_options = None
-        self.db=config["database"]
-        self._codec_options=config["codec_options"]
+        if config != None:
+            self.db=config["database"]
+            self._codec_options=config["codec_options"]
     def collection(self,name):
         "get collection from database. including methods: find_one,find,get_list,get_item,where,entity,aggregate "
         if name==None or name=="":

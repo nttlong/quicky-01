@@ -6,9 +6,12 @@ from . aggregate_expression import aggregate_expression
 from . import  aggregate_validators as query_validator
 from . import validators
 from .. import dict_utils
-
+from .. fx_model import __obj_model__
 class _obj(object):
     pass
+
+
+
 global models
 models=_obj()
 from . model_events import model_event
@@ -45,10 +48,7 @@ def create_obj_fields(data):
             setattr(ret, v, create_obj_fields(v))
     return ret
 def filter(expression,*args,**kwargs):
-    # type: (str, tuple, dict) -> filter()
-    # type: (str,str) -> filter_expression
-    # type: (str,bool) -> filter_expression
-    # type: (str,int) -> filter_expression
+    # type: (str, tuple|str|bool|int, dict) -> filter()|filter_expression
     """
     Create a filter for mongodb from expression
     :param expression: Filter expression
@@ -148,7 +148,7 @@ def define_model(_name,keys=None,*args,**kwargs):
 
     if dict_utils.has_key(_model_caching_,name):
         return _model_caching_[name]
-    _obj_model = _obj()
+    _obj_model = __obj_model__(name)
     setattr(models, name, _obj_model)
     params=kwargs
     if type(args) is tuple and args.__len__()>0:
@@ -163,11 +163,11 @@ def define_model(_name,keys=None,*args,**kwargs):
     validate_dict={}
     for x in list_of_fields.keys():
         if list_of_fields[x]["type"] =="list":
-            setattr(_obj_model,x,[])
+            setattr(_obj_model.fields,x,[])
         elif list_of_fields[x]["type"] =="object":
-            setattr(_obj_model, x,create_obj_fields(list_of_fields[x].get("details",None)))
+            setattr(_obj_model.fields, x,create_obj_fields(list_of_fields[x].get("details",None)))
         else:
-            setattr(_obj_model, x, list_of_fields[x]["type"])
+            setattr(_obj_model.fields, x, list_of_fields[x]["type"])
         validate_dict.update(
             {
                 x:list_of_fields[x]["type"]

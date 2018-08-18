@@ -13,5 +13,16 @@ def create_object(*args,**kwargs):
         else:
             setattr(ret, k, v)
     return ret
-from . import models
+
 from . import helpers
+from . import qview
+from . import db_context
+define = helpers.define_model
+extends = helpers.extent_model
+view=qview.create_mongodb_view
+view_from_pipe=qview.create_mongod_view_from_pipeline
+models = helpers.models
+connect = db_context.connect
+set_db_context = db_context.set_db_context
+set_schema = db_context.set_schema
+get_schema = db_context.get_schema

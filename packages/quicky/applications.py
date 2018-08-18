@@ -31,6 +31,10 @@ def load_app(*args,**kwargs):
             })
         return _cache_apps[args[0]["path"]]
 
+    except SyntaxError as ex:
+        logger.debug(ex)
+        raise ex
+
     except Exception as ex:
         logger.debug(ex)
         logger.debug("quicky.applications.load_app error {0} in '{1}'".format(ex,args[0]["path"]))

@@ -30,3 +30,9 @@ xls = writers.create(
 #     ret=provinces.provinces().insert_one(x)
 #     pprint.pprint(ret)
 
+x= lambda :1==1\
+    and 2==1
+
+
+
+
