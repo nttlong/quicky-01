@@ -1,12 +1,53 @@
 from bson.codec_options import CodecOptions
-class __obj_fields__(object):
+class s_obj(object):
     pass
+models = s_obj()
+class __obj_fields__(object):
+    def __init__(self,name = None,type = None, is_require = False):
+        self.__name__ = name
+        self.__type__= type
+        self.__require__=is_require
+
+
 class __obj_model__(object):
     def __init__(self,name):
+        setattr(models,name,self)
         self.__name__=name
         self.__QR__ = None
         self.fields = __obj_fields__()
         self.__aggregate__=None
+    def __create_field__(self,name,type="text",is_require=False):
+        names = name.split('.')
+        if not hasattr(self.fields,names[0]):
+            setattr(self.fields,names[0],__obj_fields__(names[0],type,is_require))
+        f = getattr(self.fields,names[0])
+        if names.__len__() == 1:
+            f.__type__ = type
+        p = getattr(self.fields,names[0])
+        str_name = names[0]
+        for i in range(1,names.__len__()):
+            if f.__type__ not in ["list","object"]:
+                f.__type__ == "object"
+            str_name = str_name + "." + names[i]
+            if not hasattr(f, names[i]):
+                setattr(f,names[i],__obj_fields__(str_name,type,is_require))
+            f = getattr(f, names[i])
+        return self
+    def mk_obj(self,item = None):
+        ret = s_obj()
+        if item == None:
+            item =self.fields
+        for k,v in item.__dict__.items():
+            if isinstance(v,__obj_fields__):
+                if v.__type__ =="list":
+                    setattr(ret,k,[])
+                elif v.__type__ =="object":
+                    setattr(ret,k,self.mk_obj(v))
+                else:
+                    setattr(ret, k, None)
+            else:
+                setattr(ret, k, None)
+        return ret
     @property
     def query(self,context = None):
         if context == None:
@@ -47,7 +88,7 @@ class __obj_model__(object):
     def insert(self,*args,**kwargs):
         return self.query.insert(*args,**kwargs)
     def insert_one(self,*args,**kwargs):
-        return self.insert_one(*args,**kwargs)
+        return self.query.insert_one(*args,**kwargs)
     def update(self,data,*args,**kwargs):
         return self.query.update(data,*args,**kwargs)
     def delete(self,expression,*arg,**kwargs):

@@ -27,15 +27,15 @@ def on_before_update(data):
 helpers.define_model(
     "base_category",
     [["code"]],
-    code=helpers.create_field("text", True),
-    name=helpers.create_field("text", True),
-    description=helpers.create_field("text", False),
-    created_on=helpers.create_field("date", True),
-    created_on_utc=helpers.create_field("date", True),
-    created_by=helpers.create_field("text", True),
-    modified_on=helpers.create_field("date", False),
-    modified_on_utc=helpers.create_field("date", False),
-    modified_by=helpers.create_field("text", False)
+    code=("text", True),
+    name=("text", True),
+    description="text",
+    created_on=("date", True),
+    created_on_utc=("date", True),
+    created_by=("text", True),
+    modified_on=("date", False),
+    modified_on_utc=("date", False),
+    modified_by=("text", False)
 )
 helpers.events("base_category")\
     .on_before_insert(on_before_insert)\

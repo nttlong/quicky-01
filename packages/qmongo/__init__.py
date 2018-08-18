@@ -13,7 +13,7 @@ def create_object(*args,**kwargs):
         else:
             setattr(ret, k, v)
     return ret
-
+from . import fx_model
 from . import helpers
 from . import qview
 from . import db_context
@@ -21,7 +21,7 @@ define = helpers.define_model
 extends = helpers.extent_model
 view=qview.create_mongodb_view
 view_from_pipe=qview.create_mongod_view_from_pipeline
-models = helpers.models
+models = fx_model.models
 connect = db_context.connect
 set_db_context = db_context.set_db_context
 set_schema = db_context.set_schema

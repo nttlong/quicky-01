@@ -73,6 +73,23 @@ def unwind_data(data,prefix=None):
     :return:dict
     """
     ret={}
+    _data = data
+    for k,v in _data.items():
+        if type(v) in [str,unicode]:
+            data.update({
+                k: data_field(v)
+            })
+        if type(v) is tuple:
+            data_type = v[0]
+            is_require = False
+            detail= None
+            if v.__len__()>1:
+                is_require = v[1] != False
+            if v.__len__() >2:
+                detail= v[2]
+            data.update({
+                k:data_field(data_type,is_require,detail)
+            })
     for key in data.keys():
         if type(data[key]) is dict:
             if prefix!=None:
@@ -131,6 +148,8 @@ def unwind_data(data,prefix=None):
                     )
 
 
+
+
     return ret
 def define_model(_name,keys=None,*args,**kwargs):
     # type: (str,list,tuple)->query_validator.validator
@@ -162,12 +181,6 @@ def define_model(_name,keys=None,*args,**kwargs):
     ])
     validate_dict={}
     for x in list_of_fields.keys():
-        if list_of_fields[x]["type"] =="list":
-            setattr(_obj_model.fields,x,[])
-        elif list_of_fields[x]["type"] =="object":
-            setattr(_obj_model.fields, x,create_obj_fields(list_of_fields[x].get("details",None)))
-        else:
-            setattr(_obj_model.fields, x, list_of_fields[x]["type"])
         validate_dict.update(
             {
                 x:list_of_fields[x]["type"]
@@ -184,6 +197,9 @@ def define_model(_name,keys=None,*args,**kwargs):
                 "has_created":False
             }
         })
+
+    for k,v in _model_caching_[name].meta.items():
+        _obj_model.__create_field__(k,v)
     return _model_caching_[name]
 def extent_model(name,from_name,keys=None,*args,**kwargs):
     # type: (str,str,list,dict)->query_validator.validator

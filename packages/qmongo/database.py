@@ -865,7 +865,7 @@ class COLL():
         if type(args) is tuple and args.__len__() >0:
             if hasattr(args[0],"__dict__"):
                 _args = dynamic_object.convert_to_dict(args[0])
-                ac = self.entity().insert_one(*_args, **kwargs)
+                ac = self.entity().insert_one(_args)
                 ret = ac.commit(self.session)
                 return ret
         ac=self.entity().insert_one(*args,**kwargs)
