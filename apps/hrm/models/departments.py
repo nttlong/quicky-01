@@ -25,10 +25,10 @@ extends(
                       dict(
                           latitude="number",
                           longitude = "number"
-                      )),
-        test  =("text",True)
+                      ))
+        )
 
-    )
+
 def departments():
     ret = settings.db().collection(model_name)
     return ret

@@ -7,7 +7,8 @@ model_name="districts"
 helpers.extent_model(
             model_name,
             "base_category",
-            []
+            [],
+            _provinces_id=("object")
         )
 def districts():
     ret = settings.db().collection(model_name)

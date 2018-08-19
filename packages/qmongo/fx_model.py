@@ -19,6 +19,24 @@ class __obj_fields__(object):
         self.__name__ = name
         self.__type__= type
         self.__require__=is_require
+    def mk_obj(self,item = None):
+        ret = s_obj()
+        if item == None:
+            item =self
+        for k,v in item.__dict__.items():
+            if isinstance(v,__obj_fields__):
+                if v.__type__ =="list":
+                    setattr(ret,k,[])
+                elif v.__type__ =="object":
+                    if type(v) is __obj_fields__:
+                        setattr(ret,k,None)
+                    else:
+                        setattr(ret, k, self.mk_obj(v))
+                else:
+                    setattr(ret, k, None)
+            else:
+                setattr(ret, k, None)
+        return ret
 
 
 class __obj_model__(object):
@@ -88,6 +106,8 @@ class __obj_model__(object):
         return ret.collection(self.__name__)
     @property
     def objects(self,filter = None,*args,**kwargs):
+        if filter == None:
+            return self.query.get_objects()
         return self.query.objects(filter,*args,**args)
     def set_session(self,session):
         self.query.set_session(session)
@@ -124,7 +144,7 @@ class __obj_model__(object):
         ret_obj.is_error = False
         if ret.has_key("error"):
             ret_obj.is_error = True
-            ret_obj.error_message = "insert data errror '{0}'".format(ret_obj.error.code)
+            ret_obj.error_message = "insert data errror '{0}'".format(ret["error"]["code"])
         return ret_obj
     def update(self,data,*args,**kwargs):
         ret = self.query.update(data,*args,**kwargs)

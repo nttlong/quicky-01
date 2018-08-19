@@ -41,9 +41,10 @@ def validate_require_data(name,data,partial=False):
     if not partial:
         ret=[]
         for key in _model_cache_["require_fields"].get(name,[]):
-            val=get_value_by_path(key,data)
-            if val==None:
-                ret.append(key)
+            if key.count(".") == 0:
+                val=get_value_by_path(key,data)
+                if val==None:
+                    ret.append(key)
         return ret
     else:
         if data=={}:
