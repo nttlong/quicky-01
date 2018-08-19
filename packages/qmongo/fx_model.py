@@ -106,13 +106,41 @@ class __obj_model__(object):
     def left_join(self,source,local_field,foreign_field, alias):
         self.aggregate.left_join(source.__name__,local_field,foreign_field, alias)
     def insert(self,*args,**kwargs):
-        return self.query.insert(*args,**kwargs)
+        ret = self.query.insert(*args,**kwargs)
+        import dynamic_object
+        ret_obj = dynamic_object.create_from_dict(ret)
+        ret_obj.is_error =False
+        if ret.has_key("error"):
+            ret_obj.is_error = True
+            ret_obj.error_message = "insert data errror '{0}'".format(ret_obj.error.code)
+        return ret_obj
     def insert_one(self,*args,**kwargs):
-        return self.query.insert_one(*args,**kwargs)
+        ret = self.query.insert_one(*args,**kwargs)
+        import dynamic_object
+        ret_obj = dynamic_object.create_from_dict(ret)
+        ret_obj.is_error = False
+        if ret.has_key("error"):
+            ret_obj.is_error = True
+            ret_obj.error_message = "insert data errror '{0}'".format(ret_obj.error.code)
+        return ret_obj
     def update(self,data,*args,**kwargs):
-        return self.query.update(data,*args,**kwargs)
+        ret = self.query.update(data,*args,**kwargs)
+        import dynamic_object
+        ret_obj = dynamic_object.create_from_dict(ret)
+        ret_obj.is_error = False
+        if ret.has_key("error"):
+            ret_obj.is_error = True
+            ret_obj.error_message = "insert data errror '{0}'".format(ret_obj.error.code)
+        return ret_obj
     def delete(self,expression,*arg,**kwargs):
-        return self.query.delete(expression,*arg,**kwargs)
+        ret = self.query.delete(expression,*arg,**kwargs)
+        import dynamic_object
+        ret_obj = dynamic_object.create_from_dict(ret)
+        ret_obj.is_error = False
+        if ret.has_key("error"):
+            ret_obj.is_error = True
+            ret_obj.error_message = "insert data errror '{0}'".format(ret_obj.error.code)
+        return ret_obj
     def find(self,expression,*args,**kwargs):
         return self.query.find(expression,*args,**kwargs)
     @property

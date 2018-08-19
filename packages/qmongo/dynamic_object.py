@@ -3,7 +3,11 @@ class dynamic_object(object):
 
 
 def create_from_dict(dict_data):
+    if type(dict_data) in [str,unicode]:
+        return dict_data
     ret = dynamic_object()
+    if dict_data == None:
+        return None
     for k, v in dict_data.items():
         if type(v) is dict:
             setattr(ret, k, create_from_dict(v))

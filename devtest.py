@@ -9,13 +9,15 @@ tenancy.set_schema("hrm")
 from hrm.models import provinces
 
 from qexcel import writers
-xls = writers.create(
-    ("code","Code"),
-    ("name","Name"),
-    ("description","Description"),
-    ("info.location.x","Location X"),
-    ("info.location.y","Location Y"),
-)
+import qmongo
+qmongo.set_db_context("mongodb://root:123456@localhost:27017/hrm:hrm")
+# xls = writers.create(
+#     ("code","Code"),
+#     ("name","Name"),
+#     ("description","Description"),
+#     ("info.location.x","Location X"),
+#     ("info.location.y","Location Y"),
+# )
 # items = provinces.provinces().aggregate().project(
 #     code =1,
 #     name =1,
@@ -30,8 +32,8 @@ xls = writers.create(
 #     ret=provinces.provinces().insert_one(x)
 #     pprint.pprint(ret)
 
-x= lambda :1==1\
-    and 2==1
+# x= lambda :1==1\
+#     and 2==1
 
 
 

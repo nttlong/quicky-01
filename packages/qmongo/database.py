@@ -1327,7 +1327,6 @@ class AGGREGATE():
                alias=None,
                *args,**kwargs):
         # type: (str|COLL,str,str,str) -> AGGREGATE
-
         """
         Create lookup aggregate
         :param source: where this collection will lookup for mongodb that is 'from'
