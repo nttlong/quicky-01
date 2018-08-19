@@ -147,7 +147,7 @@ class config(object):
                     if ret == None:
                         ret = {}
                 if type(ret) is list:
-                    val = "[..]"
+                    val = "array"
                 else:
                     val = ret.get(col.depth_fields[col.depth_count-1],None)
                     if val != None and hasattr(val,"_ObjectId__id"):
