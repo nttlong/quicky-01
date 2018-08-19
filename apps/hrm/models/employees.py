@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from quicky import applications
 from qmongo import helpers, database
-from . import base_employee
+from . commons import base_employee
 from .. import settings
 import qmongo
 model_name="employees"

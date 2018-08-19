@@ -1,5 +1,6 @@
 from quicky import applications
 from qmongo import helpers,database
+from qmongo import define,extends
 import datetime
 import threading
 def on_before_insert(data):
@@ -12,6 +13,10 @@ def on_before_insert(data):
             "created_on_utc":datetime.datetime.utcnow(),
             "created_by":user
             })
+    if data.get('is_delete',None) == None:
+        data.update({
+            'is_delete':False
+        })
 def on_before_update(data):
     user = "application"
     if hasattr(threading.current_thread(),"user"):
@@ -23,19 +28,27 @@ def on_before_update(data):
             "modified_by":user
             })
 
-
-helpers.define_model(
-    "base_category",
-    [["code"]],
-    code=("text", True),
-    name=("text", True),
+base_model_info =dict(
+    code = ("text",True),
+    name=("object",dict(
+        native=("text",False),
+        foreign =("text",False),
+        default =("text",True)
+    )),
     description="text",
     created_on=("date", True),
     created_on_utc=("date", True),
     created_by=("text", True),
     modified_on=("date", False),
     modified_on_utc=("date", False),
-    modified_by=("text", False)
+    modified_by=("text", False),
+    is_delete =("bool",True),
+    ordinal = ("number",False)
+)
+define(
+    "base_category",
+    [["code"]],
+    base_model_info
 )
 helpers.events("base_category")\
     .on_before_insert(on_before_insert)\

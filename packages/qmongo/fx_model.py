@@ -1,4 +1,16 @@
 from bson.codec_options import CodecOptions
+
+class s_obj_views(object):
+    def __init__(self,owner):
+        self.owner = owner
+    def __getattr__(self, name):
+        from . import qview
+        return qview.create_mongodb_view(
+            self.owner.aggregate,
+            name
+        )
+
+
 class s_obj(object):
     pass
 models = s_obj()
@@ -10,12 +22,20 @@ class __obj_fields__(object):
 
 
 class __obj_model__(object):
-    def __init__(self,name):
-        setattr(models,name,self)
+    def __init__(self,name,schema = None):
+        _schema = models
+        if schema != None:
+            if not hasattr(models,schema):
+                _schema = s_obj()
+                setattr(models, schema, _schema)
+            else:
+                schema = getattr(models,schema)
+        setattr(_schema,name,self)
         self.__name__=name
         self.__QR__ = None
         self.fields = __obj_fields__()
         self.__aggregate__=None
+        self.views = s_obj_views(self)
     def __create_field__(self,name,type="text",is_require=False):
         names = name.split('.')
         if not hasattr(self.fields,names[0]):
@@ -73,7 +93,7 @@ class __obj_model__(object):
     def aggregate(self):
         if self.__aggregate__ == None:
             self.__aggregate__ =self.query.aggregate()
-        return self.__aggregate__
+        return self.query.aggregate()
     def project(self,*args,**kwargs):
         self.aggregate.project(*args,**kwargs)
         return self

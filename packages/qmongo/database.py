@@ -587,12 +587,13 @@ class COLL():
         """
         self._never_use_schema=True
     def set_session(self,_session):
+        # type: (ClientSession) -> COLL
         """
         Join this collection to session
         :param _session:
         :return:
         """
-        # type: (ClientSession) -> COLL
+
 
         if not isinstance(_session,ClientSession):
             raise (Exception("Session must be 'pymongo.client_session.ClientSession'"))
@@ -683,13 +684,8 @@ class COLL():
         return ret_coll
     def find_one(self,exprression=None,*args,**kwargs):
 
-        # type: (str,dict) -> dict
-        # type: (str,tuple) -> dict
-        # type: (str,int) -> dict
-        # type: (str,bool) -> dict
-        # type: (str,float) -> dict
-        # type: (str,datetime) -> dict
-        # type: (str,list) -> dict
+        # type: (str,dict|tuple|int|bool|float|datetime|list) -> dict
+
         """find one item with conditional ex: find_one("Username={0}","admin"),
             find_one("Username='admin'"),
             find_one("Username=@username",username="admin")
@@ -726,13 +722,8 @@ class COLL():
                 continue_fetch  = False
 
     def cursors(self,exprression = None,*args,**kwargs):
-        # type: (str,dict) -> dict
-        # type: (str,tuple) -> dict
-        # type: (str,int) -> dict
-        # type: (str,bool) -> dict
-        # type: (str,float) -> dict
-        # type: (str,datetime) -> dict
-        # type: (str,list) -> dict
+        # type: (str,dict|tuple|int|bool|float|datetime|list) -> dict
+
         """find and get a list of items item with conditional ex: find("Username={0}","admin"),
                     find("Username='admin'"),
                     find("Username=@username",username="admin")
@@ -756,13 +747,8 @@ class COLL():
             ret = self.get_collection().find(y)
             return ret
     def find(self,exprression,*args,**kwargs):
-        # type: (str,dict) -> dict
-        # type: (str,tuple) -> dict
-        # type: (str,int) -> dict
-        # type: (str,bool) -> dict
-        # type: (str,float) -> dict
-        # type: (str,datetime) -> dict
-        # type: (str,list) -> dict
+        # type: (str,dict|tuple|int|bool|float|datetime|list) -> dict
+
         """find and get a list of items item with conditional ex: find("Username={0}","admin"),
                     find("Username='admin'"),
                     find("Username=@username",username="admin")
@@ -814,8 +800,8 @@ class COLL():
 
         return ret_object
     def where(self,exprression,*params):
-        # type: (str,dict) -> COLL
-        # type: (str,tuple) -> COLL
+        # type: (str,dict|tuple) -> COLL
+
         """Create filter expression before get data from mongo
             Ex:where("strLenCP(Username)<3").get_list(),
                where("strLenCP(Username)<@strong_number",strong_number=5).get_list()
@@ -840,8 +826,8 @@ class COLL():
             raise (Exception("parameter must be '{0}".format('qmonog.dynamic_object.dynamic_object')))
         return self.insert(obj_item._dict_)
     def insert(self,*args,**kwargs):
-        # type: (dict) -> dict
-        # type: (tuple) -> dict
+        # type: (dict|tuple) -> dict
+
         """
         insert item into database
         :param args:
@@ -854,8 +840,8 @@ class COLL():
         return ret
     def insert_one(self,*args,**kwargs):
         import dynamic_object
-        # type: (dict) -> dict
-        # type: (tuple) -> dict
+        # type: (dict|tuple) -> dict
+
         """
         insert item into database
         :param args:
@@ -877,13 +863,8 @@ class COLL():
             raise (Exception("parameter must be '{0}".format('qmonog.dynamic_object.dynamic_object')))
         return self.update(obj_item._dict_,filter,*args,**kwargs)
     def update(self,data,filter,*args,**kwargs):
-        # type: (dict,str,int) -> dict
-        # type: (dict,str,bool) -> dict
-        # type: (dict,str,datetime) -> dict
-        # type: (dict,str,float) -> dict
-        # type: (dict,str,dict) -> dict
-        # type: (dict,str,tuple) -> dict
-        # type: (dict,str,list) -> dict
+        # type: (dict,str,int|bool|datetime|float|dict|tuple|list) -> dict
+
 
         """
         Update data example: update({"password":"123"},"username=={0}","admin")
@@ -915,13 +896,8 @@ class COLL():
         return self.push(obj_item._dict_, filter, *args, **kwargs)
     def push(self,data,filter,*args,**kwargs):
 
-        # type: (dict,str,int) -> dict
-        # type: (dict,str,bool) -> dict
-        # type: (dict,str,datetime) -> dict
-        # type: (dict,str,float) -> dict
-        # type: (dict,str,dict) -> dict
-        # type: (dict,str,tuple) -> dict
-        # type: (dict,str,list) -> dict
+        # type: (dict,str,int|bool|datetime|float|dict|tuple|list) -> dict
+
 
         """
         Update data example: update({"password":"123"},"username=={0}","admin")
@@ -952,13 +928,8 @@ class COLL():
             raise (Exception("parameter must be '{0}".format('qmonog.dynamic_object.dynamic_object')))
         return self.pull(obj_item._dict_, filter, *args, **kwargs)
     def pull(self,data,filter,*args,**kwargs):
-        # type: (dict,str,int) -> dict
-        # type: (dict,str,bool) -> dict
-        # type: (dict,str,datetime) -> dict
-        # type: (dict,str,float) -> dict
-        # type: (dict,str,dict) -> dict
-        # type: (dict,str,tuple) -> dict
-        # type: (dict,str,list) -> dict
+        # type: (dict,str,int|bool|datetime|float|dict|tuple|list) -> dict
+
 
         """
         Update data example: update({"password":"123"},"username=={0}","admin")
@@ -1011,15 +982,8 @@ class COLL():
 
         return self
     def delete(self,filter,*args,**kwargs):
-        # type: (str,int) -> dict
-        # type: (str,bool) -> dict
-        # type: (str,float) -> dict
-        # type: (str,datetime) -> dict
-        # type: (str,str) -> dict
-        # type: (str,unicode) -> dict
-        # type: (str,dict) -> dict
-        # type: (str,tuple) -> dict
-        # type: (str) -> dict
+        # type: (str,int|float|datetime|str|unicode|dict|tuple|str) -> dict
+
         """
         Delete data according to filter expression. Example detele("IsInactive=={0},True)
         :param filter:
@@ -1120,8 +1084,8 @@ class AGGREGATE():
         return ret.__len__()>0
 
     def project(self,*args,**kwargs):
-        # type: (dict) -> AGGREGATE
-        # type: (tuple) -> AGGREGATE
+        # type: (dict|tuple) -> AGGREGATE
+
         """
         Create project pipeline (refer to :https://docs.mongodb.com/manual/reference/operator/aggregation/project/)
         Ex:
@@ -1198,10 +1162,8 @@ class AGGREGATE():
         })
         return self
     def group(self,_id,selectors,*args,**kwargs):
-        # type: (dict,dict) -> AGGREGATE
-        # type: (dict,tuple) -> AGGREGATE
-        # type: (tuple,dict) -> AGGREGATE
-        # type: (tuple,tuple) -> AGGREGATE
+        # type: (dict,dict|tuple|dict) -> AGGREGATE
+
         """
         Create a group pipeline for mongodb aggregate (refer to: https://docs.mongodb.com/manual/reference/operator/aggregation/group/)
         Example: group(_id=dict(
@@ -1308,15 +1270,8 @@ class AGGREGATE():
         })
         return self
     def match(self,expression, *args,**kwargs):
-        # type: (str,int) -> AGGREGATE
-        # type: (str,bool) -> AGGREGATE
-        # type: (str,datetime) -> AGGREGATE
-        # type: (str,str) -> AGGREGATE
-        # type: (str,unicode) -> AGGREGATE
-        # type: (str,float) -> AGGREGATE
-        # type: (str,dict) -> AGGREGATE
-        # type: (str,tuple) -> AGGREGATE
-        # type: (str,list) -> AGGREGATE
+        # type: (str,int|bool|datetime|str|unicode|float|dict|tuple|list) -> AGGREGATE
+
 
         """
         Mathc aggregate Example:
@@ -1371,8 +1326,8 @@ class AGGREGATE():
                foreign_field=None,
                alias=None,
                *args,**kwargs):
-        # type: (str,str,str,str) -> AGGREGATE
-        # type: (COLL,str,str,str) -> AGGREGATE
+        # type: (str|COLL,str,str,str) -> AGGREGATE
+
         """
         Create lookup aggregate
         :param source: where this collection will lookup for mongodb that is 'from'

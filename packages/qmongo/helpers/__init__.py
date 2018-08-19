@@ -178,11 +178,11 @@ def define_model(_name,keys=None,*args,**kwargs):
         return _model_caching_[name]
     _obj_model = __obj_model__(name)
     setattr(models, name, _obj_model)
-    params=kwargs
+    _params=kwargs
 
     if type(args) is tuple and args.__len__()>0:
-        params=args[0]
-    params = convert_tuple_declare_into_fields(params)
+        _params=args[0]
+    params = convert_tuple_declare_into_fields(_params)
     _model_caching_params.update({
         name:params
     })
@@ -335,3 +335,10 @@ def events(name):
             name:model_event()
         })
         return _model_events[name]
+def extends_dict(data,*args,**kwargs):
+    ret= data.copy()
+    x=kwargs
+    if type(args) is tuple and args.__len__()>0:
+       x =  args[0]
+    ret.update(x)
+    return ret

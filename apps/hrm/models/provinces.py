@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from quicky import applications
 from qmongo import helpers, database
-from . import base
+from . commons import base
 from .. import  settings
 model_name="provinces"
 helpers.extent_model(

@@ -19,6 +19,7 @@ from . import qview
 from . import db_context
 define = helpers.define_model
 extends = helpers.extent_model
+extends_dict=helpers.extends_dict
 view=qview.create_mongodb_view
 view_from_pipe=qview.create_mongod_view_from_pipeline
 models = fx_model.models

@@ -1,6 +1,7 @@
 _cach_view={}
-from database import AGGREGATE
-import helpers
+from . database import AGGREGATE
+from . import helpers
+from . import fx_model
 def create_mongodb_view(aggregate,name):
     if not isinstance(aggregate,AGGREGATE):
         raise (Exception("It looks like you create view from object is not '{0}'".format("qmomgo.database.AGGREGATE")))
@@ -30,10 +31,12 @@ def create_mongodb_view(aggregate,name):
             [],
             view_model_fields
         )
+    fx= fx_model.__obj_model__(name,"views")
+    for x in aggregate.get_selected_fields():
+        fx.__create_field__(x)
     ret=aggregate.qr.collection(name)
     return ret
 def create_mongod_view_from_pipeline(db,pipe_line,from_collection,schema,view_name):
-
     global _cach_view
     import json
     view_name = "{0}.views.{1}".format(schema, view_name)
