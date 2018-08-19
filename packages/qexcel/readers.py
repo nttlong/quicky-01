@@ -119,7 +119,7 @@ def load_from_workbook(wb):
     ret.names = []
     for x in wb.defined_names.definedName:
         from openpyxl.utils import coordinate_from_string, column_index_from_string
-        if hasattr(x, "name"):
+        if hasattr(x, "name") and x.value!='data!#REF!':
             item = excel_name_range()
             item.address = x.value
             item.name = x.name
