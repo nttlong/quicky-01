@@ -152,7 +152,8 @@ class config(object):
                     val = ret.get(col.depth_fields[col.depth_count-1],None)
                     if val != None and hasattr(val,"_ObjectId__id"):
                         val = val.__str__()
-                ret_list.append(val)
+                    if not type(val) is dict:
+                        ret_list.append(val)
         return ret_list
     def unwind_data(self,items):
         for x in items:

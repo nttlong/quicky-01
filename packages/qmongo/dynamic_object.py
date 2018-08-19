@@ -9,7 +9,7 @@ def create_from_dict(dict_data):
     if dict_data == None:
         return None
     for k, v in dict_data.items():
-        if type(v) is dict:
+        if type(v) is dict :
             setattr(ret, k, create_from_dict(v))
         elif type(v) is list:
             setattr(ret, k, [create_from_dict(_v) for _v in v])

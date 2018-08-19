@@ -62,7 +62,10 @@ class __obj_model__(object):
                 if v.__type__ =="list":
                     setattr(ret,k,[])
                 elif v.__type__ =="object":
-                    setattr(ret,k,self.mk_obj(v))
+                    if type(v) is __obj_fields__:
+                        setattr(ret,k,None)
+                    else:
+                        setattr(ret, k, self.mk_obj(v))
                 else:
                     setattr(ret, k, None)
             else:
