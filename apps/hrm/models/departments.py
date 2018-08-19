@@ -4,8 +4,10 @@ from qmongo import helpers, database
 from . import base
 from . import base_org
 from .. import settings
+from qmongo import define
+from qmongo import extends
 model_name="departments"
-helpers.extent_model(
+extends(
         model_name,
         "base_org",
         [],
@@ -18,6 +20,12 @@ helpers.extent_model(
                      address="text"
                      )
                  ),
+        map_location=("object",
+                      False,
+                      dict(
+                          latitude="number",
+                          longitude = "number"
+                      )),
         test  =("text",True)
 
     )

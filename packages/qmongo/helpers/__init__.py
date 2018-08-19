@@ -37,6 +37,36 @@ class data_field():
         self.is_require=is_require
         self.data_type=data_type
         self.details=detail
+def convert_tuple_declare_into_fields(data):
+    _data = {}
+    for k,v in data.items():
+        if type(v) in [str,unicode]:
+            _data.update({
+                k: data_field(v)
+            })
+        elif type(v) is tuple:
+            data_type = v[0]
+            is_require = False
+            detail= None
+            if v.__len__()>1:
+                is_require = v[1] != False
+            if v.__len__() >2:
+                detail= convert_tuple_declare_into_fields(v[2])
+                _data.update({
+                    k:data_field(data_type,is_require,detail)
+                    })
+            else:
+                _data.update({
+                    k: data_field(data_type, is_require, None)
+                })
+
+
+        else:
+            _data.update({
+                k: v
+            })
+
+    return _data
 def create_obj_fields(data):
     if data == None:
         return None
@@ -73,23 +103,6 @@ def unwind_data(data,prefix=None):
     :return:dict
     """
     ret={}
-    _data = data
-    for k,v in _data.items():
-        if type(v) in [str,unicode]:
-            data.update({
-                k: data_field(v)
-            })
-        if type(v) is tuple:
-            data_type = v[0]
-            is_require = False
-            detail= None
-            if v.__len__()>1:
-                is_require = v[1] != False
-            if v.__len__() >2:
-                detail= v[2]
-            data.update({
-                k:data_field(data_type,is_require,detail)
-            })
     for key in data.keys():
         if type(data[key]) is dict:
             if prefix!=None:
@@ -99,7 +112,7 @@ def unwind_data(data,prefix=None):
             ret_keys=unwind_data(data[key],_prefix)
             ret.update(ret_keys)
         elif isinstance(data[key],data_field):
-            if data[key].data_type == "list":
+            if data[key].data_type in ["list","object"]:
                 if prefix!=None:
                     ret.update({
                         prefix + "." + key: {
@@ -146,10 +159,6 @@ def unwind_data(data,prefix=None):
                             }
                         }
                     )
-
-
-
-
     return ret
 def define_model(_name,keys=None,*args,**kwargs):
     # type: (str,list,tuple)->query_validator.validator
@@ -170,11 +179,14 @@ def define_model(_name,keys=None,*args,**kwargs):
     _obj_model = __obj_model__(name)
     setattr(models, name, _obj_model)
     params=kwargs
+
     if type(args) is tuple and args.__len__()>0:
         params=args[0]
+    params = convert_tuple_declare_into_fields(params)
     _model_caching_params.update({
         name:params
     })
+
     list_of_fields=unwind_data(params)
     validators.set_require_fields(name,[
         x for x in list(list_of_fields.keys()) if list_of_fields[x]["require"]
