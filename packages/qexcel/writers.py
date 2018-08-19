@@ -147,13 +147,18 @@ class config(object):
                     if ret == None:
                         ret = {}
                 if type(ret) is list:
-                    val = "array"
+                    val = "[..]"
+                    ret_list.append(val)
                 else:
                     val = ret.get(col.depth_fields[col.depth_count-1],None)
                     if val != None and hasattr(val,"_ObjectId__id"):
                         val = val.__str__()
                     if not type(val) is dict:
-                        ret_list.append(val)
+                        if type(val) is list:
+                            val ="[..]"
+                            ret_list.append(val)
+                        else:
+                            ret_list.append(val)
         return ret_list
     def unwind_data(self,items):
         for x in items:
