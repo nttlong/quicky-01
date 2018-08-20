@@ -664,15 +664,15 @@ class COLL():
                 if keys.__len__() > 0:
 
                     try:
-                        # ret_coll.create_index(keys,
-                        #                   unique=True,
-                        #                   partialFilterExpression=partialFilterExpression)
-                        # has_create_index=True
                         ret_coll.create_index(keys,
-                                              unique=True)
-                        _cache_create_key_for_collection.update({
-                            self.get_collection_name():True
-                        })
+                                          unique=True,
+                                          partialFilterExpression=partialFilterExpression)
+                        has_create_index=True
+                        # ret_coll.create_index(keys,
+                        #                       unique=True)
+                        # _cache_create_key_for_collection.update({
+                        #     self.get_collection_name():True
+                        # })
                     except Exception as ex:
                         if ex.code==85:
                             _cache_create_key_for_collection.update({

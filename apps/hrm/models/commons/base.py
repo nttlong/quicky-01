@@ -3,6 +3,7 @@ from qmongo import helpers,database
 from qmongo import define,extends
 import datetime
 import threading
+model_name = "base_category"
 def on_before_insert(data):
     user = "application"
     if hasattr(threading.current_thread(),"user"):
@@ -30,11 +31,12 @@ def on_before_update(data):
 
 base_model_info =dict(
     code = ("text",True),
-    name=("object",dict(
-        native=("text",False),
-        foreign =("text",False),
-        default =("text",True)
-    )),
+    name=("object",False,
+          dict(native=("text",False),
+               foreign =("text",False),
+               default =("text",True)
+               )
+          ),
     description="text",
     created_on=("date", True),
     created_on_utc=("date", True),
@@ -46,7 +48,7 @@ base_model_info =dict(
     ordinal = ("number",False)
 )
 define(
-    "base_category",
+    model_name,
     [["code"]],
     base_model_info
 )
