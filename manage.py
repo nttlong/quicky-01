@@ -55,6 +55,9 @@ def start_app(file_name):
                     from qexcel import language
 
                     language.set_config(config_from_file[key])
+                elif key == "DB_TRACKING":
+                    import qtracking
+                    qtracking.set_config(config_from_file[key])
                 elif key == "APPS":
                     pass
                 else:

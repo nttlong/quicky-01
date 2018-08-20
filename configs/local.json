@@ -129,6 +129,14 @@
     "name":"hrm",
     "collection":"sys.excel_config"
   },
+  "DB_TRACKING":{
+    "host":"localhost",
+    "port":27017,
+    "user":"root",
+    "password":"123456",
+    "name":"hrm",
+    "collection":"sys.tracking"
+  },
   "APPS":[
     {"host":"sys",
      "name":"sys-admin",

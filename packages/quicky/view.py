@@ -37,6 +37,9 @@ def template(fn,*_path,**kwargs):
     from . import get_django_settings_module
     is_multi_tenancy = get_django_settings_module().__dict__.get("USE_MULTI_TENANCY", False)
     def exec_request(request, **kwargs):
+
+
+
         from . import applications as apps
 
         from . import language
@@ -175,7 +178,15 @@ def template(fn,*_path,**kwargs):
             from django.conf import settings as st
             lang = request.session.get('language', st.LANGUAGE_CODE)
             language.set_language(lang)
-            return fn(request, **kwargs)
+            import qtracking
+            if request.get_view_path()!="api":
+                qtracking.track_load_page(app.name,tenancy.get_schema(),request.get_view_path(),request.user.username)
+                return fn(request, **kwargs)
+            else:
+                ret_id=qtracking.track_call_api_before(app.name,tenancy.get_schema(), request.body, request.user.username)
+                ret_data = fn(request, **kwargs)
+                qtracking.track_call_api_after(app.name,tenancy.get_schema(),ret_id,ret_data.content,request.user.username)
+                return ret_data
         except Exception as ex:
             logger.debug(ex)
             raise (ex)

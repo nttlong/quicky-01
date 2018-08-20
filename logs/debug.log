@@ -95,3 +95,176 @@ django_session.find (0.00) {'_id': '9ldl0rdydy48pnvstykr2z0rh9tm6xmg', 'expire_d
 django_session.find (0.00) {'_id': '9ldl0rdydy48pnvstykr2z0rh9tm6xmg', 'expire_date': {'$gt': datetime.datetime(2018, 8, 18, 3, 18, 37, 416000, tzinfo=<UTC>)}, 'schema': u'hrm'}
 django_session.find (0.01) {'_id': '9ldl0rdydy48pnvstykr2z0rh9tm6xmg', 'expire_date': {'$gt': datetime.datetime(2018, 8, 18, 3, 18, 37, 517000, tzinfo=<UTC>)}, 'schema': u'hrm'}
 django_session.find (0.00) {'_id': '9ldl0rdydy48pnvstykr2z0rh9tm6xmg', 'expire_date': {'$gt': datetime.datetime(2018, 8, 18, 3, 18, 37, 683000, tzinfo=<UTC>)}, 'schema': u'hrm'}
+django_session.find (0.00) {'_id': 'wzx6vl8s3uljl6q2127wekcb257u8met', 'expire_date': {'$gt': datetime.datetime(2018, 8, 20, 8, 20, 6, 836225, tzinfo=<UTC>)}, 'schema': u'hrm'}
+Internal Server Error: /
+Traceback (most recent call last):
+  File "/home/hcsadmin/q03/packages/django/django/core/handlers/base.py", line 122, in get_response
+    raise e
+AttributeError: 'WSGIRequest' object has no attribute '_request_path'
+Not Found: /favicon.ico
+django_session.find (0.00) {'_id': 'wzx6vl8s3uljl6q2127wekcb257u8met', 'expire_date': {'$gt': datetime.datetime(2018, 8, 20, 8, 20, 42, 311937, tzinfo=<UTC>)}, 'schema': u'hrm'}
+Internal Server Error: /
+Traceback (most recent call last):
+  File "/home/hcsadmin/q03/packages/django/django/core/handlers/base.py", line 122, in get_response
+    raise e
+AttributeError: 'WSGIRequest' object has no attribute '_request_path'
+django_session.find (0.00) {'_id': 'wzx6vl8s3uljl6q2127wekcb257u8met', 'expire_date': {'$gt': datetime.datetime(2018, 8, 20, 8, 21, 46, 259489, tzinfo=<UTC>)}, 'schema': u'hrm'}
+Internal Server Error: /
+Traceback (most recent call last):
+  File "/home/hcsadmin/q03/packages/django/django/core/handlers/base.py", line 122, in get_response
+    raise e
+AttributeError: 'WSGIRequest' object has no attribute '_request_path'
+django_session.find (0.00) {'_id': 'wzx6vl8s3uljl6q2127wekcb257u8met', 'expire_date': {'$gt': datetime.datetime(2018, 8, 20, 8, 23, 27, 701032, tzinfo=<UTC>)}, 'schema': u'hrm'}
+django_session.find (0.00) {'_id': 'wzx6vl8s3uljl6q2127wekcb257u8met', 'expire_date': {'$gt': datetime.datetime(2018, 8, 20, 8, 23, 32, 502542, tzinfo=<UTC>)}, 'schema': u'hrm'}
+django_session.find (0.00) {'_id': 'wzx6vl8s3uljl6q2127wekcb257u8met', 'expire_date': {'$gt': datetime.datetime(2018, 8, 20, 8, 24, 30, 293454, tzinfo=<UTC>)}, 'schema': u'hrm'}
+django_session.find (0.00) {'_id': 'wzx6vl8s3uljl6q2127wekcb257u8met', 'expire_date': {'$gt': datetime.datetime(2018, 8, 20, 8, 24, 40, 169543, tzinfo=<UTC>)}, 'schema': u'hrm'}
+django_session.find (0.00) {'_id': 'wzx6vl8s3uljl6q2127wekcb257u8met', 'expire_date': {'$gt': datetime.datetime(2018, 8, 20, 8, 27, 4, 424922, tzinfo=<UTC>)}, 'schema': u'hrm'}
+django_session.find (0.00) {'_id': 'wzx6vl8s3uljl6q2127wekcb257u8met', 'expire_date': {'$gt': datetime.datetime(2018, 8, 20, 8, 27, 5, 27052, tzinfo=<UTC>)}, 'schema': u'hrm'}
+django_session.find (0.00) {'_id': 'wzx6vl8s3uljl6q2127wekcb257u8met', 'expire_date': {'$gt': datetime.datetime(2018, 8, 20, 8, 27, 5, 167703, tzinfo=<UTC>)}, 'schema': u'hrm'}
+django_session.find (0.00) {'_id': 'wzx6vl8s3uljl6q2127wekcb257u8met', 'expire_date': {'$gt': datetime.datetime(2018, 8, 20, 8, 27, 15, 595022, tzinfo=<UTC>)}, 'schema': u'hrm'}
+django_session.find (0.00) {'_id': 'wzx6vl8s3uljl6q2127wekcb257u8met', 'expire_date': {'$gt': datetime.datetime(2018, 8, 20, 8, 27, 15, 752242, tzinfo=<UTC>)}, 'schema': u'hrm'}
+django_session.find (0.00) {'_id': 'wzx6vl8s3uljl6q2127wekcb257u8met', 'expire_date': {'$gt': datetime.datetime(2018, 8, 20, 8, 28, 12, 221290, tzinfo=<UTC>)}, 'schema': u'hrm'}
+django_session.find (0.00) {'_id': 'wzx6vl8s3uljl6q2127wekcb257u8met', 'expire_date': {'$gt': datetime.datetime(2018, 8, 20, 8, 28, 12, 508816, tzinfo=<UTC>)}, 'schema': u'hrm'}
+django_session.find (0.00) {'_id': 'wzx6vl8s3uljl6q2127wekcb257u8met', 'expire_date': {'$gt': datetime.datetime(2018, 8, 20, 8, 29, 14, 177429, tzinfo=<UTC>)}, 'schema': u'hrm'}
+django_session.find (0.01) {'_id': 'wzx6vl8s3uljl6q2127wekcb257u8met', 'expire_date': {'$gt': datetime.datetime(2018, 8, 20, 8, 29, 14, 330371, tzinfo=<UTC>)}, 'schema': u'hrm'}
+django_session.find (0.00) {'_id': 'wzx6vl8s3uljl6q2127wekcb257u8met', 'expire_date': {'$gt': datetime.datetime(2018, 8, 20, 8, 32, 27, 739820, tzinfo=<UTC>)}, 'schema': u'hrm'}
+django_session.find (0.00) {'_id': 'wzx6vl8s3uljl6q2127wekcb257u8met', 'expire_date': {'$gt': datetime.datetime(2018, 8, 20, 8, 32, 31, 123214, tzinfo=<UTC>)}, 'schema': u'hrm'}
+django_session.find (0.00) {'_id': 'wzx6vl8s3uljl6q2127wekcb257u8met', 'expire_date': {'$gt': datetime.datetime(2018, 8, 20, 8, 32, 33, 377747, tzinfo=<UTC>)}, 'schema': u'hrm'}
+django_session.find (0.00) {'_id': 'wzx6vl8s3uljl6q2127wekcb257u8met', 'expire_date': {'$gt': datetime.datetime(2018, 8, 20, 8, 34, 40, 113102, tzinfo=<UTC>)}, 'schema': u'hrm'}
+django_session.find (0.00) {'_id': 'wzx6vl8s3uljl6q2127wekcb257u8met', 'expire_date': {'$gt': datetime.datetime(2018, 8, 20, 8, 35, 38, 741258, tzinfo=<UTC>)}, 'schema': u'hrm'}
+django_session.find (0.00) {'_id': 'wzx6vl8s3uljl6q2127wekcb257u8met', 'expire_date': {'$gt': datetime.datetime(2018, 8, 20, 8, 35, 51, 672898, tzinfo=<UTC>)}, 'schema': u'hrm'}
+django_session.find (0.00) {'_id': 'wzx6vl8s3uljl6q2127wekcb257u8met', 'expire_date': {'$gt': datetime.datetime(2018, 8, 20, 8, 36, 1, 671815, tzinfo=<UTC>)}, 'schema': u'hrm'}
+django_session.find (0.00) {'_id': 'wzx6vl8s3uljl6q2127wekcb257u8met', 'expire_date': {'$gt': datetime.datetime(2018, 8, 20, 8, 36, 9, 929397, tzinfo=<UTC>)}, 'schema': u'hrm'}
+django_session.find (0.00) {'_id': 'wzx6vl8s3uljl6q2127wekcb257u8met', 'expire_date': {'$gt': datetime.datetime(2018, 8, 20, 8, 40, 0, 322989, tzinfo=<UTC>)}, 'schema': u'hrm'}
+Internal Server Error: /pages/list/districts
+Traceback (most recent call last):
+  File "/home/hcsadmin/q03/packages/django/django/core/handlers/base.py", line 122, in get_response
+    raise e
+TypeError: track_load_page() takes exactly 4 arguments (3 given)
+Internal Server Error: /
+Traceback (most recent call last):
+  File "/home/hcsadmin/q03/packages/django/django/core/handlers/base.py", line 122, in get_response
+    raise e
+UnboundLocalError: local variable 'tenancy' referenced before assignment
+Internal Server Error: /
+Traceback (most recent call last):
+  File "/home/hcsadmin/q03/packages/django/django/core/handlers/base.py", line 122, in get_response
+    raise e
+UnboundLocalError: local variable 'tenancy' referenced before assignment
+Internal Server Error: /
+Traceback (most recent call last):
+  File "/home/hcsadmin/q03/packages/django/django/core/handlers/base.py", line 122, in get_response
+    raise e
+UnboundLocalError: local variable 'tenancy' referenced before assignment
+Internal Server Error: /
+Traceback (most recent call last):
+  File "/home/hcsadmin/q03/packages/django/django/core/handlers/base.py", line 122, in get_response
+    raise e
+UnboundLocalError: local variable 'tenancy' referenced before assignment
+django_session.find (0.00) {'_id': 'wzx6vl8s3uljl6q2127wekcb257u8met', 'expire_date': {'$gt': datetime.datetime(2018, 8, 20, 8, 42, 49, 189811, tzinfo=<UTC>)}, 'schema': u'hrm'}
+django_session.find (0.00) {'_id': 'wzx6vl8s3uljl6q2127wekcb257u8met', 'expire_date': {'$gt': datetime.datetime(2018, 8, 20, 8, 42, 55, 497082, tzinfo=<UTC>)}, 'schema': u'hrm'}
+django_session.find (0.00) {'_id': 'wzx6vl8s3uljl6q2127wekcb257u8met', 'expire_date': {'$gt': datetime.datetime(2018, 8, 20, 8, 42, 59, 954710, tzinfo=<UTC>)}, 'schema': u'hrm'}
+Internal Server Error: /api
+Traceback (most recent call last):
+  File "/home/hcsadmin/q03/packages/django/django/core/handlers/base.py", line 122, in get_response
+    raise e
+TypeError: track_call_api_before() takes exactly 3 arguments (4 given)
+django_session.find (0.00) {'_id': 'wzx6vl8s3uljl6q2127wekcb257u8met', 'expire_date': {'$gt': datetime.datetime(2018, 8, 20, 8, 43, 24, 177686, tzinfo=<UTC>)}, 'schema': u'hrm'}
+django_session.find (0.00) {'_id': 'wzx6vl8s3uljl6q2127wekcb257u8met', 'expire_date': {'$gt': datetime.datetime(2018, 8, 20, 8, 43, 28, 218023, tzinfo=<UTC>)}, 'schema': u'hrm'}
+django_session.find (0.00) {'_id': 'wzx6vl8s3uljl6q2127wekcb257u8met', 'expire_date': {'$gt': datetime.datetime(2018, 8, 20, 8, 43, 32, 214641, tzinfo=<UTC>)}, 'schema': u'hrm'}
+django_session.find (0.00) {'_id': 'wzx6vl8s3uljl6q2127wekcb257u8met', 'expire_date': {'$gt': datetime.datetime(2018, 8, 20, 8, 43, 36, 481140, tzinfo=<UTC>)}, 'schema': u'hrm'}
+django_session.find (0.01) {'_id': 'wzx6vl8s3uljl6q2127wekcb257u8met', 'expire_date': {'$gt': datetime.datetime(2018, 8, 20, 8, 43, 36, 486543, tzinfo=<UTC>)}, 'schema': u'hrm'}
+Internal Server Error: /api
+Traceback (most recent call last):
+  File "/home/hcsadmin/q03/packages/django/django/core/handlers/base.py", line 122, in get_response
+    raise e
+ImportError: cannot import name _api
+Internal Server Error: /api
+Traceback (most recent call last):
+  File "/home/hcsadmin/q03/packages/django/django/core/handlers/base.py", line 122, in get_response
+    raise e
+ImportError: cannot import name _api
+django_session.find (0.00) {'_id': 'wzx6vl8s3uljl6q2127wekcb257u8met', 'expire_date': {'$gt': datetime.datetime(2018, 8, 20, 8, 43, 52, 194796, tzinfo=<UTC>)}, 'schema': u'hrm'}
+django_session.find (0.00) {'_id': 'wzx6vl8s3uljl6q2127wekcb257u8met', 'expire_date': {'$gt': datetime.datetime(2018, 8, 20, 8, 43, 52, 301420, tzinfo=<UTC>)}, 'schema': u'hrm'}
+Internal Server Error: /api
+Traceback (most recent call last):
+  File "/home/hcsadmin/q03/packages/django/django/core/handlers/base.py", line 122, in get_response
+    raise e
+ImportError: cannot import name _api
+django_session.find (0.00) {'_id': 'wzx6vl8s3uljl6q2127wekcb257u8met', 'expire_date': {'$gt': datetime.datetime(2018, 8, 20, 8, 44, 16, 964306, tzinfo=<UTC>)}, 'schema': u'hrm'}
+django_session.find (0.00) {'_id': 'wzx6vl8s3uljl6q2127wekcb257u8met', 'expire_date': {'$gt': datetime.datetime(2018, 8, 20, 8, 44, 17, 496172, tzinfo=<UTC>)}, 'schema': u'hrm'}
+django_session.find (0.00) {'_id': 'wzx6vl8s3uljl6q2127wekcb257u8met', 'expire_date': {'$gt': datetime.datetime(2018, 8, 20, 8, 44, 17, 648041, tzinfo=<UTC>)}, 'schema': u'hrm'}
+Internal Server Error: /api
+Traceback (most recent call last):
+  File "/home/hcsadmin/q03/packages/django/django/core/handlers/base.py", line 122, in get_response
+    raise e
+TypeError: string indices must be integers, not str
+django_session.find (0.00) {'_id': 'wzx6vl8s3uljl6q2127wekcb257u8met', 'expire_date': {'$gt': datetime.datetime(2018, 8, 20, 8, 44, 46, 97679, tzinfo=<UTC>)}, 'schema': u'hrm'}
+django_session.find (0.00) {'_id': 'wzx6vl8s3uljl6q2127wekcb257u8met', 'expire_date': {'$gt': datetime.datetime(2018, 8, 20, 8, 44, 46, 429124, tzinfo=<UTC>)}, 'schema': u'hrm'}
+django_session.find (0.00) {'_id': 'wzx6vl8s3uljl6q2127wekcb257u8met', 'expire_date': {'$gt': datetime.datetime(2018, 8, 20, 8, 44, 46, 591886, tzinfo=<UTC>)}, 'schema': u'hrm'}
+Internal Server Error: /api
+Traceback (most recent call last):
+  File "/home/hcsadmin/q03/packages/django/django/core/handlers/base.py", line 122, in get_response
+    raise e
+TypeError: string indices must be integers, not str
+django_session.find (0.00) {'_id': 'wzx6vl8s3uljl6q2127wekcb257u8met', 'expire_date': {'$gt': datetime.datetime(2018, 8, 20, 8, 54, 7, 931349, tzinfo=<UTC>)}, 'schema': u'hrm'}
+django_session.find (0.00) {'_id': 'wzx6vl8s3uljl6q2127wekcb257u8met', 'expire_date': {'$gt': datetime.datetime(2018, 8, 20, 8, 54, 8, 180874, tzinfo=<UTC>)}, 'schema': u'hrm'}
+django_session.find (0.00) {'_id': 'wzx6vl8s3uljl6q2127wekcb257u8met', 'expire_date': {'$gt': datetime.datetime(2018, 8, 20, 8, 54, 30, 595609, tzinfo=<UTC>)}, 'schema': u'hrm'}
+django_session.find (0.00) {'_id': 'wzx6vl8s3uljl6q2127wekcb257u8met', 'expire_date': {'$gt': datetime.datetime(2018, 8, 20, 8, 54, 55, 100182, tzinfo=<UTC>)}, 'schema': u'hrm'}
+django_session.find (0.00) {'_id': 'wzx6vl8s3uljl6q2127wekcb257u8met', 'expire_date': {'$gt': datetime.datetime(2018, 8, 20, 8, 56, 27, 981911, tzinfo=<UTC>)}, 'schema': u'hrm'}
+hrm.auth_user.save (0.00) {'username': u'sys', 'first_name': u'', 'last_name': u'', '_id': ObjectId('5b73cb5685740f43b1a9dcdf'), 'is_active': True, 'email': u'sys@beatles.com', 'is_superuser': True, 'is_staff': True, 'last_login': datetime.datetime(2018, 8, 15, 10, 42, 13, 805000, tzinfo=<UTC>), 'password': u'pbkdf2_sha256$12000$BcInrzuaaz7N$85rWrCTUh0vFY2pow3DL88d8vG1qAfRPwj8cADyyOl8=', 'date_joined': datetime.datetime(2018, 8, 15, 6, 42, 30, 417000, tzinfo=<UTC>)}
+django_session.save (0.00) {'schema': u'hrm', '_id': u'tyiigzwr8crtvma83ubxlujfzmmvxb5a', 'expire_date': datetime.datetime(2018, 9, 3, 9, 2, 28, 283217, tzinfo=<UTC>), 'session_data': u'YTIwMDM1ZDE4Mzg1ZWU5ZTUxNjkzNTM0NWMyMDc3YjYwMjFiODVjYzp7Imxhbmd1YWdlIjoiZW4ifQ=='}
+Not Found: /favicon.ico
+django_session.find (0.00) {'_id': 'wzx6vl8s3uljl6q2127wekcb257u8met', 'expire_date': {'$gt': datetime.datetime(2018, 8, 20, 9, 2, 34, 364585, tzinfo=<UTC>)}, 'schema': u'hrm'}
+django_session.find (0.00) {'_id': 'wzx6vl8s3uljl6q2127wekcb257u8met', 'expire_date': {'$gt': datetime.datetime(2018, 8, 20, 9, 2, 34, 863235, tzinfo=<UTC>)}, 'schema': u'hrm'}
+django_session.find (0.00) {'_id': 'wzx6vl8s3uljl6q2127wekcb257u8met', 'expire_date': {'$gt': datetime.datetime(2018, 8, 20, 9, 2, 35, 56951, tzinfo=<UTC>)}, 'schema': u'hrm'}
+Internal Server Error: /api
+Traceback (most recent call last):
+  File "/home/hcsadmin/q03/packages/django/django/core/handlers/base.py", line 122, in get_response
+    raise e
+AttributeError: 'WSGIRequest' object has no attribute 'username'
+django_session.find (0.00) {'_id': 'wzx6vl8s3uljl6q2127wekcb257u8met', 'expire_date': {'$gt': datetime.datetime(2018, 8, 20, 9, 2, 56, 767062, tzinfo=<UTC>)}, 'schema': u'hrm'}
+django_session.find (0.00) {'_id': 'wzx6vl8s3uljl6q2127wekcb257u8met', 'expire_date': {'$gt': datetime.datetime(2018, 8, 20, 9, 3, 11, 444812, tzinfo=<UTC>)}, 'schema': u'hrm'}
+django_session.find (0.00) {'_id': 'wzx6vl8s3uljl6q2127wekcb257u8met', 'expire_date': {'$gt': datetime.datetime(2018, 8, 20, 9, 3, 14, 280832, tzinfo=<UTC>)}, 'schema': u'hrm'}
+Internal Server Error: /api
+Traceback (most recent call last):
+  File "/home/hcsadmin/q03/packages/django/django/core/handlers/base.py", line 122, in get_response
+    raise e
+AttributeError: 'WSGIRequest' object has no attribute 'username'
+django_session.find (0.00) {'_id': 'wzx6vl8s3uljl6q2127wekcb257u8met', 'expire_date': {'$gt': datetime.datetime(2018, 8, 20, 9, 3, 27, 393687, tzinfo=<UTC>)}, 'schema': u'hrm'}
+django_session.find (0.00) {'_id': 'wzx6vl8s3uljl6q2127wekcb257u8met', 'expire_date': {'$gt': datetime.datetime(2018, 8, 20, 9, 3, 28, 604806, tzinfo=<UTC>)}, 'schema': u'hrm'}
+django_session.find (0.00) {'_id': 'wzx6vl8s3uljl6q2127wekcb257u8met', 'expire_date': {'$gt': datetime.datetime(2018, 8, 20, 9, 3, 36, 254294, tzinfo=<UTC>)}, 'schema': u'hrm'}
+django_session.find (0.00) {'_id': 'wzx6vl8s3uljl6q2127wekcb257u8met', 'expire_date': {'$gt': datetime.datetime(2018, 8, 20, 9, 3, 36, 255510, tzinfo=<UTC>)}, 'schema': u'hrm'}
+Internal Server Error: /api
+Traceback (most recent call last):
+  File "/home/hcsadmin/q03/packages/django/django/core/handlers/base.py", line 122, in get_response
+    raise e
+AttributeError: 'WSGIRequest' object has no attribute 'username'
+Internal Server Error: /api
+Traceback (most recent call last):
+  File "/home/hcsadmin/q03/packages/django/django/core/handlers/base.py", line 122, in get_response
+    raise e
+AttributeError: 'WSGIRequest' object has no attribute 'username'
+django_session.find (0.00) {'_id': 'wzx6vl8s3uljl6q2127wekcb257u8met', 'expire_date': {'$gt': datetime.datetime(2018, 8, 20, 9, 4, 19, 387259, tzinfo=<UTC>)}, 'schema': u'hrm'}
+django_session.find (0.00) {'_id': 'wzx6vl8s3uljl6q2127wekcb257u8met', 'expire_date': {'$gt': datetime.datetime(2018, 8, 20, 9, 4, 19, 868015, tzinfo=<UTC>)}, 'schema': u'hrm'}
+django_session.find (0.00) {'_id': 'wzx6vl8s3uljl6q2127wekcb257u8met', 'expire_date': {'$gt': datetime.datetime(2018, 8, 20, 9, 4, 20, 3599, tzinfo=<UTC>)}, 'schema': u'hrm'}
+django_session.find (0.00) {'_id': 'wzx6vl8s3uljl6q2127wekcb257u8met', 'expire_date': {'$gt': datetime.datetime(2018, 8, 20, 9, 7, 22, 221278, tzinfo=<UTC>)}, 'schema': u'hrm'}
+django_session.find (0.00) {'_id': 'wzx6vl8s3uljl6q2127wekcb257u8met', 'expire_date': {'$gt': datetime.datetime(2018, 8, 20, 9, 7, 22, 708234, tzinfo=<UTC>)}, 'schema': u'hrm'}
+django_session.find (0.00) {'_id': 'wzx6vl8s3uljl6q2127wekcb257u8met', 'expire_date': {'$gt': datetime.datetime(2018, 8, 20, 9, 7, 22, 850795, tzinfo=<UTC>)}, 'schema': u'hrm'}
+django_session.find (0.00) {'_id': 'wzx6vl8s3uljl6q2127wekcb257u8met', 'expire_date': {'$gt': datetime.datetime(2018, 8, 20, 9, 7, 34, 888830, tzinfo=<UTC>)}, 'schema': u'hrm'}
+django_session.find (0.00) {'_id': 'wzx6vl8s3uljl6q2127wekcb257u8met', 'expire_date': {'$gt': datetime.datetime(2018, 8, 20, 9, 7, 35, 225889, tzinfo=<UTC>)}, 'schema': u'hrm'}
+django_session.find (0.00) {'_id': 'wzx6vl8s3uljl6q2127wekcb257u8met', 'expire_date': {'$gt': datetime.datetime(2018, 8, 20, 9, 7, 35, 372148, tzinfo=<UTC>)}, 'schema': u'hrm'}
+django_session.find (0.00) {'_id': 'wzx6vl8s3uljl6q2127wekcb257u8met', 'expire_date': {'$gt': datetime.datetime(2018, 8, 20, 9, 8, 33, 737893, tzinfo=<UTC>)}, 'schema': u'hrm'}
+django_session.find (0.00) {'_id': 'wzx6vl8s3uljl6q2127wekcb257u8met', 'expire_date': {'$gt': datetime.datetime(2018, 8, 20, 9, 8, 34, 292539, tzinfo=<UTC>)}, 'schema': u'hrm'}
+django_session.find (0.00) {'_id': 'wzx6vl8s3uljl6q2127wekcb257u8met', 'expire_date': {'$gt': datetime.datetime(2018, 8, 20, 9, 8, 34, 426086, tzinfo=<UTC>)}, 'schema': u'hrm'}
+django_session.find (0.00) {'_id': 'wzx6vl8s3uljl6q2127wekcb257u8met', 'expire_date': {'$gt': datetime.datetime(2018, 8, 20, 9, 8, 37, 29797, tzinfo=<UTC>)}, 'schema': u'hrm'}
+django_session.find (0.00) {'_id': 'wzx6vl8s3uljl6q2127wekcb257u8met', 'expire_date': {'$gt': datetime.datetime(2018, 8, 20, 9, 8, 52, 519020, tzinfo=<UTC>)}, 'schema': u'hrm'}
+django_session.find (0.00) {'_id': 'wzx6vl8s3uljl6q2127wekcb257u8met', 'expire_date': {'$gt': datetime.datetime(2018, 8, 20, 9, 8, 52, 840131, tzinfo=<UTC>)}, 'schema': u'hrm'}
+django_session.find (0.00) {'_id': 'wzx6vl8s3uljl6q2127wekcb257u8met', 'expire_date': {'$gt': datetime.datetime(2018, 8, 20, 9, 8, 52, 961225, tzinfo=<UTC>)}, 'schema': u'hrm'}
+django_session.find (0.00) {'_id': 'wzx6vl8s3uljl6q2127wekcb257u8met', 'expire_date': {'$gt': datetime.datetime(2018, 8, 20, 9, 9, 55, 819431, tzinfo=<UTC>)}, 'schema': u'hrm'}
+django_session.find (0.00) {'_id': 'wzx6vl8s3uljl6q2127wekcb257u8met', 'expire_date': {'$gt': datetime.datetime(2018, 8, 20, 9, 10, 11, 967803, tzinfo=<UTC>)}, 'schema': u'hrm'}
+django_session.find (0.01) {'_id': 'wzx6vl8s3uljl6q2127wekcb257u8met', 'expire_date': {'$gt': datetime.datetime(2018, 8, 20, 9, 11, 0, 436136, tzinfo=<UTC>)}, 'schema': u'hrm'}
+django_session.find (0.00) {'_id': 'wzx6vl8s3uljl6q2127wekcb257u8met', 'expire_date': {'$gt': datetime.datetime(2018, 8, 20, 9, 11, 46, 60257, tzinfo=<UTC>)}, 'schema': u'hrm'}
+django_session.find (0.00) {'_id': 'wzx6vl8s3uljl6q2127wekcb257u8met', 'expire_date': {'$gt': datetime.datetime(2018, 8, 20, 9, 12, 29, 889135, tzinfo=<UTC>)}, 'schema': u'hrm'}
+django_session.find (0.00) {'_id': 'wzx6vl8s3uljl6q2127wekcb257u8met', 'expire_date': {'$gt': datetime.datetime(2018, 8, 20, 9, 12, 58, 502910, tzinfo=<UTC>)}, 'schema': u'hrm'}
+django_session.find (0.00) {'_id': 'wzx6vl8s3uljl6q2127wekcb257u8met', 'expire_date': {'$gt': datetime.datetime(2018, 8, 20, 9, 13, 28, 189006, tzinfo=<UTC>)}, 'schema': u'hrm'}

@@ -1,4 +1,5 @@
 import openpyxl
+import trollius
 class excel_name_range(object):
     def __init__(self):
         self.name=None
@@ -56,7 +57,7 @@ class excel_config(object):
                 j=0
                 for x in range(0,name_item["n_count"]):
                     tmp = tmp[name_item["names"][x]]
-                print "name={0},idx={1}".format(name_item, name_item["idx"])
+
                 tmp[name_item["names"][name_item["n_count"]]] = rows[row_index][name_item["idx"]].value
             return data_item
 
@@ -69,6 +70,7 @@ class excel_config(object):
         for i in range(1,rows_count):
             yield extract_data(sorted_names,tmp_data,rows,i)
     def extract_data_as_list_of_object(self):
+        @trollius.coroutine
         def extract_data(sorted_names,tmp_data,rows,row_index):
             import copy
             data_item = copy.copy(tmp_data)
@@ -87,8 +89,13 @@ class excel_config(object):
         rows_count =rows.__len__()
         ret_data=[]
         tmp_data=self.get_oject_template()
-        for i in range(1,rows_count):
-            yield extract_data(sorted_names,tmp_data,rows,i)
+        loop = trollius.new_event_loop()
+
+        @trollius.coroutine
+        def get_result():
+            for i in range(1,rows_count):
+                yield extract_data(sorted_names,tmp_data,rows,i)
+        # loop.run_until_complete(get_result())
 def load_from_string_64(base64_content):
     import binascii
     import struct
