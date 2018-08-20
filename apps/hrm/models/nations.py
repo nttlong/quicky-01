@@ -6,8 +6,7 @@ extends(
     base.model_name,
     [
         ["code","provinces.code"],
-        ["code","provinces.code","provinces.districts.code"],
-        ["provinces._province_id"]
+        ["code","provinces.code","provinces.districts.code"]
     ],
     description = "text",
     provinces = ("list",
