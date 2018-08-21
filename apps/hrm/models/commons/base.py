@@ -18,11 +18,11 @@ def on_before_insert(data):
         data.update({
             'is_delete':False
         })
-    if data.hashkey('name'):
-        if data['name'].hashkey('default'):
-            if not data['name'].hashkey('foreign'):
+    if data.has_key('name'):
+        if data['name'].has_key('default'):
+            if not data['name'].has_key('foreign'):
                 data['name'].update({'foreign':data['name']['default']})
-            if not data['name'].hashkey('native'):
+            if not data['name'].has_key('native'):
                 data['name'].update({'native':data['name']['default']})
 
 
