@@ -23,7 +23,7 @@ def set_db_context(*args,**kwargs):
             schema = None
             if db_info[1].count(':')>0:
                 db_name = db_info[1].split(':')[0]
-                schema  = db_info[1].split(':')[0]
+                schema  = db_info[1].split(':')[1]
             cnn = connect(
                 host = host,
                 port = port,

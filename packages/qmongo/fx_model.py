@@ -172,6 +172,9 @@ class __obj_model__(object):
         return ret_obj
     def find(self,expression,*args,**kwargs):
         return self.query.find(expression,*args,**kwargs)
+    def replace_root(self,field):
+        self.aggregate.replace_root(field)
+        return self
     def unwind(self,field,preserve_null_and_empty_arrays=True):
         """exce mongodb unwind"""
         self.aggregate.unwind(field,preserve_null_and_empty_arrays)

@@ -1588,6 +1588,16 @@ class AGGREGATE():
         return ret
     def copy(self):
         return self.__copy__()
+    def replace_root(self,field):
+        self.check_fields(field)
+        fields = [x[field.__len__()+1:x.__len__()] for x in self.get_selected_fields() if x.__len__()>field.__len__() and x[0:field.__len__()+1] ==field+"."]
+        self._selected_fields = fields
+        self._pipe.append({
+            "$replaceRoot":{"newRoot":(lambda x : "$"+x if x[0] != "$" else x)(field)}
+        })
+        return self
+
+
 def connect(*args,**kwargs):
     """
     Create db instance <br/>
