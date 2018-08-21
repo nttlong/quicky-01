@@ -108,15 +108,21 @@ class __obj_model__(object):
     def objects(self,filter = None,*args,**kwargs):
         if filter == None:
             return self.query.get_objects()
-        return self.query.objects(filter,*args,**args)
+        ret = self.query.objects(filter,*args,**args)
+        self.reset
+        return ret
     def set_session(self,session):
         self.query.set_session(session)
+        return self
+    @property
+    def reset(self):
+        self.__aggregate__ = None
         return self
     @property
     def aggregate(self):
         if self.__aggregate__ == None:
             self.__aggregate__ =self.query.aggregate()
-        return self.query.aggregate()
+        return self.__aggregate__
     def project(self,*args,**kwargs):
         self.aggregate.project(*args,**kwargs)
         return self
@@ -135,7 +141,7 @@ class __obj_model__(object):
         ret_obj.is_error =False
         if ret.has_key("error"):
             ret_obj.is_error = True
-            ret_obj.error_message = "insert data errror '{0}'".format(ret_obj.error.code)
+            ret_obj.error_message = "insert data errror '{0}'".format(ret["error"]["code"])
         return ret_obj
     def insert_one(self,*args,**kwargs):
         ret = self.query.insert_one(*args,**kwargs)
@@ -153,7 +159,7 @@ class __obj_model__(object):
         ret_obj.is_error = False
         if ret.has_key("error"):
             ret_obj.is_error = True
-            ret_obj.error_message = "insert data errror '{0}'".format(ret_obj.error.code)
+            ret_obj.error_message = "insert data errror '{0}'".format(ret["error"]["code"])
         return ret_obj
     def delete(self,expression,*arg,**kwargs):
         ret = self.query.delete(expression,*arg,**kwargs)
@@ -162,13 +168,19 @@ class __obj_model__(object):
         ret_obj.is_error = False
         if ret.has_key("error"):
             ret_obj.is_error = True
-            ret_obj.error_message = "insert data errror '{0}'".format(ret_obj.error.code)
+            ret_obj.error_message = "insert data errror '{0}'".format(ret["error"]["code"])
         return ret_obj
     def find(self,expression,*args,**kwargs):
         return self.query.find(expression,*args,**kwargs)
+    def unwind(self,field,preserve_null_and_empty_arrays=True):
+        """exce mongodb unwind"""
+        self.aggregate.unwind(field,preserve_null_and_empty_arrays)
+        return self
     @property
     def object(self):
-        return self.aggregate.get_object()
+        ret = self.aggregate.get_object()
+        self.reset
+        return ret
     def sort(self, *args, **kwargs):
         self.aggregate.sort(*args, **kwargs)
         return self
@@ -178,38 +190,30 @@ class __obj_model__(object):
     def count(self,alais = None):
         if alais == None:
             alais = self.__name__+"_____count"
-        return self.aggregate.count(alais)
+        ret = self.aggregate.count(alais)
+        self.reset
+        return ret
     def skip(self,len):
         self.aggregate.skip(len)
         return self
     @property
     def cursors(self):
-        return self.aggregate.cursor_list()
+        ret = self.aggregate.cursor_list()
+        self.reset
+        return ret
     @property
     def item(self, *args, **kwargs):
-        return self.aggregate.get_item()
+        ret = self.aggregate.get_item()
+        self.reset
+        return ret
     @property
     def documents(self):
-        return  self.aggregate.get_all_documents()
+        ret = self.aggregate.get_all_documents()
+        self.reset
+        return ret
     @property
     def items(self):
-        return self.aggregate.get_list()
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+        ret = self.aggregate.get_list()
+        self.reset
+        return ret
 

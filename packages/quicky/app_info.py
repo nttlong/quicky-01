@@ -43,6 +43,7 @@ class app_config():
         if not dict_utils.has_key(config,"host"):
             raise (Exception("'host' was not found"))
         path=config["path"]
+        import imp
 
 
 
@@ -52,7 +53,7 @@ class app_config():
         self.package_path=get_dir(path,self.package_name)
         self.path=path
         sys.path.append(self.package_path)
-        self.mdl=importlib.import_module(self.package_name)
+        self.mdl= importlib.import_module(self.package_name)
         if hasattr(self.mdl,"settings"):
             self.settings=getattr(self.mdl,"settings")
         if(self.settings!=None):

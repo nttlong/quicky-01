@@ -191,8 +191,7 @@ class ENTITY():
             _data = get_dict_of_instance(data)
         else:
             _data = data
-        if self._action==None:
-            self._action="update_many"
+        self._action = "update_many"
         if not self._data.has_key("$push"):
             self._data.update({
                 "$push": _data
@@ -209,8 +208,8 @@ class ENTITY():
             _data = get_dict_of_instance(data)
         else:
             _data = data
-        if self._action==None:
-            self._action="update_many"
+        self._action = "update_many"
+
         if not self._data.has_key("$pull"):
             self._data.update({
                 "$pull": _data
@@ -227,8 +226,7 @@ class ENTITY():
             _data = get_dict_of_instance(data)
         else:
             _data = data
-        if self._action==None:
-            self._action="update_many"
+        self._action = "update_many"
         if not self._data.has_key("$inc"):
             self._data.update({
                 "$inc": _data
@@ -245,8 +243,7 @@ class ENTITY():
             _data = get_dict_of_instance(data)
         else:
             _data = data
-        if self._action == None:
-            self._action = "update_many"
+        self._action = "update_many"
         if not self._data.has_key("$dec"):
             self._data.update({
                 "$dec": _data
@@ -301,7 +298,7 @@ class ENTITY():
         if self._data.has_key("$set"):
             _id=self._data["$set"].get("_id",None)
             for key in self._data["$set"].keys():
-                if (key[0:1]=="$" or key == "_id"):
+                if (key[0:1]=="$" or key == "_id") and (key not in ["$push","$pull"]):
                     self._data["$set"].pop(key)
         else:
             for key in self._data.keys():
@@ -377,13 +374,22 @@ class ENTITY():
                 self._data = {}
                 return ret
             if self._action=="update_many":
+                _sub_action_validate_require = []
+                _chk_data =self._data
+                if _chk_data.has_key("$set"):
+                    _chk_data =self._data["$set"]
+                _sub_actions = [(k,v.keys()[0]) for k,v in _chk_data.items() if type(v) is dict and k in ["$push","$inc","$dec"]]
                 if model_events:
+                    _c_data = self._data.get("$set", {})
                     for fn in model_events._on_before_update:
-                        fn(self._data["$set"])
-                v_data=self._data.get("$set",self._data.get("$push",self._data.get("$pull",None)))
+                        fn(_c_data)
+                # v_data=self._data.get("$set",self._data.get("$push",self._data.get("$pull",None)))
                 ret_validate_require =[]
-                if v_data != None:
-                    ret_validate_require = validators.validate_require_data(self._coll._model.name, v_data, partial=True)
+                ret_validate_require = validators.validate_require_data(self._coll._model.name, _c_data, partial=True)
+                validate_from_fields =[]
+                for x, y in _sub_actions:
+                    vlds = validators.validate_require_data_from_field(self._coll._model.name, _c_data[x], y)
+                    ret_validate_require.extend(vlds)
                 if ret_validate_require.__len__() > 0:
                     return dict(
                         error=dict(
@@ -391,7 +397,7 @@ class ENTITY():
                             code="missing"
                         )
                     )
-                ret_validate_data_type = validators.validate_type_of_data(self._coll._model.name, v_data)
+                ret_validate_data_type = validators.validate_type_of_data(self._coll._model.name, _c_data)
                 if ret_validate_data_type.__len__() > 0:
                     return dict(
                         error=dict(
@@ -399,40 +405,23 @@ class ENTITY():
                             code="invalid_data"
                         )
                     )
-                updater={}
-                for key in self._data.keys():
-                    if key=="$pull":
-                        fx={}
-                        for x in self._data["$pull"].keys():
-                            if x.count(".")>0:
-                                items=x.split('.')
-                                index=0
-                                c=fx
-                                while index<items.__len__()-1:
-                                    c.update({
-                                        items[index]: {}
-                                    })
-                                    c = c[items[index]]
-                                    index+=1
-                                c.update({
-                                    items[items.__len__()-1]:self._data["$pull"][x]
-                                })
 
-                            else:
-                                fx.update({
-                                    x:self._data["$pull"]
-                                })
-                        updater.update({
-                            "$pull": fx
-                        })
 
+                _x = {}
+                for k, v in _c_data.items():
+                    if k[0] == "$":
+                        if _x.has_key(k):
+                            for a, b in v.items():
+                                _x[key].update({a: b})
+                        else:
+                            _x.update({k: v})
                     else:
-                        updater.update({
-                            key:self._data[key]
-                        })
+                        if not _x.has_key("$set"):
+                            _x.update({"$set": {}})
+                        _x["$set"].update({k: v})
                 try:
 
-                    ret = _coll.update_many(self._expr,updater,False,None,False,None,session)
+                    ret = _coll.update_many(self._expr,_x,False,None,False,None,session)
                     self._expr = None
                     self._action = None
                     self._data = {}

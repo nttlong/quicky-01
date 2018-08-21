@@ -13,14 +13,14 @@ extends(
                  False,
                  extends_dict(
                      base.base_model_info,
-                     _province_id = ("object"),
+                     _province_id = ("object",True),
                      districts =("list",
                                  False,
                                  extends_dict(
                                      base.base_model_info,
-                                     _district_id = ("object")
+                                     _district_id = ("object",True)
                                  )
-                                 )
+                                )
                  )
                  )
 )

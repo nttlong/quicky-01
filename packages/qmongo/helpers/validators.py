@@ -28,8 +28,30 @@ def get_value_by_path(path,data):
             elif type(val) is list:
                 return val
             else:
-                val=val.get(x,None)
+                try:
+                    val=val.get(x,None)
+                except Exception as ex:
+                    return None
         return val
+def validate_require_data_from_field(name,data,field):
+    _model_ = _model_cache_['require_fields'][name]
+    _ignore_ = [k for k,v in _model_cache_["type_fields"][name].items() if v == "list" and k.__len__() > field.__len__() and k[0:field.__len__()+1] == field +"." ]
+    fields =[]
+    for I in _ignore_:
+        for x in _model_:
+            if x.__len__() > field.__len__() and x[0:field.__len__() + 1] == field + ".":
+                if not (x.__len__() > I.__len__() and x[0:I.__len__() + 1] == I + "."):
+                    fields.append(x)
+    ret = []
+    for key in fields:
+
+        # if key.count(".") == 0:
+        val = get_value_by_path(key, data)
+        if val == None:
+            # if helpers._model_caching_[name].meta[key] == "list":
+
+            ret.append(key)
+    return ret
 def validate_require_data(name,data,partial=False):
     """
     This function will check where is missing data in "data" according to model in "name"
@@ -38,13 +60,17 @@ def validate_require_data(name,data,partial=False):
     :param partial:False will check full from model, True will check only fields in data
     :return: list of missing fields
     """
+    from .. import helpers
     if not partial:
         ret=[]
         for key in _model_cache_["require_fields"].get(name,[]):
-            if key.count(".") == 0:
-                val=get_value_by_path(key,data)
-                if val==None:
-                    ret.append(key)
+
+            # if key.count(".") == 0:
+            val=get_value_by_path(key,data)
+            if val==None:
+                # if helpers._model_caching_[name].meta[key] == "list":
+
+                ret.append(key)
         return ret
     else:
         if data=={}:

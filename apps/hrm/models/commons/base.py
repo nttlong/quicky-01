@@ -31,7 +31,7 @@ def on_before_update(data):
 
 base_model_info =dict(
     code = ("text",True),
-    name=("object",False,
+    name=("object",True,
           dict(native=("text",False),
                foreign =("text",False),
                default =("text",True)
