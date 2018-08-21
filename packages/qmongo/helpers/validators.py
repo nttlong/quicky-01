@@ -61,16 +61,25 @@ def validate_require_data(name,data,partial=False):
     :return: list of missing fields
     """
     from .. import helpers
+    inogre_objects =[k for k,v in helpers._origin_fields[name].items() if v.data_type in ["object","list"]   and not v.is_require]
     if not partial:
         ret=[]
         for key in _model_cache_["require_fields"].get(name,[]):
 
             # if key.count(".") == 0:
             val=get_value_by_path(key,data)
+            is_ignore = False
+
+            if key.split('.').__len__()>1:
+                indx = 0
+                while not is_ignore and indx < inogre_objects.__len__():
+                    _key = inogre_objects[indx]
+                    is_ignore = key.__len__() > _key.__len__() and key[0:_key.__len__() + 1] == _key + "."
+                    indx = indx + 1
             if val==None:
                 # if helpers._model_caching_[name].meta[key] == "list":
-
-                ret.append(key)
+                if not is_ignore:
+                    ret.append(key)
         return ret
     else:
         if data=={}:

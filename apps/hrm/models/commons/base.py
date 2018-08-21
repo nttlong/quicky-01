@@ -18,6 +18,14 @@ def on_before_insert(data):
         data.update({
             'is_delete':False
         })
+    if data.hashkey('name'):
+        if data['name'].hashkey('default'):
+            if not data['name'].hashkey('foreign'):
+                data['name'].update({'foreign':data['name']['default']})
+            if not data['name'].hashkey('native'):
+                data['name'].update({'native':data['name']['default']})
+
+
 def on_before_update(data):
     user = "application"
     if hasattr(threading.current_thread(),"user"):

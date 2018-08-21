@@ -25,6 +25,7 @@ extends(
             _departments_id =("object",False),
             _positions_id =("object",False),
             _job_works_id=("object"),
+            _employee_types_id = ("object"),
             join_date = ("date",True),
 
         )
@@ -72,7 +73,8 @@ extends(
                       last_name = ("text",True),
                       id_card = ("text",False),
                       issue_date=("date",False),
-                      _provinces_id = ("object")
+                      _provinces_id = ("object"),
+                      _relation_types_id =("object")
                   ))
 )
 # def employees():

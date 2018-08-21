@@ -374,7 +374,12 @@ class ENTITY():
                 self._data = {}
                 return ret
             if self._action=="update_many":
+                if not self._data.has_key("$set"):
+                    self._data={
+                        "$set":self._data
+                    }
                 _sub_action_validate_require = []
+
                 _chk_data =self._data
                 if _chk_data.has_key("$set"):
                     _chk_data =self._data["$set"]

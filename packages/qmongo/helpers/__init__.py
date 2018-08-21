@@ -19,6 +19,7 @@ _model_caching_={}
 _model_index_={}
 _model_caching_params={}
 _model_events={}
+_origin_fields ={}
 class data_field():
     """
     Create data field for modle
@@ -131,6 +132,13 @@ def unwind_data(data,prefix=None):
                     })
                 if data[key].details != None and not type(data[key].details) is str:
                     ret_fields = unwind_data(data[key].details, key)
+                    if data[key].is_require:
+                        ret.update({
+                            key:{
+                                "require":True,
+                                "type":data[key].data_type
+                            }
+                        })
                     for fx in ret_fields.keys():
                         if prefix!=None:
                             ret.update({
@@ -188,6 +196,9 @@ def define_model(_name,keys=None,*args,**kwargs):
     })
 
     list_of_fields=unwind_data(params)
+    _origin_fields.update({
+        name:params
+    })
     validators.set_require_fields(name,[
         x for x in list(list_of_fields.keys()) if list_of_fields[x]["require"]
     ])
