@@ -8,31 +8,43 @@ _model_cache_={
     "require_fields":{},
     "type_fields":{}
 }
-def get_value_by_path(path,data):
+def get_value_by_path(path,data,return_with_key= False):
     """
     get value of dict by path to property, example: get_value_by_path("a.b",{a:b:"hello"}} -> "hello"
     :param path:
     :param data:
     :return:
     """
+    parents = {}
     if dict_utils.has_key(data,path):
-        return data[path]
+        return data[path],{}
     items=path.split(".")
     if items.__len__()==1:
-        return data.get(items[0],None)
+        return data.get(items[0],None),{}
     else:
         val=data
-        for x in items:
-            if val==None:
-                return None
-            elif type(val) is list:
-                return val
+        p_key =""
+        for i in range(0,items.__len__()):
+            if not type(val) is dict:
+                return val, p_key[0:p_key.__len__() - 1]
+            val = val.get(items[i],None)
+
+            parents.update({
+                p_key[0:p_key.__len__() - 1]:val
+            })
+            if val == None:
+                if not return_with_key:
+                    return None,parents
+                else:
+                    return val, p_key[0:p_key.__len__() - 1]
             else:
-                try:
-                    val=val.get(x,None)
-                except Exception as ex:
-                    return None
-        return val
+                parent = val
+            p_key = p_key + items[i] + "."
+        if not return_with_key:
+            return val,parents
+        else:
+            return val, p_key[0:p_key.__len__() - 1]
+
 def validate_require_data_from_field(name,data,field):
     _model_ = _model_cache_['require_fields'][name]
     _ignore_ = [k for k,v in _model_cache_["type_fields"][name].items() if v == "list" and k.__len__() > field.__len__() and k[0:field.__len__()+1] == field +"." ]
@@ -60,27 +72,28 @@ def validate_require_data(name,data,partial=False):
     :param partial:False will check full from model, True will check only fields in data
     :return: list of missing fields
     """
-    from .. import helpers
-    inogre_objects =[k for k,v in helpers._origin_fields[name].items() if v.data_type in ["object","list"]   and not v.is_require]
+    # from .. import helpers
+    # inogre_objects =[k for k,v in helpers._origin_fields[name].items() if v.data_type in ["object","list"]   and not v.is_require]
     if not partial:
         ret=[]
-        for key in _model_cache_["require_fields"].get(name,[]):
+        for key in _model_cache_["require_fields"].get(name,["_id"]):
 
             # if key.count(".") == 0:
-            val=get_value_by_path(key,data)
-            is_ignore = False
-
-            if key.split('.').__len__()>1:
-                indx = 0
-                while not is_ignore and indx < inogre_objects.__len__():
-                    _key = inogre_objects[indx]
-                    is_ignore = key.__len__() > _key.__len__() and key[0:_key.__len__() + 1] == _key + "."
-                    indx = indx + 1
-            if val==None:
-                # if helpers._model_caching_[name].meta[key] == "list":
-                if not is_ignore:
+            val,parents =get_value_by_path(key,data)
+            if val == None and parents =={}:
+                ret.append(key)
+            else:
+                none_items = [k for k,v in parents.items() if v==None ]
+                if none_items.__len__() == 0 and val == None:
                     ret.append(key)
-        return ret
+                elif none_items.__len__()>0:
+                    ret.append(none_items[0])
+
+        ret_items = []
+        for x in ret:
+            if ret_items.count(x) ==0:
+                ret_items.append(x)
+        return ret_items
     else:
         if data=={}:
             return []
@@ -91,9 +104,16 @@ def validate_require_data(name,data,partial=False):
             if key[0:1]!="$":
                 find_fields = [x for x in _model_cache_["require_fields"].get(name, []) if x[0:key.__len__()] == key]
                 if find_fields.__len__() > 0:
-                    val = get_value_by_path(find_fields[0], data)
-                    if val == None:
+                    # val = get_value_by_path(find_fields[0], data)
+                    val, parents = get_value_by_path(find_fields[0], data)
+                    if val == None and parents == {}:
                         ret.append(find_fields[0])
+                    else:
+                        none_items = [k for k, v in parents.items() if v == None]
+                        if none_items.__len__() == 0:
+                            ret.append(find_fields[0])
+                        else:
+                            ret.append(none_items[0])
 
         return ret
 def set_require_fields(name,*args,**kwargs):
@@ -179,30 +199,32 @@ def validate_type_of_data(name,data):
     data_fields=get_data_fields(_model_cache_["type_fields"].get(name, {}))
     for key in data_fields:
         type_of_value = _model_cache_["type_fields"][name][key]
-        if type_of_value =="list":
+        if type_of_value in ["list","object"]:
             #val = get_value_by_path(key, data)
             #for item in val:
             #    val = get_value_by_path(key, item)
             pass
         else:
-            val = get_value_by_path(key, data)
+            val,parents = get_value_by_path(key, data,True)
+            if type(parents) in [str,unicode] and parents!=key:
+                ret.append(parents)
+            else:
+                if val != None:
 
-            if val != None:
-                
-                if type_of_value == "text" and type(val) not in [str, unicode]:
-                    ret.append(key)
-                if type_of_value == "numeric" and type(val) not in [
-                    int,
-                    float,
-                    long,
-                    complex
-                ]:
-                    ret.append(key)
-                if type_of_value == "bool" and type(val) != bool:
-                    ret.append(key)
-                if type_of_value == "date" and type(val) != datetime.datetime:
-                    ret.append(key)
-                if type_of_value == "list" and type(val) != list:
-                    ret.append(key)
+                    if type_of_value == "text" and type(val) not in [str, unicode]:
+                        ret.append(key)
+                    if type_of_value == "numeric" and type(val) not in [
+                        int,
+                        float,
+                        long,
+                        complex
+                    ]:
+                        ret.append(key)
+                    if type_of_value == "bool" and type(val) != bool:
+                        ret.append(key)
+                    if type_of_value == "date" and type(val) != datetime.datetime:
+                        ret.append(key)
+                    if type_of_value == "list" and type(val) != list:
+                        ret.append(key)
 
-    return ret
+    return [ x for x in ret if x!='']

@@ -1,4 +1,4 @@
-from qmongo import extends, extends_dict
+from qmongo import extends, extends_dict,define
 from . commons import base
 model_name = "employee_types"
 extends(

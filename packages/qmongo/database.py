@@ -454,29 +454,15 @@ class WHERE():
     """
     This class define where for Entity will be remove on the next version
     """
-    def _get_where(self):
-        i = 0
-        x = expr.get_tree(self._where_list[i]["expression"], *self._where_list[i].get("params", []))
-        y = expr.get_expr(x, self._where_list[i].get("params", []))
-        i += 1
-        while i < self._where_list.__len__():
-            item = self._where_list[i]
-            _x = expr.get_tree(item["expression"], *item.get("params", []))
-            _y = expr.get_expr(_x, *item.get("params", []))
-            y = {
-                "$" + item["type"]: [
-                    y, _y
-                ]
-            }
-            i += 1
-        return y
     def __init__(self, coll):
         self.name = ""
         self._coll = None
-        self._where_list = []
+        self._where_ = {}
         self._entity = None
         self._coll = coll
         self.name=coll.name
+        self._update_data ={}
+
     def get_list(self):
         if self._where_list.__len__()==0:
             return self._coll.get_list()
@@ -496,59 +482,117 @@ class WHERE():
         if self._entity==None:
             self._entity=ENTITY(self._coll.qr,self._coll,self.name)
         return self._entity
-    def where(self,expression,*params):
-        self._where_list.append(dict(
-            expression=expression,
-            params=params,
-            type=None
-        ))
+    def where(self,expression,*args,**kwargs):
+        from . import helpers
+        entity = self.to_entity()
+        unknown_fields = entity._coll._model.validate_expression(expression, None, *args, **kwargs)
+        if unknown_fields.__len__() > 0:
+            raise (Exception("What is bellow list of fields?:\n" + entity._coll.descibe_fields("\t\t", unknown_fields) +
+                             " \n Your selected fields now is bellow list: \n" +
+                             entity._coll.descibe_fields("\t\t\t", entity._coll._model.get_fields())))
+        self._where_=helpers.filter(expression,*args,**kwargs).get_filter()
         return self
-    def where_and(self,expression,*params):
-        self._where_list.append(dict(
-            expression=expression,
-            params=params,
-            type="and"
+    def where_and(self,expression,*args,**kwargs):
+        from . import helpers
+        entity = self.to_entity()
+        unknown_fields = entity._model.validate_expression(expression, None, *args, **kwargs)
+        if unknown_fields.__len__() > 0:
+            raise (Exception("What is bellow list of fields?:\n" + entity._coll.descibe_fields("\t\t", unknown_fields) +
+                             " \n Your selected fields now is bellow list: \n" +
+                             entity._coll.descibe_fields("\t\t\t", entity._coll._model.get_fields())))
+        filter =helpers.filter(expression,*args,**kwargs).get_filter()
+        if not self._where_.has_key("$and"):
+            fx =self._where_
+            self._where_ ={"$and":[fx,filter]}
+        else:
+            self._where_["$and"].append(filter)
+        return self
+    def where_or(self,expression, *args, **kwargs):
+        from . import helpers
+        entity = self.to_entity()
+        unknown_fields = entity._model.validate_expression(expression, None, *args, **kwargs)
+        if unknown_fields.__len__() > 0:
+            raise (Exception("What is bellow list of fields?:\n" + entity._coll.descibe_fields("\t\t", unknown_fields) +
+                             " \n Your selected fields now is bellow list: \n" +
+                             entity._coll.descibe_fields("\t\t\t", entity._coll._model.get_fields())))
+        if not self._where_.has_key("$or"):
+            fx = self._where_
+            self._where_ = {"$or": [fx, filter]}
+        else:
+            self._where_["$or"].append(filter)
+        return self
+    def set(self,*args,**kwargs):
+        data = kwargs
+        if args.__len__()>0:
+            data = args[0]
+        self._update_data.update(data)
+        return self
+    def push(self,*args,**kwargs):
+        import inspect
+        _name = "$"+inspect.stack()[0][3]
+        data = kwargs
+        if args.__len__() > 0:
+            data = args[0]
 
-        ))
+        self._update_data.update({
+            _name:data
+        })
         return self
-    def where_or(self,expression,*params):
-        self._where_list.append(dict(
-            expression=expression,
-            params=params,
-            type="or"
+    def pull(self,*args,**kwargs):
+        import inspect
+        _name = "$" + inspect.stack()[0][3]
+        data = kwargs
+        if args.__len__() > 0:
+            data = args[0]
 
-        ))
+        self._update_data.update({
+            _name: data
+        })
         return self
-    def update(self,data):
-        self.to_entity().filter(self._get_where())
-        self.to_entity().update_one(data)
+    def inc(self,*args,**kwargs):
+        import inspect
+        _name = "$" + inspect.stack()[0][3]
+        data = kwargs
+        if args.__len__() > 0:
+            data = args[0]
+
+        self._update_data.update({
+            _name: data
+        })
         return self
-    def update_many(self,data):
-        self.to_entity().filter(self._get_where())
-        self.to_entity().update_many(data)
+    def dec(self,*args,**kwargs):
+        import inspect
+        _name = "$" + inspect.stack()[0][3]
+        data = kwargs
+        if args.__len__() > 0:
+            data = args[0]
+
+        self._update_data.update({
+            _name: data
+        })
         return self
-    def push(self,data):
-        self.to_entity().filter(self._get_where())
-        self.to_entity().push(data)
-        return self
-    def pull(self,data):
-        self.to_entity().filter(self._get_where())
-        self.to_entity().pull(data)
-        return self
-    def inc(self,data):
-        self.to_entity().filter(self._get_where())
-        self.to_entity().inc(data)
-        return self
-    def dec(self,data):
-        self.to_entity().filter(self._get_where())
-        self.to_entity().dec(data)
-        return self
-    def delete(self,data):
-        self.to_entity().filter(self._get_where())
-        self.to_entity().delete()
-        return self
-    def commit(self):
-        return self.to_entity().commit()
+    def delete(self,session=None):
+        if self._update_data =={}:
+            return None
+        if self._where_ == {}:
+            raise (Exception("Canot not commit without where conditional"))
+        entity = self.to_entity()
+        entity._action = "delete"
+        entity._expr = self._where_
+        ret = entity.commit(session)
+        return ret
+    def commit(self,session = None):
+        if self._update_data =={}:
+            return None
+        if self._where_ == {}:
+            raise (Exception("Canot not commit without where conditional"))
+        entity = self.to_entity()
+        entity._data= self._update_data
+        entity._action = "update_many"
+        entity._expr = self._where_
+        ret = entity.commit(session)
+        return ret
+
 class COLL():
     """
     Define a collection
@@ -793,7 +837,7 @@ class COLL():
         ret_object = dynamic_object.create_from_dict(ret)
 
         return ret_object
-    def where(self,exprression,*params):
+    def where(self,exprression,*args,**kwargs):
         # type: (str,dict|tuple) -> COLL
 
         """Create filter expression before get data from mongo
@@ -804,7 +848,7 @@ class COLL():
         """
         if self._where==None:
             self._where=WHERE(self)
-            self._where.where(exprression,params)
+            self._where.where(exprression,*args,**kwargs)
         return self._where
     def entity(self):
         self.get_collection()

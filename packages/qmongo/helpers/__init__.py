@@ -139,15 +139,16 @@ def unwind_data(data,prefix=None):
                                 "type":data[key].data_type
                             }
                         })
-                    for fx in ret_fields.keys():
-                        if prefix!=None:
-                            ret.update({
-                                prefix + "."+fx:  ret_fields[fx]
-                            })
-                        else:
-                            ret.update({
-                                fx: ret_fields[fx]
-                            })
+                    for k,v in ret_fields.items():
+                        if k.__len__()>key.__len__() and k[0:key.__len__()+1] == key+".":
+                            if prefix!=None:
+                                ret.update({
+                                    prefix + "."+k:  v
+                                })
+                            else:
+                                ret.update({
+                                    k: v
+                                })
             else:
                 if prefix!=None:
                     ret.update(

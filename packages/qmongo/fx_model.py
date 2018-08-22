@@ -19,7 +19,7 @@ class __obj_fields__(object):
         self.__name__ = name
         self.__type__= type
         self.__require__=is_require
-    def mk_obj(self,item = None):
+    def __mk_obj__(self,item = None):
         ret = s_obj()
         if item == None:
             item =self
@@ -29,9 +29,9 @@ class __obj_fields__(object):
                     setattr(ret,k,[])
                 elif v.__type__ =="object":
                     if type(v) is __obj_fields__:
-                        setattr(ret,k,None)
+                        setattr(ret,k,v.__mk_obj__())
                     else:
-                        setattr(ret, k, self.mk_obj(v))
+                        setattr(ret, k, self.__mk_obj__(v))
                 else:
                     setattr(ret, k, None)
             else:
@@ -81,7 +81,7 @@ class __obj_model__(object):
                     setattr(ret,k,[])
                 elif v.__type__ =="object":
                     if type(v) is __obj_fields__:
-                        setattr(ret,k,None)
+                        setattr(ret,k,v.__mk_obj__())
                     else:
                         setattr(ret, k, self.mk_obj(v))
                 else:
