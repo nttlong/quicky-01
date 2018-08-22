@@ -1,3 +1,5 @@
+class __collections__(object):
+    pass
 def auto_load(name,file):
     import importlib
     import imp
@@ -18,9 +20,7 @@ def auto_load(name,file):
                         _mdl=importlib.import_module(name+"."+module_name)
                         if hasattr(models,module_name):
                             m= getattr(models,module_name)
-                            setattr(mdl, module_name, m)
-
-
-
-
-
+                            if not hasattr(mdl,"entities"):
+                                setattr(mdl,"entities",__collections__())
+                            colls = getattr(mdl,"entities")
+                            setattr(colls, module_name, m)

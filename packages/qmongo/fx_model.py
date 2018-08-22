@@ -90,7 +90,7 @@ class __obj_model__(object):
                 setattr(ret, k, None)
         return ret
     @property
-    def query(self,context = None):
+    def coll(self,context = None):
         if context == None:
             from . import db_context
             context = db_context.get_db_context()
@@ -107,12 +107,12 @@ class __obj_model__(object):
     @property
     def objects(self,filter = None,*args,**kwargs):
         if filter == None:
-            return self.query.get_objects()
-        ret = self.query.objects(filter,*args,**args)
+            return self.coll.get_objects()
+        ret = self.coll.objects(filter,*args,**args)
         self.reset
         return ret
     def set_session(self,session):
-        self.query.set_session(session)
+        self.coll.set_session(session)
         return self
     @property
     def reset(self):
@@ -121,7 +121,7 @@ class __obj_model__(object):
     @property
     def aggregate(self):
         if self.__aggregate__ == None:
-            self.__aggregate__ =self.query.aggregate()
+            self.__aggregate__ =self.coll.aggregate()
         return self.__aggregate__
     def project(self,*args,**kwargs):
         self.aggregate.project(*args,**kwargs)
@@ -135,7 +135,7 @@ class __obj_model__(object):
     def left_join(self,source,local_field,foreign_field, alias):
         self.aggregate.left_join(source.__name__,local_field,foreign_field, alias)
     def insert(self,*args,**kwargs):
-        ret = self.query.insert(*args,**kwargs)
+        ret = self.coll.insert(*args,**kwargs)
         import dynamic_object
         ret_obj = dynamic_object.create_from_dict(ret)
         ret_obj.is_error =False
@@ -144,34 +144,34 @@ class __obj_model__(object):
             ret_obj.error_message = "insert data errror '{0}'".format(ret["error"]["code"])
         return ret_obj
     def insert_one(self,*args,**kwargs):
-        ret = self.query.insert_one(*args,**kwargs)
+        ret = self.coll.insert_one(*args,**kwargs)
         import dynamic_object
         ret_obj = dynamic_object.create_from_dict(ret)
         ret_obj.is_error = False
-        if ret.has_key("error"):
+        if ret.get("error",None) != None :
             ret_obj.is_error = True
             ret_obj.error_message = "insert data errror '{0}'".format(ret["error"]["code"])
         return ret_obj
     def update(self,data,*args,**kwargs):
-        ret = self.query.update(data,*args,**kwargs)
+        ret = self.coll.update(data,*args,**kwargs)
         import dynamic_object
         ret_obj = dynamic_object.create_from_dict(ret)
         ret_obj.is_error = False
-        if ret.has_key("error"):
+        if ret.get("error", None) != None:
             ret_obj.is_error = True
             ret_obj.error_message = "insert data errror '{0}'".format(ret["error"]["code"])
         return ret_obj
     def delete(self,expression,*arg,**kwargs):
-        ret = self.query.delete(expression,*arg,**kwargs)
+        ret = self.coll.delete(expression,*arg,**kwargs)
         import dynamic_object
         ret_obj = dynamic_object.create_from_dict(ret)
         ret_obj.is_error = False
-        if ret.has_key("error"):
+        if ret.get("error", None) != None:
             ret_obj.is_error = True
             ret_obj.error_message = "insert data errror '{0}'".format(ret["error"]["code"])
         return ret_obj
     def find(self,expression,*args,**kwargs):
-        return self.query.find(expression,*args,**kwargs)
+        return self.coll.find(expression,*args,**kwargs)
     def replace_root(self,field):
         self.aggregate.replace_root(field)
         return self
@@ -219,4 +219,35 @@ class __obj_model__(object):
         ret = self.aggregate.get_list()
         self.reset
         return ret
+    def save(self,obj_item):
+        """
+        Save item arcoding to _id field value
+        :param obj_item:
+        :return:
+        """
+        if type(obj_item) is dict:
+            find_item = self.coll.find_one("_id=={0}",obj_item["_id"])
+            if find_item != None:
+                ret = self.coll.update(obj_item,"_id=={0}",obj_item["_id"])
+            else:
+                ret = self.coll.insert_one(obj_item)
+            return ret
+        else:
+            from . import dynamic_object
+            item = dynamic_object.convert_to_dict(obj_item)
+            find_item = self.coll.find_one("_id=={0}", item["_id"])
+            if find_item != None:
+                ret = self.coll.update(item,"_id=={0}",item["_id"])
+                ret_object = dynamic_object.create_from_dict(ret)
+                if ret.get("error",None) != None:
+                    setattr(ret_object,"error_message","Update data error, error code is '{0}".format(ret["error"]["code"]))
+                return ret_object
+            else:
+                ret = self.coll.insert_one(item)
+                ret_object = dynamic_object.create_from_dict(ret)
+                if ret.get("error",None) != None:
+                    setattr(ret_object,"error_message","Insert data error, error code is '{0}".format(ret["error"]["code"]))
+                return ret_object
+
+
 

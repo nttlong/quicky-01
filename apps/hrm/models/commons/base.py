@@ -18,7 +18,7 @@ def on_before_insert(data):
         data.update({
             'is_delete':False
         })
-    if data.has_key('name'):
+    if data.has_key('name') and type(data['name']) is dict:
         if data['name'].has_key('default'):
             if not data['name'].has_key('foreign'):
                 data['name'].update({'foreign':data['name']['default']})

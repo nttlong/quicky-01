@@ -26,7 +26,10 @@ def get_value_by_path(path,data,return_with_key= False):
         p_key =""
         for i in range(0,items.__len__()):
             if not type(val) is dict:
-                return val, p_key[0:p_key.__len__() - 1]
+                if not return_with_key:
+                    return None, parents
+                else:
+                    return val, p_key[0:p_key.__len__() - 1]
             val = val.get(items[i],None)
 
             parents.update({
@@ -91,7 +94,7 @@ def validate_require_data(name,data,partial=False):
 
         ret_items = []
         for x in ret:
-            if ret_items.count(x) ==0:
+            if ret_items.count(x) ==0 and x != "":
                 ret_items.append(x)
         return ret_items
     else:
