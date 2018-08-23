@@ -17,10 +17,15 @@
             <span><i class="bowtie-icon bowtie-chevron-right"></i></span>
             <span>{{currentFunction.default_name}}</span></site-map>
         <!--on-search-change="onSearch"-->
-        <!--<advanced-search>
-            <input type="text" placeholder="Name" />
-            <input type="text" placeholder="Age" />
-        </advanced-search>-->
+        <advanced-search>
+            <div class="col-md-3">
+                <input-select data-list="cbbSysLock" 
+                              ng-model="advancedSearch.data_lock"
+                              placeholder="${get_res('status','Trạng thái')}" 
+                              data-value="value" 
+                              data-caption="caption"/>
+            </div>
+        </advanced-search>
         <content>
             <div c-template url="${get_app_url('')}/pages/{{$partialpage}}" 
                  style="position: absolute; top: 0; bottom: 0; left: 0; right: 0;"></div>
@@ -28,5 +33,5 @@
     </page-sidebar>
 </div>
 <script>
-    <%include file="../scripts/permission.js"/>
+    <%include file="../scripts/productivityDictionaryPanel.js"/>
 </script>

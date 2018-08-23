@@ -53,7 +53,7 @@ class __obj_model__(object):
         self.__QR__ = None
         self.fields = __obj_fields__()
         self.__aggregate__=None
-        self.views = s_obj_views(self)
+        # self.views = s_obj_views(self)
     def __create_field__(self,name,type="text",is_require=False):
         names = name.split('.')
         if not hasattr(self.fields,names[0]):
@@ -91,18 +91,18 @@ class __obj_model__(object):
         return ret
     @property
     def coll(self,context = None):
-        if context == None:
-            from . import db_context
-            context = db_context.get_db_context()
-        if context == None:
-            raise (Exception("Please use:\n"
-                             "import qmongo\n"
-                             "qmongo.set_db_context(host=..,port=..,user=..,password=..,name=..."))
+        # if context == None:
+        #     from . import db_context
+        #     context = db_context.get_db_context()
+        # if context == None:
+        #     raise (Exception("Please use:\n"
+        #                      "import qmongo\n"
+        #                      "qmongo.set_db_context(host=..,port=..,user=..,password=..,name=..."))
         from . import database
 
         ret = database.QR()
-        ret.db = context.db
-        ret._codec_options = CodecOptions()
+        # ret.db = context.db
+        # ret._codec_options = CodecOptions()
         return ret.collection(self.__name__)
     @property
     def objects(self,filter = None,*args,**kwargs):

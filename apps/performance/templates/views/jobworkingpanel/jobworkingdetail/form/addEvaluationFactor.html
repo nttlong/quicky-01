@@ -15,7 +15,7 @@
                 <label class="col-sm-4 zb-form-label">${get_res('factor_code','Yếu tố đánh giá')}</label>
                 <div class="col-sm-8">
                     <!--<input-text ng-model="entity.factor_code" required>-->
-                    <form-search ng-model="entity.factor_code" placeholder="test" open="set_factor_code()" init-data="$$$factor_code" multi="frnSearchMode" required></form-search>
+                    <form-search ng-model="entity.factor_code" placeholder="" open="set_factor_code()" init-data="$$$factor_code" multi="frnSearchMode" required></form-search>
                 </div>
             </div>
             <div class="form-group zb-form-group">
@@ -55,7 +55,6 @@
         scope.frnSearchMode = scope.__mode == 1 ? true : false;
 
         scope.set_factor_code = function () {
-            debugger
             var frm = lv.FormSearch(scope, "$$$factor_code");
             frm.FactorAppraisal(scope.entity, "factor_code", "${get_res('factor_code','Yếu tố đánh giá')}", scope.frnSearchMode);
             frm.openDialog;

@@ -16,7 +16,9 @@
                 placeholder: "@",
                 fieldValue: "@value",
                 fieldCaption: "@caption",
-                ngChange: "="
+                ngChange: "=",
+                except: "=",
+                exceptField: "@"
             },
             //transclude: true,
             //template: function(el, attrs) {
@@ -37,12 +39,38 @@
                     cmp.attr("zb-required", '');
                 }
                 $scope.selectedItem = {};
-                $scope.$watch("list", function (val, old) {
-                    if ($scope.list) {
-                        $.each($scope.list, function (i, v) {
+
+                function checkExcept(val) {
+                    if (val && val.length > 0 && $scope.list && $scope.list.length > 0) {
+                        $scope.selectWithSearchItems = JSON.parse(JSON.stringify($scope.list));
+                        $.each($scope.selectWithSearchItems, function (i, v) {
                             v["__fieldCaption"] = $sce.trustAsHtml(v[$scope.fieldCaption]);
                         });
-                        $scope.selectWithSearchItems = $scope.list;
+                        $.each($scope.except, function (i, v) {
+                            var filterObj = {};
+                            if (typeof (v) == "string") {
+                                filterObj[$scope.fieldValue] = v;
+                            } else if (v && typeof (v) == "object" && v.hasOwnProperty($scope.exceptField)) {
+                                filterObj[$scope.fieldValue] = v[$scope.exceptField];
+                            }
+                            var item = _.findWhere($scope.selectWithSearchItems, filterObj);
+                            if (item) {
+                                var idx = $scope.selectWithSearchItems.indexOf(item);
+                                if (idx >= 0) {
+                                    $scope.selectWithSearchItems.splice(idx, 1);
+                                }
+                            }
+                            $scope.$applyAsync();
+                        });
+                    }
+                }
+
+                $scope.$watch("list", function (val, old) {
+                    if ($scope.list) {
+                        $scope.selectWithSearchItems = JSON.parse(JSON.stringify($scope.list));
+                        $.each($scope.selectWithSearchItems, function (i, v) {
+                            v["__fieldCaption"] = $sce.trustAsHtml(v[$scope.fieldCaption]);
+                        });
                         /*Watch model*/
                         var existsWatchModel = false;
                         if ($scope.$$watchers && Array.isArray($scope.$$watchers)) {
@@ -80,8 +108,12 @@
                                 }
                             });
                         }
+                        checkExcept($scope.except);
                     }
                 });
+                $scope.$watch("except", function (val) {
+                    checkExcept(val);
+                })
             }
         };
     }

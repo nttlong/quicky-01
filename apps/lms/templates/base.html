@@ -53,8 +53,10 @@
         <script src="${get_static('app/libs/tree/jquery.fancytree.filter.js')}"></script>
         <script src="${get_static('app/libs/tree/jquery.fancytree.table.js')}"></script>
         <script src="${get_static('app/libs/summernote.js')}"></script>
-
+        <script src="${get_static('app/widgets/tagsInput/bootstrap-tagsinput.js')}"></script>
+        <link href="${get_static('app/widgets/tagsInput/bootstrap-tagsinput.css')}"/>
         <link rel="shortcut icon" href="${get_static('media/favicon.ico')}" />
+        <link href="${get_static('css/libs/bootstrap-datetimepicker/bootstrap-datetimepicker.css')}" rel="stylesheet" />
     </head>
     <body class="app zb-body" ng-controller="admin" style="margin: 0;">
         
@@ -72,7 +74,9 @@
         <script type="text/javascript" src="${get_static('app/widgets/tile-box/tile-box.directive.js')}"></script>
         <script type="text/javascript" src="${get_static('app/widgets/page-sidebar/page-sidebar.directive.js')}"></script>
         <script type="text/javascript" src="${get_static('app/widgets/nav-tabs/nav-tabs.directive.js')}"></script>
-
+        <script type="text/javascript" src="${get_static('app/widgets/tagsInput/tagsInput.directive.js')}"></script>
+        <script type="text/javascript" src="${get_static('app/directives/summernote/summernote.directive.js')}"></script>
+        <script type="text/javascript" src="${get_static('app/directives/selectfile/selectfile.directive.js')}"></script>
         <script type="text/javascript" src="${get_static('app/components/components.js')}"></script>
         <script type="text/javascript" src="${get_static('app/components/input/input.module.js')}"></script>
         <script type="text/javascript" src="${get_static('app/components/input/text/text.directive.js')}"></script>
@@ -83,6 +87,8 @@
         <script type="text/javascript" src="${get_static('app/components/input/datepicker/datepicker.directive.js')}"></script>
         <script type="text/javascript" src="${get_static('app/components/input/checkbox/checkbox.directive.js')}"></script>
         <script type="text/javascript" src="${get_static('app/components/input/password/password.directive.js')}"></script>
+        <script type="text/javascript" src="${get_static('app/components/output/output.module.js')}"></script>
+        <script type="text/javascript" src="${get_static('app/components/output/label/label.directive.js')}"></script>
         <script type="text/javascript" src="${get_static('app/directives/component.js')}"></script>
         <script type="text/javascript" src="${get_static('app/directives/layoutService.js')}"></script>
         <script type="text/javascript" src="${get_static('app/directives/breadcumb/breadcumb.js')}"></script>
@@ -98,6 +104,9 @@
         <script type="text/javascript" src="${get_static('app/components/combobox/combobox.module.js')}"></script>
         <script type="text/javascript" src="${get_static('app/components/combobox/combobox/combobox.directive.js')}"></script>
         <script type="text/javascript" src="${get_static('app/components/combobox/multi-combobox/multi-combobox.directive.js')}"></script>
+        <script type="text/javascript" src="${get_static('app/components/list/lists.module.js')}"></script>
+        <script type="text/javascript" src="${get_static('app/components/list/list-view/list-view.directive.js')}"></script>
+        <script type="text/javascript" src="${get_static('app/components/input/timepicker/timepicker.directive.js')}"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
         <script type="text/javascript" src="${get_static('libs/scripts/bootstrap.min.js')}"></script>
         <script src="${get_static('app/components/tree/tree.module.js')}"></script>
@@ -113,6 +122,7 @@
         <script type="text/javascript" src="${get_static('app/directives/btndialogmulti/btndialogmulti.directive.js')}"></script>
         <script type="text/javascript" src="${get_static('app/directives/rating/rating.directive.js')}"></script>
         <script type="text/javascript" src="${get_static('app/directives/chart/chart.directive.js')}"></script>
+        <script src="${get_static('js/bootstrap-datetimepicker/bootstrap-datetimepicker.min.js')}"></script>
         <%include file="script.html"/>
         ${self.body()}
     </body>

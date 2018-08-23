@@ -365,7 +365,7 @@
      */
     function openDialog(title, path, callback, id = 'myModal') {
         //check tồn tại của form dialog theo id
-        if ($('#myModal').length === 0) {
+        //if ($('#myModal').length === 0) {
             scope.headerTitle = title;
             //Đặt ID cho form dialog
             dialog(scope, id).url(path).done(function () {
@@ -373,7 +373,7 @@
                 //Set draggable cho form dialog
                 $dialog.draggable();
             });
-        }
+        //}
     }
 
     function _departments() {
@@ -525,6 +525,7 @@
 
 
     scope.$root.viewHistoryLearningMaterial = function () {
+        debugger
         if (scope.currentItem) {
             scope.mode = 2; // set mode chỉnh sửa
             openDialog("${get_res('History_LearningMaterial','Xem lịch sử')}", 'form/viewHistoryLearningMaterialManagement', function () {
@@ -588,6 +589,20 @@
     // Turn value into number/100
 		var size = val/5*100;
 		return size + '%';
-  }
+    }
+
+    scope.convertFileSize = function (size) {
+        if (size < 1024) {
+            return size.toFixed(2) + " B";
+        } else if (size < 1024 * 1024) {
+            return (size / 1024).toFixed(2) + " KB";
+        } else if (size < 1024 * 1024 * 1024) {
+            return (size / (1024 * 1024)).toFixed(2) + " MB";
+        } else if (size < 1024 * 1024 * 1024 * 1024) {
+            return (size / (1024 * 1024 * 1024)).toFixed(2) + " TB";
+        } else {
+            return (size / (1024 * 1024 * 1024 * 1024)).toFixed(2) + " GB";
+        }
+    }
 
 });

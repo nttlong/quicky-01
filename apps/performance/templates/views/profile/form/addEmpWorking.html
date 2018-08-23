@@ -84,7 +84,7 @@
                         </combobox>      -->
                      <combobox load-data="$root.$getComboboxData" 
                                 ng-model="entity.signer_code"
-                                params="{key:'${encryptor.get_key('cbb_employees')}', value:[{ '@signer_code': '' }]}"
+                                params="{key:'${encryptor.get_key('cbb_employees_cbcc')}', value:[{ '@signer_code': '' }]}"
                                 on-search-change="        false"
                                 on-search-press="        true"
                                 placeholder=""
@@ -585,7 +585,7 @@
         (function _getDataInitCombobox() {
             scope.$root.$getInitComboboxData(scope,
                 [{
-                    "key": "${encryptor.get_key('cbb_employees')}",
+                    "key": "${encryptor.get_key('cbb_employees_cbcc')}",
                     "code": scope.entity
                         && scope.entity.hasOwnProperty('signer_code')
                         ? scope.entity.signer_code

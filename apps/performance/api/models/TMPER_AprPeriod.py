@@ -5,11 +5,10 @@ _hasCreated=False
 def TMPER_AprPeriod():
     global _hasCreated
     if not _hasCreated:
-        ret = dict()
         helpers.extent_model(
             "TMPER_AprPeriod",
             "base",
-            [["apr_period"]],
+            [["apr_period", "apr_year"]],
             apr_period=helpers.create_field("numeric", True),
 			apr_year=helpers.create_field("numeric", True),
             give_target_from=helpers.create_field("date"),
@@ -29,7 +28,5 @@ def TMPER_AprPeriod():
             modified_by=helpers.create_field("text")
         )
         _hasCreated=True
-    ret = db_context.collection("TMPER_AprPeriod")
-
-    return ret
+    return db_context.collection("TMPER_AprPeriod")
 

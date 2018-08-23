@@ -4,7 +4,7 @@
             var tableConfig = scope.$$tableProvinceConfig;
             scope._tableProvinceData(tableConfig.iPage,
                 tableConfig.iPageLength, tableConfig.orderBy,
-                    tableConfig.searchText, tableConfig.fnReloadData);
+                tableConfig.searchText, tableConfig.fnReloadData);
         }
     }, true)
 
@@ -47,12 +47,15 @@
         }
     }, true)
 
-    scope.$watch("currentProvince", function (val, old) {
+    scope.$watch("currentProvince", function (val, old) {        
         if (val && Object.keys(val).length > 0) {
             var tableConfig = scope.$$tableDistrictConfig;
             scope._tableDistrictData(tableConfig.iPage,
                 tableConfig.iPageLength, tableConfig.orderBy,
-                    tableConfig.searchText, tableConfig.fnReloadData);
+                tableConfig.searchText, tableConfig.fnReloadData);
+            //refresh data Ward, Hamlet
+            scope.tableDistrictSource = null;
+            scope.tableHamletSource = null;
         }
     }, true)
 
@@ -62,6 +65,8 @@
             scope._tableWardData(tableConfig.iPage,
                 tableConfig.iPageLength, tableConfig.orderBy,
                 tableConfig.searchText, tableConfig.fnReloadData);
+            //refresh datahamlet
+            scope.tableHamletSource = null;
         }
     }, true)
 

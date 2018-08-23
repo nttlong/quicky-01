@@ -3,7 +3,6 @@
         "dataTableTree": [],
         "tableFields": [
             { "data": "department_code", "title": "${get_res('department_code','Mã')}", width: "100px", className: "text-center" },
-            //{ "data": "departmesdfnt_code", "title": "asd", width: "100px"},
         ],
         "selectTreeNode": function (node) {
 
@@ -34,7 +33,7 @@
 
     function addDataGeneration() {
         scope.mode = 4;// set mode tạo mới
-        openDialog("${get_res('generate_data','Phát sinh định mức xếp loại')}", 'aprPeriod/form/dataGeneration', function () { });
+        openDialog("${get_res('generate_data','Phát sinh Định mức xếp loại')}", 'aprPeriod/form/genRatingLevel', function () { });
     };
 
    
@@ -61,7 +60,7 @@
             .then(function (res) {
                 debugger
                 res = _.map(res, function (val) {
-                    return { "data": val.rank_code, "title": val.rank_name, width: "100px", className: "text-center"  };
+                    return { "data": val.rank_code, "title": "%"+ "<"+ val.rank_name +">", width: "100px", className: "text-center"  };
                 })
                 for (var i=0; i < res.length; i++) {
                     scope.$$tableTree.tableFields.push(res[i]);
@@ -105,7 +104,7 @@
 
     function onEdit() {
         scope.mode = 2;
-        openDialog("${get_res('Factor_Appraisal_Group_Detail','Chi tiết nhóm yếu tố đánh giá')}", 'factorappraisalpanel/form/addFactorAppraisalGroup', function () { });
+        openDialog("${get_res('Employee_Not_Approval_Detail','Chi tiết Nhân viên không đánh giá')}", 'aprPeriod/form/addRatingLevel', function () { });
     };
 
     function onImport() {

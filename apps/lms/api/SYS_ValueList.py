@@ -2,19 +2,15 @@
 import models
 import quicky
 
-_language_code = ""
-
 def get_list(args):
     try:
-        global _language_code
         items = models.SYS_ValueList().aggregate().project(
             language = 1,
             list_name = 1,
             values = 1,
             )
 
-        if _language_code == "":
-            _language_code = quicky.applications.get_settings().LANGUAGE_CODE
+        _language_code = quicky.language.get_language()
 
         list_name = args["data"].get("name", "")
 

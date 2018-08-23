@@ -38,13 +38,25 @@
             })
             .done()
             .then(function (res) {
-                scope.dashBoard = res
-                for (var i = 0; i < scope.dashBoard.top_five_folder.length; i++) {
-                    if (scope.dashBoard.top_five_folder[i]) {
-                        scope.labelsPie.push(scope.dashBoard.top_five_folder[i].folder_id)
-                        scope.dataPie.push(scope.dashBoard.top_five_folder[i].views.length)
-                    }
+                debugger
+                
+                 scope.dashBoard = res;
+                var arr_folder = [];
+                var folder_views = _.map(scope.dashBoard.top_five_folder, function (val) {
+                    if (val.items.length > 0) {
+                        return { folder_id: val.folder_id, number: _.reduce(val.items, function (memo, num) { return memo.views.length + num.views.length; }) }
+                    } else { return { folder_id: val.folder_id, number: 0 } }
+                })
+                for (var i = 0; i < 5; i++) {
+                    var max = _.max(folder_views, function (val) { return val.number; });
+                    if (max.number != 0) {
+                        scope.dataPie.push(max.number)
+                        scope.labelsPie.push(max.folder_id)
+                        folder_views = _.reject(folder_views, function (num) { return num.folder_id == _.max(folder_views, function (val) { return val.number; }).folder_id });
+                    }        
+                    
                 }
+
                 for (var i = 0; i < scope.dashBoard.top_five_material.length; i++) {
                     if (scope.dashBoard.top_five_material[i]) {
                         scope.labelsHorizontalBar.push(scope.dashBoard.top_five_material[i].material_name)

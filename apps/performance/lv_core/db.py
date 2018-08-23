@@ -4,6 +4,7 @@
 
 import django
 import quicky
+import authorization
 import qmongo
 from qmongo import database, helpers
 import constant as KEY

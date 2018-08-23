@@ -55,7 +55,7 @@
                             <label for="inputEmp_QuitJob_Type" class="col-sm-5 zb-form-label">${get_res('moderator','Moderator')}</label>
                             <div class="col-sm-7">
                                 <!-- <input-combobox 
-                                    list-code="${encryptor.get_key('cbb_employees')}"
+                                    list-code="${encryptor.get_key('cbb_employees_cbcc')}"
                                     list-value="[{ '@is_cbcc': true }]"
                                     current-item="entity.moderator_id" required /> -->
                                 <combobox load-data="$root.$getComboboxData" 
@@ -83,11 +83,11 @@
                             <label for="inputEmp_Train_Mode_Name2" class="col-sm-5 zb-form-label">${get_res('approver','Approver(s)')}</label>
                             <div class="col-sm-7">
                                 <!--<input-combobox 
-                                    list-code="${encryptor.get_key('cbb_employees')}"
+                                    list-code="${encryptor.get_key('cbb_employees_cbcc')}"
                                     list-value="[{ '@is_cbcc': false }]"
                                     current-item="entity.approver_id" required />-->
                                 <combobox load-data="$root.$getComboboxData" 
-                                          ng-model="entity.moderator_id" 
+                                          ng-model="entity.approver_id" 
                                           params="{key:'${encryptor.get_key('lms_cbb_employees')}', value:[{ '@is_cbcc': false }]}" 
                                           on-search-change="false" on-search-press="true" placeholder="" 
                                           init-data="$cbb_employees.value" paging="true" 
@@ -361,6 +361,7 @@
         }
 
         function saveNClose() {
+            debugger
             if (scope.entity != null) {
                 var rsCheck = checkError();//Kết quả check input
                 if (rsCheck.result) {
@@ -550,7 +551,7 @@
                 "alias": "cbb_employees"
             }, {
                 "key": "${encryptor.get_key('lms_cbb_employees')}",
-                "code": scope.entity.moderator_id ? scope.entity.moderator_id : null,
+                "code": scope.entity.approver_id ? scope.entity.approver_id : null,
                 "alias": "$cbb_employees"
             }]);
         }

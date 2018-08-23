@@ -1,10 +1,19 @@
 ﻿(function (scope) {
     scope.__tableSource = [];
     scope.mode = 0;
-    scope.showDetail = false;
+    //scope.showDetail = false;
     scope.filterFunctionModel = ''
     scope.currentFunction = '';
-    scope.mapName = [];
+    //scope.mapName = [];    
+    scope.$display = {
+        showDetail: false,
+        mapName: [],
+        selectedFunction: "",
+        selectFunc: function (event, f) {
+            scope.$display.selectedFunction = f;
+        },
+    };
+
     scope.selectFunc = function (event, f) {
         scope.selectedFunction = f;
     }
@@ -12,6 +21,7 @@
         $$$modelSearch: null,
         onSearch: onSearch
     }
+
     /* Table */
     //Cấu hình tên field và caption hiển thị trên UI
     scope.tableFields = [
@@ -20,20 +30,24 @@
         { "data": "gender", "title": "${get_res('gender_table_header','Giới tính')}" },
         { "data": "job_w_code", "title": "${get_res('job_w_code_table_header','Chức danh công việc')}" },
         { "data": "department_name", "title": "${get_res('department_name_table_header','Bộ phận')}" },
+        { "data": "active", "title": "Active", "format": "checkbox" },
         { "data": "join_date", "title": "${get_res('join_date_table_header','Ngày vào làm')}", "format": "date:" + scope.$root.systemConfig.date_format }
     ];
     scope.$$tableConfig = {};
     //Dữ liệu cho table
     scope.tableSource = _loadDataServerSide;
-    scope.onSelectTableRow = function ($row) {        
+    scope.onSelectTableRow = function ($row) {
         scope.$root.$commons = {
-            $current_employee_code: $row.employee_code
+            $current_employee_code: $row.employee_code,
+            $active: $row.active
         };
         $('.hcs-profile-list').fadeToggle();
         setTimeout(function () {
-            scope.showDetail = scope.showDetail === false ? true : false;
+            scope.$display.showDetail = scope.$display.showDetail === false ? true : false;
             scope.mode = 2;
-            scope.$partialpage = scope.mapName[0].url;
+            scope.$partialpage = scope.$display.mapName[0].url;
+
+            scope.$applyAsync();
             $(window).trigger('resize');
         }, 500);
     };
@@ -81,24 +95,34 @@
     //Navigation: quay trở về UI list
     scope.backPage = backPage;
 
+    scope.objFilterActive = {
+        $$$filter_active: "2"
+    }
+
     function backPage() {
         $('.hcs-profile-list').fadeToggle();
         setTimeout(function () {
-            scope.showDetail = scope.showDetail === false ? true : false;
+            scope.$display.showDetail = scope.$display.showDetail === false ? true : false;
             scope.mode = 0;
-            scope.$partialpage = scope.mapName[0].url;
-            scope.selectedFunction = scope.mapName[0].function_id;
+            scope.$partialpage = scope.$display.mapName[0].url;
+            scope.$display.selectedFunction = scope.$display.mapName[0].function_id;
             $(window).trigger('resize');
         }, 500);
     }
 
     function addEmployee() {
         $('.hcs-profile-list').fadeToggle();
+        scope.$root.$commons = {
+            $current_employee_code: null,
+            $active: true
+        };
+
         setTimeout(function () {
-            scope.showDetail = scope.showDetail === false ? true : false;
+            scope.$display.showDetail = scope.$display.showDetail === false ? true : false;
             scope.mode = 1;
             scope.currentItem = {};
-            scope.$partialpage = scope.mapName[0].url;
+            scope.$partialpage = scope.$display.mapName[0].url;
+            
             $(window).trigger('resize');
         }, 500);
     }
@@ -152,7 +176,8 @@
     function onSelectTableRow($row) {
         $('.hcs-profile-list').fadeToggle();
         setTimeout(function () {
-            scope.showDetail = scope.showDetail === false ? true : false;
+            scope.$display.showDetail = scope.$display.showDetail === false ? true : false;
+
             $(window).trigger('resize');
         }, 500);
     };
@@ -163,7 +188,11 @@
 
         this.mapName = [];
 
-        this.mapName = _.filter(scope.$root.$function_list, function (f) {
+        this.$display = {
+            mapName: []
+        }
+
+        this.$display.mapName = _.filter(scope.$root.$function_list, function (f) {
             return f.level_code.includes(scope.$root.currentFunction.function_id)
                 && f.level_code.length == scope.$root.currentFunction.level_code.length + 1
         });
@@ -210,9 +239,11 @@
                         "pageSize": iPageLength,
                         "search": searchText,
                         "where": {
-                            'department_code': scope.treeCurrentNode.department_code
+                            'department_code': scope.treeCurrentNode.department_code,
+                            'active': scope.objFilterActive.$$$filter_active
                         },
-                        "sort": sort
+                        "sort": sort,
+                        'active': scope.objFilterActive.$$$filter_active
                     })
                     .done()
                     .then(function (res) {
@@ -221,6 +252,7 @@
                             recordsFiltered: res.total_items,
                             data: res.items
                         };
+                        console.log(11112, scope.cbbEmployeeActive)
                         scope.__tableSource = JSON.parse(JSON.stringify(res.items));
                         callback(data);
                         scope.currentItem = null;
@@ -264,7 +296,12 @@
         scope.tableSearchText = val;
         scope.$applyAsync();
     }
-
+    scope.$watch('objFilterActive.$$$filter_active', function (val) {
+        //alert(val)
+        //scope.objFilterActive.$$$filter_active = val;
+        //scope.$applyAsync();
+        scope.refresh();
+    });
     function _selectBoxData() {
         services.api("${get_api_key('app_main.api.SYS_ValueList/get_list')}")
             .data({
@@ -296,20 +333,20 @@
             })
     }
 
-    (function _init_ () {
+    (function _init_() {
         _departments();
         _selectBoxData();
         scope.handleData = new handleData();
-        scope.mapName = scope.handleData.mapName;
-        scope.currentFunction = scope.mapName[0];
-        scope.selectedFunction = (scope.mapName.length > 0) ? scope.mapName[0].function_id : null;
+        scope.$display.mapName = scope.handleData.$display.mapName;
+        scope.currentFunction = scope.$display.mapName[0];
+        scope.$display.selectedFunction = (scope.$display.mapName.length > 0) ? scope.$display.mapName[0].function_id : null;
         scope.$applyAsync();
     })();
 
-    scope.$watch("selectedFunction", function (function_id) {
+    scope.$watch("$display.selectedFunction", function (function_id) {
         var $his = scope.$root.$history.data();
         if (scope.currentItem) {
-            var func = _.filter(scope.mapName, function (f) {
+            var func = _.filter(scope.$display.mapName, function (f) {
                 return f["function_id"] == function_id;
             });
             if (func.length > 0) {
@@ -317,7 +354,7 @@
                 scope.currentFunction = func[0];
             }
         }
-            //window.location.href = "#page=" + $his.page + "&f=" + function_id;
+        //window.location.href = "#page=" + $his.page + "&f=" + function_id;
     });
 
     //scope.$root.$history.onChange(scope, function (data) {

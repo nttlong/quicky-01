@@ -1,10 +1,12 @@
 ﻿(function (scope) {
-    debugger
     scope.__mode = scope.$parent.mode;
-    scope.entity = {};
+    scope.entity = {
+        "_id":  scope.$parent.currentItem._id
+    };
     
     scope.cbbApprovalPeriod = [];
     scope.$parent.$parent.$parent.onSave = onSave;
+    scope.$$tableConfig = {};
 
     function _comboboxData() {
         services.api("${get_api_key('app_main.api.SYS_ValueList/get_list')}")
@@ -14,6 +16,7 @@
             })
             .done()
             .then(function (res) {
+                debugger
                 delete res.language;
                 delete res.list_name;
                 scope.cbbApprovalPeriod = res.values;
@@ -21,7 +24,31 @@
                 scope.$applyAsync();
             })
     }
-    _comboboxData();
+    function Re_Map_Period(periodStr) {
+        debugger
+        var numPeriod = 0;
+        for (var i = 0; i < 12; i++) {
+            if (periodStr === "Tháng " + (i + 1).toString()) {
+                numPeriod = i + 1
+                return numPeriod;
+            }
+
+        }
+        for (var j = 13; j <= 16; j++) {
+            if (periodStr === "Quý " + (j - 12).toString()) {
+                numPeriod = j - 12
+                return numPeriod;
+            }
+        }
+        if (periodStr === "6 tháng đầu năm")
+            numPeriod = 17;
+        else if (periodStr === "6 tháng cuối năm")
+            numPeriod = 18;
+        else
+            numPeriod = 19;
+        return numPeriod;
+    }
+
     function save() {
         debugger
         if (scope.entity != null) {
@@ -37,7 +64,7 @@
                 if (res.error == null) {
                     $msg.alert("${get_global_res('Handle_Success','Thao tác thành công')}", $type_alert.INFO);
                     scope.$applyAsync();
-                    //scope.$parent.tableSource = scope.$parent._loadDataServerSide;
+                    reloadData();
                 } else {
                     $msg.message("${get_global_res('Notification','Thông báo')}", "${get_global_res('Internal_Server_Error','Có lỗi từ phía máy chủ')}", function () { });
                 }
@@ -47,7 +74,6 @@
     
 
     function onSave() {
-        debugger
         save();
     };
 
@@ -60,12 +86,21 @@
             .done()
             .then(function (res) {
                 callback(res);
+                scope.$applyAsync();
+
             })
-       // scope.$applyAsync();
     }
 
     function beforeCallToServer() {
 
+    }
+
+    function reloadData() {
+        debugger
+        var tableConfig = scope.$parent.$$tableConfig;
+        scope.$parent._tableData(tableConfig.iPage,
+            tableConfig.iPageLength, tableConfig.orderBy,
+            tableConfig.searchText, tableConfig.fnReloadData);
     }
 
     function getUrl() {
@@ -74,7 +109,6 @@
     }
 
     function checkError() {
-        debugger
         var errMsg;
         var valid = null;
         var rs = {
@@ -140,19 +174,13 @@
         return false;
     }
 
-    function reloadData() {
-        scope.$parent.$parent.$parent.refresh();
-    }
-   
 
     (function __init__() {
         debugger
         if (scope.__mode == 2) {
             _comboboxData();
-            //set value into input
-           // _getPeriorDescription(scope.$parent.currentItem.apr_period)
-            scope.entity;
-            console.log(scope.entity)
+            scope.entity.apr_period = Re_Map_Period(scope.$parent.entity.apr_period);
+            scope.entity.apr_year = scope.$parent.entity.apr_year;
             scope.$applyAsync();
         }
         else if (scope.__mode == 1 || scope.__mode == 3) {

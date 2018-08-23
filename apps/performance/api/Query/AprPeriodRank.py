@@ -4,7 +4,6 @@ def display_list_apr_period():
     ret.left_join(models.auth_user_info(), "created_by", "username", "uc")
     ret.left_join(models.auth_user_info(), "modified_by", "username", "um")
     ret.project(
-        _id = "_id",
         apr_period="apr_period",
         apr_year="apr_year",
         emp_final_from="emp_final_from",
@@ -28,7 +27,6 @@ def get_period_by_apr_period(apr_period):
     ret.left_join(models.auth_user_info(), "created_by", "username", "uc")
     ret.left_join(models.auth_user_info(), "modified_by", "username", "um")
     ret.project(
-        _id = "_id",
         apr_period="apr_period",
         apr_year="apr_year",
         give_target_from="give_target_from",

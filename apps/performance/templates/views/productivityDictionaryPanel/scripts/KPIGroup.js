@@ -1,7 +1,4 @@
 ﻿(function (scope) {
-    //("===============BEGIN TABLE==================")
-    //Cấu hình tên field và caption hiển thị trên UI    
-     
     scope.$$tableTree = {
         "dataTableTree": [],
         "tableFields": [
@@ -29,22 +26,29 @@
     scope.$parent.$parent.$parent.onImport = onImport;
     scope.$parent.$parent.$parent.onExport = onExport;
     //scope.$parent.$parent.$parent.onAttach = onAttach;
-    //scope.$parent.$parent.$parent.onRefresh = onRefresh;
+    scope.$parent.$parent.$parent.onRefresh = onRefresh;
+    scope.$parent.$parent.$parent.onPrint = onPrint;
 
-    scope.$root.$commons = {
-        $kpi_lock: scope.$$tableTree.lock
-    };
     scope._kpiGroup = _kpiGroup;
+
     function _kpiGroup() {        
         services.api("${get_api_key('app_main.api.TMLS_KPIGroup/get_tree')}")
             .data({
-                lock: scope.$$tableTree.lock
+                lock: scope.$parent.$parent.$parent.advancedSearch.data_lock,
             })
             .done()
             .then(function (res) {               
                 scope.$$tableTree.dataTableTree = res;
                 scope.$applyAsync();                
             })
+    }
+
+    function onPrint() {
+
+    }
+
+    function onRefresh() {
+        _kpiGroup();
     }
 
     /**
@@ -58,26 +62,7 @@
         scope.mode = 2;
         openDialog("${get_res('detail_kpi_group','Chi tiết Nhóm chỉ tiêu năng suất')}", 'productivityDictionaryPanel/form/addKPIGroup', function () { });
     };
-    //function onDelete() {
-    //    debugger
-    //    if (!scope.selectedItems || scope.selectedItems.length === 0) {
-    //        $msg.message("${get_global_res('Notification','Thông báo')}", "${get_global_res('No_Row_Selected','Không có dòng được chọn')}", function () { });
-    //    } else {
-    //        $msg.confirm("${get_global_res('Notification','Thông báo')}", "${get_global_res('Do_You_Want_Delete','Bạn có muốn xóa không?')}", function () {
-    //            services.api("${get_api_key('app_main.api.HCSSYS_DataDomain/delete')}")
-    //                .data(scope.selectedItems)
-    //                .done()
-    //                .then(function (res) {
-    //                    if (res.deleted > 0) {
-    //                        _tableData(scope.$$tableConfig.iPage, scope.$$tableConfig.iPageLength, scope.$$tableConfig.orderBy, scope.$$tableConfig.SearchText, scope.$$tableConfig.fnReloadData);
-    //                        $msg.alert("${get_global_res('Handle_Success','Thao tác thành công')}", $type_alert.INFO);
-    //                        scope.currentItem = null;
-    //                        scope.selectedItems = [];
-    //                    }
-    //                })
-    //        });
-    //    }
-    //};
+
     function onDelete() {
         if (!scope.$$tableTree.treeSelectedNodes[0]) {
             $msg.message("${get_global_res('Notification','Thông báo')}", "${get_global_res('No_Row_Selected','Không có dòng được chọn')}", function () { });
@@ -124,54 +109,21 @@
      * @param {string} id Id của form dialog, default = 'myModal'
      */
     function openDialog(title, path, callback, id = 'myModal') {
-
-        //check tồn tại của form dialog theo id
         if ($('#' + id).length === 0) {
             scope.headerTitle = title;
-            //Đặt ID cho form dialog
             dialog(scope).url(path).done(function () {
                 callback();
-                //Set draggable cho form dialog
                 $dialog.draggable();
             });
         }
     }
 
-    scope.$watch('$$tableTree.treeSelectedNodes', function (val) {
-        console.log(val);
+    (function __init__() {
+        _kpiGroup();
+    })();
+
+    scope.$parent.$watch("advancedSearch.data_lock", function (old, newVal) {
+        if (old != newVal)
+            scope._kpiGroup();
     });
-
-    function _comboboxData() {
-        services.api("${get_api_key('app_main.api.SYS_ValueList/get_list')}")
-            .data({
-                //parameter at here
-                "name": "sysLock"
-            })
-            .done()
-            .then(function (res) {
-                scope.cbbSysLock = res.values;       
-                scope.$applyAsync();
-            })
-    }
-   
-   
-    _comboboxData();
-    _kpiGroup();
-
-    scope.$watch('$$tableTree.lock', function (val) {        
-        console.log(val);
-        scope.$$tableTree.lock = val;
-        scope._kpiGroup();
-        scope.$applyAsync();
-
-    });
-    //scope.onChangeCbbSysLock = function (key) {
-    //    debugger
-    //    console.log(key)
-    //    scope.$$tableTree.lock = key;
-    //    scope._kpiGroup();
-    //}
-    //("===============INIT==================")
-    //_tableData();
-    //("===============END TABLE==================")
 });

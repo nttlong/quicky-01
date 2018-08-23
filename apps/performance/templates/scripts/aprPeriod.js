@@ -1,5 +1,4 @@
 ﻿(function (scope) {
-    debugger
 	scope.__tableSource = [];
 	scope.mode = 0;
 	scope.showDetail = false;
@@ -9,12 +8,13 @@
 	scope.selectFunc = function (event, f) {
 		scope.selectedFunction = f;
 	}
-
+    scope.entity = {};
+   
 	/* Table */
 	//Cấu hình tên field và caption hiển thị trên UI
     scope.tableFields = [
-        { "data": "apr_year", "title": "${get_res('apr_period_table_header','Kỳ đánh giá')}"},
-        { "data": "apr_period", "title": "${get_res('apr_year_table_header','Năm')}" },
+        { "data": "apr_year", "title": "${get_res('apr_year_table_header','Năm')}" },
+        { "data": "apr_period", "title": "${get_res('apr_period_table_header','Kỳ đánh giá')}"},
         { "data": "emp_final_from", "title": "${get_res('emp_final_from_table_header','NV đánh giá từ')}", "format": "date:" + scope.$root.systemConfig.date_format  },
         { "data": "emp_final_to", "title": "${get_res('emp_final_to_table_header','NV đánh giá đến')}", "format": "date:" + scope.$root.systemConfig.date_format  },
         { "data": "approval_final_from", "title": "${get_res('approval_final_from_table_header','Xét duyệt từ')}", "format": "date:" + scope.$root.systemConfig.date_format  },
@@ -24,11 +24,12 @@
 	//Dữ liệu cho table
 	scope.tableSource = _loadDataServerSide;
 
-	scope.onSelectTableRow = function ($row) {
-		debugger
+    scope.onSelectTableRow = function ($row) {
+        debugger
 		scope.$root.$commons = {
 			$current_apr_period: $row.apr_period
-		};
+        };
+        scope.entity = $row;
 		$('.hcs-profile-list').fadeToggle();
 		setTimeout(function () {
 			scope.showDetail = scope.showDetail === false ? true : false;
@@ -37,15 +38,38 @@
 			scope.$applyAsync();
 			$(window).trigger('resize');
 		}, 500);
-	};
+    };
+    function Map_Period(periodNum) {
+        var strPeriod = "";
+        for (var i = 0; i < 12; i++) {
+            if (periodNum == i + 1) {
+                strPeriod = "Tháng " + (i + 1).toString();
+                return strPeriod;
+            }
+
+        }
+        for (var j = 13; j <= 16; j++) {
+            if (periodNum == j) {
+                strPeriod = "Quý " + (j - 12).toString();
+                return strPeriod;
+            }
+        }
+        if (periodNum == 17)
+            strPeriod = "6 tháng đầu năm";
+        else if (periodNum == 18)
+            strPeriod = "6 tháng cuối năm";
+        else
+            strPeriod = "Năm";
+        return strPeriod;
+    }
 	//Danh sách các dòng đc chọn (nếu là table MultiSelect)
 	scope.selectedItems = [];
 	//Dòng hiện tại đang được focus (nếu table là SingleSelect hoặc MultiSelect)
 	scope.currentItem = null;
 	scope.tableSearchText = '';
 	//Refesh table
-	scope.refreshDataRow = function () { /*Do nothing*/ };
-
+    scope.refreshDataRow = function () { /*Do nothing*/ };
+    scope.$period_obj = {};
  
 
 	
@@ -63,7 +87,6 @@
 	scope.backPage = backPage;
 
 	function backPage() {
-		debugger
 		$('.hcs-profile-list').fadeToggle();
 		setTimeout(function () {
 			scope.showDetail = scope.showDetail === false ? true : false;
@@ -78,30 +101,36 @@
 
     function addAprPeriod() {
         debugger
-		$('.hcs-profile-list').fadeToggle();
-		setTimeout(function () {
-			scope.showDetail = scope.showDetail === false ? true : false;
-			scope.mode = 1;
-            scope.currentItem = scope.mapName[0];
-            scope.$partialpage = scope.mapName[0].url;
-            scope.$applyAsync();
-			$(window).trigger('resize');
-        }, 500);
-
-    }
+            $('.hcs-profile-list').fadeToggle();
+            setTimeout(function () {
+                scope.showDetail = scope.showDetail === false ? true : false;
+                scope.mode = 1;
+                scope.currentItem = scope.mapName[0];
+                scope.$partialpage = scope.mapName[0].url;
+                scope.$applyAsync();
+                $(window).trigger('resize');
+            }, 500);
+        }
+		
 
     function editAprPeriod() {
         debugger
-        $('.hcs-profile-list').fadeToggle();
-        setTimeout(function () {
-            scope.showDetail = scope.showDetail === false ? true : false;
-            scope.mode = 2;
-            scope.currentItem = scope.mapName[0];
-            scope.$partialpage = scope.mapName[0].url;
-            scope.$applyAsync();
-            $(window).trigger('resize');
-        }, 500);
-
+        if (scope.currentItem == null && scope.selectedItems.length === 0) {
+            $msg.message("${get_global_res('Notification','Thông báo')}", "${get_global_res('No_Row_Selected','Không có dòng được chọn')}", function () { });
+        }
+        else {
+            scope.entity = scope.currentItem;
+            $('.hcs-profile-list').fadeToggle();
+            setTimeout(function () {
+                scope.showDetail = scope.showDetail === false ? true : false;
+                scope.mode = 2;
+                scope.currentItem = scope.mapName[0];
+                scope.$partialpage = scope.mapName[0].url;
+                scope.$applyAsync();
+                $(window).trigger('resize');
+            }, 500);
+            
+        }
     }
 
 	function refresh() {
@@ -114,7 +143,7 @@
 
 	
 
-	function onSelectTableRow($row) {
+    function onSelectTableRow($row) {
 		$('.hcs-profile-list').fadeToggle();
 		setTimeout(function () {
 			scope.showDetail = scope.showDetail === false ? true : false;
@@ -164,7 +193,7 @@
 	function _tableData(iPage, iPageLength, orderBy, searchText, callback) {
 		var sort = {};
 		$.each(orderBy, function (i, v) {
-			sort[v.columns] = (v.type === "asc") ? 1 : -1;
+			sort[v.columns] = (v.type === "desc") ? -1 : -1;
 		});
 		sort[orderBy[0].columns] =
 			services.api("${get_api_key('app_main.api.TMPER_AprPeriod/get_list_with_searchtext')}")
@@ -176,15 +205,18 @@
 					"sort": sort
 				})
 				.done()
-				.then(function (res) {
-					var data = {
-						recordsTotal: res.total_items,
-						recordsFiltered: res.total_items,
-						data: res.items
-					};
-					callback(data);
-					scope.currentItem = null;
-					scope.$apply();
+            .then(function (res) {
+                res.items.forEach(function (item) {
+                    item.apr_period = Map_Period(item.apr_period);
+                });
+                var data = {
+                    recordsTotal: res.total_items,
+                    recordsFiltered: res.total_items,
+                    data: res.items
+                };
+                callback(data);
+                scope.currentItem = null;
+                scope.$apply();
 				})
 	}
 
@@ -196,7 +228,6 @@
      * @param {string} id Id của form dialog, default = 'myModal'
      */
     function openDialog(title, path, callback, id = 'myModal') {
-        debugger
 		//check tồn tại của form dialog theo id
 		if ($('#myModal').length === 0) {
 			scope.headerTitle = title;
@@ -231,20 +262,18 @@
                     .data(scope.selectedItems)
                     .done()
                     .then(function (res) {
+                        
                         if (res.deleted > 0) {
                             _tableData(scope.$$tableConfig.iPage, scope.$$tableConfig.iPageLength, scope.$$tableConfig.orderBy, scope.$$tableConfig.SearchText, scope.$$tableConfig.fnReloadData);
                             $msg.alert("${get_global_res('Handle_Success','Thao tác thành công')}", $type_alert.INFO);
                             scope.$applyAsync();
-                           
                             scope.currentItem = null;
                             scope.selectedItems = [];
                         }
                     })
             });
-            _init_();
         }
     };
-
 
 	(function _init_() {
 		scope.handleData = new handleData();

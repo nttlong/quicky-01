@@ -23,7 +23,7 @@ def get_list_with_searchtext(args):
             pageSize = (lambda pSize: pSize if pSize != None else 20)(pageSize)
 
             if args['data'].has_key('where') and args['data']['where'].has_key('department_code'):
-                return Employee.get_employee_list_by_department(args['data']['where']['department_code'], pageSize, pageIndex, sort, (lambda x: x.strip() if x != None else "")(searchText))
+                return Employee.get_employee_list_by_department(args['data']['where']['department_code'], args['data']['where']['active'], pageSize, pageIndex, sort, (lambda x: x.strip() if x != None else "")(searchText))                
             else:
                 return dict(
                     error = "parameter 'department_code' is not exist"

@@ -21,7 +21,7 @@
                 initData: "=",
                 ngModel: "=",
                 ngDisabled: "=",
-                ngChange: "&",
+                ngClear: "&",
                 open: "&",
                 onRemoveAll: "&"
             }
@@ -49,6 +49,7 @@
             function clear() {
                 scope.ngModel = null;
                 assignValue(scope, null);
+                scope.ngClear();
                 scope.$applyAsync();
             }
 

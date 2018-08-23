@@ -2,13 +2,9 @@
 <%!
     #_style="width:200px;"
 %>
-
-
 <!--style dropzone-->
-   <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/dropzone/4.3.0/dropzone.css'>
+<link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/dropzone/4.3.0/dropzone.css'>
 <style>
-    
-
 .dropzone {
     background: white;
     border-radius: 5px;
@@ -122,11 +118,10 @@
                             <div class="col-sm-7" > 
                                <div class="pull-left" >
                                 <span zb-required=""></span>
-                                </div>
-                                
+                                </div>                          
                                 <combobox load-data="$root.$getComboboxData" 
                                           ng-model="entity.category"
-										  params="{key:'${encryptor.get_key('cbb_lmsls_materialfolder')}', value:[{ '@category': true }]}"
+										  params="{key:'${encryptor.get_key('cbb_lmsls_materialfolder')}', value:[{ '@lock': true }]}"
                                           on-search-change="false"
                                           on-search-press="true"
                                           placeholder=""
@@ -137,8 +132,6 @@
                                           template-fields="$$$folder_id.display_fields"
                                           reload="false">
                                 </combobox>
-
-                        
                             </div>
                         </div>
                     </div>
@@ -168,18 +161,20 @@
                                 <div class="pull-left" >
                                 <span zb-required=""></span>
                                 </div>
-                                <div class="pull-right" >
-                                <a class="relation-rows" ng-click="addRows()" style="cursor: pointer;"  >
-                                    [+]
-                                </a>
-                                <a class="relation-rows" ng-click="delRows()" style="cursor: pointer;" >
-                                    [-]
-                                </a>
+                                <div class="pull-right" style="padding-top: 3px;">
+                                <span class="bowtie-icon bowtie-math-plus-circle-outline" ng-click="addRows()" style="cursor: pointer;"  >
+                                </span>
+                                <span class="bowtie-icon bowtie-math-multiply-box-outline" ng-click="delRows()" style="cursor: pointer;" >
+                                </span>
                                 </div>
                                 <div class="col-sm-12 " ng-repeat="elem in entity.relations track by $index">
-                                    
                                     <div class="col-md-6 row" style=" padding: 0">
-                                      <input-select ng-model="elem.ref_relation"  data-list="cbbLMSLRelation" data-value="caption" data-caption="caption" />
+                                      <input-select ng-model="elem.ref_relation" 
+                                                    data-list="cbbLMSLRelation" 
+                                                    data-value="value" 
+                                                    data-caption="caption"
+                                                    ng-change="onChangeRelation"
+                                                    except="entity.relations_ref"/>
                                     </div>
                                    <div class="col-md-6 pull-right row" style=" padding: 0">
                                       <input-text id="inputEmp_Train_Mode_Name" ng-model="elem.intro_relation">
@@ -312,6 +307,7 @@
         scope.entity.category = scope.__mode === 1 ? "" : scope.entity.category;
         
         scope.entity.relations = scope.__mode === 1 ? [{}] : scope.entity.relations;
+
         scope.entity.submit_date = new Date();
         
         
@@ -483,7 +479,6 @@
         }
 
         function saveNNext() {
-            debugger
             if (scope.entity != null) {
                 var rsCheck = checkError();//Kết quả check input
                 if (rsCheck.result) {
@@ -772,7 +767,6 @@
         
         
         scope.cbbLMSLRelation_temp = function () {
-            debugger
             var filtered = [];
             var arr = scope.cbbLMSLRelation;
             while (true) {
@@ -790,7 +784,6 @@
         }
         
         scope.addRows = function () {
-            debugger
             if (scope.entity.relations.length <  scope.cbbLMSLRelation.length) {
                 scope.entity.relations.push({});
             }
@@ -804,7 +797,6 @@
         }
         
         function _getDataInitCombobox() {
-			debugger
 			scope.$root.$getInitComboboxData(scope,
 				{
                     "key": "${encryptor.get_key('cbb_lmsls_materialfolder')}",
@@ -814,19 +806,55 @@
 			);
 		}
         _getDataInitCombobox();
-         scope.$watch("entity.category", function () {
-           
-             services.api("${get_api_key('app_main.api.LMSLS_MaterialFolder/get_level_code_by_folder_id')}")
-                .data({
-                    "where": {
-                        'folder_id': scope.entity.category
-                    }
-                })
-                .done()
-                .then(function (res) {
-                    scope.entity.level_code = res.items[0].level_code
-                })
+        scope.$watch("entity.category", function () {
+            if (scope.entity.category) {
+                services.api("${get_api_key('app_main.api.LMSLS_MaterialFolder/get_level_code_by_folder_id')}")
+                    .data({
+                        "where": {
+                            'folder_id': scope.entity.category
+                        }
+                    })
+                    .done()
+                    .then(function (res) {
+                        debugger
+                        scope.entity.level_code = res.items[0].level_code
+                    })
+            }
         })
+
+        scope.$watch("entity.relations", function (val) {
+            //if (val && val.length > 0) {
+            //    var relations_valuelist = [];
+            //    if (scope.cbbLMSLRelation) {
+            //        $.each(scope.entity.relations, function (i, v) {
+            //            relations_valuelist.push()
+            //        });
+            //    }
+            //    scope.entity.relations_valuelist = relations_valuelist;
+            //    scope.$apply();
+            //}
+        })
+        //scope.$watchCollection("entity.relations", function () {
+        //    debugger
+        //})
+        scope.$watch("entity.relations.ref_relation", function () {
+            //debugger
+        })
+        scope.$watchCollection("entity.relations.ref_relation", function () {
+            //debugger
+        })
+        scope.onChangeRelation = function (val) {
+            setTimeout(function () {
+                var relations_ref = [];
+                $.each(scope.entity.relations, function (i, v) {
+                    if (v.ref_relation) {
+                        relations_ref.push(v.ref_relation);
+                    }
+                });
+                scope.entity.relations_ref = relations_ref;
+                scope.$applyAsync();
+            }, 300);
+        }
     });
 </script>
 

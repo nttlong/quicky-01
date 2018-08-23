@@ -11,6 +11,7 @@ dialog_root_url('${get_app_url("pages/")}')
     import json
 %>
 function controller($dialog, $scope, $filter, systemService) {
+    $scope.isHomePage = true;
     $scope.$root.$$absUrl = window.location.href;
     $scope.$root.url_static = "${get_static('/')}";
     $scope.$root.systemConfig = null;/*HCSSYS_SystemConfig*/
@@ -70,7 +71,9 @@ function controller($dialog, $scope, $filter, systemService) {
         window.location = "${get_app_url('logout')}";
     }
 
-
+    $scope.slideToggle = function (event) {
+        $(event.target).closest('.hcs-message-group').find('.hcs-menu-group-content').slideToggle(300)
+    }
     ////Đồng hồ
     //$scope.$root.timer = {
     //    clock: Clock(),
@@ -85,6 +88,11 @@ function controller($dialog, $scope, $filter, systemService) {
     //    }
     //    $scope.$root.$applyAsync();
     //}, 10000);
+
+    $(window).on('click', function (e) {
+        if (!e.target.closest('#dropdownFunction'))
+            $('#dropdownFunction').collapse('hide');
+    });
 
     /**
      * Initialize Data
@@ -138,6 +146,7 @@ function controller($dialog, $scope, $filter, systemService) {
                 $scope.$root.$history.change(function (data) {
                     $scope.$root.$$absUrl = window.location.href;
                     if (data.page) {
+                        $scope.isHomePage = false;
                         var currentFunction = _.filter(functions, function (d) {
                             return d["function_id"] == data.page;
                         });
@@ -150,6 +159,7 @@ function controller($dialog, $scope, $filter, systemService) {
                         }
                     } else {
                         $scope.$root.currentFunction = $scope.$root.currentModule = null;
+                        $scope.isHomePage = true;
                     }
                     $scope.$root.$applyAsync();
                 })

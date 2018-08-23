@@ -5,18 +5,53 @@
             <span class="hcs-btn-header-menu" id="btnShowMenu">
                 <i class="bowtie-icon bowtie-menu"></i>
             </span>
-            <div class="hcs-menu-list menu-hidden">
-                <div class="col-md-12 hcs-menu-list-title">
-                    <p class="hcs-menu-title-1">Hệ thống</p>
-                    <p class="hcs-menu-title-2">Đánh giá năng suất</p>
+            <div class="hcs-menu-list menu-hidden hcs-demo-header-menu">
+                <div class="col-md-12 hcs-menu-list-title hcs-demo-header-menu-top">
+                    <p class="hcs-menu-title-1 hcs-demo-header-menu-title-1">Hệ thống</p>
+                    <p class="hcs-menu-title-2 hcs-demo-header-menu-title-2">Đánh giá năng suất</p>
                 </div>
                 <div class="hcs-menu-list-group">
-                    <collapse-box ng-repeat="function in $functions" class="hcs-message-group" 
-                                  title="{{function.custom_name.replace('/', ' ')}}" ng-if="!function.parent_id">
-                        <div class="hcs-menu-group-content">
-                            <a ng-repeat="child in function.child_items" href="{{'#page=' + child.function_id}}">{{child.custom_name.replace('/', '')}}</a>
+                    <div class="hcs-message-group zb-collapse-box ng-scope" ng-repeat="function in $functions" 
+                         title="{{function.custom_name.replace('/', ' ')}}" ng-if="!function.parent_id">
+                        <div class="zb-header hcs-zb-header-custom-1">
+                            <div class="zb-header-left hcs-zb-header-left-custom">
+                                <div class="zb-header-content hcs-zb-header-content-custom"> 
+                                    <span class="zb-header-icon hcs-zb-header-icon-custom">                  
+                                        <i class="bowtie-icon bowtie-chevron-left-light zb-icon-up hcs-zb-icon-up-custom"></i>
+                                    </span> 
+                                    <span class="zb-header-number hcs-zb-header-number-custom-header">{{$index + 1}}</span> 
+                                    <span class="zb-header-title hcs-zb-header-title-custom" ng-click="slideToggle($event)">
+                                        {{function.custom_name.replace('/', ' ')}}
+                                    </span> 
+                                </div>
+                            </div>
+                            <div class="zb-header-right hcs-zb-header-right-custom"></div>
                         </div>
-                    </collapse-box>
+                        <div class="hcs-menu-group-content">
+                            <!--<a ng-repeat="child in function.child_items" href="{{'#page=' + child.function_id}}">{{child.custom_name.replace('/', '')}}</a>-->
+                            <div class="hcs-message-group hcs-message-group-custom zb-collapse-box ng-scope" 
+                                 ng-repeat="child in function.child_items track by $index" 
+                                 number="1">
+                                <div class="zb-header hcs-zb-header-custom-child">
+                                    <div class="zb-header-left hcs-zb-header-left-custom">
+                                        <div class="zb-header-content hcs-zb-header-content-custom"> 
+                                            <span class="zb-header-icon hcs-zb-header-icon-custom">                  
+                                                <i class="bowtie-icon bowtie-chevron-left-light hcs-zb-icon-up-custom zb-icon-up"></i>         
+                                            </span> 
+                                            <span class="zb-header-number hcs-zb-header-number-custom-1">
+                                                {{$index + 1}}.
+                                            </span> 
+                                            <a class="zb-header-title hcs-zb-header-title-custom-1" 
+                                                  href="{{'#page=' + child.function_id}}" >
+                                                {{child.custom_name.replace('/', ' ')}}
+                                            </a> 
+                                        </div>
+                                    </div>
+                                    <div class="zb-header-right hcs-zb-header-right-custom"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
             <a href="#" class="hcs-navbar-brand"><img src="{{$root.logo}}"></a>
@@ -79,8 +114,11 @@
             </div>
 
             <div class="dropdown">
-                <button class="btn btn-primary hcs-home-header-button" type="button" data-toggle="dropdown">
-                    <span><i class="bowtie-icon bowtie-locale-language"></i></span>
+                <button class="btn btn-primary hcs-home-header-button hcs-home-button-lang" type="button" data-toggle="dropdown">
+                    <span>     
+                        <img class="language-icon" 
+                             ng-src="{{$root.url_static}}css/images/vn.png">
+                    </span>
                 </button>
                 <ul class="dropdown-menu hcs-home-button-language-menu">
                     <li>

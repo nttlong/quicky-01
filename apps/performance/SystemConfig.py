@@ -83,7 +83,7 @@ def clear_cache():
     global cache
     lock.acquire()
     try:
-        cache[tenancy.get_schema()]=None
+        del cache[tenancy.get_schema()]
         lock.release()
     except Exception as ex:
         lock.release()

@@ -1,7 +1,12 @@
 from . import models
+import logging
+logger = logging.getLogger(__name__)
+import common
 
 def get_list(args):
-    items = models.SYS_FunctionList().aggregate().project(
+    items = models.SYS_FunctionList().aggregate()
+    items.left_join(models.HCSSYS_FunctionListSummary(), "function_id", "function_id", "uc")
+    items.project(
         sorting              = 1,
         description          = 1,
         custom_name          = 1,
@@ -17,10 +22,29 @@ def get_list(args):
         width                = 1,
         icon                 = 1,
         app                  = 1,
-        level_code           = 1
+        level_code           = 1,
+        color                = 1,
+        sumary               = "uc"
         ).match("app == {0}", "PERF").sort({"sorting":1})
-    
-    return items.get_list()
+    data = items.get_list()
+    for x in data:
+        if x.has_key('sumary') and x['sumary'] != None:
+            x['number'] = exec_query(x['sumary'])
+    return data
+
+def exec_query(args):
+    import json
+    try:
+        tab = args['collection']
+        query = args['query']
+        col = common.get_collection(tab)
+        result = list(col.aggregate(json.loads(query)))
+        if result != None and len(result) > 0:
+            return result[0]['number']
+        return None
+    except Exception as ex:
+        logger.debug(ex)
+        return {"data": None, "error": ex.message}
 
 def get_tree(args):
     items = models.SYS_FunctionList().aggregate().project(

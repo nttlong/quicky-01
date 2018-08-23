@@ -28,6 +28,39 @@
         }
 
         function DropAndDrag(scope, element, attrs) {
+            var acceptFileType = ['xlsx', 'doc', 'docx', "aif",
+                "cda",
+                "mid",
+                "mp3",
+                "mpa",
+                "ogg",
+                "wav",
+                "wma",
+                "wpl", "css",
+                "html",
+                "json",
+                "sql",
+                "php", "pdf",
+                "docx",
+                "doc",
+                "odt",
+                "rtf",
+                "txt",
+                "tex",
+                "wks",
+                "wps",
+                "wpd", "ai", "ppt", 
+                "bmp",
+                "gif",
+                "ico",
+                "jpeg",
+                "jpg",
+                "png",
+                "ps",
+                "psd",
+                "svg",
+                "tiff",
+                "tif"]
             var dropzone = new Dropzone('#demo-upload', {
                 maxFiles: 1,
                 init: function () {
@@ -65,13 +98,26 @@
                         for (var i = 0; i < images.length; i++) {
                             var thumbnailElement = images[i];
                             thumbnailElement.alt = file.name;
-                            thumbnailElement.src = dataUrl;
+                            thumbnailElement.src = scope.$root.url_static + dataUrl;
                         }
                         setTimeout(function () { file.previewElement.classList.add("dz-image-preview"); }, 1);
                     }
                 },
+                error: function (file, errormessage, xhr) {
+                    this.removeFile(file);
+                    //if (errormessage) {
+                    //    alert(errormessage);
+                    //}
+                },
+                errormultiple: null,
+                accept: function (file, done) {
+                    if (acceptFileType.indexOf(file.name.split('.').pop()) == -1) {
+                        this.removeFile(file);
+                        alert("Upfile sai");
+                    }
+                    else { done(); }
+                }
             });
-
 
             // Now fake the file upload, since GitHub does not handle file uploads
             // and returns a 404
@@ -110,26 +156,70 @@
                 }
             }
 
-            function getExtension(ext) {
+            function getExtension(ext, type) {
+                debugger
                 var url = '';
                 switch (ext.toLowerCase()) {
                     case 'docx':
                     case 'doc':
-                        url = 'https://image.flaticon.com/icons/svg/28/28863.svg'
+                        url = 'css/icon/doc.png'
                         break;
                     case 'xls':
                     case 'xlsx':
-                        url = 'https://image.flaticon.com/icons/svg/29/29070.svg'
+                        url = 'css/icon/xls.png'
                         break;
                     case 'img':
-                    case 'png':
                     case 'jpg':
-                        url = 'https://image.flaticon.com/icons/svg/29/29264.svg'
+                        url = 'css/icon/jpg.svg'
+                        break;
+                    case 'png':
+                        url = 'css/icon/png.svg'
+                        break;
+                    case 'pdf':
+                        url = 'css/icon/pdf.svg'
+                        break;
+                    case 'mp3':
+                        url = 'css/icon/mp3.svg'
+                        break;
+                    case 'mp4':
+                        url = 'css/icon/mp4.svg'
+                        break;
+                    case 'aif':
+                    case 'cda':
+                    case 'mid':
+                    case 'mpa':
+                    case 'ogg':
+                    case 'wav':
+                    case 'wma':
+                    case 'wp':
+                        url = 'css/icon/mp4.svg'
+                        break;
+                    case 'bmp':
+                    case 'gif':
+                    case 'ico':
+                    case 'jpeg':
+                    case 'ps':
+                    case 'svg':
+                    case 'tiff':
+                    case 'ti':
+                        url = 'css/icon/image.svg'
+                        break;
+                    case 'ppt':
+                        url = 'css/icon/ppt.svg'
+                        break;
+                    case 'ai':
+                        url = 'css/icon/ai.svg'
+                        break;
+                    case 'txt':
+                        url = 'css/icon/txt.svg'
+                        break;
+                    case 'psd':
+                        url = 'css/icon/psd.svg'
                         break;
                     default:
-                        url = 'https://image.flaticon.com/icons/svg/28/28842.svg'
+                        url = 'css/icon/psd.svg'
                 }
-                return url;
+                return type == 1 ? scope.$root.url_static + url : url;
             }
 
             function readFile(file) {
@@ -148,7 +238,7 @@
                         for (var i = 0; i < images.length; i++) {
                             var thumbnailElement = images[i];
                             thumbnailElement.alt = file.name;
-                            thumbnailElement.src = getExtension(file.name.split('.')[1]);
+                            thumbnailElement.src = getExtension(file.name.split('.')[1], 1);
                             obj.file_thumbnail = getExtension(file.name.split('.')[1]);
                         }
                         setTimeout(function () { file.previewElement.classList.add("dz-image-preview"); }, 1);
@@ -166,10 +256,7 @@
                     }
                 };
             }
-
-            
         }
-
     }
 
 })();

@@ -2,12 +2,15 @@
 from bson import ObjectId
 import models
 import common
-from Query import FactorAppraisal
+from Query import AprPeriodEmpOut
 import logging
 import threading
 logger = logging.getLogger(__name__)
 global lock
 lock = threading.Lock()
+import quicky
+from bson import SON
+from collections import OrderedDict
 
 def get_list_with_searchtext(args):
     searchText = args['data'].get('search', '')
@@ -17,22 +20,38 @@ def get_list_with_searchtext(args):
 
     pageIndex = (lambda pIndex: pIndex if pIndex != None else 0)(pageIndex)
     pageSize = (lambda pSize: pSize if pSize != None else 20)(pageSize)
-
-    if not args['data'].has_key('factor_group_code') or args['data']['factor_group_code'] == None or args['data']['factor_group_code'] == "":
-        return None
-
-    ret=FactorAppraisal.display_list_factor_appraisal(args['data']['factor_group_code'])
-
+    ret=AprPeriodEmpOut.get_empNotApr_by_apr_period()
     ret=common.filter_lock(ret, args)
-    
-    if(searchText != None):
-        ret.match("contains(factor_code, @name) or contains(factor_name, @name)" + \
-            " or contains(weight, @name) or contains(ordinal, @name)",name=searchText.strip())
-
     if(sort != None):
         ret.sort(sort)
-        
     return ret.get_page(pageIndex, pageSize)
+
+def get_list_distinct_approval_year_and_period(args):
+    ret = {}
+    collection = common.get_collection('TMPER_AprPeriod').aggregate([
+        {"$lookup":{'from':common.get_collection_name_with_schema('SYS_VW_ValueList'), 'localField':'apr_period', 'foreignField':'value', 'as': 'aprPeriod'}},
+        {"$unwind":{'path':'$aprPeriod', "preserveNullAndEmptyArrays":True}},
+        {"$match":{
+            "$and": [ { 'aprPeriod.list_name': "LApprovalPeriod" }, { 'aprPeriod.language': quicky.language.get_language()} ]
+        }},
+        {"$project": {
+            "apr_period_a":{ "$ifNull": ["$aprPeriod.caption", ""] },
+            "apr_year_a": {'$toString': "$apr_year"},
+            "apr_period": {'$toString': "$apr_period"},
+            "apr_year": 1
+        }},
+        {"$project": {
+            "caption": { '$concat': [ "$apr_year_a", " / ", "$apr_period_a" ]},
+            "value" : { '$concat': [ "$apr_year_a", "__", "$apr_period" ]},
+            "apr_year":  1,
+            "apr_period": {'$toInt': "$apr_period"},
+            
+        }},
+        { "$sort" : SON([("apr_year",-1),("apr_period",-1)]) }
+        ])
+        
+    ret = list(collection)
+    return ret
 
 def insert(args):
     try:
@@ -40,7 +59,7 @@ def insert(args):
         ret = {}
         if args['data'] != None:
             data =  set_dict_insert_data(args)
-            ret  =  models.TMLS_FactorAppraisal().insert(data)
+            ret  =  models.TMPER_AprPeriodEmpOut().insert(data)
             lock.release()
             return ret
 
@@ -57,18 +76,27 @@ def update(args):
         lock.acquire()
         ret = {}
         if args['data'] != None:
-            data =  set_dict_update_data(args)
-            ret  =  models.TMLS_FactorAppraisal().update(
-                data, 
-                "factor_code == {0}", 
-                args['data']['factor_code'])
-            if ret['data'].raw_result['updatedExisting'] == True:
-                ret.update(
-                    item = FactorAppraisal.display_list_factor_appraisal(args['data']['factor_group_code']).match("factor_code == {0}", args['data']['factor_code']).get_item()
-                    )
-            lock.release()
-            return ret
-
+            if(args['data']['tmp']==1):
+                del(args['data']['tmp'])
+                data =  set_dict_update_data(args)
+                ret  =  models.TMPER_AprPeriodEmpOut().update(
+                    data, 
+                    "_id == {0}", 
+                    ObjectId(args['data']['_id']))
+                lock.release()
+                return ret
+            else:
+                del(args['data']['tmp'])
+                data = {
+                    "reason":args['data']['reason'],
+                    "note":args['data']['note']
+                    }
+                ret  =  models.TMPER_AprPeriodEmpOut().update(
+                    data, 
+                    "_id in {0}", 
+                    [ObjectId(x) for x in args['data']['_id']])
+                lock.release()
+                return ret
         lock.release()
         return dict(
             error = "request parameter is not exist"
@@ -82,7 +110,7 @@ def delete(args):
         lock.acquire()
         ret = {}
         if args['data'] != None:
-            ret  =  models.TMLS_FactorAppraisal().delete("factor_code in {0}",[x["factor_code"]for x in args['data']])
+            ret  =  models.TMPER_AprPeriodEmpOut().delete("_id in {0}",[ObjectId(x["_id"])for x in args['data']])
             lock.release()
             return ret
 
@@ -94,25 +122,42 @@ def delete(args):
         lock.release()
         raise(ex)
 
+def get_genPreAperiodData(args):
+    if(args['data']!= None):
+        ret = {}
+        collection = common.get_collection('TMPER_AprPeriodEmpOut').aggregate([
+        {"$match":{
+            "$and": [ { 'apr_year': 2021 }, { 'apr_period': 5} ]
+        }},
+        {"$project": {
+            "apr_period":1,
+            "apr_year": 1,
+            "employee_code":1,
+            "department_code": 1,
+            "job_w_code":1,
+            "reason":1,
+            "note":1,
+        }},
+        { "$sort" : SON([("apr_year",-1),("apr_period",-1)]) }
+        ])
+        ret = list(collection)
+        return ret
+
 def set_dict_insert_data(args):
     ret_dict = dict()
 
     ret_dict.update(
-        factor_code         = (lambda x: x['factor_code']        if x.has_key('factor_code')       else None)(args['data']),
-        factor_name         = (lambda x: x['factor_name']        if x.has_key('factor_name')       else None)(args['data']),
-        factor_name2        = (lambda x: x['factor_name2']       if x.has_key('factor_name2')      else None)(args['data']),
-        factor_group_code   = (lambda x: x['factor_group_code']  if x.has_key('factor_group_code') else None)(args['data']),
-        weight              = (lambda x: x['weight']             if x.has_key('weight')            else None)(args['data']),
-        is_apply_all        = (lambda x: x['is_apply_all']       if x.has_key('is_apply_all')      else None)(args['data']),
+        apr_period         = (lambda x: x['apr_period']        if x.has_key('apr_period')       else None)(args['data']),
+        apr_year         = (lambda x: x['apr_year']        if x.has_key('apr_year')       else None)(args['data']),
+        employee_code        = (lambda x: x['employee_code']       if x.has_key('employee_code')      else None)(args['data']),
+        department_code   = (lambda x: x['department_code']  if x.has_key('department_code') else None)(args['data']),
+        job_w_code              = (lambda x: x['job_w_code']             if x.has_key('job_w_code')            else None)(args['data']),
+        reason        = (lambda x: x['reason']       if x.has_key('reason')      else None)(args['data']),
         job_working         = (lambda x: x['job_working']        if x.has_key('job_working')       else None)(args['data']),
         note                = (lambda x: x['note']               if x.has_key('note')              else None)(args['data']),
-        ordinal             = (lambda x: x['ordinal']            if x.has_key('ordinal')           else None)(args['data']),
-        lock                = (lambda x: x['lock']               if x.has_key('lock')              else None)(args['data'])
     )
-
     return ret_dict
 
 def set_dict_update_data(args):
     ret_dict = set_dict_insert_data(args)
-    del ret_dict['factor_code']
     return ret_dict

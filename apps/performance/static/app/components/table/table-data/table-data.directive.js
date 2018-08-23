@@ -342,7 +342,7 @@
                                     }
 
                                     _tableScrollBody.css({
-                                        "height": (Math.round(_heightTableWrapperParent - _heightOuterTable)) + "px",
+                                        "height": (Math.round(_heightTableWrapperParent - _heightOuterTable)) + 3 + "px",
                                         "width": _tableScrollBodyWidth
                                     });
                                 });
@@ -487,6 +487,10 @@
 
                     table = $(elem).DataTable(dataTableConfigs);
                     var _tableWrapper = $(elem).closest("div.dataTables_wrapper");
+                    var _tableRow = $(elem).closest("div.dataTables_wrapper");
+                    $(_tableRow.find('.row')).css("margin", 0)
+                    $(_tableRow.find("div[class*='col-']")).css("padding", 0)
+
                     var _tableScrollBody = $(elem).closest("div.dataTables_scrollBody");
                     if (!$scope.serverSide) {
                         setTimeout(function () {

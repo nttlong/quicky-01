@@ -4,12 +4,14 @@
      */
     scope.$$table = {
         tableFields: [
-            { "data": "kpi_code", "title": "${get_res('kpi_code_table_header','Mã')}" },
-            { "data": "kpi_name", "title": "${get_res('kpi_name_table_header','Yếu tố')}" },
-            { "data": "weight", "title": "${get_res('weight_table_header','Trọng số')}" },
-            { "data": "is_apply_all", "title": "${get_res('is_apply_all_table_header','Toàn cty')}", "format": "checkbox" },
-            { "data": "ordinal", "title": "${get_res('ordinal_table_header','Thứ tự')}" },
-            { "data": "lock", "title": "${get_res('lock_table_header','Ngưng sử dụng')}", "format": "checkbox" }
+            { "data": "kpi_code", "title": "${get_res('kpi_code_table_header','Mã')}", "className":"text-left" },
+            { "data": "kpi_name", "title": "${get_res('kpi_name_table_header','Tên')}", "className": "text-left" },
+            { "data": "unit_code", "title": "${get_res('unit_code_table_header','ĐVT')}", "className": "text-left" },
+            { "data": "cycle_type", "title": "${get_res('cycle_type_table_header','Chu kỳ')}", "className": "text-left" },
+            { "data": "kpi_desc", "title": "${get_res('kpi_desc_table_header','Mô tả')}", "className": "text-left" },
+            { "data": "weight", "title": "${get_res('weight_table_header','Trọng số')}", "className": "text-right" },
+            { "data": "benchmark", "title": "${get_res('benchmark_table_header','Điểm chuẩn')}", "className": "text-right" },
+            { "data": "is_apply_all", "title": "${get_res('is_apply_all_table_header','Toàn cty')}", "className": "text-center", "format": "checkbox" }
         ],
         $$tableConfig: {},
         tableSource: _loadDataServerSide,
@@ -174,7 +176,8 @@
                     "pageSize": iPageLength,
                     "search": searchText,
                     "sort": sort,
-                    "kpi_group_code": scope.$$tree.treeCurrentNode.hasOwnProperty("kpi_group_code") === true ? scope.$$tree.treeCurrentNode.kpi_group_code : null
+                    "kpi_group_code": scope.$$tree.treeCurrentNode.hasOwnProperty("kpi_group_code") === true ? scope.$$tree.treeCurrentNode.kpi_group_code : null,
+                    "lock": scope.$parent.$parent.$parent.advancedSearch.data_lock
                 })
                 .done()
                 .then(function (res) {
@@ -192,7 +195,7 @@
     function _loadTreeDataSource() {
         services.api("${get_api_key('app_main.api.TMLS_KPIGroup/get_tree')}")
             .data({
-                lock: (scope.$root.$commons) ? scope.$root.$commons.$kpi_lock : 0
+                "lock": scope.$parent.advancedSearch.data_lock
             })
             .done()
             .then(function (res) {
@@ -200,9 +203,17 @@
                 scope.$applyAsync();
             })
     }
-    _loadTreeDataSource();
+
+    (function __init__() {
+        _loadTreeDataSource();
+    })();
 
     scope.$watch("$$tree.treeCurrentNode", function () {
         _tableData(scope.$$table.$$tableConfig.iPage, scope.$$table.$$tableConfig.iPageLength, scope.$$table.$$tableConfig.orderBy, scope.$$table.$$tableConfig.searchText, scope.$$table.$$tableConfig.fnReloadData);
+    });
+
+    scope.$parent.$watch("advancedSearch.data_lock", function (old, newVal) {
+        if (old != newVal)
+            _tableData(scope.$$table.$$tableConfig.iPage, scope.$$table.$$tableConfig.iPageLength, scope.$$table.$$tableConfig.orderBy, scope.$$table.$$tableConfig.searchText, scope.$$table.$$tableConfig.fnReloadData);
     });
 });

@@ -1,8 +1,9 @@
 ﻿(function (scope) {
     scope.__mode = 0;
     scope.entity = {};
-
-    scope.$parent.$parent.$parent.onSave = onSave;
+    scope.$active = (scope.$root.$commons) ? scope.$root.$commons.$active : true
+    console.log("dô nè active", scope.$active)
+    scope.$parent.$parent.$parent.onSave = (scope.$active) ? onSave : "";
     scope.$parent.$parent.$parent.onAttach = onAttach;
     scope.$parent.$parent.$parent.onPrint = onPrint;
     scope.$parent.$parent.$parent.onRefresh = onRefresh;
@@ -20,6 +21,11 @@
 
     function onSave() {
         if (scope.entity != null) {
+            debugger
+            if (scope.entity.active == null || scope.entity.active == undefined) {
+                scope.entity.active = true;
+            }
+            scope.entity.active = (scope.entity.active) ? false : true;
             var rsCheck = checkError();//Kết quả check input
             if (rsCheck.result) {
                 $msg.message("${get_global_res('Input_Error','Nhập liệu sai')}", rsCheck.errorMsg, function () { });
@@ -32,7 +38,10 @@
                     if (scope.__mode == 1 || scope.__mode == 3) {
                         //Reload table data
                         reloadData();
-                    } else if (scope.__mode == 2) {
+                        //unlock menuItem
+                        $('.zb-left-li').css("pointer-events", "all");
+                    }
+                    else if (scope.__mode == 2) {
                         scope.$parent.$parent.$parent.currentItem.full_name = res.entity.last_name + " " + res.entity.first_name;
                         scope.$parent.$parent.$parent.currentItem.gender = _.findWhere(scope.$parent.$parent.$parent.cbbGender, { "value": res.entity.gender })['caption'];
                         scope.$parent.$parent.$parent.currentItem.department_name = res.entity.department_name;
@@ -133,7 +142,7 @@
     function reloadData() {
         scope.$parent.$parent.$parent.refresh();
     }
-    
+
     function _getEmployee(empCode) {
         if (scope.__mode == 2) {
             services.api("${get_api_key('app_main.api.HCSEM_Employees/get_employee_by_emp_code')}")
@@ -142,6 +151,7 @@
                 })
                 .done()
                 .then(function (res) {
+                    res.active = (res.active) ? false : true;
                     scope.entity = res;
                     _getDataInitCombobox();
                     scope.$applyAsync();
@@ -151,7 +161,7 @@
 
     $(document).ready(function () {
         $('#email').focusout(function (e) {
-            if ($(this).val() != "") { 
+            if ($(this).val() != "") {
                 var rs = true;
                 var valid = lv.Validate(scope.entity.email);
                 rs = valid.isEmail();
@@ -184,14 +194,21 @@
             _init_();
     })
 
-    scope.$parent.$parent.$parent.$watchGroup(['mode', 'currentItem'], function (val) {    
+    scope.$parent.$parent.$parent.$watchGroup(['mode', 'currentItem'], function (val) {
         if (val[0] != 0) {
+            scope.$active = (val[1].active != undefined) ? val[1].active : true;
+            scope.$root.$commons.$active = scope.$active;
+            scope.$parent.$parent.$parent.onSave = (scope.$active) ? onSave : "";
             _init_();
+            
             if (val[0] == 2) {
                 _getEmployee(val[1].employee_code);
+                $('.zb-left-li').css("pointer-events", "all");
                 scope.$applyAsync();
-            } else if(val[0] == 1){
-                scope.entity = null;
+            } else if (val[0] == 1) {
+                scope.entity = {};
+                _getDataInitCombobox();
+                $('.zb-left-li').css("pointer-events", "none");
                 scope.$applyAsync();
             }
         }
@@ -352,7 +369,7 @@
                 "alias": "$$$profession_code"
             },
             {
-                "key": "${encryptor.get_key('cbb_employees')}",
+                "key": "${encryptor.get_key('cbb_employees_cbcc')}",
                 "code": scope.entity
                     && scope.entity.hasOwnProperty('manager_code')
                     ? scope.entity.manager_code
@@ -360,7 +377,7 @@
                 "alias": "$$$manager_code"
             },
             {
-                "key": "${encryptor.get_key('cbb_employees')}",
+                "key": "${encryptor.get_key('cbb_employees_cbcc')}",
                 "code": scope.entity
                     && scope.entity.hasOwnProperty('manager_sub_code')
                     ? scope.entity.manager_sub_code
@@ -392,7 +409,7 @@
                 "alias": "$$$department_code_hold"
             },
             {
-                "key": "${encryptor.get_key('cbb_employees')}",
+                "key": "${encryptor.get_key('cbb_employees_cbcc')}",
                 "code": scope.entity
                     && scope.entity.hasOwnProperty('signed_person')
                     ? scope.entity.signed_person
@@ -416,7 +433,7 @@
                 "alias": "$$$job_w_hold"
             }
             ]
-            
-    );
+
+        );
     }
 });

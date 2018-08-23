@@ -676,6 +676,32 @@ class COLL():
         get mongodb collection, before get this method will run create unique key script according to 'key' in model
         :return:
         """
+
+
+        context = self.qr.db
+        if context == None:
+            from . import db_context
+            context = db_context.get_db_context()
+            if context == None:
+                raise (Exception("Please use:\n"
+                                 "import qmongo\n"
+                                 "qmongo.set_db_context(host=..,port=..,user=..,password=..,name=...)\n"
+                                 "or you can use bellow statement:\n"
+                                 "qmongo.set_db_context(\"mongodb://{username}:{password}@{host}:{port}/{database name}[:{schema}]\")"))
+            else:
+                self.qr.db = context.db
+        if self.schema == None:
+            from . db_context import get_schema
+            self.schema = get_schema()
+            if self.schema == None:
+                raise (Exception("Please use:\n"
+                                 "import qmongo\n"
+                                 "qmongo.set_schema(schema_name)"))
+
+        if hasattr(self,"__create_mongodb_view__"):
+            self.__create_mongodb_view__(self).next()
+            delattr(self,"__create_mongodb_view__")
+
         global _cache_create_key_for_collection
         if _cache_create_key_for_collection==None:
             _cache_create_key_for_collection={}

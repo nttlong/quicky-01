@@ -43,8 +43,10 @@ def login(request):
     #    user.is_supperuser=True
     #    user.save()
     _login=models.Login()
-    from django.conf import settings as st
-    _login.language=request._get_request().get("language", st.LANGUAGE_CODE)
+    #from django.conf import settings as st
+    import SystemConfig
+    st = SystemConfig.get()
+    _login.language=request._get_request().get("language", st.default_language)
     if request.GET.has_key("next"):
         _login.url_next=request.GET["next"]
         if request._get_post().get("site") != None and request._get_post().get("site") != "":
@@ -78,7 +80,10 @@ def load_page(request,path):
 
 @quicky.view.template("sign_out.html")
 def logout_view(request):
+    import SystemConfig
     logout(request, request.user.schema)
+    quicky.language.remove_language()
+    SystemConfig.clear_cache()
     request.session.clear()
     return redirect(request.get_app_url(""))
 

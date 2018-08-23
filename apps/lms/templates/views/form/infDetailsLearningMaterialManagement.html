@@ -1,4 +1,4 @@
-﻿<div id="collapseTableProvince" class="row" style="padding: 15px;">
+﻿<div class="row" style="padding: 15px;">
    <div class="information-header">
       <p class="detail-title">
          {{_currentItem.material_id}}_{{_currentItem.material_name}}
@@ -88,16 +88,20 @@
             </div>
             <div class="col-md-4 col-lg-4 col-sm-4">
                 <div class="">
-                    <img ng-src="{{_currentItem.files.file_thumbnail}}" style="width: 100%;">
+                    <img ng-src="{{$root.url_static}}{{_currentItem.files.file_thumbnail}}" style="width: 100%;">
                 </div>
                 <div style="text-align:center;font-size: 0.675rem !important; padding-top: 30px;font-style:italic">
-                    <a> View history</a>
+                    <span ng-click="$root.viewHistoryLearningMaterial()" style="cursor: pointer;">
+                        <i class="bowtie-icon bowtie-navigate-history"></i> ${get_res('view_history','View history')}
+                    </span>
                 </div>
             </div>
             <div class="col-md-12 col-lg-12 col-sm-12" style="padding:0px">
                 <div class="form-group zb-form-group">
                     <!--Comment-->
-                    <label for="inputEmp_Train_Mode_Name" class="col-sm-5 detail-content" style="padding-right:10px">${get_res('comment','Comment')}</label>
+                    <label for="inputEmp_Train_Mode_Name" class="col-sm-5 detail-content" style="padding-right:10px">
+                        ${get_res('comment','Comment')}
+                    </label>
                     <div class="col-sm-12" style="padding:0px">
                         <div class="clearblock" ></div>
                         <input-textarea rows="2" ng-model="entity.comment"></input-textarea>
@@ -243,9 +247,9 @@
             </div>-->
         </div>
         </div>
-        <div class="row" style="color:dimgrey;text-align:center;font-size:11px;padding-bottom:20px;padding-top:10px">
+        <!--<div class="row" style="color:dimgrey;text-align:center;font-size:11px;padding-bottom:20px;padding-top:10px">
             <i class="bowtie-icon bowtie-chevron-down-all" ng-click="Myfunction()" style="cursor: pointer;"> --See more--</i>
-         </div>
+         </div>-->
    </div>
 </div>
 <style>
@@ -324,9 +328,11 @@
     overflow: hidden;
     }
     .lms-font-size {
-        font-size: 0.775rem !important;
+        font-size: 0.875rem !important;
     }
-
+    .body-detail-view {
+        height: 100%;
+    }
 </style>
 <script>
     (function (scope) {
@@ -455,7 +461,7 @@
 
         scope.convertFileSize = function (size) {
             if (size < 1024) {
-                return size + " B";
+                return size.toFixed(2) + " B";
             } else if (size < 1024 * 1024) {
                 return (size / 1024).toFixed(2) + " KB";
             } else if (size < 1024 * 1024 * 1024) {

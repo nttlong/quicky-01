@@ -18,3 +18,9 @@ from HCSEM_Employees import HCSEM_Employees
 from HCSEM_Employees import LMS_VW_Employee
 from LMSLS_MaterialManagement import LMS_VW_Author_Name
 from LMSLS_MaterialManagement import LMSLS_MaterialManagement
+from LMSLS_ExQuestionBank import LMSLS_ExQuestionBank
+from LMSLS_ExQuestionCategory import LMSLS_ExQuestionCategory
+from LMSLS_ExTemplateCategory import LMSLS_ExTemplateCategory
+from LMSLS_ExTemplateList import LMSLS_ExTemplateList
+from auth_user_info import auth_user_info
+from auth_user import auth_user

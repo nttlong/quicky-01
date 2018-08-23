@@ -87,6 +87,16 @@
 </div>
 <script>
     (function ($scope) {
+        var $selected = [];
+        if ($scope.$parent[$scope.$parent.$frmSearch.alias] &&
+            $scope.$parent[$scope.$parent.$frmSearch.alias].value &&
+            $scope.$parent[$scope.$parent.$frmSearch.alias].value.length > 0)
+            $selected = _.map($scope.$parent[$scope.$parent.$frmSearch.alias].value,
+                function (o) {
+                    return _.pick(o,
+                        $scope.$parent[$scope.$parent.$frmSearch.alias].value_field,
+                        $scope.$parent[$scope.$parent.$frmSearch.alias].caption_field);
+                });
         $scope.title = $scope.$parent.$frmSearch[$scope.$parent.$frmSearch.alias].title;
         $scope.checkMode = $scope.$parent.$frmSearch[$scope.$parent.$frmSearch.alias].multi === true ? 'MultiSelect' : 'SingleSelect';
         $scope.save = save;
@@ -123,18 +133,11 @@
 
         function save() {
             if ($scope.checkMode === 'MultiSelect') {
-                var value = _.pluck($scope.$$table.selectedItems, $scope.$parent[$scope.$parent.$frmSearch.alias].value_field);
+                var value = _.pluck($selected, $scope.$parent[$scope.$parent.$frmSearch.alias].value_field);
                 $scope.$parent.$frmSearch[$scope.$parent.$frmSearch.alias].setValue(value);
-                var lst = [];
-                _.each($scope.$$table.selectedItems, function (val) {
-                    var obj = {};
-                    obj[$scope.$parent[$scope.$parent.$frmSearch.alias].value_field] = val[$scope.$parent[$scope.$parent.$frmSearch.alias].value_field];
-                    obj[$scope.$parent[$scope.$parent.$frmSearch.alias].caption_field] = val[$scope.$parent[$scope.$parent.$frmSearch.alias].caption_field];
-                    lst.push(obj);
-                });
                 var temp = JSON.parse(JSON.stringify($scope.$parent[$scope.$parent.$frmSearch.alias]));
                 $scope.$parent[$scope.$parent.$frmSearch.alias] = null;
-                temp['value'] = lst;
+                temp['value'] = $selected;
                 $scope.$parent[$scope.$parent.$frmSearch.alias] = temp;
             } else {
                 var value = $scope.$$table.currentItem[$scope.$parent[$scope.$parent.$frmSearch.alias].value_field];
@@ -199,6 +202,8 @@
                             _.each(res.items, function (val) {
                                 if (_.contains(checked, val[$scope.$parent[$scope.$parent.$frmSearch.alias].value_field])) {
                                     val['row_checked'] = true;
+                                } else if (_.contains(_.pluck($selected, $scope.$parent[$scope.$parent.$frmSearch.alias].value_field), val[$scope.$parent[$scope.$parent.$frmSearch.alias].value_field])) {
+                                    val['row_checked'] = true;
                                 } else {
                                     val['row_checked'] = false;
                                 }
@@ -233,5 +238,29 @@
                 $scope.$$table.$$tableConfig.orderBy, $scope.$$table.$$tableConfig.searchText,
                 $scope.$$table.$$tableConfig.fnReloadData);
         });
+
+        $scope.$watch("$$table.selectedItems", function (val) {
+            if (val && val.length > 0) {
+                if ($selected.length === 0) {
+                    _.each(val, function (val, idx) {
+                        var _obj = {};
+                        _obj[$scope.$parent[$scope.$parent.$frmSearch.alias].value_field] = val[$scope.$parent[$scope.$parent.$frmSearch.alias].value_field];
+                        _obj[$scope.$parent[$scope.$parent.$frmSearch.alias].caption_field] = val[$scope.$parent[$scope.$parent.$frmSearch.alias].caption_field];
+                        $selected.push(_obj);
+                    })
+                } else {
+                    var _arr = [];
+                    _.each(val, function (val, idx) {
+                        if (val && Object.keys(val).length > 0) {
+                            var _obj = {};
+                            _obj[$scope.$parent[$scope.$parent.$frmSearch.alias].value_field] = val[$scope.$parent[$scope.$parent.$frmSearch.alias].value_field];
+                            _obj[$scope.$parent[$scope.$parent.$frmSearch.alias].caption_field] = val[$scope.$parent[$scope.$parent.$frmSearch.alias].caption_field];
+                            _arr.push(_obj);
+                        }
+                    })
+                    $selected = _.uniq(_.union($selected, _arr), false, _.property($scope.$parent[$scope.$parent.$frmSearch.alias].value_field));
+                }
+            }
+        }, true)
     });
 </script>

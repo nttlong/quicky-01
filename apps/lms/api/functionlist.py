@@ -17,7 +17,8 @@ def get_list(args):
         width                = 1,
         icon                 = 1,
         app                  = 1,
-        level_code           = 1
+        level_code           = 1,
+        color                = 1
         ).match("app == {0}", "LMS").sort({"sorting":1})
     
     return items.get_list()

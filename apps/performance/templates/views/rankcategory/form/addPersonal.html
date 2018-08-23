@@ -170,11 +170,21 @@
         //Nút lưu
         scope.saveNClose = saveNClose;
 
+        //Reload data
+        function reloadRankSub() {
+            var config = scope.$$table.$$tableConfig;
+            _tableData(config.iPage, config.iPageLength, config.orderBy, config.searchText, config.fnReloadData);
+        }
+
         scope.addNewRankSub = addNewRankSub;
         scope.removeRankSub = removeRankSub;
         scope.editRankSub = editRankSub;
         scope.refreshRankSub = refreshRankSub;
         $(window).trigger('resize');
+        scope.onSearch = function (val) {
+            scope.$$table.$$tableConfig.searchText = val;
+            reloadRankSub();
+        }
 
         /**
          * Thay đỗi kích thước form Dialog và các control trên form dialog

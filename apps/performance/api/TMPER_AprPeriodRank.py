@@ -8,6 +8,7 @@ import threading
 logger = logging.getLogger(__name__)
 global lock
 lock = threading.Lock()
+import quicky
 
 def get_list_with_searchtext(args):
     searchText = args['data'].get('search', '')
@@ -18,21 +19,42 @@ def get_list_with_searchtext(args):
     pageIndex = (lambda pIndex: pIndex if pIndex != None else 0)(pageIndex)
     pageSize = (lambda pSize: pSize if pSize != None else 20)(pageSize)
 
-    if not args['data'].has_key('factor_group_code') or args['data']['factor_group_code'] == None or args['data']['factor_group_code'] == "":
+    if not args['data'].has_key('apr_period') or args['data']['apr_period'] == None or args['data']['apr_period'] == "":
         return None
 
-    ret=FactorAppraisal.display_list_factor_appraisal(args['data']['factor_group_code'])
+    ret=FactorAppraisal.display_list_factor_appraisal(args['data']['apr_period'])
 
     ret=common.filter_lock(ret, args)
     
     if(searchText != None):
-        ret.match("contains(factor_code, @name) or contains(factor_name, @name)" + \
-            " or contains(weight, @name) or contains(ordinal, @name)",name=searchText.strip())
+        ret.match("contains(apr_period, @name) or contains(apr_year, @name)" + \
+            " or contains(department_code, @name) or contains(ordinal, @name)",name=searchText.strip())
 
     if(sort != None):
         ret.sort(sort)
         
     return ret.get_page(pageIndex, pageSize)
+
+#def get_list_distinct_approval_year_and_period(args):
+#    ret = {}
+#    collection = common.get_collection('TMPER_AprPeriodRank').aggregate([
+
+#        {"$lookup":{'from':common.get_collection_name_with_schema('SYS_VW_ValueList'), 'localField':'apr_period', 'foreignField':'value', 'as': 'aprPeriod'}},
+#        {"$unwind":{'path':'$aprPeriod', "preserveNullAndEmptyArrays":True}},
+#        {"$match":{
+#            "$and": [ { 'aprPeriod.list_name': "LApprovalPeriod" }, { 'aprPeriod.language': quicky.language.get_language()} ]
+#        }},
+
+#        {"$project": {
+#            "apr_period":{ "$ifNull": ["$aprPeriod.caption", ""] },
+#            "apr_year": {'$toString': "$apr_year"}
+#        }},
+#        {"$project": {
+#            "caption": { '$concat': [ "$apr_year", " / ", "$apr_period" ]},
+#            "value": { "$ifNull": ["$aprPeriod.caption", ""] }
+#        }}])
+#    ret = list(collection)
+#    return ret
 
 def insert(args):
     try:

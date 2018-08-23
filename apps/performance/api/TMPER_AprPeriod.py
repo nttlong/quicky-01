@@ -17,19 +17,17 @@ def get_list_with_searchtext(args):
 
     pageIndex = (lambda pIndex: pIndex if pIndex != None else 0)(pageIndex)
     pageSize = (lambda pSize: pSize if pSize != None else 20)(pageSize)
-    ret=AprPeriod.get_period_by_apr_period()
 
+    ret=AprPeriod.display_list_apr_period()
     ret=common.filter_lock(ret, args)
-    
     if(searchText != None):
-        ret.match("contains(apr_period, @name) or " + \
-            "contains(apr_year, @name) or "
-           ,name=searchText.strip())
+        ret.match("contains(apr_period, @name) or contains(apr_year, @name)" ,name=searchText.strip())
 
     if(sort != None):
         ret.sort(sort)
-        
+      
     return ret.get_page(pageIndex, pageSize)
+
 
 def insert(args):
     try:
@@ -72,6 +70,9 @@ def update(args):
         lock.release()
         raise(ex)
 
+    
+
+
 def get_apr_period_by_id(args):
     try:
         lock.acquire()
@@ -107,6 +108,7 @@ def delete(args):
     except Exception as ex:
         lock.release()
         raise(ex)
+
 def set_dict_insert_data(args):
     ret_dict = dict()
     ret_dict.update(

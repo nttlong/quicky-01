@@ -6,7 +6,6 @@
         function _FormSearch(scope, alias) {
             __scope = scope;
             __alias = alias;
-            //__scope.$root.$frmSearch = {};
         }
 
         _FormSearch.prototype.cancel = function (callback) {
@@ -18,6 +17,7 @@
         }
         _FormSearch.prototype.JobWorking = JobWorking;
         _FormSearch.prototype.FactorAppraisal = FactorAppraisal;
+        _FormSearch.prototype.KPI = KPI;
 
         function setConfigFrmSearch(ngModel, title = "", multiCheck = false, prop) {
             ngModel = !ngModel ? {} : ngModel;
@@ -32,6 +32,23 @@
                 "accept": function () { },
                 "cancel": function () { }
             }
+        }
+
+        function KPI(ngModel, prop, title, multi) {
+            debugger
+            var me = this;
+            me.title = title;
+            me.path = "commons/FormSearch/KPI";
+            me.multi = multi;
+            me.prop = prop;
+            me.openDialog = openDialog(me.title, me.path, function () { });
+            setConfigFrmSearch(ngModel, me.title, me.multi, me.prop);
+            __scope.$frmSearch[__alias].selected = ngModel[prop];
+            __scope.$frmSearch[__alias].setValue = function (val) {
+                ngModel[prop] = val;
+            }
+
+            return me;
         }
 
         function JobWorking(ngModel, prop, title, multi) {

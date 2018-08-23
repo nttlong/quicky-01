@@ -10,7 +10,7 @@
             </div>
         </div>
         <div class="modal-body">
-            <div title="{{$parent.headerTitle}}" style="height:100%;">
+            <div style="height:100%;">
                 <div class="col-md-6">
                     <collapse-box class="zb-form-common" title="${get_global_res('Common_Information','Thông tin chung')}">
                         <div class="col-md-12">
@@ -18,38 +18,77 @@
                                 <!--Đối tượng thiết lập-->
                                 <label class="col-md-5 zb-form-label">${get_res('detail_change_object','Đối tượng thiết lập')}</label>
                                 <div class="col-sm-7">
-                                    <input-select ng-model="entity.change_object" data-list="cbbChangeObject" data-value="value" data-caption="caption" required/>
+                                    <input-select ng-model="entity.change_object"  data-list="cbbChangeObject" data-value="value" data-caption="caption" required/>
                                 </div>
                             </div>
                         </div>
                         <div class="col-md-12">
-                            <div class="form-group zb-form-group">
+                            <div class="form-group zb-form-group" ng-if="entity.change_object == 1">
                                 <!--Tên chi tiết-->
                                 <label class="col-md-5 zb-form-label">${get_res('detail_object_name','Tên chi tiết')}</label>
                                 <div class="col-md-7">
-                                    <multi-combobox title="{{comboboxInfo.title}}" 
-                                            load-data="$combobox.loadData" 
-                                                    params="{cbbName:'abnc', b:2}"
-                                            ng-model="entity.object_code"
-                                            key-field="$root.fn {{comboboxInfo.valueField}}"
-                                            caption-field="{{comboboxInfo.captionField}}"
-                                            on-search-change="false"
-                                            on-search-press="true"
-                                            placeholder=""
-                                            init-data="initComboMulti"
-                                            paging="true"
-                                            on-select="$combobox.selectCombobox"
-                                            on-accept="$combobox.acceptCombobox"
-                                            close-on-select="false">
-                                            <!-- number-on-page="30",
-                                            page-index="$combobox.pageIndex" -->
-                                        <div class="zb-list-common">
-                                            <div>
-                                                <span class="zb-list-title">##emp_type_code##</span>
-                                                <span class="zb-list-info">##emp_type_name##</span>
-                                            </div>
-                                        </div>
-                                    </multi-combobox>
+                                    <tree-combobox
+                                        load-data="$root.$getComboboxData" 
+                                        ng-model="entity.object_code"
+                                        placeholder=""
+                                        init-data="$$$cbb_job_working_group_multi_check.value"
+                                        caption-field="{{$$$cbb_job_working_group_multi_check.caption_field}}"
+                                        key-field="{{$$$cbb_job_working_group_multi_check.value_field}}"
+                                        parent-field="{{$$$cbb_job_working_group_multi_check.parent_field}}"
+                                        multi-select="$$$cbb_job_working_group_multi_check.multi_select"
+                                        on-accept=""
+                                        params="{key:'${encryptor.get_key('cbb_job_working_group_multi_check')}', value:[{ '@lock': true }]}"
+                                        required>
+                                    </tree-combobox>
+                                </div>
+                            </div>
+                            <div class="form-group zb-form-group" ng-if="entity.change_object == 2">
+                                <!--Tên chi tiết-->
+                                <label class="col-md-5 zb-form-label">${get_res('detail_object_name','Tên chi tiết')}</label>
+                                <div class="col-md-7">
+                                    <form-search ng-model="entity.object_code" placeholder="" open="set_job_working()" init-data="$$$cbb_job_working_multi_check" multi="true" required></form-search>
+                                </div>
+                            </div>
+                            <div class="form-group zb-form-group"  ng-if="entity.change_object == 3">
+                                <!--Tên chi tiết-->
+                                <label class="col-md-5 zb-form-label">${get_res('detail_object_name','Tên chi tiết')}</label>
+                                <div class="col-md-7">
+                                    <combobox load-data="$root.$getComboboxData" 
+                                              ng-model="entity.object_code"
+                                              params="{key:${encryptor.get_key('cbb_position')}, value:[{ '@lock': true }]}"
+                                              on-search-change="false"
+                                              on-search-press="true"
+                                              placeholder=""
+                                              init-data="$$$cbb_position"
+                                              caption-field="{{$$$cbb_position.caption_field}}"
+                                              paging="true"
+                                              close-on-select="true"
+                                              template-fields="$$$cbb_position.display_fields"
+                                              reload="false"
+                                              multi-select="true"
+                                              required>
+                                    </combobox>
+                                </div>
+                            </div>
+                            <div class="form-group zb-form-group"  ng-if="entity.change_object == 4">
+                                <!--Tên chi tiết-->
+                                <label class="col-md-5 zb-form-label">${get_res('detail_object_name','Tên chi tiết')}</label>
+                                <div class="col-md-7">
+                                    <combobox load-data="$root.$getComboboxData" 
+                                              ng-model="entity.object_code"
+                                              params="{key:${encryptor.get_key('cbb_employee_type')}, value:[{ '@lock': true }]}"
+                                              on-search-change="false"
+                                              on-search-press="true"
+                                              placeholder=""
+                                              init-data="$$$cbb_employee_type"
+                                              caption-field="{{$$$cbb_employee_type.caption_field}}"
+                                              paging="true"
+                                              close-on-select="true"
+                                              template-fields="$$$cbb_employee_type.display_fields"
+                                              reload="false"
+                                              multi-select="true"
+                                              required>
+                                    </combobox>
                                 </div>
                             </div>
                         </div>
@@ -103,64 +142,36 @@
 </div>
 <script>
     (function (scope) {
+        var _default = {
+            rank_code: null,
+            change_object: 1,
+            object_level: null,
+            object_code: null,
+            object_name: null,
+            priority_no: null,
+            total_from: null,
+            total_to: null,
+            note: null
+        };
+        scope.title = scope.$parent.headerTitle;
         scope.save = save;
         scope.cbbChangeObject = [];
         scope.listNamecombobox = "";
         scope.mode = scope.$parent.__modeDetail;
-        scope.entity = scope.mode === 2 ? scope.$parent.$$table.currentItem : null;
-        scope.comboboxInfo = {
-                title: "",
-                captionField: "",
-                valueField: ""
-        };
-        scope.initComboMulti = [];
-        scope.$combobox = {
-            loadData: (cbSetData, pgIdx, txtSearch, params) => {
-                var data = services.extension.getComboboxData(pgIdx, txtSearch, scope.listNamecombobox, [{ "@lock": true }], cbSetData, function (res) {
-                    scope.comboboxInfo.title = res.display_name;
-                    scope.comboboxInfo.captionField = res.caption_field;
-                    scope.comboboxInfo.valueField = res.value_field;
-                    scope.$applyAsync();
-                });
-                //cbSetData(data);
-            },
-            selectCombobox: function(item) {
-                console.log("selectCombobox", item);
-            },
-            acceptCombobox: function(item) {
-                console.log("acceptCombobox", item);
-            },
-            onSearchPress: function(txtSearch) {
-                console.log("onSearchPress: ", txtSearch)
-            },
-            onSearchChange: function(txtSearch) {
-                console.log("onSearchChange: ", txtSearch)
-            },
-            // onPaging: function(pageIndex) {
-            //     console.log("pageIndex: ", pageIndex);
-            // },
-            //numberItems: 2000,
-            //numberOnPage: 30,
-            //pageIndex: 1
-        }
 
-        function __combobox() {
-            services.api("${get_api_key('app_main.api.common/get_combobox_data')}")
-                    .data({
-                        //parameter at here
-                        "key": scope.listNamecombobox,
-                        "value": [{ "@lock": true }],
-                        "code": scope.entity.object_code,
-                    })
-                    .done()
-                    .then(function (res) {
-                        scope.initComboMulti = res.data.items
-                        scope.$applyAsync();
-                    });
+        scope.set_job_working = function () {
+            var frm = lv.FormSearch(scope, "$$$cbb_job_working_multi_check");
+            frm.JobWorking(scope.entity, "object_code", "${get_res('job_w_change','CDCV có thể thuyên chuyển')}", true);
+            frm.openDialog;
         }
 
         function save() {
-            editData(function (res)  {
+            callApi(getUrl(),
+                {
+                    "rank_code": scope.$parent.entity.rank_code,
+                    "details": scope.entity
+                },
+                function (res) {
                     if (res.updatedExisting == true) {
                         $('#dialogInputRankSub').modal('hide');//Đóng form input
                         $msg.alert("${get_global_res('Handle_Success','Thao tác thành công')}", $type_alert.INFO);//Xuất thông báo thành cônng
@@ -168,85 +179,98 @@
                     } else {
                         $msg.message("${get_global_res('Internal_Server_Error','Có lỗi từ phía máy chủ')}", "${get_global_res('Please_Try_Again','Xin thử vui lòng thử lại')}", function () { });
                     }
-            });
+                });
         }
 
         function reloadData() {
             var tableConfig = scope.$parent.$$table.$$tableConfig;
             scope.$parent._tableData(tableConfig.iPage,
-            tableConfig.iPageLength, tableConfig.orderBy,
-            tableConfig.searchText, tableConfig.fnReloadData);
+                tableConfig.iPageLength, tableConfig.orderBy,
+                tableConfig.searchText, tableConfig.fnReloadData);
         }
 
-        function editData(callback) {
-            var url = getUrl();
-            var parameter = {};
+        function getUrl() {
+            return scope.mode === 1 ? "${get_api_key('app_main.api.TMLS_Rank/insert_details')}"
+                : "${get_api_key('app_main.api.TMLS_Rank/update_details')}";
+        }
+
+        function callApi(url, parameter, callback) {
             services.api(url)
-                .data({
-                    "rank_code": scope.$parent.entity.rank_code,
-                    "details":scope.entity
-                })
+                .data(parameter)
                 .done()
                 .then(function (res) {
                     callback(res);
                 })
         }
 
-        function getUrl() {
-            return scope.mode === 1 ? "${get_api_key('app_main.api.TMLS_Rank/insert_details')}"
-                :"${get_api_key('app_main.api.TMLS_Rank/update_details')}";
-        }
-
-        function _selectBoxData() {
-            services.api("${get_api_key('app_main.api.TMSYS_ConfigChangeObjectPriority/get_list')}")
-            .data({
-                "name": "TMChangeObjectRank"
-            })
-            .done()
-                .then(function (res) {
-                var rs = [];
-                _.each(res, function (val) {
-                    rs.push({
-                        "value": val.change_object,
-                        "caption": val.change_object_name
+        function _selectBoxData(callback) {
+            callApi("${get_api_key('app_main.api.TMSYS_ConfigChangeObjectPriority/get_list')}",
+                {
+                    "name": "TMChangeObjectRank"
+                }, function (res) {
+                    var rs = [];
+                    _.each(res, function (val) {
+                        rs.push({
+                            "value": val.change_object,
+                            "caption": val.change_object_name
+                        });
                     });
-                });
                     scope.cbbChangeObject = rs;
-                    console.log("scope.cbbChangeObject", scope.cbbChangeObject);
-                scope.$applyAsync();
-            })
+                    callback();
+                    scope.$applyAsync();
+                });
         }
-        _selectBoxData();
 
-        scope.$watch("entity.change_object", function (newVal, oldVal) {
-            if (newVal && newVal != oldVal) {
-                switch (newVal) {
-                    case 1: scope.listNamecombobox = "" ; break;
-                    case 2: scope.listNamecombobox = "" ; break;
-                    case 3: scope.listNamecombobox = "${encryptor.get_key('cbb_position')}" ; break;
-                    case 4: scope.listNamecombobox = "${encryptor.get_key('cbb_employee_type')}" ; break;
-                    default: scope.listNamecombobox = "";
-                };
-            }
-            scope.$applyAsync();
-        });
-
-        function getListName(changeCode) {
-            var rs = "";
-            switch (changeCode) {
-                case 1: rs = "" ; break;
-                case 2: rs = "" ; break;
-                case 3: rs = "${encryptor.get_key('cbb_position')}" ; break;
-                case 4: rs = "${encryptor.get_key('cbb_employee_type')}" ; break;
-                default: rs = "";
-            };
-            return rs;
-        }
+        function _getDataInitCombobox() {
+            scope.$root.$getInitComboboxData(scope,
+                [
+                    {
+                        "key": "${encryptor.get_key('cbb_job_working_group_multi_check')}",
+                        "code": scope.entity
+                            && scope.entity.hasOwnProperty('object_code')
+                            ? scope.entity.object_code
+                            : null,
+                        "alias": "$$$cbb_job_working_group_multi_check"
+                    },
+                    {
+                        "key": "${encryptor.get_key('cbb_job_working_multi_check')}",
+                        "code": scope.entity
+                            && scope.entity.hasOwnProperty('object_code')
+                            ? scope.entity.object_code
+                            : null,
+                        "alias": "$$$cbb_job_working_multi_check"
+                    },
+                    {
+                        "key": "${encryptor.get_key('cbb_position')}",
+                        "code": scope.entity
+                            && scope.entity.hasOwnProperty('object_code')
+                            ? scope.entity.object_code
+                            : null,
+                        "alias": "$$$cbb_position"
+                    },
+                    {
+                        "key": "${encryptor.get_key('cbb_employee_type')}",
+                        "code": scope.entity
+                            && scope.entity.hasOwnProperty('object_code')
+                            ? scope.entity.object_code
+                            : null,
+                        "alias": "$$$cbb_employee_type"
+                    }
+                ]
+            );
+        };
 
         (function __init__() {
             if (scope.mode == 2) {
-                scope.listNamecombobox = getListName(scope.entity.change_object)
-                //__combobox();
+                _getDataInitCombobox();
+                _selectBoxData(function () {
+                    scope.entity = scope.mode === 2 ? scope.$parent.$$table.currentItem : _default;
+                });
+            } else {
+                _getDataInitCombobox();
+                _selectBoxData(function () {
+                    scope.entity = scope.mode === 2 ? scope.$parent.$$table.currentItem : _default;
+                });
             }
         })();
     })

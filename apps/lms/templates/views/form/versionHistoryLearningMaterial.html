@@ -30,7 +30,8 @@
                 </div>
 
                 <div class="lms-table-history-custom" item-group-child-share="{{$parent.$index}}" ng-repeat="data in item.items" style="grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;">
-                    <div><img src={{data.data_version.files.file_thumbnail}} alt="Smiley face"  width="30"/> {{data.data_version.material_name}}</div>
+                    <div><img ng-src="{{$root.url_static}}{{data.data_version.files.file_thumbnail}}"
+                              width="30"/> {{data.data_version.material_name}}</div>
                     <div>
                          {{data.version}}
                     </div>
@@ -92,7 +93,6 @@
                 })
                 .done()
                 .then(function (res) {
-                    debugger
                         var date_now = moment().format('YYYY-MM-DD')
                    
                     scope.temp_version = res.items[0];

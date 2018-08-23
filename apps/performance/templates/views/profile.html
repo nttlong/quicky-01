@@ -13,7 +13,7 @@
     }
 </style>
 <div class="hcs-container">
-    <div class="row hcs-profile-detail" style="margin:unset; height:100%;" ng-show="showDetail">
+    <div class="row hcs-profile-detail" style="margin:unset; height:100%;" ng-if="$display.showDetail">
             <page-sidebar on-add="onAdd" 
                   on-edit="onEdit" 
                   on-delete="onDelete" 
@@ -23,11 +23,11 @@
                   on-import="onImport" 
                   on-export="onExport" 
                   on-refresh="onRefresh" 
-                  source="mapName" 
+                  source="$display.mapName" 
                   key-field="function_id" 
                   display-field="default_name" 
                   icon-field="icon" 
-                  selected-key="selectedFunction"
+                  selected-key="$display.selectedFunction"
                   reload-on-change="true">
                 <extend-toolbar ng-show="selectedFunction === 'HCSEMP0020'">
                     <button class="zb-btn" ng-click="firstRow()">
@@ -44,9 +44,9 @@
                         </button>
                 </extend-toolbar>
         <site-map>
-                <a href="#">Trang chủ</a>
+                <a href="#">${get_res('hone_page','Trang chủ')}</a>
                 <span><i class="bowtie-icon bowtie-chevron-right"></i></span>
-                <a ng-click="backPage()">Hồ sơ nhân viên</a>
+                <a ng-click="backPage()">${get_res('emp_profile_title','Hồ sơ nhân viên')}</a>
                 <a ng-if="mode == 2"> > {{currentItem.full_name + ' | ' + currentItem.employee_code + ' | ' + currentItem.department_name + ' | ' + currentItem.job_w_code}}</a>
                 <a data-target="#dropdownFunction" style="color:#333" data-toggle="collapse"><i class="bowtie-icon bowtie-chevron-down"></i></a>
                 <div id="dropdownFunction" class="dropdown-content">
@@ -121,11 +121,10 @@
                 <div class="zb-left-content pull-left" style="width:600px;">
                     <div class="row">
                         <div class="col-md-6">
-                            <input-select data-list="cbbEmployeeActive" class="size-lg"
-                                          data-value="value" 
-                                          data-caption="caption"
-                                          value="3">
-                            </input-select>
+                                <input-select ng-model="objFilterActive.$$$filter_active" 
+                                              class="size-lg"
+                                              data-list="cbbEmployeeActive" 
+                                              data-value="value" data-caption="caption" />
                         </div>
                         <div class="col-md-6">
                             <input-text-icon id="tableSearchText" on-click="objSearch.onSearch" ng-model="objSearch.$$$modelSearch"></input-text-icon>
@@ -133,7 +132,8 @@
                     </div>
                 </div>
                 <div class="zb-right-content pull-right">
-                    <button class="zb-btn zb-btn-o-green ng-scope" ng-click="addEmployee()">
+                    <button class="zb-btn zb-btn-o-green ng-scope" 
+                            ng-click="addEmployee()">
                         <i class="bowtie-icon bowtie-math-plus"></i>
                     </button>
                     <button class="zb-btn ng-scope">

@@ -139,7 +139,7 @@
         }
       }
     },{
-      "host":"per",
+      "host":"",
       "name":"performance",
       "path":"apps/performance",
       "login_url":"login",

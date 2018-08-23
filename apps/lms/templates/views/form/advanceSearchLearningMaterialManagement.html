@@ -49,7 +49,7 @@
                     <!--<input-select ng-model="entity.contributed_by" data-list="$root.cbbTypeFolder" data-value="value" data-caption="caption" />-->
                     <combobox load-data="$root.$getComboboxData" 
                               ng-model="entity.contributed_by" 
-                              params="{key:'${encryptor.get_key('lms_cbb_employees')}'}" 
+                              params="{key:'${encryptor.get_key('lms_cbb_employees_cbcc')}'}" 
                               on-search-change="false" on-search-press="true" placeholder="" 
                               init-data="$$$cbb_lmsls_employees.value" 
                               paging="true" close-on-select="true" 
@@ -305,7 +305,7 @@
                 "code": scope.entity.created_by,
                 "alias": "$$$cbb_lmsls_author"
             }, {
-                "key": "${encryptor.get_key('lms_cbb_employees')}",
+                "key": "${encryptor.get_key('lms_cbb_employees_cbcc')}",
                 "code": scope.entity.contributed_by,
                 "alias": "$$$cbb_lmsls_employees"
             }]);

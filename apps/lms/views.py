@@ -95,7 +95,6 @@ def file_download(request):
         data = fnMaster.get_file_by_master_id(str(id))
         if(data != None):
             import base64
-            data["files"]["file_data"].decode('base64')
             from django.http import HttpResponse
             from wsgiref.util import FileWrapper
         

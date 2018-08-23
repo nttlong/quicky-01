@@ -4,6 +4,7 @@ import models
 import datetime
 import logging
 import threading
+import common
 logger = logging.getLogger(__name__)
 global lock
 lock = threading.Lock()
@@ -18,6 +19,49 @@ def get_list(args):
     
     return items.get_list()
 
+def get_department_by_dept_code(args):
+    try:
+        if args['data'] != None and args['data'].has_key('department_code'):
+            items = models.HCSSYS_Departments().aggregate().project(
+                department_code     = 1,
+                department_name     = 1,
+                department_name2    = 1,
+                department_alias    = 1,
+                parent_code         = 1,
+                level               = 1,
+                level_code          = 1,
+                department_tel      = 1,
+                department_fax      = 1,
+                department_email    = 1,
+                department_address  = 1,
+                nation_code         = 1,
+                province_code       = 1,
+                district_code       = 1,
+                is_company          = 1,
+                is_fund             = 1,
+                is_fund_bonus       = 1,
+                decision_no         = 1,
+                decision_date       = 1,
+                effect_date         = 1,
+                license_no          = 1,
+                tax_code            = 1,
+                lock_date           = 1,
+                logo_image          = 1,
+                manager_code        = 1,
+                secretary_code      = 1,
+                ordinal             = 1,
+                lock                = 1,
+                note                = 1,
+                region_code         = 1,
+                domain_code         = 1,
+                signed_by           = 1
+                ).match("department_code == {0}", args['data']['department_code'])
+    
+            return items.get_item()
+        raise(Exception("not found department_code"))
+    except Exception as ex:
+        raise(ex)
+
 def get_list_department_by_parent_code(args):
     searchText = args['data'].get('search', '')
     pageSize = args['data'].get('pageSize', 0)
@@ -31,9 +75,12 @@ def get_list_department_by_parent_code(args):
         department_name = 1,
         department_alias = 1,
         department_tel = 1,
-        level_code = 1
+        level_code = 1,
+        lock = 1
         )
     ret.match("level_code == {0}", args['data']['where']['department_code'])
+
+    ret = common.filter_lock(ret, args)
 
     if(searchText != None):
         ret.match("contains(department_code, @name) or contains(department_name, @name)" + \
@@ -94,6 +141,14 @@ def insert(args):
                 }
                 
             data =  set_dict_data(args)
+            parent_dept = models.HCSSYS_Departments().aggregate().project(
+                department_code = 1,
+                level = 1,
+                level_code = 1
+                ).match("department_code == {0}", args['data']['parent_code']).get_item()
+
+            data['level'] = parent_dept['level'] + 1
+            data['level_code'] = parent_dept['level_code'] + [args['data']['department_code']]
             ret  =  models.HCSSYS_Departments().insert(data)
             lock.release()
             return ret

@@ -18,6 +18,10 @@ def TMPER_AprPeriodRank():
             rank_code_n=helpers.create_field("text"),
             percent_n=helpers.create_field("numeric"),
             note=helpers.create_field("text"),
+            created_on=helpers.create_field("date"),
+            created_by=helpers.create_field("text"),
+            modified_on=helpers.create_field("date"),
+            modified_by=helpers.create_field("text")
         )
         _hasCreated=True
     ret = db_context.collection("TMPER_AprPeriodRank")

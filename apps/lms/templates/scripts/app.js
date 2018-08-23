@@ -7,6 +7,7 @@ angular
 controller.$inject = ["$dialog", "$scope"];
 dialog_root_url('${get_app_url("pages/")}')
 function controller($dialog, $scope, systemService) {
+    $scope.isHomePage = true;
     $scope.$root.url_static = "${get_static('/')}";
     $scope.$root.systemConfig = null;/*HCSSYS_SystemConfig*/
     $scope.$root.language = "${get_language()}";
@@ -58,10 +59,13 @@ function controller($dialog, $scope, systemService) {
     });
 
     $scope.$root.doLogout = function () {
+        $scope.$root.__USER__ = null;
         window.location = "${get_app_url('logout')}";
     }
 
-
+    $scope.slideToggle = function (event) {
+        $(event.target).closest('.hcs-message-group').find('.hcs-menu-group-content').slideToggle(300)
+    }
     ////Đồng hồ
     //$scope.$root.timer = {
     //    clock: Clock(),
@@ -128,6 +132,7 @@ function controller($dialog, $scope, systemService) {
                 }
                 $scope.$root.$history.change(function (data) {
                     if (data.page) {
+                        $scope.isHomePage = false;
                         var currentFunction = _.filter(functions, function (d) {
                             return d["function_id"] == data.page;
                         });
@@ -140,6 +145,7 @@ function controller($dialog, $scope, systemService) {
                         }
                     } else {
                         $scope.$root.currentFunction = $scope.$root.currentModule = null;
+                        $scope.isHomePage = true;
                     }
                     $scope.$root.$applyAsync();
                 })
@@ -154,6 +160,17 @@ function controller($dialog, $scope, systemService) {
             .then(function (res) {
                 //Set HCSSYS_SystemConfig
                 $scope.$root.systemConfig = res;
+            })
+
+        //Current user
+        services.api("${get_api_key('app_main.api.auth_user/get_user_info_by_user_name')}")
+            .data({
+                "username": "${get_user()}"
+            })
+            .done()
+            .then(function (res) {
+                //Set HCSSYS_SystemConfig
+                $scope.$root.__USER__ = res;
             })
     }
     /**

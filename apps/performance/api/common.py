@@ -11,6 +11,7 @@ from pymongo.read_concern import ReadConcern
 from pymongo.write_concern import WriteConcern
 import uuid
 import threading
+import bson
 logger = logging.getLogger(__name__)
 
 __collectionName = ''
@@ -65,6 +66,39 @@ def get_user_id():
         user = threading.current_thread().user.username
     return user
 
+def aggregate_sort(sort):
+    """
+    Chuyển đỗi dict thành thành array tuple
+    example:
+        {                       
+            "a": -1,         => [("a", -1), ("b", 1)]
+            "b": 1              
+        }                       
+    """
+    "sort -> dict"
+    result = []
+    if(type(sort) is dict):
+        for x in sort.keys():
+            result.append((x, sort[x]))
+    else:
+        raise(Exception("argument not exactly"))
+
+    return bson.SON(result)
+
+def aggregate_filter_lock(value):
+    """
+    0: filter data lock = true
+    1: filter data lock = !true
+    other: get all
+    """
+    if int(value) == 0:
+        return {'$ne': True}
+    elif int(value) == 1:
+        return {'$eq': True}
+    else:
+        return {'$in':[True, False, None, ""]}
+
+
 def get_pagination(args):
     try:
         global __collectionName 
@@ -83,6 +117,9 @@ def get_pagination(args):
     except Exception as ex:
         logger.debug(ex)
         raise(ex)
+
+def get_language():
+    return quicky.language.get_language()
 
 def get_data(pageIndex, pageSize, where, sort):
     try:

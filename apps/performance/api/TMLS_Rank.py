@@ -24,8 +24,8 @@ def get_list_with_searchtext(args):
     ret=common.filter_lock(ret, args)
 
     if(searchText != None  and searchText !=''):
-        ret.match("contains(rank_code, @name) or contains(rank_name, @name)" + \
-            "contains(rank_content, @name) or contains(total_from, @name)" + \
+        ret.match("contains(rank_code, @name) or contains(rank_name, @name) or " + \
+            "contains(rank_content, @name) or contains(total_from, @name) or " + \
             "contains(total_to, @name) or contains(ordinal, @name)" ,name=searchText.strip())
 
     if(sort != None):
@@ -49,8 +49,9 @@ def get_list_details_with_searchtext(args):
         pageSize = (lambda pSize: pSize if pSize != None else 20)(pageSize)
         ret=TMLS_Rank.get_details(rank_code)
     
-        #if(searchText != None):
-        #    ret.match("contains(rank_code, @name)",name=searchText)
+        if(searchText != None):
+            ret.match("contains(object_code, @name) or contains(object_name, @name) " + \
+                " or contains(total_from, @name) or contains(total_to, @name)",name=searchText)
 
         if(sort != None):
             ret.sort(sort)
@@ -129,6 +130,7 @@ def insert_details(args):
         if args['data'] != None:
             if not args['data']['details'].has_key('rec_id'):
                 if args['data'].has_key('rank_code') and args['data']['details'].has_key('change_object') and args['data']['details'].has_key('object_code'):
+                    ######Check duplicate########
                     details = []
                     if type(args['data']['details']['object_code']) is list:
                         if len(args['data']['details']['object_code']) > 0:
@@ -178,6 +180,25 @@ def insert_details(args):
                                 error = "object_code is not empty"
                             )
                     else:
+                    ######Check duplicate########
+
+                    ######Khong check duplicate########
+                    #details = {}
+                    #if type(args['data']['details']['object_code']) is list:
+                    #    for x in args['data']['details']['object_code']:
+                    #        try:
+                    #            details = set_dict_detail_insert_data({
+                    #                "change_object":(lambda x: x['change_object'] if x.has_key('change_object') else None)(args['data']['details']),
+                    #                "object_code": x,
+                    #                "total_from":(lambda x: x['total_from'] if x.has_key('total_from') else None)(args['data']['details']),
+                    #                "total_to":(lambda x: x['total_to'] if x.has_key('total_to') else None)(args['data']['details']),
+                    #                "note":(lambda x: x['note'] if x.has_key('note') else None)(args['data']['details'])
+                    #                }, args['data'].has_key('rank_code'))
+                    #            ret = TMLS_Rank.insert_details(args, details)
+                    #        except Exception as ex:
+                    #            raise ex
+                    #else:
+                    ######Khong check duplicate########
                         details = set_dict_detail_insert_data(args['data']['details'], args['data'].has_key('rank_code'))
                         ret = TMLS_Rank.insert_details(args, details)
                 else:

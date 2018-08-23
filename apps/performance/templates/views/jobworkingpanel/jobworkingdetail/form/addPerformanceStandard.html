@@ -11,52 +11,40 @@
     <collapse-box class="zb-form-common" title="${get_global_res('Common_Information','Thông tin chung')}">
         <div class="col-md-12 col-sm-12">
             <div class="form-group zb-form-group">
-                 <!--Thứ tự-->
-                 <label class="col-sm-5 zb-form-label">${get_res('ordinal','Thứ tự')}</label>
+                 <label class="col-sm-5 zb-form-label">${get_res('kpi_code','Tên chỉ tiêu')}</label>
                  <div class="col-sm-7">
-                     <input-number ng-model="entity.ordinal">
+                     <form-search ng-model="entity.kpi_code" open="set_kpi_code()" init-data="$$$kpi_code" multi="__mode == 1 ? true : false" ng-clear="setEmptyLabel()" required></form-search>
                  </div>
              </div>
             <div class="form-group zb-form-group">
-                 <!--Nhiệm vụ-->
-                 <label class="col-sm-5 zb-form-label">${get_res('kpi_name','Chỉ tiêu')}</label>
+                 <label class="col-sm-5 zb-form-label">${get_res('description','Mô tả')}</label>
                  <div class="col-sm-7">
-                     <input-text ng-model="entity.kpi_name" required>
+                     <output-label value="entity.description"></output-label>
                  </div>
              </div>
             <div class="form-group zb-form-group">
-                 <!--Nhiệm vụ-->
-                 <label class="col-sm-5 zb-form-label">${get_res('dvt','Đơn vị tính')}</label>
+                 <label class="col-sm-5 zb-form-label">${get_res('unit','Đơn vị tính')}</label>
                  <div class="col-sm-7">
-                     <input-text ng-model="entity.unit">
+                     <output-label value="entity.unit"></output-label>
                  </div>
              </div>
             <div class="form-group zb-form-group">
-                 <!--Nhiệm vụ-->
                  <label class="col-sm-5 zb-form-label">${get_res('cycle','Chu kỳ')}</label>
                  <div class="col-sm-7">
-                     <input-text ng-model="entity.cycle">
+                     <output-label value="entity.cycle"></output-label>
                  </div>
              </div>
             <div class="form-group zb-form-group">
                  <!--Trọng số-->
                  <label class="col-sm-5 zb-form-label">${get_res('weight','Trọng số')}</label>
                  <div class="col-sm-7">
-                     <input-text ng-model="entity.weight">
+                     <input-number ng-model="entity.weight">
                  </div>
              </div>
             <div class="form-group zb-form-group">
-                 <!--Trọng số-->
-                 <label class="col-sm-5 zb-form-label">${get_res('calculation','Cách tính')}</label>
+                 <label class="col-sm-5 zb-form-label">${get_res('standard_mark','Điểm chuẩn')}</label>
                  <div class="col-sm-7">
-                     <input-text ng-model="entity.weight">
-                 </div>
-             </div>
-            <div class="form-group zb-form-group">
-                 <!--Trọng số-->
-                 <label class="col-sm-5 zb-form-label">${get_res('diem_chuan','Điểm chuẩn')}</label>
-                 <div class="col-sm-7">
-                     <input-text ng-model="entity.weight">
+                     <input-number ng-model="entity.standard_mark">
                  </div>
              </div>
         </div>
@@ -66,8 +54,11 @@
     <collapse-box class="zb-form-common" title="${get_global_res('Other_Information','Thông tin khác')}">
         <div class="col-md-12 col-sm-12">
             <div class="form-group zb-form-group">
-                <label for="DisplayInfo" class="col-sm-5 zb-form-label">${get_global_res('create_and_modify','Tạo | Sửa')}</label>
-                <div class="col-sm-7">
+                <input-textarea rows="7" ng-model="entity.note"></input-textarea>
+            </div>
+            <div class="form-group zb-form-group">
+                <label for="DisplayInfo" class="col-sm-4 zb-form-label">${get_global_res('create_and_modify','Tạo | Sửa')}</label>
+                <div class="col-sm-8">
                     <input-text value="{{ entity.created_on | date: $root.systemConfig.date_format}} {{entity.created_by}} | {{ entity.modified_on | date: $root.systemConfig.date_format}} {{entity.modified_by}}" ng-disabled="true">
                 </div>
             </div>
@@ -79,21 +70,78 @@
 <%block name="modal_script">
 <script>
     (function (scope) {
-
+        var _default = {
+            kpi_code:null,
+            kpi_name:null,
+            unit:null,
+            cycle:null,
+            weight:null,
+            standard_mark:null,
+            ordinal:null
+        };
         scope.title = scope.$parent.headerTitle;
         scope.saveNClose = saveNClose;
         scope.saveNNext = saveNNext;
         scope.__mode = scope.$parent.mode;
-        scope.entity = scope.__mode === 2 ? scope.$parent.$$table.currentItem : null;
+        var _entity = JSON.parse(JSON.stringify(scope.$parent.$$table.currentItem));
+        scope.entity = scope.__mode === 2 ? _entity : _default;
         scope.job_w_code = scope.$parent.$job_w_code;
-        function saveNClose() {            
+        scope.setEmptyLabel = setEmptyLabel;
+        scope.set_kpi_code = function () {
+            var frm = lv.FormSearch(scope, "$$$kpi_code");
+            frm.KPI(scope.entity, "kpi_code", "${get_res('kpi_code','Tên chỉ tiêu')}", scope.__mode == 1 ? true : false);
+            frm.openDialog;
+            frm.accept(function () {
+                if (scope.entity.kpi_code.length === 1) {
+                    callApi("${get_api_key('app_main.api.TMLS_KPI/get_kpi_by_kpi_code')}",
+                        {
+                            "kpi_code": scope.entity.kpi_code[0]
+                        }, function (res) {
+                            scope.entity.unit = res.unit_code;
+                            scope.entity.cycle = res.cycle_type;
+                            scope.entity.description = res.kpi_desc;
+                            scope.entity.weight = res.weight;
+                            scope.entity.standard_mark = res.benchmark;
+                            scope.$applyAsync();
+                        });
+                } else {
+                    scope.entity.unit = null;
+                    scope.entity.cycle = null;
+                    scope.entity.description = null;
+                    scope.entity.weight = null;
+                    scope.entity.standard_mark = null;
+                    scope.$applyAsync();
+                }
+            });
+            frm.cancel = function () {
+
+            }
+        }
+
+        function setEmptyLabel() {
+            if (scope.entity.kpi_code.length > 0) {
+                scope.entity.unit = null;
+                scope.entity.cycle = null;
+                scope.entity.description = null;
+            }
+        }
+
+        function callApi(url, parameter, callback) {
+            services.api(url)
+                .data(parameter)
+                .done()
+                .then(function (res) {
+                    callback(res)
+                })
+        }
+
+        function saveNClose() {
             if (scope.entity != null) {
                 var rsCheck = checkError();//Kết quả check input
                 if (rsCheck.result) {
                     $msg.message("${get_global_res('Input_Error','Nhập liệu sai')}", rsCheck.errorMsg, function () { });
                     return;
                 }
-                beforeCallToServer();
                 editData(function (res) {
                     if (res.error == null) {
                         $dialog.closeDialog();//Đóng form input
@@ -114,7 +162,6 @@
                     $msg.message("${get_global_res('Input_Error','Nhập liệu sai')}", rsCheck.errorMsg, function () { });
                     return;
                 }
-                beforeCallToServer();
                 editData(function (res) {
                     if (res.error == null) {
                         reloadData();
@@ -145,18 +192,11 @@
                 })
         }
 
-        function beforeCallToServer() {
-
-        }
-
         function getUrl() {
-            return scope.__mode == 1 || scope.__mode == 3 ? "${get_api_key('app_main.api.HCSLS_JobWorking/insert_kpi')}" /*Mode 1: Tạo mới*/
-                    : "${get_api_key('app_main.api.HCSLS_JobWorking/update_kpi')}" /*Mode 2: Cập nhật*/
+            return scope.__mode == 1 || scope.__mode == 3 ? "${get_api_key('app_main.api.HCSLS_JobWorking/insert_performance_standanrd')}" /*Mode 1: Tạo mới*/
+                : "${get_api_key('app_main.api.HCSLS_JobWorking/update_performance_standanrd')}" /*Mode 2: Cập nhật*/
         }
 
-        /**
-         * Function check input
-         */
         function checkError() {
             var errMsg;
             var valid = null;
@@ -164,11 +204,12 @@
                 "result": false,
                 "errorMsg": ''
             };
-            valid = lv.Validate(scope.entity.kpi_name);
-            rs.result = valid.isNullOrWhiteSpace();
-            rs.errorMsg = rs.result === true ? "${get_res('kpi_name_is_not_null','Chỉ tiêu không được để trống')}" + '\n' : "" ;
-            if(rs.result === true){
-                return rs;
+            valid = lv.Validate(scope.entity.kpi_code);
+            rs.result = valid.isArray();
+            if (rs.result === false && scope.entity.kpi_code.length === 0) {
+                rs.errorMsg = "${get_res('kpi_code_is_not_null','Tên Chỉ tiêu KPI không được để trống')}"
+            } else {
+                rs.result = false;
             }
             return rs;
         }
@@ -176,9 +217,39 @@
         function reloadData() {
             var tableConfig = scope.$parent.$$table.$$tableConfig;
             scope.$parent._tableData(tableConfig.iPage,
-            tableConfig.iPageLength, tableConfig.orderBy,
-            tableConfig.searchText, tableConfig.fnReloadData);
+                tableConfig.iPageLength, tableConfig.orderBy,
+                tableConfig.searchText, tableConfig.fnReloadData);
         }
+
+        function _getDataInitCombobox() {
+            scope.$root.$getInitComboboxData(scope,
+                [{
+                    "key": "${encryptor.get_key('cbb_kpi_kpi_group_multi')}",
+                    "code": scope.entity
+                        && scope.entity.hasOwnProperty('kpi_code')
+                        ? scope.entity.kpi_code
+                        : null,
+                    "alias": "$$$kpi_code"
+                },
+                {
+                    "key": "${encryptor.get_key('cbb_HCSLS_Unit')}",
+                    "code": scope.entity
+                        && scope.entity.hasOwnProperty('unit')
+                        ? scope.entity.unit
+                        : null,
+                    "alias": "$$$unit"
+                }
+                ]);
+        }
+
+        (function _init_() {
+            if (scope.__mode == 1) {
+                _getDataInitCombobox();
+            } else {
+                _getDataInitCombobox();
+            }
+        })();
+
     });
 </script>
 

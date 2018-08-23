@@ -16,7 +16,7 @@ def display_list_apr_period():
         modified_by="switch(case(modified_by!='',um.login_account),'')",
         )
     ret.sort(dict(
-        apr_year = 1
+        apr_year = -1, apr_period = -1
         ))
 
     return ret
@@ -27,7 +27,6 @@ def get_period_by_apr_period():
     ret.left_join(models.auth_user_info(), "created_by", "username", "uc")
     ret.left_join(models.auth_user_info(), "modified_by", "username", "um")
     ret.project(
-        _id=1,
         apr_period="apr_period",
         apr_year="apr_year",
         give_target_from="give_target_from",

@@ -15,7 +15,7 @@ def get_empworking_by_employee_code(emp_code, page_index, page_size, sort, searc
         {"$lookup":{'from':common.get_collection_name_with_schema('SYS_VW_ValueList'), 'localField':'appoint', 'foreignField':'value', 'as': 'appiont'}},
         {"$unwind":{'path':'$appiont', "preserveNullAndEmptyArrays":True}},
         {"$match":{
-            "$and": [ { 'appiont.list_name': "HCS.LoaiQuyetDinhBoNhiem_DieuChuyen" }, { 'appiont.language': quicky.applications.get_settings().LANGUAGE_CODE } ]
+            "$and": [ { 'appiont.list_name': "HCS.LoaiQuyetDinhBoNhiem_DieuChuyen" }, { 'appiont.language': quicky.language.get_language() } ]
         }},
 
         {"$lookup":{'from':common.get_collection_name_with_schema('HCSSYS_Departments'), 'localField':'department_code', 'foreignField':'department_code', 'as': 'dept'}},

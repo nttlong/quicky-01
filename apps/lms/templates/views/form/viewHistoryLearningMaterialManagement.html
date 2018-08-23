@@ -2,7 +2,7 @@
 <%!
     #_style="width:200px;"
 %>
-<%inherit file="../commons/dialog_save_close.html"/>
+<%inherit file="../commons/dialog_accepted.html"/>
 
 <%block name="modal_body">
 <div class="tab-pane" style="padding-right:unset; height: 100%; overflow-y:hidden; overflow:auto; background-color:#fff;">
@@ -23,7 +23,11 @@
 <%block name="modal_script">
 <script>
     (function (scope) {
-        
+        scope.Search_Click = Search_Click;
+
+        function Search_Click(event) {
+            $(event.target).closest("#myModal").modal('toggle');
+        }
     });
 </script>
 </%block>

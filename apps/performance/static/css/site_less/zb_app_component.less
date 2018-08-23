@@ -1,7 +1,6 @@
 @border_color: #cbcbcb;
 @border_color_hover: #cbcbcb;
-
-
+@background_color: #ebf9ff;
 @h_control: 30px;
 @h_control_1: 29px;
 
@@ -683,4 +682,92 @@ input[disabled] {
 .zb-form-group {
     margin-bottom: 0;
     display: flex;
+}
+
+/*Label*/
+
+.zb-output-label {
+    font-size: @font_size_label !important;
+    margin-top: 0px !important;
+    margin-bottom: 0px !important;
+    line-height: @h_control !important;
+    text-align: left !important;
+    padding: 0 0px 0px 5px;
+    font-weight: normal;
+    height: @h_control;
+    color: @cl_label;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/*List View*/
+.zb-list-view {
+    height: 100%;
+    width: 100%;
+    border: 1px solid @border_color;
+    overflow: auto;
+}
+
+.zb-list-view > a.list-group-item {
+    padding: 5px 10px !important;
+}
+
+.zb-list-view > a.list-group-item:first-child {
+    border-top-left-radius: unset;
+    border-top-right-radius: unset;
+}
+
+.zb-list-view > .active {
+    background: @background_color;
+    border-color: @border_color;
+    color: @value_color;
+}
+
+.zb-list-view > .active:hover {
+    background: @background_color;
+    border-color: @border_color;
+    color: @value_color;
+}
+
+/*Year picker*/
+.zb-form-date-picker .zb-year-picker {
+    color: @value_color;
+    border: 0;
+    border-radius: 0;
+    border-bottom: 1px solid @border_color;
+    background: transparent;
+    font-size: .875rem;
+    padding-bottom: 0;
+    height: 30px;
+    box-shadow: none;
+    padding: 3px 5px 0 1px;
+    width: 100%;
+}
+
+.zb-form-date-picker .zb-year-picker:focus {
+    outline:none;
+}
+
+.datepicker .datepicker-years table tbody tr td .active {
+    background: #269abc !important;
+}
+
+/*Hour picker*/
+.zb-form-date-picker .zb-hour-picker {
+    color: @value_color;
+    border: 0;
+    border-radius: 0;
+    border-bottom: 1px solid @border_color;
+    background: transparent;
+    font-size: .875rem;
+    padding-bottom: 0;
+    height: 30px;
+    box-shadow: none;
+    padding: 3px 5px 0 1px;
+    width: 100%;
+}
+
+.zb-form-date-picker .zb-hour-picker:focus {
+    outline: none;
 }

@@ -89,7 +89,7 @@
             $msg.message("${get_global_res('Notification','Thông báo')}", "${get_global_res('No_Row_Selected','Không có dòng được chọn')}", function () { });
         } else {
             $msg.confirm("${get_global_res('Notification','Thông báo')}", "${get_global_res('Do_You_Want_Delete','Bạn có muốn xóa không?')}", function () {
-                services.api("${get_api_key('app_main.api.HCSLS_JobWorking/delete_task')}")
+                services.api("${get_api_key('app_main.api.HCSLS_JobWorking/delete_performance_standard')}")
                     .data({
                         "job_w_code": scope.$job_w_code,
                         "rec_id": _.pluck(scope.$$table.selectedItems, 'rec_id')

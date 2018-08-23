@@ -18,21 +18,32 @@
                 txtNumber: "@number",
                 txtColor: "@color",
                 imageUrl: "@image",
-                iframeUrl: "@iframe"
+                iframeUrl: "@iframe",
+                color: "@color"
             },
             template: `
-                <div class="zb-tile-box zb-tile-box-w{{iWidth ? iWidth : 1}}">
-                    <div class="zb-tile-header">
-                        <span class="zb-tile-header-left">{{txtTitle}}</span>
-                        <span class="zb-tile-header-right">{{txtheaderInfo}}</span>
+                
+                <div class="hcs-function-style zb-tile-box-w{{iWidth ? iWidth : 1}}">
+                    <div class="hcs-function-title">
+                        <div class="hcs-function-title-box">
+                            <span class="hcs-function-title-box-1">{{txtTitle}}</span>
+                            <span class="hcs-function-title-box-1">{{txtheaderInfo}}</span>
+                            <div class="hcs-function-title-box-2">{{txtDescription}}</div>
+                        </div>
                     </div>
-                    <div class="zb-tile-content">
-                        <p class="zb-tile-content-description">{{txtDescription}}</p>
-                        <div class="zb-tile-content-bottom">
-                            <span class="zb-tile-number {{txtColor}}">{{txtNumber}}</span>
-                            <span class="zb-tile-icon">
-                                <i class="{{txtIcon}}"></i>
-                            </span>
+                    <div class="hcs-function-footer">
+                        <div class="hcs-function-title-box">
+                            <div class="hcs-function-footer-o hcs-function-footer-t">
+                                <div class="hcs-function-footer-th">
+                                    <div class="hcs-function-footer-f">
+                                        <div class="hcs-function-footer-fi">
+                                            <span class="hcs-function-footer-icon {{txtIcon}}">
+                                            </span>
+                                            <span class="hcs-function-footer-number">{{txtNumber}}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -79,6 +90,36 @@
                         }
                     }
                 }
+                if ($scope.color) {
+                    var color = JSON.parse($scope.color);
+                    //
+                    $(elem).find('span').css({
+                        color: color.text
+                    })
+                    //
+                    $(elem).css({
+                        background: color.background
+                    })
+                    //
+                    $(elem).find(".hcs-function-title-box-2").css({
+                        color: color.text
+                    })
+                    //
+                    $(elem).hover(function (e) {
+                        var bsdIn = "0px 0px 0 2px " + color.border;
+                        var bsdOut = "none";
+                        console.log(color.border)
+                        $(this).css('box-shadow', e.type === "mouseenter" ? bsdIn : bsdOut);
+                    });
+                    //
+                    $(elem).find(".hcs-function-footer-icon").css("color", color['color-icon'])
+                    //
+                    $(elem).find(".hcs-function-footer-number").css("color", color['color-icon'])
+                }
+
+                $scope.$watch("txtNumber", function (val) {
+                    debugger
+                })
 
                 $scope.$applyAsync();
             }

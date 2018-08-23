@@ -76,7 +76,7 @@ span.stars span {
                                             <tr>
                                                 <td>
                                                     <a href="#">
-                                                        <img ng-src="{{item.files['file_thumbnail']}}" style="max-width: 103px;"/>
+                                                        <img ng-src="{{$root.url_static}}{{item.files['file_thumbnail']}}" style="max-width: 103px;"/>
                                                     </a>
                                                 </td>
                                             </tr>
@@ -139,7 +139,7 @@ span.stars span {
                                     <!--Dung lượng file-->
                                     <label for="inputEmp_Train_Mode_Name" class="col-md-4 lmm-container-item-form-label">${get_res('size','Size')}</label>
                                     <div class="col-md-8 lmm-container-item-form-info">
-                                        <p class="info-item" s>{{item.files.file_size/1024 | number : 2}} Mb</p>
+                                        <p class="info-item">{{convertFileSize(item.files.file_size/1024)}}</p>
                                     </div>
                                 </div>
 

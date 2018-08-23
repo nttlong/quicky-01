@@ -2,24 +2,54 @@ _cach_view={}
 from . database import AGGREGATE
 from . import helpers
 from . import fx_model
+from . import models
+class __views__(object):
+    pass
 def create_mongodb_view(aggregate,name):
     if not isinstance(aggregate,AGGREGATE):
         raise (Exception("It looks like you create view from object is not '{0}'".format("qmomgo.database.AGGREGATE")))
     global _cach_view
-    import json
-    view_name = "{0}.{1}".format(aggregate._coll.schema, name)
-    command_object = (
-        view_name,
-        aggregate._coll.get_collection_name(),
-        aggregate._pipe
-    )
-    if not _cach_view.has_key(view_name):
-        aggregate._coll.qr.db.drop_collection(view_name)
-        param_text = json.dumps(command_object)
-        param_text = param_text[1:param_text.__len__() - 1]
-        command_text = "db.createView(" + param_text + ")"
-        aggregate._coll.qr.db.eval(command_text)
-        _cach_view[view_name] = 1
+    def __create_mongodb_view__(self):
+        def excec_command():
+            import json
+            context = self.qr.db
+            context = self.qr.db
+            if context == None:
+                from . import db_context
+                context = db_context.get_db_context()
+                if context == None:
+                    raise (Exception("Please use:\n"
+                                     "import qmongo\n"
+                                     "qmongo.set_db_context(host=..,port=..,user=..,password=..,name=...)\n"
+                                     "or you can use bellow statement:\n"
+                                     "qmongo.set_db_context(\"mongodb://{username}:{password}@{host}:{port}/{database name}[:{schema}]\")"))
+                else:
+                    self.qr.db = context.db
+            if self.schema == None:
+                from .db_context import get_schema
+                self.schema = get_schema()
+                if self.schema == None:
+                    raise (Exception("Please use:\n"
+                                     "import qmongo\n"
+                                     "qmongo.set_schema(schema_name)"))
+
+            view_name = "{0}.{1}".format(self.schema, self._none_schema_name)
+
+            command_object = (
+                view_name,
+                self.__source_name__,
+                self.__initial_pipe__
+            )
+            self.qr.db.drop_collection(view_name)
+            param_text = json.dumps(command_object)
+            param_text = param_text[1:param_text.__len__() - 1]
+            command_text = "db.createView(" + param_text + ")"
+            self.qr.db.eval(command_text)
+
+        yield excec_command()
+    if not _cach_view.has_key(name):
+
+
         view_model_fields={}
         for field in aggregate.get_selected_fields():
             view_model_fields.update(
@@ -31,11 +61,33 @@ def create_mongodb_view(aggregate,name):
             [],
             view_model_fields
         )
-    fx= fx_model.__obj_model__(name,"views")
-    for x in aggregate.get_selected_fields():
-        fx.__create_field__(x)
-    ret=aggregate.qr.collection(name)
-    return ret
+        if not hasattr(models,"views"):
+            views = __views__()
+            setattr(models,"views",views)
+        else:
+            views = getattr(models,"views")
+        # view_define = getattr(models,name)
+        # setattr(views,name,view_define)
+        # delattr(models,name)
+        ret=aggregate.qr.collection(name)
+        if not hasattr(ret,"__create_mongodb_view__"):
+            setattr(ret,"__create_mongodb_view__",__create_mongodb_view__)
+            setattr(ret,"__source_name__",aggregate._coll._none_schema_name)
+            setattr(ret, "__initial_pipe__", [x.copy() for x in aggregate._pipe])
+        _cach_view[name] = ret
+        import qmongo
+        if not hasattr(qmongo.models,"views"):
+            setattr(qmongo.models,"views",__views__())
+        _views = getattr(qmongo.models,"views")
+        if hasattr(qmongo.models, name):
+            view_entity = getattr(qmongo.models, name)
+            setattr(_views,name,view_entity)
+            delattr(qmongo.models, name)
+
+
+        return ret
+    else:
+        return _cach_view[name]
 def create_mongod_view_from_pipeline(db,pipe_line,from_collection,schema,view_name):
     global _cach_view
     import json

@@ -4,9 +4,11 @@ angular.module('ZebraApp.components', [
     'ui.bootstrap.tpls',
     'ui.bootstrap.collapse',
     'ZebraApp.components.inputs',
+    'ZebraApp.components.outputs',
     'ZebraApp.components.tables',
     'ZebraApp.components.trees',
-    'ZebraApp.components.combobox'
+    'ZebraApp.components.combobox',
+    'ZebraApp.components.lists'
 ])
 .run(['$templateCache', function ($templateCache) {
     $templateCache.put('app/components/input/checkbox/checkbox.html', '<div class="checkbox zb-form-checkbox"><label class="custom-checkbox"><input type="checkbox" ng-model="model"><span>{{caption}}</span></label></div>');

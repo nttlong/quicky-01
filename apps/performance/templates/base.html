@@ -1,55 +1,61 @@
 ﻿<!DOCTYPE html>
 <html lang="en" ng-app="admin">
     <head>
-        <title>Admin</title>
+        <title>
+            ${get_res('main_title','Lac Viet SureHCS - Hệ thống Đánh giá năng suất')}
+        </title>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <!-- Main CSS-->
         <!--<link rel="stylesheet" type="text/css" href="${get_static('css/main.css')}">-->
 
-        <script src="${get_static('js/jquery-3.2.1.min.js')}"></script>
-        <script src="${get_static('js/angular.min.js')}"></script>
-        <script src="${get_static('lv/file_reading.js')}"></script>
-        <script src="${get_static('lv/ngDirectives.js')}"></script>
+    <script src="${get_static('js/jquery-3.2.1.min.js')}"></script>
+    <script src="${get_static('js/angular.min.js')}"></script>
+    <script src="${get_static('lv/file_reading.js')}"></script>
+    <script src="${get_static('lv/ngDirectives.js')}"></script>
 
-        <script src="${get_static('lv/lv.import.js')}"></script>
-        <script src="${get_static('lv/ws.js')}"></script>
-        <script src="${get_static('js/underscore-min.js')}"></script>
-        <script src="${get_static('js/moment-with-locales.js')}"></script>
-        <script src="${get_static('js/moment-precise-range.js')}"></script>
+    <script src="${get_static('lv/lv.import.js')}"></script>
+    <script src="${get_static('lv/ws.js')}"></script>
+    <script src="${get_static('js/underscore-min.js')}"></script>
+    <script src="${get_static('js/moment-with-locales.js')}"></script>
+    <script src="${get_static('js/moment-precise-range.js')}"></script>
 
-        <script src="${get_static('app/libs/jquery-ui.min.js')}"></script>
-        <script src="${get_static('js/datatables/datatables.min.js')}"></script>
-        <!--<script src="${get_static('js/datatables/dataTables.colReorder.min.js')}"></script>-->
-        <script src="${get_static('js/datatables/dataTables.responsive.min.js')}"></script>
+    <script src="${get_static('app/libs/jquery-ui.min.js')}"></script>
+    <script src="${get_static('js/datatables/datatables.min.js')}"></script>
+    <!--<script src="${get_static('js/datatables/dataTables.colReorder.min.js')}"></script>-->
+    <script src="${get_static('js/datatables/dataTables.responsive.min.js')}"></script>
 
-        <link rel="stylesheet" href="${get_static('libs/styles/vendor-2cae343ef1.css')}">
-        <!--<link rel="stylesheet" href="${get_static('libs/styles/app-b6796b3788.css')}">-->
-        <link rel="stylesheet" href="${get_static('css/bowtie-icon.css')}"/>
+    <link rel="stylesheet" href="${get_static('libs/styles/vendor-2cae343ef1.css')}">
+    <!--<link rel="stylesheet" href="${get_static('libs/styles/app-b6796b3788.css')}">-->
+    <link rel="stylesheet" href="${get_static('css/bowtie-icon.css')}"/>
 
-        <!--<link rel="stylesheet" href="${get_static('assets/linearicon/style.css')}">-->
-        <link rel="stylesheet" href="${get_static('assets/line-awesome/css/line-awesome.min.css')}">
-        <link rel="stylesheet" href="${get_static('assets/line-awesome/css/line-awesome-font-awesome.min.css')}">
-        <link rel="stylesheet" href="${get_static('assets/summer-note/css/summernote.css')}">
-        <link rel="stylesheet" href="${get_static('assets/summer-note/font/summernote.ttf')}">
+    <!--<link rel="stylesheet" href="${get_static('assets/linearicon/style.css')}">-->
+    <link rel="stylesheet" href="${get_static('assets/line-awesome/css/line-awesome.min.css')}">
+    <link rel="stylesheet" href="${get_static('assets/line-awesome/css/line-awesome-font-awesome.min.css')}">
+    <link rel="stylesheet" href="${get_static('assets/summer-note/css/summernote.css')}">
+    <link rel="stylesheet" href="${get_static('assets/summer-note/font/summernote.ttf')}">
 
-        <link href="${get_static('css/site.min.css')}" rel="stylesheet">
+    <link href="${get_static('css/site.min.css')}" rel="stylesheet">
 
-        <link href="${get_static('css/libs/colReorder.dataTables.min.css')}" rel="stylesheet" />
-        <link href="${get_static('css/libs/jquery.dataTables.min.css')}" rel="stylesheet" />
-        <link href="${get_static('css/libs/keyTable.dataTables.min.css')}" rel="stylesheet" />
-        <link href="${get_static('css/libs/responsive.dataTables.min.css')}" rel="stylesheet" />
-        <link href="${get_static('css/libs/select.dataTables.min.css')}" rel="stylesheet" />
+    <link href="${get_static('css/libs/colReorder.dataTables.min.css')}" rel="stylesheet" />
+    <link href="${get_static('css/libs/jquery.dataTables.min.css')}" rel="stylesheet" />
+    <link href="${get_static('css/libs/keyTable.dataTables.min.css')}" rel="stylesheet" />
+    <link href="${get_static('css/libs/responsive.dataTables.min.css')}" rel="stylesheet" />
+    <link href="${get_static('css/libs/select.dataTables.min.css')}" rel="stylesheet" />
+    <link href="${get_static('css/libs/bootstrap-datepicker/bootstrap-datepicker.min.css')}" rel="stylesheet" />
+    <link href="${get_static('css/libs/bootstrap-datetimepicker/bootstrap-datetimepicker.css')}" rel="stylesheet" />
+    <link href="${get_static('css/libs/bootstrap-datepicker/bootstrap-datepicker3.css')}" rel="stylesheet" />
+    <link href="${get_static('css/libs/bootstrap-datepicker/bootstrap-datepicker3.standalone.min.css')}" rel="stylesheet" />
 
-        <link href="${get_static('app/libs/tree/skin-xp/ui.fancytree.css')}" rel="stylesheet" />
-        <script src="${get_static('app/libs/tree/jquery.fancytree.js')}"></script>
-        <script src="${get_static('app/libs/tree/jquery.fancytree.filter.js')}"></script>
-        <script src="${get_static('app/libs/tree/jquery.fancytree.table.js')}"></script>
-        <script src="${get_static('app/libs/summernote.js')}"></script>
+    <link href="${get_static('app/libs/tree/skin-xp/ui.fancytree.css')}" rel="stylesheet" />
+    <script src="${get_static('app/libs/tree/jquery.fancytree.js')}"></script>
+    <script src="${get_static('app/libs/tree/jquery.fancytree.filter.js')}"></script>
+    <script src="${get_static('app/libs/tree/jquery.fancytree.table.js')}"></script>
+    <script src="${get_static('app/libs/summernote.js')}"></script>
 
-        <link rel="shortcut icon" href="${get_static('media/favicon.ico')}" />
-    </head>
+    <link rel="shortcut icon" href="${get_static('media/favicon.ico')}" />
+</head>
     <body class="app zb-body" ng-controller="admin" style="margin: 0;">
         
 
@@ -66,6 +72,7 @@
         <script type="text/javascript" src="${get_static('app/widgets/tile-box/tile-box.directive.js')}"></script>
         <script type="text/javascript" src="${get_static('app/widgets/page-sidebar/page-sidebar.directive.js')}"></script>
         <script type="text/javascript" src="${get_static('app/widgets/nav-tabs/nav-tabs.directive.js')}"></script>
+        <script type="text/javascript" src="${get_static('app/widgets/header-page/header-page.directive.js')}"></script>
 
         <script type="text/javascript" src="${get_static('app/components/components.js')}"></script>
         <script type="text/javascript" src="${get_static('app/components/input/input.module.js')}"></script>
@@ -77,6 +84,8 @@
         <script type="text/javascript" src="${get_static('app/components/input/datepicker/datepicker.directive.js')}"></script>
         <script type="text/javascript" src="${get_static('app/components/input/checkbox/checkbox.directive.js')}"></script>
         <script type="text/javascript" src="${get_static('app/components/input/password/password.directive.js')}"></script>
+        <script type="text/javascript" src="${get_static('app/components/output/output.module.js')}"></script>
+        <script type="text/javascript" src="${get_static('app/components/output/label/label.directive.js')}"></script>
         <script type="text/javascript" src="${get_static('app/directives/component.js')}"></script>
         <script type="text/javascript" src="${get_static('app/directives/layoutService.js')}"></script>
         <script type="text/javascript" src="${get_static('app/directives/breadcumb/breadcumb.js')}"></script>
@@ -88,6 +97,10 @@
         <script type="text/javascript" src="${get_static('app/components/combobox/combobox/combobox.directive.js')}"></script>
         <script type="text/javascript" src="${get_static('app/components/combobox/multi-combobox/multi-combobox.directive.js')}"></script>
         <script type="text/javascript" src="${get_static('app/components/combobox/tree-combobox/tree-combobox.directive.js')}"></script>
+        <script type="text/javascript" src="${get_static('app/components/list/lists.module.js')}"></script>
+        <script type="text/javascript" src="${get_static('app/components/list/list-view/list-view.directive.js')}"></script>
+        <script type="text/javascript" src="${get_static('app/components/input/yearpicker/yearpicker.directive.js')}"></script>
+        <script type="text/javascript" src="${get_static('app/components/input/timepicker/timepicker.directive.js')}"></script>
 
         <script type="text/javascript" src="${get_static('app/validators/validators.js')}"></script>
         <script type="text/javascript" src="${get_static('app/formsearch/formsearch.js')}"></script>
@@ -100,6 +113,8 @@
         <script src="${get_static('app/components/tree/tree.module.js')}"></script>
         <script src="${get_static('app/components/tree/tree/tree.directive.js')}"></script>
         <script src="${get_static('app/components/tree/tree-table/tree-table.directive.js')}"></script>
+        <script src="${get_static('js/bootstrap-datepicker/bootstrap-datepicker.min.js')}"></script>
+        <script src="${get_static('js/bootstrap-datetimepicker/bootstrap-datetimepicker.min.js')}"></script>
         <%include file="script.html"/>
         ${self.body()}
     </body>

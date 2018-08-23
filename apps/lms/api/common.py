@@ -26,6 +26,13 @@ def get_collection(col_name):
 def get_db_context():
     return models.db_context.db
 
+def create_view(view_name, collection_name, pipe_line):
+    get_db_context().command({
+        "create": view_name,
+        "viewOn": get_collection_name_with_schema(collection_name), 
+        "pipeline": pipeline
+    })
+
 def get_current_schema():
     return quicky.tenancy.get_schema()
 
@@ -76,6 +83,9 @@ def get_pagination(args):
     except Exception as ex:
         logger.debug(ex)
         raise(ex)
+
+def get_language():
+    return quicky.language.get_language()
 
 def get_data(pageIndex, pageSize, where, sort):
     try:
@@ -142,26 +152,41 @@ def get_init_data_combobox(args):
                                 "name":encryptor.get_value(x['key']),
                                 "display_fields":[],
                                 "caption_field":"",
+                                "value_field": "",
+                                "multi_select": False,
+                                "parent_field":"",
                                 "alias": (lambda x: x['alias'] if x.has_key('alias') else "")(x)
                                 })
                         for x in result:
                             display_fields = [[]]
                             caption_field = [[]]
-                            x['value'] = create_data_init_combobox(dict(data = {"key":x["key"], "code":x["code"]}), display_fields, caption_field)
+                            value_field = [[]]
+                            multi_select = [[]]
+                            parent_field = [[]]
+                            x['value'] = create_data_init_combobox(dict(data = {"key":x["key"], "code":x["code"]}), display_fields, caption_field, value_field, multi_select, parent_field)
                             x['display_fields'] = display_fields[0]
                             x['caption_field'] = caption_field[0]
+                            x['value_field'] = value_field[0]
+                            x['multi_select'] = multi_select[0]
+                            x['parent_field'] = parent_field[0]
 
                         return result
                     else:
                         display_fields = [[]]
                         caption_field = [[]]
+                        value_field = [[]]
+                        multi_select = [[]]
+                        parent_field = [[]]
                         return {
                             "key": args["data"].get("name", "")["key"],
-                            "value": create_data_init_combobox(dict(data = {"key":args["data"].get("name", "")["key"], "code":args["data"].get("name", "")["code"]}), display_fields, caption_field),
+                            "value": create_data_init_combobox(dict(data = {"key":args["data"].get("name", "")["key"], "code":args["data"].get("name", "")["code"]}), display_fields, caption_field, value_field, multi_select, parent_field),
                             "code": args["data"].get("name", "")["code"],
                             "name":encryptor.get_value(args["data"].get("name", "")['key']),
                             "display_fields": display_fields[0],
                             "caption_field": caption_field[0],
+                            "value_field": value_field[0],
+                            "multi_select": multi_select[0],
+                            "parent_field": parent_field[0],
                             "alias":(lambda x: x['alias'] if x.has_key("alias") else "")(args["data"].get("name", ""))
                             }
                 except Exception as ex:
@@ -172,7 +197,7 @@ def get_init_data_combobox(args):
                     "error":"name is not empty"
                     }
 
-def create_data_init_combobox(args, display_field, caption_field):
+def create_data_init_combobox(args, display_field, caption_field, value_field, multi_select, parent_field):
     try:
         global __collectionName 
         global __collection 
@@ -192,6 +217,7 @@ def create_data_init_combobox(args, display_field, caption_field):
                 table_name          =   1,
                 table_fields        =   1,
                 display_fields      =   1,
+                parent_field        =   1,
                 predicate           =   1,
                 value_field         =   1,
                 caption_field       =   1,
@@ -200,7 +226,7 @@ def create_data_init_combobox(args, display_field, caption_field):
                 multi_select        =   1,
                 page_size           =   1)
 
-            language_code = quicky.applications.get_settings().LANGUAGE_CODE
+            language_code = quicky.language.get_language()
             combobox_info = combobox_info.match("combobox_code == {0} and language == {1}", combobox_code, language_code).get_item()
 
             if combobox_info == None:
@@ -209,6 +235,9 @@ def create_data_init_combobox(args, display_field, caption_field):
             __collectionName = combobox_info['table_name']
             display_field[0] = combobox_info['display_fields']
             caption_field[0] = combobox_info['caption_field']
+            value_field[0] = combobox_info['value_field']
+            multi_select[0] = combobox_info['multi_select']
+            parent_field[0] = combobox_info['parent_field']
 
             try:
                 __collection = getattr(models, __collectionName)()
@@ -275,9 +304,10 @@ def create_data_combobox(args):
                 sorting_field       =   1,
                 filter_field        =   1,
                 multi_select        =   1,
+                parent_field        =   1,
                 page_size           =   1)
 
-            language_code = quicky.applications.get_settings().LANGUAGE_CODE
+            language_code = quicky.language.get_language()
             combobox_info = combobox_info.match("combobox_code == {0} and language == {1}", combobox_code, language_code).get_item()
 
             if combobox_info == None:
@@ -290,9 +320,10 @@ def create_data_combobox(args):
             except Exception as ex:
                 return {"error":"Not found collection name"}
 
-            column    = combobox_info['table_fields']
-            where     = combobox_info['predicate']
-            sort      = combobox_info['sorting_field']
+            column       = combobox_info['table_fields']
+            where        = combobox_info['predicate']
+            sort         = combobox_info['sorting_field']
+            parent_field = combobox_info['parent_field']
             filter    = []
             page_size = 30
 
@@ -365,7 +396,12 @@ def create_data_combobox(args):
             if args['data'].has_key('pageIndex') and args['data'].get('pageIndex', None) != None:
                 page_index = args['data']['pageIndex']
 
-            data = ret.get_page(page_index, page_size)
+            if parent_field == None or parent_field == "":
+                data = ret.get_page(page_index, page_size)
+            else:
+                data = {
+                    "items":ret.get_list()
+                    }
 
             if data != {}:
                 for y in where['column']:
@@ -375,7 +411,6 @@ def create_data_combobox(args):
 
             ret_list = data
 
-
             return {"data"           : ret_list,
                     "display_name"   : combobox_info["display_name"],
                     "display_fields" : combobox_info["display_fields"],
@@ -384,6 +419,7 @@ def create_data_combobox(args):
                     "sorting_field"  : combobox_info["sorting_field"],
                     "filter_field"   : combobox_info["filter_field"],
                     "page_size"      : combobox_info["page_size"],
+                    "parent_field"   : combobox_info["parent_field"],
                     "error"          : None}
         raise(Exception("Not found collection name"))
 

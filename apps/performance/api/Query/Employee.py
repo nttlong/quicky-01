@@ -1,24 +1,39 @@
 from .. import models
 from .. import common
-def get_employee_list_by_department(dept_code, page_size, page_index, sort, search):
+def get_employee_list_by_department(dept_code, active, page_size, page_index, sort, search):
     #db = common.get_db_context()
-    #ret = db.system_js.getEmployeeByDepartmentCode(common.get_current_schema(), "PERF", dept_code, page_size, page_index, sort, search)
+    #ret =
+    #db.system_js.getEmployeeByDepartmentCode(common.get_current_schema(),
+    #"PERF", dept_code, page_size, page_index, sort, search)
     #return ret
     rs = []
     #var lstDepartmentCode = [];
     #departments.forEach(function (el) {
-    #    lstDepartmentCode = lstDepartmentCode.concat(el.level_code.slice(el.level_code.indexOf(departmentCode), el.level_code.length));
-    #});
+    #    lstDepartmentCode =
+    #    lstDepartmentCode.concat(el.level_code.slice(el.level_code.indexOf(departmentCode),
+    #    el.level_code.length));
+    #});    
+    if (active == "0"):
+        active = {
+            "$match":{"emp.active": {"$eq": True}}  
+            }
+    elif (active == "1"):
+        active = {
+                "$match":{"emp.active": {"$ne": True}}  
+            }
+    else:
+        active =  {
+            "$match":{"$or":[{"emp.active":{"$ne":True}}, {"emp.active":{"$eq":True}}]} #get all
+            }
 
-    rs = list(
-        common.get_collection('SYS_ValueList').aggregate([
-        { "$match":  { "list_name": "LGender" } },
+    rs = list(common.get_collection('SYS_ValueList').aggregate([{ "$match":  { "list_name": "LGender" } },
         { "$unwind": { "path": "$values", "preserveNullAndEmptyArrays": False } },
         { "$lookup": { "from": common.get_collection_name_with_schema("HCSEM_Employees"), "localField": "values.value", "foreignField": "gender", "as": "emp" } },
         { "$unwind": { "path": "$emp", "preserveNullAndEmptyArrays": True } },
         { "$lookup": { "from": common.get_collection_name_with_schema("HCSSYS_Departments"), "localField": "emp.department_code", "foreignField": "department_code", "as": "dept" } },
         { "$unwind": { "path": "$dept", "preserveNullAndEmptyArrays": False } },
         { "$match":  { "dept.level_code": dept_code } },
+        active,
         {
             "$project": {
                 "full_name": { "$concat": ["$emp.last_name", " ", "$emp.first_name"] },
@@ -97,16 +112,14 @@ def get_employee_list_by_department(dept_code, page_size, page_index, sort, sear
         },
         {
             "$match": {
-                "$or": [
-                    { "full_name": { "$regex": search, "$options": 'i' } },
+                "$or": [{ "full_name": { "$regex": search, "$options": 'i' } },
                     { "employee_code": { "$regex": search, "$options": 'i' } },
                     { "gender": { "$regex": search, "$options": 'i' } },
                     { "job_w_code": { "$regex": search, "$options": 'i' } },
                     { "join_date": { "$regex": search, "$options": 'i' } },
-                    { "department_name": { "$regex": search, "$options": 'i' } }
-                ]
+                    { "department_name": { "$regex": search, "$options": 'i' } }]
             }
-        },
+        },        
         { "$sort": sort },
         {
             "$facet": {
@@ -135,8 +148,7 @@ def get_employee_list_by_department(dept_code, page_size, page_index, sort, sear
 
 def get_employee_by_employee_code(emp_code):
     ret = {}
-    collection = common.get_collection('HCSEM_Employees').aggregate([
-        {"$match":{'employee_code':{'$regex':'^'+emp_code}}},
+    collection = common.get_collection('HCSEM_Employees').aggregate([{"$match":{'employee_code':{'$regex':'^' + emp_code}}},
         {"$lookup":{'from':common.get_collection_name_with_schema('HCSSYS_Departments'), 'localField':'department_code', 'foreignField':'department_code', 'as': 'dept'}},
         {"$unwind":{'path':'$dept', "preserveNullAndEmptyArrays":False}},
         {"$project":{
@@ -211,8 +223,7 @@ def get_employee_by_employee_code(emp_code):
             "fo_permiss"                   : 1,
             "fo_begin_date"                : 1,
             "fo_end_date"                  : 1
-            }}
-        ])
+            }}])
 
     ret = list(collection)[0]
 

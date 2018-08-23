@@ -1,6 +1,6 @@
 import django
 import quicky
-
+import authorization
 import qmongo
 from qmongo import database, helpers
 app=quicky.applications.get_app_by_file(__file__)
@@ -59,6 +59,7 @@ from HCSEM_EmpExperience import HCSEM_EmpExperience
 from TMPER_AprPeriod import TMPER_AprPeriod
 from TMPER_AprPeriodRank import TMPER_AprPeriodRank
 from TMPER_AprPeriodEmpOut import TMPER_AprPeriodEmpOut
+from HCSSYS_FunctionListSummary import HCSSYS_FunctionListSummary
 
 
 from ..views import *

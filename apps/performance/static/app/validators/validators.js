@@ -21,7 +21,9 @@
 
         _Validator.prototype.isDate = isDate;
 
-        _Validator.prototype.isArray = isArray;
+        _Validator.prototype.isArray = isArray; 
+
+        _Validator.prototype.isNullData = isNullData;
 
         _Validator.prototype.isLoginAccount = function () {
             return (isNullOrWhiteSpace() == true || isContainWhiteSpace() == true) ? true : false;
@@ -80,6 +82,12 @@
 
         function isArray() {
             return Array.isArray(__val);
+        }
+
+        function isNullData() {
+            if (__val)
+                return false;
+            return true;
         }
 
         return _Validator;

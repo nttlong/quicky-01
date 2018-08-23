@@ -19,7 +19,19 @@
     scope.handleEvent = handleEvent;
     scope.$functions = scope.$root.$functions;
     scope.handleEvent = new handleEvent();
-
+    scope.fnCountData = function (item) {
+        return 1;
+        services.api("${get_api_key('app_main.api.common/test_thu')}")
+            .data({
+                //parameter at here
+                "function_id": item,
+            })
+            .done()
+            .then(function (res) {
+                debugger
+                return res['number'];
+            })
+    };
     /**
      * Handle events in page
      */

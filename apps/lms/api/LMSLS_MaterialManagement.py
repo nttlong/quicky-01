@@ -1146,16 +1146,7 @@ def get_data_dash_board_page(args):
         folder_id= ret_fold.get_list()[j]['folder_id']
         item_folder=get_list_with_select_node(folder_id)
         list_folder.insert(len(list_folder),item_folder)
-    arr_folder =[]
-    max_foder =0
-    for i in range(5):
-        max_foder =0
-        for x in list_folder:
-                if len(x['items']) > max_foder:
-                    max_foder=len(x['items'])
 
-                    arr_folder.insert(len(arr_folder),{'views':x['items'],'folder_id':x['folder_id']})
-                    list_folder.remove(x)
                     
     len_download = 0
     len_share    = 0
@@ -1170,7 +1161,6 @@ def get_data_dash_board_page(args):
             len_share+=len(x['sharing_social'])
     list_element = ret.get_list()
     arr =[]
-    
     for i in range(5):
         max=0
         for x in list_element:
@@ -1189,7 +1179,7 @@ def get_data_dash_board_page(args):
         number_download =len_download,
         number_share =len_share,
         top_five_material = arr,
-        top_five_folder = arr_folder,
+        top_five_folder = list_folder,
         dynamic_chart =down_share_view,
         )
 def get_list_with_select_node(args):
@@ -1346,4 +1336,12 @@ def get_list_download_history(args):
     return dict(
             error = "request parameter is not exist"
         )
-
+def get_material_relation(args):
+    where = args['data'].get('where')
+    ret=models.LMSLS_MaterialManagement().aggregate()
+    if(where != None):
+        ret.match("(_id==@id)",id=ObjectId(where['id']))
+    ret.project(
+            relations=1, 
+        )
+    return ret.get_item()
