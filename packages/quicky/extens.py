@@ -283,7 +283,8 @@ def apply(request,template_file,app):
                                       default_filters=['decode.utf8'],
                                       input_encoding='utf-8',
                                       output_encoding='utf-8',
-                                      encoding_errors='replace'
+                                      encoding_errors='replace',
+
                                       )
             try:
                 ret_res=mylookup.get_template(fileName).render(**render_model)

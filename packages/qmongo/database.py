@@ -592,7 +592,6 @@ class WHERE():
         entity._expr = self._where_
         ret = entity.commit(session)
         return ret
-
 class COLL():
     """
     Define a collection
@@ -1124,7 +1123,11 @@ class AGGREGATE():
             self._selected_fields=self._coll._model.get_fields()
             if self._selected_fields.count("_id") == 0:
                 self._selected_fields.append("_id")
-        return self._selected_fields
+        ret =[]
+        for x in self._selected_fields:
+            if ret.count(x) == 0:
+                ret.append(x)
+        return ret
     def descibe_fields(self,tabs,fields):
         # type: (str,list) -> str
         """
@@ -1671,8 +1674,6 @@ class AGGREGATE():
             "$replaceRoot":{"newRoot":(lambda x : "$"+x if x[0] != "$" else x)(field)}
         })
         return self
-
-
 def connect(*args,**kwargs):
     """
     Create db instance <br/>

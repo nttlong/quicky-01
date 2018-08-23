@@ -91,13 +91,6 @@ class __obj_model__(object):
         return ret
     @property
     def coll(self,context = None):
-        # if context == None:
-        #     from . import db_context
-        #     context = db_context.get_db_context()
-        # if context == None:
-        #     raise (Exception("Please use:\n"
-        #                      "import qmongo\n"
-        #                      "qmongo.set_db_context(host=..,port=..,user=..,password=..,name=..."))
         from . import database
 
         ret = database.QR()
@@ -120,7 +113,7 @@ class __obj_model__(object):
         return self
     @property
     def aggregate(self):
-        if self.__aggregate__ == None:
+        if self.__aggregate__ == None or self.__aggregate__.get_selected_fields() == [] :
             self.__aggregate__ =self.coll.aggregate()
         return self.__aggregate__
     def project(self,*args,**kwargs):
@@ -134,6 +127,7 @@ class __obj_model__(object):
         return self
     def left_join(self,source,local_field,foreign_field, alias):
         self.aggregate.left_join(source.__name__,local_field,foreign_field, alias)
+        return self
     def insert(self,*args,**kwargs):
         ret = self.coll.insert(*args,**kwargs)
         import dynamic_object

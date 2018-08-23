@@ -96,13 +96,6 @@ def build_urls(module_name,*args,**kwargs):
             for x in list_of_key_remain_apps:
                 if list_of_apps.count(app_dicts[x])== 0:
                     list_of_apps.append(app_dicts[x])
-
-
-
-
-
-
-
             for app in list_of_apps:
                 ret = applications.load_app(app)
                 if dict_utils.has_key(app,"schema"):
@@ -126,7 +119,7 @@ def build_urls(module_name,*args,**kwargs):
                     root_doc = static_urls[0].default_args["document_root"]
                     reg_ex = static_urls[0].regex.pattern
                     if host_dir!=None:
-                        reg_ex =reg_ex.replace("^","^"+host_dir+"/")
+                        reg_ex =reg_ex.replace("^","^(?i)"+host_dir+"/")
 
                     _apps_.urlpatterns.append(
                         url(
@@ -233,6 +226,9 @@ def build_urls(module_name,*args,**kwargs):
 
 
 
+                                if url_regex !="^$":
+                                    if url_regex.count("^(?i)") == 0:
+                                        url_regex=url_regex.replace("^","^(?i)")
                                 map_url = url(
                                     url_regex,
                                     url_item.callback
@@ -240,8 +236,6 @@ def build_urls(module_name,*args,**kwargs):
                                 _apps_.urlpatterns.append(map_url)
                     else:
                         f=url_item
-
-
 
             for url_item in default_urls:
                 url_regex = url_item.regex.pattern

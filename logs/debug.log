@@ -814,3 +814,527 @@ django_session.find (0.00) {'_id': '1zk6p9wuzftdm0ad83dg0sgfjxxrk0if', 'expire_d
 django_session.find (0.00) {'_id': '1zk6p9wuzftdm0ad83dg0sgfjxxrk0if', 'expire_date': {'$gt': datetime.datetime(2018, 8, 23, 4, 32, 56, 693142, tzinfo=<UTC>)}, 'schema': u'lv'}
 django_session.find (0.00) {'_id': '1zk6p9wuzftdm0ad83dg0sgfjxxrk0if', 'expire_date': {'$gt': datetime.datetime(2018, 8, 23, 4, 32, 56, 707474, tzinfo=<UTC>)}, 'schema': u'lv'}
 django_session.find (0.01) {'_id': '1zk6p9wuzftdm0ad83dg0sgfjxxrk0if', 'expire_date': {'$gt': datetime.datetime(2018, 8, 23, 4, 32, 56, 705372, tzinfo=<UTC>)}, 'schema': u'lv'}
+django_session.find (0.00) {'_id': '1zk6p9wuzftdm0ad83dg0sgfjxxrk0if', 'expire_date': {'$gt': datetime.datetime(2018, 8, 23, 4, 48, 47, 71702, tzinfo=<UTC>)}, 'schema': u'lv'}
+Not Found: /lms/{{$root.logo}}
+django_session.find (0.00) {'_id': '1zk6p9wuzftdm0ad83dg0sgfjxxrk0if', 'expire_date': {'$gt': datetime.datetime(2018, 8, 23, 4, 48, 48, 142189, tzinfo=<UTC>)}, 'schema': u'lv'}
+django_session.find (0.01) {'_id': '1zk6p9wuzftdm0ad83dg0sgfjxxrk0if', 'expire_date': {'$gt': datetime.datetime(2018, 8, 23, 4, 48, 48, 166921, tzinfo=<UTC>)}, 'schema': u'lv'}
+django_session.find (0.00) {'_id': '1zk6p9wuzftdm0ad83dg0sgfjxxrk0if', 'expire_date': {'$gt': datetime.datetime(2018, 8, 23, 4, 48, 48, 173328, tzinfo=<UTC>)}, 'schema': u'lv'}
+django_session.find (0.00) {'_id': '1zk6p9wuzftdm0ad83dg0sgfjxxrk0if', 'expire_date': {'$gt': datetime.datetime(2018, 8, 23, 4, 48, 48, 328745, tzinfo=<UTC>)}, 'schema': u'lv'}
+django_session.find (0.00) {'_id': '1zk6p9wuzftdm0ad83dg0sgfjxxrk0if', 'expire_date': {'$gt': datetime.datetime(2018, 8, 23, 4, 48, 48, 464565, tzinfo=<UTC>)}, 'schema': u'lv'}
+django_session.find (0.00) {'_id': '1zk6p9wuzftdm0ad83dg0sgfjxxrk0if', 'expire_date': {'$gt': datetime.datetime(2018, 8, 23, 4, 48, 48, 612925, tzinfo=<UTC>)}, 'schema': u'lv'}
+django_session.find (0.00) {'_id': '1zk6p9wuzftdm0ad83dg0sgfjxxrk0if', 'expire_date': {'$gt': datetime.datetime(2018, 8, 23, 4, 48, 48, 634544, tzinfo=<UTC>)}, 'schema': u'lv'}
+django_session.find (0.01) {'_id': '1zk6p9wuzftdm0ad83dg0sgfjxxrk0if', 'expire_date': {'$gt': datetime.datetime(2018, 8, 23, 4, 48, 48, 640490, tzinfo=<UTC>)}, 'schema': u'lv'}
+django_session.find (0.00) {'_id': '1zk6p9wuzftdm0ad83dg0sgfjxxrk0if', 'expire_date': {'$gt': datetime.datetime(2018, 8, 23, 4, 48, 54, 954250, tzinfo=<UTC>)}, 'schema': u'lv'}
+Not Found: /{{$root.logo}}
+django_session.find (0.02) {'_id': '1zk6p9wuzftdm0ad83dg0sgfjxxrk0if', 'expire_date': {'$gt': datetime.datetime(2018, 8, 23, 4, 48, 55, 766690, tzinfo=<UTC>)}, 'schema': u'lv'}
+django_session.find (0.01) {'_id': '1zk6p9wuzftdm0ad83dg0sgfjxxrk0if', 'expire_date': {'$gt': datetime.datetime(2018, 8, 23, 4, 48, 55, 797307, tzinfo=<UTC>)}, 'schema': u'lv'}
+django_session.find (0.01) {'_id': '1zk6p9wuzftdm0ad83dg0sgfjxxrk0if', 'expire_date': {'$gt': datetime.datetime(2018, 8, 23, 4, 48, 55, 818664, tzinfo=<UTC>)}, 'schema': u'lv'}
+django_session.find (0.01) {'_id': '1zk6p9wuzftdm0ad83dg0sgfjxxrk0if', 'expire_date': {'$gt': datetime.datetime(2018, 8, 23, 4, 49, 7, 111010, tzinfo=<UTC>)}, 'schema': u'lv'}
+django_session.find (0.00) {'_id': '1zk6p9wuzftdm0ad83dg0sgfjxxrk0if', 'expire_date': {'$gt': datetime.datetime(2018, 8, 23, 4, 49, 7, 144936, tzinfo=<UTC>)}, 'schema': u'lv'}
+django_session.find (0.00) {'_id': '1zk6p9wuzftdm0ad83dg0sgfjxxrk0if', 'expire_date': {'$gt': datetime.datetime(2018, 8, 23, 4, 49, 7, 329965, tzinfo=<UTC>)}, 'schema': u'lv'}
+django_session.find (0.00) {'_id': '1zk6p9wuzftdm0ad83dg0sgfjxxrk0if', 'expire_date': {'$gt': datetime.datetime(2018, 8, 23, 4, 49, 7, 400684, tzinfo=<UTC>)}, 'schema': u'lv'}
+django_session.find (0.00) {'_id': '1zk6p9wuzftdm0ad83dg0sgfjxxrk0if', 'expire_date': {'$gt': datetime.datetime(2018, 8, 23, 4, 49, 10, 742105, tzinfo=<UTC>)}, 'schema': u'lv'}
+django_session.find (0.00) {'_id': '1zk6p9wuzftdm0ad83dg0sgfjxxrk0if', 'expire_date': {'$gt': datetime.datetime(2018, 8, 23, 4, 49, 10, 999520, tzinfo=<UTC>)}, 'schema': u'lv'}
+Internal Server Error: /pages//permission/form/addUser
+Traceback (most recent call last):
+  File "/home/hcsadmin/q03/packages/django/django/core/handlers/base.py", line 122, in get_response
+    raise e
+TemplateLookupException: Cant locate template for uri u'views//permission/form/adduser.html'
+Not Found: /performance/static/js/angular.min.js.map
+Not Found: /performance/static/js/datatables/pdfmake.min.js.map
+Not Found: /performance/static/css/libs/bootstrap-datepicker/bootstrap-datepicker.min.css.map
+Not Found: /performance/static/css/libs/bootstrap-datepicker/bootstrap-datepicker3.css.map
+Not Found: /performance/static/css/libs/bootstrap-datepicker/bootstrap-datepicker3.standalone.min.css.map
+Internal Server Error: /pages//permission/form/addUser
+Traceback (most recent call last):
+  File "/home/hcsadmin/q03/packages/django/django/core/handlers/base.py", line 122, in get_response
+    raise e
+TemplateLookupException: Cant locate template for uri u'views//permission/form/adduser.html'
+Internal Server Error: /pages//permission/form/addUser
+Traceback (most recent call last):
+  File "/home/hcsadmin/q03/packages/django/django/core/handlers/base.py", line 122, in get_response
+    raise e
+TemplateLookupException: Cant locate template for uri u'views//permission/form/adduser.html'
+django_session.find (0.00) {'_id': '1zk6p9wuzftdm0ad83dg0sgfjxxrk0if', 'expire_date': {'$gt': datetime.datetime(2018, 8, 23, 4, 50, 45, 887176, tzinfo=<UTC>)}, 'schema': u'lv'}
+Not Found: /performance/static/js/angular.min.js.map
+Not Found: /{{$root.logo}}
+Not Found: /performance/static/js/datatables/pdfmake.min.js.map
+Not Found: /performance/static/css/libs/bootstrap-datepicker/bootstrap-datepicker.min.css.map
+Not Found: /performance/static/css/libs/bootstrap-datepicker/bootstrap-datepicker3.standalone.min.css.map
+Not Found: /performance/static/css/libs/bootstrap-datepicker/bootstrap-datepicker3.css.map
+django_session.find (0.01) {'_id': '1zk6p9wuzftdm0ad83dg0sgfjxxrk0if', 'expire_date': {'$gt': datetime.datetime(2018, 8, 23, 4, 50, 47, 595961, tzinfo=<UTC>)}, 'schema': u'lv'}
+django_session.find (0.01) {'_id': '1zk6p9wuzftdm0ad83dg0sgfjxxrk0if', 'expire_date': {'$gt': datetime.datetime(2018, 8, 23, 4, 50, 47, 717009, tzinfo=<UTC>)}, 'schema': u'lv'}
+django_session.find (0.00) {'_id': '1zk6p9wuzftdm0ad83dg0sgfjxxrk0if', 'expire_date': {'$gt': datetime.datetime(2018, 8, 23, 4, 50, 47, 720483, tzinfo=<UTC>)}, 'schema': u'lv'}
+django_session.find (0.00) {'_id': '1zk6p9wuzftdm0ad83dg0sgfjxxrk0if', 'expire_date': {'$gt': datetime.datetime(2018, 8, 23, 4, 50, 48, 97254, tzinfo=<UTC>)}, 'schema': u'lv'}
+django_session.find (0.00) {'_id': '1zk6p9wuzftdm0ad83dg0sgfjxxrk0if', 'expire_date': {'$gt': datetime.datetime(2018, 8, 23, 4, 50, 48, 164201, tzinfo=<UTC>)}, 'schema': u'lv'}
+django_session.find (0.00) {'_id': '1zk6p9wuzftdm0ad83dg0sgfjxxrk0if', 'expire_date': {'$gt': datetime.datetime(2018, 8, 23, 4, 50, 48, 320319, tzinfo=<UTC>)}, 'schema': u'lv'}
+Internal Server Error: /pages//permission/form/addUser
+Traceback (most recent call last):
+  File "/home/hcsadmin/q03/packages/django/django/core/handlers/base.py", line 122, in get_response
+    raise e
+TemplateLookupException: Cant locate template for uri u'views//permission/form/adduser.html'
+Internal Server Error: /pages//permission/form/addUser
+Traceback (most recent call last):
+  File "/home/hcsadmin/q03/packages/django/django/core/handlers/base.py", line 122, in get_response
+    raise e
+TemplateLookupException: Cant locate template for uri u'views//permission/form/adduser.html'
+Internal Server Error: /pages/permission/form/addUser
+Traceback (most recent call last):
+  File "/home/hcsadmin/q03/packages/django/django/core/handlers/base.py", line 122, in get_response
+    raise e
+TemplateLookupException: Cant locate template for uri u'views/permission/form/adduser.html'
+Not Found: /lv/pages/permission/form/addUser
+Not Found: /perpages/permission/form/addUser
+Not Found: /per/pages/permission/form/addUser
+Not Found: /lv/pages//permission/form/addUser
+Not Found: /lv/pages/permission/form/addUser
+Internal Server Error: /pages/permission/form/addUser
+Traceback (most recent call last):
+  File "/home/hcsadmin/q03/packages/django/django/core/handlers/base.py", line 122, in get_response
+    raise e
+TemplateLookupException: Cant locate template for uri u'views/permission/form/adduser.html'
+Not Found: /per/pages/permission/form/addUser
+Internal Server Error: /pages/permission/form/addUser
+Traceback (most recent call last):
+  File "/home/hcsadmin/q03/packages/django/django/core/handlers/base.py", line 122, in get_response
+    raise e
+TemplateLookupException: Cant locate template for uri u'views/permission/form/adduser.html'
+Internal Server Error: /pages/permission/form/addUser
+Traceback (most recent call last):
+  File "/home/hcsadmin/q03/packages/django/django/core/handlers/base.py", line 122, in get_response
+    raise e
+TemplateLookupException: Cant locate template for uri u'views/permission/form/adduser.html'
+Internal Server Error: /pages/permission/form/addUseră
+Traceback (most recent call last):
+  File "/home/hcsadmin/q03/packages/django/django/core/handlers/base.py", line 122, in get_response
+    raise e
+TemplateLookupException: Cant locate template for uri u'views/permission/form/adduser\u0103.html'
+Internal Server Error: /pages/permission/form/addUser
+Traceback (most recent call last):
+  File "/home/hcsadmin/q03/packages/django/django/core/handlers/base.py", line 122, in get_response
+    raise e
+TemplateLookupException: Cant locate template for uri u'views/permission/form/adduser.html'
+Not Found: /păages/permission/form/addUser
+Internal Server Error: /pages/permission/form/addUser
+Traceback (most recent call last):
+  File "/home/hcsadmin/q03/packages/django/django/core/handlers/base.py", line 122, in get_response
+    raise e
+TemplateLookupException: Cant locate template for uri u'views/permission/form/adduser.html'
+Internal Server Error: /pages/views/permission/form/addUser
+Traceback (most recent call last):
+  File "/home/hcsadmin/q03/packages/django/django/core/handlers/base.py", line 122, in get_response
+    raise e
+TemplateLookupException: Cant locate template for uri u'views/views/permission/form/adduser.html'
+Internal Server Error: /pages/views/permission/form/addUser
+Traceback (most recent call last):
+  File "/home/hcsadmin/q03/packages/django/django/core/handlers/base.py", line 122, in get_response
+    raise e
+TemplateLookupException: Cant locate template for uri u'/views/views/permission/form/adduser.html'
+Internal Server Error: /pages/views/permission/form/addUser
+Traceback (most recent call last):
+  File "/home/hcsadmin/q03/packages/django/django/core/handlers/base.py", line 122, in get_response
+    raise e
+TemplateLookupException: Cant locate template for uri u'views/views/permission/form/adduser.html'
+Not Found: /pagesăă/views/permission/form/adduser.html
+Not Found: /LOGIN
+Not Found: /LOGIN
+Not Found: /dasdasd
+django_session.find (0.00) {'_id': '1zk6p9wuzftdm0ad83dg0sgfjxxrk0if', 'expire_date': {'$gt': datetime.datetime(2018, 8, 23, 6, 16, 7, 552941, tzinfo=<UTC>)}, 'schema': u'lv'}
+django_session.find (0.00) {'_id': '1zk6p9wuzftdm0ad83dg0sgfjxxrk0if', 'expire_date': {'$gt': datetime.datetime(2018, 8, 23, 6, 16, 11, 537798, tzinfo=<UTC>)}, 'schema': u'lv'}
+Not Found: /{{$root.logo}}
+Not Found: /api
+Not Found: /api
+Not Found: /api
+Not Found: /dasdasd
+Not Found: /dasdasd
+django_session.find (0.00) {'_id': '1zk6p9wuzftdm0ad83dg0sgfjxxrk0if', 'expire_date': {'$gt': datetime.datetime(2018, 8, 23, 6, 17, 49, 6649, tzinfo=<UTC>)}, 'schema': u'lv'}
+Not Found: /performance/static/js/plugins/slick.js
+Not Found: /performance/static/js/plugins/slick.js
+Not Found: /LOGIN/
+django_session.find (0.00) {'_id': '1zk6p9wuzftdm0ad83dg0sgfjxxrk0if', 'expire_date': {'$gt': datetime.datetime(2018, 8, 23, 6, 18, 3, 550697, tzinfo=<UTC>)}, 'schema': u'lv'}
+Not Found: /performance/static/js/plugins/slick.js
+Not Found: /performance/static/js/plugins/slick.js
+django_session.find (0.00) {'_id': '1zk6p9wuzftdm0ad83dg0sgfjxxrk0if', 'expire_date': {'$gt': datetime.datetime(2018, 8, 23, 6, 18, 9, 913329, tzinfo=<UTC>)}, 'schema': u'lv'}
+lv.auth_user.save (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8', 'first_name': u'', 'last_name': u'', '_id': ObjectId('5b20925a232037334054b073'), 'is_active': True, 'email': u'', 'is_superuser': False, 'is_staff': False, 'last_login': datetime.datetime(2018, 8, 23, 6, 18, 9, 999795, tzinfo=<UTC>), 'password': u'pbkdf2_sha256$12000$71ZauZ1K0jwS$zKPkNCm0toSn/5CqITaN3BKVM45nnjB0NugiE64XaDQ=', 'date_joined': datetime.datetime(2018, 6, 13, 3, 41, 14, 644000, tzinfo=<UTC>)}
+django_session.save (0.00) {'schema': u'lv', '_id': '1zk6p9wuzftdm0ad83dg0sgfjxxrk0if', 'expire_date': datetime.datetime(2018, 9, 6, 6, 18, 10, 5082, tzinfo=<UTC>), 'session_data': u'NTU3Y2YzOWFjNmY3ZWM4OTE3ODQ4YWI1YWQ0ZDZhMzBjMTUzZjRmNjp7Imxhbmd1YWdlIjoidmkiLCJfYXV0aF91c2VyX2JhY2tlbmQiOiJwZXJtaXNzaW9uX2JhY2tlbmRfbm9ucmVsLmJhY2tlbmRzLk5vbnJlbFBlcm1pc3Npb25CYWNrZW5kIiwiX2F1dGhfdXNlcl9pZCI6IjViMjA5MjVhMjMyMDM3MzM0MDU0YjA3MyJ9'}
+django_session.find (0.00) {'_id': '1zk6p9wuzftdm0ad83dg0sgfjxxrk0if', 'expire_date': {'$gt': datetime.datetime(2018, 8, 23, 6, 18, 10, 30190, tzinfo=<UTC>)}, 'schema': u'lv'}
+Not Found: /{{$root.logo}}
+django_session.find (0.00) {'_id': '1zk6p9wuzftdm0ad83dg0sgfjxxrk0if', 'expire_date': {'$gt': datetime.datetime(2018, 8, 23, 6, 18, 10, 603093, tzinfo=<UTC>)}, 'schema': u'lv'}
+django_session.find (0.02) {'_id': '1zk6p9wuzftdm0ad83dg0sgfjxxrk0if', 'expire_date': {'$gt': datetime.datetime(2018, 8, 23, 6, 18, 10, 624727, tzinfo=<UTC>)}, 'schema': u'lv'}
+django_session.find (0.01) {'_id': '1zk6p9wuzftdm0ad83dg0sgfjxxrk0if', 'expire_date': {'$gt': datetime.datetime(2018, 8, 23, 6, 18, 10, 641335, tzinfo=<UTC>)}, 'schema': u'lv'}
+django_session.find (0.00) {'_id': '1zk6p9wuzftdm0ad83dg0sgfjxxrk0if', 'expire_date': {'$gt': datetime.datetime(2018, 8, 23, 6, 18, 17, 761709, tzinfo=<UTC>)}, 'schema': u'lv'}
+Not Found: /{{$root.logo}}
+django_session.find (0.01) {'_id': '1zk6p9wuzftdm0ad83dg0sgfjxxrk0if', 'expire_date': {'$gt': datetime.datetime(2018, 8, 23, 6, 18, 18, 326168, tzinfo=<UTC>)}, 'schema': u'lv'}
+django_session.find (0.01) {'_id': '1zk6p9wuzftdm0ad83dg0sgfjxxrk0if', 'expire_date': {'$gt': datetime.datetime(2018, 8, 23, 6, 18, 18, 337872, tzinfo=<UTC>)}, 'schema': u'lv'}
+django_session.find (0.02) {'_id': '1zk6p9wuzftdm0ad83dg0sgfjxxrk0if', 'expire_date': {'$gt': datetime.datetime(2018, 8, 23, 6, 18, 18, 341904, tzinfo=<UTC>)}, 'schema': u'lv'}
+Not Found: /performance/static/css/libs/bootstrap-datepicker/bootstrap-datepicker3.css.map
+Not Found: /performance/static/css/libs/bootstrap-datepicker/bootstrap-datepicker3.standalone.min.css.map
+Not Found: /performance/static/css/libs/bootstrap-datepicker/bootstrap-datepicker.min.css.map
+django_session.find (0.00) {'_id': '1zk6p9wuzftdm0ad83dg0sgfjxxrk0if', 'expire_date': {'$gt': datetime.datetime(2018, 8, 23, 6, 18, 27, 734873, tzinfo=<UTC>)}, 'schema': u'lv'}
+Not Found: /performance/static/js/angular.min.js.map
+Not Found: /performance/static/js/datatables/pdfmake.min.js.map
+Not Found: /performance/static/css/libs/bootstrap-datepicker/bootstrap-datepicker.min.css.map
+Not Found: /performance/static/css/libs/bootstrap-datepicker/bootstrap-datepicker3.standalone.min.css.map
+Not Found: /performance/static/css/libs/bootstrap-datepicker/bootstrap-datepicker3.css.map
+django_session.find (0.02) {'_id': '1zk6p9wuzftdm0ad83dg0sgfjxxrk0if', 'expire_date': {'$gt': datetime.datetime(2018, 8, 23, 6, 18, 29, 772087, tzinfo=<UTC>)}, 'schema': u'lv'}
+django_session.find (0.01) {'_id': '1zk6p9wuzftdm0ad83dg0sgfjxxrk0if', 'expire_date': {'$gt': datetime.datetime(2018, 8, 23, 6, 18, 29, 803379, tzinfo=<UTC>)}, 'schema': u'lv'}
+django_session.find (0.00) {'_id': '1zk6p9wuzftdm0ad83dg0sgfjxxrk0if', 'expire_date': {'$gt': datetime.datetime(2018, 8, 23, 6, 18, 29, 837062, tzinfo=<UTC>)}, 'schema': u'lv'}
+Not Found: /{{$root.logo}}
+Not Found: /{{$root.logo}}
+django_session.find (0.00) {'_id': '1zk6p9wuzftdm0ad83dg0sgfjxxrk0if', 'expire_date': {'$gt': datetime.datetime(2018, 8, 23, 6, 18, 48, 648123, tzinfo=<UTC>)}, 'schema': u'lv'}
+django_session.find (0.00) {'_id': '1zk6p9wuzftdm0ad83dg0sgfjxxrk0if', 'expire_date': {'$gt': datetime.datetime(2018, 8, 23, 6, 18, 48, 794014, tzinfo=<UTC>)}, 'schema': u'lv'}
+django_session.find (0.00) {'_id': '1zk6p9wuzftdm0ad83dg0sgfjxxrk0if', 'expire_date': {'$gt': datetime.datetime(2018, 8, 23, 6, 18, 48, 819733, tzinfo=<UTC>)}, 'schema': u'lv'}
+django_session.find (0.00) {'_id': '1zk6p9wuzftdm0ad83dg0sgfjxxrk0if', 'expire_date': {'$gt': datetime.datetime(2018, 8, 23, 6, 18, 49, 121202, tzinfo=<UTC>)}, 'schema': u'lv'}
+Internal Server Error: /pages/profile/employeeInfo
+Traceback (most recent call last):
+  File "/home/hcsadmin/q03/packages/django/django/core/handlers/base.py", line 122, in get_response
+    raise e
+TemplateLookupException: Cant locate template for uri u'views/profile/employeeinfo.html'
+django_session.find (0.00) {'_id': '1zk6p9wuzftdm0ad83dg0sgfjxxrk0if', 'expire_date': {'$gt': datetime.datetime(2018, 8, 23, 6, 18, 56, 628732, tzinfo=<UTC>)}, 'schema': u'lv'}
+django_session.find (0.01) {'_id': '1zk6p9wuzftdm0ad83dg0sgfjxxrk0if', 'expire_date': {'$gt': datetime.datetime(2018, 8, 23, 6, 18, 56, 691984, tzinfo=<UTC>)}, 'schema': u'lv'}
+django_session.find (0.00) {'_id': '1zk6p9wuzftdm0ad83dg0sgfjxxrk0if', 'expire_date': {'$gt': datetime.datetime(2018, 8, 23, 6, 18, 56, 705080, tzinfo=<UTC>)}, 'schema': u'lv'}
+django_session.find (0.00) {'_id': '1zk6p9wuzftdm0ad83dg0sgfjxxrk0if', 'expire_date': {'$gt': datetime.datetime(2018, 8, 23, 6, 18, 56, 920095, tzinfo=<UTC>)}, 'schema': u'lv'}
+Internal Server Error: /pages/profile/employeeInfo
+Traceback (most recent call last):
+  File "/home/hcsadmin/q03/packages/django/django/core/handlers/base.py", line 122, in get_response
+    raise e
+TemplateLookupException: Cant locate template for uri u'views/profile/employeeinfo.html'
+django_session.find (0.00) {'_id': '1zk6p9wuzftdm0ad83dg0sgfjxxrk0if', 'expire_date': {'$gt': datetime.datetime(2018, 8, 23, 6, 19, 4, 854925, tzinfo=<UTC>)}, 'schema': u'lv'}
+django_session.find (0.00) {'_id': '1zk6p9wuzftdm0ad83dg0sgfjxxrk0if', 'expire_date': {'$gt': datetime.datetime(2018, 8, 23, 6, 19, 4, 920430, tzinfo=<UTC>)}, 'schema': u'lv'}
+django_session.find (0.00) {'_id': '1zk6p9wuzftdm0ad83dg0sgfjxxrk0if', 'expire_date': {'$gt': datetime.datetime(2018, 8, 23, 6, 19, 5, 114147, tzinfo=<UTC>)}, 'schema': u'lv'}
+django_session.find (0.00) {'_id': '1zk6p9wuzftdm0ad83dg0sgfjxxrk0if', 'expire_date': {'$gt': datetime.datetime(2018, 8, 23, 6, 19, 5, 152329, tzinfo=<UTC>)}, 'schema': u'lv'}
+Internal Server Error: /pages//permission/form/addDomain
+Traceback (most recent call last):
+  File "/home/hcsadmin/q03/packages/django/django/core/handlers/base.py", line 122, in get_response
+    raise e
+TemplateLookupException: Cant locate template for uri u'views//permission/form/adddomain.html'
+Not Found: /performance/static/js/angular.min.js.map
+Not Found: /performance/static/js/datatables/pdfmake.min.js.map
+Not Found: /performance/static/css/libs/bootstrap-datepicker/bootstrap-datepicker.min.css.map
+Not Found: /performance/static/css/libs/bootstrap-datepicker/bootstrap-datepicker3.standalone.min.css.map
+Not Found: /performance/static/css/libs/bootstrap-datepicker/bootstrap-datepicker3.css.map
+Internal Server Error: /pages//permission/form/addDomain
+Traceback (most recent call last):
+  File "/home/hcsadmin/q03/packages/django/django/core/handlers/base.py", line 122, in get_response
+    raise e
+TemplateLookupException: Cant locate template for uri u'views//permission/form/adddomain.html'
+Internal Server Error: /pages//permission/form/addDomain
+Traceback (most recent call last):
+  File "/home/hcsadmin/q03/packages/django/django/core/handlers/base.py", line 122, in get_response
+    raise e
+TemplateLookupException: Cant locate template for uri u'views//permission/form/adddomain.html'
+Internal Server Error: /pages/permission/form/addDomain
+Traceback (most recent call last):
+  File "/home/hcsadmin/q03/packages/django/django/core/handlers/base.py", line 122, in get_response
+    raise e
+TemplateLookupException: Cant locate template for uri u'views/permission/form/adddomain.html'
+django_session.find (0.00) {'_id': '1zk6p9wuzftdm0ad83dg0sgfjxxrk0if', 'expire_date': {'$gt': datetime.datetime(2018, 8, 23, 6, 23, 40, 248534, tzinfo=<UTC>)}, 'schema': u'lv'}
+Not Found: /performance/static/js/angular.min.js.map
+Not Found: /performance/static/css/libs/bootstrap-datepicker/bootstrap-datepicker.min.css.map
+Not Found: /performance/static/js/datatables/pdfmake.min.js.map
+Not Found: /performance/static/css/libs/bootstrap-datepicker/bootstrap-datepicker3.css.map
+Not Found: /performance/static/css/libs/bootstrap-datepicker/bootstrap-datepicker3.standalone.min.css.map
+Not Found: /{{$root.logo}}
+django_session.find (0.02) {'_id': '1zk6p9wuzftdm0ad83dg0sgfjxxrk0if', 'expire_date': {'$gt': datetime.datetime(2018, 8, 23, 6, 23, 42, 307244, tzinfo=<UTC>)}, 'schema': u'lv'}
+django_session.find (0.01) {'_id': '1zk6p9wuzftdm0ad83dg0sgfjxxrk0if', 'expire_date': {'$gt': datetime.datetime(2018, 8, 23, 6, 23, 42, 380347, tzinfo=<UTC>)}, 'schema': u'lv'}
+django_session.find (0.01) {'_id': '1zk6p9wuzftdm0ad83dg0sgfjxxrk0if', 'expire_date': {'$gt': datetime.datetime(2018, 8, 23, 6, 23, 42, 457016, tzinfo=<UTC>)}, 'schema': u'lv'}
+Not Found: /{{$root.logo}}
+django_session.find (0.00) {'_id': '1zk6p9wuzftdm0ad83dg0sgfjxxrk0if', 'expire_date': {'$gt': datetime.datetime(2018, 8, 23, 6, 23, 42, 661578, tzinfo=<UTC>)}, 'schema': u'lv'}
+django_session.find (0.00) {'_id': '1zk6p9wuzftdm0ad83dg0sgfjxxrk0if', 'expire_date': {'$gt': datetime.datetime(2018, 8, 23, 6, 23, 42, 741577, tzinfo=<UTC>)}, 'schema': u'lv'}
+django_session.find (0.00) {'_id': '1zk6p9wuzftdm0ad83dg0sgfjxxrk0if', 'expire_date': {'$gt': datetime.datetime(2018, 8, 23, 6, 23, 42, 866083, tzinfo=<UTC>)}, 'schema': u'lv'}
+django_session.find (0.00) {'_id': '1zk6p9wuzftdm0ad83dg0sgfjxxrk0if', 'expire_date': {'$gt': datetime.datetime(2018, 8, 23, 6, 23, 43, 21866, tzinfo=<UTC>)}, 'schema': u'lv'}
+django_session.find (0.00) {'_id': '1zk6p9wuzftdm0ad83dg0sgfjxxrk0if', 'expire_date': {'$gt': datetime.datetime(2018, 8, 23, 6, 23, 43, 91835, tzinfo=<UTC>)}, 'schema': u'lv'}
+django_session.find (0.00) {'_id': '1zk6p9wuzftdm0ad83dg0sgfjxxrk0if', 'expire_date': {'$gt': datetime.datetime(2018, 8, 23, 6, 23, 46, 5252, tzinfo=<UTC>)}, 'schema': u'lv'}
+Internal Server Error: /lv/pages//permission/form/addDomain
+Traceback (most recent call last):
+  File "/home/hcsadmin/q03/packages/django/django/core/handlers/base.py", line 122, in get_response
+    raise e
+TemplateLookupException: Cant locate template for uri u'views//permission/form/adddomain.html'
+django_session.find (0.00) {'_id': '1zk6p9wuzftdm0ad83dg0sgfjxxrk0if', 'expire_date': {'$gt': datetime.datetime(2018, 8, 23, 6, 23, 50, 597101, tzinfo=<UTC>)}, 'schema': u'lv'}
+Internal Server Error: /lv/pages//permission/form/addDomain
+Traceback (most recent call last):
+  File "/home/hcsadmin/q03/packages/django/django/core/handlers/base.py", line 122, in get_response
+    raise e
+TemplateLookupException: Cant locate template for uri u'views//permission/form/adddomain.html'
+django_session.find (0.00) {'_id': '1zk6p9wuzftdm0ad83dg0sgfjxxrk0if', 'expire_date': {'$gt': datetime.datetime(2018, 8, 23, 6, 23, 54, 511363, tzinfo=<UTC>)}, 'schema': u'lv'}
+Internal Server Error: /lv/pages//permission/form/addDomain
+Traceback (most recent call last):
+  File "/home/hcsadmin/q03/packages/django/django/core/handlers/base.py", line 122, in get_response
+    raise e
+TemplateLookupException: Cant locate template for uri u'views//permission/form/adddomain.html'
+django_session.find (0.00) {'_id': '1zk6p9wuzftdm0ad83dg0sgfjxxrk0if', 'expire_date': {'$gt': datetime.datetime(2018, 8, 23, 6, 24, 6, 725809, tzinfo=<UTC>)}, 'schema': u'lv'}
+Internal Server Error: /lv/pages/permission/form/addDomain
+Traceback (most recent call last):
+  File "/home/hcsadmin/q03/packages/django/django/core/handlers/base.py", line 122, in get_response
+    raise e
+TemplateLookupException: Cant locate template for uri u'views/permission/form/adddomain.html'
+django_session.find (0.00) {'_id': '1zk6p9wuzftdm0ad83dg0sgfjxxrk0if', 'expire_date': {'$gt': datetime.datetime(2018, 8, 23, 6, 26, 31, 511491, tzinfo=<UTC>)}, 'schema': u'lv'}
+Internal Server Error: /lv/pages/permission/form/addDomain
+Traceback (most recent call last):
+  File "/home/hcsadmin/q03/packages/django/django/core/handlers/base.py", line 122, in get_response
+    raise e
+TemplateLookupException: Cant locate template for uri u'apps/performance/views/permission/form/adddomain.html'
+django_session.find (0.00) {'_id': '1zk6p9wuzftdm0ad83dg0sgfjxxrk0if', 'expire_date': {'$gt': datetime.datetime(2018, 8, 23, 6, 26, 50, 102806, tzinfo=<UTC>)}, 'schema': u'lv'}
+Internal Server Error: /lv/pages/permission/form/addDomain
+Traceback (most recent call last):
+  File "/home/hcsadmin/q03/packages/django/django/core/handlers/base.py", line 122, in get_response
+    raise e
+TemplateLookupException: Cant locate template for uri u'/apps/performance/templates/views/permission/form/adddomain.html'
+django_session.find (0.00) {'_id': '1zk6p9wuzftdm0ad83dg0sgfjxxrk0if', 'expire_date': {'$gt': datetime.datetime(2018, 8, 23, 6, 27, 29, 857691, tzinfo=<UTC>)}, 'schema': u'lv'}
+Internal Server Error: /lv/pages/permission/form/addDomain
+Traceback (most recent call last):
+  File "/home/hcsadmin/q03/packages/django/django/core/handlers/base.py", line 122, in get_response
+    raise e
+TemplateLookupException: Cant locate template for uri u'views/permission/form/adddomain.html'
+django_session.find (0.00) {'_id': '1zk6p9wuzftdm0ad83dg0sgfjxxrk0if', 'expire_date': {'$gt': datetime.datetime(2018, 8, 23, 6, 27, 31, 800381, tzinfo=<UTC>)}, 'schema': u'lv'}
+django_session.find (0.00) {'_id': '1zk6p9wuzftdm0ad83dg0sgfjxxrk0if', 'expire_date': {'$gt': datetime.datetime(2018, 8, 23, 6, 27, 39, 146314, tzinfo=<UTC>)}, 'schema': u'lv'}
+django_session.find (0.00) {'_id': '1zk6p9wuzftdm0ad83dg0sgfjxxrk0if', 'expire_date': {'$gt': datetime.datetime(2018, 8, 23, 6, 29, 9, 815251, tzinfo=<UTC>)}, 'schema': u'lv'}
+django_session.find (0.00) {'_id': '1zk6p9wuzftdm0ad83dg0sgfjxxrk0if', 'expire_date': {'$gt': datetime.datetime(2018, 8, 23, 6, 30, 54, 357418, tzinfo=<UTC>)}, 'schema': u'lv'}
+Internal Server Error: /lv/pages/permission/form/addDomain
+Traceback (most recent call last):
+  File "/home/hcsadmin/q03/packages/django/django/core/handlers/base.py", line 122, in get_response
+    raise e
+TemplateLookupException: Cant locate template for uri u'views/^(?i)permission/form/adddomain.html'
+django_session.find (0.00) {'_id': '1zk6p9wuzftdm0ad83dg0sgfjxxrk0if', 'expire_date': {'$gt': datetime.datetime(2018, 8, 23, 6, 31, 30, 851097, tzinfo=<UTC>)}, 'schema': u'lv'}
+Internal Server Error: /lv/pages/permission/form/addDomain
+Traceback (most recent call last):
+  File "/home/hcsadmin/q03/packages/django/django/core/handlers/base.py", line 122, in get_response
+    raise e
+TemplateLookupException: Cant locate template for uri u'^(?i)views/permission/form/adddomain.html'
+django_session.find (0.00) {'_id': '1zk6p9wuzftdm0ad83dg0sgfjxxrk0if', 'expire_date': {'$gt': datetime.datetime(2018, 8, 23, 6, 37, 54, 555705, tzinfo=<UTC>)}, 'schema': u'lv'}
+Internal Server Error: /lv/pages/permission/form/addDomain
+Traceback (most recent call last):
+  File "/home/hcsadmin/q03/packages/django/django/core/handlers/base.py", line 122, in get_response
+    raise e
+TemplateLookupException: Cant locate template for uri u'^(?i)views/permission/form/adddomain.html'
+django_session.find (0.00) {'_id': '1zk6p9wuzftdm0ad83dg0sgfjxxrk0if', 'expire_date': {'$gt': datetime.datetime(2018, 8, 23, 6, 40, 3, 829664, tzinfo=<UTC>)}, 'schema': u'lv'}
+Not Found: /performance/static/js/angular.min.js.map
+Not Found: /{{$root.logo}}
+Not Found: /performance/static/js/datatables/pdfmake.min.js.map
+Not Found: /performance/static/css/libs/bootstrap-datepicker/bootstrap-datepicker.min.css.map
+Not Found: /performance/static/css/libs/bootstrap-datepicker/bootstrap-datepicker3.css.map
+django_session.find (0.01) {'_id': '1zk6p9wuzftdm0ad83dg0sgfjxxrk0if', 'expire_date': {'$gt': datetime.datetime(2018, 8, 23, 6, 40, 11, 449266, tzinfo=<UTC>)}, 'schema': u'lv'}
+django_session.find (0.01) {'_id': '1zk6p9wuzftdm0ad83dg0sgfjxxrk0if', 'expire_date': {'$gt': datetime.datetime(2018, 8, 23, 6, 40, 11, 595563, tzinfo=<UTC>)}, 'schema': u'lv'}
+django_session.find (0.01) {'_id': '1zk6p9wuzftdm0ad83dg0sgfjxxrk0if', 'expire_date': {'$gt': datetime.datetime(2018, 8, 23, 6, 40, 11, 600078, tzinfo=<UTC>)}, 'schema': u'lv'}
+Not Found: /performance/static/css/libs/bootstrap-datepicker/bootstrap-datepicker3.standalone.min.css.map
+django_session.find (0.00) {'_id': '1zk6p9wuzftdm0ad83dg0sgfjxxrk0if', 'expire_date': {'$gt': datetime.datetime(2018, 8, 23, 6, 40, 11, 791044, tzinfo=<UTC>)}, 'schema': u'lv'}
+Internal Server Error: /lv/pages/permission
+Traceback (most recent call last):
+  File "/home/hcsadmin/q03/packages/django/django/core/handlers/base.py", line 122, in get_response
+    raise e
+TemplateLookupException: Cant locate template for uri u'^(?i)views/permission.html'
+django_session.find (0.00) {'_id': '1zk6p9wuzftdm0ad83dg0sgfjxxrk0if', 'expire_date': {'$gt': datetime.datetime(2018, 8, 23, 6, 40, 26, 825484, tzinfo=<UTC>)}, 'schema': u'lv'}
+Not Found: /performance/static/js/angular.min.js.map
+Not Found: /performance/static/js/datatables/pdfmake.min.js.map
+Not Found: /performance/static/css/libs/bootstrap-datepicker/bootstrap-datepicker.min.css.map
+Not Found: /performance/static/css/libs/bootstrap-datepicker/bootstrap-datepicker3.css.map
+Not Found: /{{$root.logo}}
+Not Found: /performance/static/css/libs/bootstrap-datepicker/bootstrap-datepicker3.standalone.min.css.map
+django_session.find (0.02) {'_id': '1zk6p9wuzftdm0ad83dg0sgfjxxrk0if', 'expire_date': {'$gt': datetime.datetime(2018, 8, 23, 6, 40, 28, 551494, tzinfo=<UTC>)}, 'schema': u'lv'}
+django_session.find (0.01) {'_id': '1zk6p9wuzftdm0ad83dg0sgfjxxrk0if', 'expire_date': {'$gt': datetime.datetime(2018, 8, 23, 6, 40, 28, 569845, tzinfo=<UTC>)}, 'schema': u'lv'}
+django_session.find (0.04) {'_id': '1zk6p9wuzftdm0ad83dg0sgfjxxrk0if', 'expire_date': {'$gt': datetime.datetime(2018, 8, 23, 6, 40, 28, 576820, tzinfo=<UTC>)}, 'schema': u'lv'}
+Not Found: /{{$root.logo}}
+django_session.find (0.00) {'_id': '1zk6p9wuzftdm0ad83dg0sgfjxxrk0if', 'expire_date': {'$gt': datetime.datetime(2018, 8, 23, 6, 40, 28, 897341, tzinfo=<UTC>)}, 'schema': u'lv'}
+Internal Server Error: /lv/pages/permission
+Traceback (most recent call last):
+  File "/home/hcsadmin/q03/packages/django/django/core/handlers/base.py", line 122, in get_response
+    raise e
+TemplateLookupException: Cant locate template for uri u'^(?i)views/permission.html'
+django_session.find (0.00) {'_id': '1zk6p9wuzftdm0ad83dg0sgfjxxrk0if', 'expire_date': {'$gt': datetime.datetime(2018, 8, 23, 6, 40, 35, 817768, tzinfo=<UTC>)}, 'schema': u'lv'}
+Internal Server Error: /lv/pages/permission
+Traceback (most recent call last):
+  File "/home/hcsadmin/q03/packages/django/django/core/handlers/base.py", line 122, in get_response
+    raise e
+TemplateLookupException: Cant locate template for uri u'^(?i)views/permission.html'
+django_session.find (0.00) {'_id': '1zk6p9wuzftdm0ad83dg0sgfjxxrk0if', 'expire_date': {'$gt': datetime.datetime(2018, 8, 23, 6, 40, 49, 35815, tzinfo=<UTC>)}, 'schema': u'lv'}
+django_session.find (0.00) {'_id': '1zk6p9wuzftdm0ad83dg0sgfjxxrk0if', 'expire_date': {'$gt': datetime.datetime(2018, 8, 23, 6, 40, 53, 344028, tzinfo=<UTC>)}, 'schema': u'lv'}
+Not Found: /performance/static/js/datatables/pdfmake.min.js.map
+Not Found: /performance/static/js/angular.min.js.map
+Not Found: /performance/static/css/libs/bootstrap-datepicker/bootstrap-datepicker.min.css.map
+Not Found: /performance/static/css/libs/bootstrap-datepicker/bootstrap-datepicker3.css.map
+Not Found: /performance/static/css/libs/bootstrap-datepicker/bootstrap-datepicker3.standalone.min.css.map
+Not Found: /{{$root.logo}}
+django_session.find (0.02) {'_id': '1zk6p9wuzftdm0ad83dg0sgfjxxrk0if', 'expire_date': {'$gt': datetime.datetime(2018, 8, 23, 6, 40, 55, 92474, tzinfo=<UTC>)}, 'schema': u'lv'}
+django_session.find (0.02) {'_id': '1zk6p9wuzftdm0ad83dg0sgfjxxrk0if', 'expire_date': {'$gt': datetime.datetime(2018, 8, 23, 6, 40, 55, 158097, tzinfo=<UTC>)}, 'schema': u'lv'}
+django_session.find (0.03) {'_id': '1zk6p9wuzftdm0ad83dg0sgfjxxrk0if', 'expire_date': {'$gt': datetime.datetime(2018, 8, 23, 6, 40, 55, 177836, tzinfo=<UTC>)}, 'schema': u'lv'}
+Not Found: /{{$root.logo}}
+django_session.find (0.00) {'_id': '1zk6p9wuzftdm0ad83dg0sgfjxxrk0if', 'expire_date': {'$gt': datetime.datetime(2018, 8, 23, 6, 40, 55, 425825, tzinfo=<UTC>)}, 'schema': u'lv'}
+django_session.find (0.00) {'_id': '1zk6p9wuzftdm0ad83dg0sgfjxxrk0if', 'expire_date': {'$gt': datetime.datetime(2018, 8, 23, 6, 40, 55, 522568, tzinfo=<UTC>)}, 'schema': u'lv'}
+django_session.find (0.00) {'_id': '1zk6p9wuzftdm0ad83dg0sgfjxxrk0if', 'expire_date': {'$gt': datetime.datetime(2018, 8, 23, 6, 40, 55, 625465, tzinfo=<UTC>)}, 'schema': u'lv'}
+django_session.find (0.00) {'_id': '1zk6p9wuzftdm0ad83dg0sgfjxxrk0if', 'expire_date': {'$gt': datetime.datetime(2018, 8, 23, 6, 40, 55, 847847, tzinfo=<UTC>)}, 'schema': u'lv'}
+django_session.find (0.00) {'_id': '1zk6p9wuzftdm0ad83dg0sgfjxxrk0if', 'expire_date': {'$gt': datetime.datetime(2018, 8, 23, 6, 40, 58, 871350, tzinfo=<UTC>)}, 'schema': u'lv'}
+django_session.find (0.00) {'_id': '1zk6p9wuzftdm0ad83dg0sgfjxxrk0if', 'expire_date': {'$gt': datetime.datetime(2018, 8, 23, 6, 40, 59, 204268, tzinfo=<UTC>)}, 'schema': u'lv'}
+django_session.find (0.00) {'_id': '1zk6p9wuzftdm0ad83dg0sgfjxxrk0if', 'expire_date': {'$gt': datetime.datetime(2018, 8, 23, 6, 40, 59, 215146, tzinfo=<UTC>)}, 'schema': u'lv'}
+django_session.find (0.00) {'_id': '1zk6p9wuzftdm0ad83dg0sgfjxxrk0if', 'expire_date': {'$gt': datetime.datetime(2018, 8, 23, 6, 41, 13, 549501, tzinfo=<UTC>)}, 'schema': u'lv'}
+django_session.find (0.00) {'_id': '1zk6p9wuzftdm0ad83dg0sgfjxxrk0if', 'expire_date': {'$gt': datetime.datetime(2018, 8, 23, 6, 42, 16, 583280, tzinfo=<UTC>)}, 'schema': u'lv'}
+lv.auth_user.save (0.00) {'username': '0c08fdbd-170c-49f1-9c97-cee24694bc81', 'first_name': u'', 'last_name': u'', 'is_active': True, '_id': ObjectId('5b7e574885740f0f6530182a'), 'is_superuser': False, 'is_staff': False, 'last_login': datetime.datetime(2018, 8, 23, 6, 42, 16, 638124, tzinfo=<UTC>), 'password': u'pbkdf2_sha256$12000$fuS2SC57RzIf$OUiWCXfOue2PfsxVHBwsNYRiIrcKZv+EbqTYcZB41DQ=', 'email': u'', 'date_joined': datetime.datetime(2018, 8, 23, 6, 42, 16, 638124, tzinfo=<UTC>)}
+lv.auth_user.save (0.00) {'username': '0c08fdbd-170c-49f1-9c97-cee24694bc81', 'first_name': u'', 'last_name': u'', '_id': ObjectId('5b7e574885740f0f6530182a'), 'is_active': True, 'email': u'', 'is_superuser': False, 'is_staff': False, 'last_login': datetime.datetime(2018, 8, 23, 6, 42, 16, 638124, tzinfo=<UTC>), 'password': u'pbkdf2_sha256$12000$fuS2SC57RzIf$OUiWCXfOue2PfsxVHBwsNYRiIrcKZv+EbqTYcZB41DQ=', 'date_joined': datetime.datetime(2018, 8, 23, 6, 42, 16, 638124, tzinfo=<UTC>)}
+django_session.find (0.01) {'_id': '1zk6p9wuzftdm0ad83dg0sgfjxxrk0if', 'expire_date': {'$gt': datetime.datetime(2018, 8, 23, 6, 42, 16, 766687, tzinfo=<UTC>)}, 'schema': u'lv'}
+django_session.find (0.00) {'_id': '1zk6p9wuzftdm0ad83dg0sgfjxxrk0if', 'expire_date': {'$gt': datetime.datetime(2018, 8, 23, 6, 42, 24, 116258, tzinfo=<UTC>)}, 'schema': u'lv'}
+django_session.find (0.00) {'_id': '1zk6p9wuzftdm0ad83dg0sgfjxxrk0if', 'expire_date': {'$gt': datetime.datetime(2018, 8, 23, 6, 42, 24, 215273, tzinfo=<UTC>)}, 'schema': u'lv'}
+django_session.find (0.00) {'_id': '1zk6p9wuzftdm0ad83dg0sgfjxxrk0if', 'expire_date': {'$gt': datetime.datetime(2018, 8, 23, 6, 42, 24, 224532, tzinfo=<UTC>)}, 'schema': u'lv'}
+django_session.find (0.00) {'_id': '1zk6p9wuzftdm0ad83dg0sgfjxxrk0if', 'expire_date': {'$gt': datetime.datetime(2018, 8, 23, 6, 42, 42, 928270, tzinfo=<UTC>)}, 'schema': u'lv'}
+django_session.find (0.00) {'_id': '1zk6p9wuzftdm0ad83dg0sgfjxxrk0if', 'schema': u'lv'}
+django_session.remove (0.00) {'_id': {'$in': [u'1zk6p9wuzftdm0ad83dg0sgfjxxrk0if']}, 'schema': u'lv'}
+django_session.save (0.00) {'schema': u'lv', '_id': u'lqvru48m141v3mb1b75iwds3qiqng8fl', 'expire_date': datetime.datetime(2018, 9, 6, 6, 42, 42, 951058, tzinfo=<UTC>), 'session_data': u'OTE2OWEzNjFmMzk3MzVhMTZiNjlmM2EwODhiNTVkOGExNWRjM2JlYzp7fQ=='}
+Internal Server Error: /lv/logout
+Traceback (most recent call last):
+  File "/home/hcsadmin/q03/packages/django/django/core/handlers/base.py", line 122, in get_response
+    raise e
+AttributeError: 'module' object has no attribute 'remove_language'
+django_session.find (0.00) {'_id': '1zk6p9wuzftdm0ad83dg0sgfjxxrk0if', 'expire_date': {'$gt': datetime.datetime(2018, 8, 23, 6, 43, 14, 47016, tzinfo=<UTC>)}, 'schema': u'lv'}
+django_session.save (0.00) {'schema': u'lv', '_id': u'h37tk1nc8qhwab3b0zqbl38u5b6tfx51', 'expire_date': datetime.datetime(2018, 9, 6, 6, 43, 14, 55220, tzinfo=<UTC>), 'session_data': u'OTE2OWEzNjFmMzk3MzVhMTZiNjlmM2EwODhiNTVkOGExNWRjM2JlYzp7fQ=='}
+django_session.save (0.00) {'schema': u'lv', '_id': u'h37tk1nc8qhwab3b0zqbl38u5b6tfx51', 'expire_date': datetime.datetime(2018, 9, 6, 6, 43, 14, 63840, tzinfo=<UTC>), 'session_data': u'OTE2OWEzNjFmMzk3MzVhMTZiNjlmM2EwODhiNTVkOGExNWRjM2JlYzp7fQ=='}
+django_session.find (0.00) {'_id': 'h37tk1nc8qhwab3b0zqbl38u5b6tfx51', 'expire_date': {'$gt': datetime.datetime(2018, 8, 23, 6, 43, 14, 90011, tzinfo=<UTC>)}, 'schema': u'lv'}
+Not Found: /performance/static/js/plugins/slick.js
+Not Found: /performance/static/js/plugins/slick.js
+django_session.find (0.00) {'_id': 'h37tk1nc8qhwab3b0zqbl38u5b6tfx51', 'expire_date': {'$gt': datetime.datetime(2018, 8, 23, 6, 43, 18, 590935, tzinfo=<UTC>)}, 'schema': u'lv'}
+Not Found: /performance/static/js/plugins/slick.js
+Not Found: /performance/static/js/plugins/slick.js
+django_session.find (0.00) {'_id': 'h37tk1nc8qhwab3b0zqbl38u5b6tfx51', 'expire_date': {'$gt': datetime.datetime(2018, 8, 23, 6, 43, 22, 501407, tzinfo=<UTC>)}, 'schema': u'lv'}
+django_session.save (0.00) {'schema': u'lv', '_id': u'4wuek9ok2vzd4avwqchbxtgy4euec7jg', 'expire_date': datetime.datetime(2018, 9, 6, 6, 43, 22, 577310, tzinfo=<UTC>), 'session_data': u'OTE2OWEzNjFmMzk3MzVhMTZiNjlmM2EwODhiNTVkOGExNWRjM2JlYzp7fQ=='}
+django_session.find (0.00) {'_id': 'h37tk1nc8qhwab3b0zqbl38u5b6tfx51', 'schema': u'lv'}
+django_session.remove (0.00) {'_id': {'$in': [u'h37tk1nc8qhwab3b0zqbl38u5b6tfx51']}, 'schema': u'lv'}
+lv.auth_user.save (0.00) {'username': u'0c08fdbd-170c-49f1-9c97-cee24694bc81', 'first_name': u'', 'last_name': u'', '_id': ObjectId('5b7e574885740f0f6530182a'), 'is_active': True, 'email': u'', 'is_superuser': False, 'is_staff': False, 'last_login': datetime.datetime(2018, 8, 23, 6, 43, 22, 584716, tzinfo=<UTC>), 'password': u'pbkdf2_sha256$12000$fuS2SC57RzIf$OUiWCXfOue2PfsxVHBwsNYRiIrcKZv+EbqTYcZB41DQ=', 'date_joined': datetime.datetime(2018, 8, 23, 6, 42, 16, 638000, tzinfo=<UTC>)}
+django_session.save (0.00) {'schema': u'lv', '_id': u'4wuek9ok2vzd4avwqchbxtgy4euec7jg', 'expire_date': datetime.datetime(2018, 9, 6, 6, 43, 22, 588355, tzinfo=<UTC>), 'session_data': u'MWUzMTQwOTQxODZhMjIwYjc3MzI5MTc0MmM1ZWVjZWEzMzMzMTcwMjp7Imxhbmd1YWdlIjoidmkiLCJfYXV0aF91c2VyX2JhY2tlbmQiOiJwZXJtaXNzaW9uX2JhY2tlbmRfbm9ucmVsLmJhY2tlbmRzLk5vbnJlbFBlcm1pc3Npb25CYWNrZW5kIiwiX2F1dGhfdXNlcl9pZCI6IjViN2U1NzQ4ODU3NDBmMGY2NTMwMTgyYSJ9'}
+django_session.find (0.00) {'_id': '4wuek9ok2vzd4avwqchbxtgy4euec7jg', 'expire_date': {'$gt': datetime.datetime(2018, 8, 23, 6, 43, 22, 639303, tzinfo=<UTC>)}, 'schema': u'lv'}
+Not Found: /lv/{{$root.logo}}
+django_session.find (0.00) {'_id': '4wuek9ok2vzd4avwqchbxtgy4euec7jg', 'expire_date': {'$gt': datetime.datetime(2018, 8, 23, 6, 43, 23, 141870, tzinfo=<UTC>)}, 'schema': u'lv'}
+django_session.find (0.01) {'_id': '4wuek9ok2vzd4avwqchbxtgy4euec7jg', 'expire_date': {'$gt': datetime.datetime(2018, 8, 23, 6, 43, 23, 149494, tzinfo=<UTC>)}, 'schema': u'lv'}
+django_session.find (0.01) {'_id': '4wuek9ok2vzd4avwqchbxtgy4euec7jg', 'expire_date': {'$gt': datetime.datetime(2018, 8, 23, 6, 43, 23, 155394, tzinfo=<UTC>)}, 'schema': u'lv'}
+django_session.find (0.00) {'_id': '4wuek9ok2vzd4avwqchbxtgy4euec7jg', 'expire_date': {'$gt': datetime.datetime(2018, 8, 23, 6, 43, 23, 309251, tzinfo=<UTC>)}, 'schema': u'lv'}
+django_session.find (0.00) {'_id': '4wuek9ok2vzd4avwqchbxtgy4euec7jg', 'expire_date': {'$gt': datetime.datetime(2018, 8, 23, 6, 43, 26, 245427, tzinfo=<UTC>)}, 'schema': u'lv'}
+django_session.find (0.00) {'_id': '4wuek9ok2vzd4avwqchbxtgy4euec7jg', 'expire_date': {'$gt': datetime.datetime(2018, 8, 23, 6, 43, 26, 358229, tzinfo=<UTC>)}, 'schema': u'lv'}
+django_session.find (0.00) {'_id': '4wuek9ok2vzd4avwqchbxtgy4euec7jg', 'expire_date': {'$gt': datetime.datetime(2018, 8, 23, 6, 43, 26, 368854, tzinfo=<UTC>)}, 'schema': u'lv'}
+django_session.find (0.00) {'_id': '4wuek9ok2vzd4avwqchbxtgy4euec7jg', 'expire_date': {'$gt': datetime.datetime(2018, 8, 23, 6, 43, 26, 697687, tzinfo=<UTC>)}, 'schema': u'lv'}
+django_session.find (0.00) {'_id': '4wuek9ok2vzd4avwqchbxtgy4euec7jg', 'expire_date': {'$gt': datetime.datetime(2018, 8, 23, 6, 43, 28, 816760, tzinfo=<UTC>)}, 'schema': u'lv'}
+django_session.find (0.00) {'_id': '4wuek9ok2vzd4avwqchbxtgy4euec7jg', 'expire_date': {'$gt': datetime.datetime(2018, 8, 23, 6, 43, 39, 2688, tzinfo=<UTC>)}, 'schema': u'lv'}
+django_session.find (0.00) {'_id': '4wuek9ok2vzd4avwqchbxtgy4euec7jg', 'expire_date': {'$gt': datetime.datetime(2018, 8, 23, 6, 43, 39, 65940, tzinfo=<UTC>)}, 'schema': u'lv'}
+django_session.find (0.00) {'_id': '4wuek9ok2vzd4avwqchbxtgy4euec7jg', 'expire_date': {'$gt': datetime.datetime(2018, 8, 23, 6, 43, 39, 119758, tzinfo=<UTC>)}, 'schema': u'lv'}
+django_session.find (0.00) {'_id': '4wuek9ok2vzd4avwqchbxtgy4euec7jg', 'expire_date': {'$gt': datetime.datetime(2018, 8, 23, 6, 43, 39, 246186, tzinfo=<UTC>)}, 'schema': u'lv'}
+django_session.find (0.00) {'_id': '4wuek9ok2vzd4avwqchbxtgy4euec7jg', 'expire_date': {'$gt': datetime.datetime(2018, 8, 23, 6, 43, 39, 288834, tzinfo=<UTC>)}, 'schema': u'lv'}
+django_session.find (0.00) {'_id': '4wuek9ok2vzd4avwqchbxtgy4euec7jg', 'expire_date': {'$gt': datetime.datetime(2018, 8, 23, 6, 43, 40, 794556, tzinfo=<UTC>)}, 'schema': u'lv'}
+django_session.find (0.00) {'_id': '4wuek9ok2vzd4avwqchbxtgy4euec7jg', 'expire_date': {'$gt': datetime.datetime(2018, 8, 23, 6, 43, 40, 915253, tzinfo=<UTC>)}, 'schema': u'lv'}
+django_session.find (0.00) {'_id': '4wuek9ok2vzd4avwqchbxtgy4euec7jg', 'expire_date': {'$gt': datetime.datetime(2018, 8, 23, 6, 43, 56, 534980, tzinfo=<UTC>)}, 'schema': u'lv'}
+django_session.find (0.00) {'_id': '4wuek9ok2vzd4avwqchbxtgy4euec7jg', 'expire_date': {'$gt': datetime.datetime(2018, 8, 23, 6, 44, 0, 636396, tzinfo=<UTC>)}, 'schema': u'lv'}
+Not Found: /performance/static/css/libs/bootstrap-datepicker/bootstrap-datepicker3.standalone.min.css.map
+Not Found: /performance/static/css/libs/bootstrap-datepicker/bootstrap-datepicker.min.css.map
+Not Found: /performance/static/css/libs/bootstrap-datepicker/bootstrap-datepicker3.css.map
+django_session.find (0.00) {'_id': '4wuek9ok2vzd4avwqchbxtgy4euec7jg', 'expire_date': {'$gt': datetime.datetime(2018, 8, 23, 6, 44, 5, 335248, tzinfo=<UTC>)}, 'schema': u'lv'}
+django_session.find (0.00) {'_id': '4wuek9ok2vzd4avwqchbxtgy4euec7jg', 'expire_date': {'$gt': datetime.datetime(2018, 8, 23, 6, 44, 40, 91542, tzinfo=<UTC>)}, 'schema': u'lv'}
+django_session.find (0.01) {'_id': '4wuek9ok2vzd4avwqchbxtgy4euec7jg', 'expire_date': {'$gt': datetime.datetime(2018, 8, 23, 6, 44, 40, 174878, tzinfo=<UTC>)}, 'schema': u'lv'}
+django_session.find (0.00) {'_id': '4wuek9ok2vzd4avwqchbxtgy4euec7jg', 'expire_date': {'$gt': datetime.datetime(2018, 8, 23, 6, 44, 46, 24769, tzinfo=<UTC>)}, 'schema': u'lv'}
+django_session.find (0.00) {'_id': '4wuek9ok2vzd4avwqchbxtgy4euec7jg', 'expire_date': {'$gt': datetime.datetime(2018, 8, 23, 6, 45, 28, 650546, tzinfo=<UTC>)}, 'schema': u'lv'}
+django_session.find (0.00) {'_id': '4wuek9ok2vzd4avwqchbxtgy4euec7jg', 'expire_date': {'$gt': datetime.datetime(2018, 8, 23, 6, 46, 13, 216837, tzinfo=<UTC>)}, 'schema': u'lv'}
+django_session.find (0.00) {'_id': '4wuek9ok2vzd4avwqchbxtgy4euec7jg', 'expire_date': {'$gt': datetime.datetime(2018, 8, 23, 6, 48, 19, 244768, tzinfo=<UTC>)}, 'schema': u'lv'}
+Not Found: /performance/static/js/angular.min.js.map
+Not Found: /lv/{{$root.logo}}
+Not Found: /performance/static/js/datatables/pdfmake.min.js.map
+Not Found: /performance/static/css/libs/bootstrap-datepicker/bootstrap-datepicker.min.css.map
+Not Found: /performance/static/css/libs/bootstrap-datepicker/bootstrap-datepicker3.standalone.min.css.map
+Not Found: /performance/static/css/libs/bootstrap-datepicker/bootstrap-datepicker3.css.map
+django_session.find (0.00) {'_id': '4wuek9ok2vzd4avwqchbxtgy4euec7jg', 'expire_date': {'$gt': datetime.datetime(2018, 8, 23, 6, 48, 20, 995928, tzinfo=<UTC>)}, 'schema': u'lv'}
+django_session.find (0.00) {'_id': '4wuek9ok2vzd4avwqchbxtgy4euec7jg', 'expire_date': {'$gt': datetime.datetime(2018, 8, 23, 6, 48, 21, 35321, tzinfo=<UTC>)}, 'schema': u'lv'}
+django_session.find (0.01) {'_id': '4wuek9ok2vzd4avwqchbxtgy4euec7jg', 'expire_date': {'$gt': datetime.datetime(2018, 8, 23, 6, 48, 21, 71050, tzinfo=<UTC>)}, 'schema': u'lv'}
+django_session.find (0.00) {'_id': '4wuek9ok2vzd4avwqchbxtgy4euec7jg', 'expire_date': {'$gt': datetime.datetime(2018, 8, 23, 6, 48, 21, 227307, tzinfo=<UTC>)}, 'schema': u'lv'}
+django_session.find (0.00) {'_id': '4wuek9ok2vzd4avwqchbxtgy4euec7jg', 'expire_date': {'$gt': datetime.datetime(2018, 8, 23, 6, 48, 21, 307242, tzinfo=<UTC>)}, 'schema': u'lv'}
+django_session.find (0.00) {'_id': '4wuek9ok2vzd4avwqchbxtgy4euec7jg', 'expire_date': {'$gt': datetime.datetime(2018, 8, 23, 6, 48, 21, 403313, tzinfo=<UTC>)}, 'schema': u'lv'}
+django_session.find (0.00) {'_id': '4wuek9ok2vzd4avwqchbxtgy4euec7jg', 'expire_date': {'$gt': datetime.datetime(2018, 8, 23, 6, 48, 21, 536271, tzinfo=<UTC>)}, 'schema': u'lv'}
+django_session.find (0.00) {'_id': '4wuek9ok2vzd4avwqchbxtgy4euec7jg', 'expire_date': {'$gt': datetime.datetime(2018, 8, 23, 6, 48, 21, 660216, tzinfo=<UTC>)}, 'schema': u'lv'}
+django_session.find (0.00) {'_id': '4wuek9ok2vzd4avwqchbxtgy4euec7jg', 'expire_date': {'$gt': datetime.datetime(2018, 8, 23, 6, 48, 28, 208019, tzinfo=<UTC>)}, 'schema': u'lv'}
+django_session.find (0.00) {'_id': '4wuek9ok2vzd4avwqchbxtgy4euec7jg', 'expire_date': {'$gt': datetime.datetime(2018, 8, 23, 6, 48, 28, 365715, tzinfo=<UTC>)}, 'schema': u'lv'}
+django_session.find (0.00) {'_id': '4wuek9ok2vzd4avwqchbxtgy4euec7jg', 'expire_date': {'$gt': datetime.datetime(2018, 8, 23, 6, 48, 31, 390621, tzinfo=<UTC>)}, 'schema': u'lv'}
+django_session.find (0.00) {'_id': '4wuek9ok2vzd4avwqchbxtgy4euec7jg', 'expire_date': {'$gt': datetime.datetime(2018, 8, 23, 6, 52, 14, 798714, tzinfo=<UTC>)}, 'schema': u'lv'}
+django_session.find (0.00) {'_id': '4wuek9ok2vzd4avwqchbxtgy4euec7jg', 'expire_date': {'$gt': datetime.datetime(2018, 8, 23, 6, 52, 30, 633510, tzinfo=<UTC>)}, 'schema': u'lv'}
+django_session.find (0.00) {'_id': '4wuek9ok2vzd4avwqchbxtgy4euec7jg', 'expire_date': {'$gt': datetime.datetime(2018, 8, 23, 6, 54, 28, 900167, tzinfo=<UTC>)}, 'schema': u'lv'}
+django_session.find (0.00) {'_id': '4wuek9ok2vzd4avwqchbxtgy4euec7jg', 'expire_date': {'$gt': datetime.datetime(2018, 8, 23, 6, 54, 46, 743976, tzinfo=<UTC>)}, 'schema': u'lv'}
+django_session.find (0.00) {'_id': '4wuek9ok2vzd4avwqchbxtgy4euec7jg', 'expire_date': {'$gt': datetime.datetime(2018, 8, 23, 6, 54, 46, 896385, tzinfo=<UTC>)}, 'schema': u'lv'}
+django_session.find (0.00) {'_id': '4wuek9ok2vzd4avwqchbxtgy4euec7jg', 'expire_date': {'$gt': datetime.datetime(2018, 8, 23, 6, 54, 50, 973276, tzinfo=<UTC>)}, 'schema': u'lv'}
+django_session.find (0.00) {'_id': '4wuek9ok2vzd4avwqchbxtgy4euec7jg', 'expire_date': {'$gt': datetime.datetime(2018, 8, 23, 6, 55, 47, 582684, tzinfo=<UTC>)}, 'schema': u'lv'}
+django_session.find (0.00) {'_id': '4wuek9ok2vzd4avwqchbxtgy4euec7jg', 'expire_date': {'$gt': datetime.datetime(2018, 8, 23, 6, 55, 47, 679537, tzinfo=<UTC>)}, 'schema': u'lv'}
+django_session.find (0.00) {'_id': '4wuek9ok2vzd4avwqchbxtgy4euec7jg', 'expire_date': {'$gt': datetime.datetime(2018, 8, 23, 6, 55, 49, 279745, tzinfo=<UTC>)}, 'schema': u'lv'}
+django_session.find (0.00) {'_id': '4wuek9ok2vzd4avwqchbxtgy4euec7jg', 'expire_date': {'$gt': datetime.datetime(2018, 8, 23, 6, 56, 44, 627659, tzinfo=<UTC>)}, 'schema': u'lv'}
+django_session.find (0.00) {'_id': '4wuek9ok2vzd4avwqchbxtgy4euec7jg', 'expire_date': {'$gt': datetime.datetime(2018, 8, 23, 6, 56, 44, 702522, tzinfo=<UTC>)}, 'schema': u'lv'}
+django_session.find (0.00) {'_id': '4wuek9ok2vzd4avwqchbxtgy4euec7jg', 'expire_date': {'$gt': datetime.datetime(2018, 8, 23, 6, 56, 46, 844250, tzinfo=<UTC>)}, 'schema': u'lv'}
+django_session.find (0.00) {'_id': '4wuek9ok2vzd4avwqchbxtgy4euec7jg', 'expire_date': {'$gt': datetime.datetime(2018, 8, 23, 6, 56, 51, 320919, tzinfo=<UTC>)}, 'schema': u'lv'}
+django_session.find (0.00) {'_id': '4wuek9ok2vzd4avwqchbxtgy4euec7jg', 'expire_date': {'$gt': datetime.datetime(2018, 8, 23, 6, 57, 45, 250356, tzinfo=<UTC>)}, 'schema': u'lv'}
+Not Found: /{{$root.logo}}
+django_session.find (0.01) {'_id': '4wuek9ok2vzd4avwqchbxtgy4euec7jg', 'expire_date': {'$gt': datetime.datetime(2018, 8, 23, 6, 57, 46, 363602, tzinfo=<UTC>)}, 'schema': u'lv'}
+django_session.find (0.02) {'_id': '4wuek9ok2vzd4avwqchbxtgy4euec7jg', 'expire_date': {'$gt': datetime.datetime(2018, 8, 23, 6, 57, 46, 356247, tzinfo=<UTC>)}, 'schema': u'lv'}
+django_session.find (0.01) {'_id': '4wuek9ok2vzd4avwqchbxtgy4euec7jg', 'expire_date': {'$gt': datetime.datetime(2018, 8, 23, 6, 57, 46, 369152, tzinfo=<UTC>)}, 'schema': u'lv'}
+django_session.find (0.00) {'_id': '4wuek9ok2vzd4avwqchbxtgy4euec7jg', 'expire_date': {'$gt': datetime.datetime(2018, 8, 23, 6, 57, 47, 907689, tzinfo=<UTC>)}, 'schema': u'lv'}
+django_session.find (0.00) {'_id': '4wuek9ok2vzd4avwqchbxtgy4euec7jg', 'expire_date': {'$gt': datetime.datetime(2018, 8, 23, 6, 57, 48, 67020, tzinfo=<UTC>)}, 'schema': u'lv'}
+django_session.find (0.00) {'_id': '4wuek9ok2vzd4avwqchbxtgy4euec7jg', 'expire_date': {'$gt': datetime.datetime(2018, 8, 23, 6, 57, 48, 63747, tzinfo=<UTC>)}, 'schema': u'lv'}
+django_session.find (0.00) {'_id': '4wuek9ok2vzd4avwqchbxtgy4euec7jg', 'expire_date': {'$gt': datetime.datetime(2018, 8, 23, 6, 57, 48, 394064, tzinfo=<UTC>)}, 'schema': u'lv'}
+django_session.find (0.00) {'_id': '4wuek9ok2vzd4avwqchbxtgy4euec7jg', 'expire_date': {'$gt': datetime.datetime(2018, 8, 23, 6, 57, 52, 5574, tzinfo=<UTC>)}, 'schema': u'lv'}
+django_session.find (0.01) {'_id': '4wuek9ok2vzd4avwqchbxtgy4euec7jg', 'expire_date': {'$gt': datetime.datetime(2018, 8, 23, 6, 57, 53, 373653, tzinfo=<UTC>)}, 'schema': u'lv'}
+django_session.find (0.00) {'_id': '4wuek9ok2vzd4avwqchbxtgy4euec7jg', 'expire_date': {'$gt': datetime.datetime(2018, 8, 23, 6, 58, 23, 912859, tzinfo=<UTC>)}, 'schema': u'lv'}
+django_session.find (0.00) {'_id': '4wuek9ok2vzd4avwqchbxtgy4euec7jg', 'expire_date': {'$gt': datetime.datetime(2018, 8, 23, 6, 58, 24, 201792, tzinfo=<UTC>)}, 'schema': u'lv'}
+django_session.find (0.00) {'_id': '4wuek9ok2vzd4avwqchbxtgy4euec7jg', 'expire_date': {'$gt': datetime.datetime(2018, 8, 23, 6, 58, 24, 280259, tzinfo=<UTC>)}, 'schema': u'lv'}
+django_session.find (0.00) {'_id': '4wuek9ok2vzd4avwqchbxtgy4euec7jg', 'expire_date': {'$gt': datetime.datetime(2018, 8, 23, 6, 58, 30, 281375, tzinfo=<UTC>)}, 'schema': u'lv'}
+django_session.find (0.00) {'_id': '4wuek9ok2vzd4avwqchbxtgy4euec7jg', 'expire_date': {'$gt': datetime.datetime(2018, 8, 23, 6, 58, 30, 546305, tzinfo=<UTC>)}, 'schema': u'lv'}
+django_session.find (0.00) {'_id': '4wuek9ok2vzd4avwqchbxtgy4euec7jg', 'expire_date': {'$gt': datetime.datetime(2018, 8, 23, 6, 58, 30, 621751, tzinfo=<UTC>)}, 'schema': u'lv'}
+django_session.find (0.00) {'_id': '4wuek9ok2vzd4avwqchbxtgy4euec7jg', 'expire_date': {'$gt': datetime.datetime(2018, 8, 23, 6, 58, 49, 142054, tzinfo=<UTC>)}, 'schema': u'lv'}
+Not Found: /{{$root.logo}}
+django_session.find (0.00) {'_id': '4wuek9ok2vzd4avwqchbxtgy4euec7jg', 'expire_date': {'$gt': datetime.datetime(2018, 8, 23, 6, 58, 50, 19984, tzinfo=<UTC>)}, 'schema': u'lv'}
+django_session.find (0.01) {'_id': '4wuek9ok2vzd4avwqchbxtgy4euec7jg', 'expire_date': {'$gt': datetime.datetime(2018, 8, 23, 6, 58, 50, 12507, tzinfo=<UTC>)}, 'schema': u'lv'}
+django_session.find (0.01) {'_id': '4wuek9ok2vzd4avwqchbxtgy4euec7jg', 'expire_date': {'$gt': datetime.datetime(2018, 8, 23, 6, 58, 50, 16595, tzinfo=<UTC>)}, 'schema': u'lv'}
+django_session.find (0.00) {'_id': '4wuek9ok2vzd4avwqchbxtgy4euec7jg', 'expire_date': {'$gt': datetime.datetime(2018, 8, 23, 6, 58, 50, 258176, tzinfo=<UTC>)}, 'schema': u'lv'}
+django_session.find (0.00) {'_id': '4wuek9ok2vzd4avwqchbxtgy4euec7jg', 'expire_date': {'$gt': datetime.datetime(2018, 8, 23, 6, 58, 50, 397477, tzinfo=<UTC>)}, 'schema': u'lv'}
+django_session.find (0.00) {'_id': '4wuek9ok2vzd4avwqchbxtgy4euec7jg', 'expire_date': {'$gt': datetime.datetime(2018, 8, 23, 6, 58, 50, 405800, tzinfo=<UTC>)}, 'schema': u'lv'}
+django_session.find (0.00) {'_id': '4wuek9ok2vzd4avwqchbxtgy4euec7jg', 'expire_date': {'$gt': datetime.datetime(2018, 8, 23, 6, 58, 50, 668386, tzinfo=<UTC>)}, 'schema': u'lv'}
+django_session.find (0.00) {'_id': '4wuek9ok2vzd4avwqchbxtgy4euec7jg', 'expire_date': {'$gt': datetime.datetime(2018, 8, 23, 6, 58, 52, 987762, tzinfo=<UTC>)}, 'schema': u'lv'}
+django_session.find (0.00) {'_id': '4wuek9ok2vzd4avwqchbxtgy4euec7jg', 'expire_date': {'$gt': datetime.datetime(2018, 8, 23, 6, 58, 54, 238421, tzinfo=<UTC>)}, 'schema': u'lv'}
+django_session.find (0.00) {'_id': '4wuek9ok2vzd4avwqchbxtgy4euec7jg', 'expire_date': {'$gt': datetime.datetime(2018, 8, 23, 6, 58, 54, 301805, tzinfo=<UTC>)}, 'schema': u'lv'}
+django_session.find (0.00) {'_id': '4wuek9ok2vzd4avwqchbxtgy4euec7jg', 'expire_date': {'$gt': datetime.datetime(2018, 8, 23, 6, 59, 4, 876096, tzinfo=<UTC>)}, 'schema': u'lv'}
+django_session.find (0.00) {'_id': '4wuek9ok2vzd4avwqchbxtgy4euec7jg', 'schema': u'lv'}
+django_session.remove (0.00) {'_id': {'$in': [u'4wuek9ok2vzd4avwqchbxtgy4euec7jg']}, 'schema': u'lv'}
+django_session.save (0.00) {'schema': u'lv', '_id': u'gaw4b7ekmh7qwaekgvbif03qt3sdq679', 'expire_date': datetime.datetime(2018, 9, 6, 6, 59, 4, 939203, tzinfo=<UTC>), 'session_data': u'OTE2OWEzNjFmMzk3MzVhMTZiNjlmM2EwODhiNTVkOGExNWRjM2JlYzp7fQ=='}
+Internal Server Error: /logout
+Traceback (most recent call last):
+  File "/home/hcsadmin/q03/packages/django/django/core/handlers/base.py", line 122, in get_response
+    raise e
+AttributeError: 'module' object has no attribute 'remove_language'
+django_session.find (0.00) {'_id': '4wuek9ok2vzd4avwqchbxtgy4euec7jg', 'expire_date': {'$gt': datetime.datetime(2018, 8, 23, 6, 59, 16, 274685, tzinfo=<UTC>)}, 'schema': u'lv'}
+django_session.save (0.00) {'schema': u'lv', '_id': u'h4fou6zs44vswx38gh9l853cyi7jonud', 'expire_date': datetime.datetime(2018, 9, 6, 6, 59, 16, 283624, tzinfo=<UTC>), 'session_data': u'OTE2OWEzNjFmMzk3MzVhMTZiNjlmM2EwODhiNTVkOGExNWRjM2JlYzp7fQ=='}
+django_session.save (0.01) {'schema': u'lv', '_id': u'h4fou6zs44vswx38gh9l853cyi7jonud', 'expire_date': datetime.datetime(2018, 9, 6, 6, 59, 16, 291549, tzinfo=<UTC>), 'session_data': u'OTE2OWEzNjFmMzk3MzVhMTZiNjlmM2EwODhiNTVkOGExNWRjM2JlYzp7fQ=='}
+django_session.find (0.00) {'_id': 'h4fou6zs44vswx38gh9l853cyi7jonud', 'expire_date': {'$gt': datetime.datetime(2018, 8, 23, 6, 59, 16, 330935, tzinfo=<UTC>)}, 'schema': u'lv'}
+Not Found: /performance/static/js/plugins/slick.js
+Not Found: /performance/static/js/plugins/slick.js
+django_session.find (0.00) {'_id': 'h4fou6zs44vswx38gh9l853cyi7jonud', 'expire_date': {'$gt': datetime.datetime(2018, 8, 23, 6, 59, 25, 250836, tzinfo=<UTC>)}, 'schema': u'lv'}
+django_session.save (0.00) {'schema': u'lv', '_id': u'fd1vopc1rrz5tu7bnnihyv9ii010h649', 'expire_date': datetime.datetime(2018, 9, 6, 6, 59, 25, 365641, tzinfo=<UTC>), 'session_data': u'OTE2OWEzNjFmMzk3MzVhMTZiNjlmM2EwODhiNTVkOGExNWRjM2JlYzp7fQ=='}
+django_session.find (0.00) {'_id': 'h4fou6zs44vswx38gh9l853cyi7jonud', 'schema': u'lv'}
+django_session.remove (0.00) {'_id': {'$in': [u'h4fou6zs44vswx38gh9l853cyi7jonud']}, 'schema': u'lv'}
+lv.auth_user.save (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8', 'first_name': u'', 'last_name': u'', '_id': ObjectId('5b20925a232037334054b073'), 'is_active': True, 'email': u'', 'is_superuser': False, 'is_staff': False, 'last_login': datetime.datetime(2018, 8, 23, 6, 59, 25, 372564, tzinfo=<UTC>), 'password': u'pbkdf2_sha256$12000$71ZauZ1K0jwS$zKPkNCm0toSn/5CqITaN3BKVM45nnjB0NugiE64XaDQ=', 'date_joined': datetime.datetime(2018, 6, 13, 3, 41, 14, 644000, tzinfo=<UTC>)}
+django_session.save (0.00) {'schema': u'lv', '_id': u'fd1vopc1rrz5tu7bnnihyv9ii010h649', 'expire_date': datetime.datetime(2018, 9, 6, 6, 59, 25, 375874, tzinfo=<UTC>), 'session_data': u'NTU3Y2YzOWFjNmY3ZWM4OTE3ODQ4YWI1YWQ0ZDZhMzBjMTUzZjRmNjp7Imxhbmd1YWdlIjoidmkiLCJfYXV0aF91c2VyX2JhY2tlbmQiOiJwZXJtaXNzaW9uX2JhY2tlbmRfbm9ucmVsLmJhY2tlbmRzLk5vbnJlbFBlcm1pc3Npb25CYWNrZW5kIiwiX2F1dGhfdXNlcl9pZCI6IjViMjA5MjVhMjMyMDM3MzM0MDU0YjA3MyJ9'}
+django_session.find (0.00) {'_id': 'fd1vopc1rrz5tu7bnnihyv9ii010h649', 'expire_date': {'$gt': datetime.datetime(2018, 8, 23, 6, 59, 25, 401583, tzinfo=<UTC>)}, 'schema': u'lv'}
+Not Found: /{{$root.logo}}
+django_session.find (0.01) {'_id': 'fd1vopc1rrz5tu7bnnihyv9ii010h649', 'expire_date': {'$gt': datetime.datetime(2018, 8, 23, 6, 59, 25, 917246, tzinfo=<UTC>)}, 'schema': u'lv'}
+django_session.find (0.01) {'_id': 'fd1vopc1rrz5tu7bnnihyv9ii010h649', 'expire_date': {'$gt': datetime.datetime(2018, 8, 23, 6, 59, 25, 922343, tzinfo=<UTC>)}, 'schema': u'lv'}
+django_session.find (0.02) {'_id': 'fd1vopc1rrz5tu7bnnihyv9ii010h649', 'expire_date': {'$gt': datetime.datetime(2018, 8, 23, 6, 59, 25, 914037, tzinfo=<UTC>)}, 'schema': u'lv'}
+django_session.find (0.00) {'_id': 'fd1vopc1rrz5tu7bnnihyv9ii010h649', 'expire_date': {'$gt': datetime.datetime(2018, 8, 23, 6, 59, 28, 70993, tzinfo=<UTC>)}, 'schema': u'lv'}
+django_session.find (0.00) {'_id': 'fd1vopc1rrz5tu7bnnihyv9ii010h649', 'expire_date': {'$gt': datetime.datetime(2018, 8, 23, 6, 59, 28, 168602, tzinfo=<UTC>)}, 'schema': u'lv'}
+django_session.find (0.00) {'_id': 'fd1vopc1rrz5tu7bnnihyv9ii010h649', 'expire_date': {'$gt': datetime.datetime(2018, 8, 23, 6, 59, 28, 183197, tzinfo=<UTC>)}, 'schema': u'lv'}
+django_session.find (0.00) {'_id': 'fd1vopc1rrz5tu7bnnihyv9ii010h649', 'expire_date': {'$gt': datetime.datetime(2018, 8, 23, 6, 59, 28, 483812, tzinfo=<UTC>)}, 'schema': u'lv'}
+django_session.find (0.00) {'_id': 'fd1vopc1rrz5tu7bnnihyv9ii010h649', 'expire_date': {'$gt': datetime.datetime(2018, 8, 23, 6, 59, 30, 910392, tzinfo=<UTC>)}, 'schema': u'lv'}
+django_session.find (0.00) {'_id': 'fd1vopc1rrz5tu7bnnihyv9ii010h649', 'expire_date': {'$gt': datetime.datetime(2018, 8, 23, 6, 59, 31, 231420, tzinfo=<UTC>)}, 'schema': u'lv'}
+django_session.find (0.00) {'_id': 'fd1vopc1rrz5tu7bnnihyv9ii010h649', 'expire_date': {'$gt': datetime.datetime(2018, 8, 23, 6, 59, 31, 306249, tzinfo=<UTC>)}, 'schema': u'lv'}
+django_session.find (0.00) {'_id': 'fd1vopc1rrz5tu7bnnihyv9ii010h649', 'expire_date': {'$gt': datetime.datetime(2018, 8, 23, 7, 0, 48, 572188, tzinfo=<UTC>)}, 'schema': u'lv'}
+django_session.find (0.00) {'_id': 'fd1vopc1rrz5tu7bnnihyv9ii010h649', 'expire_date': {'$gt': datetime.datetime(2018, 8, 23, 7, 0, 48, 852039, tzinfo=<UTC>)}, 'schema': u'lv'}
+django_session.find (0.00) {'_id': 'fd1vopc1rrz5tu7bnnihyv9ii010h649', 'expire_date': {'$gt': datetime.datetime(2018, 8, 23, 7, 0, 48, 904702, tzinfo=<UTC>)}, 'schema': u'lv'}
+django_session.find (0.00) {'_id': 'fd1vopc1rrz5tu7bnnihyv9ii010h649', 'expire_date': {'$gt': datetime.datetime(2018, 8, 23, 7, 0, 49, 12210, tzinfo=<UTC>)}, 'schema': u'lv'}
+Internal Server Error: /pages/
+Traceback (most recent call last):
+  File "/home/hcsadmin/q03/packages/django/django/core/handlers/base.py", line 122, in get_response
+    raise e
+TemplateLookupException: Cant locate template for uri u'views/.html'
+django_session.find (0.00) {'_id': 'fd1vopc1rrz5tu7bnnihyv9ii010h649', 'expire_date': {'$gt': datetime.datetime(2018, 8, 23, 7, 0, 59, 441776, tzinfo=<UTC>)}, 'schema': u'lv'}
+django_session.find (0.00) {'_id': 'fd1vopc1rrz5tu7bnnihyv9ii010h649', 'expire_date': {'$gt': datetime.datetime(2018, 8, 23, 7, 0, 59, 760014, tzinfo=<UTC>)}, 'schema': u'lv'}
+django_session.find (0.00) {'_id': 'fd1vopc1rrz5tu7bnnihyv9ii010h649', 'expire_date': {'$gt': datetime.datetime(2018, 8, 23, 7, 0, 59, 847475, tzinfo=<UTC>)}, 'schema': u'lv'}
+django_session.find (0.00) {'_id': 'fd1vopc1rrz5tu7bnnihyv9ii010h649', 'expire_date': {'$gt': datetime.datetime(2018, 8, 23, 7, 1, 12, 627244, tzinfo=<UTC>)}, 'schema': u'lv'}
+django_session.find (0.00) {'_id': 'fd1vopc1rrz5tu7bnnihyv9ii010h649', 'expire_date': {'$gt': datetime.datetime(2018, 8, 23, 7, 1, 12, 889123, tzinfo=<UTC>)}, 'schema': u'lv'}
+django_session.find (0.00) {'_id': 'fd1vopc1rrz5tu7bnnihyv9ii010h649', 'expire_date': {'$gt': datetime.datetime(2018, 8, 23, 7, 1, 12, 954153, tzinfo=<UTC>)}, 'schema': u'lv'}
+django_session.find (0.00) {'_id': 'fd1vopc1rrz5tu7bnnihyv9ii010h649', 'expire_date': {'$gt': datetime.datetime(2018, 8, 23, 7, 1, 18, 269337, tzinfo=<UTC>)}, 'schema': u'lv'}
+django_session.find (0.00) {'_id': 'fd1vopc1rrz5tu7bnnihyv9ii010h649', 'expire_date': {'$gt': datetime.datetime(2018, 8, 23, 7, 9, 5, 135075, tzinfo=<UTC>)}, 'schema': u'lv'}
+django_session.find (0.00) {'_id': 'fd1vopc1rrz5tu7bnnihyv9ii010h649', 'expire_date': {'$gt': datetime.datetime(2018, 8, 23, 7, 9, 5, 364936, tzinfo=<UTC>)}, 'schema': u'lv'}
+django_session.find (0.00) {'_id': 'fd1vopc1rrz5tu7bnnihyv9ii010h649', 'expire_date': {'$gt': datetime.datetime(2018, 8, 23, 7, 9, 5, 424863, tzinfo=<UTC>)}, 'schema': u'lv'}

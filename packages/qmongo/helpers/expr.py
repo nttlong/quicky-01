@@ -400,66 +400,102 @@ def get_tree(expr,*params,**kwargs):
         }
     if type(cmp.value) is _ast.Call:
         if cmp.value.func.id=="contains":
-            if type(cmp.value.args[1]) is _ast.Call and \
-                    cmp.value.args[1].func.id=="get_params":
-                return {
-                    "left": cmp.value.args[0].id,
-                    "operator": "$contains",
-                    "right": params[cmp.value.args[1].args[0].n]
-                }
-            else:
-                return {
-                    "left":cmp.value.args[0].id,
-                    "operator":"$contains",
-                    "right":cmp.value.args[1].s
-                }
+            fx = get_left(cmp.value, *params)
+            if fx['params'].__len__() < 2:
+                raise Exception("start function must have one text param")
+            if not type(fx['params'][1]) in [type(str), type(unicode)]:
+                raise Exception("contains function is expected one text param, but the value {0} is not a text".format(fx['params'][1]))
+            return {
+                "left": fx['params'][0],
+                "operator": "$contains",
+                "right": fx['params'][1]
+            }
         elif cmp.value.func.id=="start":
-            if type(cmp.value.args[1]) is _ast.Call and \
-                    cmp.value.args[1].func.id=="get_params":
-                return {
-                    "left": cmp.value.args[0].id,
-                    "operator": "$start",
-                    "right": params[cmp.value.args[1].args[0].n]
-                }
-            else:
-                return {
-                    "left":cmp.value.args[0].id,
-                    "operator":"$start",
-                    "right":cmp.value.args[1].s
-                }
+            fx = get_left(cmp.value,*params)
+            if fx['params'].__len__() < 2:
+                raise Exception("start function must have one text param")
+            if not type(fx['params'][1]) in [type(str), type(unicode)]:
+                raise Exception("start function is expected one text param, but the value {0} is not a text".format(fx['params'][1]))
+
+            return {
+                "left": fx['params'][0],
+                "operator": "$start",
+                "right": fx['params'][1]
+            }
         elif cmp.value.func.id=="end":
-            if type(cmp.value.args[1]) is _ast.Call and \
-                    cmp.value.args[1].func.id=="get_params":
-                return {
-                    "left": cmp.value.args[0].id,
-                    "operator": "$end",
-                    "right": params[cmp.value.args[1].args[0].n]
-                }
-            else:
-                return {
-                    "left":cmp.value.args[0].id,
-                    "operator":"$end",
-                    "right":cmp.value.args[1].s
-                }
+            fx = get_left(cmp.value, *params)
+            if fx['params'].__len__() < 2:
+                raise Exception("end function must have one text param")
+            if not type(fx['params'][1]) in [type(str), type(unicode)]:
+                raise Exception("end function is expected one text param, but the value {0} is not a text".format(fx['params'][1]))
+            return {
+                "left": fx['params'][0],
+                "operator": "$end",
+                "right": fx['params'][1]
+            }
         elif cmp.value.func.id=="notContains":
-            if type(cmp.value.args[1]) is _ast.Call and \
-                    cmp.value.args[1].func.id=="get_params":
-                return {
-                    "left": cmp.value.args[0].id,
-                    "operator": "$notContains",
-                    "right": params[cmp.value.args[1].args[0].n]
-                }
-            else:
-                return {
-                    "left":cmp.value.args[0].id,
-                    "operator":"$notContains",
-                    "right":cmp.value.args[1].s
-                }
+
+            fx = get_left(cmp.value, *params)
+            if fx['params'].__len__() < 2:
+                raise Exception("notContains function must have one text param")
+            if not type(fx['params'][1]) in [type(str), type(unicode)]:
+                raise Exception("notContains function is expected one text param, but the value {0} is not a text".format(fx['params'][1]))
+            return {
+                "left": fx['params'][0],
+                "operator": "$notContains",
+                "right": fx['params'][1]
+            }
+
+        elif cmp.value.func.id == "exists":
+            fx= get_left(cmp.value)
+            return {
+                "left":fx['params'][0],
+                "operator":"$exists",
+                "right":True
+            }
+
+        elif cmp.value.func.id == "notExists":
+            fx = get_left(cmp.value)
+            return {
+                "left": fx['params'][0],
+                "operator": "$exists",
+                "right": False
+            }
+        elif cmp.value.func.id == "_in":
+            fx = get_left(cmp.value,*params)
+            if fx['params'].__len__() <2:
+                raise (Exception("_in must have one list params"))
+            _params = fx["params"][1]
+            if _params == None:
+                if not type(cmp.value.args[1]) is list:
+                    raise (Exception("_in must have one list params,but unexpected type"))
+                _params =[x.n for x in cmp.value.args[1].__reduce__()[2]['elts']]
+            return {
+                "left": fx['params'][0],
+                "operator": "$in",
+                "right": _params
+            }
+        elif cmp.value.func.id == "not_in":
+            fx = get_left(cmp.value, *params)
+            if fx['params'].__len__() < 2 or not type(cmp.value.args[1]) is _ast.List:
+                raise (Exception("not_in must have one list params"))
+            _params = fx["params"][1]
+            if _params == None:
+                _params = [x.n for x in cmp.value.args[1].__reduce__()[2]['elts']]
+            return {
+                "left": fx['params'][0],
+                "operator": "$nin",
+                "right": _params
+            }
         else:
             support_funcs="contains(field name,text value)\n" \
                           "notContains(field name,text value)" \
                           "start(field name,text value)\n" \
-                          "end(field name,text value)\n"
+                          "end(field name,text value)\n" \
+                          "exists(field name)\n" \
+                          "notExists(fiel name)," \
+                          "_in(field name, array)\n" \
+                          "not_in(field name, array)"
 
 
 
@@ -471,6 +507,10 @@ def get_tree(expr,*params,**kwargs):
 
     return ret
 def raw_string(s):
+    if not type(s) in [str,unicode]:
+        return s
+    if s == '':
+        return s
     for c in ['$','^','?','*']:
         s = s.replace(c,'\\'+c)
     s=s.replace('/','\/')
@@ -610,53 +650,60 @@ def get_expr(fx,*params):
         else:
             if fx.has_key("right"):
                 if fx["right"]!=None:
-                    if fx["right"].get("type","") == "const":
-                        val = fx["right"]["value"]
-                        if fx["left"]=={}:
-                            return val
-                        else:
-                            return {
-                                get_expr(fx["left"], *params):{
-                                    fx["operator"]:get_expr(fx["right"], *params)
-                                }
+                    if not type(fx["right"]) is dict:
+                        return {
+                            get_expr(fx["left"], *params): {
+                                fx["operator"]: fx["right"]
                             }
-
-                    if fx["right"].get("type","") == "params":
-                        val =params[fx["right"]["value"]]
-                        if type(fx["left"]) is dict and fx["left"]["type"]=="field":
-                            val=fx["right"]["value"]
-                            if fx["right"]["type"]=="params":
-                                val=params[val]
-                            # if fx["right"]["type"]=="function" and fx["right"]["id"]=="get_params":
-
-                            return {
-                                fx["left"]["id"]: {
-                                    fx["operator"]: val
-                                }
-                            }
-                        else:
-                            return {
-                                fx["left"]: {
-                                    fx["operator"]: val
-                                }
-                            }
-                    if fx["right"].get("function","") == "contains":
-                        if fx.has_key("params"):
-                           if fx["params"][1].get("type","")=="const":
+                        }
+                    else:
+                        if fx["right"].get("type","") == "const":
+                            val = fx["right"]["value"]
+                            if fx["left"]=={}:
+                                return val
+                            else:
                                 return {
-                                    fx["params"][0]["id"]:fx["params"][1]["value"]
+                                    get_expr(fx["left"], *params):{
+                                        fx["operator"]:get_expr(fx["right"], *params)
+                                    }
                                 }
-                           if fx["params"][1].get("type", "") == "params":
-                               return {
-                                   fx["params"][0]["id"]:params[fx["params"][1]["value"]]
-                               }
-                        if fx.has_key("operator"):
-                            return {
-                                fx["operator"]:[
-                                    get_expr(fx["left"],*params),
-                                    get_expr(fx["right"], *params)
-                                ]
-                            }
+
+                        if fx["right"].get("type","") == "params":
+                            val =params[fx["right"]["value"]]
+                            if type(fx["left"]) is dict and fx["left"]["type"]=="field":
+                                val=fx["right"]["value"]
+                                if fx["right"]["type"]=="params":
+                                    val=params[val]
+                                # if fx["right"]["type"]=="function" and fx["right"]["id"]=="get_params":
+
+                                return {
+                                    fx["left"]["id"]: {
+                                        fx["operator"]: val
+                                    }
+                                }
+                            else:
+                                return {
+                                    fx["left"]: {
+                                        fx["operator"]: val
+                                    }
+                                }
+                        if fx["right"].get("function","") == "contains":
+                            if fx.has_key("params"):
+                               if fx["params"][1].get("type","")=="const":
+                                    return {
+                                        fx["params"][0]["id"]:fx["params"][1]["value"]
+                                    }
+                               if fx["params"][1].get("type", "") == "params":
+                                   return {
+                                       fx["params"][0]["id"]:params[fx["params"][1]["value"]]
+                                   }
+                            if fx.has_key("operator"):
+                                return {
+                                    fx["operator"]:[
+                                        get_expr(fx["left"],*params),
+                                        get_expr(fx["right"], *params)
+                                    ]
+                                }
                 elif type(fx["left"]) is list:
                     ret_json={
                         fx["operator"]:[]

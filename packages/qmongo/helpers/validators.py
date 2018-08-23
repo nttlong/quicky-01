@@ -112,11 +112,13 @@ def validate_require_data(name,data,partial=False):
                     if val == None and parents == {}:
                         ret.append(find_fields[0])
                     else:
-                        none_items = [k for k, v in parents.items() if v == None]
-                        if none_items.__len__() == 0:
-                            ret.append(find_fields[0])
-                        else:
-                            ret.append(none_items[0])
+                        if parents != {}:
+                            none_items = [k for k, v in parents.items() if v == None]
+                            if none_items != None:
+                                if none_items.__len__() == 0:
+                                    ret.append(find_fields[0])
+                                else:
+                                    ret.append(none_items[0])
 
         return ret
 def set_require_fields(name,*args,**kwargs):

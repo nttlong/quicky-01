@@ -22,6 +22,8 @@ class validator:
         Get list of field of model
         :return:
         """
+        if self.fields.count("_id") == 0:
+            self.fields.append("_id")
         return self.fields
     def validate_expression(self,expr,fields=None,*params,**kwargs):
         # type: (str,list) -> list
