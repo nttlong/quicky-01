@@ -204,6 +204,12 @@ def get_right(cp,*params):
             "type":"const",
             "value":cp.n
         }
+    if type(cp) is _ast.List:
+        return {
+            "type":"const",
+            "value":[x.n for x in cp.__reduce__()[2]['elts']]
+        }
+
     if type(cp) is _ast.Str:
         return {
             "type":"const",
@@ -347,6 +353,15 @@ def get_tree(expr,*params,**kwargs):
 
     str=vert_expr(expr,*params)
     cmp=compile(str, '<unknown>', 'exec', 1024).body.pop()
+    if type(cmp.value) is _ast.UnaryOp:
+        return {
+            "operator":find_operator(cmp.value.op),
+            "left":get_left(cmp.value.operand.left,*params),
+            "right":get_right(cmp.value.operand,*params)
+
+
+        }
+
     if type(cmp.value) is _ast.BoolOp:
         return {
             "operator": find_operator(cmp.value.op),
@@ -477,16 +492,56 @@ def get_tree(expr,*params,**kwargs):
             }
         elif cmp.value.func.id == "not_in":
             fx = get_left(cmp.value, *params)
-            if fx['params'].__len__() < 2 or not type(cmp.value.args[1]) is _ast.List:
+            if fx['params'].__len__() <2:
                 raise (Exception("not_in must have one list params"))
             _params = fx["params"][1]
             if _params == None:
-                _params = [x.n for x in cmp.value.args[1].__reduce__()[2]['elts']]
+                if not type(cmp.value.args[1]) is list:
+                    raise (Exception("not_in must have one list params,but unexpected type"))
+                _params =[x.n for x in cmp.value.args[1].__reduce__()[2]['elts']]
             return {
                 "left": fx['params'][0],
                 "operator": "$nin",
                 "right": _params
             }
+        elif cmp.value.func.id == "_all":
+            fx = get_left(cmp.value, *params)
+            if fx['params'].__len__() <2:
+                raise (Exception("_all must have one list params"))
+            _params = fx["params"][1]
+            if _params == None:
+                if not type(cmp.value.args[1]) is list:
+                    raise (Exception("_all must have one list params,but unexpected type"))
+                _params =[x.n for x in cmp.value.args[1].__reduce__()[2]['elts']]
+            return {
+                "left": fx['params'][0],
+                "operator": "$all",
+                "right": _params
+            }
+        elif cmp.value.func.id == "_not":
+            fx = get_left(cmp.value, *params)
+            if fx['params'].__len__() <2:
+                raise (Exception("_not must have one object params"))
+            _params = fx["params"][1]
+            if _params == None:
+                if not type(cmp.value.args[1]) is list:
+                    raise (Exception("_all must have one list params,but unexpected type"))
+                _params =[x.n for x in cmp.value.args[1].__reduce__()[2]['elts']]
+            return {
+                "left": fx['params'][0],
+                "operator": "$not",
+                "right": _params
+            }
+        elif cmp.value.func.id =="elemMatch":
+            fx = get_left(cmp.value, *params)
+            dx = fx['params'][0]
+            return {
+                "left":get_left(cmp.value.args[0].left, *params),
+                "operator": "$elemMatch",
+                "right":get_right(cmp.value.args[0], *params)
+
+            }
+
         else:
             support_funcs="contains(field name,text value)\n" \
                           "notContains(field name,text value)" \
@@ -495,7 +550,9 @@ def get_tree(expr,*params,**kwargs):
                           "exists(field name)\n" \
                           "notExists(fiel name)," \
                           "_in(field name, array)\n" \
-                          "not_in(field name, array)"
+                          "not_in(field name, array)," \
+                          "_all(field name, array)\n" \
+                          "elemMatch(conditional)"
 
 
 
@@ -539,6 +596,52 @@ def get_expr(fx,*params):
     if(type(fx) in [str,unicode]):
         return fx
     ret={}
+    if fx["operator"] =="$elemMatch":
+        raise Exception("not implemennt")
+        return {
+            fx['left']:{
+                '$elemMatch':{
+
+                }
+            }
+
+        }
+    if fx["operator"] == "$in":
+        if fx.get('right',{}).get('type',None) =='params':
+            return {
+                fx["left"]: {
+                    fx["operator"]: params[fx["right"]['value']]
+                }
+            }
+        else:
+            return {
+                fx["left"]: {
+                    fx["operator"]: fx["right"]['value']
+                }
+            }
+
+        # return {
+        #     fx["left"]:{
+        #         fx["operator"]:params
+        #     }
+        # }
+
+    if fx["operator"] == "$not":
+        _right_expr = get_expr(fx['right'],params)
+        if _right_expr[_right_expr.keys()[0]].keys()[0] == "$in":
+            return {
+                _right_expr.keys()[0]:{
+                    "$nin":_right_expr[_right_expr.keys()[0]][_right_expr[_right_expr.keys()[0]].keys()[0]]
+                }
+            }
+
+
+        return {
+            fx["left"]:{
+                fx["operator"]:get_expr(fx['right'],params)
+            }
+        }
+
     if fx.has_key("type") and fx["type"]=="const":
         return fx["value"]
     if fx.has_key("type") and fx["type"]=="field":
