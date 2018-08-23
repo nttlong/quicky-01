@@ -8,6 +8,9 @@ import _ast
 import re
 import inspect
 from datetime import  datetime
+
+from numpy.testing._private.parameterized import param
+
 _operators=[
     dict(op="$eq",fn=_ast.Eq),
     dict(op="$ne",fn=_ast.NotEq),
@@ -533,12 +536,16 @@ def get_tree(expr,*params,**kwargs):
                 "right": _params
             }
         elif cmp.value.func.id =="elemMatch":
-            fx = get_left(cmp.value, *params)
-            dx = fx['params'][0]
+            # fx = get_left(cmp.value, *params)
+            # dx = fx['params'][0]
+            _left = get_left(cmp.value.args[0])
+            if type(_left) is dict:
+                _left = _left["id"]
+
             return {
-                "left":get_left(cmp.value.args[0].left, *params),
+                "left":_left,
                 "operator": "$elemMatch",
-                "right":get_right(cmp.value.args[0], *params)
+                "right":get_left(cmp.value.args[1],*params)
 
             }
 
@@ -597,15 +604,21 @@ def get_expr(fx,*params):
         return fx
     ret={}
     if fx["operator"] =="$elemMatch":
-        raise Exception("not implemennt")
-        return {
-            fx['left']:{
-                '$elemMatch':{
-
+        if fx['right'].has_key('expr'):
+            return {
+                fx['left']:{
+                    '$elemMatch':{
+                        fx['right']['operator']:[get_expr(x) for x in fx["right"]['expr']]
+                    }
+                }
+            }
+        else:
+            return {
+                fx['left']: {
+                    '$elemMatch': get_expr(fx['right'])
                 }
             }
 
-        }
     if fx["operator"] == "$in":
         if fx.get('right',{}).get('type',None) =='params':
             return {
@@ -736,6 +749,12 @@ def get_expr(fx,*params):
                 if fx["right"]["type"]=="const":
                     val = fx["right"]["value"]
                     if type(val) in [str,unicode]:
+                        if type(fx["left"]) in [str,unicode]:
+                            return {
+                                fx["left"]: {
+                                    "$regex": re.compile("^" + raw_string(val) + "$", re.IGNORECASE)
+                                }
+                            }
                         return {
                             fx["left"]["id"]: {
                                 "$regex": re.compile("^" + raw_string(val) + "$", re.IGNORECASE)
@@ -744,6 +763,12 @@ def get_expr(fx,*params):
                     else:
                         if fx["left"]=={}:
                             return val
+                        elif type(fx["left"]) in [str,unicode]:
+                            return {
+                                fx["left"]: {
+                                    fx["operator"]: val
+                                }
+                            }
                         elif fx["left"].has_key("id"):
                             return {
                                 fx["left"]["id"]: {

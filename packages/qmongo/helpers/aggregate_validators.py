@@ -106,6 +106,14 @@ def get_expression_fields(fx):
     if type(fx) is _ast.Name:
         return [fx.id]
     if type(fx) is _ast.Expr:
+        if type(fx.value) is _ast.Call:
+            if fx.value.func.id =="elemMatch":
+                lst =get_expression_fields(fx.value)
+                ret = [lst[0]+"."+x for x in lst if lst.index(x)>0 ]
+                ret.append(lst[0])
+                return ret
+
+
         return get_expression_fields(fx.value)
     if type(fx) is _ast.Subscript:
         return get_expression_fields(fx.value)
