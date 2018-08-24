@@ -551,6 +551,28 @@ def get_tree(expr,*params,**kwargs):
                     "right": val
 
                 }
+        elif cmp.value.func.id == "search":
+            fx = get_right(cmp.value.args[0],*params)
+            if fx['type'] =='const':
+                return {
+                    "left": "$text",
+                    "operator": "$search",
+                    "right": fx['value']
+                }
+            else:
+                return {
+                    "left": "$text",
+                    "operator": "$search",
+                    "right":params[fx['value']]
+                }
+
+            val = get_str_value_of_text_function(cmp, params)
+            return {
+                "left": "text",
+                "operator": "$search",
+                "right": val
+            }
+
         else:
             support_funcs="contains(field name,text value)\n" \
                           "notContains(field name,text value)" \
@@ -566,6 +588,7 @@ def get_tree(expr,*params,**kwargs):
                           "_or(logical expr 1,..,logical expr n)\n" \
                           "isType(field name,the text describe mongodb type)\n" \
                           "expr(logic expression)\n" \
+                          "search(text search value)" \
                           "nor(logical expr 1,..,logical expr n)\n ------------  '\_(^|^)_/`------------"
 
 
