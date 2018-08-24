@@ -353,6 +353,8 @@ def get_tree(expr,*params,**kwargs):
 
 
     ret={}
+    if expr[0:5]=="expr(":
+        return get_calc_expr("expr(iif(x>1,1,2)==2)")
 
     str=vert_expr(expr,*params)
     cmp=compile(str, '<unknown>', 'exec', 1024).body.pop()
@@ -524,7 +526,31 @@ def get_tree(expr,*params,**kwargs):
                 "operator":cmp.value.func.id,
                 "right":args
             }
+        elif cmp.value.func.id == 'isType':
+            fy = get_right(cmp.value.args[1],*params)
+            if fy['type']=='const':
+                if not type(fy['value']) in [type(str),type(unicode)]:
+                    raise (Exception("The second param of 'isType' must be text, but the value is {0}\n"
+                                     "Detail:\n"
+                                     "{1}".format(fy['value'],expr)))
+                return {
+                    "left": get_left(cmp.value.args[0]),
+                    "operator": "isType",
+                    "right":fy['value']
 
+                }
+            if fy['type'] == 'params':
+                val = params[fy['value']]
+                if not type(val) in [type(str),type(unicode)]:
+                    raise (Exception("The second param of 'isType' must be text, but the value is {0}\n"
+                                     "Detail:\n"
+                                     "{1}".format(val,expr)))
+                return {
+                    "left": get_left(cmp.value.args[0]),
+                    "operator": "isType",
+                    "right": val
+
+                }
         else:
             support_funcs="contains(field name,text value)\n" \
                           "notContains(field name,text value)" \
@@ -538,6 +564,8 @@ def get_tree(expr,*params,**kwargs):
                           "elemMatch(conditional)\n" \
                           "_and(logical expr 1,..,logical expr n)\n" \
                           "_or(logical expr 1,..,logical expr n)\n" \
+                          "isType(field name,the text describe mongodb type)\n" \
+                          "expr(logic expression)\n" \
                           "nor(logical expr 1,..,logical expr n)\n ------------  '\_(^|^)_/`------------"
 
 
@@ -791,6 +819,14 @@ def get_expr(fx,*params):
             return fx["value"]
         if fx.has_key("type") and fx["type"]=="field":
             return fx["id"]
+        if fx["operator"] == "isType":
+            return {
+                fx['left']:{
+                    '$type':fx['right']
+                }
+
+            }
+
         if fx["operator"]=="$contains":
             return {
                 fx["left"][0]:re.compile(raw_string(fx["right"]),re.IGNORECASE)
@@ -1017,6 +1053,11 @@ def get_calc_exprt_boolean_expression(fx,*params):
     :param params:
     :return:
     """
+    _get_val_ = lambda x,y:x if y ==() else y[x]
+
+    if type(fx) is _ast.Num:
+        return _get_val_(fx.n,params)
+
     p=get_right(fx,*params)
     if fx._fields.count("left")>0 and type(fx.left) is _ast.Call:
         field = get_left(fx.left.args[0])
@@ -1269,6 +1310,8 @@ def parse_expression_to_json_expression(expression,*params,**kwargs):
     """
     try:
         expr_tree=get_tree(expression,*params,**kwargs)
+        if expression[0:5]=="expr(":
+            return expr_tree
         return get_expr(expr_tree,*params,**kwargs)
     except Exception as ex:
         print traceback.format_exc()

@@ -6,7 +6,7 @@ sys.path.append(os.getcwd()+os.sep+"packages"+os.sep+"quicky")
 import qmongo
 # fx=qmongo.helpers.expr.parse_expression_to_json_expression('start(xx.ccc.vvv,{0})','123')
 reload(qmongo.helpers.expr)
-qmongo.helpers.expr.parse_expression_to_json_expression("(all(ccc,{0}))",[1,2,3])
+qmongo.helpers.expr.parse_expression_to_json_expression("isType(x.y.z,'int')")
 import pprint
 pprint.pprint(fx)
 # import config_reader
