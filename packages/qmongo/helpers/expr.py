@@ -1100,6 +1100,10 @@ def extract_json(fx,*params):
     :param params:
     :return:
     """
+    if type(fx) is _ast.BoolOp:
+        return {
+            find_operator(fx.op):[  extract_json(x, *params)  for x in fx.values ]
+        }
     if type(fx) is _ast.Attribute:
         return "$"+get_left(fx)
     if type(fx) is _ast.Name:
@@ -1111,6 +1115,11 @@ def extract_json(fx,*params):
         return fx.s
 
     if type(fx) is _ast.Call:
+        if fx.func.id=="expr":
+            return {
+                "$expr":extract_json(fx.args[0],*params)
+            }
+
         if fx.func.id=="get_params":
             return params[fx.args[0].n]
 
@@ -1248,7 +1257,12 @@ def get_calc_expr(expr,*params,**kwargs):
 
 
     expr=vert_expr(expr,*params)
-    cmp = compile(expr, '<unknown>', 'exec', 1024).body.pop()
+    cmp = None
+    try:
+        cmp = compile(expr, '<unknown>', 'exec', 1024).body.pop()
+    except Exception as ex:
+        import sys, traceback
+        raise (Exception("'{0}' is invalid expression\n details:\n {1}".format(expr,traceback.print_exc(file=sys.stdout))))
     return extract_json(cmp.value,*params)
 def get_calc_get_param(fx,*params):
     """
