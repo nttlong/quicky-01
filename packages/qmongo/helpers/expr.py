@@ -354,7 +354,7 @@ def get_tree(expr,*params,**kwargs):
 
     ret={}
     if expr[0:5]=="expr(":
-        return get_calc_expr("expr(iif(x>1,1,2)==2)")
+        return get_calc_expr(expr)
 
     str=vert_expr(expr,*params)
     cmp=compile(str, '<unknown>', 'exec', 1024).body.pop()
