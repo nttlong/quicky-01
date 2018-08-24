@@ -20,6 +20,8 @@ _db_multi_tenancy=None
 _cache_multi_tenancy={}
 global lock
 lock=threading.Lock()
+
+
 def get_tenancy_code_regex():
     """
     get Regex for tenancyCode tenancy code must be star with alphabet and including number, "-","_":
