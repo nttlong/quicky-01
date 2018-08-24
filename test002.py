@@ -4,7 +4,9 @@ sys.path.append(os.getcwd()+os.sep+"packages")
 sys.path.append(os.getcwd()+os.sep+"packages"+os.sep+"django")
 sys.path.append(os.getcwd()+os.sep+"packages"+os.sep+"quicky")
 import qmongo
-fx=qmongo.helpers.expr.parse_expression_to_json_expression('start(xx.ccc.vvv,{0})',123)
+# fx=qmongo.helpers.expr.parse_expression_to_json_expression('start(xx.ccc.vvv,{0})','123')
+reload(qmongo.helpers.expr)
+qmongo.helpers.expr.parse_expression_to_json_expression("(all(ccc,{0}))",[1,2,3])
 import pprint
 pprint.pprint(fx)
 # import config_reader

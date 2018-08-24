@@ -357,6 +357,30 @@ def get_tree(expr,*params,**kwargs):
     str=vert_expr(expr,*params)
     cmp=compile(str, '<unknown>', 'exec', 1024).body.pop()
     if type(cmp.value) is _ast.UnaryOp:
+        if type(cmp.value.operand) is _ast.Call:
+            if cmp.value.operand.func.id == "all":
+                return {
+                    "operator": find_operator(cmp.value.op),
+                    "left": get_left(cmp.value.operand.args[0],*params)['id'],
+                    "right": get_func_all(cmp.value.operand,*params)
+
+                }
+            if cmp.value.operand.func.id == "elemMatch":
+                return {
+                    "operator": find_operator(cmp.value.op),
+                    "left": get_left(cmp.value.operand.args[0], *params)['id'],
+                    "right": get_elem_match(cmp.value.operand, *params)
+
+                }
+            if cmp.value.operand.func.id in ["contains","start","end"]:
+                return {
+                    "operator": find_operator(cmp.value.op),
+                    "left": get_left(cmp.value.operand.args[0], *params)['id'],
+                    "right": get_mongo_text_function(cmp.value.operand,cmp.value.operand.func.id,*params)
+
+                }
+
+
         return {
             "operator":find_operator(cmp.value.op),
             "left":get_left(cmp.value.operand.left,*params),
@@ -417,47 +441,16 @@ def get_tree(expr,*params,**kwargs):
             "right": get_left(cmp.value.values[1],*params)
         }
     if type(cmp.value) is _ast.Call:
-        if cmp.value.func.id=="contains":
-            fx = get_left(cmp.value, *params)
-            if fx['params'].__len__() < 2:
-                raise Exception("start function must have one text param")
-            if not type(fx['params'][1]) in [type(str), type(unicode)]:
-                raise Exception("contains function is expected one text param, but the value {0} is not a text".format(fx['params'][1]))
-            return {
-                "left": fx['params'][0],
-                "operator": "$contains",
-                "right": fx['params'][1]
-            }
-        elif cmp.value.func.id=="start":
-            fx = get_left(cmp.value,*params)
-            if fx['params'].__len__() < 2:
-                raise Exception("start function must have one text param")
-            if not type(fx['params'][1]) in [type(str), type(unicode)]:
-                raise Exception("start function is expected one text param, but the value {0} is not a text".format(fx['params'][1]))
-
-            return {
-                "left": fx['params'][0],
-                "operator": "$start",
-                "right": fx['params'][1]
-            }
-        elif cmp.value.func.id=="end":
-            fx = get_left(cmp.value, *params)
-            if fx['params'].__len__() < 2:
-                raise Exception("end function must have one text param")
-            if not type(fx['params'][1]) in [type(str), type(unicode)]:
-                raise Exception("end function is expected one text param, but the value {0} is not a text".format(fx['params'][1]))
-            return {
-                "left": fx['params'][0],
-                "operator": "$end",
-                "right": fx['params'][1]
-            }
+        if cmp.value.func.id in ["contains","start","end"]:
+            return get_mongo_text_function(cmp,cmp.value.func.id,*params)
         elif cmp.value.func.id=="notContains":
 
             fx = get_left(cmp.value, *params)
             if fx['params'].__len__() < 2:
                 raise Exception("notContains function must have one text param")
-            if not type(fx['params'][1]) in [type(str), type(unicode)]:
-                raise Exception("notContains function is expected one text param, but the value {0} is not a text".format(fx['params'][1]))
+            val = get_str_value_of_text_function(cmp, params)
+            if not type(val) in [type(str), type(unicode)]:
+                raise Exception("notContains function is expected one text param, but the value {0} is not a text".format(val))
             return {
                 "left": fx['params'][0],
                 "operator": "$notContains",
@@ -507,20 +500,8 @@ def get_tree(expr,*params,**kwargs):
                 "operator": "$nin",
                 "right": _params
             }
-        elif cmp.value.func.id == "_all":
-            fx = get_left(cmp.value, *params)
-            if fx['params'].__len__() <2:
-                raise (Exception("_all must have one list params"))
-            _params = fx["params"][1]
-            if _params == None:
-                if not type(cmp.value.args[1]) is list:
-                    raise (Exception("_all must have one list params,but unexpected type"))
-                _params =[x.n for x in cmp.value.args[1].__reduce__()[2]['elts']]
-            return {
-                "left": fx['params'][0],
-                "operator": "$all",
-                "right": _params
-            }
+        elif cmp.value.func.id in ["_all","all"]:
+            return get_func_all(cmp,*params)
         elif cmp.value.func.id == "_not":
             fx = get_left(cmp.value, *params)
             if fx['params'].__len__() <2:
@@ -536,17 +517,12 @@ def get_tree(expr,*params,**kwargs):
                 "right": _params
             }
         elif cmp.value.func.id =="elemMatch":
-            # fx = get_left(cmp.value, *params)
-            # dx = fx['params'][0]
-            _left = get_left(cmp.value.args[0])
-            if type(_left) is dict:
-                _left = _left["id"]
-
+            return get_elem_match(cmp, params)
+        elif cmp.value.func.id in ["nor","_and","_or"]:
+            args = [get_right(x, *params) for x in cmp.value.args]
             return {
-                "left":_left,
-                "operator": "$elemMatch",
-                "right":get_left(cmp.value.args[1],*params)
-
+                "operator":cmp.value.func.id,
+                "right":args
             }
 
         else:
@@ -559,7 +535,10 @@ def get_tree(expr,*params,**kwargs):
                           "_in(field name, array)\n" \
                           "not_in(field name, array)," \
                           "_all(field name, array)\n" \
-                          "elemMatch(conditional)"
+                          "elemMatch(conditional)\n" \
+                          "_and(logical expr 1,..,logical expr n)\n" \
+                          "_or(logical expr 1,..,logical expr n)\n" \
+                          "nor(logical expr 1,..,logical expr n)\n ------------  '\_(^|^)_/`------------"
 
 
 
@@ -570,6 +549,113 @@ def get_tree(expr,*params,**kwargs):
 
 
     return ret
+
+
+def get_mongo_text_function(cmp,fn_name,*params):
+    if type(cmp) is _ast.Call:
+        fx = get_left(cmp.args[0], *params)
+        fy = get_right(cmp.args[1], *params)
+        if fx['type'] == 'params':
+            return {
+                fx['id']: {
+                    "operator": "${0}".format(fn_name),
+                    "right":params[fy["value"]]
+                }
+            }
+        else:
+            return {
+                fx['id']: {
+                    "operator": "${0}".format(fn_name),
+                    "right": fy["value"]
+                }
+            }
+
+        return {
+            fx['id']:{
+                "operator":"${0}".format(fn_name),
+
+            }
+        }
+
+    fx = get_left(cmp.value, *params)
+    if fx['params'].__len__() < 2:
+        raise Exception("{0}  function must have one text param".format(fn_name))
+    val = get_str_value_of_text_function(cmp, params)
+    if not type(val) in [type(str), type(unicode)]:
+        raise Exception("{1} function is expected one text param, but the value {0} is not a text".format(val,fn_name))
+    return {
+        "left": get_expr(fx['params'][0]),
+        "operator": "${0}".format(fn_name),
+        "right": val
+    }
+
+
+
+def get_func_all(cmp,*params):
+    if type(cmp) is _ast.Expr:
+        args = cmp.value.args
+    else:
+        args = cmp.args
+    if args.__len__() != 2:
+        raise (Exception("all need two params\n The first is a field name and the second is list of items"))
+    fx = get_right(args[1],*params)
+    _params = None
+    if fx['type'] == "const":
+        _params = fx["value"]
+    elif fx['type'] == 'params':
+        _params =params[fx['value']]
+    else:
+        _params =get_left(cmp.value,*params)['params'][1]
+    if _params == None:
+        if not type(args[1]) is list:
+            raise (Exception("_all must have one list params,but unexpected type"))
+
+    return {
+        "left": get_left(args[0], *params)['id'],
+        "operator": "$all",
+        "right": _params
+    }
+
+
+
+def get_elem_match(cmp, *params):
+    args =[]
+    if type(cmp) is _ast.Call:
+        args =cmp.args
+    if type(cmp) is _ast.Expr:
+        args =cmp.value.args
+
+    _left = get_left(args[0])
+    if args.__len__() > 2:
+        if type(_left) is dict:
+            _left = _left["id"]
+
+        return {
+            "left": _left,
+            "operator": "$elemMatch",
+            "right": [get_left(x) for x in args if args.index(x) > 0]
+
+        }
+    else:
+        if type(_left) is dict:
+            _left = _left["id"]
+
+        return {
+            "left": _left,
+            "operator": "$elemMatch",
+            "right": get_left(args[1], *params)
+
+        }
+
+
+def get_str_value_of_text_function(cmp, params):
+    if type(cmp.value.args[1]) is _ast.Call and cmp.value.args[1].func.id == "get_params":
+        val = params[cmp.value.args[1].args[0].n]
+    else:
+        val = cmp.value.args[1].__reduce__()[2]['s']
+    return val
+
+
 def raw_string(s):
     if not type(s) in [str,unicode]:
         return s
@@ -603,68 +689,111 @@ def get_expr(fx,*params):
     if(type(fx) in [str,unicode]):
         return fx
     ret={}
-    if fx["operator"] =="$elemMatch":
-        if fx['right'].has_key('expr'):
+    if fx.has_key('operator'):
+        if fx['operator'] in ['nor',"_and","_or"]:
+            get_value_of_param = lambda x,y: x if y==() else y[x]
             return {
-                fx['left']:{
-                    '$elemMatch':{
-                        fx['right']['operator']:[get_expr(x) for x in fx["right"]['expr']]
+                '$'+fx['operator'].replace('_',''):[get_expr(x,*params) for x in fx['right']]
+            }
+        if fx["operator"] =="$elemMatch":
+            if type(fx['right']) is list:
+                _right = {}
+                for x in fx['right']:
+                    _x =get_expr(x)
+                    _right.update(_x[_x.keys()[0]])
+                return {
+                    fx['left']: {
+                        '$elemMatch': _right
                     }
                 }
-            }
-        else:
+
+            if fx['right'].has_key('expr'):
+                return {
+                    fx['left']:{
+                        '$elemMatch':{
+                            fx['right']['operator']:[get_expr(x,*params) for x in fx["right"]['expr']]
+                        }
+                    }
+                }
+            else:
+                return {
+                    fx['left']: {
+                        '$elemMatch': get_expr(fx['right'])
+                    }
+                }
+
+        if fx["operator"] == "$in":
+            if fx.get('right',{}).get('type',None) =='params':
+                return {
+                    fx["left"]: {
+                        fx["operator"]: params[fx["right"]['value']]
+                    }
+                }
+            else:
+                return {
+                    fx["left"]: {
+                        fx["operator"]: fx["right"]['value']
+                    }
+                }
+
+            # return {
+            #     fx["left"]:{
+            #         fx["operator"]:params
+            #     }
+            # }
+
+        if fx["operator"] == "$not":
+            if fx['right'][fx['right'].keys()[0]]['operator'] in ["$contains",'$start','$end']:
+                cx = get_expr(dict(operator='contains', right='ccc', left='dddd'))
+                cx = get_expr(
+                    dict(
+                        operator=fx['right'][fx['right'].keys()[0]]['operator'],
+                        right=(lambda x,y: y if x==() else x[y])(params,fx['right'][fx['right'].keys()[0]]['right']),
+                        left=fx['right'].keys()[0])
+                )
+                cx[cx.keys()[0]] = {"$not": cx[cx.keys()[0]]}
+                return cx
+
+            _right_expr = get_expr(fx['right'],params)
+            if _right_expr.keys()[0] == "$all":
+                _r =get_expr(fx['right'],params)
+                return {
+                    fx['right']['params'][0]:{
+                        "$not":{
+                            "$all":fx['right']['params'][1]
+                        }
+                    }
+                }
+
+            if _right_expr[_right_expr.keys()[0]].keys()[0] == "$in":
+                return {
+                    _right_expr.keys()[0]:{
+                        "$nin":_right_expr[_right_expr.keys()[0]][_right_expr[_right_expr.keys()[0]].keys()[0]]
+                    }
+                }
+            if _right_expr[_right_expr.keys()[0]].keys()[0] == "$elemMatch":
+                return {
+                    _right_expr.keys()[0]:{
+                        "$not": {
+                            "$elemMatch": _right_expr[_right_expr.keys()[0]][_right_expr[_right_expr.keys()[0]].keys()[0]]
+                        }
+                    }
+                }
+
+
             return {
-                fx['left']: {
-                    '$elemMatch': get_expr(fx['right'])
+                fx["left"]:{
+                    fx["operator"]:get_expr(fx['right'],params)
                 }
             }
 
-    if fx["operator"] == "$in":
-        if fx.get('right',{}).get('type',None) =='params':
-            return {
-                fx["left"]: {
-                    fx["operator"]: params[fx["right"]['value']]
-                }
-            }
-        else:
-            return {
-                fx["left"]: {
-                    fx["operator"]: fx["right"]['value']
-                }
-            }
-
-        # return {
-        #     fx["left"]:{
-        #         fx["operator"]:params
-        #     }
-        # }
-
-    if fx["operator"] == "$not":
-        _right_expr = get_expr(fx['right'],params)
-        if _right_expr[_right_expr.keys()[0]].keys()[0] == "$in":
-            return {
-                _right_expr.keys()[0]:{
-                    "$nin":_right_expr[_right_expr.keys()[0]][_right_expr[_right_expr.keys()[0]].keys()[0]]
-                }
-            }
-
-
-        return {
-            fx["left"]:{
-                fx["operator"]:get_expr(fx['right'],params)
-            }
-        }
-
-    if fx.has_key("type") and fx["type"]=="const":
-        return fx["value"]
-    if fx.has_key("type") and fx["type"]=="field":
-        return fx["id"]
-
-
-    if fx.has_key("operator"):
+        if fx.has_key("type") and fx["type"]=="const":
+            return fx["value"]
+        if fx.has_key("type") and fx["type"]=="field":
+            return fx["id"]
         if fx["operator"]=="$contains":
             return {
-                fx["left"]:re.compile(raw_string(fx["right"]),re.IGNORECASE)
+                fx["left"][0]:re.compile(raw_string(fx["right"]),re.IGNORECASE)
 
             }
         if fx["operator"]=="$start":
@@ -682,7 +811,6 @@ def get_expr(fx,*params):
                 fx["left"]:re.compile(r"^(?!.*?"+raw_string(fx["right"])+r").*$" ,re.IGNORECASE)
 
             }
-
         if fx["operator"]=="$eq":
             if type(fx["right"]) in [str,unicode]:
                 if fx["left"].has_key("type")and fx["left"]["type"]=="field":
@@ -792,7 +920,7 @@ def get_expr(fx,*params):
                             else:
                                 return {
                                     get_expr(fx["left"], *params):{
-                                        fx["operator"]:get_expr(fx["right"], *params)
+                                        fx["operator"]:val
                                     }
                                 }
 
@@ -853,6 +981,14 @@ def get_expr(fx,*params):
                 #         get_expr(x,*params) for x in fx["expr"]
                 #     ]
                 # }
+    elif fx.has_key("type"):
+        if fx["type"]=="function":
+            return {
+                fx["id"]: [fx["params"]]
+            }
+        elif fx["type"] == "field":
+            return fx["id"]
+
     elif fx.has_key("function") and fx["function"].lower()=="contains":
         if fx["params"][1].has_key("value"):
             if fx["params"][1].has_key("type") and\
@@ -865,18 +1001,15 @@ def get_expr(fx,*params):
                 return {
                     fx["params"][0]["id"]:{"$regex":re.compile(raw_string(fx["params"][1]["value"]),re.IGNORECASE)}
                 }
-
-    if fx.has_key("operator"):
+    else:
         return {
             fx["operator"]:[
                 get_expr(fx["left"],*params),
                 get_expr(fx["right"],*params)
             ]
         };
-    if fx.has_key("type") and fx["type"]=="function":
-        return {
-            fx["id"]:[fx["params"]]
-        }
+
+
 def get_calc_exprt_boolean_expression(fx,*params):
     """
     Convert python tree expression into mongodb filter expression
@@ -1125,6 +1258,8 @@ def verify_match(fx):
     else:
         return verify_match(fx["left"])
 def parse_expression_to_json_expression(expression,*params,**kwargs):
+    import sys, traceback
+
     """
     Convert text expression into mongodb tree expression
     :param expression:
@@ -1132,10 +1267,14 @@ def parse_expression_to_json_expression(expression,*params,**kwargs):
     :param kwargs:
     :return:
     """
-    expr_tree=get_tree(expression,*params,**kwargs)
-    #msg=verify_match(expr_tree)
-    #if msg!=None:
-    #    raise(Exception(msg))
-    return get_expr(expr_tree,*params,**kwargs)
+    try:
+        expr_tree=get_tree(expression,*params,**kwargs)
+        return get_expr(expr_tree,*params,**kwargs)
+    except Exception as ex:
+        print traceback.format_exc()
+        raise Exception("Below expression is invalid:\n"
+                        "{0}\n"
+                        "params {1}\n"
+                        "\tdetail:\n\t\t{2}\n{3}".format(expression,params,ex.message,traceback.print_exc(file=sys.stdout)))
 
 

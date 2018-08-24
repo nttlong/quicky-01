@@ -27,3 +27,4 @@ connect = db_context.connect
 set_db_context = db_context.set_db_context
 set_schema = db_context.set_schema
 get_schema = db_context.get_schema
+get_expr = helpers.expr.parse_expression_to_json_expression
