@@ -908,13 +908,13 @@ class COLL():
         get list of items from mongodb
         :return:
         """
-        from . import dynamic_object
+        from . import fx_model
         ret = self.get_collection().find()
         m= True
         while m:
             try:
                 item = ret.next()
-                yield dynamic_object.create_from_dict(item)
+                yield fx_model.s_obj(item)
             except StopIteration as ex:
                 m = False
 
@@ -980,6 +980,7 @@ class COLL():
         return ret
     def insert_one(self,*args,**kwargs):
         import dynamic_object
+        from . import fx_model
         # type: (dict|tuple) -> dict
 
         """
@@ -989,6 +990,10 @@ class COLL():
         :return: dict including data has been inserted and error
         """
         if type(args) is tuple and args.__len__() >0:
+            if type(args[0]) is fx_model.s_obj:
+                ac = self.entity().insert_one(args[0].__to_dict__())
+                ret = ac.commit(self.session)
+                return ret
             if hasattr(args[0],"__dict__"):
                 _args = dynamic_object.convert_to_dict(args[0])
                 ac = self.entity().insert_one(_args)
@@ -1275,6 +1280,18 @@ class AGGREGATE():
                 params=kwargs
                 kwargs=args[0]
         _next_step_fields=[]
+        __params__=[v for k,v in kwargs.items() if k=="__params__"]
+        if __params__.__len__()>0:
+            params = __params__[0]
+        elif type(args) is tuple and args.__len__()>0:
+            params =args[0]
+        _tmp_ = {}
+        for k,v in kwargs.items():
+            if k !="__params__":
+                _tmp_.update({k:v})
+        kwargs =_tmp_
+
+
         for key in kwargs.keys():
             if key != "_id":
                 if kwargs[key]==1:
@@ -1293,7 +1310,7 @@ class AGGREGATE():
                                          " \n Your selected fields now is bellow list: \n"+
                                          self.descibe_fields("\t\t\t",self.get_selected_fields())))
                     _project.update({
-                        key: expr.get_calc_expr(kwargs[key],params)
+                        key: expr.get_calc_expr(kwargs[key],*params)
                     })
                     _next_step_fields.append(key)
             else:
@@ -1575,12 +1592,14 @@ class AGGREGATE():
         else:
             return ret[0]
     def get_object(self):
-        from . import dynamic_object
-        ret = dynamic_object.create_from_dict(self.get_item())
+        from . import fx_model
+        ret= fx_model.s_obj(self.get_item())
+        # from . import dynamic_object
+        # ret = dynamic_object.create_from_dict(self.get_item())
         return  ret
 
     def get_all_documents_as_objects(self):
-        # type: () -> list
+        from . import fx_model
         """
         get all items from mongodb
         Caution: this method will return what is collection store. For example the collection maybe store different schema in each doc
@@ -1594,7 +1613,7 @@ class AGGREGATE():
         from . import dynamic_object
         while continue_fetch:
             try:
-                yield dynamic_object.create_from_dict(ret.next())
+                yield  fx_model.s_obj(ret.next())
             except StopIteration as ex:
                 continue_fetch =False
 
@@ -1626,18 +1645,12 @@ class AGGREGATE():
         coll_ret = coll.aggregate(self._pipe, self.session)
         return coll_ret
     def get_objects(self):
-        def fect_obj(tmp_obj,d):
-            for k,v in d.items():
-                tmp_obj.__dict__.update({
-                    k:v
-                })
-        import dynamic_object
-        tmp = dynamic_object.create_object_from_fields(self.get_selected_fields())
+        from . import fx_model
         iters = self.cursor_list()
         continue_fetch = True
         while continue_fetch:
             try:
-                yield dynamic_object.create_from_dict(iters.next())
+                yield fx_model.s_obj(iters.next())
             except StopIteration as ex:
                 continue_fetch =False
 

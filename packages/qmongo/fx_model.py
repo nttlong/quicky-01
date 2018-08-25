@@ -11,26 +11,29 @@ class s_obj_views(object):
         )
 class __validator_class__(object):
     def __init__(self):
-        self.__properties__ ={}
+        # self.__properties__ ={}
         self.__data_type__ = None
         self.__require__ = False
-        self.__validator__= False
+        self.__dict__.update({"__properties__":{}})
+        self.__dict__.update({"__validator__": False})
+
+        # self.__validator__= False
     def __getattr__(self, item):
-        if self.__validator__:
-            if not self.__properties__.has_key(item):
+        if self.__dict__.get("__validator__",False):
+            if not self.__dict__.get("__properties__",{}).has_key(item):
                 raise (Exception("'{0}' was not found".format(item)))
         return super(__validator_class__, self).__getattr__(item)
     def __setattr__(self, key, value):
         if key[0:2] == "__":
             super(__validator_class__, self).__setattr__(key, value)
             return
-        if self.__validator__:
+        if self.__dict__.get("__validator__",False):
             if not self.__properties__.has_key(key):
                 raise (Exception("'{0}' was not found".format(key)))
         if value == None:
             super(__validator_class__, self).__setattr__(key, value)
             return
-        __data_type__ = self.__properties__.get(key,{}).get('type',None)
+        __data_type__ = self.__dict__.get("__properties__",{}).get('type',None)
         if __data_type__ == "object" and not type(value) is s_obj:
             raise Exception("'{0}' is invalid data type, expected type is {1}, but the value is {2}".format(key,__data_type__,value))
         if __data_type__ == "text" and not type(value) in [str,unicode]:
@@ -57,7 +60,25 @@ class __validator_class__(object):
             )
         })
 class s_obj(__validator_class__):
+    def __init__(self,*args,**kwargs):
 
+        data = kwargs
+        if args.__len__()>0:
+            data = args[0]
+        if data == None:
+            self = None
+            return
+        if data != {}:
+            self.__dict__.update({"__validator__": False})
+            for k,v in data.items():
+                if k[0:2] != "__":
+                    if type(v) is dict:
+                        setattr(self,k,s_obj(v))
+                    elif type(v) is list:
+                        setattr(self,k,[ s_obj(x) for x in v])
+                    else:
+                        setattr(self, k, v)
+            self.__dict__.update({"__validator__": False})
     def __to_dict__(self):
         keys = [x for x in self.__dict__.keys() if x[0:2] != "__"]
         if keys == []:
@@ -71,9 +92,18 @@ class s_obj(__validator_class__):
                 ret.update({k:v})
         return ret
     def __getattr__(self, item):
+        if item =="__properties__":
+            if self.__dict__.has_key(item):
+                return self.__dict__[item]
+            else:
+                self.__dict__.update({item:{}})
+                return self.__dict__[item]
+
         return super(s_obj, self).__getattr__(item)
     def __setattr__(self, key, value):
         super(s_obj, self).__setattr__(key, value)
+    def is_emty(self):
+        return self.__dict__ == {}
 models = s_obj()
 class __obj_fields__(object):
     def __init__(self,name = None,type = None, is_require = False):

@@ -97,7 +97,11 @@ def build_urls(module_name,*args,**kwargs):
                 if list_of_apps.count(app_dicts[x])== 0:
                     list_of_apps.append(app_dicts[x])
             for app in list_of_apps:
-                ret = applications.load_app(app)
+                try:
+                    ret = applications.load_app(app)
+                except Exception as ex:
+                    raise ex
+                    raise Exception("load app {0} error ".format(app),ex)
                 if dict_utils.has_key(app,"schema"):
                     setattr(ret.settings,"DEFAULT_DB_SCHEMA",app.get("schema"))
                 if dict_utils.has_key(app,"login"):
