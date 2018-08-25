@@ -368,14 +368,14 @@ class ENTITY():
             except pymongo.errors.DuplicateKeyError as ex:
                 ret_data= self.get_duplicate_error(ex)
                 if exec_mode.get_mode() == "off":
+                    ret_data.update({
+                        "data": self._data
+                    })
+                    return ret_data
+                elif exec_mode.get_mode() == "on":
+                    raise (Exception("Data is duplicate, duplicate fields is {0}".format(ret_data['error']['fields'])))
+                elif exec_mode.get_mode() == "return":
                     return self._data, ret_data
-
-                ret_data.update({
-                    "data":self._data
-                })
-
-                return ret_data
-
             except Exception as ex:
                 raise ex
 

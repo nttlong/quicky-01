@@ -85,8 +85,8 @@ def validate_require_data(name,data,partial=False):
             val,parents =get_value_by_path(key,data)
             if val == None and parents =={}:
                 ret.append(key)
-            else:
-                none_items = [k for k,v in parents.items() if v==None ]
+            elif parents!=[]:
+                none_items = [k for k,v in parents.items() if v==None or v== []]
                 if none_items.__len__() == 0 and val == None:
                     ret.append(key)
                 elif none_items.__len__()>0:

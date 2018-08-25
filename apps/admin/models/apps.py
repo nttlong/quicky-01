@@ -7,8 +7,6 @@ define(
     schemas=("list",True,"text"),
     views = ("list",False,dict(
         path = ("text",True),
-        name = ("text",False),
-        description=("text",False),
         is_public =("bool",True),
         privileges =("list",True,"text")
     ))
