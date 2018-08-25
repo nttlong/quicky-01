@@ -10,6 +10,7 @@ from hrm.models import provinces
 
 from qexcel import writers
 import qmongo
+qmongo.set_except_mode("on")
 qmongo.set_db_context("mongodb://root:123456@localhost:27017/hrm:hrm")
 # xls = writers.create(
 #     ("code","Code"),

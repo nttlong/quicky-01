@@ -1,5 +1,5 @@
 from bson.codec_options import CodecOptions
-
+import datetime
 class s_obj_views(object):
     def __init__(self,owner):
         self.owner = owner
@@ -9,10 +9,71 @@ class s_obj_views(object):
             self.owner.aggregate,
             name
         )
+class __validator_class__(object):
+    def __init__(self):
+        self.__properties__ ={}
+        self.__data_type__ = None
+        self.__require__ = False
+        self.__validator__= False
+    def __getattr__(self, item):
+        if self.__validator__:
+            if not self.__properties__.has_key(item):
+                raise (Exception("'{0}' was not found".format(item)))
+        return super(__validator_class__, self).__getattr__(item)
+    def __setattr__(self, key, value):
+        if key[0:2] == "__":
+            super(__validator_class__, self).__setattr__(key, value)
+            return
+        if self.__validator__:
+            if not self.__properties__.has_key(key):
+                raise (Exception("'{0}' was not found".format(key)))
+        if value == None:
+            super(__validator_class__, self).__setattr__(key, value)
+            return
+        __data_type__ = self.__properties__.get(key,{}).get('type',None)
+        if __data_type__ == "object" and not type(value) is s_obj:
+            raise Exception("'{0}' is invalid data type, expected type is {1}, but the value is {2}".format(key,__data_type__,value))
+        if __data_type__ == "text" and not type(value) in [str,unicode]:
+            raise Exception(
+                "'{0}' is invalid data type, expected type is {1}, but the value is {2}".format(key, self.__data_type__,
+                                                                                                value))
+        if __data_type__ == "date" and not type(value) is datetime.datetime:
+            raise Exception(
+                "'{0}' is invalid data type, expected type is {1}, but the value is {2}".format(key, self.__data_type__,
+                                                                                                value))
+        if __data_type__ == "bool" and not type(value) is bool:
+            raise Exception(
+                "'{0}' is invalid data type, expected type is {1}, but the value is {2}".format(key, self.__data_type__,
+                                                                                                value))
 
 
-class s_obj(object):
-    pass
+
+        super(__validator_class__, self).__setattr__(key, value)
+    def __set_config__(self,property,type,require):
+        self.__properties__.update({
+            property:dict(
+                type=type,
+                require=require
+            )
+        })
+class s_obj(__validator_class__):
+
+    def __to_dict__(self):
+        keys = [x for x in self.__dict__.keys() if x[0:2] != "__"]
+        if keys == []:
+            return None
+        ret = {}
+        for k in keys:
+            v= self.__dict__[k]
+            if type(v) is s_obj:
+                ret.update({k:v.__to_dict__()})
+            else:
+                ret.update({k:v})
+        return ret
+    def __getattr__(self, item):
+        return super(s_obj, self).__getattr__(item)
+    def __setattr__(self, key, value):
+        super(s_obj, self).__setattr__(key, value)
 models = s_obj()
 class __obj_fields__(object):
     def __init__(self,name = None,type = None, is_require = False):
@@ -77,17 +138,23 @@ class __obj_model__(object):
             item =self.fields
         for k,v in item.__dict__.items():
             if isinstance(v,__obj_fields__):
+                ret.__set_config__(k,v.__type__, True)
                 if v.__type__ =="list":
                     setattr(ret,k,[])
                 elif v.__type__ =="object":
                     if type(v) is __obj_fields__:
-                        setattr(ret,k,v.__mk_obj__())
+                        _m = v.__mk_obj__()
+                        _m.__set_config__(k,v.__type__,v.__require__)
+                        setattr(ret,k,_m)
                     else:
-                        setattr(ret, k, self.mk_obj(v))
+                        _m = self.mk_obj(v)
+                        _m.__set_config__(k,v.__type__, v.__require__)
+                        setattr(ret, k, _m)
                 else:
                     setattr(ret, k, None)
             else:
                 setattr(ret, k, None)
+        ret.__validator__ = True
         return ret
     @property
     def coll(self,context = None):
@@ -138,8 +205,13 @@ class __obj_model__(object):
             ret_obj.error_message = "insert data errror '{0}'".format(ret["error"]["code"])
         return ret_obj
     def insert_one(self,*args,**kwargs):
-        ret = self.coll.insert_one(*args,**kwargs)
         import dynamic_object
+        ret = self.coll.insert_one(*args,**kwargs)
+        if type(ret) is tuple:
+            ret_obj = dynamic_object.create_from_dict(ret[0])
+            ret_error = dynamic_object.create_from_dict(ret[1])
+            return ret_obj,ret_error
+
         ret_obj = dynamic_object.create_from_dict(ret)
         ret_obj.is_error = False
         if ret.get("error",None) != None :
@@ -149,6 +221,10 @@ class __obj_model__(object):
     def update(self,data,*args,**kwargs):
         ret = self.coll.update(data,*args,**kwargs)
         import dynamic_object
+        if type(ret) is tuple:
+            ret_obj = dynamic_object.create_from_dict(ret[0])
+            ret_error = dynamic_object.create_from_dict(ret[1])
+            return ret_obj,ret_error
         ret_obj = dynamic_object.create_from_dict(ret)
         ret_obj.is_error = False
         if ret.get("error", None) != None:
@@ -158,6 +234,10 @@ class __obj_model__(object):
     def delete(self,expression,*arg,**kwargs):
         ret = self.coll.delete(expression,*arg,**kwargs)
         import dynamic_object
+        if type(ret) is tuple:
+            ret_obj = dynamic_object.create_from_dict(ret[0])
+            ret_error = dynamic_object.create_from_dict(ret[1])
+            return ret_obj,ret_error
         ret_obj = dynamic_object.create_from_dict(ret)
         ret_obj.is_error = False
         if ret.get("error", None) != None:

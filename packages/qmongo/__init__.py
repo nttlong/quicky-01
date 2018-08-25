@@ -17,6 +17,11 @@ from . import fx_model
 from . import helpers
 from . import qview
 from . import db_context
+from . import auto_load_models as auto_loader
+from . import exec_mode as exec_mode
+set_except_mode = exec_mode.set_mode
+get_except_mode = exec_mode.get_mode
+from . exec_mode import exept_mode
 define = helpers.define_model
 extends = helpers.extent_model
 extends_dict=helpers.extends_dict

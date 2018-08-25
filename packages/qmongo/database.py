@@ -10,6 +10,7 @@ import copy
 import pymongo
 import pytz
 import sys
+from . import exec_mode
 from bson.codec_options import CodecOptions
 from . import helpers
 from . import dict_utils
@@ -311,6 +312,7 @@ class ENTITY():
         model_events = helpers.events(self._coll._model.name)
         if self._action=="insert_one":
             ret_data={}
+
             try:
                 self._data=extract_data(self._data)
                 if model_events!=None:
@@ -318,20 +320,38 @@ class ENTITY():
                         fn(self._data)
                 ret_validate_require=validators.validate_require_data(self._coll._model.name,self._data)
                 if ret_validate_require.__len__()>0:
-                    return dict(
-                        error=dict(
-                            fields=ret_validate_require,
-                            code="missing"
+                    if exec_mode.get_mode() == "off":
+                        return dict(
+                            error=dict(
+                                fields=ret_validate_require,
+                                code="missing"
+                            )
                         )
-                    )
+                    elif exec_mode.get_mode() =="on":
+                        raise(Exception("Data is missing\n"
+                                        "The missing data are below\n{0}".format(ret_validate_require)))
+                    elif exec_mode.get_mode() == "return":
+                        return self._data,dict(
+                                fields=ret_validate_require,
+                                code="missing"
+                            )
+
                 ret_validate_data_type=validators.validate_type_of_data(self._coll._model.name,self._data)
                 if ret_validate_data_type.__len__()>0:
-                    return dict(
-                        error=dict(
-                            fields=ret_validate_data_type,
-                            code="invalid_data"
+                    if exec_mode.get_mode() == "off":
+                        return dict(
+                            error=dict(
+                                fields=ret_validate_data_type,
+                                code="invalid_data"
+                            )
                         )
-                    )
+                    elif exec_mode.get_mode() == "on":
+                        raise (Exception("Data invalid, the invlid data are below\n {0}".format(ret_validate_data_type)))
+                    elif exec_mode.get_mode() == "return":
+                        return self._data,dict(
+                                fields=ret_validate_data_type,
+                                code="invalid_data"
+                            )
                 ret = _coll.insert_one(self._data,False,session)
                 ret_data = self._data.copy()
                 ret_data.update({
@@ -339,16 +359,21 @@ class ENTITY():
                 })
                 self._action = None
                 self._data = {}
+                if exec_mode.get_mode() == "off":
+                    return ret_data, None
                 return dict(
                     error=None,
                     data=ret_data
                 )
             except pymongo.errors.DuplicateKeyError as ex:
                 ret_data= self.get_duplicate_error(ex)
+                if exec_mode.get_mode() == "off":
+                    return self._data, ret_data
 
                 ret_data.update({
                     "data":self._data
                 })
+
                 return ret_data
 
             except Exception as ex:
@@ -368,11 +393,20 @@ class ENTITY():
             if self._expr==None:
                 raise Exception("Can not modified data without using filter")
             if self._action=="update_one":
-                ret = _coll.update_one(self._expr,self._data)
-                self._expr=None
-                self._action = None
-                self._data = {}
-                return ret
+                try:
+                    ret = _coll.update_one(self._expr,self._data)
+                    self._expr=None
+                    self._action = None
+                    self._data = {}
+                    if exec_mode.get_mode() == "off":
+                        return self._data
+                    return ret
+                except Exception as ex:
+                    if exec_mode.get_mode() == "off":
+                        return self._data, None, ex
+                    raise ex
+
+
             if self._action=="update_many":
                 if not self._data.has_key("$set"):
                     self._data={
@@ -396,22 +430,37 @@ class ENTITY():
                     vlds = validators.validate_require_data_from_field(self._coll._model.name, _c_data[x], y)
                     ret_validate_require.extend(vlds)
                 if ret_validate_require.__len__() > 0:
-                    return dict(
-                        error=dict(
-                            fields=ret_validate_require,
-                            code="missing"
+                    if exec_mode.get_mode() == "off":
+                        return dict(
+                            error=dict(
+                                fields=ret_validate_require,
+                                code="missing"
+                            )
                         )
-                    )
+                    elif exec_mode.get_mode() == "on":
+                        raise (Exception("Data is missing\n Fields is missing:\n {0}".format(ret_validate_require)))
+                    elif exec_mode.get_mode() == "return":
+                        return self._data,dict(
+                                fields=ret_validate_require,
+                                code="missing"
+                            )
+
                 ret_validate_data_type = validators.validate_type_of_data(self._coll._model.name, _c_data)
                 if ret_validate_data_type.__len__() > 0:
-                    return dict(
-                        error=dict(
-                            fields=ret_validate_data_type,
-                            code="invalid_data"
+                    if exec_mode.get_mode() == "off":
+                        return dict(
+                            error=dict(
+                                fields=ret_validate_data_type,
+                                code="invalid_data"
+                            )
                         )
-                    )
-
-
+                    elif exec_mode.get_mode() == "on":
+                        raise (Exception("Data is invalid\n Fields is missing:\n {0}".format(ret_validate_data_type)))
+                    else:
+                        return self._data,dict(
+                                fields=ret_validate_require,
+                                code="missing"
+                            )
                 _x = {}
                 for k, v in _c_data.items():
                     if k[0] == "$":
@@ -424,32 +473,60 @@ class ENTITY():
                         if not _x.has_key("$set"):
                             _x.update({"$set": {}})
                         _x["$set"].update({k: v})
+                _data = self._data.copy()
                 try:
 
                     ret = _coll.update_many(self._expr,_x,False,None,False,None,session)
                     self._expr = None
                     self._action = None
+
                     self._data = {}
-                   
-                    return dict(
-                        error=None,
-                        data=ret
-                    )
+                    if exec_mode.get_mode() == "off":
+                        return dict(
+                            error=None,
+                            data=ret
+                        )
+                    elif exec_mode.get_mode() =="return":
+                        return _data,None
+
                 except pymongo.errors.DuplicateKeyError as ex:
                     ret_data = self.get_duplicate_error(ex)
-                    ret_data.update({
-                        "data": self._data
-                    })
+                    if exec_mode.get_mode() == "off":
+                        ret_data.update({
+                            "data": self._data
+                        })
+                    elif exec_mode.get_mode() == "on":
+                        raise (Exception("Data is duplicate,\n"
+                                         "Duplicate fields are below\n{0}".format(ret_data)))
+                    elif exec_mode.get_mode() == "return":
+                        return _data,ret_data
                     return ret_data
                 except Exception as ex:
-                    raise ex
+                    if exec_mode.get_mode() == "return":
+                        return _data,ex
+                    else:
+                        raise (ex)
 
             if self._action=="delete":
+                _data = self._data.copy()
                 ret = _coll.delete_many(self._expr,None,session)
                 self._expr = None
                 self._action = None
                 self._data = {}
-                return { "deleted":ret.deleted_count}
+                try:
+                    ret = { "deleted":ret.deleted_count}
+                    if exec_mode.get_mode() == "off":
+                        return ret
+                    elif exec_mode.get_mode() == "return":
+                        return ret,None
+                except Exception as ex:
+                    if exec_mode.get_mode() == "return":
+                        return _data,ex
+                    else:
+                        raise (ex)
+
+
+
 class WHERE():
     """
     This class define where for Entity will be remove on the next version
