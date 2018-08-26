@@ -1,3 +1,6 @@
+from pymongo import mongo_client
+from sqlalchemy.sql import quoted_name
+
 from . import models
 import qmongo
 from qobjects import lazyobject
@@ -196,8 +199,8 @@ def app_modify_role(name,view_path,role,is_full_access = False,privileges =[]):
     if result_set.__len__()>0:
         return None,lazyobject(
             code="invalid_data",
-            message = "Value {0} is not in {1}".format(list(result_set),list(set_of_privileges_in_view))
-        ),"Value {0} is not in {1}".format(list(result_set),list(set_of_privileges_in_view))
+            message = "Error: Value {0} is not in {1}".format(list(result_set),list(set_of_privileges_in_view))
+        ),"Error: Value {0} is not in {1}".format(list(result_set),list(set_of_privileges_in_view))
     _privileges = list(set(result.views.privileges).intersection(privileges))
     if result.index_of_role == None or result.index_of_role == -1:
         with qmongo.exept_mode("return"):
@@ -238,3 +241,90 @@ def app_modify_role(name,view_path,role,is_full_access = False,privileges =[]):
                 return None, \
                        None, \
                        "Update role '{0}' to view '{1}' of app '{2}' is successfull".format(role, view_path, name)
+
+def app_remove_role(name,view_path,role):
+    app = app_get(name)
+    if app == None:
+        return None, \
+               lazyobject(
+                   message="App '{0}' was not found".format(name),
+                   code="not_found"
+               ), \
+               "'{0}' was not found".format(name)
+    role_item = role_get(role)
+    if role_item == None:
+        return None, \
+               lazyobject(
+                   message="Role '{0}' was not found".format(name),
+                   code="not_found"
+               ), \
+               "'{0}' was not found".format(name)
+    qr = models.entities.apps.coll.aggregate()
+    qr = qr.match("name=={0}", name)
+    qr = qr.project(
+        [view_path],
+        index_of_view="indexOfArray(views.path,{0})",
+        views=1
+    )
+    qr = qr.unwind("views")
+    qr = qr.match("views.path=={0}", view_path)
+    qr = qr.project(
+        [role],
+        index_of_view=1,
+        index_of_role="indexOfArray(views.roles.role,{0})",
+        views=1
+    )
+    result = qr.get_object()
+    if result == None:
+        return None, \
+               lazyobject(
+                   message="View '{0}' was not found".format(view_path),
+                   code="not_found"
+               ), "View '{0}' was not found".format(view_path)
+    if result.index_of_view == None or result.index_of_view == -1:
+        return None, \
+               lazyobject(
+                   message="View '{0}' was not found".format(view_path),
+                   code="not_found"
+               ), "View '{0}' was not found".format(view_path)
+    if result.index_of_role == None or result.index_of_role == -1:
+        return None,None,"Role '{0}' was not found in view '{1}' of app '{2}'".format(role,view_path,name)
+    else:
+        with qmongo.exept_mode("return"):
+            entity = models.entities.apps.coll
+            actor = entity.where("name=={0}", name)
+            actor = actor.pull({"views.{0}.roles".format(result.index_of_view):
+                                    dict(
+                                        role=role
+                                    )
+                                })
+            ret, ex = actor.commit()
+            if ex != None:
+                return None, \
+                       lazyobject(ex), \
+                       "Remove role '{0}' to view '{1}' of app '{2}' is error".format(role, view_path, name)
+            else:
+                return None, \
+                       None, \
+                       "Remove role '{0}' to view '{1}' of app '{2}' is successfull".format(role, view_path, name)
+def role_add_user(role,username):
+    role_item =role_get(role)
+    if role_item == None:
+        return None,lazyobject(
+            code="not_found",
+            message = "role '{0}' was not found".format(role)
+        ),"role '{0}' was not found".format(role)
+    entity = models.entities.roles.coll
+    qr = models.entities.roles.coll.aggregate()
+    qr= qr.match("role=={0}",role)
+    qr =qr.project([username],index_of_user="indexOfArray(users,{0})")
+    result =qr.get_object()
+    if result == None or result.index_of_user==None or result.index_of_user ==-1:
+        with qmongo.exept_mode("return"):
+            actor=entity.where("role == {0}",role)
+            actor=actor.push(users=username)
+            ret,ex =actor.commit()
+            return None,lazyobject(ex),"Add user to role '{0}' is successfull".format(role)
+
+
+
