@@ -71,14 +71,16 @@ class s_obj(__validator_class__):
         if data != {}:
             self.__dict__.update({"__validator__": False})
             for k,v in data.items():
-                if k[0:2] != "__":
+                if k[0:2] != "__" and k.count('.') == 0:
                     if type(v) is dict:
                         setattr(self,k,s_obj(v))
                     elif type(v) is list:
-                        setattr(self,k,[ s_obj(x) for x in v])
+                        values = [ x for x in v if type(x) in [str,unicode]]
+                        values.extend([s_obj(x) for x in v if type(x) is dict])
+                        setattr(self,k,values)
                     else:
                         setattr(self, k, v)
-            self.__dict__.update({"__validator__": False})
+            self.__dict__.update({"__validator__": True})
     def __to_dict__(self):
         keys = [x for x in self.__dict__.keys() if x[0:2] != "__"]
         if keys == []:
@@ -128,8 +130,6 @@ class __obj_fields__(object):
             else:
                 setattr(ret, k, None)
         return ret
-
-
 class __obj_model__(object):
     def __init__(self,name,schema = None):
         _schema = models
@@ -235,14 +235,14 @@ class __obj_model__(object):
             ret_obj.error_message = "insert data errror '{0}'".format(ret["error"]["code"])
         return ret_obj
     def insert_one(self,*args,**kwargs):
-        import dynamic_object
+
         ret = self.coll.insert_one(*args,**kwargs)
         if type(ret) is tuple:
-            ret_obj = dynamic_object.create_from_dict(ret[0])
-            ret_error = dynamic_object.create_from_dict(ret[1])
+            ret_obj = s_obj(ret[0])
+            ret_error = s_obj(ret[1])
             return ret_obj,ret_error
 
-        ret_obj = dynamic_object.create_from_dict(ret)
+        ret_obj = s_obj(ret)
         ret_obj.is_error = False
         if ret.get("error",None) != None :
             ret_obj.is_error = True
@@ -252,10 +252,10 @@ class __obj_model__(object):
         ret = self.coll.update(data,*args,**kwargs)
         import dynamic_object
         if type(ret) is tuple:
-            ret_obj = dynamic_object.create_from_dict(ret[0])
-            ret_error = dynamic_object.create_from_dict(ret[1])
+            ret_obj = s_obj(ret[0])
+            ret_error = s_obj(ret[1])
             return ret_obj,ret_error
-        ret_obj = dynamic_object.create_from_dict(ret)
+        ret_obj = s_obj(ret)
         ret_obj.is_error = False
         if ret.get("error", None) != None:
             ret_obj.is_error = True
@@ -265,10 +265,10 @@ class __obj_model__(object):
         ret = self.coll.delete(expression,*arg,**kwargs)
         import dynamic_object
         if type(ret) is tuple:
-            ret_obj = dynamic_object.create_from_dict(ret[0])
-            ret_error = dynamic_object.create_from_dict(ret[1])
+            ret_obj = s_obj(ret[0])
+            ret_error = s_obj(ret[1])
             return ret_obj,ret_error
-        ret_obj = dynamic_object.create_from_dict(ret)
+        ret_obj = s_obj(ret)
         ret_obj.is_error = False
         if ret.get("error", None) != None:
             ret_obj.is_error = True

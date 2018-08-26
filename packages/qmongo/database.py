@@ -360,11 +360,12 @@ class ENTITY():
                 self._action = None
                 self._data = {}
                 if exec_mode.get_mode() == "off":
+                    return dict(
+                        error=None,
+                        data=ret_data
+                    )
+                elif exec_mode.get_mode() =="return":
                     return ret_data, None
-                return dict(
-                    error=None,
-                    data=ret_data
-                )
             except pymongo.errors.DuplicateKeyError as ex:
                 ret_data= self.get_duplicate_error(ex)
                 if exec_mode.get_mode() == "off":
@@ -373,7 +374,7 @@ class ENTITY():
                     })
                     return ret_data
                 elif exec_mode.get_mode() == "on":
-                    raise (Exception("Data is duplicate, duplicate fields is {0}".format(ret_data['error']['fields'])))
+                    raise (Exception("Data is duplicate, duplicate fields is in {0}".format(ret_data['error']['fields'])))
                 elif exec_mode.get_mode() == "return":
                     return self._data, ret_data
             except Exception as ex:
@@ -524,9 +525,6 @@ class ENTITY():
                         return _data,ex
                     else:
                         raise (ex)
-
-
-
 class WHERE():
     """
     This class define where for Entity will be remove on the next version
@@ -539,7 +537,6 @@ class WHERE():
         self._coll = coll
         self.name=coll.name
         self._update_data ={}
-
     def get_list(self):
         if self._where_list.__len__()==0:
             return self._coll.get_list()
@@ -1303,6 +1300,7 @@ class AGGREGATE():
                         key: 1
                     })
                     _next_step_fields.append(key)
+                    _next_step_fields.extend([x for x in self._selected_fields if x.__len__()>key.__len__() and x[0:key.__len__()+1]==key+"."])
                 else:
                     unknown_fields = self._coll._model.validate_expression(kwargs[key],self.get_selected_fields())
                     if unknown_fields.__len__()>0:
@@ -1593,7 +1591,11 @@ class AGGREGATE():
             return ret[0]
     def get_object(self):
         from . import fx_model
-        ret= fx_model.s_obj(self.get_item())
+
+        ret_item =self.get_item()
+        if ret_item == None:
+            return None
+        ret= fx_model.s_obj(ret_item)
         # from . import dynamic_object
         # ret = dynamic_object.create_from_dict(self.get_item())
         return  ret

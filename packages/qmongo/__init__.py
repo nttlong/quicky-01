@@ -21,7 +21,7 @@ from . import auto_load_models as auto_loader
 from . import exec_mode as exec_mode
 set_except_mode = exec_mode.set_mode
 get_except_mode = exec_mode.get_mode
-from . exec_mode import exept_mode
+from . exec_mode import exept_mode #set exception mode when mongodb commit to database
 define = helpers.define_model
 extends = helpers.extent_model
 extends_dict=helpers.extends_dict
@@ -34,6 +34,7 @@ set_schema = db_context.set_schema
 get_schema = db_context.get_schema
 get_expr = helpers.expr.parse_expression_to_json_expression
 selector = helpers.expr.get_calc_expr #make selector from expression
+lazyobject = fx_model.s_obj
 def create(*args,**kwargs):
     """Create new instance object from dict"""
     return fx_model.s_obj(*args,**kwargs)
