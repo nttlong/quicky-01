@@ -2513,3 +2513,25 @@ Not Found: /testtest//login
 django_session.save (0.00) {'schema': u'sys', '_id': u'2btbl2o0kcz12tp4kd6i46bh50xc1lhm', 'expire_date': datetime.datetime(2018, 9, 11, 14, 25, 59, 449000, tzinfo=<UTC>), 'session_data': u'OTE2OWEzNjFmMzk3MzVhMTZiNjlmM2EwODhiNTVkOGExNWRjM2JlYzp7fQ=='}
 django_session.save (0.00) {'schema': u'sys', '_id': u'2btbl2o0kcz12tp4kd6i46bh50xc1lhm', 'expire_date': datetime.datetime(2018, 9, 11, 14, 25, 59, 461000, tzinfo=<UTC>), 'session_data': u'OTE2OWEzNjFmMzk3MzVhMTZiNjlmM2EwODhiNTVkOGExNWRjM2JlYzp7fQ=='}
 Not Found: /testtest/syslogin
+Not Found: /testtest/syslogin
+Not Found: /test/syslogin
+Not Found: /testtest/syslogin
+Internal Server Error: /test/sys
+Traceback (most recent call last):
+  File "E:\code\quicky-01\packages/django\django\core\handlers\base.py", line 112, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "E:\code\quicky-01\packages\quicky\executor.py", line 163, in exec_request
+    login_url = self.__app__.get_login_url(tenancy.get_customer_code())
+  File "E:\code\quicky-01\packages\quicky\app_info.py", line 155, in get_login_url
+    return settings.HOST_DIR + "/" + self.host_dir + + self.settings.login_url
+TypeError: bad operand type for unary +: 'str'
+Internal Server Error: /test/sys
+Traceback (most recent call last):
+  File "E:\code\quicky-01\packages/django\django\core\handlers\base.py", line 112, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "E:\code\quicky-01\packages\quicky\executor.py", line 163, in exec_request
+    login_url = self.__app__.get_login_url(tenancy.get_customer_code())
+  File "E:\code\quicky-01\packages\quicky\app_info.py", line 155, in get_login_url
+    return settings.HOST_DIR + "/" + self.host_dir + "/" + self.settings.login_url
+TypeError: bad operand type for unary +: 'str'
+Not Found: /testtest/sys/login

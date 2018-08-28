@@ -128,7 +128,7 @@ class app_config():
         root_path = os.path.dirname(os.path.dirname(os.path.dirname(__file__)))
         _path = (self.static).replace("/", os.path.sep)
         return root_path + os.path.sep + _path
-    def get_login_url(self):
+    def get_login_url(self,customer_code):
         """
         get login url from settings of app in settings.py
         :return:
@@ -149,7 +149,14 @@ class app_config():
         else:
             from django.conf import settings
             if settings.HOST_DIR != "":
-                return settings.HOST_DIR+"/"+self.host_dir+self.settings.login_url
+                if customer_code!= None:
+                    return settings.HOST_DIR+"/"+self.host_dir+"/"+customer_code+"/"+self.settings.login_url
+                else:
+                    return settings.HOST_DIR + "/" + self.host_dir + "/" + self.settings.login_url
             else:
-                return  self.host_dir + self.settings.login_url
+                if customer_code != None:
+                    return  self.host_dir+"/"+customer_code + "/"+self.settings.login_url
+                else:
+                    return self.host_dir + "/" + self.settings.login_url
+
 

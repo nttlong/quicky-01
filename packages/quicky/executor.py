@@ -160,7 +160,7 @@ class executor(object):
             from django.http.response import HttpResponseRedirect
 
             ret_auth=app.settings.authenticate(request)
-            login_url = self.__app__.get_login_url()
+            login_url = self.__app__.get_login_url(tenancy.get_customer_code())
 
 
             if ret_auth != True:
