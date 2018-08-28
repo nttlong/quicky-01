@@ -36,6 +36,7 @@ class executor(object):
                 __apps_cache__.update({request.path:self.__app__})
 
     def get_schema(self,request):
+        import tenancy
         if __schema_cache__.has_key(request.path):
             return __schema_cache__[request.path]
         if self.__app__.is_persistent_schema():
@@ -52,7 +53,7 @@ class executor(object):
                 path =path[1:path.__len__()]
             items =path.split('/')
             __schema_cache__.update({
-                request.path:items[0]
+                request.path:tenancy.get_schema(items[0])
             })
             return __schema_cache__[request.path]
     def exec_request(self, request, **kwargs):

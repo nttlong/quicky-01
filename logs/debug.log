@@ -2510,3 +2510,6 @@ Not Found: /testtest/syslogin
 django_session.save (0.00) {'schema': u'hrm', '_id': u'utrv0uv7oyfvrhuoksj2o0uvmgqgchd7', 'expire_date': datetime.datetime(2018, 9, 11, 14, 24, 24, 257000, tzinfo=<UTC>), 'session_data': u'OTE2OWEzNjFmMzk3MzVhMTZiNjlmM2EwODhiNTVkOGExNWRjM2JlYzp7fQ=='}
 django_session.save (0.00) {'schema': u'hrm', '_id': u'utrv0uv7oyfvrhuoksj2o0uvmgqgchd7', 'expire_date': datetime.datetime(2018, 9, 11, 14, 24, 24, 278000, tzinfo=<UTC>), 'session_data': u'OTE2OWEzNjFmMzk3MzVhMTZiNjlmM2EwODhiNTVkOGExNWRjM2JlYzp7fQ=='}
 Not Found: /testtest//login
+django_session.save (0.00) {'schema': u'sys', '_id': u'2btbl2o0kcz12tp4kd6i46bh50xc1lhm', 'expire_date': datetime.datetime(2018, 9, 11, 14, 25, 59, 449000, tzinfo=<UTC>), 'session_data': u'OTE2OWEzNjFmMzk3MzVhMTZiNjlmM2EwODhiNTVkOGExNWRjM2JlYzp7fQ=='}
+django_session.save (0.00) {'schema': u'sys', '_id': u'2btbl2o0kcz12tp4kd6i46bh50xc1lhm', 'expire_date': datetime.datetime(2018, 9, 11, 14, 25, 59, 461000, tzinfo=<UTC>), 'session_data': u'OTE2OWEzNjFmMzk3MzVhMTZiNjlmM2EwODhiNTVkOGExNWRjM2JlYzp7fQ=='}
+Not Found: /testtest/syslogin
