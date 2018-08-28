@@ -1,3 +1,5 @@
+from _ast import alias
+
 from sqlalchemy.sql.functions import count
 from  datetime import datetime
 from . helpers import expr,validators
@@ -1844,5 +1846,109 @@ def connect(*args,**kwargs):
     except Exception as ex:
         logger.debug(ex)
         raise (ex)
+class GRIDFS(object):
+    def __init__(self,db = None):
+        self.__db__= db
+        self.__where__ = None
+    def __db_context__(self):
+        if self.__db__ == None:
+            from . import db_context
+            context = db_context.get_db_context()
+            if context == None:
+                raise (Exception("Please use:\n"
+                                 "import qmongo\n"
+                                 "qmongo.set_db_context(host=..,port=..,user=..,password=..,name=...)\n"
+                                 "or you can use bellow statement:\n"
+                                 "qmongo.set_db_context(\"mongodb://{username}:{password}@{host}:{port}/{database name}[:{schema}]\")"))
+            else:
+                self.__db__ = context.db
+        return self.__db__
+    def put(self,filename,contentType,content,aliases=None,meta=None,*args,**kwargs):
+        import gridfs
+        fs = gridfs.GridFS(self.__db_context__())
+        try:
+            ret = fs.put(content,filename=filename,contentType=contentType,alias=aliases,meta=meta)
+            if exec_mode.get_mode() == "off":
+                return dict(
+                    error=None,
+                    data=ret
+                )
+            else:
+                return ret, None
+        except Exception as ex:
+            if exec_mode.get_mode() == "off":
+                return dict(
+                    error = ex,
+                    data = None
+                )
+            elif exec_mode.get_mode() == "on":
+                raise ex
+            elif exec_mode.get_mode() == "return":
+                return None,ex
+    def get_content_by_id(self,id):
+        from bson import ObjectId
+        import gridfs
+        if type(id) in [str,unicode]:
+            id = ObjectId(id)
+        content = gridfs.GridFS(self.__db_context__()).get(id)
+        return content
+    def get_items(self):
+        import  gridfs
+        return gridfs.GridFS(self.__db_context__()).list()
+    def where(self,expression,*args,**kwargs):
+        ret  = GRIDFS(self.__db__)
+        ret.__where__ = helpers.filter(expression,*args,**kwargs).get_filter()
+        return ret
+    @property
+    def items(self):
+        import gridfs
+        return list(gridfs.GridFS(self.__db_context__()).find(self.__where__))
+    @property
+    def item(self):
+        import gridfs
+        return gridfs.GridFS(self.__db_context__()).find_one(self.__where__)
+    def __iter__(self):
+        return self.items
+    def put_from_file(self,path,filename = None,meta=None):
+        from mimetypes import MimeTypes
+        import os
+        mime = MimeTypes()
+        with open(path,"r") as f:
+            stm =f.read()
+            import gridfs
+            fs = gridfs.GridFS(self.__db_context__())
+            try:
+                if filename == None:
+                    filename = os.path.basename(path)
+                ret = fs.put(stm, filename=filename, contentType=mime.guess_type(path)[0],originalPath=path, meta=meta)
+                if exec_mode.get_mode() == "off":
+                    return dict(
+                        error=None,
+                        data=ret
+                    )
+                else:
+                    return ret, None
+            except Exception as ex:
+                if exec_mode.get_mode() == "off":
+                    return dict(
+                        error=ex,
+                        data=None
+                    )
+                elif exec_mode.get_mode() == "on":
+                    raise ex
+                elif exec_mode.get_mode() == "return":
+                    return None, ex
+
+
+
+
+
+
+
+
+
+
+
+
 
 

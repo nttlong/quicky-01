@@ -38,3 +38,7 @@ lazyobject = fx_model.s_obj
 def create(*args,**kwargs):
     """Create new instance object from dict"""
     return fx_model.s_obj(*args,**kwargs)
+def grid_fs(db = None):
+    from database import GRIDFS
+    return GRIDFS(db)
+
