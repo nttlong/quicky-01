@@ -632,7 +632,7 @@ def get_mongo_text_function(cmp,fn_name,*params):
     if fx['params'].__len__() < 2:
         raise Exception("{0}  function must have one text param".format(fn_name))
     val = get_str_value_of_text_function(cmp, params)
-    if not type(val) in [type(str), type(unicode)]:
+    if not type(val) in [str, unicode]:
         raise Exception("{1} function is expected one text param, but the value {0} is not a text".format(val,fn_name))
     return {
         "left": get_expr(fx['params'][0]),
@@ -852,7 +852,7 @@ def get_expr(fx,*params):
 
         if fx["operator"]=="$contains":
             return {
-                fx["left"][0]:re.compile(raw_string(fx["right"]),re.IGNORECASE)
+                fx["left"]:re.compile(raw_string(fx["right"]),re.IGNORECASE)
 
             }
         if fx["operator"]=="$start":
