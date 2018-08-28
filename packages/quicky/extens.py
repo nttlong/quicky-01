@@ -288,7 +288,7 @@ def apply(request,template_file,app):
 
                                       )
             try:
-                ret_res=mylookup.get_template(fileName).render(**render_model)
+                ret_res=mylookup.get_template(fileName[0]).render(**render_model)
 
             except exceptions.MakoException as ex:
                 logger.debug(ex)

@@ -146,7 +146,7 @@
       "host":"",
       "name":"hrm",
       "path":"apps/hrm",
-      "login_url":"login",
+      "login_url":"/login",
       "schema":"hrm"
 
     },{
@@ -154,7 +154,7 @@
       "name":"performance",
       "path":"apps/performance",
       "schema":"lv",
-      "disable":false
+      "disable":true
     }
   ]
 

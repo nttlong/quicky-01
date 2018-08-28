@@ -187,16 +187,17 @@ class MongoQuery(NonrelQuery):
 
         fields = get_selected_fields(self.query)
         if self.collection.collection.name != "django_session" and hasattr(self,"__schema_filter__"):
+            pass
 
-            if self.collection.collection.name.split('.').__len__()>1:
-                collection_name=self.collection.collection.name.split('.')[1]
-            else:
-                collection_name = self.collection.collection.name
-            if self.__schema_filter__ !="":
-                self.collection=self.collection.collection.database.get_collection(self.__schema_filter__+"."+collection_name)
-            else:
-                self.collection = self.collection.collection.database.get_collection(
-                    self.schema + "." + collection_name)
+            # if self.collection.collection.name.split('.').__len__()>1:
+            #     collection_name=self.collection.collection.name.split('.')[1]
+            # else:
+            #     collection_name = self.collection.collection.name
+            # if self.__schema_filter__ !="":
+            #     self.collection=self.collection.collection.database.get_collection(self.__schema_filter__+"."+collection_name)
+            # else:
+            #     self.collection = self.collection.collection.database.get_collection(
+            #         self.schema + "." + collection_name)
         else:
             self.collection = self.collection.collection.database.get_collection("django_session")
         print("Exec query on {0} with filter {1}".format(self.collection.collection.name,self.mongo_query.__str__()))
