@@ -1,3 +1,7 @@
+# encoding=utf8
+import sys
+reload(sys)
+sys.setdefaultencoding('utf8')
 from bson.codec_options import CodecOptions
 import datetime
 class s_obj_views(object):
@@ -103,7 +107,14 @@ class s_obj(__validator_class__):
 
         return super(s_obj, self).__getattr__(item)
     def __setattr__(self, key, value):
-        super(s_obj, self).__setattr__(key, value)
+        try:
+            ins = super(s_obj, self)
+        except Exception as ex:
+            x=1
+        try:
+            ins.__setattr__(key, value)
+        except Exception as ex:
+            print value
     def is_emty(self):
         return self.__dict__ == {}
 models = s_obj()

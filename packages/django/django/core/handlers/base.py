@@ -108,18 +108,18 @@ class BaseHandler(object):
 
             if response is None:
                 wrapped_callback = self.make_view_atomic(callback)
-                try:
-                    response = wrapped_callback(request, *callback_args, **callback_kwargs)
-                except Exception as e:
-                    # If the view raised an exception, run it through exception
-                    # middleware, and if the exception middleware returns a
-                    # response, use that. Otherwise, reraise the exception.
-                    for middleware_method in self._exception_middleware:
-                        response = middleware_method(request, e)
-                        if response:
-                            break
-                    if response is None:
-                        raise e
+                # try:
+                response = wrapped_callback(request, *callback_args, **callback_kwargs)
+                # except Exception as e:
+                #     # If the view raised an exception, run it through exception
+                #     # middleware, and if the exception middleware returns a
+                #     # response, use that. Otherwise, reraise the exception.
+                #     for middleware_method in self._exception_middleware:
+                #         response = middleware_method(request, e)
+                #         if response:
+                #             break
+                #     if response is None:
+                #         raise e
 
             # Complain if the view returned None (a common error).
             if response is None:

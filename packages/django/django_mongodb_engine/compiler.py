@@ -197,6 +197,8 @@ class MongoQuery(NonrelQuery):
             else:
                 self.collection = self.collection.collection.database.get_collection(
                     self.schema + "." + collection_name)
+        else:
+            self.collection = self.collection.collection.database.get_collection("django_session")
         print("Exec query on {0} with filter {1}".format(self.collection.collection.name,self.mongo_query.__str__()))
         cursor = self.collection.find(self.mongo_query, fields)
         if self.ordering:
@@ -519,7 +521,11 @@ class SQLInsertCompiler(NonrelInsertCompiler, SQLCompiler):
             if hasattr(ct,"DEFAULT_DB_SCHEMA"):
                 doc["schema"] = ct.DEFAULT_DB_SCHEMA
             else:
-                doc["schema"]=ct.tenancy_code
+                if hasattr(ct,"tenancy_code"):
+                    doc["schema"]=ct.tenancy_code
+                else:
+                    from django.conf import settings
+                    doc["schema"] = settings.MULTI_TENANCY_DEFAULT_SCHEMA
 
         if return_id:
 

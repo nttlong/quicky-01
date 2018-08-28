@@ -82,10 +82,11 @@ def get_language_item(schema,lan,app,view,key,value):
 
 def get_language():
     "Get language code"
-    if hasattr(threading.currentThread(),"language_code"):
-        return threading.currentThread().language_code
-    else:
-        return None
+    # if hasattr(threading.currentThread(),"language_code"):
+    #     return threading.currentThread().language_code
+    # else:
+    #     return None
+    return "vi"
 
 def set_language(lan_code):
     "Set language code"

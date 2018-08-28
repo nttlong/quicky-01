@@ -49,10 +49,11 @@ def apply(request,template_file,app):
         from django.conf import settings as st
         from django.utils import translation
         return request.session.get('language',st.LANGUAGE_CODE)
+        return "vi"
     
     def set_language(lang):
-        #from django.utils.translation import activate
-        #activate(lang)
+        # from django.utils.translation import activate
+        # activate(lang)
         request.session['language'] = lang
         from .import language
         language.set_language(lang)

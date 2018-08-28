@@ -177,6 +177,8 @@ class Signal(object):
 
         Returns a list of tuple pairs [(receiver, response), ... ].
         """
+        if schema == None:
+            schema ="sys"
         if schema == None:  # add schema
             import inspect
             fx = inspect.stack()

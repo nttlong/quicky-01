@@ -124,37 +124,59 @@ class app_config():
         get full server static path
         :return:
         """
-        _path= (self.static).replace("/",os.path.sep)
-        return os.getcwd()+os.path.sep+_path
+        import os
+        root_path = os.path.dirname(os.path.dirname(os.path.dirname(__file__)))
+        _path = (self.static).replace("/", os.path.sep)
+        return root_path + os.path.sep + _path
     def get_login_url(self):
         """
         get login url from settings of app in settings.py
         :return:
         """
         import threading
-
-        if hasattr(threading.currentThread(), "tenancy_code"):
-            if hasattr(self.mdl.settings, "login_url"):
-                if self.mdl.settings.login_url[0:1] == '/':
-                    self.mdl.settings.login_url = self.mdl.settings.login_url[
-                                                  1:self.mdl.settings.login_url.__len__()]
-                if not self.is_persistent_schema():
-
-                    if self.host_dir == "":
-                        return "/" + threading.currentThread().request_tenancy_code + "/" + self.mdl.settings.login_url
-                    else:
-                        return "/" + threading.currentThread().request_tenancy_code + "/" + self.host_dir + "/" + self.mdl.settings.login_url
+        import tenancy
+        if not self.is_persistent_schema():
+            if self.host_dir == "":
+                if tenancy.get_customer_code()!=None:
+                    return "/" + tenancy.get_customer_code() + "/" + self.mdl.settings.login_url
                 else:
-                    if self.host_dir == "":
-                        setattr(threading.currentThread(), "request_tenancy_code", self.get_persistent_schema())
-                        return  "/" + self.mdl.settings.login_url
-                    else:
-                        setattr(threading.currentThread(),"request_tenancy_code",self.get_persistent_schema())
-                        return "/" + self.host_dir + "/" + self.mdl.settings.login_url
-
-        else:
-            if hasattr(self.mdl.settings, "login_url"):
+                    return "/" + self.mdl.settings.login_url
+            else:
                 if self.host_dir == "":
                     return "/" + self.mdl.settings.login_url
                 else:
                     return "/" + self.host_dir + "/" + self.mdl.settings.login_url
+
+
+
+        # if hasattr(threading.currentThread(), "tenancy_code"):
+        #     if hasattr(self.mdl.settings, "login_url"):
+        #         if self.mdl.settings.login_url[0:1] == '/':
+        #             self.mdl.settings.login_url = self.mdl.settings.login_url[
+        #                                           1:self.mdl.settings.login_url.__len__()]
+        #         if not self.is_persistent_schema():
+        #
+        #             if self.host_dir == "":
+        #                 if threading.currentThread().request_tenancy_code != None:
+        #                     return "/" + threading.currentThread().request_tenancy_code + "/" + self.mdl.settings.login_url
+        #                 else:
+        #                     return "/lv/" + self.mdl.settings.login_url
+        #             else:
+        #                 if threading.currentThread().request_tenancy_code != None:
+        #                     return "/" + threading.currentThread().request_tenancy_code + "/" + self.host_dir + "/" + self.mdl.settings.login_url
+        #                 else:
+        #                     return "/lv/" + self.host_dir + "/" + self.mdl.settings.login_url
+        #         else:
+        #             if self.host_dir == "":
+        #                 setattr(threading.currentThread(), "request_tenancy_code", self.get_persistent_schema())
+        #                 return  "/" + self.mdl.settings.login_url
+        #             else:
+        #                 setattr(threading.currentThread(),"request_tenancy_code",self.get_persistent_schema())
+        #                 return "/" + self.host_dir + "/" + self.mdl.settings.login_url
+        #
+        # else:
+        #     if hasattr(self.mdl.settings, "login_url"):
+        #         if self.host_dir == "":
+        #             return "/" + self.mdl.settings.login_url
+        #         else:
+        #             return "/" + self.host_dir + "/" + self.mdl.settings.login_url

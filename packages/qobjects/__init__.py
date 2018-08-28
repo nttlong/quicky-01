@@ -1,3 +1,7 @@
+# encoding=utf8
+import sys
+reload(sys)
+sys.setdefaultencoding('utf8')
 import datetime
 class __validator_class__(object):
     def __init__(self):
