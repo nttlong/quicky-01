@@ -115,7 +115,7 @@ class s_obj(__validator_class__):
             ins.__setattr__(key, value)
         except Exception as ex:
             print value
-    def is_emty(self):
+    def __is_emty__(self):
         return self.__dict__ == {}
 models = s_obj()
 class __obj_fields__(object):

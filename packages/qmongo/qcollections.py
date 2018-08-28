@@ -64,11 +64,11 @@ class __aggregate__():
 
 
 class queryable(object):
-    def __init__(self,coll):
-        import pymongo
-        if not type(coll) is pymongo.collection.Collection:
-            raise (Exception("queryable must be init with  'pymongo.collection.Collection'"))
-        self.__coll__=coll
+    def __init__(self,*args,**kwargs):
+        # import pymongo
+        # if not type(coll) is pymongo.collection.Collection:
+        #     raise (Exception("queryable must be init with  'pymongo.collection.Collection'"))
+        # self.__coll__=coll
         self.__where__ = None
         self.__pipe_line__=[]
         self.__modifiers__={}
@@ -102,6 +102,10 @@ class queryable(object):
             return self.__fetch__(cursor)
     @property
     def items(self):
+        if self.__pipe_line__.__len__()>0:
+            ret= self.aggregate.items
+            self.clean
+            return self
         if self.__where__ == None:
             cursor = self.__coll__.find()
             return list(cursor)
@@ -110,7 +114,27 @@ class queryable(object):
             return list(cursor)
     @property
     def objects(self):
+        if self.__pipe_line__.__len__()>0:
+            ret = self.aggregate.objects
+            self.clean
+            return ret
         return list(self.find())
+    @property
+    def object(self):
+        return s_obj(self.item)
+    @property
+    def item(self):
+        if self.__pipe_line__.__len__()>0:
+            self.limit(1)
+            items =self.items
+            self.clean
+            if items.__len__()>0:
+                return items[0]
+            return None
+        else:
+            item =self.__coll__.find_one(self.__where__)
+            return item
+
     def set_session(self,session):
         from pymongo.client_session import ClientSession
         if session != None and not isinstance(session,ClientSession):
@@ -212,6 +236,10 @@ class queryable(object):
     @property
     def aggregate(self):
         return __aggregate__(self.__coll__,[x.copy() for x in self.__pipe_line__],self.__session__)
+    @property
+    def clean(self):
+        self.__pipe_line__ =[]
+        return self
     def project(self,*args,**kwargs):
         from . import helpers
         _project_={}
@@ -229,12 +257,56 @@ class queryable(object):
                 _project_.update({k:v})
         self.__pipe_line__.append({"$project":_project_})
         return self
+    def match(self,expression,*args,**kwargs):
+        by_params = False
+        if args == ():
+            args = kwargs
+            by_params = True
+        from . import helpers
+        if type(expression) is dict:
+            self.__pipe_line__.append({
+                "$match":expression
+            })
+            return self
+        if type(expression) in [str,unicode]:
+            import helpers
+            self.__pipe_line__.append({
+                "$match": (lambda :  helpers.filter(expression, args)._pipe if by_params else helpers.filter(expression, *args,**kwargs)._pipe)()
+            })
+            return self
+
     def skip(self,num):
         self.__pipe_line__.append({"$skip": num})
         return self
     def limit(self,num):
         self.__pipe_line__.append({"$limit": num})
         return self
+    def __iter__(self):
+        return self.objects
+    def replace_root(self,field):
+        self.__pipe_line__.append({
+            "$replaceRoot": {"newRoot": (lambda x: "$" + x if x[0] != "$" else x)(field)}
+        })
+        return self
+    def unwind(self,field,field_name,preserve_null_and_empty_arrays=True):
+        self.__pipe_line__.append({
+            "$unwind": {"path":(lambda x: "$" + x if x[0] != "$" else x)(field),
+                        "preserveNullAndEmptyArrays":preserve_null_and_empty_arrays
+                     }
+        })
+        return self
+    def lookup(self,source,local_field,foreign_field,alias):
+        self._pipe.append({
+            "$lookup": {
+                "from": source,
+                "localField": local_field,
+                "foreignField": foreign_field,
+                "as": alias
+            }
+        })
+        return self
+
+
 
 
 

@@ -109,5 +109,5 @@ def change_language(request):
 )
 def load_page(request,path):
     return  request.render({
-        "path":path
+        "path":path.lower()
     })

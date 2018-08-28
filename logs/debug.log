@@ -1361,3 +1361,240 @@ django_session.find (0.00) {'_id': 'ks165lib59k6k1s3luavavzy78mrkyth', 'expire_d
 django_session.find (0.00) {'_id': 'ks165lib59k6k1s3luavavzy78mrkyth', 'expire_date': {'$gt': datetime.datetime(2018, 8, 25, 8, 10, 40, 142000, tzinfo=<UTC>)}, 'schema': u'hrm'}
 django_session.find (0.00) {'_id': 'ks165lib59k6k1s3luavavzy78mrkyth', 'expire_date': {'$gt': datetime.datetime(2018, 8, 25, 8, 10, 41, 57000, tzinfo=<UTC>)}, 'schema': u'hrm'}
 django_session.find (0.00) {'_id': 'ks165lib59k6k1s3luavavzy78mrkyth', 'expire_date': {'$gt': datetime.datetime(2018, 8, 25, 8, 10, 41, 155000, tzinfo=<UTC>)}, 'schema': u'hrm'}
+Not Found: /{{$root.logo}}
+Not Found: /{{$root.logo}}
+Internal Server Error: /pages/profile/employeeInfo
+Traceback (most recent call last):
+  File "/home/hcsadmin/q03/packages/django/django/core/handlers/base.py", line 112, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/hcsadmin/q03/packages/quicky/view.py", line 148, in exec_request
+    return fn(request, **kwargs)
+  File "/home/hcsadmin/q03/apps/performance/views.py", line 112, in load_page
+    "path":path.lower()
+  File "/home/hcsadmin/q03/packages/quicky/extens.py", line 295, in render
+    raise (ex)
+TemplateLookupException: Cant locate template for uri u'views/profile/employeeinfo.html'
+Internal Server Error: /pages/profile/empWorking
+Traceback (most recent call last):
+  File "/home/hcsadmin/q03/packages/django/django/core/handlers/base.py", line 112, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/hcsadmin/q03/packages/quicky/view.py", line 148, in exec_request
+    return fn(request, **kwargs)
+  File "/home/hcsadmin/q03/apps/performance/views.py", line 112, in load_page
+    "path":path.lower()
+  File "/home/hcsadmin/q03/packages/quicky/extens.py", line 295, in render
+    raise (ex)
+TemplateLookupException: Cant locate template for uri u'views/profile/empworking.html'
+Internal Server Error: /pages/
+Traceback (most recent call last):
+  File "/home/hcsadmin/q03/packages/django/django/core/handlers/base.py", line 112, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/hcsadmin/q03/packages/quicky/view.py", line 148, in exec_request
+    return fn(request, **kwargs)
+  File "/home/hcsadmin/q03/apps/performance/views.py", line 112, in load_page
+    "path":path.lower()
+  File "/home/hcsadmin/q03/packages/quicky/extens.py", line 295, in render
+    raise (ex)
+TemplateLookupException: Cant locate template for uri u'views/.html'
+Not Found: /{{$root.logo}}
+Internal Server Error: /pages/profile/employeeInfo
+Traceback (most recent call last):
+  File "/home/hcsadmin/q03/packages/django/django/core/handlers/base.py", line 112, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/hcsadmin/q03/packages/quicky/view.py", line 148, in exec_request
+    return fn(request, **kwargs)
+  File "/home/hcsadmin/q03/apps/performance/views.py", line 112, in load_page
+    "path":path.lower()
+  File "/home/hcsadmin/q03/packages/quicky/extens.py", line 295, in render
+    raise (ex)
+TemplateLookupException: Cant locate template for uri u'views/profile/employeeinfo.html'
+Internal Server Error: /pages/
+Traceback (most recent call last):
+  File "/home/hcsadmin/q03/packages/django/django/core/handlers/base.py", line 112, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/hcsadmin/q03/packages/quicky/view.py", line 148, in exec_request
+    return fn(request, **kwargs)
+  File "/home/hcsadmin/q03/apps/performance/views.py", line 112, in load_page
+    "path":path.lower()
+  File "/home/hcsadmin/q03/packages/quicky/extens.py", line 295, in render
+    raise (ex)
+TemplateLookupException: Cant locate template for uri u'views/.html'
+Internal Server Error: /pages/profile/employeeInfo
+Traceback (most recent call last):
+  File "/home/hcsadmin/q03/packages/django/django/core/handlers/base.py", line 112, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/hcsadmin/q03/packages/quicky/view.py", line 148, in exec_request
+    return fn(request, **kwargs)
+  File "/home/hcsadmin/q03/apps/performance/views.py", line 112, in load_page
+    "path":path.lower()
+  File "/home/hcsadmin/q03/packages/quicky/extens.py", line 295, in render
+    raise (ex)
+TemplateLookupException: Cant locate template for uri u'views/profile/employeeinfo.html'
+Internal Server Error: /pages/profile/employeeInfo
+Traceback (most recent call last):
+  File "/home/hcsadmin/q03/packages/django/django/core/handlers/base.py", line 112, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/hcsadmin/q03/packages/quicky/view.py", line 148, in exec_request
+    return fn(request, **kwargs)
+  File "/home/hcsadmin/q03/apps/performance/views.py", line 112, in load_page
+    "path":path.lower()
+  File "/home/hcsadmin/q03/packages/quicky/extens.py", line 295, in render
+    raise (ex)
+TemplateLookupException: Cant locate template for uri u'views/profile/employeeinfo.html'
+Internal Server Error: /pages//exceltemplate/form/addTemplate
+Traceback (most recent call last):
+  File "/home/hcsadmin/q03/packages/django/django/core/handlers/base.py", line 112, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/hcsadmin/q03/packages/quicky/view.py", line 148, in exec_request
+    return fn(request, **kwargs)
+  File "/home/hcsadmin/q03/apps/performance/views.py", line 112, in load_page
+    "path":path.lower()
+  File "/home/hcsadmin/q03/packages/quicky/extens.py", line 295, in render
+    raise (ex)
+TemplateLookupException: Cant locate template for uri u'views//exceltemplate/form/addtemplate.html'
+Internal Server Error: /pages//exceltemplate/form/addTemplate
+Traceback (most recent call last):
+  File "/home/hcsadmin/q03/packages/django/django/core/handlers/base.py", line 112, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/hcsadmin/q03/packages/quicky/view.py", line 148, in exec_request
+    return fn(request, **kwargs)
+  File "/home/hcsadmin/q03/apps/performance/views.py", line 112, in load_page
+    "path":path.lower()
+  File "/home/hcsadmin/q03/packages/quicky/extens.py", line 295, in render
+    raise (ex)
+TemplateLookupException: Cant locate template for uri u'views//exceltemplate/form/addtemplate.html'
+Internal Server Error: /pages//exceltemplate/form/addTemplate
+Traceback (most recent call last):
+  File "/home/hcsadmin/q03/packages/django/django/core/handlers/base.py", line 112, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/hcsadmin/q03/packages/quicky/view.py", line 148, in exec_request
+    return fn(request, **kwargs)
+  File "/home/hcsadmin/q03/apps/performance/views.py", line 112, in load_page
+    "path":path.lower()
+  File "/home/hcsadmin/q03/packages/quicky/extens.py", line 295, in render
+    raise (ex)
+TemplateLookupException: Cant locate template for uri u'views//exceltemplate/form/addtemplate.html'
+Internal Server Error: /pages//exceltemplate/form/addTemplate
+Traceback (most recent call last):
+  File "/home/hcsadmin/q03/packages/django/django/core/handlers/base.py", line 112, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/hcsadmin/q03/packages/quicky/view.py", line 148, in exec_request
+    return fn(request, **kwargs)
+  File "/home/hcsadmin/q03/apps/performance/views.py", line 112, in load_page
+    "path":path.lower()
+  File "/home/hcsadmin/q03/packages/quicky/extens.py", line 295, in render
+    raise (ex)
+TemplateLookupException: Cant locate template for uri u'views//exceltemplate/form/addtemplate.html'
+Not Found: /{{$root.logo}}
+Not Found: /lms/{{$root.logo}}
+Internal Server Error: /lms/pages/
+Traceback (most recent call last):
+  File "/home/hcsadmin/q03/packages/django/django/core/handlers/base.py", line 112, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/hcsadmin/q03/packages/quicky/view.py", line 148, in exec_request
+    return fn(request, **kwargs)
+  File "/home/hcsadmin/q03/apps/lms/views.py", line 87, in load_page
+    "path":path.lower()
+  File "/home/hcsadmin/q03/packages/quicky/extens.py", line 295, in render
+    raise (ex)
+TemplateLookupException: Cant locate template for uri u'views/.html'
+Internal Server Error: /lms/pages/
+Traceback (most recent call last):
+  File "/home/hcsadmin/q03/packages/django/django/core/handlers/base.py", line 112, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/hcsadmin/q03/packages/quicky/view.py", line 148, in exec_request
+    return fn(request, **kwargs)
+  File "/home/hcsadmin/q03/apps/lms/views.py", line 87, in load_page
+    "path":path.lower()
+  File "/home/hcsadmin/q03/packages/quicky/extens.py", line 295, in render
+    raise (ex)
+TemplateLookupException: Cant locate template for uri u'views/.html'
+Internal Server Error: /lms/pages/
+Traceback (most recent call last):
+  File "/home/hcsadmin/q03/packages/django/django/core/handlers/base.py", line 112, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/hcsadmin/q03/packages/quicky/view.py", line 148, in exec_request
+    return fn(request, **kwargs)
+  File "/home/hcsadmin/q03/apps/lms/views.py", line 87, in load_page
+    "path":path.lower()
+  File "/home/hcsadmin/q03/packages/quicky/extens.py", line 295, in render
+    raise (ex)
+TemplateLookupException: Cant locate template for uri u'views/.html'
+Internal Server Error: /lms/pages/
+Traceback (most recent call last):
+  File "/home/hcsadmin/q03/packages/django/django/core/handlers/base.py", line 112, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/hcsadmin/q03/packages/quicky/view.py", line 148, in exec_request
+    return fn(request, **kwargs)
+  File "/home/hcsadmin/q03/apps/lms/views.py", line 87, in load_page
+    "path":path.lower()
+  File "/home/hcsadmin/q03/packages/quicky/extens.py", line 295, in render
+    raise (ex)
+TemplateLookupException: Cant locate template for uri u'views/.html'
+Internal Server Error: /pages//rankcategory/form/addPersonal
+Traceback (most recent call last):
+  File "/home/hcsadmin/q03/packages/django/django/core/handlers/base.py", line 112, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/hcsadmin/q03/packages/quicky/view.py", line 148, in exec_request
+    return fn(request, **kwargs)
+  File "/home/hcsadmin/q03/apps/performance/views.py", line 112, in load_page
+    "path":path.lower()
+  File "/home/hcsadmin/q03/packages/quicky/extens.py", line 295, in render
+    raise (ex)
+TemplateLookupException: Cant locate template for uri u'views//rankcategory/form/addpersonal.html'
+Internal Server Error: /pages//rankcategory/form/addPersonal
+Traceback (most recent call last):
+  File "/home/hcsadmin/q03/packages/django/django/core/handlers/base.py", line 112, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/hcsadmin/q03/packages/quicky/view.py", line 148, in exec_request
+    return fn(request, **kwargs)
+  File "/home/hcsadmin/q03/apps/performance/views.py", line 112, in load_page
+    "path":path.lower()
+  File "/home/hcsadmin/q03/packages/quicky/extens.py", line 295, in render
+    raise (ex)
+TemplateLookupException: Cant locate template for uri u'views//rankcategory/form/addpersonal.html'
+Internal Server Error: /pages//rankcategory/form/addPersonal
+Traceback (most recent call last):
+  File "/home/hcsadmin/q03/packages/django/django/core/handlers/base.py", line 112, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/hcsadmin/q03/packages/quicky/view.py", line 148, in exec_request
+    return fn(request, **kwargs)
+  File "/home/hcsadmin/q03/apps/performance/views.py", line 112, in load_page
+    "path":path.lower()
+  File "/home/hcsadmin/q03/packages/quicky/extens.py", line 295, in render
+    raise (ex)
+TemplateLookupException: Cant locate template for uri u'views//rankcategory/form/addpersonal.html'
+Internal Server Error: /pages//rankcategory/form/addPersonal
+Traceback (most recent call last):
+  File "/home/hcsadmin/q03/packages/django/django/core/handlers/base.py", line 112, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/hcsadmin/q03/packages/quicky/view.py", line 148, in exec_request
+    return fn(request, **kwargs)
+  File "/home/hcsadmin/q03/apps/performance/views.py", line 112, in load_page
+    "path":path.lower()
+  File "/home/hcsadmin/q03/packages/quicky/extens.py", line 295, in render
+    raise (ex)
+TemplateLookupException: Cant locate template for uri u'views//rankcategory/form/addpersonal.html'
+Internal Server Error: /pages/profile/employeeInfo
+Traceback (most recent call last):
+  File "/home/hcsadmin/q03/packages/django/django/core/handlers/base.py", line 112, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/hcsadmin/q03/packages/quicky/view.py", line 148, in exec_request
+    return fn(request, **kwargs)
+  File "/home/hcsadmin/q03/apps/performance/views.py", line 112, in load_page
+    "path":path.lower()
+  File "/home/hcsadmin/q03/packages/quicky/extens.py", line 295, in render
+    raise (ex)
+TemplateLookupException: Cant locate template for uri u'views/profile/employeeinfo.html'
+Not Found: /{{$root.logo}}
+Internal Server Error: /pages/profile/employeeInfo
+Traceback (most recent call last):
+  File "/home/hcsadmin/q03/packages/django/django/core/handlers/base.py", line 112, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/hcsadmin/q03/packages/quicky/view.py", line 148, in exec_request
+    return fn(request, **kwargs)
+  File "/home/hcsadmin/q03/apps/performance/views.py", line 112, in load_page
+    "path":path.lower()
+  File "/home/hcsadmin/q03/packages/quicky/extens.py", line 295, in render
+    raise (ex)
+TemplateLookupException: Cant locate template for uri u'views/profile/employeeinfo.html'

@@ -1470,7 +1470,7 @@ class AGGREGATE():
             })
             return self
 
-        pass
+
     def join(self,source,local_field,foreign_field,alias):
         self.lookup(source,local_field,foreign_field,alias)
         self.unwind(alias,False)

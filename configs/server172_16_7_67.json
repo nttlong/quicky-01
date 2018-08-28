@@ -151,7 +151,8 @@
       "path":"apps/lms",
       "login_url":"/../login",
       "schema":"lv",
-      "static_dir":"apps/performance/static"
+      "static_dir":"apps/performance/static",
+      "schema":"lv"
 
     }
   ]
