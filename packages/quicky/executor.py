@@ -2,6 +2,8 @@ import  threading
 import sys
 from . import extens
 import tenancy
+__schema_cache__ = {}
+__apps_cache__ = {}
 class executor(object):
     def __init__(self,fn,path):
 
@@ -17,8 +19,47 @@ class executor(object):
         if self.__app__ != None:
             if hasattr(self.__app__.settings, "DEFAULT_DB_SCHEMA") and not has_set_schema:
                 tenancy.set_schema(self.__app__.settings.DEFAULT_DB_SCHEMA)
+    def load_app(self,request):
+        if __apps_cache__.has_key(request.path):
+            self.__app__ = __apps_cache__[request.path]
+        import applications
+        from django.conf import settings
+        path = request.path
+        path = path[1:path.__len__()]
+        if settings.HOST_DIR!="":
+            path = path[settings.HOST_DIR.__len__():path.__len__()]
+        if path.__len__()>3 and path[path.__len__()-3:path.__len__()] =="api":
+            path = path[0:path.__len__() - 3]
+            items = path.split('/')
+            if items[1] == '':
+                self.__app__ = applications.get_app_by_host_dir(items[1])
+                __apps_cache__.update({request.path:self.__app__})
+
+    def get_schema(self,request):
+        if __schema_cache__.has_key(request.path):
+            return __schema_cache__[request.path]
+        if self.__app__.is_persistent_schema():
+            from django.conf import settings
+            return self.__app__.get_persistent_schema()
+        elif self.__app__.host_dir == "":
+            return settings.MULTI_TENANCY_DEFAULT_SCHEMA
+        elif settings.HOST_DIR != "":
+            path = request.path
+            if path[0] == '/':
+                path =path[1:path.__len__()]
+            path = path[settings.HOST_DIR.__len():path.__len__()]
+            if path[0] == '/':
+                path =path[1:path.__len__()]
+            items =path.split('/')
+            __schema_cache__.update({
+                request.path:items[0]
+            })
+            return __schema_cache__[request.path]
     def exec_request(self, request, **kwargs):
-        tenancy.set_schema(self.__app__.settings.DEFAULT_DB_SCHEMA)
+        if self.__app__ == None:
+            self.load_app(request)
+        schema =self.get_schema(request)
+        tenancy.set_schema(schema)
 
         # from . import language
         setattr(threading.current_thread(), "user", request.user)
@@ -98,7 +139,7 @@ class executor(object):
         if not hasattr(app, "settings") or app.settings==None:
             raise (Exception("'settings.py' was not found in '{0}' at '{1}' or look like you forgot to place 'import settings' in '{1}/__init__.py'".format(app.name, os.getcwd()+os.sep+app.path)))
 
-        login_url = app.get_login_url()
+
 
         if hasattr(app.settings, "is_public"):
             is_public = getattr(app.settings, "is_public")
@@ -118,10 +159,8 @@ class executor(object):
             from django.http.response import HttpResponseRedirect
 
             ret_auth=app.settings.authenticate(request)
-            login_url = app.settings.login_url
-            if login_url[0]!='/':
-                login_url = '/'+login_url
-                app.settings.login_url =login_url
+            login_url = self.__app__.get_login_url()
+
 
             if ret_auth != True:
 
@@ -129,11 +168,8 @@ class executor(object):
                     if login_url==None:
                         raise (Exception("it look like you forgot set 'login_url' in {0}/settings.py".format(app.path)))
                     cmp_url=login_url
-                    if host_dir!=None:
-                        cmp_url = "/" + host_dir + login_url
-                    else:
-                        cmp_url =  login_url
-                    if request.path_info.lower() == cmp_url.lower():
+
+                    if request.path_info.lower() == login_url.lower():
                         return self.__fn__(request, **kwargs)
                     url = request.get_abs_url() + login_url
                     _request_path = request.path
