@@ -4,6 +4,7 @@
     "/packages/mongo",
     "/packages/django"
   ],
+  "HOST_DIR":"lms",
   "AUTHORIZATION_ENGINE":"quicky.authorize",
   "HOST_DIR_":"test",
   "SECRET_KEY":"12jds*3210d)9",
@@ -139,20 +140,19 @@
         }
       }
     },{
-      "host":"",
+      "host":"per",
       "name":"performance",
       "path":"apps/performance",
       "login_url":"login",
       "schema":"lv"
 
     },{
-      "host":"lms",
+      "host":"",
       "name":"lms",
       "path":"apps/lms",
-      "login_url":"/../login",
+      "login_url":"per/login",
       "schema":"lv",
-      "static_dir":"apps/performance/static",
-      "schema":"lv"
+      "static_dir":"apps/performance/static"
 
     }
   ]

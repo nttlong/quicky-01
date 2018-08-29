@@ -43,6 +43,13 @@ def get_language_item(schema,language,app_name,view,key,value):
             raise ex
     return _language_cache[hash_key]
 def apply(request,template_file,app):
+    """
+    Apply request
+    :param request:
+    :param template_file:
+    :param app:
+    :return:
+    """
     from . import api
     from django.core.context_processors import csrf
     def get_language():
@@ -288,7 +295,7 @@ def apply(request,template_file,app):
 
                                       )
             try:
-                ret_res=mylookup.get_template(fileName[0]).render(**render_model)
+                ret_res=mylookup.get_template(fileName).render(**render_model)
 
             except exceptions.MakoException as ex:
                 logger.debug(ex)

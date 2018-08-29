@@ -74,6 +74,7 @@ class app_config():
             setattr(self.settings,"login_url",config.get("login_url"))
         if config.has_key("DATABASE"):
             setattr(self.settings, "DATABASE", config.get("DATABASE"))
+        self.__login_url__ = {}
 
     def get_static_urls(self):
         """
@@ -106,10 +107,18 @@ class app_config():
         """
         return self.client_static
     def is_persistent_schema(self):
+        """
+        Check does application use persitency schema
+        :return:
+        """
         if self._is_persistent_schema == None:
             self._is_persistent_schema=hasattr(self.mdl.settings, "DEFAULT_DB_SCHEMA")
         return self._is_persistent_schema
     def get_persistent_schema(self):
+        """
+        get persitancy schema
+        :return:
+        """
         if self._persistent_schema == None:
             self._persistent_schema=""
             if self.is_persistent_schema():
@@ -121,42 +130,46 @@ class app_config():
 
     def get_server_static(self):
         """
-        get full server static path
+        get full server static path where static file store at server
         :return:
         """
         import os
         root_path = os.path.dirname(os.path.dirname(os.path.dirname(__file__)))
         _path = (self.static).replace("/", os.path.sep)
         return root_path + os.path.sep + _path
-    def get_login_url(self,customer_code):
+    def get_login_url(self,customer_code=None):
         """
-        get login url from settings of app in settings.py
+        get login url from settings of app in settings.py or app config
         :return:
         """
         import threading
         import tenancy
-        if not self.is_persistent_schema():
-            if self.host_dir == "":
-                if tenancy.get_customer_code()!=None:
-                    return "/" + tenancy.get_customer_code() + "/" + self.mdl.settings.login_url
-                else:
-                    return "/" + self.mdl.settings.login_url
+        get_url = lambda x,y: x["-"] if y==None else x[y]
+        get_key = lambda x: x if x !=None else "-"
+        if self.__login_url__.has_key(get_key(customer_code)):
+            return self.__login_url__[get_key(customer_code)]
+        if self.host_dir == "":
+            if customer_code == None:
+                self.__login_url__.update({
+                    "-":self.mdl.settings.login_url
+                })
             else:
-                if self.host_dir == "":
-                    return "/" + self.mdl.settings.login_url
-                else:
-                    return "/" + self.host_dir + "/" + self.mdl.settings.login_url
+                self.__login_url__.update({
+                    customer_code: customer_code+"/"+self.mdl.settings.login_url
+                })
+
         else:
-            from django.conf import settings
-            if settings.HOST_DIR != "":
-                if customer_code!= None:
-                    return settings.HOST_DIR+"/"+self.host_dir+"/"+customer_code+"/"+self.settings.login_url
-                else:
-                    return settings.HOST_DIR + "/" + self.host_dir + "/" + self.settings.login_url
+            if customer_code == None:
+                self.__login_url__.update({
+                    "-":(self.host_dir + "/" + self.mdl.settings.login_url).replace("//","/")
+                })
             else:
-                if customer_code != None:
-                    return  self.host_dir+"/"+customer_code + "/"+self.settings.login_url
-                else:
-                    return self.host_dir + "/" + self.settings.login_url
+                self.__login_url__.update({
+                    customer_code: customer_code+"/"+self.host_dir + "/" + self.mdl.settings.login_url.replace("//","/")
+                })
+
+        return self.__login_url__[get_key(customer_code)]
+
+
 
 
