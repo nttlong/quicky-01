@@ -14,9 +14,9 @@ def export_to(obj,filename):
         coll =obj.coll
     print "Prepare.. export '{0}'".format(coll.get_collection_name())
     items = coll.get_list()
-    txt = unicode(json_parser.to_json(items).decode('unicode-escape'))
+    txt = json_parser.to_json(items)
     try:
-        with io.open(filename, 'w', encoding="utf-8") as  fs:
+        with open(filename, 'w') as  fs:
             fs.write(txt)
             fs.close()
 
@@ -42,6 +42,7 @@ def import_from(obj,filename):
             txt =fs.read()
             data = json_parser.from_json(txt)
             db=coll.get_collection().database
+            db.get_collection(coll_name).drop()
             ret=db.get_collection(coll_name).insert_many(data)
             return ret
     except Exception as ex:

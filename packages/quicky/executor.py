@@ -91,12 +91,14 @@ class executor(object):
                 path = path[1:path.__len__()]
             if hasattr(settings,"HOST_DIR") and settings.HOST_DIR != "":
                 path = path[settings.HOST_DIR.__len__():path.__len__()]
-            path = path[self.__app__.host_dir.__len__():path.__len__()]
+            path = path[0:path.__len__() -self.__app__.host_dir.__len__()]
+            if path[0] == '/':
+                path = path[1:path.__len__()]
             items = path.split('/')
 
             if items.__len__() > 1:
                 __customer__code__.update({
-                    request.path: settings.MULTI_TENANCY_DEFAULT_SCHEMA
+                    request.path: items[0]
                 })
             else:
                 __customer__code__.update({
@@ -118,7 +120,7 @@ class executor(object):
         else:
             from . import get_tenancy_schema
             __schema_cache__.update({
-                request.path:(lambda x,y: y if x==None else x)(settings.MULTI_TENANCY_DEFAULT_SCHEMA,get_tenancy_schema(self.get_customer_code(request)))
+                request.path:get_tenancy_schema(self.get_customer_code(request))
             })
 
         return __schema_cache__[request.path]

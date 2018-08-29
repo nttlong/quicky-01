@@ -1,0 +1,1 @@
+[{"query": "[{ \"$count\": \"number\" }]", "_id": "5b7cda102213491bbcc623bf", "collection": "HCSEM_Employees", "function_id": "HCSEMP0010"}]
