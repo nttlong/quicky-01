@@ -5,6 +5,26 @@
 <%inherit file="../../commons/dialog_save_close.html"/>
 
 <%block name="modal_body">
+<style>
+.outer{
+    height: 100%; 
+    display: table;
+    width:100%
+}
+.inner-title{
+    border:1px solid red;
+    display:table-row; 
+    width:100%
+}
+.inner-content{
+    border:1px solid grey;
+    display:table-row;
+    width:100%;
+    height:100%
+}
+    </style>
+<div class="outer" style="float: left; height: 100%;">
+<div class="inner-title">
             <div class="col-md-{{col_group}} col-sm-{{col_group}}" style="padding-bottom:20px;">
                 <collapse-box class="zb-form-common" title="${get_global_res('Common_Information','Thông tin chung')}">
                     <div class="col-md-{{col}}">
@@ -39,7 +59,7 @@
                             <!--Tổng điểm từ-->
                             <label class="col-sm-5 zb-form-label">${get_res('total_from','Tổng điểm từ')}</label>
                             <div class="col-sm-7">
-                                <input-number ng-model="entity.total_from">
+                                <input-number ng-model="entity.total_from" type="float">
                             </div>
                         </div>
                     </div>
@@ -48,7 +68,7 @@
                             <!--Tổng điểm đến-->
                             <label class="col-sm-5 zb-form-label">${get_res('total_to','Tổng điểm đến')}</label>
                             <div class="col-sm-7">
-                                <input-number ng-model="entity.total_to">
+                                <input-number ng-model="entity.total_to" type="float">
                             </div>
                         </div>
                     </div>
@@ -100,6 +120,8 @@
                     </div>
                 </collapse-box>
             </div>
+</div>
+<div class="inner-content">
             <div class="col-md-12" ng-show="(__mode === 2 || __mode === 3) && entity.is_change_object === true">
                 <collapse-box class="zb-form-common" title="${get_res('is_change_object','Thiết lập riêng')}">
                         <toolbar>
@@ -118,7 +140,7 @@
                                     <i class="bowtie-icon bowtie-navigate-refresh"></i>
                                 </button>
                             </toolbar>
-                        <div class="col-md-12 no-padding" style="height:280px;">
+                        <div class="col-md-12 no-padding" style="height: 0;">
                             <table-data data-source="$$table.tableSource" fields="$$table.tableFields" type="MultiSelect" 
                                         paging="true" page-length="100" server-side="true" 
                                         press-enter="$$table.onSelectTableRow" selected-items="$$table.selectedItems" 
@@ -129,6 +151,8 @@
                         </div>
                 </collapse-box>
             </div>
+</div>
+    </div>
 </%block>
 
 <%block name="modal_script">

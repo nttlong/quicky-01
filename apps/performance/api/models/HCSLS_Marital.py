@@ -1,25 +1,20 @@
 from config import database, helpers, db_context
 import base
-_hasCreated=False
-def HCSLS_Marital():
-    global _hasCreated
-    if not _hasCreated:
-        helpers.extent_model(
+helpers.extent_model(
             "HCSLS_Marital",
             "base",
             [["marital_code"]],
-            marital_code=helpers.create_field("text", True),
-            marital_name=helpers.create_field("text", True),
-            ordinal=helpers.create_field("numeric"),
-            note=helpers.create_field("text"),
-            lock=helpers.create_field("bool"),
-            marital_name2=helpers.create_field("text"),
-            created_on=helpers.create_field("text"),
-            created_by=helpers.create_field("date"),
-            modified_on=helpers.create_field("text"),
-            modified_by=helpers.create_field("date")
+            marital_code=("text", True),
+            marital_name=("text", True),
+            ordinal=("numeric"),
+            note=("text"),
+            lock=("bool"),
+            marital_name2=("text"),
+            created_on=("text"),
+            created_by=("date"),
+            modified_on=("text"),
+            modified_by=("date")
         )
-        _hasCreated=True
+def HCSLS_Marital():
     ret = db_context.collection("HCSLS_Marital")
-
     return ret

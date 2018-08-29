@@ -1,4 +1,9 @@
-﻿<div class="hcs-container">
+﻿<style>
+    .app-content {
+        overflow: unset !important;
+    }
+</style>
+<div class="hcs-container">
     <div class="row hcs-profile-list">
         <div class="hcs-left-side-department-content">
             <div class="hcs-left-side-department-tree-tool-bar">
@@ -28,7 +33,7 @@
                 </div>
                 <div class="clearfix"></div>
             </div>
-            <div class="hcs-left-side-department-tree" style="height: calc(100% - 40px);">
+            <div class="hcs-left-side-department-tree" style="height: calc(100% - 33px);">
                 <tree-data data-source="treeDepartmentsDataSource" display-field="default_name"
                                 parent-field="parent_id" key-field="function_id" 
                                 multi-select="treeMultiSelect" select-mode="treeMode" 
@@ -82,7 +87,7 @@
                 </div>
                 <div class="clearfix"></div>
             </div>
-            <div class="hcs-right-side-department-list" style="height:calc(100% - 40px);">
+            <div class="hcs-right-side-department-list" style="height:calc(100% - 37px);">
                 <table-data data-source="tableSource" fields="tableFields" type="MultiSelect" 
                     paging="true" page-length="100" server-side="true" 
                     press-enter="onSelectTableRow" selected-items="selectedItems" 

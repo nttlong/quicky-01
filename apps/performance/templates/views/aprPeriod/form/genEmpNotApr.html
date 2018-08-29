@@ -5,22 +5,22 @@
 <%inherit file="../../commons/dialog_selected_cancel.html"/>
 
 <%block name="modal_body">
- <div class="col-md-12">
+ <div class="col-md-12 col-sm-12 col-12">
     <collapse-box class="zb-form-common" title="${get_global_res('data_generate_source','Nguồn phát sinh dữ liệu')}">        
-         <div class="col-md-12">
+         <div class="col-md-12 col-sm-12 col-12">
                <div class="form-group zb-form-group">
-                            <input type="radio" name="optradio"/>
-                             <label class="col-sm-4 zb-form-label">${get_res('get_by_result_aprPeriod','Lấy theo kết quả của kỳ đánh giá')}</label>
-                             <div class="col-sm-8">
+                            <input type="radio" name="optradio" checked/>
+                             <label class="col-md-4 col-sm-4 col-4 zb-form-label">${get_res('get_by_result_aprPeriod','Lấy theo kết quả của kỳ đánh giá')}</label>
+                             <div class="col-md-8 col-sm-8 col-8">
                                  <input-select data-list="cbbApprovalPeriod" ng-model="entity.apr_now_result_period" data-value="value" data-caption="caption"/>
                              </div>
                          </div>
               </div>
         <br />
-        <div class="col-md-12" style="margin-top:40px;">
+        <div class="col-md-12 col-sm-12 col-12" style="margin-top:40px;">
                <div class="form-group zb-form-group">
-                            <input type="checkbox" ng-model="entity.chk_genData"/>
-                             <label class="col-sm-4 zb-form-label">${get_res('exchange_list_present','Thay thế danh sách hiện có')}</label>
+                            <input type="checkbox" ng-model="entity.chk_genExchangeData"/>
+                             <label class="col-md-4 col-sm-4 col-4 zb-form-label">${get_res('exchange_list_present','Thay thế danh sách hiện có')}</label>
                          </div>
               </div>
         </collapse-box>
@@ -50,9 +50,10 @@
         }
 		scope.entity = {
 			apr_now_result_period: null,
-			chk_genData: 0
+			chk_genExchangeData: 0
 		};
 		function _loadCombobox(callback) {
+			debugger
                 services.api("${get_api_key('app_main.api.TMPER_AprPeriodEmpOut/get_list_distinct_approval_year_and_period')}")
                     .data({})
                     .done()
@@ -64,7 +65,8 @@
 		scope.selectBtn = selectBtn;
         (function _init_() {
 			_loadCombobox(function (res) {
-				var period_now = Re_Map_Period(scope.$parent.$apr_period);
+				debugger
+				var period_now = scope.$parent.$parent.Re_Map_Period(scope.$parent.$apr_period);
 				var year_now = scope.$parent.$apr_year;
 				var j;
 				for (var i = 0; i < res.length; i++) {
@@ -85,60 +87,52 @@
         scope.$watch('entity.apr_now_result_period', function (val) {
             console.log(val);
 		})
-
-	function Re_Map_Period(periodStr) {
-	        var numPeriod = 0;
-	        for (var i = 0; i < 12; i++) {
-	            if (periodStr === "Tháng " + (i + 1).toString()) {
-	                numPeriod = i + 1
-	                return numPeriod;
-	            }
-	        }
-	        for (var j = 13; j <= 16; j++) {
-	            if (periodStr === "Quý " + (j - 12).toString()) {
-	                numPeriod = j - 12
-	                return numPeriod;
-	            }
-	        }
-	        if (periodStr === "6 tháng đầu năm")
-	            numPeriod = 17;
-	        else if (periodStr === "6 tháng cuối năm")
-	            numPeriod = 18;
-	        else
-	            numPeriod = 19;
-	        return numPeriod;
-			}
-	});
-
-	
-	
-
+		
 	function selectBtn() {
 		debugger
 		var tmp = scope.entity.apr_now_result_period;
-		
 		services.api("${get_api_key('app_main.api.TMPER_AprPeriodEmpOut/get_genPreAperiodData')}")
 			.data({
-				apr_period: tmp.split("__")[1],
-				apr_year: tmp.split("__")[0]
+				"apr_period": tmp.split("__")[1],	
+				"apr_year": tmp.split("__")[0]
+				
 			})
 			.done()
 			.then(function (res) {
 				debugger
-				services.api("${get_api_key('app_main.api.TMPER_AprPeriodEmpOut/insert')}")
-					.data(res)
+				services.api("${get_api_key('app_main.api.TMPER_AprPeriodEmpOut/generate')}")
+					.data({
+						res,
+						"now_apr_period": scope.$parent.$parent.Re_Map_Period(scope.$parent.$parent.currentItem.apr_period),
+						"now_apr_year": scope.$parent.$parent.currentItem.apr_year,
+						"chk_exchangeData": scope.entity.chk_genExchangeData
+					})
 					.done()
 					.then(function (res1) {
 						if (res1.error == null) {
 							$dialog.closeDialog();//Đóng form input
-							$msg.alert("${get_global_res('Handle_Success','Thao tác thành công')}", $type_alert.INFO);//Xuất thông báo thành cônng
+							$msg.alert("${get_global_res('Handle_Gen_Data_Success','Dữ liệu đã được phát sinh.')}", $type_alert.INFO);//Xuất thông báo thành cônng
+							scope.$applyAsync();
+							ReloadData();
 						}
 						else {
 							$msg.message("${get_global_res('Internal_Server_Error','Có lỗi từ phía máy chủ')}", "${get_global_res('Please_Try_Again','Xin thử vui lòng thử lại')}", function () { });
 						}
 					});
 			});
-	}
+		}
+
+		function ReloadData() {
+			debugger
+			scope.$$tableConfig = scope.$parent.$$tableConfig;
+			(scope.$parent._tableData(scope.$$tableConfig.iPage, scope.$$tableConfig.iPageLength, scope.$$tableConfig.orderBy, scope.$$tableConfig.SearchText, scope.$$tableConfig.fnReloadData))();
+		}
+
+	});
+
+	
+	
+
 
 </script>
 

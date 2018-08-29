@@ -1,0 +1,354 @@
+﻿<div>
+  
+ <div>
+        <div class="col-md-2 col-sm-2">
+            </div>
+        <div class="col-md-10 col-sm-10">
+
+            <div class="col-md-{{col}}" style="padding-bottom: 20px;">
+                <div class="form-group zb-form-group">
+                    <!--Mô tả tài liệu-->
+                    <label for="inputEmp_Train_Mode_Name" class="col-sm-3 zb-form-label">${get_res('show_result','Show Result in')}</label>
+                    <div class="col-sm-4">
+                            <div>
+                                <input-select ng-model="entity.show_result" data-list="cbbQuestionPicking" data-value="value" data-caption="caption"></input-select>
+                            </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-{{col}}" style="padding-bottom: 20px;">
+                <div class="form-group zb-form-group">
+                    <!--Mô tả tài liệu-->
+                    <label for="inputEmp_Train_Mode_Name" class="col-sm-3 zb-form-label">${get_res('customize','Customize decimal places')}</label>
+                    <div class="col-sm-4">
+                            <div>
+                                <input-select ng-model="entity.customize" data-list="cbbQuestionPicking" data-value="value" data-caption="caption"></input-select>
+                            </div>
+                    </div>
+                    <div class="col-sm-5">
+                            <a style="font-size:12px">
+                                Add Feedback
+                            </a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-{{col}}" style="padding-bottom: 20px;">
+                <div class="form-group zb-form-group">
+                    <!--Mô tả tài liệu-->
+                    <label for="inputEmp_Train_Mode_Name" class="col-sm-3 zb-form-label">${get_res('minium_score','Minimum Passing Score')}</label>
+                    <div class="col-sm-4">
+                            <div>
+                                <input-select ng-model="entity.minium_score" data-list="cbbQuestionPicking" data-value="value" data-caption="caption"></input-select>
+                            </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-{{col}}" style="padding-bottom: 20px;">
+                <div class="form-group zb-form-group">
+                    <!--Mô tả tài liệu-->
+                    <label for="inputEmp_Train_Mode_Name" class="col-sm-3 zb-form-label">${get_res('return_type','Result Type')}</label>
+                    <div class="col-sm-4">
+                            <div>
+                                <input-select ng-model="entity.return_type" data-list="cbbQuestionPicking" data-value="value" data-caption="caption"></input-select>
+                            </div>
+                    </div>
+                    <div class="col-sm-5" style="border:1px solid grey;padding:0">
+                        <div class="col-md-{{col}}" style="padding:0">
+                             <div class="form-group zb-form-group">
+                                <label for="inputEmp_Train_Mode_Name" class="col-sm-7 zb-form-label">${get_res('Assign this exam to')}</label>
+                                 <div class="col-sm-4" style="margin-top: -9px;">
+                                <input-select ng-model="entity.return_type" data-list="cbbQuestionPicking" data-value="value" data-caption="caption"></input-select>
+                                </div>
+                            </div>
+                          </div>
+                            <div class="col-md-{{col}}" style="padding:0">
+                            <div class="form-group zb-form-group">
+                                <label for="inputEmp_Train_Mode_Name" class="col-sm-7 zb-form-label">${get_res('Minimum required score')}</label>
+                                <div class="col-sm-4" style="margin-top: -9px;">
+                                <input-select ng-model="entity.return_type" data-list="cbbQuestionPicking" data-value="value" data-caption="caption"></input-select>
+                                  </div>
+                                <a style="font-size:12px; padding-top: 10px;">New</a>
+                            </div>
+                          </div>
+                    
+                   </div>
+                </div>
+            </div>
+            <div class="col-md-{{col}}" style="padding-bottom: 20px;">
+                <div class="form-group zb-form-group">
+                    <!--Mô tả tài liệu-->
+                    <label for="inputEmp_Train_Mode_Name" class="col-sm-3 zb-form-label">${get_res('certificate','Certificate')}</label>
+                    <div class="col-sm-4">
+                            <div>
+                                <input-select ng-model="entity.certificate" data-list="cbbQuestionPicking" data-value="value" data-caption="caption"></input-select>
+                            </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-{{col}}" style="padding-bottom: 20px;">
+                <div class="form-group zb-form-group">
+                    <!--Mô tả tài liệu-->
+                    <label for="inputEmp_Train_Mode_Name" class="col-sm-3 zb-form-label">${get_res('display_result','Display Result')}</label>
+                    <div class="col-sm-4">
+                            <div>
+                                <input-select ng-model="entity.display_result" data-list="cbbQuestionPicking" data-value="value" data-caption="caption"></input-select>
+                            </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-{{col}}" style="padding-bottom: 20px;">
+                <div class="form-group zb-form-group">
+                    <!--Mô tả tài liệu-->
+                    <label for="inputEmp_Train_Mode_Name" class="col-sm-3 zb-form-label">${get_res('ques_order','Question Order')}</label>
+                    <div class="col-sm-4">
+                            <div>
+                                <input-select ng-model="entity.ques_order" data-list="cbbQuestionPicking" data-value="value" data-caption="caption"></input-select>
+                            </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-{{col}}" >
+            <div class="form-group zb-form-group">
+                <!--Tên Khóa học-->
+                <label for="inputEmp_Train_Mode_Name" class="col-sm-5 zb-form-label">${get_res('ques_navi','Question Navigation during the exam')}</label>
+                <div class="col-sm-7">
+                    <div class="col-sm-6" style="padding:0">
+                        <div class="radio radio-success">
+					        <input type="radio" name="resumeApply" ng-value="dt_true" id="rad1" 
+                                   ng-model="entity.ques_hint.ishintEnable">
+					        <label for="rad1">
+						        <span>${get_res('Allow going back')}</span>
+					        </label>
+				        </div>
+                        </div>
+                    <div class="col-sm-6" style="padding:0">
+                        <div class="radio radio-success" >
+					        <input type="radio" name="resumeApply" ng-value="dt_false" id="rad2" 
+                                   ng-model="entity.ques_hint.ishintEnable">
+					        <label for="rad2">
+						        <span>${get_res('Don’t allow to go back')}</span> 
+					        </label>
+				        </div>
+                    </div>
+                </div>
+            </div>
+           </div>
+            <div class="col-md-{{col}}" >
+            <div class="form-group zb-form-group">
+                <!--Tên Khóa học-->
+                <label for="inputEmp_Train_Mode_Name" class="col-sm-5 zb-form-label">${get_res('allow_candidates','Allow candidates to preview this exam')}</label>
+                <div class="col-sm-7">
+                    <div class="col-sm-6" style="padding:0">
+                        <div class="radio radio-success">
+					        <input type="radio" name="resumeApply" ng-value="dt_true" id="rad1" 
+                                   ng-model="entity.ques_hint.ishintEnable">
+					        <label for="rad1">
+						        <span>${get_res('ques_enable','Enable')}</span>
+					        </label>
+				        </div>
+                      </div>
+                    <div class="col-sm-6" style="padding:0">
+                        <div class="radio radio-success" >
+					        <input type="radio" name="resumeApply" ng-value="dt_false" id="rad2" 
+                                   ng-model="entity.ques_hint.ishintEnable">
+					        <label for="rad2">
+						        <span>${get_res('ques_disable','Disable')}</span> 
+					        </label>
+				        </div>
+                   </div>
+                </div>
+            </div>
+           </div>
+            <div class="col-md-{{col}}" >
+            <div class="form-group zb-form-group">
+                <!--Tên Khóa học-->
+                <label for="inputEmp_Train_Mode_Name" class="col-sm-5 zb-form-label">${get_res('preview time','Add preview time to answer time')}</label>
+                <div class="col-sm-7">
+                    <div class="col-sm-6" style="padding:0">
+                        <div class="radio radio-success">
+					        <input type="radio" name="resumeApply" ng-value="dt_true" id="rad1" 
+                                   ng-model="entity.ques_hint.ishintEnable">
+					        <label for="rad1">
+						        <span>${get_res('yes','Yes')}</span>
+					        </label>
+				        </div>
+                        </div>
+                    <div class="col-sm-6" style="padding:0">
+                        <div class="radio radio-success" >
+					        <input type="radio" name="resumeApply" ng-value="dt_false" id="rad2" 
+                                   ng-model="entity.ques_hint.ishintEnable">
+					        <label for="rad2">
+						        <span>${get_res('no','No')}</span> 
+					        </label>
+				        </div>
+                    </div>
+                </div>
+            </div>
+           </div>
+            <div class="col-md-{{col}}" >
+            <div class="form-group zb-form-group">
+                <!--Tên Khóa học-->
+                <label for="inputEmp_Train_Mode_Name" class="col-sm-5 zb-form-label">${get_res('text_high','Text Highlighter')}</label>
+                <div class="col-sm-7">
+                    <div class="col-sm-6" style="padding:0">
+                        <div class="radio radio-success">
+					        <input type="radio" name="resumeApply" ng-value="dt_true" id="rad1" 
+                                   ng-model="entity.ques_hint.ishintEnable">
+					        <label for="rad1">
+						        <span>${get_res('ques_enable','Enable')}</span>
+					        </label>
+				        </div>
+                        </div>
+                    <div class="col-sm-6" style="padding:0">
+                        <div class="radio radio-success" >
+					        <input type="radio" name="resumeApply" ng-value="dt_false" id="rad2" 
+                                   ng-model="entity.ques_hint.ishintEnable">
+					        <label for="rad2">
+						        <span>${get_res('ques_disable','Disable')}</span> 
+					        </label>
+				        </div>
+                    </div>
+                </div>
+            </div>
+           </div>
+            <div class="col-md-{{col}}" >
+            <div class="form-group zb-form-group">
+                <!--Tên Khóa học-->
+                <label for="inputEmp_Train_Mode_Name" class="col-sm-5 zb-form-label">${get_res('ques_dis','Question Display')}</label>
+                <div class="col-sm-7">
+                    <div class="col-sm-6" style="padding:0">
+                        <div class="radio radio-success">
+					        <input type="radio" name="resumeApply" ng-value="dt_true" id="rad1" 
+                                   ng-model="entity.ques_hint.ishintEnable">
+					        <label for="rad1">
+						        <span>${get_res('One question per paper')}</span>
+					        </label>
+				        </div>
+                    </div>
+                    <div class="col-sm-6" style="padding:0">
+                        <div class="radio radio-success" >
+					        <input type="radio" name="resumeApply" ng-value="dt_false" id="rad2" 
+                                   ng-model="entity.ques_hint.ishintEnable">
+					        <label for="rad2">
+						        <span>${get_res('All questions on same page')}</span> 
+					        </label>
+				        </div>
+                    </div>
+                </div>
+            </div>
+           </div>
+            <div class="col-md-{{col}}" >
+            <div class="form-group zb-form-group">
+                <!--Tên Khóa học-->
+                <label for="inputEmp_Train_Mode_Name" class="col-sm-5 zb-form-label">${get_res('result_SMS','Send result to test taker via SMS')}</label>
+                <div class="col-sm-7">
+                    <div class="col-sm-6" style="padding:0">
+                        <div class="radio radio-success">
+					        <input type="radio" name="resumeApply" ng-value="dt_true" id="rad1" 
+                                   ng-model="entity.ques_hint.ishintEnable">
+					        <label for="rad1">
+						        <span>${get_res('yes','Yes')}</span>
+					        </label>
+				        </div>
+                        </div>
+                    <div class="col-sm-6" style="padding:0">
+                        <div class="radio radio-success" >
+					        <input type="radio" name="resumeApply" ng-value="dt_false" id="rad2" 
+                                   ng-model="entity.ques_hint.ishintEnable">
+					        <label for="rad2">
+						        <span>${get_res('no','No')}</span> 
+					        </label>
+				        </div>
+                    </div>
+                </div>
+            </div>
+           </div>
+            <div class="col-md-{{col}}" >
+            <div class="form-group zb-form-group">
+                <!--Tên Khóa học-->
+                <label for="inputEmp_Train_Mode_Name" class="col-sm-5 zb-form-label">${get_res('result_email','Send result to test taker via email')}</label>
+                <div class="col-sm-7">
+                    
+                    <div class="col-sm-6" style="padding:0">
+                        <div class="radio radio-success">
+					        <input type="radio" name="resumeApply" ng-value="dt_true" id="rad1" 
+                                   ng-model="entity.ques_hint.ishintEnable">
+					        <label for="rad1">
+						        <span>${get_res('yes','Yes')}</span>
+					        </label>
+				        </div>
+                        </div>
+                    <div class="col-sm-6" style="padding:0">
+                        <div class="radio radio-success" >
+					        <input type="radio" name="resumeApply" ng-value="dt_false" id="rad2" 
+                                   ng-model="entity.ques_hint.ishintEnable">
+					        <label for="rad2">
+						        <span>${get_res('no','No')}</span> 
+					        </label>
+				        </div>
+                    </div>
+                </div>
+            </div>
+           </div>
+            <div class="col-md-{{col}}" >
+            <div class="form-group zb-form-group">
+                <!--Tên Khóa học-->
+                <label for="inputEmp_Train_Mode_Name" class="col-sm-5 zb-form-label">${get_res('pause_resume','Allow Pause & Resume')}</label>
+                <div class="col-sm-7">                    
+                    <div class="col-sm-6" style="padding:0">
+                        <div class="radio radio-success">
+					        <input type="radio" name="resumeApply" ng-value="dt_true" id="rad1" 
+                                   ng-model="entity.ques_hint.ishintEnable">
+					        <label for="rad1">
+						        <span>${get_res('ques_enable','Enable')}</span>
+					        </label>
+				        </div>
+                        </div>
+                    <div class="col-sm-6" style="padding:0">
+                        <div class="radio radio-success" >
+					        <input type="radio" name="resumeApply" ng-value="dt_false" id="rad2" 
+                                   ng-model="entity.ques_hint.ishintEnable">
+					        <label for="rad2">
+						        <span>${get_res('ques_disable','Disable')}</span> 
+					        </label>
+				        </div>
+                    </div>
+                </div>
+            </div>
+           </div>
+            <div class="col-md-{{col}}" >
+            <div class="form-group zb-form-group">
+                <!--Tên Khóa học-->
+                <label for="inputEmp_Train_Mode_Name" class="col-sm-5 zb-form-label">${get_res('check_plagi','Check Plagiarism')}</label>
+                <div class="col-sm-7">
+                    <div class="col-sm-6" style="padding:0">
+                        <div class="radio radio-success">
+					        <input type="radio" name="resumeApply" ng-value="dt_true" id="rad1" 
+                                   ng-model="entity.ques_hint.ishintEnable">
+					        <label for="rad1">
+						        <span>${get_res('yes','Yes')}</span>
+					        </label>
+				        </div>
+                        </div>
+                    <div class="col-sm-6" style="padding:0">
+                        <div class="radio radio-success" >
+					        <input type="radio" name="resumeApply" ng-value="dt_false" id="rad2" 
+                                   ng-model="entity.ques_hint.ishintEnable">
+					        <label for="rad2">
+						        <span>${get_res('no','No')}</span> 
+					        </label>
+				        </div>
+                    </div>
+                </div>
+            </div>
+           </div>
+        </div>
+ </div>
+                                  
+   
+</div>
+<script>
+    (function (scope) {
+        
+    });
+</script>

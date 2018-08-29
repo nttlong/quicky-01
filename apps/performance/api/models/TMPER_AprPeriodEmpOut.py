@@ -1,26 +1,21 @@
 from config import database, helpers, db_context
 import base
-_hasCreated=False
-def TMPER_AprPeriodEmpOut():
-    global _hasCreated
-    if not _hasCreated:
-        helpers.extent_model(
+helpers.extent_model(
             "TMPER_AprPeriodEmpOut",
             "base",
-            [["apr_period"]],
-            apr_period=helpers.create_field("numeric", True),
-            apr_year=helpers.create_field("numeric", True),
-            employee_code=helpers.create_field("text"),
-            department_code=helpers.create_field("text"),
-            job_w_code=helpers.create_field("text"),
-            reason=helpers.create_field("text"),
-            note=helpers.create_field("text"),
-            created_on=helpers.create_field("date"),
-            created_by=helpers.create_field("text"),
-            modified_on=helpers.create_field("date"),
-            modified_by=helpers.create_field("text")
+            [['apr_period', 'apr_year', 'employee_code']],
+            apr_period=("numeric", True),
+            apr_year=("numeric", True),
+            employee_code=("text"),
+            department_code=("text"),
+            job_w_code=("text"),
+            reason=("text"),
+            note=("text"),
+            created_on=("date"),
+            created_by=("text"),
+            modified_on=("date"),
+            modified_by=("text")
         )
-        _hasCreated=True
+def TMPER_AprPeriodEmpOut():
     ret = db_context.collection("TMPER_AprPeriodEmpOut")
-
     return ret

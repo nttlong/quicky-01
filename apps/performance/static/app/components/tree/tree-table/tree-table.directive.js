@@ -42,7 +42,8 @@
         });
 
         var scroll_table_div_id = "scrolling_table";
-        $(elem).scroll(function() {
+        var scroll_div = $(elem).closest(".zb-tab-container") ? $(elem).closest(".zb-tab-container") : $(elem);
+        scroll_div.scroll(function () {
             var me = this;
             var translate_y = "translate(0," + me.scrollTop + "px)";
             var translate_x = "translate(" + me.scrollLeft + "px,0px)";
@@ -53,6 +54,13 @@
                     "webkit-transform": translate_x,
                     "transform": translate_x,
                 });
+
+                //$($(v).closest('table')).find('td:nth-child(' + (i + 1) + ')').each(function (_i, _v) {
+                //    $(_v).css({
+                //        "webkit-transform": translate_x,
+                //        "transform": translate_x,
+                //    });
+                //});
             });
 
             $.each($(elem).find("." + scroll_table_div_id + ".freeze_vertical"), function(i, v) {
@@ -60,12 +68,31 @@
                     "webkit-transform": translate_y,
                     "transform": translate_y,
                 });
+
+                //$($(v).closest('table')).find('td:nth-child(' + (i + 1) + ')').each(function (_i, _v) {
+                //    $(_v).css({
+                //        "webkit-transform": translate_y,
+                //        "transform": translate_y,
+                //    });
+                //});
             });
 
-            $.each($(elem).find("." + scroll_table_div_id + ".freeze"), function(i, v) {
+            $.each($(elem).find("." + scroll_table_div_id + ".freeze"), function (i, v) {
                 $(v).css({
                     "webkit-transform": translate_xy,
                     "transform": translate_xy,
+                    "z-index": 10,
+                    "position": "relative",
+                });
+
+                $($(v).closest('table')).find('td:nth-child(' + (i + 1) + ')').each(function (_i, _v) {
+                    $(_v).addClass('hcs-background-row-table')
+                    $(_v).css({
+                        "webkit-transform": translate_xy,
+                        "transform": translate_xy,
+                        "z-index": 10,
+                        "position": "relative",
+                    });
                 });
             });
         });
@@ -83,7 +110,7 @@
 
     function compileTree($scope, elem, attr, $parse, $getDataTree) {
         var _tree = null;
-
+        var idx_row = 0;
         function _initLayout() {
             if (!$scope.hasOwnProperty("checkAll")) {
                 $scope.checkAll = false;
@@ -173,6 +200,12 @@
                     renderColumns: function(event, data) {
                         var __createFields = function(fromIdx, dataNode, $tdList) {
                             //fromIdx: 2-table with checkbox, 1-table without checkbox
+                            if (idx_row % 2 == 0) {
+                                $($($tdList[0]).closest('tr')).addClass("odd");
+                            } else {
+                                $($($tdList[0]).closest('tr')).addClass("even");
+                            }
+                            idx_row++;
                             $.each($scope.fields, function(i, v) {
                                 let _fnFormatRender = null;
                                 if (v.format) {
@@ -254,13 +287,14 @@
                                     } else if ($s[0].toLowerCase() === 'checkbox') {
                                         //Add function render to columns
                                         _fnFormatRender = function(data) {
-                                            return (data) ? "<span class='zb-checkbox-symbol'>&#9745;</span>" : "<span class='zb-checkbox-symbol'>&#9744;</span>";
+                                            return (data) ? "<span class='odd zb-checkbox-symbol'>&#9745;</span>" : "<span class='zb-checkbox-symbol'>&#9744;</span>";
                                         }
                                     }
 
                                 }
                                 var __data = (_fnFormatRender) ? _fnFormatRender(node.data[v.data]) : node.data[v.data];
                                 $tdList.eq(fromIdx + i).html(__data).addClass((v.className) ? v.className : '');
+                                
                             });
                         }
 
@@ -301,18 +335,38 @@
                     //      elem.find("input#txtSearch").focus();
                     //  }
                 });
-                elem.find("input.zb-tree-table-checkall").unbind("change");
-                elem.find("input.zb-tree-table-checkall").bind("change", function() {
-                    if ($(this).prop("checked") == true) {
+                //// 
+
+                //elem.find("input.zb-tree-table-checkall").unbind("change");
+                //elem.find("input.zb-tree-table-checkall").bind("change", function() {
+                //    if ($(this).prop("checked") == true) {
+                //        elem.find("#treetable").fancytree("getTree").visit(function(node) {
+                //            node.setSelected(true);
+                //        });
+                //    } else {
+                //        elem.find("#treetable").fancytree("getTree").visit(function(node) {
+                //            node.setSelected(false);
+                //        });
+                //    }
+                //});
+
+                //// 
+                elem.find("span.zb-tree-table-checkall").unbind("click");
+                elem.find("span.zb-tree-table-checkall").bind("click", function () {
+                    var me = $(this);
+                    var th = $(me.closest('th'));
+                    if (!th.hasClass('fancytree-selected')) {
+                        th.addClass('fancytree-selected');
                         elem.find("#treetable").fancytree("getTree").visit(function(node) {
                             node.setSelected(true);
                         });
                     } else {
+                        th.removeClass('fancytree-selected');
                         elem.find("#treetable").fancytree("getTree").visit(function(node) {
                             node.setSelected(false);
                         });
                     }
-                });
+                })
 
                 setTimeout(function() {
                     fixedTable(elem);

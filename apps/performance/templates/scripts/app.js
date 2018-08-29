@@ -4,13 +4,26 @@ window.get_static = "${get_static('/')}"
 angular
     .module("admin", ["c-ui", 'ZebraApp.components', 'ZebraApp.widgets', 'hcs-template'])
     .controller("admin", controller)
+    .filter('$filterFunction', function () {
+        return function (input, txtSearch) {
+            var output = [];
+            _.each(input, function (val) {
+                _.each(val.child_items, function (child) {
+                    if (child.default_name.toLowerCase().indexOf(txtSearch.toLowerCase()) != -1)
+                        if (!_.findWhere(output, val))
+                            output.push(val);
+                })
+            })
+            return output;
+        };
+    });
 
 controller.$inject = ["$dialog", "$scope", "$filter"];
 dialog_root_url('${get_app_url("pages/")}')
 <%
     import json
 %>
-function controller($dialog, $scope, $filter, systemService) {
+function controller($dialog, $scope, $filter) {
     $scope.isHomePage = true;
     $scope.$root.$$absUrl = window.location.href;
     $scope.$root.url_static = "${get_static('/')}";
@@ -35,7 +48,20 @@ function controller($dialog, $scope, $filter, systemService) {
     $scope.services = services = ws($scope);
     $scope.$root.$getComboboxData = extension().getComboboxData;
     $scope.$root.$getInitComboboxData = extension().getInitComboboxData;
-    $scope.$root.system = systemService;
+    $scope.$root.$groupingNumber = function (num){
+        var info = $scope.$root.systemConfig;
+        var NumberGroupSeparator = info.dec_place_separator === "," ? "." : ",";
+        var NumberDecimalSeparator = info.dec_place_separator === "," ? "," : ".";
+        var str = num.toString().split('.');
+        if(str[0].length >= 5) {
+            str[0] = str[0].replace(/(\d)(?=(\d{3})+$)/g, '$1' + NumberGroupSeparator);
+        }
+        if(str[1] && str[1].length >= 5) {
+            str[1] = str[1].replace(/(\d{3})/g, '$1');
+        }
+        return str.join(NumberDecimalSeparator);
+    };
+
     window.DateFormat = {
         "format": $filter('date')
     };
@@ -72,6 +98,11 @@ function controller($dialog, $scope, $filter, systemService) {
     }
 
     $scope.slideToggle = function (event) {
+        _.forEach($(".hcs-menu-list-group > .hcs-message-group").find(".hcs-menu-group-content"), function (i, v) {
+            if ($(i).css("display") !== 'none') {
+                $(i).slideToggle(300);
+            }
+        })
         $(event.target).closest('.hcs-message-group').find('.hcs-menu-group-content').slideToggle(300)
     }
     ////Đồng hồ
@@ -92,6 +123,17 @@ function controller($dialog, $scope, $filter, systemService) {
     $(window).on('click', function (e) {
         if (!e.target.closest('#dropdownFunction'))
             $('#dropdownFunction').collapse('hide');
+    });
+
+    document.addEventListener("keydown", function (evt) {
+        if (evt.ctrlKey && evt.shiftKey && evt.code === "KeyF") {
+            $scope.searchFunctionTitle = "${get_global_res('function_list','Danh sách tính năng')}"
+            dialog($scope).url("commons/SearchFunction/SearchFunction").done(function () {
+                setTimeout(function () {
+                    $('#hcs-search-function').find('input').focus();
+                }, 1000)
+            });
+        }
     });
 
     /**

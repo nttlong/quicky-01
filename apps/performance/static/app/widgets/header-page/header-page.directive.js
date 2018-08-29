@@ -38,8 +38,8 @@
                     <div class="zb-top">
                         <div class="zb-left-content">
                             <button ng-click="toggleCollapseMenu()" class="zb-btn zb-btn-blue zb-btn-collapse"
-                                style="opacity: 0">
-                                <i class="bowtie-icon bowtie-menu"></i>
+                                style="background: transparent; color: #8c8c8c; border: 0;">
+                                <i class="bowtie-icon bowtie-view-grid"></i>
                             </button>
                             <div ng-transclude="siteMap" class="zb-sitemap"></div>
                         </div>
@@ -51,8 +51,6 @@
             </div>
             `,
             link: function ($scope, elem, attr, ctrls, $transclude) {
-                debugger
-                console.log($scope)
                 var left = $(elem).find(".zb-left");
                 var right = $(elem).find(".zb-right");
                 var rightContent = $(elem).find(".zb-right .zb-content");

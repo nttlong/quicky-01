@@ -3,6 +3,7 @@ from bson import ObjectId
 import models
 from Query import KPI
 import logging
+import datetime
 import threading
 import common
 logger = logging.getLogger(__name__)
@@ -80,7 +81,7 @@ def get_list_with_searchtext(args):
         'benchmark': { '$ifNull': [ '$benchmark', '' ] }
         }
     }, 
-    {'$match': {'lock': common.aggregate_filter_lock(0), 'level_code':{'$eq':args['data']['kpi_group_code']}}}, 
+    {'$match': {'lock': common.aggregate_filter_lock(args['data']['lock']), 'level_code':{'$eq':args['data']['kpi_group_code']}}}, 
     {'$sort': common.aggregate_sort(sort)},
     {"$facet": {
            "metadata": [{ "$count": "total" }, { "$addFields": { "page_index": pageIndex, "page_size": pageSize } }],
@@ -103,17 +104,17 @@ def get_list_with_searchtext(args):
         'items': []
         })(list(ret))
 
-    ret = common.filter_lock(ret, args)
-
 def get_by_kpi_code(args):
     try:
         ret = models.TMLS_KPI().aggregate()
+        ret.lookup(models.HCSLS_VW_JobWorkingKPI(), "kpi_code", "kpi_code", "j_kpi")
         ret.left_join(models.auth_user_info(), "created_by", "username", "uc")
         ret.left_join(models.auth_user_info(), "modified_by", "username", "um")
         ret.project(
             kpi_code = "kpi_code",
             kpi_name = "kpi_name",
             kpi_name2 = "kpi_name2",
+            job_working = "j_kpi.job_w_code",
             kpi_group_code = "kpi_group_code",
             unit_code = "unit_code",
             cycle_type = "cycle_type",
@@ -137,6 +138,28 @@ def get_by_kpi_code(args):
 
         return ret.get_item()
 
+    except Exception as ex:
+        raise(ex)
+
+def remove_job_working_kpi_by_kpi_code(args):
+    try:
+        ret = common.get_collection('HCSLS_JobWorking').update_many({
+            "kpi":{
+                "$elemMatch":{
+                    "kpi_code":args['data']['kpi_code']
+                    }
+                }
+            },
+            {
+                '$pull':{"kpi" :{ "kpi_code": args['data']['kpi_code']}}
+            }
+        )
+        #if ret.raw_result['updatedExisting'] == True:
+        ret.raw_result.update(error=None)
+        return ret.raw_result
+        #else:
+        #    ret.raw_result.update(error="update error")
+        #    return ret.raw_result
     except Exception as ex:
         raise(ex)
 
@@ -204,6 +227,8 @@ def insert(args):
         if args['data'] != None:
             data =  set_dict_insert_data(args)
             ret  =  models.TMLS_KPI().insert(data)
+            if args['data'].has_key('job_working') and len(args['data']['job_working']) > 0:
+                insert_job_working_kpi(args['data']['job_working'], args['data'])
             lock.release()
             return ret
 
@@ -225,7 +250,10 @@ def update(args):
                 data, 
                 "kpi_code == {0}", 
                 args['data']['kpi_code'])
-            if ret['data'].raw_result['updatedExisting'] == True:
+            if ret.has_key('error') and ret['error'] == None and ret['data'].raw_result['updatedExisting'] == True:
+                if args['data'].has_key('job_working') and len(args['data']['job_working']) > 0:
+                    insert_job_working_kpi(args['data']['job_working'], args['data'])
+            if ret.has_key('error') and ret['error'] == None and ret['data'].raw_result['updatedExisting'] == True:
                 ret.update(
                     item = KPI.display_list_kpi(args['data']['kpi_group_code']).match("kpi_code == {0}", args['data']['kpi_code']).get_item()
                     )
@@ -257,28 +285,101 @@ def delete(args):
         lock.release()
         raise(ex)
 
+def insert_job_working_kpi(job_w_code, kpi):
+    try:
+        if(len(job_w_code)) > 0:
+            exist = models.HCSLS_VW_JobWorkingKPI().aggregate().project(
+                rec_id = 1,
+                kpi_code = 1,
+                job_w_code = 1,
+                job_w_name = 1,
+                kpi_name = 1,
+                unit = 1,
+                description = 1,
+                cycle = 1,
+                weight = 1,
+                standard_mark = 1,
+                ordinal = 1,
+                note = 1,
+                created_on = 1,
+                created_by = 1,
+                modified_on = 1,
+                modified_by = 1
+                ).match("kpi_code == @kpi_code", kpi_code = kpi['kpi_code']).get_list()
+            list_insert = []
+            for x in job_w_code:
+                if x not in map(lambda d: d['job_w_code'], exist):
+                    list_insert.append({
+                        "rec_id":common.generate_guid(),
+                        "job_w_code": x,
+                        "kpi_code":kpi.get('kpi_code', None),
+                        "kpi_name":kpi.get('kpi_name', None),
+                        "unit":kpi.get('unit_code', None),
+                        "description":kpi.get('description', None),
+                        "cycle":kpi.get('cycle', None),
+                        "weight":kpi.get('weight', None),
+                        "standard_mark":kpi.get('standard_mark', None),
+                        "ordinal":kpi.get('ordinal', None),
+                        "note":kpi.get('note', None),
+                        "created_on":datetime.datetime.now(),
+                        "created_by":common.get_user_id()
+                        })
+                else:
+                    find = filter(lambda y: y['job_w_code'] == x, exist)[0]
+                    list_insert.append(find)
+
+            ret = {}
+            for x in exist:
+                ret = common.get_collection('HCSLS_JobWorking').update(
+                        {
+                            "job_w_code": x['job_w_code']
+                        },
+                        {
+                            '$pull':{"kpi" :{ "rec_id": x['rec_id']}}
+                        }, 
+                        True
+                        )
+
+            if len(list_insert) > 0:
+                for x in list_insert:
+                    code = x['job_w_code']
+                    del x['job_w_code']
+                    ret = common.get_collection('HCSLS_JobWorking').update(
+                        { "job_w_code": code },
+                        {
+                        '$push': {
+                            "kpi": x
+                            }
+                        }
+                        )
+
+            return ret
+
+    except Exception as ex:
+        raise(ex)
+
 def set_dict_insert_data(args):
     ret_dict = dict()
 
     ret_dict.update(
-        kpi_code         = (lambda x: x['kpi_code']        if x.has_key('kpi_code')       else None)(args['data']),
-        kpi_name         = (lambda x: x['kpi_name']        if x.has_key('kpi_name')       else None)(args['data']),
-        kpi_name2        = (lambda x: x['kpi_name2']       if x.has_key('kpi_name2')      else None)(args['data']),
-        kpi_group_code   = (lambda x: x['kpi_group_code']  if x.has_key('kpi_group_code') else None)(args['data']),
-        unit_code              = (lambda x: x['unit_code']             if x.has_key('unit_code')            else None)(args['data']),
-        cycle_type        = (lambda x: x['cycle_type']       if x.has_key('cycle_type')      else None)(args['data']),
-        kpi_desc         = (lambda x: x['kpi_desc']        if x.has_key('kpi_desc')       else None)(args['data']),
-        kpi_ref                = (lambda x: x['kpi_ref']               if x.has_key('kpi_ref')              else None)(args['data']),
-        weight             = (lambda x: x['weight']            if x.has_key('weight')           else None)(args['data']),
-        benchmark                = (lambda x: x['benchmark']               if x.has_key('benchmark')              else None)(args['data']),
-        kpi_formula              = (lambda x: x['kpi_formula']             if x.has_key('kpi_formula')            else None)(args['data']),
-        value_cal_type        = (lambda x: x['value_cal_type']       if x.has_key('value_cal_type')      else None)(args['data']),
-        input_type         = (lambda x: x['input_type']        if x.has_key('input_type')       else None)(args['data']),
-        is_apply_all                = (lambda x: x['is_apply_all']               if x.has_key('is_apply_all')              else None)(args['data']),
-        kpi_years             = (lambda x: x['kpi_years']            if x.has_key('kpi_years')           else None)(args['data']),
-        is_kpi_not_weight                = (lambda x: x['is_kpi_not_weight']               if x.has_key('is_kpi_not_weight')              else None)(args['data']),
-        note             = (lambda x: x['note']            if x.has_key('note')           else None)(args['data']),
-        lock                = (lambda x: x['lock']               if x.has_key('lock')              else None)(args['data'])
+        kpi_code          = (lambda x: x['kpi_code']           if x.has_key('kpi_code')          else None)(args['data']),
+        kpi_name          = (lambda x: x['kpi_name']           if x.has_key('kpi_name')          else None)(args['data']),
+        kpi_name2         = (lambda x: x['kpi_name2']          if x.has_key('kpi_name2')         else None)(args['data']),
+        kpi_group_code    = (lambda x: x['kpi_group_code']     if x.has_key('kpi_group_code')    else None)(args['data']),
+        unit_code         = (lambda x: x['unit_code']          if x.has_key('unit_code')         else None)(args['data']),
+        cycle_type        = (lambda x: x['cycle_type']         if x.has_key('cycle_type')        else None)(args['data']),
+        kpi_desc          = (lambda x: x['kpi_desc']           if x.has_key('kpi_desc')          else None)(args['data']),
+        kpi_ref           = (lambda x: x['kpi_ref']            if x.has_key('kpi_ref')           else None)(args['data']),
+        weight            = (lambda x: x['weight']             if x.has_key('weight')            else None)(args['data']),
+        benchmark         = (lambda x: x['benchmark']          if x.has_key('benchmark')         else None)(args['data']),
+        kpi_formula       = (lambda x: x['kpi_formula']        if x.has_key('kpi_formula')       else None)(args['data']),
+        value_cal_type    = (lambda x: x['value_cal_type']     if x.has_key('value_cal_type')    else None)(args['data']),
+        input_type        = (lambda x: x['input_type']         if x.has_key('input_type')        else None)(args['data']),
+        is_apply_all      = (lambda x: x['is_apply_all']       if x.has_key('is_apply_all')      else None)(args['data']),
+        kpi_years         = (lambda x: x['kpi_years']          if x.has_key('kpi_years')         else None)(args['data']),
+        is_kpi_not_weight = (lambda x: x['is_kpi_not_weight']  if x.has_key('is_kpi_not_weight') else None)(args['data']),
+        note              = (lambda x: x['note']               if x.has_key('note')              else None)(args['data']),
+        lock              = (lambda x: x['lock']               if x.has_key('lock')              else None)(args['data'])
     )
 
     return ret_dict

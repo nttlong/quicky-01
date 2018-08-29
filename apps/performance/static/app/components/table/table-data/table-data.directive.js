@@ -332,14 +332,32 @@
                                     var _tableWrapper = $(elem).closest("div.dataTables_wrapper");
                                     var _tableScrollBody = $(elem).closest("div.dataTables_scrollBody");
 
-                                    //32: height of paginator and others
-                                    var _heightTableWrapperParent = _tableWrapper.parent().height();
-                                    var _heightOuterTable = Math.round(_tableWrapper.height() - _tableScrollBody.height());
+                                    var _heightTableWrapperParent = 0;
+                                    var _heightOuterTable = 0;
 
+                                    if (_tableWrapper.closest('.modal-body').length > 0) {
+                                        if (_tableWrapper.closest('.inner-content').length > 0) {
+                                            _heightTableWrapperParent = _tableWrapper.closest('.inner-content').height() - 48;
+                                            _heightOuterTable = Math.round(_tableWrapper.height() - _tableScrollBody.height());
+
+                                            $(elem).closest(".dataTables_scroll").css("width", _tableWrapper.closest('.modal-body').width() - 30);
+                                        } else {
+                                            _heightTableWrapperParent = _tableWrapper.parent().height();
+                                            _heightOuterTable = Math.round(_tableWrapper.height() - _tableScrollBody.height());
+                                        }
+                                    } else {
+                                        //32: height of paginator and others
+                                        _heightTableWrapperParent = _tableWrapper.parent().height();
+                                        _heightOuterTable = Math.round(_tableWrapper.height() - _tableScrollBody.height());
+                                    }
                                     let _tableScrollBodyWidth = $(elem).width() + 5;
                                     if (_tableScrollBodyWidth > _tableWrapper.parent().width()) {
                                         _tableScrollBodyWidth = "100%";
                                     }
+                                    //console.log("========");
+                                    //console.log(_heightTableWrapperParent, _heightOuterTable, _tableScrollBodyWidth);
+                                    //console.log(_tableWrapper, _tableWrapper.parent())
+                                    //console.log("========");
 
                                     _tableScrollBody.css({
                                         "height": (Math.round(_heightTableWrapperParent - _heightOuterTable)) + 3 + "px",

@@ -18,7 +18,8 @@
             template: template(),
             scope: {
                 ngModel: "=",
-                multi: "="
+                multi: "=",
+                language: "@"
             }
         };
         return directive;
@@ -52,6 +53,7 @@
             } else {
                 scope.ngModel = val.date.getFullYear();
             }
+            scope.$applyAsync();
         }
 
         function compile(scope, yearPicker, callback) {
@@ -61,7 +63,8 @@
                 startView: 2,
                 minViewMode: 2,
                 multidate: scope.multi,
-                clearBtn: true
+                clearBtn: true,
+                language: scope.language ? scope.language : "en"
             })
             if (scope.multi) {
                 if (scope.ngModel.length > 0) {
@@ -79,6 +82,14 @@
             yearPicker.datepicker().on('changeDate', function (val) {
                 callback(scope, val);
             });
+            scope.$watch('ngModel', function (oldVal, newVal) {
+                if (newVal && (oldVal != newVal)) {
+                    var data = _.map(scope.ngModel, function (val) {
+                        return new Date(val, 0, 1);
+                    });
+                    yearPicker.datepicker('setDates', data);
+                }
+            }, true);
         }
 
         function template() {

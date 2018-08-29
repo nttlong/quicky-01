@@ -17,7 +17,6 @@ def display_list_kpi(group_code):
         kpi_desc="kpi_desc",
         kpi_ref="kpi_ref",
         weight="weight",
-        ordinal="ordinal",
         benchmark="benchmark",
         kpi_formula="kpi_formula",
         value_cal_type="value_cal_type",
@@ -33,7 +32,7 @@ def display_list_kpi(group_code):
         modified_by="switch(case(modified_by!='',um.login_account),'')",
         )
     ret.sort(dict(
-        ordinal = 1
+        kpi_code = 1
         ))
 
     return ret

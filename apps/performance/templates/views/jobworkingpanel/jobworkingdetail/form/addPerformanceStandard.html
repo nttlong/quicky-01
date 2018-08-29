@@ -38,13 +38,13 @@
                  <!--Trọng số-->
                  <label class="col-sm-5 zb-form-label">${get_res('weight','Trọng số')}</label>
                  <div class="col-sm-7">
-                     <input-number ng-model="entity.weight">
+                     <input-number ng-model="entity.weight" type="float">
                  </div>
              </div>
             <div class="form-group zb-form-group">
                  <label class="col-sm-5 zb-form-label">${get_res('standard_mark','Điểm chuẩn')}</label>
                  <div class="col-sm-7">
-                     <input-number ng-model="entity.standard_mark">
+                     <input-number ng-model="entity.standard_mark" type="float">
                  </div>
              </div>
         </div>
@@ -148,7 +148,11 @@
                         $msg.alert("${get_global_res('Handle_Success','Thao tác thành công')}", $type_alert.INFO);//Xuất thông báo thành cônng
                         reloadData();
                     } else {
-                        $msg.message("${get_global_res('Internal_Server_Error','Có lỗi từ phía máy chủ')}", "${get_global_res('Please_Try_Again','Xin thử vui lòng thử lại')}", function () { });
+                        if (res.error == "duplicate") {
+                            $msg.message("${get_global_res('error','Lỗi')}", "${get_global_res('data_duplicate','Dữ liệu trùng lập')}", function () { });
+                        } else {
+                            $msg.message("${get_global_res('Internal_Server_Error','Có lỗi từ phía máy chủ')}", "${get_global_res('Please_Try_Again','Xin thử vui lòng thử lại')}", function () { });
+                        }
                     }
                 });
             }
@@ -170,7 +174,11 @@
                         scope.__mode = 1;
                         scope.$parent.$apply();
                     } else {
-                        $msg.message("${get_global_res('Notification','Thông báo')}", "${get_global_res('Internal_Server_Error','Có lỗi từ phía máy chủ')}", function () { });
+                        if (res.error == "duplicate") {
+                            $msg.message("${get_global_res('error','Lỗi')}", "${get_global_res('data_duplicate','Dữ liệu trùng lập')}", function () { });
+                        } else {
+                            $msg.message("${get_global_res('Internal_Server_Error','Có lỗi từ phía máy chủ')}", "${get_global_res('Please_Try_Again','Xin thử vui lòng thử lại')}", function () { });
+                        }
                     }
                 })
             }

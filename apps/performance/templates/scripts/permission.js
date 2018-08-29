@@ -10,7 +10,7 @@
         scope.selectedFunction = f;
     }
     scope.advancedSearch = {
-        data_lock: "0",
+        data_lock: null,
     }
     scope.$applyAsync();
     /*                                                         */
@@ -58,6 +58,7 @@
                 delete res.language;
                 delete res.list_name;
                 scope.cbbSysLock = res.values;
+                scope.advancedSearch.data_lock = "0";
                 scope.$applyAsync();
             })
     }

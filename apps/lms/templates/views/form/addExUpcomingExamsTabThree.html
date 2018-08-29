@@ -1,0 +1,299 @@
+﻿<div>
+      <div class="col-md-{{col}}" style="padding-bottom: 20px;">
+                <div class="col-md-2 col-sm-2">
+                    </div>
+                <div class="col-md-10 col-sm-10">
+                    <div class="col-md-{{col}}" style="padding-bottom: 20px;">
+                    <div class="form-group zb-form-group">
+                        <div class="col-sm-12"> 
+                            <div style="display: inline-flex;">
+                                <div class="radio radio-success">
+					                <input type="radio" name="resumeApply" ng-value="dt_true" id="rad1" 
+                                            ng-model="entity.choose_from.exam" ng-click="onChoose('choose_exam')">
+					                <label for="rad1">
+						                <span>${get_res('choose_exam','Choose from Exam Template List')}</span>
+					                </label>
+				                </div>
+                                <div class="radio radio-success" style="margin-left: 20px;">
+					                <input type="radio" name="resumeApply" ng-value="dt_false" id="rad2" 
+                                            ng-model="entity.choose_from.question" ng-click="onChoose('choose_question')">
+					                <label for="rad2">
+						                <span>${get_res('choose_template','Choose from Question List')}</span> 
+					                </label>
+				                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>   
+                        <div ng-if="entity.choose_from.question">
+                        <div class="col-md-{{col}}" style="padding-bottom: 20px;">
+                    <div class="form-group zb-form-group">
+                    <!--Mã Tài liệu, ID-->
+                    <label for="inputEmp_Train_Mode_Name" class="col-sm-4 zb-form-label">${get_res('mode_pick','Question Picking')}</label>
+                    <div class="col-sm-6"> 
+                            <input-select ng-model="entity.mode_pick" data-list="cbbQuestionPicking" data-value="value" data-caption="caption" required />
+                    </div>
+                </div>
+                </div>
+                        <div class="" ng-repeat="elem in entity.question_category track by $index">                      
+                            <div class="col-md-{{col}}"style="padding-bottom: 20px;">
+                                <div class="form-group zb-form-group">
+                                    <!--Tên Tài liệu-->
+                                    <label for="inputEmp_Train_Mode_Name" class="col-sm-4 zb-form-label">${get_res('question_category','Choose Question Category')}</label>
+                                    <div class="col-sm-6"> 
+                                            <div class="pull-left" >
+                                        <span zb-required=""></span>
+                                        </div>                          
+                                        <combobox load-data="$root.$getComboboxData" 
+                                                    ng-model="elem.category"
+										            params="{key:'${encryptor.get_key('lms_cbb_exQuestionCategory')}', value:[{}]}"
+                                                    on-search-change="false"
+                                                    on-search-press="true"
+                                                    placeholder=""
+                                                    init-data="$$$category_id.value"
+                                                    caption-field="{{$$$category_id.caption_field}}"
+                                                    paging="true"
+                                                    close-on-select="true"
+                                                    template-fields="$$$category_id.display_fields"
+                                                    reload="false">
+                                        </combobox>
+                                    </div>
+                                    <div class="col-sm-2" ng-if="entity.mode_pick == 2">
+                                            <button type="button" ng-click="addQuestionDlg($index)" class="btn btn-primary" style="padding: 0px 6px;box-shadow: 2px 2px 2px grey;font-size:11px;">ADD</button>
+                                            <button type="button" ng-click="delQuestionDlg($index)" class="btn btn-danger" style="padding: 0px 8px;box-shadow: 2px 2px 2px grey;font-size:11px;">DEL</button>
+                                        </div>
+                                </div>
+                            </div>
+                            <div class="col-md-{{col}}" style="padding-bottom: 20px;"  ng-if="entity.mode_pick == 1"  >
+                                <div class="form-group zb-form-group">
+                                    <!--Tên Tài liệu-->
+                                    <label for="inputEmp_Train_Mode_Name" class="col-sm-4 zb-form-label">${get_res('assign_questions','Assign numbers of questions')}</label>
+                                        <div class="col-sm-6">
+                                        <div class="pull-left" style="margin-left: -17px;" >
+                                            <div class="col-md-4" >
+                                                <input-number id="inputEmp_Train_Mode_Name" ng-model="elem.diff_ques"></input-number>
+                                                    <p style="font-size:13px;text-align:center;color:rgb(128,96,0);font-style:italic">Difficult</p>
+                                            </div>
+                                            <div class="col-md-4" >
+                                                <input-number id="inputEmp_Train_Mode_Name" ng-model="elem.med_ques"></input-number>
+                                                    <p style="font-size:13px;text-align:center;color:rgb(128,96,0);font-style:italic">Medium</p>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <input-number id="inputEmp_Train_Mode_Name" ng-model="elem.easy_ques"></input-number>
+                                                    <p style="font-size:13px;text-align:center;color:rgb(128,96,0);font-style:italic">Easy</p>
+                                            </div>
+                                            <br/>
+                                        </div>
+                                        </div>  
+                                        <div class="col-sm-2">
+                                            <button type="button" ng-click="pushQuestion($index)" class="btn btn-primary" style="padding: 0px 6px;box-shadow: 2px 2px 2px grey;font-size:11px;">ADD</button>
+                                            <button type="button" ng-click="popQuestion($index)" class="btn btn-danger" style="padding: 0px 8px;box-shadow: 2px 2px 2px grey;font-size:11px;">DEL</button>
+                                        </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div style="text-align:center;margin-right: 110px;">
+                    <div>
+                    <span ng-click="addCategoryQuestion()" 
+                        style="cursor:pointer;text-underline-position:below;font-size:11px" >
+                        <i class="bowtie-icon bowtie-math-plus"></i> Add new Category
+                    </span>
+                    </div>
+                        <div>
+                    <span ng-click="delCategoryQuestion()" 
+                        style="cursor:pointer;text-underline-position:below;font-size:11px" >
+                        <i class="bowtie-icon bowtie-math-multiply"></i> Delete Category
+                    </span>
+                    </div>
+                        </div>
+                    </div>
+                    <div ng-if="entity.choose_from.exam">
+                        <div class="col-md-{{col}}"style="padding-bottom: 20px;">
+                                <div class="form-group zb-form-group">
+                                    <!--Tên Tài liệu-->
+                                    <label for="inputEmp_Train_Mode_Name" class="col-sm-4 zb-form-label">${get_res('exam_category','Choose an Exam Category')}</label>
+                                    <div class="col-sm-6"> 
+                                            <div class="pull-left" >
+                                        <span zb-required=""></span>
+                                        </div>                          
+                                        <combobox load-data="$root.$getComboboxData" 
+                                                    ng-model="elem.category"
+										            params="{key:'${encryptor.get_key('lms_cbb_exQuestionCategory')}', value:[{}]}"
+                                                    on-search-change="false"
+                                                    on-search-press="true"
+                                                    placeholder=""
+                                                    init-data="$$$category_id.value"
+                                                    caption-field="{{$$$category_id.caption_field}}"
+                                                    paging="true"
+                                                    close-on-select="true"
+                                                    template-fields="$$$category_id.display_fields"
+                                                    reload="false">
+                                        </combobox>
+                                    </div>
+                                    <div class="col-sm-2">
+                                            <button type="button" ng-click="addQuestionDlg($index)" class="btn btn-primary" style="padding: 0px 6px;box-shadow: 2px 2px 2px grey;font-size:11px;">ADD</button>
+                                        </div>
+                                </div>
+                            </div>
+                        <div class="col-md-{{col}}" style="padding-bottom: 20px;">
+                        <div class="form-group zb-form-group">
+                            <!--Tên Tài liệu-->
+                            <label for="inputEmp_Train_Mode_Name" class="col-sm-4 zb-form-label">${get_res('exam_temp','Exam Template')}</label>
+                            <div class="col-sm-6"> 
+                                <input-text id="inputEmp_Train_Mode_Name" ng-model="entity.exam_name2" required>
+                            </div>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+            </div>
+                    <button class="btn btn-default" ng-click="deleteQuestion()" style="float:right; margin-right: 14px;" >
+            <span><i class="glyphicon glyphicon-remove"></i></span> Delete
+        </button>
+            <div  class="col-md-{{col}}"> 
+                      
+        <div class="modal-body" style="overflow:unset;">
+            <div style="height:calc(100% - 40px);border:1px solid rgb(208, 208, 208)" >
+            <table-data data-source="tableSource" fields="tableFields" type="MultiSelect" 
+                    paging="true" page-length="table_info.page_size" server-side="true" 
+                    press-enter="onSelectTableRow" selected-items="selectedItems" 
+                    current-item="currentItem" search-text="tableSearchText"
+                    refresh-row="refreshDataRow">
+            </table-data>
+    </div>
+</div>
+
+</div>
+ </div> 
+<script>
+    (function (scope) {
+        scope.onChoose = function(val){
+            switch(val) {
+                case 'choose_exam':
+                    scope.entity.choose_from.exam = true;
+                    scope.entity.choose_from.question = false;
+                    break;
+                case 'choose_question':
+                    scope.entity.choose_from.exam = false;
+                    scope.entity.choose_from.question = true;
+                    break;
+                default:
+                    null
+            }
+
+        }
+        scope.tableFields = [
+        { "data": "ques_id", "title": "${get_res('ques_id_table_header','ID')}" },
+        { "data": "ques_detail_1", "title": "${get_res('ques_detail_table_header','Question')}" },
+        { "data": "ques_category", "title": "${get_res('ques_category_table_header','Category')}" },
+        { "data": "ques_type", "title": "${get_res('ques_type_table_header','Question type')}" },
+        { "data": "ques_level", "title": "${get_res('ques_level_table_header','Difficulty Level')}" },  
+        { "data": "ques_total_marks", "title": "${get_res('ques_mark_table_header','Mark')}" },
+        { "data": "ques_max_answer_time", "title": "${get_res('answer_time_table_header','Answer Time')}" },
+         ];
+        //Cấu hình tên field và caption hiển thị trên UI
+        scope.addTemplateDlg = function (index) {
+            
+            var errMsg;
+            var valid = null;
+            var rs = {
+                "result": false,
+                "errorMsg": ''
+            };
+            valid = lv.Validate(scope.entity.question_category[index].category);
+            rs.result = valid.isNullOrWhiteSpace();
+            rs.errorMsg = rs.result === true ? "${get_res('category_name_not_null','Tên danh mục câu hỏi được để trống')}" + '\n' : "" ;
+            if (rs.result) {
+                $msg.message("${get_global_res('Input_Error','Nhập liệu sai')}", rs.errorMsg, function () { });
+                return;
+            }
+            else {
+                scope.currentQuesCategory = scope.entity.question_category[index].category;
+                openDialog("${get_res('add_ques','Thêm câu hỏi')}", 'directives/combobox/template_add_exam_template', function () {
+                    setTimeout(function () {
+                        $(window).trigger('resize');
+                    }, 200);
+                }, "diaAddQues");
+            }
+        }
+        scope.addQuestionDlg = function (index) {
+            
+            var errMsg;
+            var valid = null;
+            var rs = {
+                "result": false,
+                "errorMsg": ''
+            };
+            valid = lv.Validate(scope.entity.question_category[index].category);
+            rs.result = valid.isNullOrWhiteSpace();
+            rs.errorMsg = rs.result === true ? "${get_res('category_name_not_null','Tên danh mục câu hỏi được để trống')}" + '\n' : "" ;
+            if (rs.result) {
+                $msg.message("${get_global_res('Input_Error','Nhập liệu sai')}", rs.errorMsg, function () { });
+                return;
+            }
+            else {
+                scope.currentQuesCategory = scope.entity.question_category[index].category;
+                openDialog("${get_res('add_ques','Thêm câu hỏi')}", 'directives/combobox/template_add_exam_template', function () {
+                    setTimeout(function () {
+                        $(window).trigger('resize');
+                    }, 200);
+                }, "diaAddQues");
+            }
+        }
+         scope.pushQuestion = function (index) {
+             var errMsg;
+            var valid = null;
+            var rs = {
+                "result": false,
+                "errorMsg": ''
+            };
+            valid = lv.Validate(scope.entity.question_category[index].category);
+            rs.result = valid.isNullOrWhiteSpace();
+            rs.errorMsg = rs.result === true ? "${get_res('category_name_not_null','Tên danh mục câu hỏi được để trống')}" + '\n' : "" ;
+            if (rs.result) {
+                $msg.message("${get_global_res('Input_Error','Nhập liệu sai')}", rs.errorMsg, function () { });
+                return;
+            }
+            else {
+                services.api("${get_api_key('app_main.api.LMSLS_ExQuestionBank/get_list_with_random_ques_id')}")
+                .data({
+                    "where": {
+                        'assign': scope.entity.question_category[index],
+                    },
+                })
+                .done()
+                .then(function (res) {
+                    scope.category_list.push(...res.list_ques)
+                     var tableConfig = scope.$$tableConfig;
+
+                scope._tableData(
+                    tableConfig.iPage, tableConfig.iPageLength, tableConfig.orderBy,
+                    tableConfig.searchText, tableConfig.fnReloadData);
+                    })
+ 
+            }           
+        }
+        scope.popQuestion = function (index) {
+            
+            scope.entity.question_category[index].diff_ques = null
+            scope.entity.question_category[index].med_ques = null
+            scope.entity.question_category[index].easy_ques =  null
+            
+        }
+        
+        scope.deleteQuestion = function () {
+            
+            /*var len = scope.selectedItems.length
+            var i;*/
+                           
+            _.each(scope.selectedItems, function (val) { scope.category_list = _.reject(scope.category_list, function (num) { return num.ques_id == val.ques_id; }) })
+            
+            var tableConfig = scope.$$tableConfig;
+
+            scope._tableData(
+                tableConfig.iPage, tableConfig.iPageLength, tableConfig.orderBy,
+                tableConfig.searchText, tableConfig.fnReloadData);
+            
+         }
+    });
+</script>

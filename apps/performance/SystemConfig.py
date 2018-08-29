@@ -79,6 +79,20 @@ def get():
             logger.debug(ex)
             raise(ex)
 
+def update():
+    global cache
+    if cache.has_key(tenancy.get_schema()):
+        cache[tenancy.get_schema()]=Config()
+    else:
+        lock.acquire()
+        try:
+            cache[tenancy.get_schema()]=Config()
+            lock.release()
+        except Exception as ex:
+            lock.release()
+            logger.debug(ex)
+            raise(ex)
+
 def clear_cache():
     global cache
     lock.acquire()

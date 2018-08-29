@@ -117,10 +117,6 @@
                     $(elem).find(".hcs-function-footer-number").css("color", color['color-icon'])
                 }
 
-                $scope.$watch("txtNumber", function (val) {
-                    debugger
-                })
-
                 $scope.$applyAsync();
             }
         };

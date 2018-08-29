@@ -4,61 +4,57 @@ import datetime
 import base
 import threading
 _hasCreated=False
-def HCSLS_Acadame():
-    global _hasCreated
-    if not _hasCreated:
-        
-        """
+"""
         #is_fix: Hệ số cố định
         #coeff: #Thiết lập theo
         #coeff: #Ngày bắt đầu tính thâm niên
         """
-        helpers.extent_model(
-            "HCSLS_Acadame",
-            "base",
-            [["train_level_code"]],
-            train_level_code=helpers.create_field("text",True),
-            train_level_name=helpers.create_field("text"),
-            range=helpers.create_field("numeric"),
-            ordinal=helpers.create_field("numeric"),
-            note=helpers.create_field("text"),
-            #train_cof=helpers.create_field("numeric"),
-            is_fix=helpers.create_field("numeric"), 
-            coeff=helpers.create_field("numeric"), 
-            begin_date_cal=helpers.create_field("numeric"),
-            lock=helpers.create_field("bool"),
-            train_level_name2=helpers.create_field("text"),
-            created_on=helpers.create_field("date"),
-            created_by=helpers.create_field("text"),
-            modified_on=helpers.create_field("date"),
-            modified_by=helpers.create_field("text"),
-            details=helpers.create_field("list",False,dict(
-                rec_id = helpers.create_field("text"),
-                seniority_from = helpers.create_field("numeric"),
-                seniority_to = helpers.create_field("numeric"),
-                coefficient = helpers.create_field("numeric"),
-                salary = helpers.create_field("numeric"),
-                created_on=helpers.create_field("date"),
-                created_by=helpers.create_field("text"),
-                modified_on=helpers.create_field("date"),
-                modified_by=helpers.create_field("text")
-            ))
-        )
-        _hasCreated=True
-        #def on_before_insert(data):
-        #    before_process
-
-        #def on_before_update(data):
-        #    before_process(data)
-
-        #def before_process(data):
-        #    data.update({
-        #        "detail": [{
-        #                "department_code":x['_id'],
-        #                } for x in data.get('detail',[])]
-        #        })
-
-        #helpers.events("HCSLS_Acadame").on_before_insert(on_before_insert).on_before_update(on_before_update)
+helpers.extent_model(
+    "HCSLS_Acadame",
+    "base",
+    [["train_level_code"]],
+    train_level_code=("text",True),
+    train_level_name=("text"),
+    range=("numeric"),
+    ordinal=("numeric"),
+    note=("text"),
+    #train_cof=("numeric"),
+    is_fix=("numeric"),
+    coeff=("numeric"),
+    begin_date_cal=("numeric"),
+    lock=("bool"),
+    train_level_name2=("text"),
+    created_on=("date"),
+    created_by=("text"),
+    modified_on=("date"),
+    modified_by=("text"),
+    details=("list",False,dict(
+        rec_id = ("text"),
+        seniority_from = ("numeric"),
+        seniority_to = ("numeric"),
+        coefficient = ("numeric"),
+        salary = ("numeric"),
+        created_on=("date"),
+        created_by=("text"),
+        modified_on=("date"),
+        modified_by=("text")
+    ))
+)
+def HCSLS_Acadame():
+        # _hasCreated=True
+        # #def on_before_insert(data):
+        # #    before_process
+        #
+        # #def on_before_update(data):
+        # #    before_process(data)
+        #
+        # #def before_process(data):
+        # #    data.update({
+        # #        "detail": [{
+        # #                "department_code":x['_id'],
+        # #                } for x in data.get('detail',[])]
+        # #        })
+        #
+        # #helpers.events("HCSLS_Acadame").on_before_insert(on_before_insert).on_before_update(on_before_update)
     ret = db_context.collection("HCSLS_Acadame")
-
     return ret

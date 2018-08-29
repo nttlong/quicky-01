@@ -1,24 +1,20 @@
 from config import database, helpers, db_context
 import datetime
-_hasCreated=False
-def HCSLANG_CollectionInfo():
-    global _hasCreated
-    if not _hasCreated:
-        helpers.extent_model(
+helpers.extent_model(
             "HCSLANG_CollectionInfo",
             "base",
             [],
-            language = helpers.create_field("text",True),
-            field_path=helpers.create_field("text",True),
-            default_caption=helpers.create_field("text",True),
-            custom_caption=helpers.create_field("text"),
+            language = ("text",True),
+            field_path=("text",True),
+            default_caption=("text",True),
+            custom_caption=("text"),
 
-            created_on=helpers.create_field("date"),
-            created_by=helpers.create_field("text"),
-            modified_on=helpers.create_field("date"),
-            modified_by=helpers.create_field("text")
+            created_on=("date"),
+            created_by=("text"),
+            modified_on=("date"),
+            modified_by=("text")
         )
-        _hasCreated=True
+def HCSLANG_CollectionInfo():
     ret = db_context.collection("HCSLANG_CollectionInfo")
     return ret
 

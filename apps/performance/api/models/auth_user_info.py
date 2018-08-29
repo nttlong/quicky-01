@@ -1,11 +1,6 @@
 from config import database, helpers, db_context
 import datetime
-_hasCreated=False
-
-def auth_user_info():
-    global _hasCreated
-    if not _hasCreated:
-        helpers.extent_model(
+helpers.extent_model(
             "auth_user_info",
             "base",
             [["login_account"], ["email"]],
@@ -26,7 +21,6 @@ def auth_user_info():
             modified_by=helpers.create_field("text")
         )
 
-        _hasCreated=True
+def auth_user_info():
     ret = db_context.collection("auth_user_info")
-
     return ret

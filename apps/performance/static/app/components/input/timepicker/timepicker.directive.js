@@ -59,6 +59,13 @@
             timePicker.datetimepicker().on('dp.change', function (val) {
                 callback(scope, val);
             });
+            scope.$watch('ngModel', function (val) {
+                if (val) {
+                    var data = val.split(":");
+                    data = new Date(2000, 0, 1, data[0], data[1], data[2]);
+                    timePicker.datetimepicker().data("DateTimePicker").date(data);
+                }
+            });
         }
 
         function template() {

@@ -67,8 +67,9 @@
         });
         sort[orderBy[0].columns] =
             services.api("${get_api_key('app_main.api.TMPER_AprPeriodEmpOut/get_list_with_searchtext')}")
-                .data({
-                    //parameter at here
+            .data({
+                    "apr_period":  scope.$parent.Re_Map_Period(scope.$parent.currentItem.apr_period),
+                    "apr_year": scope.$parent.currentItem.apr_year,
                     "pageIndex": iPage - 1,
                     "pageSize": iPageLength,
                     "search": searchText,
@@ -76,7 +77,6 @@
                 })
                 .done()
             .then(function (res) {
-                debugger
                     var data = {
                         recordsTotal: res.total_items,
                         recordsFiltered: res.total_items,
@@ -100,9 +100,7 @@
         openDialog("${get_res('Rating_Level_Detail','Chi tiết Nhân viên không đánh giá')}", 'aprPeriod/form/addEmpNotApr', function () { });
     };
 
-
     function onDelete() {
-        debugger
         if (!scope.selectedItems || scope.selectedItems.length === 0) {
             $msg.message("${get_global_res('Notification','Thông báo')}", "${get_global_res('No_Row_Selected','Không có dòng được chọn')}", function () { });
         } else {
@@ -127,7 +125,6 @@
     function onEdit() {
         if (scope.currentItem && Object.keys(scope.currentItem).length > 0) {
             scope.mode = 2;
-            debugger
             (scope.selectedItems.length == 1 || scope.selectedItems.length == 0) ?
                 openDialog("${get_res('An_Employee_Not_Aproval_Detail','Chi tiết Nhân viên không đánh giá')}", 'aprPeriod/form/editAnEmpNotApr', function () { }) :
                 openDialog("${get_res('Multi_Employee_Not_Aproval_Detail','Chi tiết Nhân viên không đánh giá')}", 'aprPeriod/form/editMultiEmpNotApr', function () { });

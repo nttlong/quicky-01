@@ -1,4 +1,23 @@
-﻿<div class="modal-dialog">
+﻿<style>
+    .outer{
+        height: 100%; 
+        display: table;
+        width:100%
+    }
+    .inner-title{
+        border:1px solid red;
+        display:table-row; 
+        width:100%
+    }
+    .inner-content{
+        border:1px solid grey;
+        display:table-row;
+        width:100%;
+        height:100%
+    }
+</style>
+
+<div class="modal-dialog">
     <div class="modal-content">
         <div class="modal-header">
             <div class="left-content pull-left">
@@ -11,91 +30,79 @@
             </div>
         </div>
         <div class="modal-body">
-            <div class="col-md-12 col-sm-12">
-                <collapse-box class="zb-form-common" title="${get_res('template_info','Thông tin template')}">
-                    <div class="col-md-6">
-                        <div class="form-group zb-form-group">
-                            <!--Mã template-->
-                            <label for="inputTemplateCode" class="col-sm-5 zb-form-label">${get_res('template_code','Mã template')}</label>
-                            <div class="col-sm-7">
-                                <input-text id="inputTemplateCode" ng-model="entity.template_code" ng-disabled="{{ __mode === 2 ? 'true' : 'false' }}" required>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="form-group zb-form-group">
-                            <!--Tên template-->
-                            <label for="inputTemplateName" class="col-sm-5 zb-form-label">${get_res('template_name','Tên template')}</label>
-                            <div class="col-sm-7">
-                                <input-text id="inputTemplateName" ng-model="entity.template_name">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="form-group zb-form-group">
-                            <!--Là template mặc định-->
-                            <label for="inputTemplateName" class="col-sm-5 zb-form-label">${get_res('is_default','Là template mặc định')}</label>
-                            <div class="form-group zb-form-group">
-                                <div class="col-md-12">
-                                    <input-checkbox ng-model="entity.is_default"/>
+            <div class="outer" style="float: left; height: 100%;">
+                <div class="inner-title">
+                    <div class="col-md-12 col-sm-12">
+                        <collapse-box class="zb-form-common" title="${get_res('template_info','Thông tin template')}">
+                            <div class="col-md-6">
+                                <div class="form-group zb-form-group">
+                                    <!--Mã template-->
+                                    <label for="inputTemplateCode" class="col-sm-5 zb-form-label">${get_res('template_code','Mã template')}</label>
+                                    <div class="col-sm-7">
+                                        <input-text id="inputTemplateCode" ng-model="entity.template_code" ng-disabled="{{ __mode === 2 ? 'true' : 'false' }}" required>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="form-group zb-form-group">
-                            <!--Tên bảng dữ liệu-->
-                            <label for="inputViewName" class="col-sm-5 zb-form-label">${get_res('view_name','Tên bảng dữ liệu')}</label>
-                            <div class="col-sm-7">
-                                <input-text id="inputViewName" ng-model="entity.view_name">
+                            <div class="col-md-6">
+                                <div class="form-group zb-form-group">
+                                    <!--Tên template-->
+                                    <label for="inputTemplateName" class="col-sm-5 zb-form-label">${get_res('template_name','Tên template')}</label>
+                                    <div class="col-sm-7">
+                                        <input-text id="inputTemplateName" ng-model="entity.template_name">
+                                    </div>
+                                </div>
                             </div>
+                            <div class="col-md-6">
+                                <div class="form-group zb-form-group">
+                                    <!--Là template mặc định-->
+                                    <label for="inputTemplateName" class="col-sm-5 zb-form-label">${get_res('is_default','Là template mặc định')}</label>
+                                    <div class="form-group zb-form-group">
+                                        <div class="col-md-12">
+                                            <input-checkbox ng-model="entity.is_default"/>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group zb-form-group">
+                                    <!--Tên bảng dữ liệu-->
+                                    <label for="inputViewName" class="col-sm-5 zb-form-label">${get_res('view_name','Tên bảng dữ liệu')}</label>
+                                    <div class="col-sm-7">
+                                        <input-text id="inputViewName" ng-model="entity.view_name">
+                                    </div>
+                                </div>
+                            </div>
+                        </collapse-box>
+                    </div>
+                </div>
+                <div class="inner-content">
+                <div class="col-md-12" style="height: 0px">
+                    <collapse-box class="zb-datatable" title="${get_res('list_selected_fields','Danh sách các trường được chọn')}" style="height: 100%;">
+                    
+                        <toolbar>
+                            <input-text-icon icon="bowtie-icon bowtie-search"
+                                                    on-click="onSearch"></input-text-icon>
+                            <button class="zb-btn zb-btn-o-green" ng-click="addDetail()">
+                                <i class="bowtie-icon bowtie-math-plus"></i>
+                            </button>
+                            <button class="zb-btn zb-btn-o-blue" ng-click="onEdit()">
+                                <i class="bowtie-icon bowtie-edit-outline"></i>
+                            </button>
+                            <button class="zb-btn zb-btn-o-red">
+                                <i class="bowtie-icon bowtie-edit-remove"></i>
+                            </button>
+                        </toolbar>
+                        <div id="collapseDialogTemplateDetailList" style="height: 100%;">
+                             <table-data data-source="tableListUserSource" fields="tableListUserFields" type="MultiSelect" 
+                                paging="true" page-length="100" server-side="true" 
+                                press-enter="onSelectTableRow" selected-items="selectedListUserItems"
+                                current-item="ListUserCurrentItem" search-text="tableSearchText"
+                                refresh-row="refreshDataListUserRow">
+                            </table-data>
                         </div>
-                    </div>
-                </collapse-box>
+                    </collapse-box>
+                </div>
             </div>
-            <div class="col-md-12" style="height: calc(100% - 150px);">
-                <collapse-box class="zb-datatable" title="${get_res('list_selected_fields','Danh sách các trường được chọn')}" style="height: 100%;">
-                    <div class="pull-right hcs-profile-icon-heading-on-table">
-                        <button class="zb-icon-button hcs-profile-group-title">
-                            <span>
-                                <i class="la la-pencil"></i>
-                            </span>
-                        </button>
-                    </div>
-                    <div class="pull-right hcs-profile-icon-heading-on-table">
-                        <button class="zb-icon-button hcs-profile-group-title">
-                            <span>
-                                <i class="la la-trash"></i>
-                            </span>
-                        </button>
-                    </div>
-                    <div class="pull-right hcs-profile-icon-heading-on-table">
-                        <button class="zb-icon-button hcs-profile-group-title">
-                            <span>
-                                <i class="la la-copy"></i>
-                            </span>
-                        </button>
-                    </div>
-                    <div class="pull-right hcs-profile-icon-heading-on-table">
-                        <button class="zb-icon-button hcs-profile-group-title">
-                            <span>
-                                <i class="la la-plus" ng-click="addDetail()"></i>
-                            </span>
-                        </button>
-                    </div>
-                    <div class="pull-right hcs-profile-icon-heading-on-table">
-                        <input-text-icon style="width:255px;" id="tableSearchText" ng-model="$$$$noNeedModel" icon="bowtie-icon bowtie-search" icon-align="right" placeholder="" >
-                            </input-text-icon>
-                    </div>
-                    <div id="collapseDialogTemplateDetailList" style="height: 100%;">
-                         <table-data data-source="tableListUserSource" fields="tableListUserFields" type="MultiSelect" 
-                            paging="true" page-length="100" server-side="true" 
-                            press-enter="onSelectTableRow" selected-items="selectedListUserItems"
-                            current-item="ListUserCurrentItem" search-text="tableSearchText"
-                            refresh-row="refreshDataListUserRow">
-                        </table-data>
-                    </div>
-                </collapse-box>
             </div>
         </div>
         <div class="modal-footer">

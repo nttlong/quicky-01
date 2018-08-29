@@ -1,0 +1,43 @@
+﻿<div>
+  
+  <div class="col-md-{{col}}" style="padding-bottom: 20px;">
+                                    <div class="col-md-2 col-sm-2">
+                                     </div>
+                                   <div class="col-md-10 col-sm-10">
+                                    <div class="col-md-{{col}}" style="padding-bottom: 20px;">
+                                        <div class="form-group zb-form-group">
+                                            <!--Mã Tài liệu, ID-->
+                                            <label for="inputEmp_Train_Mode_Name" class="col-sm-4 zb-form-label">${get_res('assign_exam','Assign this exam to')}</label>
+                                            <div class="col-sm-6"> 
+                                                 <input-select ng-model="entity.assign_exam" data-list="cbbQuestionPicking" data-value="value" data-caption="caption" required />
+                                            </div>
+                                            <div class="col-sm-2" >
+                                                    <button type="button" ng-click="addQuestionDlg($index)" class="btn btn-primary" style="padding: 0px 6px;box-shadow: 2px 2px 2px grey;font-size:11px;">ADD</button>          
+                                               </div>
+                                        </div>
+                                    </div>
+                                    </div>
+
+                               </div>
+
+                                     <div  class="col-md-{{col}}"> 
+                      
+                                    <div class="modal-body" style="overflow:unset;">
+                                        <div style="height:calc(100% - 40px);border:1px solid rgb(208, 208, 208)" >
+                                        <table-data data-source="tableSource" fields="tableFields" type="MultiSelect" 
+                                                paging="true" page-length="table_info.page_size" server-side="true" 
+                                                press-enter="onSelectTableRow" selected-items="selectedItems" 
+                                                current-item="currentItem" search-text="tableSearchText"
+                                                refresh-row="refreshDataRow">
+                                        </table-data>
+                                        </div>
+                                    </div>
+
+                                    </div>
+ </div>
+                                 
+<script>
+    (function (scope) {
+        
+    });
+</script>

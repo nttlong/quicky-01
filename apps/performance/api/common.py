@@ -91,6 +91,8 @@ def aggregate_filter_lock(value):
     1: filter data lock = !true
     other: get all
     """
+    if value == None:
+        return {'$in':[True, False, None, ""]}
     if int(value) == 0:
         return {'$ne': True}
     elif int(value) == 1:
@@ -182,6 +184,7 @@ def get_init_data_combobox(args):
                             result.append({
                                 "key":x['key'],
                                 "value":None,
+                                "predicate": (lambda x: x['predicate'] if x.has_key('predicate') else None)(x),
                                 "code":x['code'],
                                 "name":encryptor.get_value(x['key']),
                                 "display_fields":[],
@@ -197,7 +200,7 @@ def get_init_data_combobox(args):
                             value_field = [[]]
                             multi_select = [[]]
                             parent_field = [[]]
-                            x['value'] = create_data_init_combobox(dict(data = {"key":x["key"], "code":x["code"]}), display_fields, caption_field, value_field, multi_select, parent_field)
+                            x['value'] = create_data_init_combobox(dict(data = {"key":x["key"], "code":x["code"], "value":x["predicate"]}), display_fields, caption_field, value_field, multi_select, parent_field)
                             x['display_fields'] = display_fields[0]
                             x['caption_field'] = caption_field[0]
                             x['value_field'] = value_field[0]
@@ -213,7 +216,7 @@ def get_init_data_combobox(args):
                         parent_field = [[]]
                         return {
                             "key": args["data"].get("name", "")["key"],
-                            "value": create_data_init_combobox(dict(data = {"key":args["data"].get("name", "")["key"], "code":args["data"].get("name", "")["code"]}), display_fields, caption_field, value_field, multi_select, parent_field),
+                            "value": create_data_init_combobox(dict(data = {"key":args["data"].get("name", "")["key"], "code":args["data"].get("name", "")["code"], "value":args["data"].get("name", "").get("predicate", None)}), display_fields, caption_field, value_field, multi_select, parent_field),
                             "code": args["data"].get("name", "")["code"],
                             "name":encryptor.get_value(args["data"].get("name", "")['key']),
                             "display_fields": display_fields[0],
@@ -281,6 +284,7 @@ def create_data_init_combobox(args, display_field, caption_field, value_field, m
 
 
             column    = combobox_info['table_fields']
+            where     = combobox_info['predicate']
             multi     = combobox_info['multi_select']
 
             if column != []:
@@ -299,6 +303,27 @@ def create_data_init_combobox(args, display_field, caption_field, value_field, m
                     ret.match(combobox_info['value_field'] + " in {0}", args['data']['code'])
                 else:
                     ret.match(combobox_info['value_field'] + " == {0}", args['data']['code'])
+
+            #predicate
+            if where.has_key('operator') and \
+               (where.get('column', None) != None and\
+               len(where.get('column', None)) > 0) and\
+               where.get('operator', '') != "":
+                try:
+                    if args['data'].has_key('value') and args['data'].get('value', None) != None and type(args['data']['value']) is list:
+                        dict_where = dict()
+                        for x in args['data']['value']:
+                            new_key    = x.keys()[0].replace("@", "")
+                            old_key    = x.keys()[0]
+                            x[new_key] = x.pop(old_key)
+                            dict_where.update(x)
+
+                        ret.match(where['operator'], dict_where)
+                    #else:
+                    #    ret.match(where['operator'])
+
+                except Exception as ex:
+                    raise(Exception("syntax where error"))
 
             if multi == True:
                 return ret.get_list()

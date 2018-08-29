@@ -205,7 +205,7 @@
 
 	scope._tableData = _tableData;
     function _tableData(iPage, iPageLength, orderBy, searchText, callback, objSearchAdvance) {
-        debugger
+        
         //if (scope.treeCurrentNode.hasOwnProperty('folder_id')) {
         var sort = {};
         $.each(orderBy, function (i, v) {
@@ -222,7 +222,7 @@
                 })
                 .done()
             .then(function (res) {
-                    debugger
+                    
                     var resData = _.map(res.items, function (num) {
                         num.size_files = num.size_files + "KB";
                         return num;
@@ -343,7 +343,7 @@
     }
 
     scope.$watch("$parent.searchText", function (val) {
-        debugger
+        
         _loadDataServerSide(scope.$$tableConfig.fnReloadData,
             1, scope.$$tableConfig.iPageLength,
             scope.$$tableConfig.orderBy, val)

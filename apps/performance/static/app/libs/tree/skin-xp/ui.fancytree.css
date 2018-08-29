@@ -124,13 +124,21 @@ span.fancytree-expander,
 span.fancytree-custom-icon {
   margin-top: 0px;
 }
+
+td span.fancytree-expander {
+	margin-top: 7px;
+}
+
+td span.fancytree-checkbox {
+	margin-top: 7px;
+}
 /* Used by icon option: */
 span.fancytree-custom-icon {
-  width: 16px;
-  height: 16px;
-  display: inline-block;
-  margin-left: 3px;
-  background-position: 0px 0px;
+	width: 16px;
+	height: 16px;
+	display: inline-block;
+	margin-left: 3px;
+	background-position: 0px 0px;
 }
 /* Used by 'icon' node option: */
 img.fancytree-icon {
@@ -472,7 +480,8 @@ ul.fancytree-container.fancytree-rtl.fancytree-no-connector > li {
  * 'table' extension
  *----------------------------------------------------------------------------*/
 table.fancytree-ext-table {
-  border-collapse: collapse;
+	border-collapse: collapse;
+	outline: none;
 }
 table.fancytree-ext-table span.fancytree-node {
   display: inline-block;
@@ -710,8 +719,8 @@ span.fancytree-focused span.fancytree-title {
   font-style: italic;
 }
 .fancytree-active span.fancytree-title {
-  background-color: #3169C6 !important;
-  color: white !important;
+  /*background-color: #3169C6 !important;*/
+  /*color: white !important;*/
 }
 /*******************************************************************************
  * 'table' extension
@@ -723,8 +732,8 @@ table.fancytree-ext-table tbody tr.fancytree-focused {
   background-color: #99DEFD;
 }
 table.fancytree-ext-table tbody tr.fancytree-active {
-  background-color: royalblue;
+	background-color: #ebf9ff ;
 }
 table.fancytree-ext-table tbody tr.fancytree-selected {
-  background-color: #99FDDE;
+  /*background-color: #99FDDE;*/
 }

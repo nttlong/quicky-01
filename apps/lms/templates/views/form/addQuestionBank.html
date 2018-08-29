@@ -33,7 +33,7 @@
     left: 0;
     top:3px;
     margin-left: -20px;
-    border: 1px solid #ddd;
+    border: 1px solid #A9A9A9;
     border-radius: 50%;
     background-color: #fff;
     -webkit-transition: border .3s ease-in-out;
@@ -380,14 +380,17 @@ input[type=checkbox] .styled:checked+label::after,input[type=radio] .styled:chec
                         </div>
                     </div>
                     <div style="padding-top: 10px;">
-                        <span class="bowtie-math-plus-light bowtie-icon text-success" style="cursor: pointer"
+                        
+                        <span class="bowtie-icon bowtie-math-plus-circle-outline" style="cursor: pointer;text-underline-position:below;font-size:11px"
                               ng-click="fnAddRowAnswers()">
                             ${get_res('ques_add_new_option','Add New Option')}
                         </span>
-                        <span class="bowtie-math-minus-light bowtie-icon text-danger" style="cursor: pointer"
+
+                        <span class="bowtie-icon bowtie-math-multiply-box-outline" style="cursor: pointer;text-underline-position:below;font-size:11px;margin-left:20px"
                               ng-click="fnMinusRowAnswers()">
                             ${get_res('ques_remove_option','Remove')}
                         </span>
+                      
                     </div>
                 </div>
             </div>
@@ -579,9 +582,13 @@ input[type=checkbox] .styled:checked+label::after,input[type=radio] .styled:chec
                 <label for="inputEmp_Train_Mode_Name" class="col-sm-2 zb-form-label">
                     ${get_res('ques_max_answer_time','Max Answer Time')}
                 </label>
-                <div class="col-md-4">
-                    <input-text id="inputEmp_Train_Mode_Name" ng-model="entity.ques_max_answer_time">
-                    <span>(${get_res('ques_second','Second')})</span>
+                <div class="col-md-5">
+                    <div class="col-md-9">
+                    <time-picker ng-model="entity.ques_max_answer_time" format="ss"></time-picker> 
+                     </div>
+                   <div class="col-md-3">
+                    <span style="font-size:13px">(${get_res('ques_second','Second')})</span>
+                   </div>
                 </div>
             </div>
             <div class="form-group zb-form-group">
@@ -669,7 +676,7 @@ input[type=checkbox] .styled:checked+label::after,input[type=radio] .styled:chec
         scope.entity.ques_type = scope.__mode == 1 ? 1 : scope.entity.ques_type;
         scope.entity.ques_answer_options = scope.__mode == 1 ? 1 : scope.entity.ques_answer_options;
         scope.entity.ques_evaluated_by = scope.__mode == 1 ? null : scope.entity.ques_evaluated_by;
-        
+        scope.entity.ques_max_answer_time = "00:00:00";
         loadValueList();
         function loadValueList() {
             services.api("${get_api_key('app_main.api.SYS_ValueList/get_list')}")

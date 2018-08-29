@@ -6451,3 +6451,319 @@ Traceback (most recent call last):
   File "/home/hcsadmin/q03/packages/quicky/extens.py", line 302, in render
     raise (ex)
 TemplateLookupException: Cant locate template for uri u'views/.html'
+django_session.save (0.00) {'schema': u'sys', '_id': u'qdwxi5yy0goef60sf5dz327fio10q2ra', 'expire_date': datetime.datetime(2018, 9, 12, 7, 9, 43, 723213, tzinfo=<UTC>), 'session_data': u'OTE2OWEzNjFmMzk3MzVhMTZiNjlmM2EwODhiNTVkOGExNWRjM2JlYzp7fQ=='}
+django_session.save (0.00) {'schema': u'sys', '_id': u'qdwxi5yy0goef60sf5dz327fio10q2ra', 'expire_date': datetime.datetime(2018, 9, 12, 7, 9, 43, 793502, tzinfo=<UTC>), 'session_data': u'OTE2OWEzNjFmMzk3MzVhMTZiNjlmM2EwODhiNTVkOGExNWRjM2JlYzp7fQ=='}
+sys.auth_user.find (0.00) {'username': 'root'}
+sys.auth_user.save (0.00) {'username': u'root', 'first_name': u'', 'last_name': u'', '_id': ObjectId('5b321a71927e0070511b73e6'), 'is_active': True, 'email': u'root@root.com', 'is_superuser': True, 'is_staff': True, 'last_login': datetime.datetime(2018, 8, 29, 6, 44, 6, 377000, tzinfo=<UTC>), 'password': u'pbkdf2_sha256$12000$oQVPdDDJaTJc$c2t2sGqa01ZDC0tgJJFC5tqIbRzoXFVlKOtqF7jf61Y=', 'date_joined': datetime.datetime(2018, 6, 26, 10, 50, 20, 136000, tzinfo=<UTC>)}
+django_session.save (0.00) {'schema': u'sys', '_id': 'qdwxi5yy0goef60sf5dz327fio10q2ra', 'expire_date': datetime.datetime(2018, 9, 12, 7, 9, 43, 905116, tzinfo=<UTC>), 'session_data': u'YTIwMDM1ZDE4Mzg1ZWU5ZTUxNjkzNTM0NWMyMDc3YjYwMjFiODVjYzp7Imxhbmd1YWdlIjoiZW4ifQ=='}
+Not Found: /favicon.ico
+Not Found: /per/
+django_session.save (0.00) {'schema': u'lv', '_id': u'ytxcwex27z6voxxdppvdrpmfij1mfluj', 'expire_date': datetime.datetime(2018, 9, 12, 7, 10, 0, 642396, tzinfo=<UTC>), 'session_data': u'OTE2OWEzNjFmMzk3MzVhMTZiNjlmM2EwODhiNTVkOGExNWRjM2JlYzp7fQ=='}
+django_session.save (0.00) {'schema': u'lv', '_id': u'ytxcwex27z6voxxdppvdrpmfij1mfluj', 'expire_date': datetime.datetime(2018, 9, 12, 7, 10, 0, 651799, tzinfo=<UTC>), 'session_data': u'OTE2OWEzNjFmMzk3MzVhMTZiNjlmM2EwODhiNTVkOGExNWRjM2JlYzp7fQ=='}
+Not Found: /per/static/js/plugins/slick.js
+Not Found: /per/static/js/plugins/slick.js
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+django_session.save (0.00) {'schema': u'lv', '_id': u'p8l1rzqt96ksa7r8iqqgd4l364qxlz0a', 'expire_date': datetime.datetime(2018, 9, 12, 7, 10, 4, 370804, tzinfo=<UTC>), 'session_data': u'OTE2OWEzNjFmMzk3MzVhMTZiNjlmM2EwODhiNTVkOGExNWRjM2JlYzp7fQ=='}
+django_session.remove (0.00) {'_id': {'$in': [u'ytxcwex27z6voxxdppvdrpmfij1mfluj']}, 'schema': u'lv'}
+lv.auth_user.save (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8', 'first_name': u'', 'last_name': u'', '_id': ObjectId('5b20925a232037334054b073'), 'is_active': True, 'email': u'', 'is_superuser': False, 'is_staff': False, 'last_login': datetime.datetime(2018, 8, 29, 7, 10, 4, 380939, tzinfo=<UTC>), 'password': u'pbkdf2_sha256$12000$71ZauZ1K0jwS$zKPkNCm0toSn/5CqITaN3BKVM45nnjB0NugiE64XaDQ=', 'date_joined': datetime.datetime(2018, 6, 13, 3, 41, 14, 644000, tzinfo=<UTC>)}
+django_session.save (0.00) {'schema': u'lv', '_id': u'p8l1rzqt96ksa7r8iqqgd4l364qxlz0a', 'expire_date': datetime.datetime(2018, 9, 12, 7, 10, 4, 383920, tzinfo=<UTC>), 'session_data': u'NTU3Y2YzOWFjNmY3ZWM4OTE3ODQ4YWI1YWQ0ZDZhMzBjMTUzZjRmNjp7Imxhbmd1YWdlIjoidmkiLCJfYXV0aF91c2VyX2JhY2tlbmQiOiJwZXJtaXNzaW9uX2JhY2tlbmRfbm9ucmVsLmJhY2tlbmRzLk5vbnJlbFBlcm1pc3Npb25CYWNrZW5kIiwiX2F1dGhfdXNlcl9pZCI6IjViMjA5MjVhMjMyMDM3MzM0MDU0YjA3MyJ9'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+Not Found: /lv/{{$root.logo}}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+Internal Server Error: /lv/per/pages/profile/employeeInfo
+Traceback (most recent call last):
+  File "/home/hcsadmin/q03/packages/django/django/core/handlers/base.py", line 112, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/hcsadmin/q03/packages/quicky/executor.py", line 240, in exec_request_for_multi
+    return self.exec_request(request,**kwargs)
+  File "/home/hcsadmin/q03/packages/quicky/executor.py", line 212, in exec_request
+    return self.__fn__ (request, **kwargs)
+  File "/home/hcsadmin/q03/apps/performance/views.py", line 115, in load_page
+    "path":path.lower()
+  File "/home/hcsadmin/q03/packages/quicky/extens.py", line 302, in render
+    raise (ex)
+TemplateLookupException: Cant locate template for uri u'views/profile/employeeinfo.html'
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+Internal Server Error: /lv/per/pages/profile/empWorking
+Traceback (most recent call last):
+  File "/home/hcsadmin/q03/packages/django/django/core/handlers/base.py", line 112, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/hcsadmin/q03/packages/quicky/executor.py", line 240, in exec_request_for_multi
+    return self.exec_request(request,**kwargs)
+  File "/home/hcsadmin/q03/packages/quicky/executor.py", line 212, in exec_request
+    return self.__fn__ (request, **kwargs)
+  File "/home/hcsadmin/q03/apps/performance/views.py", line 115, in load_page
+    "path":path.lower()
+  File "/home/hcsadmin/q03/packages/quicky/extens.py", line 302, in render
+    raise (ex)
+TemplateLookupException: Cant locate template for uri u'views/profile/empworking.html'
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+Internal Server Error: /lv/per/pages/
+Traceback (most recent call last):
+  File "/home/hcsadmin/q03/packages/django/django/core/handlers/base.py", line 112, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/hcsadmin/q03/packages/quicky/executor.py", line 240, in exec_request_for_multi
+    return self.exec_request(request,**kwargs)
+  File "/home/hcsadmin/q03/packages/quicky/executor.py", line 212, in exec_request
+    return self.__fn__ (request, **kwargs)
+  File "/home/hcsadmin/q03/apps/performance/views.py", line 115, in load_page
+    "path":path.lower()
+  File "/home/hcsadmin/q03/packages/quicky/extens.py", line 302, in render
+    raise (ex)
+TemplateLookupException: Cant locate template for uri u'views/.html'
+Not Found: /per/static/css/libs/bootstrap-datepicker/bootstrap-datepicker.min.css.map
+Not Found: /per/static/css/libs/bootstrap-datepicker/bootstrap-datepicker3.standalone.min.css.map
+Not Found: /per/static/css/libs/bootstrap-datepicker/bootstrap-datepicker3.css.map
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+Internal Server Error: /lv/per/pages/profile/empWorking
+Traceback (most recent call last):
+  File "/home/hcsadmin/q03/packages/django/django/core/handlers/base.py", line 112, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/hcsadmin/q03/packages/quicky/executor.py", line 240, in exec_request_for_multi
+    return self.exec_request(request,**kwargs)
+  File "/home/hcsadmin/q03/packages/quicky/executor.py", line 212, in exec_request
+    return self.__fn__ (request, **kwargs)
+  File "/home/hcsadmin/q03/apps/performance/views.py", line 115, in load_page
+    "path":path.lower()
+  File "/home/hcsadmin/q03/packages/quicky/extens.py", line 302, in render
+    raise (ex)
+TemplateLookupException: Cant locate template for uri u'views/profile/empworking.html'
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+Internal Server Error: /lv/per/pages/profile/empWorking
+Traceback (most recent call last):
+  File "/home/hcsadmin/q03/packages/django/django/core/handlers/base.py", line 112, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/hcsadmin/q03/packages/quicky/executor.py", line 240, in exec_request_for_multi
+    return self.exec_request(request,**kwargs)
+  File "/home/hcsadmin/q03/packages/quicky/executor.py", line 212, in exec_request
+    return self.__fn__ (request, **kwargs)
+  File "/home/hcsadmin/q03/apps/performance/views.py", line 115, in load_page
+    "path":path.lower()
+  File "/home/hcsadmin/q03/packages/quicky/extens.py", line 302, in render
+    raise (ex)
+TemplateLookupException: Cant locate template for uri u'views/profile/empworking.html'
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+Internal Server Error: /lv/per/pages/profile/empWorking
+Traceback (most recent call last):
+  File "/home/hcsadmin/q03/packages/django/django/core/handlers/base.py", line 112, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/hcsadmin/q03/packages/quicky/executor.py", line 240, in exec_request_for_multi
+    return self.exec_request(request,**kwargs)
+  File "/home/hcsadmin/q03/packages/quicky/executor.py", line 212, in exec_request
+    return self.__fn__ (request, **kwargs)
+  File "/home/hcsadmin/q03/apps/performance/views.py", line 115, in load_page
+    "path":path
+  File "/home/hcsadmin/q03/packages/quicky/extens.py", line 302, in render
+    raise (ex)
+TemplateLookupException: Cant locate template for uri u'views/profile/empworking.html'
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+Not Found: /lv/{{$root.logo}}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.01) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+Internal Server Error: /lv/per/pages/
+Traceback (most recent call last):
+  File "/home/hcsadmin/q03/packages/django/django/core/handlers/base.py", line 112, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/hcsadmin/q03/packages/quicky/executor.py", line 240, in exec_request_for_multi
+    return self.exec_request(request,**kwargs)
+  File "/home/hcsadmin/q03/packages/quicky/executor.py", line 212, in exec_request
+    return self.__fn__ (request, **kwargs)
+  File "/home/hcsadmin/q03/apps/performance/views.py", line 115, in load_page
+    "path":path
+  File "/home/hcsadmin/q03/packages/quicky/extens.py", line 302, in render
+    raise (ex)
+TemplateLookupException: Cant locate template for uri u'views/.html'
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.01) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.01) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
