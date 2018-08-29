@@ -4,7 +4,7 @@
     "/packages/mongo",
     "/packages/django"
   ],
-  "HOST_DIR":"lms",
+  "HOST_DIR_":"lms",
   "AUTHORIZATION_ENGINE":"quicky.authorize",
   "HOST_DIR_":"test",
   "SECRET_KEY":"12jds*3210d)9",
@@ -126,7 +126,7 @@
     "collection":"sys.encryptors"
   },
   "APPS":[
-    {"host":"sys",
+    {"host":"",
      "name":"sys-admin",
       "path":"apps/sys_admin",
       "schema":"sys",
@@ -144,14 +144,14 @@
       "name":"performance",
       "path":"apps/performance",
       "login_url":"login",
-      "schema":"lv"
+      "schema_":"lv"
 
     },{
-      "host":"",
+      "host":"lms",
       "name":"lms",
       "path":"apps/lms",
       "login_url":"per/login",
-      "schema":"lv",
+      "schema_":"lv",
       "static_dir":"apps/performance/static"
 
     }

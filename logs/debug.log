@@ -5849,3 +5849,605 @@ lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
 lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
 lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
 lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.01) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.01) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.01) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+Not Found: /lms/lv
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+Not Found: /lms/{{$root.logo}}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.02) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+Not Found: /lms/
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+Not Found: /{{$root.logo}}
+Internal Server Error: /api
+Traceback (most recent call last):
+  File "/home/hcsadmin/q03/packages/django/django/core/handlers/base.py", line 112, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/hcsadmin/q03/packages/django/django/views/decorators/http.py", line 41, in inner
+    return func(request, *args, **kwargs)
+  File "/home/hcsadmin/q03/packages/django/django/views/decorators/csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/home/hcsadmin/q03/packages/quicky/executor.py", line 126, in exec_request
+    pprint.pprint(self.get_customer_code(request))
+  File "/home/hcsadmin/q03/packages/quicky/executor.py", line 64, in get_customer_code
+    if self.__app__.is_persistent_schema():
+AttributeError: 'int' object has no attribute 'is_persistent_schema'
+Internal Server Error: /api
+Traceback (most recent call last):
+  File "/home/hcsadmin/q03/packages/django/django/core/handlers/base.py", line 112, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/hcsadmin/q03/packages/django/django/views/decorators/http.py", line 41, in inner
+    return func(request, *args, **kwargs)
+  File "/home/hcsadmin/q03/packages/django/django/views/decorators/csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/home/hcsadmin/q03/packages/quicky/executor.py", line 126, in exec_request
+    pprint.pprint(self.get_customer_code(request))
+  File "/home/hcsadmin/q03/packages/quicky/executor.py", line 64, in get_customer_code
+    if self.__app__.is_persistent_schema():
+AttributeError: 'int' object has no attribute 'is_persistent_schema'
+Internal Server Error: /api
+Traceback (most recent call last):
+  File "/home/hcsadmin/q03/packages/django/django/core/handlers/base.py", line 112, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/hcsadmin/q03/packages/django/django/views/decorators/http.py", line 41, in inner
+    return func(request, *args, **kwargs)
+  File "/home/hcsadmin/q03/packages/django/django/views/decorators/csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/home/hcsadmin/q03/packages/quicky/executor.py", line 126, in exec_request
+    pprint.pprint(self.get_customer_code(request))
+  File "/home/hcsadmin/q03/packages/quicky/executor.py", line 64, in get_customer_code
+    if self.__app__.is_persistent_schema():
+AttributeError: 'int' object has no attribute 'is_persistent_schema'
+Not Found: /lms/static/js/angular.min.js.map
+Not Found: /lms/static/app/rating/jquery.rateyo.min.js.map
+Not Found: /lms/static/js/datatables/pdfmake.min.js.map
+Not Found: /lms/static/app/libs/chart/angular-chart.min.js.map
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+Not Found: /lms/static/js/angular.min.js.map
+Not Found: /lms/static/js/datatables/pdfmake.min.js.map
+Not Found: /lms/static/app/libs/chart/angular-chart.min.js.map
+Not Found: /lms/static/app/rating/jquery.rateyo.min.js.map
+Not Found: /{{$root.logo}}
+Internal Server Error: /api
+Traceback (most recent call last):
+  File "/home/hcsadmin/q03/packages/django/django/core/handlers/base.py", line 112, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/hcsadmin/q03/packages/django/django/views/decorators/http.py", line 41, in inner
+    return func(request, *args, **kwargs)
+  File "/home/hcsadmin/q03/packages/django/django/views/decorators/csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/home/hcsadmin/q03/packages/quicky/executor.py", line 126, in exec_request
+    pprint.pprint(self.get_customer_code(request))
+  File "/home/hcsadmin/q03/packages/quicky/executor.py", line 64, in get_customer_code
+    if self.__app__.is_persistent_schema():
+AttributeError: 'int' object has no attribute 'is_persistent_schema'
+Internal Server Error: /api
+Traceback (most recent call last):
+  File "/home/hcsadmin/q03/packages/django/django/core/handlers/base.py", line 112, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/hcsadmin/q03/packages/django/django/views/decorators/http.py", line 41, in inner
+    return func(request, *args, **kwargs)
+  File "/home/hcsadmin/q03/packages/django/django/views/decorators/csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/home/hcsadmin/q03/packages/quicky/executor.py", line 126, in exec_request
+    pprint.pprint(self.get_customer_code(request))
+  File "/home/hcsadmin/q03/packages/quicky/executor.py", line 64, in get_customer_code
+    if self.__app__.is_persistent_schema():
+AttributeError: 'int' object has no attribute 'is_persistent_schema'
+Internal Server Error: /api
+Traceback (most recent call last):
+  File "/home/hcsadmin/q03/packages/django/django/core/handlers/base.py", line 112, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/hcsadmin/q03/packages/django/django/views/decorators/http.py", line 41, in inner
+    return func(request, *args, **kwargs)
+  File "/home/hcsadmin/q03/packages/django/django/views/decorators/csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/home/hcsadmin/q03/packages/quicky/executor.py", line 126, in exec_request
+    pprint.pprint(self.get_customer_code(request))
+  File "/home/hcsadmin/q03/packages/quicky/executor.py", line 64, in get_customer_code
+    if self.__app__.is_persistent_schema():
+AttributeError: 'int' object has no attribute 'is_persistent_schema'
+Not Found: /{{$root.logo}}
+Internal Server Error: /api
+Traceback (most recent call last):
+  File "/home/hcsadmin/q03/packages/django/django/core/handlers/base.py", line 112, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/hcsadmin/q03/packages/django/django/views/decorators/http.py", line 41, in inner
+    return func(request, *args, **kwargs)
+  File "/home/hcsadmin/q03/packages/django/django/views/decorators/csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/home/hcsadmin/q03/packages/quicky/executor.py", line 126, in exec_request
+    pprint.pprint(self.get_customer_code(request))
+  File "/home/hcsadmin/q03/packages/quicky/executor.py", line 64, in get_customer_code
+    if self.__app__.is_persistent_schema():
+AttributeError: 'int' object has no attribute 'is_persistent_schema'
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+Internal Server Error: /api
+Traceback (most recent call last):
+  File "/home/hcsadmin/q03/packages/django/django/core/handlers/base.py", line 112, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/hcsadmin/q03/packages/django/django/views/decorators/http.py", line 41, in inner
+    return func(request, *args, **kwargs)
+  File "/home/hcsadmin/q03/packages/django/django/views/decorators/csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/home/hcsadmin/q03/packages/quicky/executor.py", line 218, in exec_request
+    ret_data = self.__fn__(request, **kwargs)
+  File "/home/hcsadmin/q03/packages/quicky/api.py", line 172, in call
+    raise ex
+ValueError: No JSON object could be decoded
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+Internal Server Error: /api
+Traceback (most recent call last):
+  File "/home/hcsadmin/q03/packages/django/django/core/handlers/base.py", line 112, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/hcsadmin/q03/packages/django/django/views/decorators/http.py", line 41, in inner
+    return func(request, *args, **kwargs)
+  File "/home/hcsadmin/q03/packages/django/django/views/decorators/csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/home/hcsadmin/q03/packages/quicky/executor.py", line 218, in exec_request
+    ret_data = self.__fn__(request, **kwargs)
+  File "/home/hcsadmin/q03/packages/quicky/api.py", line 172, in call
+    raise ex
+ValueError: No JSON object could be decoded
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+Not Found: /lms/static/js/angular.min.js.map
+Not Found: /lms/static/js/datatables/pdfmake.min.js.map
+Not Found: /lms/static/app/libs/chart/angular-chart.min.js.map
+Not Found: /lms/static/app/rating/jquery.rateyo.min.js.map
+Not Found: /{{$root.logo}}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.01) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.02) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+Not Found: /{{$root.logo}}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.01) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+Internal Server Error: /pages/home
+Traceback (most recent call last):
+  File "/home/hcsadmin/q03/packages/django/django/core/handlers/base.py", line 112, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/hcsadmin/q03/packages/quicky/executor.py", line 127, in exec_request
+    schema =self.get_schema(request)
+  File "/home/hcsadmin/q03/packages/quicky/executor.py", line 112, in get_schema
+    if self.__app__.is_persistent_schema():
+AttributeError: 'int' object has no attribute 'is_persistent_schema'
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+Not Found: /{{$root.logo}}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.01) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.01) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+Internal Server Error: /pages/home
+Traceback (most recent call last):
+  File "/home/hcsadmin/q03/packages/django/django/core/handlers/base.py", line 112, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/hcsadmin/q03/packages/quicky/executor.py", line 127, in exec_request
+    schema =self.get_schema(request)
+  File "/home/hcsadmin/q03/packages/quicky/executor.py", line 112, in get_schema
+    if self.__app__.is_persistent_schema():
+AttributeError: 'int' object has no attribute 'is_persistent_schema'
+Not Found: /lms/static/js/angular.min.js.map
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+Not Found: /lms/static/js/angular.min.js.map
+Not Found: /lms/static/app/libs/chart/angular-chart.min.js.map
+Not Found: /lms/static/js/datatables/pdfmake.min.js.map
+Not Found: /lms/static/app/rating/jquery.rateyo.min.js.map
+Not Found: /{{$root.logo}}
+lv.auth_user.find (0.02) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.01) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+Internal Server Error: /pages/home
+Traceback (most recent call last):
+  File "/home/hcsadmin/q03/packages/django/django/core/handlers/base.py", line 112, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/hcsadmin/q03/packages/quicky/executor.py", line 127, in exec_request
+    schema =self.get_schema(request)
+  File "/home/hcsadmin/q03/packages/quicky/executor.py", line 112, in get_schema
+    if self.__app__.is_persistent_schema():
+AttributeError: 'int' object has no attribute 'is_persistent_schema'
+Internal Server Error: /pages/home
+Traceback (most recent call last):
+  File "/home/hcsadmin/q03/packages/django/django/core/handlers/base.py", line 112, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/hcsadmin/q03/packages/quicky/executor.py", line 127, in exec_request
+    schema =self.get_schema(request)
+  File "/home/hcsadmin/q03/packages/quicky/executor.py", line 112, in get_schema
+    if self.__app__.is_persistent_schema():
+AttributeError: 'int' object has no attribute 'is_persistent_schema'
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+Not Found: /lms/per
+lv.auth_user.find (0.01) {'_id': ObjectId('5b20925a232037334054b073')}
+Not Found: /{{$root.logo}}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.01) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.01) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+Not Found: /lms
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+Not Found: /per/{{$root.logo}}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.01) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.01) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.01) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+Not Found: /per/
+django_session.save (0.00) {'schema': u'sys', '_id': u'o81mjhbxrth60ytz04gz0vl16bc1fvh5', 'expire_date': datetime.datetime(2018, 9, 12, 6, 44, 1, 912467, tzinfo=<UTC>), 'session_data': u'OTE2OWEzNjFmMzk3MzVhMTZiNjlmM2EwODhiNTVkOGExNWRjM2JlYzp7fQ=='}
+django_session.save (0.00) {'schema': u'sys', '_id': u'o81mjhbxrth60ytz04gz0vl16bc1fvh5', 'expire_date': datetime.datetime(2018, 9, 12, 6, 44, 1, 921400, tzinfo=<UTC>), 'session_data': u'OTE2OWEzNjFmMzk3MzVhMTZiNjlmM2EwODhiNTVkOGExNWRjM2JlYzp7fQ=='}
+sys.auth_user.find (0.00) {'username': 'root'}
+sys.auth_user.save (0.00) {'username': u'root', 'first_name': u'', 'last_name': u'', '_id': ObjectId('5b321a71927e0070511b73e6'), 'is_active': True, 'email': u'root@root.com', 'is_superuser': True, 'is_staff': True, 'last_login': datetime.datetime(2018, 8, 29, 4, 54, 45, 449000, tzinfo=<UTC>), 'password': u'pbkdf2_sha256$12000$oQVPdDDJaTJc$c2t2sGqa01ZDC0tgJJFC5tqIbRzoXFVlKOtqF7jf61Y=', 'date_joined': datetime.datetime(2018, 6, 26, 10, 50, 20, 136000, tzinfo=<UTC>)}
+django_session.save (0.00) {'schema': u'sys', '_id': 'o81mjhbxrth60ytz04gz0vl16bc1fvh5', 'expire_date': datetime.datetime(2018, 9, 12, 6, 44, 2, 9773, tzinfo=<UTC>), 'session_data': u'YTIwMDM1ZDE4Mzg1ZWU5ZTUxNjkzNTM0NWMyMDc3YjYwMjFiODVjYzp7Imxhbmd1YWdlIjoiZW4ifQ=='}
+sys.auth_user.find (0.00) {'username': 'root'}
+sys.auth_user.save (0.00) {'username': u'root', 'first_name': u'', 'last_name': u'', '_id': ObjectId('5b321a71927e0070511b73e6'), 'is_active': True, 'email': u'root@root.com', 'is_superuser': True, 'is_staff': True, 'last_login': datetime.datetime(2018, 8, 29, 4, 54, 45, 449000, tzinfo=<UTC>), 'password': u'pbkdf2_sha256$12000$oQVPdDDJaTJc$c2t2sGqa01ZDC0tgJJFC5tqIbRzoXFVlKOtqF7jf61Y=', 'date_joined': datetime.datetime(2018, 6, 26, 10, 50, 20, 136000, tzinfo=<UTC>)}
+sys.auth_user.find (0.00) {'username': u'root'}
+sys.auth_user.find (0.00) {'username': u'root'}
+django_session.save (0.00) {'schema': u'sys', '_id': u'f0eybb0svdp8rqerlqsrsm20kb9024k3', 'expire_date': datetime.datetime(2018, 9, 12, 6, 44, 6, 369252, tzinfo=<UTC>), 'session_data': u'YTIwMDM1ZDE4Mzg1ZWU5ZTUxNjkzNTM0NWMyMDc3YjYwMjFiODVjYzp7Imxhbmd1YWdlIjoiZW4ifQ=='}
+django_session.remove (0.00) {'_id': {'$in': [u'o81mjhbxrth60ytz04gz0vl16bc1fvh5']}, 'schema': u'sys'}
+sys.auth_user.save (0.00) {'username': u'root', 'first_name': u'', 'last_name': u'', '_id': ObjectId('5b321a71927e0070511b73e6'), 'is_active': True, 'email': u'root@root.com', 'is_superuser': True, 'is_staff': True, 'last_login': datetime.datetime(2018, 8, 29, 6, 44, 6, 377186, tzinfo=<UTC>), 'password': u'pbkdf2_sha256$12000$oQVPdDDJaTJc$c2t2sGqa01ZDC0tgJJFC5tqIbRzoXFVlKOtqF7jf61Y=', 'date_joined': datetime.datetime(2018, 6, 26, 10, 50, 20, 136000, tzinfo=<UTC>)}
+django_session.save (0.00) {'schema': u'sys', '_id': u'f0eybb0svdp8rqerlqsrsm20kb9024k3', 'expire_date': datetime.datetime(2018, 9, 12, 6, 44, 6, 381813, tzinfo=<UTC>), 'session_data': u'NGY5NTMxNTEwNzgzMjQ2ODBkYmNlZmQxYzk1YTU1NDY1NTcxY2VjYTp7Il9hdXRoX3VzZXJfYmFja2VuZCI6InF1aWNreS5iYWNrZW5kcy5IYXNoTW9kZWxCYWNrZW5kIiwiX2F1dGhfdXNlcl9pZCI6IjViMzIxYTcxOTI3ZTAwNzA1MTFiNzNlNiIsImxhbmd1YWdlIjoiZW4ifQ=='}
+sys.auth_user.find (0.00) {'_id': ObjectId('5b321a71927e0070511b73e6')}
+sys.auth_user.find (0.00) {'_id': ObjectId('5b321a71927e0070511b73e6')}
+sys.auth_user.find (0.00) {'_id': ObjectId('5b321a71927e0070511b73e6')}
+sys.auth_user.find (0.00) {'username': u'root'}
+sys.auth_user.find (0.00) {'_id': ObjectId('5b321a71927e0070511b73e6')}
+sys.auth_user.find (0.01) {'_id': ObjectId('5b321a71927e0070511b73e6')}
+sys.auth_user.find (0.01) {'_id': ObjectId('5b321a71927e0070511b73e6')}
+sys.auth_user.find (0.01) {'_id': ObjectId('5b321a71927e0070511b73e6')}
+sys.auth_user.find (0.00) {'username': u'root'}
+sys.auth_user.find (0.01) {'username': u'root'}
+Internal Server Error: /api
+Traceback (most recent call last):
+  File "/home/hcsadmin/q03/packages/django/django/core/handlers/base.py", line 112, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/hcsadmin/q03/packages/django/django/views/decorators/http.py", line 41, in inner
+    return func(request, *args, **kwargs)
+  File "/home/hcsadmin/q03/packages/django/django/views/decorators/csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/home/hcsadmin/q03/packages/quicky/executor.py", line 215, in exec_request
+    ret_data = self.__fn__(request, **kwargs)
+  File "/home/hcsadmin/q03/packages/quicky/api.py", line 172, in call
+    raise ex
+Exception: Call  'get_list_of_roles' in 'sys_admin.api.privileges' encountered ''nameschema''
+sys.auth_user.find (0.01) {'username': u'root'}
+Internal Server Error: /api
+Traceback (most recent call last):
+  File "/home/hcsadmin/q03/packages/django/django/core/handlers/base.py", line 112, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/hcsadmin/q03/packages/django/django/views/decorators/http.py", line 41, in inner
+    return func(request, *args, **kwargs)
+  File "/home/hcsadmin/q03/packages/django/django/views/decorators/csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/home/hcsadmin/q03/packages/quicky/executor.py", line 215, in exec_request
+    ret_data = self.__fn__(request, **kwargs)
+  File "/home/hcsadmin/q03/packages/quicky/api.py", line 172, in call
+    raise ex
+Exception: Call  'get_list_of_roles' in 'sys_admin.api.privileges' encountered ''nameschema''
+sys.auth_user.find (0.00) {'_id': ObjectId('5b321a71927e0070511b73e6')}
+sys.auth_user.find (0.00) {'_id': ObjectId('5b321a71927e0070511b73e6')}
+sys.auth_user.find (0.00) {'username': u'root'}
+sys.auth_user.find (0.00) {'_id': ObjectId('5b321a71927e0070511b73e6')}
+sys.auth_user.find (0.00) {'username': u'root'}
+sys.auth_user.find (0.00) {'_id': ObjectId('5b321a71927e0070511b73e6')}
+sys.auth_user.find (0.00) {'_id': ObjectId('5b321a71927e0070511b73e6')}
+sys.auth_user.find (0.00) {'username': u'root'}
+sys.auth_user.find (0.00) {'_id': ObjectId('5b321a71927e0070511b73e6')}
+sys.auth_user.find (0.00) {'username': u'root'}
+Internal Server Error: /api
+Traceback (most recent call last):
+  File "/home/hcsadmin/q03/packages/django/django/core/handlers/base.py", line 112, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/hcsadmin/q03/packages/django/django/views/decorators/http.py", line 41, in inner
+    return func(request, *args, **kwargs)
+  File "/home/hcsadmin/q03/packages/django/django/views/decorators/csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/home/hcsadmin/q03/packages/quicky/executor.py", line 215, in exec_request
+    ret_data = self.__fn__(request, **kwargs)
+  File "/home/hcsadmin/q03/packages/quicky/api.py", line 172, in call
+    raise ex
+Exception: Call  'get_list_of_users_in_schema' in 'sys_admin.api.privileges' encountered 'unsupported operand type(s) for +: 'dict' and 'str''
+sys.auth_user.find (0.00) {'_id': ObjectId('5b321a71927e0070511b73e6')}
+sys.auth_user.find (0.00) {'_id': ObjectId('5b321a71927e0070511b73e6')}
+sys.auth_user.find (0.00) {'username': u'root'}
+sys.auth_user.find (0.00) {'_id': ObjectId('5b321a71927e0070511b73e6')}
+sys.auth_user.find (0.00) {'_id': ObjectId('5b321a71927e0070511b73e6')}
+sys.auth_user.find (0.00) {'username': u'root'}
+sys.auth_user.find (0.00) {'_id': ObjectId('5b321a71927e0070511b73e6')}
+sys.auth_user.find (0.00) {'username': u'root'}
+Internal Server Error: /api
+Traceback (most recent call last):
+  File "/home/hcsadmin/q03/packages/django/django/core/handlers/base.py", line 112, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/hcsadmin/q03/packages/django/django/views/decorators/http.py", line 41, in inner
+    return func(request, *args, **kwargs)
+  File "/home/hcsadmin/q03/packages/django/django/views/decorators/csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/home/hcsadmin/q03/packages/quicky/executor.py", line 215, in exec_request
+    ret_data = self.__fn__(request, **kwargs)
+  File "/home/hcsadmin/q03/packages/quicky/api.py", line 172, in call
+    raise ex
+Exception: Call  'get_list_of_users_in_schema' in 'sys_admin.api.privileges' encountered 'unsupported operand type(s) for +: 'dict' and 'str''
+Not Found: /per/
+Not Found: /per/lv
+django_session.save (0.00) {'schema': u'lv', '_id': u'9pc54v4j581c0ytrtecdiglzcop9jn6g', 'expire_date': datetime.datetime(2018, 9, 12, 6, 45, 28, 27468, tzinfo=<UTC>), 'session_data': u'OTE2OWEzNjFmMzk3MzVhMTZiNjlmM2EwODhiNTVkOGExNWRjM2JlYzp7fQ=='}
+Internal Server Error: /lv/per
+Traceback (most recent call last):
+  File "/home/hcsadmin/q03/packages/django/django/core/handlers/base.py", line 112, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/hcsadmin/q03/packages/quicky/executor.py", line 240, in exec_request_for_multi
+    return self.exec_request(request,**kwargs)
+  File "/home/hcsadmin/q03/packages/quicky/executor.py", line 129, in exec_request
+    schema =self.get_schema(request)
+  File "/home/hcsadmin/q03/packages/quicky/executor.py", line 121, in get_schema
+    request.path:(lambda x,y: y if x==None else x)(settings.MULTI_TENANCY_DEFAULT_SCHEMA,get_tenancy_schema(self.get_customer_code(request)))
+  File "/home/hcsadmin/q03/packages/quicky/executor.py", line 92, in get_customer_code
+    if hasattr(settings,"HOST_DIR") or settings.HOST_DIR != "":
+  File "/home/hcsadmin/q03/packages/django/django/conf/__init__.py", line 55, in __getattr__
+    return getattr(self._wrapped, name)
+AttributeError: 'Settings' object has no attribute 'HOST_DIR'
+django_session.save (0.00) {'schema': u'lv', '_id': u'xky4qyzy4oys804ew5x7bbw8vwxr7yq4', 'expire_date': datetime.datetime(2018, 9, 12, 6, 46, 28, 987667, tzinfo=<UTC>), 'session_data': u'OTE2OWEzNjFmMzk3MzVhMTZiNjlmM2EwODhiNTVkOGExNWRjM2JlYzp7fQ=='}
+django_session.save (0.00) {'schema': u'lv', '_id': u'xky4qyzy4oys804ew5x7bbw8vwxr7yq4', 'expire_date': datetime.datetime(2018, 9, 12, 6, 46, 29, 17807, tzinfo=<UTC>), 'session_data': u'OTE2OWEzNjFmMzk3MzVhMTZiNjlmM2EwODhiNTVkOGExNWRjM2JlYzp7fQ=='}
+Not Found: /per/static/js/plugins/slick.js
+Not Found: /per/static/js/plugins/slick.js
+Not Found: /lv/lms/per/login
+Not Found: /lv/lms/per/login
+Not Found: /per/static/js/plugins/slick.js
+Not Found: /per/static/js/plugins/slick.js
+Not Found: /per/static/js/plugins/slick.js
+Not Found: /per/static/js/plugins/slick.js
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+django_session.save (0.00) {'schema': u'lv', '_id': u'vmlhz630k7mijh1ila88mmpaf1t6b46n', 'expire_date': datetime.datetime(2018, 9, 12, 6, 47, 6, 945254, tzinfo=<UTC>), 'session_data': u'OTE2OWEzNjFmMzk3MzVhMTZiNjlmM2EwODhiNTVkOGExNWRjM2JlYzp7fQ=='}
+django_session.remove (0.00) {'_id': {'$in': [u'xky4qyzy4oys804ew5x7bbw8vwxr7yq4']}, 'schema': u'lv'}
+lv.auth_user.save (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8', 'first_name': u'', 'last_name': u'', '_id': ObjectId('5b20925a232037334054b073'), 'is_active': True, 'email': u'', 'is_superuser': False, 'is_staff': False, 'last_login': datetime.datetime(2018, 8, 29, 6, 47, 6, 957022, tzinfo=<UTC>), 'password': u'pbkdf2_sha256$12000$71ZauZ1K0jwS$zKPkNCm0toSn/5CqITaN3BKVM45nnjB0NugiE64XaDQ=', 'date_joined': datetime.datetime(2018, 6, 13, 3, 41, 14, 644000, tzinfo=<UTC>)}
+django_session.save (0.00) {'schema': u'lv', '_id': u'vmlhz630k7mijh1ila88mmpaf1t6b46n', 'expire_date': datetime.datetime(2018, 9, 12, 6, 47, 6, 964733, tzinfo=<UTC>), 'session_data': u'NTU3Y2YzOWFjNmY3ZWM4OTE3ODQ4YWI1YWQ0ZDZhMzBjMTUzZjRmNjp7Imxhbmd1YWdlIjoidmkiLCJfYXV0aF91c2VyX2JhY2tlbmQiOiJwZXJtaXNzaW9uX2JhY2tlbmRfbm9ucmVsLmJhY2tlbmRzLk5vbnJlbFBlcm1pc3Npb25CYWNrZW5kIiwiX2F1dGhfdXNlcl9pZCI6IjViMjA5MjVhMjMyMDM3MzM0MDU0YjA3MyJ9'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+Not Found: /lv/{{$root.logo}}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.01) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.01) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.01) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b20925a232037334054b073')}
+Internal Server Error: /lv/per/pages/profile/employeeInfo
+Traceback (most recent call last):
+  File "/home/hcsadmin/q03/packages/django/django/core/handlers/base.py", line 112, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/hcsadmin/q03/packages/quicky/executor.py", line 240, in exec_request_for_multi
+    return self.exec_request(request,**kwargs)
+  File "/home/hcsadmin/q03/packages/quicky/executor.py", line 212, in exec_request
+    return self.__fn__ (request, **kwargs)
+  File "/home/hcsadmin/q03/apps/performance/views.py", line 112, in load_page
+    "path":path.lower()
+  File "/home/hcsadmin/q03/packages/quicky/extens.py", line 302, in render
+    raise (ex)
+TemplateLookupException: Cant locate template for uri u'views/profile/employeeinfo.html'
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+Internal Server Error: /lv/per/pages/profile/employeeInfo
+Traceback (most recent call last):
+  File "/home/hcsadmin/q03/packages/django/django/core/handlers/base.py", line 112, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/hcsadmin/q03/packages/quicky/executor.py", line 240, in exec_request_for_multi
+    return self.exec_request(request,**kwargs)
+  File "/home/hcsadmin/q03/packages/quicky/executor.py", line 212, in exec_request
+    return self.__fn__ (request, **kwargs)
+  File "/home/hcsadmin/q03/apps/performance/views.py", line 112, in load_page
+    "path":path.lower()
+  File "/home/hcsadmin/q03/packages/quicky/extens.py", line 302, in render
+    raise (ex)
+TemplateLookupException: Cant locate template for uri u'views/profile/employeeinfo.html'
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+Internal Server Error: /lv/per/pages/profile/empWorking
+Traceback (most recent call last):
+  File "/home/hcsadmin/q03/packages/django/django/core/handlers/base.py", line 112, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/hcsadmin/q03/packages/quicky/executor.py", line 240, in exec_request_for_multi
+    return self.exec_request(request,**kwargs)
+  File "/home/hcsadmin/q03/packages/quicky/executor.py", line 212, in exec_request
+    return self.__fn__ (request, **kwargs)
+  File "/home/hcsadmin/q03/apps/performance/views.py", line 112, in load_page
+    "path":path.lower()
+  File "/home/hcsadmin/q03/packages/quicky/extens.py", line 302, in render
+    raise (ex)
+TemplateLookupException: Cant locate template for uri u'views/profile/empworking.html'
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+Internal Server Error: /lv/per/pages/
+Traceback (most recent call last):
+  File "/home/hcsadmin/q03/packages/django/django/core/handlers/base.py", line 112, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/hcsadmin/q03/packages/quicky/executor.py", line 240, in exec_request_for_multi
+    return self.exec_request(request,**kwargs)
+  File "/home/hcsadmin/q03/packages/quicky/executor.py", line 212, in exec_request
+    return self.__fn__ (request, **kwargs)
+  File "/home/hcsadmin/q03/apps/performance/views.py", line 112, in load_page
+    "path":path.lower()
+  File "/home/hcsadmin/q03/packages/quicky/extens.py", line 302, in render
+    raise (ex)
+TemplateLookupException: Cant locate template for uri u'views/.html'

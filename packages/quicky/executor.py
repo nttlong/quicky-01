@@ -23,6 +23,8 @@ class executor(object):
             if hasattr(self.__app__.settings, "DEFAULT_DB_SCHEMA") and not has_set_schema:
                 tenancy.set_schema(self.__app__.settings.DEFAULT_DB_SCHEMA)
     def load_app(self,request):
+        if self.__app__ !=None:
+            return
         if __apps_cache__.has_key(request.path):
             self.__app__ = __apps_cache__[request.path]
         import applications
@@ -38,6 +40,7 @@ class executor(object):
         if path == "api":
             self.__app__ =applications.get_app_by_host_dir("")
             __apps_cache__.update({request.path: self.__app__})
+            return
         elif path[path.__len__()-4:path.__len__()] == "/api":
             path = path[0:path.__len__() - 4]
         items = path.split('/')
@@ -86,7 +89,7 @@ class executor(object):
             path = request.path
             if path[0] == '/':
                 path = path[1:path.__len__()]
-            if hasattr(settings,"HOST_DIR") or settings.HOST_DIR != "":
+            if hasattr(settings,"HOST_DIR") and settings.HOST_DIR != "":
                 path = path[settings.HOST_DIR.__len__():path.__len__()]
             path = path[self.__app__.host_dir.__len__():path.__len__()]
             items = path.split('/')
@@ -122,12 +125,7 @@ class executor(object):
     def exec_request(self, request, **kwargs):
         import urllib
         self.load_app(request)
-        import pprint
-        pprint.pprint(self.get_customer_code(request))
-        pprint.pprint("============================")
-        pprint.pprint(__customer__code__)
-        if self.__app__ == None:
-            self.load_app(request)
+
         schema =self.get_schema(request)
         tenancy.set_schema(schema)
 
