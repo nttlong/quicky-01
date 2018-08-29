@@ -6,6 +6,7 @@ import models
 import datetime
 import logging
 import threading
+import re
 logger = logging.getLogger(__name__)
 global lock
 lock = threading.Lock()
@@ -93,15 +94,20 @@ def update(args):
                     description      = (lambda data: data["description"] if data.has_key("description") else None)(args['data'])
                     )
 
+                if args['data']['change_password'] != None and args['data']['change_password'] == True:
+                    rs_check = check_password(args['data']['password'], user_name)
+                    if not rs_check['result']:
+                        u = User.objects.get(username=args['data']['username'])
+                        u.set_password(args['data']['password'])
+                        u.save(schema=tenancy.get_schema())
+                    else:
+                        lock.release()
+                        return rs_check
+
                 ret = models.auth_user_info().update(
                     data,
                     "username == {0}",
                     args['data']['username'])
-
-                if args['data']['change_password'] != None and args['data']['change_password'] == True:
-                    u = User.objects.get(username=args['data']['username'])
-                    u.set_password(args['data']['password'])
-                    u.save(schema=tenancy.get_schema())
 
                 lock.release()
                 return ret
@@ -113,6 +119,82 @@ def update(args):
                 lock.release()
                 raise(ex)
     return None
+
+def check_password(password, user_name):
+    from .. import SystemConfig
+    accountConfig = SystemConfig.get()
+    rs = {
+        "result": False,
+        "error": []
+    }
+
+    #Check min_len
+    if (accountConfig.apply_minLength == True):
+        if (len(password) < accountConfig.min_len):
+            rs["result"] = True
+            rs["error"].append(
+                {
+                    "config":"apply_minLength",
+                    "require":accountConfig.apply_minLength,
+                    "require_length":accountConfig.min_len
+                })
+            return rs
+
+    #Check max_len
+    if (accountConfig.apply_maxLength == True):
+        if (len(password) > accountConfig.max_len):
+            rs.result = True
+            rs["error"].append({
+                    "config":"apply_maxLength",
+                    "require":accountConfig.apply_maxLength,
+                    "require_length":accountConfig.max_len
+                })
+            return rs
+
+    #Check cho phép password chứa user login
+    if (accountConfig.not_user_in_password == True):
+        if user_name in password:
+            rs["result"] = True
+            rs["error"].append({
+                    "config":"not_user_in_password",
+                    "require":accountConfig.not_user_in_password
+                })
+            return rs
+
+    #Check uppercase
+    if (accountConfig.is_has_upper_char == True):
+        if ([1 if letter.isupper() else 0 for letter in password] or []).count(1) < accountConfig.num_of_upper:
+            rs["result"] = True
+            rs["error"].append({
+                    "config":"is_has_upper_char",
+                    "require":accountConfig.is_has_upper_char,
+                    "require_length":accountConfig.num_of_upper
+                })
+            return rs
+
+    #Check lower
+    if (accountConfig.is_has_lower_char == True):
+        if ([1 if letter.islower() else 0 for letter in password] or []).count(1) < accountConfig.num_of_lower:
+            rs["result"] = True
+            rs["error"].append({
+                    "config":"is_has_lower_char",
+                    "require":accountConfig.is_has_lower_char,
+                    "require_length":accountConfig.num_of_lower
+                })
+            return rs
+
+    #Check symbol
+    if (accountConfig.is_has_symbols == True):
+        if re.search(r"(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])", password) == None:
+            rs["result"] = True
+            rs["error"].append({
+                    "config":"is_has_symbols",
+                    "require":accountConfig.is_has_symbols,
+                    "require_length":accountConfig.num_of_symbol
+                })
+            return rs
+
+    return rs
 
 def delete(args):
     if args['data'] != None:

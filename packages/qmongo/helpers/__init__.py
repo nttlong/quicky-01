@@ -39,9 +39,12 @@ class data_field():
         self.data_type=data_type
         self.details=detail
 def convert_tuple_declare_into_fields(data):
+    if data == None:
+        return None
     if type(data) in [str,unicode]:
         return data
     _data = {}
+
     for k,v in data.items():
         if type(v) in [str,unicode]:
             _data.update({

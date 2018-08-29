@@ -856,10 +856,11 @@ def insert_performance_standanrd(args):
                                             }
                                     })
             ret = None
-            if list(check_exist) != None and len(list(check_exist)) > 0:
+            rs_check = list(check_exist)
+            if len(rs_check) > 0:
                 ret = {
                     "error" : "duplicate",
-                    "item" : check_exist
+                    "item" : rs_check
                 }
                 lock.release()
                 return ret

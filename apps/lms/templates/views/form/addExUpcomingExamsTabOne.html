@@ -1,0 +1,248 @@
+﻿<div>
+  
+    <div>
+        <div class="col-md-2 col-sm-2">
+        </div>
+        <div class="col-md-9 col-sm-9">
+        <div class="col-md-{{col}}" style="padding-bottom: 20px;">
+            <div class="form-group zb-form-group">
+                <!--Mã Tài liệu, ID-->
+                <label for="inputEmp_Train_Mode_Name" class="col-sm-3 zb-form-label">${get_res('exam_id','ID')}</label>
+                <div class="col-sm-9"> 
+                    <input-text id="inputEmp_Train_Mode_Name" ng-model="entity.exam_id" required>
+                </div>
+            </div>
+        </div>
+                       
+        <div class="col-md-{{col}}"style="padding-bottom: 20px;">
+            <div class="form-group zb-form-group">
+                <!--Tên Tài liệu-->
+                <label for="inputEmp_Train_Mode_Name" class="col-sm-3 zb-form-label">${get_res('exam_name1','Exam Name 1')}</label>
+                    <div class="col-sm-9"> 
+                    <input-text id="inputEmp_Train_Mode_Name" ng-model="entity.exam_name1" required>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-{{col}}" style="padding-bottom: 20px;">
+            <div class="form-group zb-form-group">
+                <!--Tên Tài liệu-->
+                <label for="inputEmp_Train_Mode_Name" class="col-sm-3 zb-form-label">${get_res('exam_name2','Exam Name 2')}</label>
+                <div class="col-sm-9"> 
+                    <input-text id="inputEmp_Train_Mode_Name" ng-model="entity.exam_name2">
+                </div>
+            </div>
+        </div>
+        <div class="col-md-{{col}}" style="padding-bottom: 20px;">
+            <div class="form-group zb-form-group">
+                <!--Nguon dinh danh Tài liệu-->
+                <label for="inputEmp_Train_Mode_Name" class="col-sm-3 zb-form-label">${get_res('course_related','Course-Related')}</label>
+                <div class="col-sm-9"> 
+                    <div style="display: inline-flex;">
+                        <div class="radio radio-success">
+					        <input type="radio" name="radCourse" ng-value="dt_true" id="idradCourse1" 
+                                    ng-model="entity.course_related.yes" ng-click="onChangeRadio('yes_related')" >
+					        <label for="idradCourse1">
+						        <span>${get_res('yes_related','Yes')}</span>
+					        </label>
+				        </div>
+                        <div class="radio radio-success" style="margin-left: 136px;">
+					        <input type="radio" name="radCourse" ng-value="dt_false" id="idradCourse2" 
+                                    ng-model="entity.course_related.no" ng-click="onChangeRadio('no_related')">
+					        <label for="idradCourse2">
+						        <span>${get_res('no_related','No')}</span> 
+					        </label>
+				        </div>
+                    </div>
+                </div>
+            </div>
+        </div>   
+        <div class="col-md-{{col}}" style="padding-bottom: 20px;" ng-if="entity.course_related.yes">
+            <div class="form-group zb-form-group">
+                <!--Mô tả tài liệu-->
+                <label for="inputEmp_Train_Mode_Name" class="col-sm-3 zb-form-label">${get_res('course_info','Course Information')}</label>
+                <div class="col-sm-9">
+                        <div>
+                        <div class="col-md-4" >
+                            <input-select ng-model="entity.course_info.class_code" data-list="cbbQuestionPicking" data-value="value" data-caption="caption"></input-select>
+                            <p style="font-size:13px;text-align:center;color:rgb(237,125,49);font-style:italic">Class Code</p>
+                        </div>
+                        <div class="col-md-4" >
+                            <input-select ng-model="entity.course_info.course_name" data-list="cbbQuestionPicking" data-value="value" data-caption="caption"></input-select>
+                            <p style="font-size:13px;text-align:center;color:rgb(237,125,49);font-style:italic">Course Name</p>
+                        </div>
+                        <div class="col-md-4">
+                            <input-select ng-model="entity.course_info.start_date" data-list="cbbQuestionPicking" data-value="value" data-caption="caption"></input-select>
+                            <p style="font-size:13px;text-align:center;color:rgb(237,125,49);font-style:italic">Start Date</p>
+                        </div>
+                        </div>
+                </div>
+            </div>
+        </div>
+                    
+        <div class="col-md-{{col}}" style="padding-bottom: 20px;">
+            <div class="form-group zb-form-group">
+                <!--Tên Khóa học-->
+                <label for="inputEmp_Train_Mode_Name" class="col-sm-3 zb-form-label">${get_res('exam_avail','Exam Availability')}</label>
+                <div class="col-sm-9"> 
+                    <div style="display: inline-flex;">
+                        <div class="radio radio-success">
+					        <input type="radio" name="radAvail" ng-value="dt_true" id="idradAvail1" 
+                                    ng-model="entity.exam_avail.always" ng-click="onChangeRadio('alway_avail')">
+					        <label for="idradAvail1">
+						        <span>${get_res('alway_avail','Always Available')}</span>
+					        </label>
+				        </div>
+                        <div class="radio radio-success" style="margin-left:54px" >
+					        <input type="radio" name="radAvail" ng-value="dt_false" id="idradAvail2" 
+                                    ng-model="entity.exam_avail.specific" ng-click="onChangeRadio('specific_avail')">
+					        <label for="idradAvail2">
+						        <span>${get_res('specific_avail','Available on specific time')}</span> 
+					        </label>
+				        </div>
+                    </div>
+                    </div>  
+                </div>
+            </div>
+            <div class="col-md-{{col}}" style="padding-bottom: 20px;" ng-if="entity.exam_avail.specific">
+            <div class="form-group zb-form-group">
+                <!--Mô tả tài liệu-->
+                <label for="inputEmp_Train_Mode_Name" class="col-sm-2 zb-form-label">${get_res('start_date','Start Date')}</label>
+                    <div class="col-sm-4"> 
+                    <date-picker ng-model="entity.exam_avail.start_date" data-format="{{$root.systemConfig.date_format}}" />
+                </div>
+                <label for="inputEmp_Train_Mode_Name" class="col-sm-2 zb-form-label">${get_res('start_time','Time')}</label>
+                    <div class="col-sm-4"> 
+                    <time-picker ng-model="entity.exam_avail.start_time" format="HH:mm" />
+                </div>
+            </div>
+            <div class="form-group zb-form-group">
+                <!--Mô tả tài liệu-->
+                <label for="inputEmp_Train_Mode_Name" class="col-sm-2 zb-form-label">${get_res('end_date','End Date')}</label>
+                    <div class="col-sm-4"> 
+                    <date-picker ng-model="entity.exam_avail.end_date" data-format="{{$root.systemConfig.date_format}}" />
+                </div>
+                <label for="inputEmp_Train_Mode_Name" class="col-sm-2 zb-form-label">${get_res('end_time','Time')}</label>
+                    <div class="col-sm-4"> 
+                    <time-picker ng-model="entity.exam_avail.end_time" format="HH:mm" />
+                </div>
+            </div>
+
+        </div>
+            <div class="col-md-{{col}}" style="padding-bottom: 20px;">
+            <div class="form-group zb-form-group">
+                <!--Tên Khóa học-->
+                <label for="inputEmp_Train_Mode_Name" class="col-sm-3 zb-form-label">${get_res('exam_mode','Examination Mode')}</label>
+                <div class="col-sm-9"> 
+                    <div style="display: inline-flex;">
+                        <div class="radio radio-success">
+					        <input type="radio" name="radMode" ng-value="dt_true" id="idradMode1" 
+                                    ng-model="entity.exam_mode.practise_exam" ng-click="onChangeRadio('mode_practise')">
+					        <label for="idradMode1">
+						        <span>${get_res('practise_exam','Practice Exam')}</span>
+					        </label>
+				        </div>
+                        <div class="radio radio-success" style="margin-left: 70px;">
+					        <input type="radio" name="radMode" ng-value="dt_false" id="idradMode2" 
+                                    ng-model="entity.exam_mode.officical_exam" ng-click="onChangeRadio('mode_officical')">
+					        <label for="idradMode2">
+						        <span>${get_res('officical_exam','Official Exam')}</span> 
+					        </label>
+				        </div>
+                    </div>
+                    </div>  
+                </div>
+            </div>
+            <div class="col-md-{{col}}" style="padding-bottom: 20px;">
+            <div class="form-group zb-form-group">
+                <!--Tên Khóa học-->
+                <label for="inputEmp_Train_Mode_Name" class="col-sm-3 zb-form-label">${get_res('exam_form','Examination Form')}</label>
+                <div class="col-sm-9"> 
+                    <div style="display: inline-flex;">
+                        <div class="radio radio-success">
+					        <input type="radio" name="radForm" ng-value="dt_true" id="idradForm1" 
+                                    ng-model="entity.exam_form.onl_exam" ng-click="onChangeRadio('form_onl')">
+					        <label for="idradForm1">
+						        <span>${get_res('onl_exam','Online Exam')}</span>
+					        </label>
+				        </div>
+                        <div class="radio radio-success" style="margin-left: 76px;">
+					        <input type="radio" name="radForm" ng-value="dt_false" id="idradForm2" 
+                                    ng-model="entity.exam_form.off_exam" ng-click="onChangeRadio('form_off')">
+					        <label for="idradForm2">
+						        <span>${get_res('off_exam','Offline Exam')}</span> 
+					        </label>
+				        </div>
+                    </div>
+                    </div>  
+                </div>
+            </div>
+            <div class="col-md-{{col}}" style="padding-bottom: 20px;">
+            <div class="form-group zb-form-group">
+                <!--Tên Tài liệu-->
+                <label for="inputEmp_Train_Mode_Name" class="col-sm-3 zb-form-label">${get_res('special_instruc','Special Instruction')}</label>
+                <div class="col-sm-9">
+                    <div class="col-md-12" style="padding:0px">
+                    <p style="font-size:12px;cursor:pointer;padding-top: 5px;color:gray;font-style:italic;text-decoration-line:underline" ng-click="editInstruction()" ng-model="edit">Edit Instruction</p>
+                        </div>
+                    <div class="col-md-12" ng-if="editInstruc" style="padding:0px">
+                   <div class="clearblock" style="display:inline-block"></div>
+                    <c-html-box style="height: 100px;" data-rows="6" ng-model="entity.edit_instruction"></c-html-box>
+                 </div>
+                </div>   
+               </div>
+            </div>
+            </div> 
+        <div class="col-md-1 col-sm-1">
+        </div>
+</div>    
+ </div>
+<script>
+    (function (scope) {
+        scope.dt_true = true;
+        scope.editInstruc = false;
+        scope.dt_false = true;
+        scope.onChangeRadio = function(val){
+            switch(val) {
+                case 'yes_related':
+                    scope.entity.course_related.yes = true;
+                    scope.entity.course_related.no = false;
+                    break;
+                case 'no_related':
+                    scope.entity.course_related.yes = false;
+                    scope.entity.course_related.no = true;
+                    break;
+                case 'alway_avail':
+                    scope.entity.exam_avail.always = true;
+                    scope.entity.exam_avail.specific = false;
+                    break;
+                case 'specific_avail':
+                    scope.entity.exam_avail.always = false;
+                    scope.entity.exam_avail.specific = true;
+                    break;
+                case 'mode_practise':
+                    scope.entity.exam_mode.practise_exam = true;
+                    scope.entity.exam_mode.officical_exam = false;
+                    break;
+                case 'mode_officical':
+                    scope.entity.exam_mode.practise_exam = false;
+                    scope.entity.exam_mode.officical_exam = true;
+                    break;
+                case 'form_onl':
+                    scope.entity.exam_form.onl_exam = true;
+                    scope.entity.exam_form.off_exam = false;
+                    break;
+                case 'form_off':
+                    scope.entity.exam_form.onl_exam = false;
+                    scope.entity.exam_form.off_exam = true;
+                    break;
+                default:
+                    null
+            }
+
+        }
+        scope.editInstruction = function () {
+            scope.editInstruc = !scope.editInstruc;
+        }
+        
+    });
+</script>

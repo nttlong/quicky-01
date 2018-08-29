@@ -1,13 +1,25 @@
 ﻿(function (scope) {
-	scope.__tableSource = [];
 	scope.mode = 0;
 	scope.showDetail = false;
 	scope.filterFunctionModel = ''
 	scope.currentFunction = '';
-	scope.mapName = [];
 	scope.selectFunc = function (event, f) {
 		scope.selectedFunction = f;
-	}
+    }
+
+    scope.$display = {
+        showDetail: false,
+        mapName: [],
+        selectedFunction: "",
+        selectFunc: function (event, f) {
+            scope.$display.selectedFunction = f;
+        },
+    };
+
+    scope.selectFunc = function (event, f) {
+        scope.selectedFunction = f;
+    }
+
     scope.entity = {};
    
 	/* Table */
@@ -23,22 +35,22 @@
 	scope.$$tableConfig = {};
 	//Dữ liệu cho table
 	scope.tableSource = _loadDataServerSide;
-
     scope.onSelectTableRow = function ($row) {
-        debugger
 		scope.$root.$commons = {
-			$current_apr_period: $row.apr_period
+            $current_apr_period: $row.apr_period,
+            $active: $row.active
         };
         scope.entity = $row;
-		$('.hcs-profile-list').fadeToggle();
-		setTimeout(function () {
-			scope.showDetail = scope.showDetail === false ? true : false;
-			scope.mode = 2;
-			scope.$partialpage = scope.mapName[0].url;
-			scope.$applyAsync();
-			$(window).trigger('resize');
-		}, 500);
+        $('.hcs-profile-list').fadeToggle();
+        scope.mode = 2;
+        setTimeout(function () {
+            scope.$display.showDetail = scope.$display.showDetail === false ? true : false;
+            scope.$partialpage = scope.$display.mapName[0].url;
+            scope.$applyAsync();
+            $(window).trigger('resize');
+        }, 500);
     };
+    scope.Map_Period = Map_Period; 
     function Map_Period(periodNum) {
         var strPeriod = "";
         for (var i = 0; i < 12; i++) {
@@ -62,6 +74,30 @@
             strPeriod = "Năm";
         return strPeriod;
     }
+    scope.Re_Map_Period = Re_Map_Period;
+    function Re_Map_Period(periodStr) {
+        var numPeriod = 0;
+        for (var i = 0; i < 12; i++) {
+            if (periodStr === "Tháng " + (i + 1).toString()) {
+                numPeriod = i + 1
+                return numPeriod;
+            }
+
+        }
+        for (var j = 13; j <= 16; j++) {
+            if (periodStr === "Quý " + (j - 12).toString()) {
+                numPeriod = j
+                return numPeriod;
+            }
+        }
+        if (periodStr === "6 tháng đầu năm")
+            numPeriod = 17;
+        else if (periodStr === "6 tháng cuối năm")
+            numPeriod = 18;
+        else
+            numPeriod = 19;
+        return numPeriod;
+    }
 	//Danh sách các dòng đc chọn (nếu là table MultiSelect)
 	scope.selectedItems = [];
 	//Dòng hiện tại đang được focus (nếu table là SingleSelect hoặc MultiSelect)
@@ -70,10 +106,7 @@
 	//Refesh table
     scope.refreshDataRow = function () { /*Do nothing*/ };
     scope.$period_obj = {};
- 
-
-	
-
+    scope.tableData = _tableData;
 	//function button
     scope.addAprPeriod = addAprPeriod;
     scope.editAprPeriod = editAprPeriod;
@@ -81,19 +114,18 @@
     scope.btnUpload = onImport;
     scope.btnDownload = onExport;
     scope.btnRefresh = refresh;
-   
-
 	//Navigation: quay trở về UI list
 	scope.backPage = backPage;
 
 	function backPage() {
-		$('.hcs-profile-list').fadeToggle();
-		setTimeout(function () {
-			scope.showDetail = scope.showDetail === false ? true : false;
-			scope.mode = 0;
-			scope.$partialpage = scope.mapName[0].url;
-			scope.currentItem = scope.mapName[0];
-			scope.selectedFunction = scope.mapName[0].function_id;
+        $('.hcs-profile-list').fadeToggle();
+        scope.mode = 0;
+       // scope.$parent.entity = {};
+        setTimeout(function () {
+            scope.$display.showDetail = scope.$display.showDetail === false ? true : false;
+            scope.$partialpage = scope.$display.mapName[0].url;
+            //scope.currentItem = scope.$display.mapName[0].url;
+            scope.$display.selectedFunction = scope.$display.mapName[0].function_id;
 			scope.$applyAsync();
 			$(window).trigger('resize');
 		}, 500);
@@ -101,12 +133,16 @@
 
     function addAprPeriod() {
         debugger
-            $('.hcs-profile-list').fadeToggle();
+        $('.hcs-profile-list').fadeToggle();
+        scope.$root.$commons = {
+            $current_employee_code: null,
+            $active: true
+        };
+        scope.mode = 1;
             setTimeout(function () {
-                scope.showDetail = scope.showDetail === false ? true : false;
-                scope.mode = 1;
-                scope.currentItem = scope.mapName[0];
-                scope.$partialpage = scope.mapName[0].url;
+                scope.$display.showDetail = scope.$display.showDetail === false ? true : false;
+                scope.currentItem = scope.$display.mapName[0];
+                scope.$partialpage = scope.$display.mapName[0].url;
                 scope.$applyAsync();
                 $(window).trigger('resize');
             }, 500);
@@ -114,18 +150,18 @@
 		
 
     function editAprPeriod() {
-        debugger
         if (scope.currentItem == null && scope.selectedItems.length === 0) {
             $msg.message("${get_global_res('Notification','Thông báo')}", "${get_global_res('No_Row_Selected','Không có dòng được chọn')}", function () { });
         }
         else {
             scope.entity = scope.currentItem;
+            scope.mode = 2;
             $('.hcs-profile-list').fadeToggle();
             setTimeout(function () {
-                scope.showDetail = scope.showDetail === false ? true : false;
-                scope.mode = 2;
-                scope.currentItem = scope.mapName[0];
-                scope.$partialpage = scope.mapName[0].url;
+                scope.$display.showDetail = scope.$display.showDetail === false ? true : false;
+               
+                scope.currentItem = scope.$display.mapName[0];
+                scope.$partialpage = scope.$display.mapName[0].url;
                 scope.$applyAsync();
                 $(window).trigger('resize');
             }, 500);
@@ -139,25 +175,25 @@
 			tableConfig.iPageLength, tableConfig.orderBy,
 			tableConfig.searchText, tableConfig.fnReloadData);
 	}
-
-
 	
 
     function onSelectTableRow($row) {
-		$('.hcs-profile-list').fadeToggle();
-		setTimeout(function () {
-			scope.showDetail = scope.showDetail === false ? true : false;
-			$(window).trigger('resize');
-		}, 500);
-	};
+        $('.hcs-profile-list').fadeToggle();
+        setTimeout(function () {
+            scope.$display.showDetail = scope.$display.showDetail === false ? true : false;
+
+            $(window).trigger('resize');
+        }, 500);
+    };
 
 	function handleData() {
-
 		this.collection = {};
+        this.mapName = [];
+        this.$display = {
+            mapName: []
+        }
 
-		this.mapName = [];
-
-		this.mapName = _.filter(scope.$root.$function_list, function (f) {
+        this.$display.mapName = _.filter(scope.$root.$function_list, function (f) {
 			return f.level_code.includes(scope.$root.currentFunction.function_id)
 				&& f.level_code.length == scope.$root.currentFunction.level_code.length + 1
 		});
@@ -254,6 +290,7 @@
     }
 
     function onDelete() {
+        scope.mode = 3;
         if (!scope.selectedItems || scope.selectedItems.length === 0) {
             $msg.message("${get_global_res('Notification','Thông báo')}", "${get_global_res('No_Row_Selected','Không có dòng được chọn')}", function () { });
         } else {
@@ -277,24 +314,25 @@
 
 	(function _init_() {
 		scope.handleData = new handleData();
-		scope.mapName = scope.handleData.mapName;
-		scope.currentFunction = scope.mapName[0];
-		scope.selectedFunction = (scope.mapName.length > 0) ? scope.mapName[0].function_id : null;
+        scope.$display.mapName = scope.handleData.$display.mapName;
+        scope.currentFunction = scope.$display.mapName[0];
+        scope.$display.selectedFunction = (scope.$display.mapName.length > 0) ? scope.$display.mapName[0].function_id : null;
 		scope.$applyAsync();
 	})();
 
-	scope.$watch("selectedFunction", function (function_id) {
-		var $his = scope.$root.$history.data();
-		if (scope.currentItem) {
-			var func = _.filter(scope.mapName, function (f) {
-				return f["function_id"] == function_id;
-			});
-			if (func.length > 0) {
-				scope.$partialpage = func[0].url;
-				scope.currentFunction = func[0];
-			}
-		}
-		//window.location.href = "#page=" + $his.page + "&f=" + function_id;
-	});
+    scope.$watch("$display.selectedFunction", function (function_id) {
+        var $his = scope.$root.$history.data();
+        if (scope.currentItem) {
+            var func = _.filter(scope.$display.mapName, function (f) {
+                return f["function_id"] == function_id;
+            });
+            if (func.length > 0) {
+                scope.$partialpage = func[0].url;
+                scope.currentFunction = func[0];
+            }
+        }
+        //window.location.href = "#page=" + $his.page + "&f=" + function_id;
+    });
+
 
 });

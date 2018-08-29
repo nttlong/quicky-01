@@ -2,13 +2,8 @@ from config import database, helpers, db_context
 from ...api import common
 
 import datetime
-_hasCreated=False
-
-def HCSEM_EmpWorking():
-    global _hasCreated
-    if not _hasCreated:
-        dict_permission = dict()
-        helpers.extent_model(
+dict_permission = dict()
+helpers.extent_model(
             "HCSEM_EmpWorking",
             "base",
             [['rec_id']],
@@ -40,17 +35,15 @@ def HCSEM_EmpWorking():
             modified_on=helpers.create_field("date"),
             modified_by=helpers.create_field("text")
         )
-        def on_before_insert(data):
-            data.update({
-                "rec_id": common.generate_guid()
-                })
+def on_before_insert(data):
+    data.update({
+        "rec_id": common.generate_guid()
+        })
 
-        def on_before_update(data):
-            pass
+def on_before_update(data):
+    pass
+helpers.events("HCSEM_EmpWorking").on_before_insert(on_before_insert).on_before_update(on_before_update)
+def HCSEM_EmpWorking():
 
-        helpers.events("HCSEM_EmpWorking").on_before_insert(on_before_insert).on_before_update(on_before_update)
-
-        _hasCreated=True
     ret = db_context.collection("HCSEM_EmpWorking")
-
     return ret

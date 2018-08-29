@@ -1,14 +1,15 @@
 ﻿(function (scope) {
     scope.__mode = scope.$parent.mode;
     scope.entity = {
-        "_id":  scope.$parent.currentItem._id
+        "_id": scope.$parent.entity._id,
+        apr_year : scope.$parent.entity.apr_year
     };
     
     scope.cbbApprovalPeriod = [];
     scope.$parent.$parent.$parent.onSave = onSave;
     scope.$$tableConfig = {};
 
-    function _comboboxData() {
+    function _comboboxData(callback) {
         services.api("${get_api_key('app_main.api.SYS_ValueList/get_list')}")
             .data({
                 //parameter at here
@@ -16,39 +17,14 @@
             })
             .done()
             .then(function (res) {
-                debugger
                 delete res.language;
                 delete res.list_name;
                 scope.cbbApprovalPeriod = res.values;
-                console.log(res);
+                callback();
                 scope.$applyAsync();
             })
     }
-    function Re_Map_Period(periodStr) {
-        debugger
-        var numPeriod = 0;
-        for (var i = 0; i < 12; i++) {
-            if (periodStr === "Tháng " + (i + 1).toString()) {
-                numPeriod = i + 1
-                return numPeriod;
-            }
-
-        }
-        for (var j = 13; j <= 16; j++) {
-            if (periodStr === "Quý " + (j - 12).toString()) {
-                numPeriod = j - 12
-                return numPeriod;
-            }
-        }
-        if (periodStr === "6 tháng đầu năm")
-            numPeriod = 17;
-        else if (periodStr === "6 tháng cuối năm")
-            numPeriod = 18;
-        else
-            numPeriod = 19;
-        return numPeriod;
-    }
-
+    
     function save() {
         debugger
         if (scope.entity != null) {
@@ -60,35 +36,49 @@
             }
             beforeCallToServer();
             editData(function (res) {
-                debugger
-                if (res.error == null) {
-                    $msg.alert("${get_global_res('Handle_Success','Thao tác thành công')}", $type_alert.INFO);
-                    scope.$applyAsync();
-                    reloadData();
-                } else {
-                    $msg.message("${get_global_res('Notification','Thông báo')}", "${get_global_res('Internal_Server_Error','Có lỗi từ phía máy chủ')}", function () { });
+                if (scope.entity != null) {
+                    scope.__mode = 2;
                 }
+                var url = getUrl();
+                services.api(url)
+                    .data(scope.entity)
+                    .done()
+                    .then(function (res) {
+                        if (res.error == null) {
+                            $msg.alert("${get_global_res('Handle_Success','Thao tác thành công')}", $type_alert.INFO);
+                            scope.$applyAsync();
+                            reloadData();
+                            $('.zb-left-li').css("pointer-events", "all");
+                        } else {
+                            $msg.message("${get_global_res('Notification','Thông báo')}", "${get_global_res('Internal_Server_Error','Có lỗi từ phía máy chủ')}", function () { });
+                        }
+                        scope.$applyAsync();
+                    })
             })
+            
+            
         }
+        
     }
     
 
     function onSave() {
         save();
+        
     };
 
     function editData(callback) {
-        debugger
-        var url = getUrl();
-        var currentItem = JSON.parse(JSON.stringify(scope.entity));
-        services.api(url)
-            .data(currentItem)
-            .done()
-            .then(function (res) {
-                callback(res);
-                scope.$applyAsync();
-
-            })
+    services.api("${get_api_key('app_main.api.TMPER_AprPeriod/get_item_by_period_year')}")
+        .data({
+            apr_period: scope.entity.apr_period,
+            apr_year: scope.entity.apr_year
+        })
+        .done()
+        .then(function (res) {
+            scope.entity = res;
+            scope.$applyAsync();
+            callback(res)
+        });
     }
 
     function beforeCallToServer() {
@@ -96,11 +86,9 @@
     }
 
     function reloadData() {
-        debugger
-        var tableConfig = scope.$parent.$$tableConfig;
-        scope.$parent._tableData(tableConfig.iPage,
-            tableConfig.iPageLength, tableConfig.orderBy,
-            tableConfig.searchText, tableConfig.fnReloadData);
+        refresh();
+        scope.$parent.entity.apr_period = scope.$parent.Map_Period(scope.entity.apr_period);
+        scope.$parent.entity.apr_year = scope.entity.apr_year;
     }
 
     function getUrl() {
@@ -177,15 +165,62 @@
 
     (function __init__() {
         debugger
+        
+        
         if (scope.__mode == 2) {
-            _comboboxData();
-            scope.entity.apr_period = Re_Map_Period(scope.$parent.entity.apr_period);
-            scope.entity.apr_year = scope.$parent.entity.apr_year;
-            scope.$applyAsync();
+            //scope.$root.$commons.$active = true;
+            
+            _comboboxData(function () {
+                scope.entity.apr_period = scope.$parent.Re_Map_Period(scope.$parent.entity.apr_period);
+                scope.entity.apr_year = scope.$parent.entity.apr_year;
+                scope.$applyAsync();
+            });
         }
         else if (scope.__mode == 1 || scope.__mode == 3) {
             _comboboxData();
+            $('.zb-left-li').css("pointer-events", "none");
+            scope.entity = {
+                apr_period: null,
+                apr_year: undefined,
+            }
+            scope.$parent.entity.apr_period = "";
+            scope.$parent.entity.apr_year = undefined;
+           
+            refresh();
             scope.$applyAsync();
         }
+        
+        
+
+
     })();
+    /////////////////////////////////////////////////////////////////////////////////////////
+    //debugger
+    //scope.$parent.$parent.$parent.$watchGroup(['mode', 'currentItem'], function (val) {
+    //    debugger
+    //    if (val[0] != 0) {
+    //        if (val[1] == 0) {
+    //            val[1] = {};
+    //        }
+    //        scope.$active = (val[1].active != undefined) ? val[1].active : true;
+    //        scope.$root.$commons.$active = scope.$active;
+    //        scope.$parent.$parent.$parent.onSave = (scope.$active) ? onSave : "";
+
+    //         if (val[0] == 1) {
+    //            scope.entity = {};
+    //            _comboboxData();
+    //            $('.zb-left-li').css("pointer-events", "none");
+    //            scope.$applyAsync();
+    //        }
+    //    }
+    //})
+    
+    function refresh() {
+        var tableConfig = scope.$parent.$$tableConfig;
+        scope.$parent.tableData(tableConfig.iPage,
+            tableConfig.iPageLength, tableConfig.orderBy,
+            tableConfig.searchText, tableConfig.fnReloadData)
+    }
+
+   
 });

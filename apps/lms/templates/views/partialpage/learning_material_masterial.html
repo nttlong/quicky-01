@@ -47,7 +47,7 @@ span.stars span {
             </div>
         </div>
         <div class="hcs-right-side-department-content" ng-show="$parent.isList">
-            <div class="hcs-right-side-department-list" style="height: 100%">
+            <div class="hcs-right-side-department-list" style="height: calc(100% + 1px)">
                 <table-data data-source="tableSource" fields="tableFields" type="MultiSelect" paging="true" page-length="100" server-side="true" press-enter="onSelectTableRow" selected-items="selectedItems" current-item="currentItem" search-text="tableSearchText" refresh-row="refreshDataRow">
                 </table-data>
             </div>

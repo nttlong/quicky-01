@@ -3,76 +3,70 @@ from config import database, helpers, db_context
 import datetime
 import base
 import threading
-_hasCreated=False
-def HCSLS_JobWorking():
-    global _hasCreated
-    if not _hasCreated:
-        helpers.extent_model(
+helpers.extent_model(
             "HCSLS_JobWorking",
             "base",
             [["job_w_code"]],
-            job_w_code = helpers.create_field("text", True),
-            job_w_name = helpers.create_field("text", True),
-            job_w_name2 = helpers.create_field("text"),
-            job_w_duty = helpers.create_field("text"),
-            gjw_code = helpers.create_field("text", True),
-            ordinal = helpers.create_field("numeric"),
-            lock = helpers.create_field("bool"),
-            is_job_w_main_staff = helpers.create_field("bool"),
-            report_to_job_w=helpers.create_field("text"),
-            internal_process = helpers.create_field("text"),
-            combine_process = helpers.create_field("text"),
-            description = helpers.create_field("text"),
-            effect_date = helpers.create_field("date"),
-            job_pos_code = helpers.create_field("text"),
-            dept_apply = helpers.create_field("list"),
-            dept_contact = helpers.create_field("list"),
-            job_w_next = helpers.create_field("list"),
-            job_w_change = helpers.create_field("list"),
-            task = helpers.create_field("list",False,dict(
-                rec_id = helpers.create_field("text"),
-                task_name = helpers.create_field("text"),
-                weight = helpers.create_field("numeric"),
-                description = helpers.create_field("text"),
-                ordinal = helpers.create_field("numeric"),
-                created_on=helpers.create_field("date"),
-                created_by=helpers.create_field("text"),
-                modified_on=helpers.create_field("date"),
-                modified_by=helpers.create_field("text")
+            job_w_code = ("text", True),
+            job_w_name = ("text", True),
+            job_w_name2 = ("text"),
+            job_w_duty = ("text"),
+            gjw_code = ("text", True),
+            ordinal = ("numeric"),
+            lock = ("bool"),
+            is_job_w_main_staff = ("bool"),
+            report_to_job_w=("text"),
+            internal_process = ("text"),
+            combine_process = ("text"),
+            description = ("text"),
+            effect_date = ("date"),
+            job_pos_code = ("text"),
+            dept_apply = ("list"),
+            dept_contact = ("list"),
+            job_w_next = ("list"),
+            job_w_change = ("list"),
+            task = ("list",False,dict(
+                rec_id = ("text"),
+                task_name = ("text"),
+                weight = ("numeric"),
+                description = ("text"),
+                ordinal = ("numeric"),
+                created_on=("date"),
+                created_by=("text"),
+                modified_on=("date"),
+                modified_by=("text")
                 )),
-            factor_appraisal = helpers.create_field("list",False,dict(
-                rec_id = helpers.create_field("text"),
-                factor_code = helpers.create_field("text"),
-                job_w_code = helpers.create_field("text"),
-                weight = helpers.create_field("numeric"),
-                created_on=helpers.create_field("date"),
-                created_by=helpers.create_field("text"),
-                modified_on=helpers.create_field("date"),
-                modified_by=helpers.create_field("text")
+            factor_appraisal = ("list",False,dict(
+                rec_id = ("text"),
+                factor_code = ("text"),
+                job_w_code = ("text"),
+                weight = ("numeric"),
+                created_on=("date"),
+                created_by=("text"),
+                modified_on=("date"),
+                modified_by=("text")
                 )),
-            kpi = helpers.create_field("list",False,dict(
-                rec_id = helpers.create_field("text"),
-                kpi_code = helpers.create_field("text"),
-                kpi_name = helpers.create_field("text"),
-                unit = helpers.create_field("numeric"),
-                description = helpers.create_field("text"),
-                cycle = helpers.create_field("numeric"),
-                weight = helpers.create_field("numeric"),
-                standard_mark = helpers.create_field("numeric"),
-                ordinal = helpers.create_field("numeric"),
-                note = helpers.create_field("text"),
-                created_on=helpers.create_field("date"),
-                created_by=helpers.create_field("text"),
-                modified_on=helpers.create_field("date"),
-                modified_by=helpers.create_field("text")
+            kpi = ("list",False,dict(
+                rec_id = ("text"),
+                kpi_code = ("text"),
+                kpi_name = ("text"),
+                unit = ("numeric"),
+                description = ("text"),
+                cycle = ("numeric"),
+                weight = ("numeric"),
+                standard_mark = ("numeric"),
+                ordinal = ("numeric"),
+                note = ("text"),
+                created_on=("date"),
+                created_by=("text"),
+                modified_on=("date"),
+                modified_by=("text")
                 )),
-            created_on=helpers.create_field("date"),
-            created_by=helpers.create_field("text"),
-            modified_on=helpers.create_field("date"),
-            modified_by=helpers.create_field("text")
+            created_on=("date"),
+            created_by=("text"),
+            modified_on=("date"),
+            modified_by=("text")
         )
-        _hasCreated=True
-
+def HCSLS_JobWorking():
     ret = db_context.collection("HCSLS_JobWorking")
-
     return ret

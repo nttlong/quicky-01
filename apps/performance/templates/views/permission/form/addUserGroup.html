@@ -5,7 +5,17 @@
 <%inherit file="../../commons/dialog_save_close.html"/>
 
 <%block name="modal_body">
-
+<style>
+    .hcs-background-row-table {
+        background: #fff;
+    }
+    .hcs-background-row-table:hover {
+        background: #ebf9ff !important;
+    }
+    .zb-nav-tabs .zb-tab-container{
+        padding: 0 !important;
+    }
+</style>
 <div class="col-md-{{col_group}} col-sm-{{col_group}}">
     <collapse-box class="zb-form-common" title="${get_global_res('Common_Information','Thông tin chung')}">
         <div class="col-md-{{col}}">
@@ -75,47 +85,51 @@
     </collapse-box>
 </div>
 <div class="col-md-12">
-    <nav-tabs min-height="52vh" max-height="52vh" style="overflow:unset;" ng-show="__mode != 1">
-        <tab-content name="tab1" style="height: 48vh;" title="${get_res('list_user','Danh sách người dùng')}">
-            <div class="col-md-12" style="height: 44vh;padding:0px 6px;">
-                <div class="zb-right-content pull-right">
-                    <button class="zb-btn zb-btn-o-green" ng-click="addNewUser()">
-                        <span>
+    <style>
+        .hcs-zb-header-icon-custom {
+            display:none;
+        }
+        .hcs-zb-content-custom {
+            padding-top:unset !important;
+        }
+    </style>
+    <nav-tabs min-height="54vh" max-height="54vh" style="overflow:unset;" ng-show="__mode != 1">
+        <tab-content name="tab1" style="height: 49vh;" title="${get_res('list_user','Danh sách người dùng')}">
+            <div class="col-md-12" style="height: 50vh;padding:unset;">
+                <collapse-box class="zb-form-common" title="">
+                    <toolbar>
+                        <input-text-icon icon="bowtie-icon bowtie-search"
+                                                on-click="onSearch"></input-text-icon>
+                        <button class="zb-btn zb-btn-o-green" ng-click="addNewUser()">
                             <i class="bowtie-icon bowtie-math-plus"></i>
-                        </span>
-                    </button>
-                    <button class="zb-btn zb-btn-o-red" ng-click="deleteUser()">
-                        <span>
+                        </button>
+                        <button class="zb-btn zb-btn-o-red" ng-click="deleteUser()">
                             <i class="bowtie-icon bowtie-edit-remove"></i>
-                        </span>
-                    </button>
-                </div>
-                <!--Table user-->
-                <table-data data-source="dataTable.tableListUserSource" fields="dataTable.tableListUserFields" type="MultiSelect" 
-                paging="true" page-length="100" server-side="true" 
-                press-enter="dataTable.onSelectTableRow" selected-items="dataTable.selectedListUserItems"
-                current-item="dataTable.ListUserCurrentItem" search-text="dataTable.tableSearchText"
-                refresh-row="dataTable.refreshDataListUserRow"
-                ng-if="__mode != 1">
-                </table-data>
+                        </button>
+                    </toolbar>
+                        <div class="col-md-12 no-padding" style="height:49vh;">
+                            <table-data data-source="dataTable.tableListUserSource" fields="dataTable.tableListUserFields" type="MultiSelect" 
+                                paging="true" page-length="100" server-side="true" 
+                                press-enter="dataTable.onSelectTableRow" selected-items="dataTable.selectedListUserItems"
+                                current-item="dataTable.ListUserCurrentItem" search-text="dataTable.tableSearchText"
+                                refresh-row="dataTable.refreshDataListUserRow"
+                                ng-if="__mode != 1">
+                            </table-data>
+                        </div>
+                </collapse-box>
             </div>
         </tab-content>
-        <tab-content name="tab2" title="${get_res('function_list','Danh sách tính năng')}">
-            <div class="pull-right hcs-profile-icon-heading-on-table">
-                <button class="zb-icon-button hcs-profile-group-title" ng-click="deletePermission()">
-                    <span>
-                        <i class="la la-close"></i>
-                    </span>
+        <tab-content name="tab2" style="height: 49vh;" title="${get_res('function_list','Danh sách tính năng')}">
+            <div style="position: fixed; z-index: 9999; right:17px;">
+                <button class="zb-btn zb-btn-o-green pull-right" ng-click="deletePermission()">
+                    <i class="bowtie-icon bowtie-edit-remove"></i>
                 </button>
-            </div>
-            <div class="pull-right hcs-profile-icon-heading-on-table">
-                <button class="zb-icon-button hcs-profile-group-title" ng-click="EditPermission()">
-                    <span>
-                        <i class="la la-pencil"></i>
-                    </span>
+                <button style="margin: 0 5px;" class="zb-btn zb-btn-o-red pull-right" ng-click="EditPermission()">
+                    <i class="bowtie-icon bowtie-edit-outline"></i>
                 </button>
+                <input-text-icon style="width:166px; float:right" icon="bowtie-icon bowtie-search" on-click="onSearch"></input-text-icon>
             </div>
-            <div class="col-md-12 no-padding">
+            <div class="col-md-12 no-padding" style="height:46vh; margin-top:30px;">
                 <tree-table data-source="dataTableTree" data-fields="tableFields"
                     display-field="default_name"
                     display-name="Tên tính năng"

@@ -38,10 +38,8 @@
                 <div class="zb-left">
                     <ul class="zb-left-ul">
                         <li ng-repeat="item in listItem" class="zb-left-li" ng-class="item[keyField]==selectedKey?'li-selected':''"      ng-click="$onSelectItem(item[keyField])">
-                            <div>
-                                <p class="left-icon text-center"><i class="{{item[iconField]}}"></i></p>
-                                <p class="left-title text-center">{{item[displayField]}}</p>
-                            </div>
+                                <span class="left-icon text-center"><i class="{{item[iconField]}}"></i></span>
+                                <span class="left-title text-center">{{item[displayField]}}</span>
                         </li>
                     </ul>
                 </div>
@@ -124,16 +122,16 @@
                 function $onSelectItem(key) {
                     $scope.selectedKey = key;
 
-                    if ($scope.reloadOnChange) {
-                        $scope.fnAdd = null;
-                        $scope.fnEdit = null;
-                        $scope.fnDelete = null;
-                        $scope.fnSave = null;
-                        $scope.fnImport = null;
-                        $scope.fnExport = null;
-                        $scope.fnSearchPress = null;
-                        $scope.fnSearchChange = null;
-                    }
+                    //if ($scope.reloadOnChange) {
+                    //    $scope.fnAdd = null;
+                    //    $scope.fnEdit = null;
+                    //    $scope.fnDelete = null;
+                    //    $scope.fnSave = null;
+                    //    $scope.fnImport = null;
+                    //    $scope.fnExport = null;
+                    //    $scope.fnSearchPress = null;
+                    //    $scope.fnSearchChange = null;
+                    //}
 
                     $scope.$applyAsync();
                 }

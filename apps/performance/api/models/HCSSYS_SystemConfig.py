@@ -2,52 +2,46 @@ from config import database, helpers, db_context
 import datetime
 import base
 import threading
-_hasCreated=False
-def HCSSYS_SystemConfig():
-    global _hasCreated
-    if not _hasCreated:
-        helpers.extent_model(
+helpers.extent_model(
             "HCSSYS_SystemConfig",
             "base",
             [],
-            is_has_number=helpers.create_field("bool"),
-            num_of_number=helpers.create_field("numeric"),
-            is_has_upper_char=helpers.create_field("bool"),
-            num_of_upper=helpers.create_field("numeric"),
-            is_has_lower_char=helpers.create_field("bool"),
-            num_of_lower=helpers.create_field("numeric"),
-            is_has_symbols=helpers.create_field("bool"),
-            num_of_symbol=helpers.create_field("numeric"),
+            is_has_number=("bool"),
+            num_of_number=("numeric"),
+            is_has_upper_char=("bool"),
+            num_of_upper=("numeric"),
+            is_has_lower_char=("bool"),
+            num_of_lower=("numeric"),
+            is_has_symbols=("bool"),
+            num_of_symbol=("numeric"),
 
-            is_ad_aut=helpers.create_field("bool"),
-            session_timeOut=helpers.create_field("numeric"),
-            time_out_expand=helpers.create_field("numeric"),
-            minimum_age=helpers.create_field("numeric"),
-            password_expiration=helpers.create_field("numeric"),
-            will_expire=helpers.create_field("bool"),
-            change_after=helpers.create_field("numeric"),
-            apply_minimum_age=helpers.create_field("bool"),
+            is_ad_aut=("bool"),
+            session_timeOut=("numeric"),
+            time_out_expand=("numeric"),
+            minimum_age=("numeric"),
+            password_expiration=("numeric"),
+            will_expire=("bool"),
+            change_after=("numeric"),
+            apply_minimum_age=("bool"),
 
-            apply_history=helpers.create_field("bool"),
-            history=helpers.create_field("numeric"),
-            apply_minLength=helpers.create_field("bool"),
-            min_len=helpers.create_field("numeric"),
-            apply_maxLength=helpers.create_field("bool"),
-            max_len=helpers.create_field("numeric"),
-            lock_on_failed=helpers.create_field("bool"),
-            threshold_to_lock=helpers.create_field("numeric"),
-            time_lock=helpers.create_field("numeric"),
+            apply_history=("bool"),
+            history=("numeric"),
+            apply_minLength=("bool"),
+            min_len=("numeric"),
+            apply_maxLength=("bool"),
+            max_len=("numeric"),
+            lock_on_failed=("bool"),
+            threshold_to_lock=("numeric"),
+            time_lock=("numeric"),
 
-            alert_before=helpers.create_field("numeric"),
-            is_first_change=helpers.create_field("bool"),
-            not_user_in_password=helpers.create_field("bool"),
-            date_format=helpers.create_field("text"),
-            dec_place_separator=helpers.create_field("text"),
-            dec_place_currency=helpers.create_field("numeric"),
-            default_language=helpers.create_field("text")
+            alert_before=("numeric"),
+            is_first_change=("bool"),
+            not_user_in_password=("bool"),
+            date_format=("text"),
+            dec_place_separator=("text"),
+            dec_place_currency=("numeric"),
+            default_language=("text")
         )
-
-        _hasCreated=True
+def HCSSYS_SystemConfig():
     ret = db_context.collection("HCSSYS_SystemConfig")
-
     return ret

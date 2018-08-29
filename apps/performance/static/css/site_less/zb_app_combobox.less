@@ -240,7 +240,7 @@
 
         .modal-body {
             padding: 0;
-            height: calc(~'100vh - 142px');
+            height: ~"calc(100vh - 142px)";
             overflow: hidden;
 
             > .zb-combobox-toolbar {
@@ -250,7 +250,7 @@
             }
 
             > .zb-combobox-content {
-                height: calc(100% - 36px);
+                height: ~"calc(100% - 36px)";
                 overflow: auto;
 
                 .zb-combo-list {
@@ -314,14 +314,13 @@
 
                     > .list-content {
                         float: left;
-                        width: calc(~'100% - 30px');
+                        width: ~"calc(100% - 30px)";
                     }
 
                     .zb-list-common {
                         border-bottom: 1px solid #ddd;
                         padding: 10px;
                         display: grid;
-                        background: #fff;
 
                         > div {
                             .zb-list-title {
@@ -349,18 +348,14 @@
                             }
                         }
                     }
+                }
 
-                    .zb-list-common:hover {
-                        background: @bg_cyan;
-                    }
+                .active {
+                    background: @bg_cyan;
                 }
 
                 .zb-combo-list-multi.zb-combo-selected {
                     .list-checkbox {
-                        background: @bg_cyan;
-                    }
-
-                    .zb-list-common {
                         background: @bg_cyan;
                     }
                 }

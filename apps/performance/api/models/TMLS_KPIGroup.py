@@ -1,29 +1,24 @@
 from config import database, helpers, db_context
 import base
-_hasCreated=False
-def TMLS_KPIGroup():
-    global _hasCreated
-    if not _hasCreated:
-        helpers.extent_model(
+helpers.extent_model(
             "TMLS_KPIGroup",
             "base",
             [["kpi_group_code"]],
-            kpi_group_code = helpers.create_field("text", True),
-            kpi_group_name = helpers.create_field("text", True),
-            kpi_group_name2 = helpers.create_field("text"),
-            parent_code = helpers.create_field("text"),
-            level = helpers.create_field("numeric"),
-            level_code = helpers.create_field("list"),
-            weight = helpers.create_field("numeric"),
-            is_team = helpers.create_field("bool"),
-            note = helpers.create_field("text"),
-            ordinal = helpers.create_field("numeric"),
-            lock = helpers.create_field("bool"),
-            created_by=helpers.create_field("text"),
-            modified_on=helpers.create_field("date"),
-            modified_by=helpers.create_field("text")
+            kpi_group_code = ("text", True),
+            kpi_group_name = ("text", True),
+            kpi_group_name2 = ("text"),
+            parent_code = ("text"),
+            level = ("numeric"),
+            level_code = ("list"),
+            weight = ("numeric"),
+            is_team = ("bool"),
+            note = ("text"),
+            ordinal = ("numeric"),
+            lock = ("bool"),
+            created_by=("text"),
+            modified_on=("date"),
+            modified_by=("text")
         )
-        _hasCreated=True
+def TMLS_KPIGroup():
     ret = db_context.collection("TMLS_KPIGroup")
-
     return ret

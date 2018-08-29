@@ -59,7 +59,7 @@
                 "ps",
                 "psd",
                 "svg",
-                "tiff",
+                "tiff", "mp4",
                 "tif"]
             var dropzone = new Dropzone('#demo-upload', {
                 maxFiles: 1,

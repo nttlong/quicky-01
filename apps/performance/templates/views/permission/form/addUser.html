@@ -160,7 +160,8 @@
         scope.title = scope.$parent.headerTitle;
         scope.col = 12;
         scope.col_group = 6;
-        scope.entity = scope.__mode != 1 ? scope.$parent.currentItem : null;
+        var __entity = JSON.parse(JSON.stringify(scope.$parent.currentItem));
+        scope.entity = scope.__mode != 1 ? __entity : null;
         scope.cbbAd_Roles = [];
         scope.saveNClose = saveNClose;
         scope.saveNNext = saveNNext;
@@ -334,7 +335,7 @@
             if (accountConfig.apply_minLength === true) {
                 if (password.length < accountConfig.min_len) {
                     rs.result = true;
-                    rs.errorMsg += "${get_res('error_password_min_len','Độ dài tối thiểu của mật khẩu là')}" + " " + accountConfig.min_len + '\n';
+                    rs.errorMsg += "${get_res('error_password_min_len','Độ dài tối thiểu của mật khẩu là ')}" + " " + accountConfig.min_len + '\n';
                     return rs;
                 }
             }
@@ -343,7 +344,7 @@
             if (accountConfig.apply_maxLength === true) {
                 if (password.length > accountConfig.max_len) {
                     rs.result = true;
-                    rs.errorMsg += "${get_res('error_password_max_len','Độ dài tối đa của mật khẩu là')}" + " " + accountConfig.max_len + '\n';
+                    rs.errorMsg += "${get_res('error_password_max_len','Độ dài tối đa của mật khẩu là ')}" + " " + accountConfig.max_len + '\n';
                     return rs;
                 }
             }
@@ -352,7 +353,7 @@
             if (accountConfig.not_user_in_password === true) {
                 if (password.toLowerCase().includes(scope.entity.login_account.toLowerCase())) {
                     rs.result = true;
-                    rs.errorMsg += "${get_res('error_password_least','Mật khẩu chỉ có thể là số')}" + '\n';
+                    rs.errorMsg += "${get_res('password_not_contains_account','Mật khẩu không thể chứa tài khoản')}" + '\n';
                     return rs;
                 }
             }
@@ -360,16 +361,16 @@
             if (accountConfig.is_has_upper_char === true) {
                 if ((password.match(/[A-Z]/g) || []).length < accountConfig.num_of_upper) {
                     rs.result = true;
-                    rs.errorMsg += "${get_res('error_password_max_len','Mật khẩu phải ít nhất')}" + " " + accountConfig.num_of_upper + " kí tự viết thường" + '\n';
+                    rs.errorMsg += "${get_res('password_is_required_contains_at_least','Mật khẩu phải chứa ít nhất')}" + " " + accountConfig.num_of_upper + " " + "${get_res('upper_character','kí tự viết hoa')}" + '\n';
                     return rs;
                 }
             }
 
             //Check lower
             if (accountConfig.is_has_lower_char === true) {
-                if ((password.match(/[A-Z]/g) || []).length < accountConfig.num_of_lower) {
+                if ((password.match(/[a-z]/g) || []).length < accountConfig.num_of_lower) {
                     rs.result = true;
-                    rs.errorMsg += "${get_res('error_password_max_len','Mật khẩu phải ít nhất')}" + " " + accountConfig.num_of_lower + " kí tự viết thường" + '\n';
+                    rs.errorMsg += "${get_res('password_is_required_contains_at_least','Mật khẩu phải chứa ít nhất')}" + " " + accountConfig.num_of_lower + " " + "${get_res('lower_character','kí tự viết thường')}" + '\n';
                     return rs;
                 }
             }
@@ -380,7 +381,7 @@
                 var numSymbols = password.length - numNormalCharacter;
                 if (numSymbols < accountConfig.num_of_symbol) {
                     rs.result = true;
-                    rs.errorMsg += "${get_res('error_password_least','Mật khẩu phải ít nhất')}" + " " + accountConfig.num_of_symbol + "kí tự đặc biệt" + '\n';
+                    rs.errorMsg += "${get_res('password_is_required_contains_at_least','Mật khẩu phải chứa ít nhất ')}" + " " + accountConfig.num_of_symbol + " " + "${get_res('symbol_character','kí tự đặc biệt')}" + '\n';
                     return rs;
                 }
             }

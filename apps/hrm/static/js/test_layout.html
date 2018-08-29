@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="app">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="jquery-3.3.1.min.js"></script>
+    <script src="../bs/js/bootstrap.min.js"></script>
+
+    <script src="angular.min.js"></script>
+    <script src="ui-layout.min.js"></script>
+    <link rel="stylesheet" href="../bs/css/bootstrap.min.css">
+    <link rel="stylesheet" href="ui-layout.css">
+    <style></style>
+</head>
+<body ng-controller="app">
+<div ui-layout>
+    <div ui-layout-container size="46px">
+      
+    </div>
+    <div ui-layout>
+    <div ui-layout-container size="100%">
+        <form action="" method="post" role="form">
+            <legend>Form Title</legend>
+
+            <div class="form-group">
+                <label for=""></label>
+                <input type="text" class="form-control" name="" id="" placeholder="Input...">
+            </div>
+
+            
+
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+    </div>
+</div>
+</div>
+<script>
+    var app = angular.module('app', ['ui.layout']);
+    app.controller("app",["$scope",function(scope){
+            alert(scope.$id);
+    }]);
+
+</script>
+</body>
+</html>

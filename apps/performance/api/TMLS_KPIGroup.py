@@ -4,6 +4,7 @@ import models
 from Query import KPIGroup
 import logging
 import threading
+import common
 logger = logging.getLogger(__name__)
 global lock
 lock = threading.Lock()
@@ -130,12 +131,16 @@ def delete(args):
             #kiểm tra từ code hiện tại đến các cấp cha có group code nào đang được sử dụng không
             #Nếu có 'len(list_kpi_workig) > 0' return
             #Không có xử lí delete
-            list_kpi_workig = models.HCSLS_JobWorking().aggregate().project(job_w_code = 1, kpi_group_code = 1).match("kpi_group_code in {0}", [x["kpi_group_code"]for x in list_fiter]).get_list()
+            list_kpi_workig = models.TMLS_KPI().aggregate().project(
+                kpi_code = 1,
+                kpi_group_code = 1
+                ).match("kpi_group_code in {0}", [x["kpi_group_code"]for x in list_fiter]).get_list()
             if len(list_kpi_workig) > 0:
                 lock.release()
                 return dict(
                     error = "KPIGroup is using another PG",
-                    items = list_kpi_workig
+                    items = list_kpi_workig,
+                    deleted = 0
                 )
             else:
                 ret  =  models.TMLS_KPIGroup().delete("kpi_group_code in {0}", list_group_code)

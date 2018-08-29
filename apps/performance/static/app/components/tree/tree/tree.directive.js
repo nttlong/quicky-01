@@ -105,7 +105,7 @@
                     quicksearch: true,
                     checkbox: $scope.multiSelect,
                     selectMode: $scope.selectMode, // 1 (radiobutton: single-selection), 2 (multi-selection) , 3 (hierarchical multi-selection)
-                    icon: true, //hide icon => hide counter
+                    icon: $scope.iconField ? $scope.iconField : false, //hide icon => hide counter
                     source: _dataSourceTree,
                     filter: {
                         autoApply: true, // Re-apply last filter if lazy data is loaded

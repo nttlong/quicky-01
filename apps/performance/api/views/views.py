@@ -57,6 +57,30 @@ def HCSLS_VW_JobWorkingFactorAppraisal():
         "HCSLS_VW_JobWorkingFactorAppraisal"
         )
 
+def HCSLS_VW_JobWorkingKPI():
+    return qview.create_mongodb_view(
+            HCSLS_JobWorking().aggregate().unwind("kpi", False).project(
+                rec_id = "kpi.rec_id",
+                kpi_code = "kpi.kpi_code",
+                job_w_code = "job_w_code",
+                job_w_name = "job_w_name",
+                kpi_name = "kpi.kpi_name",
+                unit = "kpi.unit",
+                description = "kpi.description",
+                cycle = "kpi.cycle",
+                weight = "kpi.weight",
+                standard_mark = "kpi.standard_mark",
+                ordinal = "kpi.ordinal",
+                note = "kpi.note",
+                created_on = "kpi.created_on",
+                created_by = "kpi.created_by",
+                modified_on = "kpi.modified_on",
+                modified_by = "kpi.modified_by"
+                )
+        ,
+        "HCSLS_VW_JobWorkingKPI"
+        )
+
 def HCSEM_VWEmpWorking():
     return qview.create_mongodb_view(
 

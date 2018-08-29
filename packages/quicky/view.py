@@ -22,20 +22,17 @@ def template_uri(fn):
         return repl
     return layer
 @template_uri
-def template(fn,*_path,**kwargs):
+def template(fn,*args,**kwargs):
 
-    # if _path.__len__()==1:
-    #     _path=_path[00]
-    # if _path.__len__()==0:
-    #     _path=kwargs
-    # app = None
-    # if sys.version_info[0] <= 2:
-    #     app=applications.get_app_by_file(fn.func_code.co_filename)
-    # else:
-    #     app = applications.get_app_by_file(fn.__code__.co_filename)
-    #
-    # setattr(fn,"__application__",app)
-    instance = executor.executor(fn,_path)
+    path = None
+    if type(args) is tuple and args.__len__() == 0:
+        path = kwargs.get("file","unknown.html")
+        is_public = kwargs.get("is_public",False)
+    else:
+        path =args[0]
+
+
+    instance = executor.executor(fn,path)
     return instance.execute_request(True)
 
     # if is_multi_tenancy:

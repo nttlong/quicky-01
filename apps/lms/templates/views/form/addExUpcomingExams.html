@@ -1,0 +1,758 @@
+﻿
+<%!
+    #_style="width:200px;"
+%>
+
+<%inherit file="../commons/dialog_save_close.html"/>
+
+<%block name="modal_body">
+<style>
+    .radio {
+    padding-left: 20px;
+}
+
+.radio label {
+    display: inline-block;
+    vertical-align: middle;
+    position: relative;
+    padding-left: 5px;
+}
+
+.radio label .relative {
+    color: #00b9f2;
+}
+
+.radio label a:hover {
+    text-decoration: none;
+}
+
+.radio label::before {
+    content: "";
+    display: inline-block;
+    position: absolute;
+    width: 17px;
+    height: 17px;
+    left: 0;
+    top:3px;
+    margin-left: -20px;
+    border: 1px solid #A9A9A9;
+    border-radius: 50%;
+    background-color: #fff;
+    -webkit-transition: border .3s ease-in-out;
+    transition: border .3s ease-in-out;
+}
+
+.radio label::after {
+    display: inline-block;
+    position: absolute;
+    content: " ";
+    width: 11px;
+    height: 11px;
+    left: 3px;
+    top: 6px;
+    margin-left: -20px;
+    border-radius: 50%;
+    background-color: #777;
+    -webkit-transform: scale(0,0);
+    -ms-transform: scale(0,0);
+    transform: scale(0,0);
+    -webkit-transition: -webkit-transform .3s cubic-bezier(.8,-.33,.2,1.33);
+    -moz-transition: -moz-transform .3s cubic-bezier(.8,-.33,.2,1.33);
+    -o-transition: -o-transform .3s cubic-bezier(.8,-.33,.2,1.33);
+    transition: transform .3s cubic-bezier(.8,-.33,.2,1.33);
+}
+
+.radio input[type=radio] {
+    opacity: 0;
+    z-index: 1;
+}
+
+.radio input[type=radio]:checked+label::after {
+    -webkit-transform: scale(1,1);
+    -ms-transform: scale(1,1);
+    transform: scale(1,1);
+}
+
+.radio input[type=radio]:disabled+label {
+    opacity: .65;
+}
+
+.radio input[type=radio]:disabled+label::before {
+    cursor: not-allowed;
+}
+
+.radio.radio-inline {
+    margin-top: 0;
+}
+
+.radio-primary input[type=radio]+label::after {
+    background-color: #f7941d;
+}
+
+.radio-primary input[type=radio]:checked+label::before {
+    border-color: #f7941d;
+}
+
+.radio-primary input[type=radio]:checked+label::after {
+    background-color: #f7941d;
+}
+
+.radio-danger input[type=radio]+label::after {
+    background-color: #ef474f;
+}
+
+.radio-danger input[type=radio]:checked+label::before {
+    border-color: #ef474f;
+}
+
+.radio-danger input[type=radio]:checked+label::after {
+    background-color: #ef474f;
+}
+
+.radio-info input[type=radio]+label::after {
+    background-color: #00b9f2;
+}
+
+.radio-info input[type=radio]:checked+label::before {
+    border-color: #00b9f2;
+}
+
+.radio-info input[type=radio]:checked+label::after {
+    background-color: #00b9f2;
+}
+
+.radio-warning input[type=radio]+label::after {
+    background-color: #f0ad4e;
+}
+
+.radio-warning input[type=radio]:checked+label::before {
+    border-color: #f0ad4e;
+}
+
+.radio-warning input[type=radio]:checked+label::after {
+    background-color: #f0ad4e;
+}
+
+.radio-success input[type=radio]+label::after {
+    background-color: #5cb85c;
+}
+
+.radio-success input[type=radio]:checked+label::before {
+    border-color: #5cb85c;
+}
+
+.radio-success input[type=radio]:checked+label::after {
+    background-color: #5cb85c;
+}
+
+.radio-success input[type=file] {
+    display: inline;
+    width: 0;
+    opacity: 0;
+}
+
+input[type=checkbox].styled:checked+label:after,input[type=radio].styled:checked+label:after {
+    font-family: FontAwesome;
+    content: "";
+}
+
+input[type=checkbox] .styled:checked+label::before,input[type=radio] .styled:checked+label::before {
+    color: #fff;
+}
+
+input[type=checkbox] .styled:checked+label::after,input[type=radio] .styled:checked+label::after {
+    color: #fff;
+}
+
+
+
+    .hcs-input-choose-file {
+        color: #333;
+        border: none;
+        border-radius: 0;
+        border-bottom: 1px solid #cbcbcb !important;
+        background: transparent;
+        font-size: .875rem;
+        padding-bottom: 0;
+        box-shadow: none !important;
+        padding: 0 5px 0 1px;
+        vertical-align: bottom;
+    }
+
+    .hcs-button-choose-file {
+        padding: 10px 3px 3px 0 !important;
+        color: #333;
+        border: none;
+        border-radius: 0;
+        border-bottom: 1px solid #cbcbcb !important;
+        background: transparent;
+        font-size: .875rem;
+        padding-bottom: 0;
+        box-shadow: none !important;
+        vertical-align: bottom;
+    }
+
+    .btn-default.btn-choose.hcs-button-choose-file:hover,
+    .btn-default.btn-choose.hcs-button-choose-file:active, 
+    .btn-default.btn-choose.hcs-button-choose-file:focus{
+        color: #333;
+        background-color: #fff !important;
+        border-color: #ccc !important;
+    }
+    
+    button.btn.btn-default.btn-choose.hcs-button-choose-file {
+        outline: unset;        
+    }
+
+    .radio + .radio {
+        margin-top: 10px;
+    }
+
+    .bootstrap-tagsinput {
+        color: #333;
+        border: none;
+        border-radius: 0;
+        border-bottom: 1px solid #cbcbcb !important;
+        background: transparent;
+        font-size: .875rem;
+        width: 100%;
+    }
+
+    .bootstrap-tagsinput span {
+        background: #ccc;
+        border: 1px solid #ccc;
+    }
+</style>        
+            <div class="col-md-{{col_group}} col-sm-{{col_group}}">
+                <collapse-box class="zb-form-common" title="${get_res('Create_an_exam_template','Create an Exam Template')}">
+                    <div class="col-md-12" style="font-size:12px;padding-top: 15px;">
+                      <div class="col-md-3" ng-class="{ active: isSet(1) }"  ng-click="setTab(1)" style="cursor:pointer;border-left:2px solid rgb(68,114,196)">
+                          <div class="col-md-2" ><div class="circle-statistics">1</div></div>
+                          <div class="col-md-10" >                          
+                          <p>${get_res('enter','Enter')}</p>
+                          <p>${get_res('exam_temp_infor','Exam Template Information')}</p>
+                          </div>
+
+                      </div>
+                      <div class="col-md-3" ng-class="{ active: isSet(2) }"  ng-click="setTab(2)" style="cursor:pointer;border-left:2px solid rgb(68,114,196)">
+                          <div class="col-md-2" ><div class="circle-statistics">2</div></div>
+                          <div class="col-md-10" >                          
+                          <p>${get_res('specify','Specify')}</p>
+                          <p>${get_res('who_can_take_this_exam','Who can take this exam')}</p>
+                          </div>
+                       </div>
+                      <div class="col-md-2" ng-class="{ active: isSet(3) }"  ng-click="setTab(3)" style="cursor:pointer;border-left:2px solid rgb(68,114,196)">
+                          <div class="col-md-3" ><div class="circle-statistics">3</div></div>
+                          <div class="col-md-9" >                          
+                          <p>${get_res('specify','Specify')}</p>
+                          <p>${get_res('num_of_ques','Number of Questions')}</p>
+                          </div>
+                       </div>
+                    <div class="col-md-2" ng-class="{ active: isSet(4) }"  ng-click="setTab(4)" style="cursor:pointer;border-left:2px solid rgb(68,114,196)">
+                          <div class="col-md-3" ><div class="circle-statistics">4</div></div>
+                          <div class="col-md-9" >                          
+                          <p>${get_res('allow','Allow')}</p>
+                          <p>${get_res('retaking_examination','Retaking Examination')}</p>
+                          </div>
+                       </div>
+                        <div class="col-md-2" ng-class="{ active: isSet(5) }"  ng-click="setTab(5)" style="cursor:pointer;border-left:2px solid rgb(68,114,196)">
+                          <div class="col-md-3" ><div class="circle-statistics">5</div></div>
+                          <div class="col-md-9" >                          
+                          <p>${get_res('add','Add')}</p>
+                          <p>${get_res('advanced_settings','Advanced Settings')}</p>
+                          </div>
+                       </div>
+  	            </div>
+                <div class="col-md-12">
+  		            <div class="jumbotron">
+       	               <div ng-show="isSet(1)">
+                              <%include file = "addExUpcomingExamsTabOne.html" />
+                       </div>
+			           <div ng-show="isSet(2)">
+                               <%include file = "addExUpcomingExamsTabTwo.html" />       
+                       </div>
+                       <div ng-show="isSet(3)">
+                              <%include file = "addExUpcomingExamsTabThree.html" />  
+     	               </div>
+                        <div ng-show="isSet(4)">
+                              <%include file = "addExUpcomingExamsTabFour.html" /> 
+                       </div>
+                       <div ng-show="isSet(5)">
+         	               <%include file = "addExUpcomingExamsTabFive.html" />   
+        	           </div>
+  	            </div>
+              </div>
+                    
+                </collapse-box>
+                
+            </div>
+<style>
+    .circle-statistics {
+        color: rgb(68,114,196);
+    width: 24px;
+    border: 1px solid rgb(68,114,196);
+    border-radius: 50%;
+    text-align: center;
+    font-size: 11px;
+    padding-top: 3px;
+    height: 24px;
+    font-weight: bold;
+    }
+    .active {
+    font-weight:bold;
+    }
+    .detail-content {
+     font-weight: normal;
+    height: 27px;
+    color: rgb(102, 102, 102);
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    font-size: 0.875rem !important;
+    margin-top: 0px !important;
+    margin-bottom: 0px !important;
+    line-height: 13px !important;
+    text-align: left !important;
+    padding: 0px 0px 0px 5px;
+    overflow: hidden;
+    }
+    .detail-content::after{
+    content: ":";
+    float: right;
+    display: block;
+    }
+    .info-item {
+    font-weight: normal;
+    height: 27px;
+    color: rgb(102, 102, 102);
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    font-size: 0.875rem !important;
+    margin-top: 0px !important;
+    margin-bottom: 0px !important;
+    line-height: 13px !important;
+    text-align: left !important;
+    padding: 0px 0px 0px 5px;
+    overflow: hidden;
+    }
+    .lms-font-size {
+        font-size: 0.875rem !important;
+    }
+    .body-detail-view {
+        height: 100%;
+    }
+</style>
+</%block>
+
+<%block name="modal_script">
+<script>
+    (function (scope) {
+        
+        
+
+        scope.__mode = scope.$parent.mode;
+        scope.onResizeDialog = onResizeDialog;
+        scope.col = 12;
+        scope.col_group = 12;
+        scope.col_conf_sal = 12;
+        scope.title = scope.$parent.headerTitle;
+        scope.customCbb = {};
+        var __entity = JSON.parse(JSON.stringify(scope.$parent.currentItem ? scope.$parent.currentItem : {}));
+        //Mode 1: tạo mới, Mode 2: chỉnh sửa, Mode 3: sao chép
+        scope.entity = scope.__mode == 2 ? __entity : {};
+        scope.durrr = "00:00:00"
+        scope.entity.duration = scope.durrr;
+        scope.entity.question_category =  [{}];
+        //combobox source
+        scope.cbbTrainCof = scope.$parent.LAcadameRange;
+        scope.cbbCoeff = scope.$parent.LAcadameCoEff;
+        scope.cbbBeginDateCal = scope.$parent.LBeginDateCal;
+           
+        //Nút lưu và thêm
+        scope.saveNNext = saveNNext;
+        //Nút lưu
+        scope.saveNClose = saveNClose;
+        //Nút thêm chi tiết
+        scope.addDetail = addDetail;
+        //Nút xóa chi tiết
+        scope.deleteDetail = deleteDetail;
+        //Nút sửa chi tiết
+        scope.editDetail = editDetail;
+
+        scope.category_list = []
+
+        scope.entity.total_question = 0
+        scope.entity.total_mask = 0
+        scope.entity.easy_question = "0%"
+        scope.entity.med_question = "0%"
+        scope.entity.diff_question = "0%"
+        
+        scope.entity.creator=scope.$root.__USER__.login_account
+        scope.tab = 1;
+        scope.setTab = function (newTab) {
+            setTimeout(function () {
+                $(document).trigger("resize");
+            }, 20);
+          scope.tab = newTab;
+        };
+        scope.isSet = function(tabNum){
+          return scope.tab === tabNum;
+        };
+
+           
+      function openDialog(title, path, callback, id = 'myModal') {
+			//check tồn tại của form dialog theo id
+			scope.headerTitle = title;
+			//Đặt ID cho form dialog
+			dialog(scope, id).url(path).done(function () {
+				callback();
+				//Set draggable cho form dialog
+				$dialog.draggable();
+			});
+		}
+        scope.$$cbbList = {
+            cbbParent: [{}],
+            cbbModerator: [{}],
+            cbbApprover: [{}]
+        }
+        scope.SearchText = '';
+        //Refesh table
+        scope.entity.question_list = [];
+        scope.tableSource = _loadDataServerSide;
+        scope._tableData = _tableData;
+        function _loadDataServerSide(fnReloadData, iPage, iPageLength, orderBy, searchText) {
+            scope.$$tableConfig = {
+                fnReloadData: fnReloadData,
+                iPage: iPage,
+                iPageLength: iPageLength,
+                orderBy: orderBy,
+                searchText: searchText
+            };
+            if (fnReloadData) {
+                if (searchText) {
+                    _tableData(iPage, iPageLength, orderBy, searchText, function (data) {
+                        fnReloadData(data);
+                    });
+                } else {
+                    _tableData(iPage, iPageLength, orderBy, null, function (data) {
+                        fnReloadData(data);
+                    });
+                }
+            }
+        };
+        function _tableData(iPage, iPageLength, orderBy, searchText, callback, objSearchAdvance) {
+            
+           
+            
+            if (scope.category_list.length != 0 || scope.entity.total_question !=0) {
+                var list_ques_id = [];
+                list_ques_id = _.map(scope.category_list, function (val) { return val.ques_id })
+              
+            
+        //if (scope.treeCurrentNode.hasOwnProperty('folder_id')) {
+        var sort = {};
+        $.each(orderBy, function (i, v) {
+            sort[v.columns] = (v.type === "asc") ? 1 : -1;
+        });
+        sort[orderBy[0].columns] =
+            services.api("${get_api_key('app_main.api.LMSLS_ExQuestionBank/get_list_with_list_ques_id')}")
+                .data({
+                    //parameter at here
+                    "pageIndex": iPage - 1,
+                    "pageSize": iPageLength,
+                    "search": searchText,
+                    "where": {
+                        'list_ques': list_ques_id.length != 0 ?list_ques_id : [] ,
+                    },
+                    "sort": sort,
+                })
+                .done()
+            .then(function (res) {
+                  res.items = _.map(res.items, function (val) { val.ques_max_answer_time = val.ques_max_answer_time.toString() + " secs"; return val })
+                    scope.entity.total_question = res.items.length
+                    scope.entity.total_mask = _.reduce(_.map(res.items, function (val) { return val.ques_total_marks }), function (memo, num) { return memo + num; });
+                    
+
+                    scope.entity.easy_question = _.filter(res.items, function (num) { return num.ques_level == 3 }).length / scope.entity.total_question * 100;
+                    scope.entity.easy_question = scope.entity.easy_question.toString() + '%';
+                    scope.entity.med_question = _.filter(res.items, function (num) { return num.ques_level == 2 }).length / scope.entity.total_question * 100;
+                    scope.entity.med_question = scope.entity.med_question.toString() + '%';
+                    scope.entity.diff_question = _.filter(res.items, function (num) { return num.ques_level == 1 }).length / scope.entity.total_question * 100;
+                    scope.entity.diff_question = scope.entity.diff_question.toString() + '%';
+                    scope.entity.question_list = res.items;
+
+                    var data = {
+                        recordsTotal: res.total_items,
+                        recordsFiltered: res.total_items,
+                        data: res.items
+                    };
+                    scope.ItemTables = JSON.parse(JSON.stringify(data.data));
+                    callback(data);
+                    scope.currentItem = null;
+                    scope.$apply();
+                        })
+                }
+        //}
+    }
+
+        /**
+         *         
+         * Thay đỗi kích thước form Dialog và các control trên form dialog
+         */
+
+        function onResizeDialog() {
+            $dialog.fullScreen();
+            scope.col = scope.col == 12 ? 6 : 12;
+            scope.col_group = scope.col_group == 6 ? 8 : 6;
+            scope.col_conf_sal = scope.col_conf_sal == 6 ? 4 : 6;
+        }
+
+        function saveNClose() {
+            debugger
+            if (scope.entity != null) {
+                var rsCheck = checkError();//Kết quả check input
+                if (rsCheck.result) {
+                    $msg.message("${get_global_res('Input_Error','Nhập liệu sai')}", rsCheck.errorMsg, function () { });
+                    return;
+                }
+                beforeCallToServer();
+                editData(function (res) {
+                    if (res.error == null) {
+                        $dialog.closeDialog();//Đóng form input
+                        $msg.alert("${get_global_res('Handle_Success','Thao tác thành công')}", $type_alert.INFO);//Xuất thông báo thành cônng
+                        if (scope.__mode == 1 || scope.__mode == 3) {
+                            
+                            reloadData();
+                        } else if (scope.__mode == 2) {
+                            
+                            scope.$parent.currentItem = scope.entity;
+                           // scope.$parent.currentItem.material_version = scope.entity.material_version
+                            scope.$parent.currentItem.modified_on = res.item.modified_on;
+                            scope.$parent.currentItem.modified_by = res.item.modified_by;
+                            scope.$parent.$apply();
+                            scope.$root.refresh();
+                            //Refesh datatable
+                            scope.$parent.refreshDataRow();
+                        }
+                    } else {
+                        $msg.message("${get_global_res('Internal_Server_Error','Có lỗi từ phía máy chủ')}", "${get_global_res('Please_Try_Again','Xin thử vui lòng thử lại')}", function () { });
+                    }
+                });
+            }
+        }
+
+        function saveNNext() {
+            
+            if (scope.entity != null) {
+                var rsCheck = checkError();//Kết quả check input
+                if (rsCheck.result) {
+                    //Nhập sai: break khỏi hàm
+                    $msg.message("${get_global_res('Input_Error','Nhập liệu sai')}", rsCheck.errorMsg, function () { });
+                    return;
+                }
+                beforeCallToServer();
+                editData(function (res) {
+                    if (res.error == null) {
+                        if (scope.__mode == 1 || scope.__mode == 3)
+                            reloadData();
+                        else {
+                            scope.$parent.currentItem = scope.entity;
+                            scope.$parent.currentItem.modified_on = res.item.modified_on;
+                            scope.$parent.currentItem.modified_by = res.item.modified_by;
+                            scope.$parent.$apply();
+                            scope.$root.refresh();
+                            //Refesh datatable
+                            scope.$parent.refreshDataRow();
+                        }
+                        $msg.alert("${get_global_res('Handle_Success','Thao tác thành công')}", $type_alert.INFO);
+                        scope.entity = {};
+                        scope.entity.question_category = [{}]
+                        scope.entity.duration = "00:00:00";
+                        scope.category_list = [];
+                        scope.entity.total_question = 0
+                        scope.entity.total_mask = 0
+                        scope.entity.easy_question = "0%"
+                        scope.entity.med_question = "0%"
+                        scope.entity.diff_question = "0%"
+                        scope.__mode = 1;
+                        scope.$apply();
+                       var tableConfig = scope.$$tableConfig;
+
+                        scope._tableData(
+                            tableConfig.iPage, tableConfig.iPageLength, tableConfig.orderBy,
+                            tableConfig.searchText, tableConfig.fnReloadData);
+                            s
+                    } else {
+                        $msg.message("${get_global_res('Notification','Thông báo')}", "${get_global_res('Internal_Server_Error','Có lỗi từ phía máy chủ')}", function () { });
+                    }
+                })
+            } else {
+                $msg.message("${get_global_res('Input_Error','Nhập liệu sai')}", rsCheck.errorMsg, function () { });
+            }
+        }
+
+        function addDetail() {
+            scope.__detailMode = 1;
+            openDialog("${get_res('config_detail_acadame','Thiết lập chi tiết trình độ học vấn')}", 'category/form/dialog/addAcadameDetail', function () { }, "dialogInputAcadameDetail");
+        }
+
+        function editDetail() {
+            if (scope.$$table.currentItem) {
+                scope.__detailMode = 2; // set mode chỉnh sửa
+                openDialog("${get_res('config_detail_acadame','Thiết lập chi tiết trình độ học vấn')}", 'category/form/dialog/addAcadameDetail', function () { }, "dialogInputAcadameDetail");
+            } else {
+                $msg.message("${get_global_res('Notification','Thông báo')}", "${get_app_res('No_Row_Selected','Không có dòng được chọn')}", function () { });
+            }
+        }
+
+        function deleteDetail() {
+            if (!scope.$$table.selectedItems || scope.$$table.selectedItems.length === 0) {
+            $msg.message("${get_global_res('Notification','Thông báo')}", "${get_global_res('No_Row_Selected','Không có dòng được chọn')}", function () { });
+            } else {
+                $msg.confirm("${get_global_res('Notification','Thông báo')}", "${get_global_res('Do_You_Want_Delete','Bạn có muốn xóa không?')}", function () {
+                    services.api("${get_api_key('app_main.api.HCSLS_Acadame/delete_detail')}")
+                        .data({
+                            "train_level_code":scope.entity.train_level_code,
+                            "rec_id": _.pluck(scope.$$table.selectedItems, 'rec_id')
+                        })
+                        .done()
+                        .then(function (res) {
+                            if (res.updatedExisting == true) {
+                                _tableData(scope.$$table.$$tableConfig.iPage, scope.$$table.$$tableConfig.iPageLength, scope.$$table.$$tableConfig.orderBy, scope.$$table.$$tableConfig.SearchText, scope.$$table.$$tableConfig.fnReloadData);
+                                $msg.alert("${get_global_res('Handle_Success','Thao tác thành công')}", $type_alert.INFO);
+                                scope.$$table.currentItem = null;
+                                scope.$$table.selectedItems = [];
+                            }
+                            if (res.error != null || res.updatedExisting == false) {
+                                $msg.alert("${get_global_res('Handle_Failed','Thao tác thất bại')}", $type_alert.DANGER);
+                            }
+                        })
+                });
+            }
+        }
+
+        function editData(callback) {
+            var url = getUrl();
+           
+            if (scope.__mode == 3) {
+
+            }
+            if (scope.__mode == 1) {
+
+            }
+            services.api(url)
+                .data(scope.entity)
+                .done()
+                .then(function (res) {
+                    callback(res);
+                })
+        }
+
+        function beforeCallToServer() {
+
+        }
+
+        function getUrl() {
+            return scope.__mode == 1 || scope.__mode == 3 ? "${get_api_key('app_main.api.LMSLS_ExTemplateList/insert')}" /*Mode 1: Tạo mới*/
+                    : "${get_api_key('app_main.api.LMSLS_ExTemplateList/update')}" /*Mode 2: Cập nhật*/
+        }
+
+        function reloadData() {
+            var tableConfig = scope.$root.$$tableConfig;
+            scope.$root._tableData(tableConfig.iPage,
+            tableConfig.iPageLength, tableConfig.orderBy,
+                tableConfig.searchText, tableConfig.fnReloadData);
+            //
+            scope.$root._departments();
+        }
+
+        /**
+         * Function check input
+         */
+        function checkError() {
+            var errMsg;
+            var valid = null;
+            var rs = {
+                "result": false,
+                "errorMsg": ''
+            };
+            
+            valid = lv.Validate(scope.entity.exam_id);
+            rs.result = valid.isNullOrWhiteSpace();
+            rs.errorMsg = rs.result === true ? "${get_res('exam_id_is_not_null','Mã đề thi không được để trống')}" + '\n' : "" ;
+            if(rs.result === true){
+                return rs;
+            }
+            valid = lv.Validate(scope.entity.exam_category);
+            rs.result = valid.isNullOrWhiteSpace();
+            rs.errorMsg = rs.result === true ? "${get_res('exam_category_not_null','Danh mục thi không được để trống')}" + '\n' : "" ;
+            if(rs.result === true){
+                return rs;
+            }
+            valid = lv.Validate(scope.entity.exam_name1);
+            rs.result = valid.isNullOrWhiteSpace();
+            rs.errorMsg = rs.result === true ? "${get_res('exam_category_not_null','Tên đề thi không được để trống')}" + '\n' : "" ;
+            if(rs.result === true){
+                return rs;
+            }
+            valid = lv.Validate(scope.entity.ques_pick);
+            rs.result = valid.isNullOrWhiteSpace();
+            rs.errorMsg = rs.result === true ? "${get_res('ques_pick_not_null','Chế độ chọn câu hỏi không được để trống')}" + '\n' : "" ;
+            if(rs.result === true){
+                return rs;
+            }
+                 
+            rs.result = scope.entity.question_list.length ==0;
+            rs.errorMsg = rs.result === true ? "${get_res('data_question_not_null','Đề thi chưa có câu hỏi được chọn')}" + '\n' : "" ;
+            if(rs.result === true){
+                return rs;
+            }
+            return rs;
+        }
+
+        loadValueList();
+        function loadValueList() {
+            services.api("${get_api_key('app_main.api.SYS_ValueList/get_list')}")
+            .data({
+                "name": [
+                    "LMS_Ex_Temp_negative_marks",
+                    "LMS_Ex_Temp_ques_pick",
+                ]
+            })
+            .done()
+            .then(function (res) {
+                scope.cbbNegativeMarks = getValue(res.values, "LMS_Ex_Temp_negative_marks");
+                scope.cbbQuestionPicking = getValue(res.values, "LMS_Ex_Temp_ques_pick");
+                scope.$applyAsync();
+                function getValue(response, listName) {
+                    return _.findWhere(response, { "list_name": listName }) ? _.findWhere(response, { "list_name": listName }).values : [];
+                }
+            })
+        }
+
+        function _getDataInitCombobox() {
+			
+			scope.$root.$getInitComboboxData(scope,
+				{
+                    "key": "${encryptor.get_key('lms_cbb_exTemplateCategory')}",
+                    "code": scope.entity && scope.entity.hasOwnProperty('category')? scope.entity.category: null,
+                    "alias": "$$$category_id"
+                }
+			);
+		}
+        _getDataInitCombobox();
+        function __getDataInitCombobox() {
+			
+			scope.$root.$getInitComboboxData(scope,
+				{
+                    "key": "${encryptor.get_key('lms_cbb_exQuestionCategory')}",
+                    "code": scope.entity && scope.entity.hasOwnProperty('category')? scope.entity.category: null,
+                    "alias": "$$$category_id"
+                }
+			);
+		}
+        __getDataInitCombobox();
+
+    });
+</script>
+
+</%block>

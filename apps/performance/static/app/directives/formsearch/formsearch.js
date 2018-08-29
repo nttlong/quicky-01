@@ -29,6 +29,7 @@
         return directive;
 
         function link(scope, element, attrs) {
+            var __alias = attrs['initData'];
             scope.placeholder = attrs['placeholder'];
             scope.deleteSelectedItem = deleteSelectedItem;
             scope.displayItems = [];
@@ -47,6 +48,7 @@
             }
 
             function clear() {
+                scope.$parent[__alias].value = null;
                 scope.ngModel = null;
                 assignValue(scope, null);
                 scope.ngClear();

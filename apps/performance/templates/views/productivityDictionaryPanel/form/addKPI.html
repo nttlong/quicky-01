@@ -97,7 +97,7 @@
                     <!--Trọng số-->
                     <label class="col-sm-5 zb-form-label">${get_res('weight','Trọng số')}</label>
                     <div class="col-sm-7">
-                        <input-number ng-model="entity.weight">
+                        <input-number ng-model="entity.weight" type="float">
                     </div>
                 </div>
             </div>
@@ -106,7 +106,7 @@
                     <!--Trọng số-->
                     <label class="col-sm-5 zb-form-label">${get_res('benchmark','Điểm chuẩn')}</label>
                     <div class="col-sm-7">
-                        <input-number ng-model="entity.benchmark">
+                        <input-number ng-model="entity.benchmark" type="float">
                     </div>
                 </div>
             </div>
@@ -191,7 +191,7 @@
                 <!--Áp dụng theo CDCV-->
                 <label class="col-sm-5 zb-form-label">${get_res('job_working','Áp dụng theo CDCV')}</label>
                 <div class="col-sm-7">
-                    <form-search ng-model="entity.job_working" ng-disabled="apply_jobworking" placeholder="" open="set_job_working()" init-data="$$$job_working" multi="true"></form-search>
+                    <form-search ng-model="entity.job_working" ng-disabled="entity.is_apply_all" placeholder="" open="set_job_working()" init-data="$$$job_working" multi="true"></form-search>
                 </div>
             </div>
         </div>
@@ -200,7 +200,7 @@
                 <!--Chỉ áp dụng cho năm-->
                 <label class="col-sm-5 zb-form-label">${get_res('kpi_years','Chỉ áp dụng cho năm')}</label>
                 <div class="col-sm-7">
-                    <year-picker ng-model="entity.kpi_years" multi="true"></year-picker>
+                    <year-picker ng-model="entity.kpi_years" multi="true" language="${get_language()}"></year-picker>
                 </div>
             </div>
         </div>
@@ -261,6 +261,7 @@
             is_apply_all: null,
             kpi_years: null,
             is_kpi_not_weight: null,
+            job_working: [],
             note: null,
             lock: null,
             created_on: null,
@@ -292,11 +293,10 @@
         function checkJobWorking(val) {
             if (scope.entity.is_apply_all) {
                 $msg.confirm("${get_global_res('Notification','Thông báo')}", "${get_global_res('checked_is_apply_all','Khi chọn Áp dụng toàn Cty, các thiết lập theo chức danh sẽ bị xóa. Bạn có muốn thực hiện tiếp?')}", function () {
-                    services.api("${get_api_key('app_main.api.HCSLS_JobWorking/delete_kpi')}")
+                    services.api("${get_api_key('app_main.api.TMLS_KPI/remove_job_working_kpi_by_kpi_code')}")
                         .data(
                         {
-                            "kpi_code": scope.entity.kpi_code,
-                            "job_w_code": scope.entity.job_working
+                            "kpi_code": scope.entity.kpi_code
                         }
                         )
                         .done()
@@ -304,6 +304,7 @@
                             if (res.error == null) {
                                 scope.apply_jobworking = true;
                                 scope.entity.job_working = [];
+                                scope.$$$job_working.value = [];
                                 scope.$applyAsync();
                             } else {
                                 $msg.message("${get_global_res('Internal_Server_Error','Có lỗi từ phía máy chủ')}", "${get_global_res('Please_Try_Again','Xin thử vui lòng thử lại')}", function () { });
@@ -383,9 +384,8 @@
 
         function editData(callback) {
             var url = getUrl();
-            if (scope.__mode == 3) {
-
-            }
+            if (scope.entity && scope.entity.hasOwnProperty('kpi_years'))
+                scope.entity.kpi_years = scope.entity.kpi_years.toString();
             services.api(url)
                 .data(scope.entity)
                 .done()
@@ -431,6 +431,15 @@
             rs.errorMsg = rs.result === true ? "${get_res('kpi_name_is_not_null','Tên chỉ tiêu không được để trống')}" + '\n' : "" ;
             if(rs.result === true){
                 return rs;
+            }
+            valid = lv.Validate(scope.entity.value_cal_type);
+            rs.result = valid.isNumber();
+            rs.errorMsg = rs.result === false ? '${get_res('value_cal_type_is_not_null','Cách tính cột \"Thực hiện\" không được để trống')}' + '\n' : "" ;
+            if (rs.result === false) {
+                rs.result = true;
+                return rs;
+            } else {
+                rs.result = false;
             }
             return rs;
         }
@@ -498,16 +507,17 @@
                     "key": "${encryptor.get_key('cbb_HCSLS_Unit')}",
                     "code": scope.entity
                         && scope.entity.hasOwnProperty('kpi_group_code')
-                        ? scope.entity.kpi_group_code
+                        ? scope.entity.unit_code
                         : null,
                     "alias": "$$$cbb_HCSLS_Unit"
                 },
                 {
-                    "key": "${encryptor.get_key('init_data_hcsls_vw_job_working_factor_appraisal')}",
+                    "key": "${encryptor.get_key('init_data_hcsls_vw_job_working_kpi')}",
                     "code": scope.entity
                         && scope.entity.hasOwnProperty('job_working')
                         ? scope.entity.job_working
                         : null,
+                    "predicate": [{ "@kpi_code":scope.entity.kpi_code}],
                     "alias": "$$$job_working"
                 }
                 ]
@@ -519,12 +529,15 @@
                 callApi("${get_api_key('app_main.api.TMLS_KPI/get_by_kpi_code')}", {
                     "kpi_code": scope.$parent.$$table.currentItem.kpi_code
                 }, function (res) {
-                    scope.entity = scope.__mode == 2 ? res : __default;
+                    scope.entity = res;
+                    if (scope.entity && scope.entity.hasOwnProperty('kpi_years'))
+                        scope.entity.kpi_years = scope.entity.kpi_years.split(",");
                     _getValueList();
                     _getDataInitCombobox();
                 });
             } else {
                 _getValueList();
+                scope.entity = __default;
                 _getDataInitCombobox();
             }
         })()

@@ -1,0 +1,205 @@
+﻿
+<div class="tab-pane" style="padding-right: unset;
+        height: 100%;
+        overflow-y: hidden;
+        overflow: auto;
+        background-color: #fff;">
+    <div class="col-md-12">
+        <collapse-box class="zb-form-common" title="${get_res('general_config','Thiết lập chung')}">
+        <toolbar class="eeeeee">
+            <button ng-click="onSave()" class="zb-btn zb-btn-o-black" style="float:right">
+                <i class="bowtie-icon bowtie-save"></i>
+            </button>
+        </toolbar>
+            <div class="col-md-6">
+                <div class="form-group zb-form-group" ng-if="__mode === 1 ? true : false">
+                    <!--Mã nhân viên-->
+                    <label class="col-sm-6 zb-form-label">${get_res('process_id','Mã quy trình')}</label>
+                    <div class="col-sm-6">
+                        <input-text required ng-model="entity.process_id" ng-disabled="__mode === 2 ? true : false">
+                    </div>
+                </div>
+                <div class="form-group zb-form-group" ng-if="__mode === 1 ? true : false">
+                    <!--Họ-->
+                    <label for="inputLastName" class="col-sm-6 zb-form-label">${get_res('process_name','Tên quy trình')}</label>
+                    <div class="col-sm-6">
+                        <input-text ng-model="entity.process_name" required>
+                    </div>
+                </div>
+                <div class="form-group zb-form-group" ng-if="__mode === 1 ? true : false">
+                    <!--Họ-->
+                    <label for="inputLastName" class="col-sm-6 zb-form-label">${get_res('function_id','FunctionID')}</label>
+                    <div class="col-sm-6">
+                        <input-text ng-model="entity.function_id" required>
+                    </div>
+                </div>
+                <div class="form-group zb-form-group">
+                    <!--Tên-->
+                    <label class="col-sm-6 zb-form-label">${get_res('is_not_apply_process','Không áp dụng theo cấp duyệt')}</label>
+                    <div class="col-sm-6">
+                        <input-checkbox ng-model="entity.is_not_apply_process">
+                    </div>
+                </div>
+                <div class="form-group zb-form-group">
+                    <!--Giới tính-->
+                    <label for="inputGender" class="col-sm-6 zb-form-label">${get_res('sender_value','Người được đóng góp tài liệu')}</label>
+                    <div class="col-sm-6">
+                        <input-select data-list="cbbSenderValue" 
+                                   ng-model="entity.sender_value" data-value="value" 
+                                   data-caption="caption"/>
+                    </div>
+                </div>
+                <div class="form-group zb-form-group">
+                    <!--Bí danh-->
+                    <label class="col-sm-6 zb-form-label">${get_res('max_approve_level','Số cấp duyệt')}</label>
+                    <div class="col-sm-6">
+                        <input-number ng-model="entity.max_approve_level">
+                    </div>
+                </div>
+                <div class="form-group zb-form-group">
+                    <!--Tên-->
+                    <label class="col-sm-6 zb-form-label">${get_res('is_select_approver','Người duyệt do User tự chọn')}</label>
+                    <div class="col-sm-6">
+                        <input-checkbox ng-model="entity.is_select_approver">
+                    </div>
+                </div>
+                <div class="form-group zb-form-group">
+                    <!--Tên-->
+                    <label class="col-sm-6 zb-form-label">${get_res('is_approve_by_dept','Cấp duyệt thiết lập theo bộ phận')}</label>
+                    <div class="col-sm-6">
+                        <input-checkbox ng-model="entity.is_approve_by_dept">
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+               <div class="form-group zb-form-group">
+                    <!--Tên-->
+                    <label class="col-sm-6 zb-form-label">${get_res('is_require_reason','Bắt buộc nhập lý do khi Gửi yêu cầu')}</label>
+                    <div class="col-sm-6">
+                        <input-checkbox ng-model="entity.is_require_reason">
+                    </div>
+                </div>
+                <div class="form-group zb-form-group">
+                    <!--Tên-->
+                    <label class="col-sm-6 zb-form-label">${get_res('is_require_when_approve','Bắt buộc nhập lý do khi Duyệt đồng ý')}</label>
+                    <div class="col-sm-6">
+                        <input-checkbox ng-model="entity.is_require_when_approve">
+                    </div>
+                </div>
+                <div class="form-group zb-form-group">
+                    <!--Tên-->
+                    <label class="col-sm-6 zb-form-label">${get_res('is_require_when_reject','Bắt buộc nhập lý do khi Không duyệt')}</label>
+                    <div class="col-sm-6">
+                        <input-checkbox ng-model="entity.is_require_when_reject">
+                    </div>
+                </div>
+                <div class="form-group zb-form-group">
+                    <!--Bí danh-->
+                    <label class="col-sm-6 zb-form-label">${get_res('file_size_limit','Giới hạn kích thước file (MB)')}</label>
+                    <div class="col-sm-6">
+                        <input-number ng-model="entity.file_size_limit">
+                    </div>
+                </div>
+                <div class="form-group zb-form-group">
+                    <!--Bí danh-->
+                    <label class="col-sm-6 zb-form-label">${get_res('exclude_file_type','Không upload loại file (*.exe, *.mvc...)')}</label>
+                    <div class="col-sm-6">
+                        <input-text ng-model="entity.exclude_file_types">
+                    </div>
+                </div>
+            </div>
+        </collapse-box>
+    </div>
+    <div class="col-md-12">
+        <collapse-box class="zb-form-common" title="${get_res('email_confirm','Email thông báo')}">
+            <div class="col-md-6">
+                <div class="form-group zb-form-group">
+                    <label class="col-sm-6 zb-form-label" style="        font-weight: bold;
+        font-style: italic;">${get_res('email_request','Email gửi yêu cầu')}</label>
+                </div>
+                <div class="form-group zb-form-group">
+                    <label class="col-sm-6 zb-form-label">${get_res('email_send_code','Mẫu Email')}</label>
+                    <div class="col-sm-6">
+                        <combobox load-data="$root.$getComboboxData" 
+                            ng-model="entity.b_province_code"
+                            params="{key:'${encryptor.get_key('cbb_province')}', value:[{ '@lock': true }]}"
+                            on-search-change="false"
+                            on-search-press="true"
+                            placeholder=""
+                            init-data="$$$b_cbb_province.value"
+                            caption-field="{{$$$b_cbb_province.caption_field}}" 
+                            paging="true"
+                            close-on-select="true"
+                            template-fields="$$$b_cbb_province.display_fields"
+                            reload="false">
+                        </combobox>
+                    </div>
+                </div>
+                <div class="form-group zb-form-group">
+                    <!--Giới tính-->
+                    <label for="inputGender" class="col-sm-6 zb-form-label">${get_res('email_send_to','Gửi tới')}</label>
+                    <div class="col-sm-6">
+                          <input-select data-list="cbbLSendEmail" 
+                                   ng-model="entity.email_send_to" data-value="value" 
+                                   data-caption="caption"/>
+                    </div>
+                </div>
+                <div class="form-group zb-form-group">
+                    <!--Giới tính-->
+                    <label for="inputGender" class="col-sm-6 zb-form-label">${get_res('email_send_cc','Gửi thêm tới')}</label>
+                    <div class="col-sm-6">
+                        <input-select ng-model="entity.email_send_cc" data-list="$parent.$parent.$parent.cbbGender" data-value="value" data-caption="caption" />
+                    </div>
+                </div>               
+            </div>
+            <div class="col-md-6">
+               
+            </div>                         
+        </collapse-box>
+    </div>
+    <div class="col-md-12">
+     <collapse-box class="zb-form-common" title="${get_res('tan_suat_gui_email','Tần suất gửi Email')}">
+        <div class="col-md-6">
+            <div class="form-group zb-form-group">
+                <div class="col-sm-7">
+                      <label class="radio">${get_res('is_send_email_pronto','Gửi ngay khi có phát sinh')}
+                          <input type="radio" ng-click="onChangeRadioButton(1)" ng-value="true" name="GroupA" ng-model="entity.is_send_email_pronto">
+                          <span class="checkround"></span>
+                      </label>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="form-group zb-form-group">
+                <div class="col-sm-7">
+                    <label class="radio">${get_res('is_send_email_once','Gửi danh sách một lần trong ngày')}
+                          <input type="radio" ng-click="onChangeRadioButton(2)" ng-value="true" name="GroupA" ng-model="entity.is_send_email_once">
+                          <span class="checkround"></span>
+                      </label>
+                </div>
+            </div>
+            <div class="form-group zb-form-group">
+                <!--Họ-->
+                <label class="col-sm-6 zb-form-label">${get_res('is_send_email_once_from_hour','Từ giờ')}</label>
+                <div class="col-sm-6">
+                    <time-picker class="lv-time-picker" ng-model="entity.is_send_email_once_from_hour" format="HH:mm"
+                                 ng-disabled="true" disable="disable"></time-picker>
+                </div>
+            </div>
+            <div class="form-group zb-form-group">
+                <!--Tên-->
+                <label class="col-sm-6 zb-form-label">${get_res('is_send_email_once_to_hour','Đến giờ')}</label>
+                <div class="col-sm-6">
+                    <time-picker class="lv-time-picker" ng-model="entity.is_send_email_once_to_hour" format="HH:mm"
+                                 ng-disabled="true"></time-picker>
+                </div>
+            </div>
+        </div>
+    </collapse-box>
+</div>
+    
+    
+</div>
+<script>
+    <%include file="./scripts/setup_process_general.js"/>
+</script>

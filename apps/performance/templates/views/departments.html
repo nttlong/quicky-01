@@ -11,9 +11,10 @@
     .zb-content {
         background-color:transparent !important;
     }
+
 </style>
-<div class="hcs-container">
-    <div class="row hcs-profile-detail" style="margin:unset; height:100%;" ng-if="showDetail">
+<div class="hcs-container" style="overflow: hidden;">
+    <div class="row hcs-profile-detail" style="margin:unset; height:100%; " ng-if="showDetail">
             <page-sidebar on-add="onAdd" 
                   on-edit="onEdit" 
                   on-delete="onDelete" 
@@ -104,10 +105,10 @@
                     <div class="row">
                         <div class="col-md-6">
                             <input-select data-list="objSearch.selectBoxDataSource" class="size-lg"
-                                          data-value="value" 
-                                          data-caption="caption"
-                                          ng-model="objSearch.lock"
-                                          value="3">
+                                            data-value="value" 
+                                            data-caption="caption"
+                                            ng-model="objSearch.lock"
+                                            value="3">
                             </input-select>
                         </div>
                         <div class="col-md-6">
@@ -140,7 +141,7 @@
                 </div>
                 <div class="clearfix"></div>
             </div>
-            <div class="hcs-right-side-department-list" style="height:93%;">
+            <div class="hcs-right-side-department-list" style="height:calc(100% - 37px);">
                 <table-data data-source="$$table.tableSource" 
                             fields="$$table.tableFields" 
                             type="MultiSelect" 

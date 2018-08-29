@@ -6,6 +6,7 @@
 var $msg = _Dialog();
 var $dialog = {
     "closeDialog": function () { $('.hcs-modal-dialog:last').modal('hide'); },
+    "closeAllDialog": function () { $('.hcs-modal-dialog').modal('hide'); },
     "draggable": function () {
         $('.hcs-modal-dialog:last').ready(function () {
             $('.hcs-modal-dialog:last .modal-dialog .modal-content .modal-header').on('mousedown touchstart', function (e) {

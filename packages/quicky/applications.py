@@ -56,7 +56,7 @@ def get_app_by_host_dir(dir):
             else:
                 if _cache_apps[key].host_dir.lower() == dir.lower():
                     _app_by_host_dir_cache[dir] = _cache_apps[key]
-    return _app_by_host_dir_cache[dir]
+    return _app_by_host_dir_cache.get(dir,-1)
 def get_app_by_file(file_name):
     # type: (str) -> app_info
     """

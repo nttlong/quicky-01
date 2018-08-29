@@ -6,7 +6,7 @@
     "/uvenv04/lib/python2.7/site-packages"
   ],
   "AUTHORIZATION_ENGINE":"quicky.authorize",
-  "HOST_DIR":"test",
+  "HOST_DIR_":"test",
   "SECRET_KEY":"12jds*3210d)9",
   "DEBUG":true,
   "ALLOWED_HOSTS": ["127.0.0.1", "localhost","172.16.11.127"],

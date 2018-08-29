@@ -20,7 +20,7 @@ def get_list_with_searchtext(args):
 
     pageIndex = (lambda pIndex: pIndex if pIndex != None else 0)(pageIndex)
     pageSize = (lambda pSize: pSize if pSize != None else 20)(pageSize)
-    ret=AprPeriodEmpOut.get_empNotApr_by_apr_period()
+    ret=AprPeriodEmpOut.get_empNotApr_by_apr_period(args['data']['apr_period'], args['data']['apr_year'])
     ret=common.filter_lock(ret, args)
     if(sort != None):
         ret.sort(sort)
@@ -53,20 +53,61 @@ def get_list_distinct_approval_year_and_period(args):
     ret = list(collection)
     return ret
 
-def insert(args):
+def generate(args):
     try:
         lock.acquire()
         ret = {}
-        if args['data'] != None:
-            data =  set_dict_insert_data(args)
-            ret  =  models.TMPER_AprPeriodEmpOut().insert(data)
+        listEmpPerNow = get_EmpDataByPeriodAndYear(args)
+        if(len(listEmpPerNow) > 0 and len(args['data']['res']) >0):
+            if args['data'] != None and args['data'].has_key('now_apr_period') and args['data'].has_key('now_apr_year') :
+                if(args['data'].has_key('chk_exchangeData') and args['data']['chk_exchangeData'] == 1):
+                    ret  =  models.TMPER_AprPeriodEmpOut().delete("_id in {0}",[ObjectId(x["_id"]) for x in listEmpPerNow])
+                    for item in args['data']['res']:
+                        item['apr_period'] = args['data']['now_apr_period']
+                        item['apr_year'] =  args['data']['now_apr_year']
+                        data = set_dict_insert_data(item)
+                        ret  =  models.TMPER_AprPeriodEmpOut().insert(data)
+                else:
+                    for  item in args['data']['res'] :
+                        if item.has_key('apr_period' and 'apr_year' and 'employee_code'):
+                            for index, emp in enumerate(listEmpPerNow, start=0):
+                                if (item['employee_code'] == emp['employee_code']):
+                                     if(emp['department_code'] == None or emp['department_code'] == ""):
+                                         emp['department_code'] = item['department_code']
+                                     if(emp['job_w_code'] == None or emp['job_w_code'] == ""):
+                                         emp['job_w_code'] = item['job_w_code']
+                                     if(emp['reason'] == None or emp['reason'] == ""):
+                                         emp['reason'] = item['reason']
+                                     if(emp['note'] == None or emp['note'] == ""):
+                                         emp['note'] = item['note']
+                                     data = set_dict_update_data(emp)
+                                     ret  =  models.TMPER_AprPeriodEmpOut().update(
+                                                 data, 
+                                                "_id == {0}", 
+                                                 ObjectId(emp['_id']))
+                                     break
+                                else:
+                                    if(index == len(listEmpPerNow)-1):
+                                        item['apr_period'] = args['data']['now_apr_period']
+                                        item['apr_year'] =  args['data']['now_apr_year']
+                                        data =  set_dict_insert_data(item)
+                                        ret  =  models.TMPER_AprPeriodEmpOut().insert(data)
+                                    else:
+                                        continue
+                lock.release()
+                return ret
+        elif(len(listEmpPerNow) == 0 and len(args['data']['res']) >0):
+            for item in args['data']['res']:
+                item['apr_period'] = args['data']['now_apr_period']
+                item['apr_year'] =  args['data']['now_apr_year']
+                data = set_dict_insert_data(item)
+                ret  =  models.TMPER_AprPeriodEmpOut().insert(data)
             lock.release()
             return ret
-
         lock.release()
         return dict(
             error = "request parameter is not exist"
-        )
+            )
     except Exception as ex:
         lock.release()
         raise(ex)
@@ -78,7 +119,7 @@ def update(args):
         if args['data'] != None:
             if(args['data']['tmp']==1):
                 del(args['data']['tmp'])
-                data =  set_dict_update_data(args)
+                data =  set_dict_update_data(args['data'])
                 ret  =  models.TMPER_AprPeriodEmpOut().update(
                     data, 
                     "_id == {0}", 
@@ -127,7 +168,7 @@ def get_genPreAperiodData(args):
         ret = {}
         collection = common.get_collection('TMPER_AprPeriodEmpOut').aggregate([
         {"$match":{
-            "$and": [ { 'apr_year': 2021 }, { 'apr_period': 5} ]
+            "$and": [ { 'apr_year': int(args['data']['apr_year']) }, { 'apr_period': int(args['data']['apr_period'])} ]
         }},
         {"$project": {
             "apr_period":1,
@@ -136,25 +177,46 @@ def get_genPreAperiodData(args):
             "department_code": 1,
             "job_w_code":1,
             "reason":1,
-            "note":1,
+            "note":1
         }},
-        { "$sort" : SON([("apr_year",-1),("apr_period",-1)]) }
+        #{ "$sort" : SON([("apr_year",-1),("apr_period",-1)]) }
         ])
         ret = list(collection)
         return ret
 
-def set_dict_insert_data(args):
+def get_EmpDataByPeriodAndYear(args):
+    if(args['data']!= None):
+        ret = {}
+        collection = common.get_collection('TMPER_AprPeriodEmpOut').aggregate([
+        {"$match":{
+            "$and": [ { 'apr_year': args['data']['now_apr_year'] }, { 'apr_period': args['data']['now_apr_period']} ]
+        }},
+        {"$project": {
+            "apr_period":1,
+            "apr_year": 1,
+            "employee_code":1,
+            "department_code": 1,
+            "job_w_code":1,
+            "reason":1,
+            "note":1
+        }},
+        #{ "$sort" : SON([("apr_year",-1),("apr_period",-1)]) }
+        ])
+        ret = list(collection)
+        return ret
+
+def set_dict_insert_data(item):
     ret_dict = dict()
 
     ret_dict.update(
-        apr_period         = (lambda x: x['apr_period']        if x.has_key('apr_period')       else None)(args['data']),
-        apr_year         = (lambda x: x['apr_year']        if x.has_key('apr_year')       else None)(args['data']),
-        employee_code        = (lambda x: x['employee_code']       if x.has_key('employee_code')      else None)(args['data']),
-        department_code   = (lambda x: x['department_code']  if x.has_key('department_code') else None)(args['data']),
-        job_w_code              = (lambda x: x['job_w_code']             if x.has_key('job_w_code')            else None)(args['data']),
-        reason        = (lambda x: x['reason']       if x.has_key('reason')      else None)(args['data']),
-        job_working         = (lambda x: x['job_working']        if x.has_key('job_working')       else None)(args['data']),
-        note                = (lambda x: x['note']               if x.has_key('note')              else None)(args['data']),
+        apr_period         = (lambda x: x['apr_period']        if x.has_key('apr_period')       else None)(item),
+        apr_year         = (lambda x: x['apr_year']        if x.has_key('apr_year')       else None)(item),
+        employee_code        = (lambda x: x['employee_code']       if x.has_key('employee_code')      else None)(item),
+        department_code   = (lambda x: x['department_code']  if x.has_key('department_code') else None)(item),
+        job_w_code              = (lambda x: x['job_w_code']             if x.has_key('job_w_code')            else None)(item),
+        reason        = (lambda x: x['reason']       if x.has_key('reason')      else None)(item),
+        job_working         = (lambda x: x['job_working']        if x.has_key('job_working')       else None)(item),
+        note                = (lambda x: x['note']               if x.has_key('note')              else None)(item),
     )
     return ret_dict
 

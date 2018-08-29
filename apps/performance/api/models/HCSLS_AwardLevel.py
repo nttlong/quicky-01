@@ -3,28 +3,22 @@ from config import database, helpers, db_context
 import datetime
 import base
 import threading
-_hasCreated=False
-def HCSLS_AwardLevel():
-    global _hasCreated
-    if not _hasCreated:
-        helpers.extent_model(
+helpers.extent_model(
             "HCSLS_AwardLevel",
             "base",
             [["award_level_code"]],
-            award_level_code = helpers.create_field("text", True),
-            award_level_name = helpers.create_field("text", True),
-            award_level_name2 = helpers.create_field("text"),
-            ordinal = helpers.create_field("numeric"),
-            note = helpers.create_field("text"),
-            lock=helpers.create_field("bool"),
-            max_times_per_year=helpers.create_field("numeric"),
-            created_on=helpers.create_field("date"),
-            created_by=helpers.create_field("text"),
-            modified_on=helpers.create_field("date"),
-            modified_by=helpers.create_field("text")
+            award_level_code = ("text", True),
+            award_level_name = ("text", True),
+            award_level_name2 = ("text"),
+            ordinal = ("numeric"),
+            note = ("text"),
+            lock=("bool"),
+            max_times_per_year=("numeric"),
+            created_on=("date"),
+            created_by=("text"),
+            modified_on=("date"),
+            modified_by=("text")
         )
-        _hasCreated=True
-
+def HCSLS_AwardLevel():
     ret = db_context.collection("HCSLS_AwardLevel")
-
     return ret

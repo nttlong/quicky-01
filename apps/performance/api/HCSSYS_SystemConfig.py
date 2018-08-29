@@ -13,6 +13,8 @@ def update(args):
             dict(
                 _id = ObjectId(args['data']['_id'])
             ))
+            from .. import SystemConfig
+            SystemConfig.update()
             return ret
         return None
     except Exception as ex:

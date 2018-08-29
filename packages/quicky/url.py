@@ -169,6 +169,8 @@ def build_urls(module_name,*args,**kwargs):
                                     url_regex=url_regex.replace("^","^(?i)(?P<tenancy_code>"+get_tenancy_code_regex()+")/")
                                 else:
                                     url_regex = url_regex.replace("^", "^(?i)"+host_dir+"/(?P<tenancy_code>"+get_tenancy_code_regex()+")/")
+                                if url_regex[url_regex.__len__() - 2:url_regex.__len__()] == "/$":
+                                    url_regex = url_regex[0:url_regex.__len__() - 2] + "$"
                                 if url_item.callback!=None:
                                     map_url=url(
                                         url_regex,
@@ -196,6 +198,8 @@ def build_urls(module_name,*args,**kwargs):
                                             url_regex = url_regex.replace("^","^(?i)(?P<tenancy_code>"+get_tenancy_code_regex()+")/" + ret.host_dir+"/")
                                         else:
                                             url_regex = url_regex.replace("^", "^(?i)"+host_dir+"/(?P<tenancy_code>"+get_tenancy_code_regex()+")/" + ret.host_dir+"/")
+                                if url_regex[url_regex.__len__() - 2:url_regex.__len__()] == "/$":
+                                    url_regex = url_regex[0:url_regex.__len__() - 2] + "$"
 
                                 map_url = url(
                                     url_regex,
@@ -233,6 +237,8 @@ def build_urls(module_name,*args,**kwargs):
                                 if url_regex !="^$":
                                     if url_regex.count("^(?i)") == 0:
                                         url_regex=url_regex.replace("^","^(?i)")
+                                # if url_regex[url_regex.__len__() - 2:url_regex.__len__()] == "/$":
+                                #     url_regex = url_regex[0:url_regex.__len__() - 2] + "$"
                                 map_url = url(
                                     url_regex,
                                     url_item.callback
@@ -245,6 +251,8 @@ def build_urls(module_name,*args,**kwargs):
                 url_regex = url_item.regex.pattern
                 if host_dir!=None:
                     url_regex=url_regex.replace("^","^"+host_dir+"/")
+
+
 
 
                 class obj_exec_request():

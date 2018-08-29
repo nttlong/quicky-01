@@ -1,0 +1,163 @@
+﻿<div>
+  
+<div class="col-md-{{col}}" style="padding-bottom: 20px;">
+                    <div class="col-md-2 col-sm-2">
+                     </div>
+                   <div class="col-md-10 col-sm-10">
+                    <div class="col-md-{{col}}" style="padding-bottom: 20px;">
+                        <div class="form-group zb-form-group">
+                            <label for="inputEmp_Train_Mode_Name" class="col-sm-1 zb-form-label">${get_res('retake','Retake')}</label>
+                            <div class="col-sm-12"> 
+                                     <div class="col-sm-12" style="margin-left: 15px;"> 
+                                         
+                                        <div class="radio radio-success" >
+					                    <input type="radio" name="resumeApply" ng-value="dt_true" id="rad1" 
+                                               ng-model="entity.ques_hint.ishintEnable">
+					                    <label for="rad1">
+						                    <span>Do not allow re-take</span>
+					                    </label>
+				                         </div>
+                                     
+                                      </div>
+                                 <div class="col-sm-12">
+                                    <div class="col-sm-3">
+                                    <div class="radio radio-success">
+					                    <input type="radio" name="resumeApply" ng-value="dt_true" id="rad1" 
+                                               ng-model="entity.ques_hint.ishintEnable">
+					                    <label for="rad1">
+						                    <span>${get_res('alow_all','Allow re-take ')}</span>
+					                    </label>
+				                    </div>
+                                      </div>
+                                     <div class="col-sm-3"  style="margin-left:-30px;">                                    
+					                    <input-select name="resumeApply" ng-model="entity.negative_marks" data-list="cbbNegativeMarks" data-value="caption" data-caption="caption" />				                   
+                                    </div>
+                                    <div class="col-sm-3" >     
+                                        <label for="rad1">
+						                    <span>in all conditions.</span>
+					                    </label>	                   
+                                    </div>
+                                   </div> 					                    
+                                 
+                                    <div class="col-sm-12" >
+                                    <div class="col-sm-3" >
+                                        <div class="radio radio-success">
+					                        <input type="radio" name="resumeApply" ng-value="dt_true" id="rad1" 
+                                                   ng-model="entity.ques_hint.ishintEnable">
+					                        <label for="rad1">
+						                        <span>${get_res('alow_all','Allow re-take ')}</span>
+					                        </label>
+				                        </div>
+                                      </div>
+                                     <div class="col-sm-3" style="margin-left:-30px;">                                    
+					                    <input-select name="resumeApply" ng-model="entity.negative_marks" data-list="cbbNegativeMarks" data-value="caption" data-caption="caption" />				                   
+                                    </div>
+                                    <div class="col-sm-3" > 
+                                        <label for="rad1">
+						                    <span>in all conditions.</span>
+					                    </label>	                   
+                                    </div>
+                                    <div class="col-sm-3" > 
+						                     <input-select name="resumeApply" ng-model="entity.negative_marks" data-list="cbbNegativeMarks" data-value="caption" data-caption="caption" />				                                   
+                                    </div>
+                                    </div>
+                            </div>
+                        </div>
+                    </div>
+                     <div class="col-md-{{col}}" style="padding-bottom: 20px;">
+                        <div class="form-group zb-form-group">
+                            <label for="inputEmp_Train_Mode_Name" class="col-sm-2 zb-form-label">${get_res('re_exam','RE Exam Day')}</label>
+                            <div class="col-md-12 col-sm-12">
+                                <div style="display: inline-flex;">
+                                    <div class="radio radio-success">
+					                    <input type="radio" name="resumeApply" ng-value="dt_true" id="rad1" 
+                                               ng-model="entity.re_exam.diff_time">
+					                    <label for="rad1">
+						                    <span>${get_res('diff_time','Different Time')}</span>
+					                    </label>
+				                    </div>
+                                    <div class="radio radio-success" style="margin-left: 120px;">
+					                    <input type="radio" name="resumeApply" ng-value="dt_false" id="rad2" 
+                                               ng-model="entity.re_exam.range_time">
+					                    <label for="rad2">
+						                    <span>${get_res('range_time','Range Time')}</span> 
+					                    </label>
+				                    </div>
+                                </div>
+                             </div>
+                        </div>
+                    </div>
+                    <div class="col-md-{{col}}" style="padding-bottom: 20px;" >
+                        <div class="form-group zb-form-group">
+                            <label for="inputEmp_Train_Mode_Name" class="col-sm-1 zb-form-label">${get_res('first_time','1st Time')}</label>
+                            <div class="col-md-{{col}}">
+                                        <div class="form-group zb-form-group">
+                                            <!--Mô tả tài liệu-->
+                                            <label for="inputEmp_Train_Mode_Name" class="col-sm-2 zb-form-label">${get_res('start_date','Start Date')}</label>
+                                             <div class="col-sm-4"> 
+                                                <date-picker ng-model="entity.exam_avail.start_date" data-format="{{$root.systemConfig.date_format}}" />
+                                            </div>
+                                            <label for="inputEmp_Train_Mode_Name" class="col-sm-2 zb-form-label">${get_res('start_time','Time')}</label>
+                                             <div class="col-sm-4"> 
+                                                <time-picker ng-model="entity.exam_avail.start_time" format="HH:mm" />
+                                            </div>
+                                        </div>
+                                        <div class="form-group zb-form-group">
+                                            <!--Mô tả tài liệu-->
+                                            <label for="inputEmp_Train_Mode_Name" class="col-sm-2 zb-form-label">${get_res('end_date','End Date')}</label>
+                                             <div class="col-sm-4"> 
+                                                <date-picker ng-model="entity.exam_avail.end_date" data-format="{{$root.systemConfig.date_format}}" />
+                                            </div>
+                                            <label for="inputEmp_Train_Mode_Name" class="col-sm-2 zb-form-label">${get_res('end_time','Time')}</label>
+                                             <div class="col-sm-4"> 
+                                                <time-picker ng-model="entity.exam_avail.end_time" format="HH:mm" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        <div class="form-group zb-form-group">
+                            <label for="inputEmp_Train_Mode_Name" class="col-sm-1 zb-form-label">${get_res('second_time','2nd Time')}</label>
+                            <div class="col-md-{{col}}">
+                                        <div class="form-group zb-form-group">
+                                            <!--Mô tả tài liệu-->
+                                            <label for="inputEmp_Train_Mode_Name" class="col-sm-2 zb-form-label">${get_res('start_date','Start Date')}</label>
+                                             <div class="col-sm-4"> 
+                                                <date-picker ng-model="entity.exam_avail.start_date" data-format="{{$root.systemConfig.date_format}}" />
+                                            </div>
+                                            <label for="inputEmp_Train_Mode_Name" class="col-sm-2 zb-form-label">${get_res('start_time','Time')}</label>
+                                             <div class="col-sm-4"> 
+                                                <time-picker ng-model="entity.exam_avail.start_time" format="HH:mm" />
+                                            </div>
+                                        </div>
+                                        <div class="form-group zb-form-group">
+                                            <!--Mô tả tài liệu-->
+                                            <label for="inputEmp_Train_Mode_Name" class="col-sm-2 zb-form-label">${get_res('end_date','End Date')}</label>
+                                             <div class="col-sm-4"> 
+                                                <date-picker ng-model="entity.exam_avail.end_date" data-format="{{$root.systemConfig.date_format}}" />
+                                            </div>
+                                            <label for="inputEmp_Train_Mode_Name" class="col-sm-2 zb-form-label">${get_res('end_time','Time')}</label>
+                                             <div class="col-sm-4"> 
+                                                <time-picker ng-model="entity.exam_avail.end_time" format="HH:mm" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                         </div>
+                       <div class="col-md-{{col}}" style="padding-bottom: 20px;">
+                                        <div class="form-group zb-form-group">
+                                            <!--Mã Tài liệu, ID-->
+                                            <label for="inputEmp_Train_Mode_Name" class="col-sm-4 zb-form-label">${get_res('scoring_method','Scoring Method')}</label>
+                                            <div class="col-sm-6"> 
+                                                 <input-select ng-model="entity.scoring_method" data-list="cbbQuestionPicking" data-value="value" data-caption="caption" required />
+                                            </div>
+                                        </div>
+                                    </div>
+                     </div> 
+                </div>                       
+   
+</div>
+<script>
+    (function (scope) {
+        
+    });
+</script>

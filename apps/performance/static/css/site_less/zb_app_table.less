@@ -47,7 +47,7 @@ table.zb-data-table {
 
         th.select-checkbox.selected:after {
             content: '\2714';
-            margin-left: -10px;
+            margin-left: -11px;
             text-align: center;
             /*text-shadow: 1px 1px #B0BED9, -1px -1px #B0BED9, 1px -1px #B0BED9, -1px 1px #B0BED9;*/
         }
@@ -94,7 +94,8 @@ table.zb-data-table {
 
         th,
         td {
-            padding: 6px 10px !important;
+            padding: 6px 15px !important;
+            line-height: 30px;
         }
 
         td.select-checkbox:before,
@@ -111,7 +112,8 @@ table.zb-data-table {
         tr[role=row]:not(.zb-table-row-focus) {
             td {
                 border-top: 1px solid @cl_bd_top;
-                border-bottom: 1px solid transparent !important;
+                /*border-bottom: 1px solid transparent !important;*/
+                white-space: nowrap;
             }
 
             td.sorting_1 {

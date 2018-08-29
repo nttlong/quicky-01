@@ -11,6 +11,10 @@
     .zb-content {
         background-color:transparent !important;
     }
+
+    .app-content {
+        overflow: unset !important;
+    }
 </style>
 <div class="hcs-container">
     <div class="row hcs-profile-detail" style="margin:unset; height:100%;" ng-if="$display.showDetail">
@@ -28,8 +32,8 @@
                   display-field="default_name" 
                   icon-field="icon" 
                   selected-key="$display.selectedFunction"
-                  reload-on-change="true">
-                <extend-toolbar ng-show="selectedFunction === 'HCSEMP0020'">
+                  reload-on-change="false">
+                <extend-toolbar ng-show="$display.selectedFunction === 'HCSEMP0020'">
                     <button class="zb-btn" ng-click="firstRow()">
                             <i class="bowtie-icon bowtie-fast-backward"></i>
                         </button>
@@ -54,7 +58,7 @@
                         <input-text-icon ng-model="search" style="padding:3px;">
                     </div>
                     <div class="dropdown">
-                        <p ng-repeat="f in mapName | filter : search" ng-class="{focus : selectedFunction === f.function_id}" ng-click="selectFunc($event, f.function_id)">{{f.custom_name ? f.default_name : f.custom_name}}</p>
+                        <p ng-repeat="f in $display.mapName | filter : search" ng-class="{focus : $display.selectedFunction === f.function_id}" ng-click="$display.selectFunc($event, f.function_id)">{{f.custom_name ? f.default_name : f.custom_name}}</p>
                     </div>
                 </div>
         </site-map>
@@ -151,7 +155,7 @@
                 </div>
                 <div class="clearfix"></div>
             </div>
-            <div class="hcs-right-side-department-list" style="height:93%;">
+            <div class="hcs-right-side-department-list" style="height:calc(100% - 37px);">
                 <table-data data-source="tableSource" 
                             fields="tableFields" 
                             type="MultiSelect" 

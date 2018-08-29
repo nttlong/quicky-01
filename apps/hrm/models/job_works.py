@@ -6,7 +6,7 @@ from . commons import base
 __model_name__ = "job_works"
 extends(
     __model_name__,
-     "base",
+     base.model_name,
        [[
               "jobs.code"
        ]],
@@ -28,21 +28,21 @@ extends(
                             extends_dict(
                                    base_org.base.base_model_info,
                                    _id =("object",True),
-                                   weight=("number")
+                                   weight=("numeric")
                             )
                      ),
                      appraise_factors=("list",True,
                             extends_dict(
                                    base_org.base.base_model_info,
                                    _id=("object",True),
-                                   weight=("number")
+                                   weight=("numeric")
                             )
                      ),
                      kpis =("list",True,
                             extends_dict(
                                    base_org.base.base_model_info,
                                    _id=("object",True),
-                                   weight=("number")
+                                   weight=("numeric")
                             )
                      )
               )

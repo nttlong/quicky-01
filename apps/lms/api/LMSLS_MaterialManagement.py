@@ -1265,7 +1265,7 @@ def get_list_download_history(args):
                    
                     {
                         "$project": {
-                        "num_downloads":{"$ifNull": [{"$toString": {"$size":"$downloads"}}, "0"]},
+                        "num_downloads":{"$toString":{"$size":{"$ifNull": ["$downloads", []]}}},
                         "last_downloads":{"$ifNull": [{ "$arrayElemAt": [ "$downloads.date_created", -1 ] }, ""]},
                         "size_files":"$files.file_size",
                         "creator":1,

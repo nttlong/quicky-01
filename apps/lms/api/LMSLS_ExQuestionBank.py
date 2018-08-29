@@ -4,6 +4,7 @@ import models
 import logging
 import threading
 import common
+import random
 logger = logging.getLogger(__name__)
 global lock
 lock = threading.Lock()
@@ -49,8 +50,6 @@ def get_list_with_searchtext(args):
     pageIndex = (lambda pIndex: pIndex if pIndex != None else 0)(pageIndex)
     pageSize = (lambda pSize: pSize if pSize != None else 20)(pageSize)
     ret=models.LMSLS_ExQuestionBank().aggregate()
-    ret.left_join(models.models.auth_user_info(), "created_by", "username", "uc")
-    ret.left_join(models.models.auth_user_info(), "modified_by", "username", "um")
     ret.project(
             ques_id=1,
             ques_category=1,
@@ -72,8 +71,6 @@ def get_list_with_searchtext(args):
             ques_limit_on_text=1,
             ques_specify_limit=1,
             created_on="created_on",
-            modified_on="switch(case(modified_on!='',modified_on),'')",
-            modified_by="switch(case(modified_by!='',um.login_account),'')",
         )
     
     if(where != None):
@@ -87,6 +84,80 @@ def get_list_with_searchtext(args):
         
     data = ret.get_page(pageIndex, pageSize)
     return  data
+def get_list_with_list_ques_id(args):
+    searchText = args['data'].get('search', '')
+    pageSize = args['data'].get('pageSize', 0)
+    pageIndex = args['data'].get('pageIndex', 20)
+    sort = args['data'].get('sort', 20)
+    where = args['data'].get('where')
+    pageIndex = (lambda pIndex: pIndex if pIndex != None else 0)(pageIndex)
+    pageSize = (lambda pSize: pSize if pSize != None else 20)(pageSize)
+    ret=models.LMSLS_ExQuestionBank().aggregate()
+
+    ret.project(
+            ques_id=1,
+            ques_category=1,
+            ques_type=1,
+            ques_level=1,
+            ques_file=1,
+            ques_detail_1=1,
+            ques_detail_2=1,
+            ques_hint=1,
+            ques_answers=1,
+            ques_total_marks=1,
+            ques_attach_file=1,
+            ques_max_answer_time=1,
+            ques_explanation=1,
+            ques_answer_options=1,
+            ques_randomization=1,
+            ques_tags=1,
+            ques_evaluated_by=1,
+            ques_limit_on_text=1,
+            ques_specify_limit=1,
+
+        )
+    
+    if(where != None):
+        ret.match("ques_id in {0}", where['list_ques'])
+
+
+    if(sort != None):
+        ret.sort(sort)
+        
+    data = ret.get_page(pageIndex, pageSize)
+    return  data
+def get_list_with_random_ques_id(args):
+    where = args['data'].get('where')
+    ret=models.LMSLS_ExQuestionBank().aggregate()
+    if(where != None):
+        ret.match("(ques_category==@ques_category)",ques_category=where['assign']['category'])
+    ret.project(
+            ques_id=1,
+            ques_category=1,
+            ques_level=1,
+        )
+    conques = ret.get_list()
+    diff_ques= filter(lambda x: x['ques_level'] == 1, conques)
+    med_ques= filter(lambda x: x['ques_level'] == 2, conques)
+    easy_ques= filter(lambda x: x['ques_level'] == 3, conques)
+    if(where['assign']['diff_ques']!= None):
+        if(where['assign']['diff_ques'] < len(diff_ques)):
+            diff_ques=random.sample(diff_ques,where['assign']['diff_ques'])
+    else:
+        diff_ques=[]
+    if(where['assign']['med_ques']!= None):
+        if(where['assign']['med_ques'] < len(med_ques)):
+            med_ques=random.sample(med_ques,where['assign']['med_ques'])
+    else:
+        med_ques=[]
+    if(where['assign']['easy_ques']!= None):
+        if(where['assign']['easy_ques'] < len(easy_ques)):
+            easy_ques=random.sample(easy_ques,where['assign']['easy_ques'])
+    else:
+        easy_ques=[]
+    return dict(
+           list_ques = diff_ques + med_ques + easy_ques
+        )
 
 def insert(args):
     try:

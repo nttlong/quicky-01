@@ -420,19 +420,9 @@
                         
                     })
         }
-        scope.loadLoginAccount = function () {
-                
-            services.api("${get_api_key('app_main.api.LMSLS_MaterialManagement/get_data_info_login_account')}")
-                .data({
-                    
-                })
-                .done()
-                .then(function (res) {
-                    scope.entity.creator = res.login_account
-                    scope.$applyAsync();
-                })
-        }
-        scope.loadLoginAccount()
+
+        scope.entity.creator = scope.$root.__USER__.login_account
+
         /**
          *         
          * Thay đỗi kích thước form Dialog và các control trên form dialog

@@ -79,11 +79,12 @@
                             scope._reloadpage();
                             $msg.alert("${get_global_res('Handle_Success','Thao tác thành công')}", $type_alert.SUCCESS);
                         }
-                        else if (res['error'] == "not allow") {
-                            $msg.alert("${get_global_res('Handle_Success','node selected use other process')}", $type_alert.INFO);
+                        else if (res['error'] == "KPIGroup is using another PG") {
+                            $msg.alert("${get_global_res('node_selected_use_other_process','Nút được chọn đang được sử dụng bởi xử lí khác')}", $type_alert.INFO);
                         }
-                        else
-                            $msg.alert("${get_global_res('Handle_Success','request paramerter is not exist')}", $type_alert.INFO);
+                        else {
+                            $msg.alert("${get_global_res('Handle_failed','Thao tác thất bại')}", $type_alert.DANGER);
+                        }
                     });
             });
         }

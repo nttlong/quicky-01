@@ -1,4 +1,9 @@
-﻿<div class="hcs-container">
+﻿<style>
+    .app-content {
+        overflow: unset !important;
+    }
+</style>
+<div class="hcs-container">
     <div class="row hcs-profile-list">
         <div class="hcs-left-side-department-content">
             <div class="hcs-left-side-department-tree-tool-bar">
@@ -48,7 +53,7 @@
             </div>
         </div>
         <div class="hcs-right-side-department-content">
-                <div class="hcs-right-side-department-list" style="height:100%;">
+                <div class="hcs-right-side-department-list" style="height:calc(100% + 1px);">
                     <table-data data-source="$$table.tableSource" 
                                 fields="$$table.tableFields" 
                                 type="MultiSelect" 

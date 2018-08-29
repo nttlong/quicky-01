@@ -23,7 +23,7 @@ def display_list_apr_period():
 
 
 
-def get_empNotApr_by_apr_period():
+def get_empNotApr_by_apr_period(apr_period,apr_year ):
     ret=models.TMPER_AprPeriodEmpOut().aggregate()
     ret.left_join(models.auth_user_info(), "created_by", "username", "uc")
     ret.left_join(models.auth_user_info(), "modified_by", "username", "um")
@@ -42,6 +42,7 @@ def get_empNotApr_by_apr_period():
         modified_by="switch(case(modified_by!='',um.login_account),'')",
         employee_name = "switch(case(employee_code!='',concat(ee.last_name, ' ' , ee.first_name)),'')",
     )
+    ret.match("apr_period == {0} and apr_year == {1}", apr_period, apr_year)
     ret.sort(dict(
         employee_code =1,
     ))

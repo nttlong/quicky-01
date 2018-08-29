@@ -13,7 +13,7 @@
         <div class="modal-body" style="overflow:unset;">
             <input-text-icon on-click="change" style="padding:5px;">
             </input-text-icon>
-            <div style="height:calc(100% - 40px)">
+            <div style="height:calc(100% - 45px)">
             <table-data data-source="tableSource" fields="tableFields" type="MultiSelect" 
                     paging="true" page-length="table_info.page_size" server-side="true" 
                     press-enter="onSelectTableRow" selected-items="selectedItems" 
@@ -23,9 +23,11 @@
             </div>
         </div>
         <div class="modal-footer">
-            <div class="right-content pull-right">
-                <button ng-click="save($event)"><i class="la la-check"></i></button>
-                <button ng-click="close($event)"><i class="la la-close"></i></button>
+            <div class="modal-footer">
+                <div class="right-content pull-right">
+                    <button ng-click="save($event)"><i class="la la-check"></i></button>
+                    <button ng-click="close($event)"><i class="fa fa-ban"></i></button>
+                </div>
             </div>
         </div>
     </div>

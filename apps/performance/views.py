@@ -11,11 +11,11 @@ from . import models
 
 from quicky import applications
 
-from api.models import auth_user_info
+from api.models import auth_user, auth_user_info
 from models import Login
 from django.contrib.auth.models import User
 from django.core.exceptions import ObjectDoesNotExist
-from django.contrib.auth import authenticate, logout, login as form_login
+from django.contrib.auth import authenticate, load_backend, logout, login as form_login
 import quicky
 application=applications.get_app_by_file(__file__)
 # from django.urls import reverse
@@ -63,6 +63,9 @@ def login(request):
                 raise (Exception("User was not found"))
 
             ret=authenticate(username=user_login['username'], password=password_request,schema=tenancy.get_schema())
+            if ret.backend != quicky.applications.get_settings().AUTHENTICATION_BACKENDS[0]:
+                raise(Exception("user backend not correctly"))
+
             form_login(request,ret,schema=tenancy.get_schema())
             request.session["language"] = _login.language
             return redirect(request.get_app_url(request._get_post().get("site")))
@@ -109,5 +112,5 @@ def change_language(request):
 )
 def load_page(request,path):
     return  request.render({
-        "path":path.lower()
+        "path":path
     })

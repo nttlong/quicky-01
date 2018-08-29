@@ -89,12 +89,17 @@
     /* Table */
     //Cấu hình tên field và caption hiển thị trên UI
     scope.tableFields = [
-        { "data": "material_id", "title": "${get_res('material_id_table_header','ID')}" },
-        { "data": "material_name", "title": "${get_res('material_name_table_header','File Name')}" },
-        { "data": "version", "title": "${get_res('version_table_header','Version')}" },
-        { "data": "creator", "title": "${get_res('creator_table_header','Created by')}" },
-        { "data": "author_name", "title": "${get_res('author_name_table_header','Approve by')}" },
-
+        { "data": "exam_temp_id", "title": "${get_res('exam_temp_id_table_header','ID')}" },
+        { "data": "exam_temp_category", "title": "${get_res('exam_temp_category_table_header','Exam Category')}" },
+        { "data": "exam_temp_name1", "title": "${get_res('exam_temp_name1_header','Exam Template')}" },
+        { "data": "total_question", "title": "${get_res('total_question_table_header','Questions')}" },
+        { "data": "total_mask", "title": "${get_res('total_mask_table_header','Total Marks')}" },
+        { "data": "negative_marks", "title": "${get_res('negative_marks_table_header','Required Score')}" },
+        { "data": "diff_question", "title": "${get_res('diff_question_header','Difficult Questions')}" },
+        { "data": "med_question", "title": "${get_res('med_question_header','Medium Questions')}" },
+        { "data": "easy_question", "title": "${get_res('easy_question_table_header','Easy Questions')}" },
+        { "data": "creator", "title": "${get_res('created_by_table_header','Created by')}" },
+        { "data": "created_on", "title": "${get_res('created_on_table_header','Created on')}", "format": "date:" + 'dd/MM/yyyy h:mm:ss a'  },
     ];
     scope.$$tableConfig = {};
     scope.$root.$$tableConfig = {};
@@ -251,15 +256,6 @@
         }
     }
 
-    function tableFields() {
-        return [
-            { "data": "material_id", "title": "${get_res('material_id_table_header','ID')}" },
-            { "data": "material_name", "title": "${get_res('material_name_table_header','File Name')}" },
-            { "data": "version", "title": "${get_res('version_table_header','Version')}" },
-            { "data": "creator", "title": "${get_res('creator_table_header','Created by')}" },
-            { "data": "author_name", "title": "${get_res('author_name_table_header','Approve by')}" },
-        ];
-    }
 
 
     function handleData() {
@@ -311,27 +307,27 @@
 
     scope._tableData = _tableData;
     function _tableData(iPage, iPageLength, orderBy, searchText, callback, objSearchAdvance) {
-
+        
         //if (scope.treeCurrentNode.hasOwnProperty('folder_id')) {
         var sort = {};
         $.each(orderBy, function (i, v) {
             sort[v.columns] = (v.type === "asc") ? 1 : -1;
         });
         sort[orderBy[0].columns] =
-            services.api("${get_api_key('app_main.api.LMSLS_MaterialManagement/get_list_with_searchtext')}")
+            services.api("${get_api_key('app_main.api.LMSLS_ExTemplateList/get_list_with_searchtext')}")
                 .data({
                     //parameter at here
                     "pageIndex": iPage - 1,
                     "pageSize": iPageLength,
                     "search": searchText,
                     "where": {
-                        'folder_id': scope.treeCurrentNode.folder_id ? scope.treeCurrentNode.folder_id : null,
-                        'searchAdvance': objSearchAdvance
+
                     },
                     "sort": sort,
                 })
                 .done()
-                .then(function (res) {
+            .then(function (res) {
+                    
                     var data = {
                         recordsTotal: res.total_items,
                         recordsFiltered: res.total_items,

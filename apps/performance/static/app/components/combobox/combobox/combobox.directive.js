@@ -42,7 +42,9 @@
                 initData: "=",
                 params: "=",
 
-                templateFields: "="
+                templateFields: "=",
+                /*Reload data khi nhấn button mở combobox*/
+                reload: "="
             },
             //template: function(el, attrs) {
             //  return '<div class="switch-container ' + (attrs.color || '') + '"><input type="checkbox" ng-model="ngModel"></div>';
@@ -159,31 +161,60 @@
                 // });
 
                 var htmlTemplate = $('<div class="zb-list-common"></div>');
+                var compiled = false;
                 $scope.$watch("templateFields", function (val) {
                     if (angular.isArray(val) && val.length > 0) {
                         var group1 = $("<div></div");
                         if (val.length >= 1) {
                             var field = (typeof (val[0]) == "string") ? val[0] : val[0]["data"];
-                            group1.append('<span class="zb-list-title">{{$cbbItem.' + field + '}}</span>');
+                            var html = '<span class="zb-list-title">{{$cbbItem.' + field + ' ##Format##}}</span>'
+                            if (val[0].hasOwnProperty('format') && val[0].hasOwnProperty('format')) {
+                                html = html.replace("##Format##", " | " + val[0]['format']);
+                            } else {
+                                html = html.replace("##Format##", "");
+                            }
+                            group1.append(html);
                         }
                         var group2 = $("<div></div");
                         if (val.length >= 2) {
                             var field2 = (typeof (val[1]) == "string") ? val[1] : val[1]["data"];
-                            group2.append('<span class="zb-list-description">{{$cbbItem.' + field2 + '}}</span>');
+                            var html = '<span class="zb-list-description">{{$cbbItem.' + field2 + ' ##Format##}}</span>';
+                            if (val[1].hasOwnProperty('format') && val[1].hasOwnProperty('format')) {
+                                html = html.replace("##Format##", " | " + val[1]['format']);
+                            } else {
+                                html = html.replace("##Format##", "");
+                            }
+                            group2.append(html);
                         }
                         if (val.length >= 3) {
                             var field3 = (typeof (val[2]) == "string") ? val[2] : val[2]["data"];
-                            group1.append('<span class="zb-list-info">{{$cbbItem.' + field3 + '}}</span>');
+                            var html = '<span class="zb-list-info">{{$cbbItem.' + field3 + ' ##Format##}}</span>';
+                            if (val[2].hasOwnProperty('format') && val[2].hasOwnProperty('format')) {
+                                html = html.replace("##Format##", " | " + val[2]['format']);
+                            } else {
+                                html = html.replace("##Format##", "");
+                            }
+                            group1.append(html);
                         }
                         if (val.length >= 4) {
                             var field4 = (typeof (val[3]) == "string") ? val[3] : val[3]["data"];
-                            group2.append('<span class="zb-list-number">{{$cbbItem.' + field4 + '}}</span>');
+                            var html = '<span class="zb-list-number">{{$cbbItem.' + field4 + ' ##Format##}}</span>';
+                            if (val[3].hasOwnProperty('format') && val[3].hasOwnProperty('format')) {
+                                html = html.replace("##Format##", " | " + val[3]['format']);
+                            } else {
+                                html = html.replace("##Format##", "");
+                            }
+                            group2.append(html);
                         }
                         htmlTemplate.append(group1);
                         if (val.length >= 2) {
                             htmlTemplate.append(group2);
                         }
-                        drawCombobox(($("<div></div").append(htmlTemplate)).html());
+
+                        if (!compiled) {
+                            compiled = true;
+                            drawCombobox(($("<div></div").append(htmlTemplate)).html());
+                        }
                         //$compile($dialog)($scope);
                     }
                 });
@@ -196,7 +227,7 @@
                         $dialog.appendTo("body");
                         $dialog.modal({ backdrop: 'static', keyboard: true });
 
-                        if (!$scope.$cbbConfig) {
+                        if (!$scope.$cbbConfig || ($scope.hasOwnProperty('reload') && $scope.reload === true)) {
                             var fnLoadData = function (pgIdx, txtSearch) {
                                 if (angular.isFunction($scope.loadData)) {
                                     ($scope.loadData)($scope, function (result) {
@@ -263,12 +294,12 @@
                             }
                             $scope.$applyAsync();
                             fnLoadData();
-                            $compile($dialog)($scope);
                         }
                     });
                     $dialog.find(".zb-close-modal").bind("click", function () {
                         $dialog.modal("hide");
                     });
+                    $compile($dialog)($scope);
                 }
 
                 $scope.$watch("initData", function (val) {

@@ -20,13 +20,71 @@ def get_list_with_searchtext(args):
 
     ret=AprPeriod.display_list_apr_period()
     ret=common.filter_lock(ret, args)
-    if(searchText != None):
-        ret.match("contains(apr_period, @name) or contains(apr_year, @name)" ,name=searchText.strip())
-
     if(sort != None):
         ret.sort(sort)
       
     return ret.get_page(pageIndex, pageSize)
+
+def get_item_by_period_year(args):
+    ret=models.TMPER_AprPeriod().aggregate()
+    ret.left_join(models.auth_user_info(), "created_by", "username", "uc")
+    ret.left_join(models.auth_user_info(), "modified_by", "username", "um")
+    ret.project(
+        _id=1,
+        apr_period="apr_period",
+        apr_year="apr_year",
+        give_target_from="give_target_from",
+        give_target_to="give_target_to",
+        review_mid_from="review_mid_from",
+        review_mid_to="review_mid_to",
+        approval_mid_from="approval_mid_from",
+        approval_mid_to="approval_mid_to",
+        emp_final_from="emp_final_from",
+        emp_final_to="emp_final_to",
+        approval_final_from="approval_final_from",
+        approval_final_to="approval_final_to",
+        note="note",
+        created_by="uc.login_account",
+        created_on="created_on",
+        modified_on="switch(case(modified_on!='',modified_on),'')",
+        modified_by="switch(case(modified_by!='',um.login_account),'')",
+    )
+    
+    ret.match("apr_period == {0} and apr_year == {1}", args['data']['apr_period'], args['data']['apr_year'])
+    ret.sort(dict(
+        apr_year =1,
+    ))
+
+    return ret
+
+
+def get_item_by_period_year(args):
+    if(args['data']!= None):
+        ret = {}
+        collection = common.get_collection('TMPER_AprPeriod').aggregate([
+        {"$match":{
+            "$and": [ { 'apr_year': args['data']['apr_year'] }, { 'apr_period': args['data']['apr_period']} ]
+        }},
+        {"$project": {
+            "_id":1,
+            "apr_period":1,
+            "apr_year": 1,
+            "give_target_from":1,
+            "give_target_to":1,
+            "review_mid_from":1,
+            "review_mid_to":1,
+            "approval_mid_from":1,
+            "approval_mid_to":1,
+            "emp_final_from":1,
+            "emp_final_to":1,
+            "approval_final_from":1,
+            "approval_final_to":1,
+            "note":1
+        }},
+        #{ "$sort" : SON([("apr_year",-1),("apr_period",-1)]) }
+        ])
+        ret = list(collection)
+        return (lambda x: x[0] if len(x) > 0 else None)(ret)
 
 
 def insert(args):
@@ -68,28 +126,6 @@ def update(args):
         )
     except Exception as ex:
         lock.release()
-        raise(ex)
-
-    
-
-
-def get_apr_period_by_id(args):
-    try:
-        lock.acquire()
-        ret = {}
-        if args['data'] != None:
-            if args['data'].has_key('apr_period'):
-                ret = AprPeriod.get_period_by_apr_period(args['data']['apr_period'])
-            else:
-                return dict(
-                    error = "parameter 'apr_period' is not exist"
-                )
-            return ret.get_item()
-
-        return dict(
-            error = "request parameter is not exist"
-        )
-    except Exception as ex:
         raise(ex)
 
 def delete(args):

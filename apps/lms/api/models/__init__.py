@@ -24,3 +24,5 @@ from LMSLS_ExTemplateCategory import LMSLS_ExTemplateCategory
 from LMSLS_ExTemplateList import LMSLS_ExTemplateList
 from auth_user_info import auth_user_info
 from auth_user import auth_user
+from LMS_SetupProcess import LMS_SetupProcess
+from LMS_SetupProcessApproveLevel import LMS_SetupProcessApproveLevel
