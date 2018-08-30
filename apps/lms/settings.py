@@ -1,6 +1,9 @@
 
 import datetime
 def authenticate(request):
+    from quicky import tenancy
+    if request.user.schema != tenancy.get_schema():
+        return False
     if not request.user.is_anonymous() and request.user.is_active:
         return True
     else:

@@ -110,6 +110,7 @@ def login(request, user,schema = None):
             request.session.cycle_key(schema=threading.current_thread().tenancy_code)
         else:
             request.session.cycle_key(schema=request.user.schema)
+
     request.session[SESSION_KEY] = user.pk
     request.session[BACKEND_SESSION_KEY] = user.backend
     if hasattr(request, 'user'):

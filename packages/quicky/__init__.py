@@ -197,3 +197,4 @@ def register_tenancy_schema(code,schema=None):
     _cache_multi_tenancy.update({
         code: schema
     })
+from . dobject import lazyobject

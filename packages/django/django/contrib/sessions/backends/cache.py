@@ -13,7 +13,6 @@ class SessionStore(SessionBase):
     def __init__(self, session_key=None):
         self._cache = get_cache(settings.SESSION_CACHE_ALIAS)
         super(SessionStore, self).__init__(session_key)
-
     @property
     def cache_key(self):
         return KEY_PREFIX + self._get_or_create_session_key()
@@ -36,6 +35,7 @@ class SessionStore(SessionBase):
         # because the cache is missing. So we try for a (large) number of times
         # and then raise an exception. That's the risk you shoulder if using
         # cache backing.
+
         for i in xrange(10000):
             self._session_key = self._get_new_session_key()
             try:
@@ -49,6 +49,13 @@ class SessionStore(SessionBase):
             "It is likely that the cache is unavailable.")
 
     def save(self, must_create=False):
+        import threading
+        if hasattr(threading.currentThread(), "tenancy_code") and self.cache_key.count(";code=")>0:
+            schema = self.cache_key.split(";code=")[1].split(';')[0]
+            if schema != threading.current_thread().tenancy_code:
+                must_create =True
+
+
         if must_create:
             func = self._cache.add
         else:

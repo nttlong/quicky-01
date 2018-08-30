@@ -9,7 +9,7 @@ from django.conf.urls import include, patterns, url
 from . app_info import app_config
 from . import dict_utils
 import logging
-
+__urls__ = None
 logger=logging.getLogger(__name__)
 _apps_=None
 settings=None
@@ -277,7 +277,7 @@ def build_urls(module_name,*args,**kwargs):
 
 
 
-    x=_apps_.urlpatterns
+    __urls__=_apps_.urlpatterns
 
 
 

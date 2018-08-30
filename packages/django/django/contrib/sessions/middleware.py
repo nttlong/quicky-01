@@ -42,8 +42,12 @@ class SessionMiddleware(object):
                     import threading
                     ct=threading.currentThread()
                     if hasattr(ct,"__current_schema__"):
-                        schema=ct.__current_schema__
-                    request.session.save(schema = schema )
+                        schema=ct.__current_schema_
+                    if settings.SESSION_ENGINE =="django.contrib.sessions.backends.cache": #fix schema
+
+                        request.session.save()
+                    else:
+                        request.session.save(schema=schema)
                     response.set_cookie(settings.SESSION_COOKIE_NAME,
                             request.session.session_key, max_age=max_age,
                             expires=expires, domain=settings.SESSION_COOKIE_DOMAIN,

@@ -53,7 +53,7 @@ class __validator_class__(object):
                 require=require
             )
         })
-class lazyobject(__validator_class__):
+class d_object(__validator_class__):
     def __init__(self,*args,**kwargs):
 
         data = kwargs
@@ -67,10 +67,10 @@ class lazyobject(__validator_class__):
             for k,v in data.items():
                 if k[0:2] != "__" and k.count('.') == 0:
                     if type(v) is dict:
-                        setattr(self,k,lazyobject(v))
+                        setattr(self,k,d_object(v))
                     elif type(v) is list:
                         values = [ x for x in v if type(x) in [str,unicode]]
-                        values.extend([lazyobject(x) for x in v if type(x) is dict])
+                        values.extend([d_object(x) for x in v if type(x) is dict])
                         setattr(self,k,values)
                     else:
                         setattr(self, k, v)
@@ -82,7 +82,7 @@ class lazyobject(__validator_class__):
         ret = {}
         for k in keys:
             v= self.__dict__[k]
-            if type(v) is lazyobject:
+            if type(v) is d_object:
                 ret.update({k:v.__to_dict__()})
             else:
                 ret.update({k:v})
@@ -95,8 +95,8 @@ class lazyobject(__validator_class__):
                 self.__dict__.update({item:{}})
                 return self.__dict__[item]
 
-        return super(lazyobject, self).__getattr__(item)
+        return super(d_object, self).__getattr__(item)
     def __setattr__(self, key, value):
-        super(lazyobject, self).__setattr__(key, value)
+        super(d_object, self).__setattr__(key, value)
     def __is_emty__(self):
         return self.__dict__ == {}

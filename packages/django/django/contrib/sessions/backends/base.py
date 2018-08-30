@@ -141,14 +141,28 @@ class SessionBase(object):
         self.modified = True
 
     def _get_new_session_key(self):
+        import threading
+
         "Returns session key that isn't being used."
         while True:
             session_key = get_random_string(32, VALID_KEY_CHARS)
             if not self.exists(session_key):
                 break
-        return session_key
+        if hasattr(threading.currentThread(), "tenancy_code"):
+            return ";code={0};key={1}".format(threading.currentThread().tenancy_code,session_key)
+        else:
+            return session_key
+
 
     def _get_or_create_session_key(self):
+        import threading
+        if self._session_key.count(";code=")>0:
+            schema = self._session_key.split(";code=")[1].split(';')[0]
+            if hasattr(threading.currentThread(), "tenancy_code"):
+                if schema != threading.currentThread().tenancy_code:
+                    self._session_key = None
+
+
         if self._session_key is None:
             self._session_key = self._get_new_session_key()
         return self._session_key
@@ -159,6 +173,7 @@ class SessionBase(object):
     session_key = property(_get_session_key)
 
     def _get_session(self, no_load=False):
+
         """
         Lazily loads session from storage (unless "no_load" is True, when only
         an empty dict is stored) and stores it in the current instance.
@@ -279,8 +294,12 @@ class SessionBase(object):
             #             error_detail
             #         )))
         self.clear()
-        self.delete(schema=schema)
-        self.create(schema=schema)
+        if settings.SESSION_ENGINE == "django.contrib.sessions.backends.cache": #fix memcache
+            self.delete()
+            self.create()
+        else:
+            self.delete(schema=schema)
+            self.create(schema=schema)
 
     def cycle_key(self,schema = None):
         """
@@ -300,9 +319,14 @@ class SessionBase(object):
                     )))
         data = self._session_cache
         key = self.session_key
-        self.create(schema=schema)
-        self._session_cache = data
-        self.delete(key,schema)
+        if settings.SESSION_ENGINE =="django.contrib.sessions.backends.cache": # fix memcache using
+            self.create()
+            self._session_cache = data
+            self.delete(key)
+        else:
+            self.create(schema=schema)
+            self._session_cache = data
+            self.delete(key,schema)
 
     # Methods that child classes must implement.
 

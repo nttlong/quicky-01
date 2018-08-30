@@ -117,3 +117,13 @@ def get_settings():
         if STATIC_URL == None:
             setattr(_settings, "STATIC_URL", "/static/")
     return _settings
+def get_list_of_apps():
+    from . dobject import lazyobject
+    get_attr = lambda x, y: getattr(x, y) if hasattr(x, y) else None
+    return  [
+        lazyobject(
+            path=k,
+            host_dir=v.host_dir,
+            name=v.name,
+            default_schema=get_attr(v.settings, "DEFAULT_DB_SCHEMA"),
+            client_static=v.client_static) for k, v in _cache_apps.items()]
