@@ -539,21 +539,33 @@ class WHERE():
         self._coll = coll
         self.name=coll.name
         self._update_data ={}
-    def get_list(self):
-        if self._where_list.__len__()==0:
-            return self._coll.get_list()
+    @property
+    def cursor(self):
+        return self._coll.get_collection().find(self._where_)
+    @property
+    def items(self):
+        return list(self.cursor)
+    @property
+    def item(self):
+        return self._coll.get_collection().find_one(self._where_)
+    @property
+    def objects(self):
+        from fx_model import s_obj
+        cursor =self.cursor
+        continue_fetch = True
+        while continue_fetch:
+            try:
+                yield s_obj(cursor.next())
+            except StopIteration as ex:
+                continue_fetch = False
+    @property
+    def object(self):
+        from fx_model import s_obj
+        item = self.item
+        if item == None:
+            return None
         else:
-            return self._coll.find(self._get_where())
-    def load_objects(self):
-        if self._where_list.__len__()==0:
-            return self._coll.load_objects()
-        else:
-            return self._coll.find(self._get_where())
-    def get_item(self):
-        if self._where_list.__len__() == 0:
-            return self._coll.get_item()
-        else:
-            return self._coll.find_one(self._get_where())
+            return s_obj(item)
     def to_entity(self):
         if self._entity==None:
             self._entity=ENTITY(self._coll.qr,self._coll,self.name)
