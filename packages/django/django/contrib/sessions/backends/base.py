@@ -156,7 +156,7 @@ class SessionBase(object):
 
     def _get_or_create_session_key(self):
         import threading
-        if self._session_key.count(";code=")>0:
+        if self._session_key!=None and self._session_key.count(";code=")>0:
             schema = self._session_key.split(";code=")[1].split(';')[0]
             if hasattr(threading.currentThread(), "tenancy_code"):
                 if schema != threading.currentThread().tenancy_code:

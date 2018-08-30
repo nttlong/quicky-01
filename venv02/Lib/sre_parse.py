@@ -148,6 +148,7 @@ class SubPattern:
     def insert(self, index, code):
         self.data.insert(index, code)
     def append(self, code):
+        # type: (object) -> object
         self.data.append(code)
     def getwidth(self):
         # determine the width (min, max) for this subpattern

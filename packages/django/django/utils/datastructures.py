@@ -473,6 +473,7 @@ class ImmutableList(tuple):
         return self
 
     def complain(self, *wargs, **kwargs):
+        # type: (object, object) -> object
         if isinstance(self.warning, Exception):
             raise self.warning
         else:

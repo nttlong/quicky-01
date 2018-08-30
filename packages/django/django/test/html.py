@@ -26,6 +26,7 @@ class Element(object):
         self.children = []
 
     def append(self, element):
+        # type: (object) -> object
         if isinstance(element, six.string_types):
             element = force_text(element)
             element = normalize_whitespace(element)
