@@ -55,6 +55,7 @@ def login(request):
         username_request=request._get_post().get("username")
         password_request=request._get_post().get("password")
         try:
+            logout(request)
             from quicky import tenancy
 
             user_login = auth_user_info().aggregate().project(username=1, login_account=1)\

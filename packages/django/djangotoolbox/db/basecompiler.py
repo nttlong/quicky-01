@@ -504,6 +504,7 @@ class NonrelCompiler(SQLCompiler):
                 raise IntegrityError("Non-nullable field %s can't be None!" %
                                      field.name)
             result.append(value)
+
         return result
 
     def check_query(self):

@@ -2,8 +2,7 @@
 import datetime
 def authenticate(request):
     from quicky import tenancy
-    if request.user.schema != tenancy.get_schema():
-        return False
+
     if request._get_request().has_key("token"):
         token=request._get_request()["token"]
         from quicky import backends
