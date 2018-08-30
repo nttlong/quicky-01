@@ -144,7 +144,7 @@
       "name":"performance",
       "path":"apps/performance",
       "login_url":"login",
-      "schema_":"lv"
+      "schema":"lv"
 
     },{
       "host":"lms",

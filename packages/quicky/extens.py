@@ -94,6 +94,8 @@ def apply(request,template_file,app):
                     return app.host_dir
     def get_view_path():
         if hasattr(request,"__view_path"):
+            if request.__view_path == "":
+                request.__view_path = "index"
             return request.__view_path
         code=tenancy.get_schema()
         not_inclue_tenancy_code=False
@@ -104,12 +106,15 @@ def apply(request,template_file,app):
             if ret[0:1] == "/":
                 ret = ret[1:ret.__len__()]
             if ret == "":
+                setattr(request,"__view_path","index")
                 return "index"
             else:
                 if not app.is_persistent_schema():
+                    setattr(request, "__view_path", ret[code.__len__():ret.__len__()])
                     return ret[code.__len__():ret.__len__()]
                 else:
-                    return ret
+                    setattr(request, "__view_path", (lambda x: x if x != "" else "index")(ret))
+                    return (lambda x: x if x != "" else "index")(ret)
         else:
             if app.is_persistent_schema():
                 if ret[0:1] == "/":
@@ -118,6 +123,7 @@ def apply(request,template_file,app):
                 if ret[0:1] == "/":
                     ret = ret[1:ret.__len__()]
                 if ret == "":
+                    setattr(request, "__view_path", "index")
                     return "index"
                 else:
                     setattr(request,"__view_path",ret)

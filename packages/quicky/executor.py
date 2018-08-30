@@ -23,7 +23,7 @@ class executor(object):
             if hasattr(self.__app__.settings, "DEFAULT_DB_SCHEMA") and not has_set_schema:
                 tenancy.set_schema(self.__app__.settings.DEFAULT_DB_SCHEMA)
     def load_app(self,request):
-        if self.__app__ !=None:
+        if self.__app__ !=None and self.__app__ != -1:
             return
         if __apps_cache__.has_key(request.path):
             self.__app__ = __apps_cache__[request.path]
@@ -50,7 +50,7 @@ class executor(object):
         else:
             app = applications.get_app_by_host_dir(items[0])
         if app ==-1:
-            app = applications.get_app_by_host_dir(items[0])
+            app = applications.get_app_by_host_dir("")
 
         self.__app__ = app
         __apps_cache__.update({request.path: self.__app__})
@@ -73,13 +73,13 @@ class executor(object):
             path = request.path
             if path[0] == '/':
                 path = path[1:path.__len__()]
-            if hasattr(settings,"HOST_DIR") or settings.HOST_DIR != "":
+            if hasattr(settings,"HOST_DIR") and settings.HOST_DIR != "":
                 path = path[settings.HOST_DIR.__len__():path.__len__()]
             items = path.split('/')
 
             if items.__len__()>1:
                 __customer__code__.update({
-                    request.path: items[1]
+                    request.path: items[0]
                 })
             else:
                 __customer__code__.update({
