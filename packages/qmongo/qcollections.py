@@ -240,8 +240,8 @@ class queryable(object):
                 "$pull": {}
             })
         cmp_expr = helpers.filter(expression,*args,**kwargs)
-        for k,v in cmp_expr.items():
-            self.__modifiers__["$push"].update({
+        for k,v in cmp_expr.get_filter().items():
+            self.__modifiers__["$pull"].update({
                 k:v
             })
 
@@ -328,6 +328,7 @@ class queryable(object):
             }
         })
         return self
+
 
 
 
