@@ -11,8 +11,11 @@ from __builtin__ import property
 
 from . fx_model import s_obj
 from . import helpers
+from pymongo.database import Database
+from pymongo.database import Collection
 get_expression = helpers.expr.parse_expression_to_json_expression
-__databases__ ={}
+global __databases__
+__databases__ = {}
 def connect(connection_name,host,port,name,user,password):
     if __databases__.has_key(connection_name):
         db = __databases__[connection_name]
@@ -65,10 +68,30 @@ class __aggregate__():
 
 class queryable(object):
     def __init__(self,*args,**kwargs):
-        # import pymongo
-        # if not type(coll) is pymongo.collection.Collection:
-        #     raise (Exception("queryable must be init with  'pymongo.collection.Collection'"))
-        # self.__coll__=coll
+        if args ==() and kwargs == {}:
+            raise (Exception("\n It look likes you forgot set params when call 'qcollections.queryable' \n"
+                             "'qcollections.queryable' init with below option:\n"
+                             "\t pymongo.database.Database -> db, str -> collection name\n"
+                             "\t str - > db connection name,str - > collection name\n"
+                             ""))
+        self.__db__ = None
+        if args.__len__()>0:
+            if type(args[0]) is Database:
+                self.__db__ =args[0]
+                if args.__len__()>1 and type(args[1]) in [unicode,str]:
+                    self.__coll__ = self.__db__.get_collection(args[1])
+            elif type(args[0]) is Collection:
+                self.__coll__ = args[0]
+            elif type(args[0]) in [unicode,str]:
+                if not __databases__.has_key(args[0]):
+                    str_connections = ""
+                    for k,v in __databases__.items():
+                        str_connections = str_connections +"\n\t\t"+k
+                    raise (Exception("It look likes you forgot call 'qcollections.connect' with connection name is'{0}'\n"
+                                     "The database connection are in below list :{1}".format(args[0],str_connections)))
+                else:
+                    self.__db__ = __databases__[args[0]]
+                    self.__coll__ = self.__db__.get_collection(args[1])
         self.__where__ = None
         self.__pipe_line__=[]
         self.__modifiers__={}
