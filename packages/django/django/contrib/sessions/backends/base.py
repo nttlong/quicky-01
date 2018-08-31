@@ -141,6 +141,7 @@ class SessionBase(object):
         self.modified = True
 
     def _get_new_session_key(self):
+
         import threading
 
         "Returns session key that isn't being used."
@@ -148,19 +149,20 @@ class SessionBase(object):
             session_key = get_random_string(32, VALID_KEY_CHARS)
             if not self.exists(session_key):
                 break
-        if hasattr(threading.currentThread(), "tenancy_code"):
+        if hasattr(threading.currentThread(), "tenancy_code") and settings.SESSION_ENGINE == "django.contrib.sessions.backends.cache":
             return ";code={0};key={1}".format(threading.currentThread().tenancy_code,session_key)
         else:
             return session_key
 
 
     def _get_or_create_session_key(self):
-        import threading
-        if self._session_key.count(";code=")>0:
-            schema = self._session_key.split(";code=")[1].split(';')[0]
-            if hasattr(threading.currentThread(), "tenancy_code"):
-                if schema != threading.currentThread().tenancy_code:
-                    self._session_key = None
+        if settings.SESSION_ENGINE == "django.contrib.sessions.backends.cache":
+            import threading
+            if self._session_key!=None and self._session_key.count(";code=")>0:
+                schema = self._session_key.split(";code=")[1].split(';')[0]
+                if hasattr(threading.currentThread(), "tenancy_code"):
+                    if schema != threading.currentThread().tenancy_code:
+                        self._session_key = None
 
 
         if self._session_key is None:

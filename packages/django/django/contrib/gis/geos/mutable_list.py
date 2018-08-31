@@ -191,6 +191,7 @@ class ListMixin(object):
 
     ## Mutating ##
     def append(self, val):
+        # type: (object) -> object
         "Standard list append method"
         self[len(self):] = [val]
 

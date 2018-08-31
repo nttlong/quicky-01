@@ -2,8 +2,8 @@ import sys
 import os
 sys.path.append(os.getcwd()+os.sep+"packages")
 import config_reader
-# config_reader.load("local")
-config_reader.load("dev_server")
+config_reader.load("local")
+# config_reader.load("dev_server")
 from quicky import tenancy
 # tenancy.set_schema("lv")
 from hrm.models import provinces

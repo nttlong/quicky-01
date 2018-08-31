@@ -206,6 +206,8 @@ class __obj_model__(object):
         # ret._codec_options = CodecOptions()
         return ret.collection(self.__name__)
     @property
+    def where(self,expression,*args,**kwargs):
+        return self.coll.where(expression,*args,**kwargs)
     def objects(self,filter = None,*args,**kwargs):
         if filter == None:
             return self.coll.get_objects()
