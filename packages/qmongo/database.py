@@ -207,6 +207,13 @@ class ENTITY():
                 })
         return self
     def pull(self,expression,*args,**kwargs):
+        """
+        example pull("list_of_users.username=={0}","admin")
+        :param expression:
+        :param args:
+        :param kwargs:
+        :return:
+        """
         from . import helpers
         data = kwargs
         if args.__len__() > 0:
