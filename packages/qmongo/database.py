@@ -887,13 +887,13 @@ class COLL():
             ret=self.get_collection().find_one(filter)
             return ret
     def objects(self,exprression=None,*args,**kwargs):
-        from . import dynamic_object
+        from . import fx_model
         iters= self.cursors(exprression,*args,**kwargs)
         continue_fetch = True
         while continue_fetch:
             try:
                 item = iters.next()
-                yield dynamic_object.create_from_dict(item)
+                yield fx_model.s_obj(item)
             except StopIteration as ex:
                 continue_fetch  = False
 
