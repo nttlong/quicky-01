@@ -233,21 +233,7 @@ class ENTITY():
                 self._data["$pull"].update(r)
             else:
                 self._data["$pull"].update({k:v})
-
-
-
         self._action = "update_many"
-
-        # if not self._data.has_key("$pull"):
-        #     self._data.update({
-        #         "$pull": _data
-        #     })
-        # else:
-        #     x = self._data["$pull"]
-        #     for key in _data.keys():
-        #         x.update({
-        #             key: _data[key]
-        #         })
         return self
     def inc(self,data):
         if hasattr(data, "__dict__"):
