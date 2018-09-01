@@ -386,6 +386,8 @@ class ENTITY():
                     )
                 elif exec_mode.get_mode() =="return":
                     return ret_data, None
+                else:
+                    return ret_data
             except pymongo.errors.DuplicateKeyError as ex:
                 ret_data= self.get_duplicate_error(ex)
                 if exec_mode.get_mode() == "off":

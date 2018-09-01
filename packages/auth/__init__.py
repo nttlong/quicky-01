@@ -10,17 +10,18 @@ def create_app(name):
     :param name:
     :return:
     """
-    app = models.entities.apps.mk_obj()
-    app.name = name
-    ret=  models.entities.apps.insert_one(app)
-    return ret.data,ret.error,None
+    with qmongo.except_mode("return"):
+        app = models.entities.apps.mk_obj()
+        app.name = name
+        ret=  models.entities.apps.insert_one(app)
+        return ret.data,ret.error,None
 def app_get(name):
     ret_data = models.entities.apps.coll.aggregate().match("name=={0}",name).get_item()
     if ret_data == None:
         return None
     return qmongo.create(ret_data)
 def app_add_schema(name,schema):
-    app = get_app(name)
+    app = app_get(name)
     if app == None:
         return None, \
                lazyobject(
@@ -28,7 +29,7 @@ def app_add_schema(name,schema):
                    code="not_found"
                ),\
                "'{0}' was not found".format(name)
-    with qmongo.exept_mode("return"):
+    with qmongo.except_mode("return"):
         qr= models.entities.apps.coll
         qr = qr.aggregate()
         qr = qr.match("name=={0}", name)
@@ -41,14 +42,14 @@ def app_add_schema(name,schema):
             return None, None, "'{0}/{1}' is already existing".format(name,schema)
     return None,None,None
 def app_remove_schema(name,schema):
-    app = get_app(name)
+    app = app_get(name)
     if app == None:
         return None, \
                    lazyobject(
                        message="'{0}' was not found".format(name),
                        code="not_found"
                        ),"'{0}' was not found".format(name)
-    with qmongo.exept_mode("return"):
+    with qmongo.except_mode("return"):
         qr = models.entities.apps.coll
         qr = qr.aggregate()
         qr = qr.match("name=={0}", name)
@@ -68,7 +69,7 @@ def app_add_view(name,path,view=None,is_public=False,privileges=[]):
                lazyobject(message="'{0}' was not found".format(name), code="not_found"),\
                "'{0}' was not found".format(name)
 
-    with qmongo.exept_mode("return"):
+    with qmongo.except_mode("return"):
         qr = models.entities.apps.coll.aggregate()
         qr = qr.match("name=={0}", name)
         qr = qr.project([path], index_of_view="indexOfArray(views.path,{0})")
@@ -96,13 +97,13 @@ def app_add_view(name,path,view=None,is_public=False,privileges=[]):
             ret ,ex = actor.commit()
             return None,ex, "Update new view {0} with path={1} in {2}".format(view,path,name)
 def app_remove_view(name,path):
-    app = get_app(name)
+    app = app_get(name)
     if app == None:
         return None,\
                lazyobject(message="'{0}' was not found".format(name), code="not_found"),\
                "'{0}' was not found".format(name)
 
-    with qmongo.exept_mode("return"):
+    with qmongo.except_mode("return"):
         qr = models.entities.apps.coll.aggregate()
         qr = qr.match("name=={0}", name)
         qr = qr.project([path], index_of_view="indexOfArray(views.path,{0})")
@@ -134,7 +135,7 @@ def role_create(role,name,description = None,users =[]):
                    message="Role '{0}' was not found"
                ),\
                "'{0}' is already existing"
-    with qmongo.exept_mode('return'):
+    with qmongo.except_mode('return'):
         entity = models.entities.roles.coll
         ret, ex =  entity.insert_one(role=role,name = name,description=description,user=users)
         if ex != None:
@@ -203,7 +204,7 @@ def app_modify_role(name,view_path,role,is_full_access = False,privileges =[]):
         ),"Error: Value {0} is not in {1}".format(list(result_set),list(set_of_privileges_in_view))
     _privileges = list(set(result.views.privileges).intersection(privileges))
     if result.index_of_role == None or result.index_of_role == -1:
-        with qmongo.exept_mode("return"):
+        with qmongo.except_mode("return"):
             entity = models.entities.apps.coll
             actor=entity.where("name=={0}", name)
             actor=actor.push({"views.{0}.roles".format(result.index_of_view): dict(
@@ -221,7 +222,7 @@ def app_modify_role(name,view_path,role,is_full_access = False,privileges =[]):
                        None, \
                        "Add role '{0}' to view '{1}' of app '{2}' is successfull".format(role, view_path, name)
     else:
-        with qmongo.exept_mode("return"):
+        with qmongo.except_mode("return"):
             entity = models.entities.apps.coll
             actor = entity.where("name=={0}", name)
             actor = actor.set({
@@ -290,7 +291,7 @@ def app_remove_role(name,view_path,role):
     if result.index_of_role == None or result.index_of_role == -1:
         return None,None,"Role '{0}' was not found in view '{1}' of app '{2}'".format(role,view_path,name)
     else:
-        with qmongo.exept_mode("return"):
+        with qmongo.except_mode("return"):
             entity = models.entities.apps.coll
             actor = entity.where("name=={0}", name)
             actor = actor.pull({"views.{0}.roles".format(result.index_of_view):
@@ -320,7 +321,7 @@ def role_add_user(role,username):
     qr =qr.project([username],index_of_user="indexOfArray(users,{0})")
     result =qr.get_object()
     if result == None or result.index_of_user==None or result.index_of_user ==-1:
-        with qmongo.exept_mode("return"):
+        with qmongo.except_mode("return"):
             actor=entity.where("role == {0}",role)
             actor=actor.push(users=username)
             ret,ex =actor.commit()

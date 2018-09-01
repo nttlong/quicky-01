@@ -1,14 +1,22 @@
 __key__ = "__qmongo_exception_mode__"
+global __stack_mode__
+global __current_mode__
 __current_mode__ = "off"
-class exept_mode():
+__stack_mode__ =[]
+class except_mode():
     def __init__(self,mode):
         # if not mode in ['exception_on', 'exception_off', 'exception_return']:
-        self.__old_value__= __current_mode__
-        set_mode(mode)
+        self.__mode__= mode
+
     def __enter__(self):
-        pass
+        __stack_mode__.append(get_mode())
+        set_mode(self.__mode__)
     def __exit__(self, exc_type, exc_val, exc_tb):
-        set_mode(self.__old_value__)
+        if __stack_mode__.__len__()==0:
+            set_mode("off")
+        else:
+            mode = __stack_mode__.pop()
+            set_mode(mode)
 def set_mode(mode):
     if not mode in ['on', 'off', 'return']:
         raise (Exception("'set_mode' require one text param:\n"
