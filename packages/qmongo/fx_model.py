@@ -94,6 +94,8 @@ class s_obj(__validator_class__):
             v= self.__dict__[k]
             if type(v) is s_obj:
                 ret.update({k:v.__to_dict__()})
+            elif type(v) is list:
+                ret.update({k: [x.__to_dict__() for x in v]})
             else:
                 ret.update({k:v})
         return ret
