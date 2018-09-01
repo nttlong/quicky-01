@@ -206,23 +206,48 @@ class ENTITY():
                     key: _data[key]
                 })
         return self
-    def pull(self,data):
-        if hasattr(data, "__dict__"):
-            _data = get_dict_of_instance(data)
-        else:
-            _data = data
+    def pull(self,expression,*args,**kwargs):
+        from . import helpers
+        data = kwargs
+        if args.__len__() > 0:
+            data = args[0]
+        if not self.__modifiers__.has_key("$pull"):
+            self.__modifiers__.update({
+                "$pull": {}
+            })
+        cmp_expr = helpers.filter(expression, *args, **kwargs)
+        for k, v in cmp_expr.get_filter().items():
+            _v = r = {}
+            key = k
+            if k.count(".") > 0:
+                items = k.split('.')
+                key = items[0]
+                for i in range(0, items.__len__() - 1):
+                    _v.update({
+                        items[i]: {}
+                    })
+                    _v = _v[items[i]]
+                _v.update({
+                    items[items.__len__() - 1]: v
+                })
+                self._data["$pull"].update(r)
+            else:
+                self._data["$pull"].update({k:v})
+
+
+
         self._action = "update_many"
 
-        if not self._data.has_key("$pull"):
-            self._data.update({
-                "$pull": _data
-            })
-        else:
-            x = self._data["$pull"]
-            for key in _data.keys():
-                x.update({
-                    key: _data[key]
-                })
+        # if not self._data.has_key("$pull"):
+        #     self._data.update({
+        #         "$pull": _data
+        #     })
+        # else:
+        #     x = self._data["$pull"]
+        #     for key in _data.keys():
+        #         x.update({
+        #             key: _data[key]
+        #         })
         return self
     def inc(self,data):
         if hasattr(data, "__dict__"):

@@ -241,9 +241,23 @@ class queryable(object):
             })
         cmp_expr = helpers.filter(expression,*args,**kwargs)
         for k,v in cmp_expr.get_filter().items():
-            self.__modifiers__["$pull"].update({
-                k:v
-            })
+            _v = r = {}
+            key = k
+            if k.count(".")>0:
+                items = k.split('.')
+                key = items[0]
+                for i in range(0,items.__len__()-1):
+                    _v.update({
+                        items[i]:{}
+                    })
+                    _v = _v[items[i]]
+                _v.update({
+                    items[items.__len__()-1]:v
+                })
+                self.__modifiers__["$pull"].update(r)
+            else:
+                self.__modifiers__["$pull"].update({k:v})
+
 
         return self
 
