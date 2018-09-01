@@ -4,6 +4,7 @@ from sqlalchemy.sql import quoted_name
 from . import models
 import qmongo
 from qobjects import lazyobject
+from . import exceptions
 def create_app(name):
     """
     Create app
@@ -13,8 +14,8 @@ def create_app(name):
     with qmongo.except_mode("return"):
         app = models.entities.apps.mk_obj()
         app.name = name
-        ret=  models.entities.apps.insert_one(app)
-        return ret.data,ret.error,None
+        ret =  models.entities.apps.insert_one(app)
+        return ret
 def app_get(name):
     ret_data = models.entities.apps.coll.aggregate().match("name=={0}",name).get_item()
     if ret_data == None:

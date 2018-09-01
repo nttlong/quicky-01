@@ -253,7 +253,7 @@ class __obj_model__(object):
         if type(ret) is tuple:
             ret_obj = s_obj(ret[0])
             ret_error = s_obj(ret[1])
-            return ret_obj,ret_error
+            return ret_obj,ret_error,ret[2]
 
         ret_obj = s_obj(ret)
         ret_obj.is_error = False

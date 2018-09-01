@@ -398,7 +398,12 @@ class ENTITY():
                 elif exec_mode.get_mode() == "on":
                     raise (Exception("Data is duplicate, duplicate fields is in {0}".format(ret_data['error']['fields'])))
                 elif exec_mode.get_mode() == "return":
-                    return self._data, ret_data
+                    return self._data, \
+                           ret_data["error"],\
+                           "update date error. Error is '{0}' on {1}".format(
+                               ret_data["error"]["code"],
+                               ret_data["error"]["fields"]
+                           )
             except Exception as ex:
                 raise ex
 
