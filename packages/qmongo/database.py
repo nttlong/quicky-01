@@ -211,8 +211,8 @@ class ENTITY():
         data = kwargs
         if args.__len__() > 0:
             data = args[0]
-        if not self.__modifiers__.has_key("$pull"):
-            self.__modifiers__.update({
+        if not self._data.has_key("$pull"):
+            self._data.update({
                 "$pull": {}
             })
         cmp_expr = helpers.filter(expression, *args, **kwargs)
