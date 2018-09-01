@@ -211,7 +211,7 @@ class __obj_model__(object):
     def objects(self,filter = None,*args,**kwargs):
         if filter == None:
             return self.coll.get_objects()
-        ret = self.coll.objects(filter,*args,**args)
+        ret = self.coll.objects(filter,*args,**kwargs)
         self.reset
         return ret
     def set_session(self,session):
