@@ -990,10 +990,9 @@ class COLL():
         """create aggregate before create pipeline"""
         return AGGREGATE(self,self.qr,self.name,self.session)
     def insert_object(self,obj_item):
-        from . import dynamic_object
-        if not type(obj_item) is dynamic_object.dynamic_object:
-            raise (Exception("parameter must be '{0}".format('qmonog.dynamic_object.dynamic_object')))
-        return self.insert(obj_item._dict_)
+        if not hasattr(obj_item,"__to_dict__"):
+            raise (Exception("parameter must have '__to_dict__"))
+        return self.insert(obj_item.__to_dict__)
     def insert(self,*args,**kwargs):
         # type: (dict|tuple) -> dict
 
@@ -1008,7 +1007,7 @@ class COLL():
         ret=ac.commit(self.session)
         return ret
     def insert_one(self,*args,**kwargs):
-        import dynamic_object
+
         from . import fx_model
         # type: (dict|tuple) -> dict
 
@@ -1023,8 +1022,8 @@ class COLL():
                 ac = self.entity().insert_one(args[0].__to_dict__())
                 ret = ac.commit(self.session)
                 return ret
-            if hasattr(args[0],"__dict__"):
-                _args = dynamic_object.convert_to_dict(args[0])
+            if hasattr(args[0],"__to_dict__"):
+                _args = args[0].__to_dict__()
                 ac = self.entity().insert_one(_args)
                 ret = ac.commit(self.session)
                 return ret
@@ -1032,10 +1031,10 @@ class COLL():
         ret=ac.commit(self.session)
         return ret
     def update_object(self,obj_item,filter,*args,**kwargs):
-        from . import dynamic_object
-        if not type(obj_item) is dynamic_object.dynamic_object:
-            raise (Exception("parameter must be '{0}".format('qmonog.dynamic_object.dynamic_object')))
-        return self.update(obj_item._dict_,filter,*args,**kwargs)
+
+        if not hasattr(obj_item,"__to_dict__"):
+            raise (Exception("data item must have '__to_dict__ function"))
+        return self.update(obj_item.__to_dict__(),filter,*args,**kwargs)
     def update(self,data,filter,*args,**kwargs):
         # type: (dict,str,int|bool|datetime|float|dict|tuple|list) -> dict
 
@@ -1048,7 +1047,7 @@ class COLL():
         :param kwargs:
         :return: dict with data and error
         """
-        import dynamic_object
+
         unknown_fields = self._model.validate_expression(filter,None,*args,**kwargs)
         if unknown_fields.__len__() > 0:
             raise (Exception("What is bellow list of fields?:\n" + self.descibe_fields("\t\t", unknown_fields) +
@@ -1056,17 +1055,17 @@ class COLL():
                              self.descibe_fields("\t\t\t", self._model.get_fields())))
         if type(args) is tuple and args.__len__()>0 and kwargs=={}:
             kwargs=args[0]
-            if hasattr(kwargs,"__dict__"):
-                kwargs=dynamic_object.convert_to_dict(kwargs)
+            if hasattr(kwargs,"__to_dict__"):
+                kwargs=kwargs.__to_dict__()
         ac=self.entity().filter(filter,kwargs)
         ac.update_many(data)
         ret=ac.commit(self.session)
         return ret
 
     def push_object(self, obj_item, filter, *args, **kwargs):
-        from . import dynamic_object
-        if not type(obj_item) is dynamic_object.dynamic_object:
-            raise (Exception("parameter must be '{0}".format('qmonog.dynamic_object.dynamic_object')))
+
+        if not hasattr(obj_item,"__to_dict__"):
+            raise (Exception("data item must have '__to_dict__"))
         return self.push(obj_item._dict_, filter, *args, **kwargs)
     def push(self,data,filter,*args,**kwargs):
 
@@ -1088,19 +1087,18 @@ class COLL():
                              self.descibe_fields("\t\t\t", self._model.get_fields())))
         if type(args) is tuple and args.__len__()>0 and kwargs=={}:
             kwargs=args[0]
-            if hasattr(kwargs,"__dict__"):
-                from . import dynamic_object
-                kwargs=dynamic_object.convert_to_dict(kwargs)
+            if hasattr(kwargs,"__to_dict__"):
+                kwargs=kwargs.__to_dict__()
         ac=self.entity().filter(filter,kwargs)
         ac.push(data)
         ret=ac.commit(self.session)
         return ret
 
     def pull_object(self, obj_item, filter, *args, **kwargs):
-        from . import dynamic_object
-        if not type(obj_item) is dynamic_object.dynamic_object:
-            raise (Exception("parameter must be '{0}".format('qmonog.dynamic_object.dynamic_object')))
-        return self.pull(obj_item._dict_, filter, *args, **kwargs)
+
+        if not hasattr(obj_item,"__to_dict__"):
+            raise (Exception("data item must have '__to_dict__ function"))
+        return self.pull(obj_item.__to_dict__(), filter, *args, **kwargs)
     def pull(self,data,filter,*args,**kwargs):
         # type: (dict,str,int|bool|datetime|float|dict|tuple|list) -> dict
 
@@ -1120,9 +1118,8 @@ class COLL():
                              self.descibe_fields("\t\t\t", self._model.get_fields())))
         if type(args) is tuple and args.__len__()>0 and kwargs=={}:
             kwargs=args[0]
-            if hasattr(kwargs,"__dict__"):
-                from . import dynamic_object
-                kwargs=dynamic_object.convert_to_dict(kwargs)
+            if hasattr(kwargs,"__to_dict__"):
+                kwargs=kwargs.__to_dict__()
         ac=self.entity().filter(filter,kwargs)
         ac.pull(data)
         ret=ac.commit(self.session)
