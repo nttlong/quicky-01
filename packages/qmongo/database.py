@@ -206,41 +206,23 @@ class ENTITY():
                     key: _data[key]
                 })
         return self
-    def pull(self,expression,*args,**kwargs):
-        """
-        example pull("list_of_users.username=={0}","admin")
-        :param expression:
-        :param args:
-        :param kwargs:
-        :return:
-        """
-        from . import helpers
-        data = kwargs
-        if args.__len__() > 0:
-            data = args[0]
+    def pull(self,data):
+        if hasattr(data, "__dict__"):
+            _data = get_dict_of_instance(data)
+        else:
+            _data = data
+        self._action = "update_many"
+
         if not self._data.has_key("$pull"):
             self._data.update({
-                "$pull": {}
+                "$pull": _data
             })
-        cmp_expr = helpers.filter(expression, *args, **kwargs)
-        for k, v in cmp_expr.get_filter().items():
-            _v = r = {}
-            key = k
-            if k.count(".") > 0:
-                items = k.split('.')
-                key = items[0]
-                for i in range(0, items.__len__() - 1):
-                    _v.update({
-                        items[i]: {}
-                    })
-                    _v = _v[items[i]]
-                _v.update({
-                    items[items.__len__() - 1]: v
+        else:
+            x = self._data["$pull"]
+            for key in _data.keys():
+                x.update({
+                    key: _data[key]
                 })
-                self._data["$pull"].update(r)
-            else:
-                self._data["$pull"].update({k:v})
-        self._action = "update_many"
         return self
     def inc(self,data):
         if hasattr(data, "__dict__"):
@@ -385,7 +367,7 @@ class ENTITY():
                         data=ret_data
                     )
                 elif exec_mode.get_mode() =="return":
-                    return ret_data, None
+                    return ret_data, None,"Insert data is successfull"
                 else:
                     return ret_data
             except pymongo.errors.DuplicateKeyError as ex:
@@ -398,12 +380,7 @@ class ENTITY():
                 elif exec_mode.get_mode() == "on":
                     raise (Exception("Data is duplicate, duplicate fields is in {0}".format(ret_data['error']['fields'])))
                 elif exec_mode.get_mode() == "return":
-                    return self._data, \
-                           ret_data["error"],\
-                           "update date error. Error is '{0}' on {1}".format(
-                               ret_data["error"]["code"],
-                               ret_data["error"]["fields"]
-                           )
+                    return self._data, ret_data,"Duplicate data value when insert data"
             except Exception as ex:
                 raise ex
 
@@ -445,7 +422,7 @@ class ENTITY():
                 _chk_data =self._data
                 if _chk_data.has_key("$set"):
                     _chk_data =self._data["$set"]
-                _sub_actions = [(k,v.keys()[0]) for k,v in _chk_data.items() if type(v) is dict and k in ["$push","$inc","$dec"]]
+                _sub_actions = [(k,v.keys()[0]) for k,v in _chk_data.items() if type(v) is dict and v!={} and k in ["$push","$inc","$dec"]]
                 if model_events:
                     _c_data = self._data.get("$set", {})
                     for fn in model_events._on_before_update:
@@ -639,6 +616,12 @@ class WHERE():
         if args.__len__()>0:
             data = args[0]
         self._update_data.update(data)
+        _data = {}
+        for k,v in data.items():
+            if type(v) is dict:
+                _data.update({k:v})
+            elif hasattr(v,"__to_dict__"):
+                _data.update({k: v.__to_dict__()})
         return self
     def push(self,*args,**kwargs):
         import inspect
@@ -647,19 +630,35 @@ class WHERE():
         if args.__len__() > 0:
             data = args[0]
 
-        self._update_data.update({
-            _name:data
-        })
-        return self
-    def pull(self,*args,**kwargs):
-        import inspect
-        _name = "$" + inspect.stack()[0][3]
-        data = kwargs
-        if args.__len__() > 0:
-            data = args[0]
+        _data = {}
+        for k,v in data.items():
+            if type(v) is dict:
+                _data.update({k:v})
+            elif hasattr(v,"__to_dict__"):
+                _data.update({k: v.__to_dict__()})
+            else:
+                _data.update({k: v})
 
         self._update_data.update({
-            _name: data
+            _name:_data
+        })
+        return self
+    def pull(self,expression,*args,**kwargs):
+        import inspect
+        _name = "$" + inspect.stack()[0][3]
+
+        _data = helpers.filter(expression,*args,**kwargs).get_filter()
+        _pull_data_ = helpers.slice_key_of_dict(_data)
+
+        if not self._update_data.has_key(_name):
+            self._update_data.update({
+                _name:{}
+            })
+        _pull_data_old = self._update_data[_name]
+
+        _pull_data_= helpers.merge_dict(_pull_data_old,_pull_data_)
+        self._update_data.update({
+            _name: _pull_data_
         })
         return self
     def inc(self,*args,**kwargs):
@@ -749,7 +748,7 @@ class COLL():
             raise (Exception("Session must be 'pymongo.client_session.ClientSession'"))
         self.session=_session
         return self
-    def switch_schema(self,schema_name):
+    def set_schema(self,schema_name):
         # type: (str) -> COLL
         """
         Change schema name before use any data operation
@@ -887,13 +886,13 @@ class COLL():
             ret=self.get_collection().find_one(filter)
             return ret
     def objects(self,exprression=None,*args,**kwargs):
-        from . import fx_model
+        from . import dynamic_object
         iters= self.cursors(exprression,*args,**kwargs)
         continue_fetch = True
         while continue_fetch:
             try:
                 item = iters.next()
-                yield fx_model.s_obj(item)
+                yield dynamic_object.create_from_dict(item)
             except StopIteration as ex:
                 continue_fetch  = False
 
@@ -997,9 +996,10 @@ class COLL():
         """create aggregate before create pipeline"""
         return AGGREGATE(self,self.qr,self.name,self.session)
     def insert_object(self,obj_item):
-        if not hasattr(obj_item,"__to_dict__"):
-            raise (Exception("parameter must have '__to_dict__"))
-        return self.insert(obj_item.__to_dict__)
+        from . import dynamic_object
+        if not type(obj_item) is dynamic_object.dynamic_object:
+            raise (Exception("parameter must be '{0}".format('qmonog.dynamic_object.dynamic_object')))
+        return self.insert(obj_item._dict_)
     def insert(self,*args,**kwargs):
         # type: (dict|tuple) -> dict
 
@@ -1015,7 +1015,7 @@ class COLL():
         return ret
     def insert_one(self,*args,**kwargs):
 
-        from . import fx_model
+
         # type: (dict|tuple) -> dict
 
         """
@@ -1025,10 +1025,6 @@ class COLL():
         :return: dict including data has been inserted and error
         """
         if type(args) is tuple and args.__len__() >0:
-            if type(args[0]) is fx_model.s_obj:
-                ac = self.entity().insert_one(args[0].__to_dict__())
-                ret = ac.commit(self.session)
-                return ret
             if hasattr(args[0],"__to_dict__"):
                 _args = args[0].__to_dict__()
                 ac = self.entity().insert_one(_args)
@@ -1038,10 +1034,10 @@ class COLL():
         ret=ac.commit(self.session)
         return ret
     def update_object(self,obj_item,filter,*args,**kwargs):
-
-        if not hasattr(obj_item,"__to_dict__"):
-            raise (Exception("data item must have '__to_dict__ function"))
-        return self.update(obj_item.__to_dict__(),filter,*args,**kwargs)
+        from . import dynamic_object
+        if not type(obj_item) is dynamic_object.dynamic_object:
+            raise (Exception("parameter must be '{0}".format('qmonog.dynamic_object.dynamic_object')))
+        return self.update(obj_item._dict_,filter,*args,**kwargs)
     def update(self,data,filter,*args,**kwargs):
         # type: (dict,str,int|bool|datetime|float|dict|tuple|list) -> dict
 
@@ -1054,7 +1050,7 @@ class COLL():
         :param kwargs:
         :return: dict with data and error
         """
-
+        import dynamic_object
         unknown_fields = self._model.validate_expression(filter,None,*args,**kwargs)
         if unknown_fields.__len__() > 0:
             raise (Exception("What is bellow list of fields?:\n" + self.descibe_fields("\t\t", unknown_fields) +
@@ -1062,17 +1058,17 @@ class COLL():
                              self.descibe_fields("\t\t\t", self._model.get_fields())))
         if type(args) is tuple and args.__len__()>0 and kwargs=={}:
             kwargs=args[0]
-            if hasattr(kwargs,"__to_dict__"):
-                kwargs=kwargs.__to_dict__()
+            if hasattr(kwargs,"__dict__"):
+                kwargs=dynamic_object.convert_to_dict(kwargs)
         ac=self.entity().filter(filter,kwargs)
         ac.update_many(data)
         ret=ac.commit(self.session)
         return ret
 
     def push_object(self, obj_item, filter, *args, **kwargs):
-
-        if not hasattr(obj_item,"__to_dict__"):
-            raise (Exception("data item must have '__to_dict__"))
+        from . import dynamic_object
+        if not type(obj_item) is dynamic_object.dynamic_object:
+            raise (Exception("parameter must be '{0}".format('qmonog.dynamic_object.dynamic_object')))
         return self.push(obj_item._dict_, filter, *args, **kwargs)
     def push(self,data,filter,*args,**kwargs):
 
@@ -1094,18 +1090,19 @@ class COLL():
                              self.descibe_fields("\t\t\t", self._model.get_fields())))
         if type(args) is tuple and args.__len__()>0 and kwargs=={}:
             kwargs=args[0]
-            if hasattr(kwargs,"__to_dict__"):
-                kwargs=kwargs.__to_dict__()
+            if hasattr(kwargs,"__dict__"):
+                from . import dynamic_object
+                kwargs=dynamic_object.convert_to_dict(kwargs)
         ac=self.entity().filter(filter,kwargs)
         ac.push(data)
         ret=ac.commit(self.session)
         return ret
 
     def pull_object(self, obj_item, filter, *args, **kwargs):
-
-        if not hasattr(obj_item,"__to_dict__"):
-            raise (Exception("data item must have '__to_dict__ function"))
-        return self.pull(obj_item.__to_dict__(), filter, *args, **kwargs)
+        from . import dynamic_object
+        if not type(obj_item) is dynamic_object.dynamic_object:
+            raise (Exception("parameter must be '{0}".format('qmonog.dynamic_object.dynamic_object')))
+        return self.pull(obj_item._dict_, filter, *args, **kwargs)
     def pull(self,data,filter,*args,**kwargs):
         # type: (dict,str,int|bool|datetime|float|dict|tuple|list) -> dict
 
@@ -1125,8 +1122,9 @@ class COLL():
                              self.descibe_fields("\t\t\t", self._model.get_fields())))
         if type(args) is tuple and args.__len__()>0 and kwargs=={}:
             kwargs=args[0]
-            if hasattr(kwargs,"__to_dict__"):
-                kwargs=kwargs.__to_dict__()
+            if hasattr(kwargs,"__dict__"):
+                from . import dynamic_object
+                kwargs=dynamic_object.convert_to_dict(kwargs)
         ac=self.entity().filter(filter,kwargs)
         ac.pull(data)
         ret=ac.commit(self.session)

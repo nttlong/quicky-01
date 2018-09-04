@@ -144,31 +144,48 @@ class app_config():
         """
         import threading
         import tenancy
+        def __str_trim__(__login_url__):
+            while __login_url__[0] == '/':
+                __login_url__ = __login_url__[1:__login_url__.__len__()]
+            while __login_url__[__login_url__.__len__() - 1] == '/':
+                __login_url__ = __login_url__[0:__login_url__.__len__() - 1]
+            while __login_url__.count("//")>0:
+                __login_url__ = __login_url__.replace("//","/")
+            return __login_url__
         get_url = lambda x,y: x["-"] if y==None else x[y]
         get_key = lambda x: x if x !=None else "-"
         if self.__login_url__.has_key(get_key(customer_code)):
+            if self.__login_url__[get_key(customer_code)].count("//")>0:
+                if self.__login_url__[get_key(customer_code)][0] == '/':
+                    self.__login_url__[get_key(customer_code)]=self.__login_url__[get_key(customer_code)][1:self.__login_url__[get_key(customer_code)][0].__len__()]
+                self.__login_url__[get_key(customer_code)] = self.__login_url__[get_key(customer_code)].replace("//","/")
             return self.__login_url__[get_key(customer_code)]
         if self.host_dir == "":
             if customer_code == None:
                 self.__login_url__.update({
-                    "-":self.mdl.settings.login_url
+                    "-":self.__str_trim__(self.mdl.settings.login_url)
                 })
             else:
+                __login_url__ = customer_code+"/"+self.mdl.settings.login_url
+                __login_url__ = __str_trim__(__login_url__)
+
                 self.__login_url__.update({
-                    customer_code: customer_code+"/"+self.mdl.settings.login_url
+                    customer_code:__login_url__
                 })
 
         else:
             if customer_code == None:
                 self.__login_url__.update({
-                    "-":(self.host_dir + "/" + self.mdl.settings.login_url).replace("//","/")
+                    "-":__str_trim__(self.host_dir + "/" + self.mdl.settings.login_url)
                 })
             else:
                 self.__login_url__.update({
-                    customer_code: customer_code+"/"+self.host_dir + "/" + self.mdl.settings.login_url.replace("//","/")
+                    customer_code: __str_trim__(customer_code+"/"+self.host_dir + "/" + self.mdl.settings.login_url)
                 })
 
         return self.__login_url__[get_key(customer_code)]
+
+
 
 
 

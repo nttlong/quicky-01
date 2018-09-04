@@ -2,7 +2,7 @@
 import sys
 reload(sys)
 sys.setdefaultencoding('utf8')
-from bson.codec_options import CodecOptions
+
 import datetime
 class s_obj_views(object):
     def __init__(self,owner):
@@ -94,14 +94,6 @@ class s_obj(__validator_class__):
             v= self.__dict__[k]
             if type(v) is s_obj:
                 ret.update({k:v.__to_dict__()})
-            elif type(v) is list:
-                items = [x.__to_dict__() for x in v if hasattr(x,"__to_dict__")]
-                items.extend([x for x in v if type(x) in [str,unicode]])
-                ret.update(
-                    {
-                        k:items
-                    }
-                )
             else:
                 ret.update({k:v})
         return ret
@@ -211,15 +203,14 @@ class __obj_model__(object):
 
         ret = database.QR()
         # ret.db = context.db
-        # ret._codec_options = CodecOptions()
+
         return ret.collection(self.__name__)
-    @property
     def where(self,expression,*args,**kwargs):
         return self.coll.where(expression,*args,**kwargs)
     def objects(self,filter = None,*args,**kwargs):
         if filter == None:
             return self.coll.get_objects()
-        ret = self.coll.objects(filter,*args,**kwargs)
+        ret = self.coll.objects(filter,*args,**args)
         self.reset
         return ret
     def set_session(self,session):
@@ -247,9 +238,9 @@ class __obj_model__(object):
         self.aggregate.left_join(source.__name__,local_field,foreign_field, alias)
         return self
     def insert(self,*args,**kwargs):
+        from . fx_model import s_obj
         ret = self.coll.insert(*args,**kwargs)
-        import dynamic_object
-        ret_obj = dynamic_object.create_from_dict(ret)
+        ret_obj = s_obj(ret)
         ret_obj.is_error =False
         if ret.has_key("error"):
             ret_obj.is_error = True
@@ -260,7 +251,7 @@ class __obj_model__(object):
         ret = self.coll.insert_one(*args,**kwargs)
         if type(ret) is tuple:
             ret_obj = s_obj(ret[0])
-            ret_error = s_obj(ret[1])
+            ret_error =(lambda x: x if x == None else s_obj(x))(ret[1])
             return ret_obj,ret_error,ret[2]
 
         ret_obj = s_obj(ret)
@@ -271,7 +262,6 @@ class __obj_model__(object):
         return ret_obj
     def update(self,data,*args,**kwargs):
         ret = self.coll.update(data,*args,**kwargs)
-        import dynamic_object
         if type(ret) is tuple:
             ret_obj = s_obj(ret[0])
             ret_error = s_obj(ret[1])
@@ -284,7 +274,6 @@ class __obj_model__(object):
         return ret_obj
     def delete(self,expression,*arg,**kwargs):
         ret = self.coll.delete(expression,*arg,**kwargs)
-        import dynamic_object
         if type(ret) is tuple:
             ret_obj = s_obj(ret[0])
             ret_error = s_obj(ret[1])

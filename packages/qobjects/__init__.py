@@ -84,14 +84,6 @@ class lazyobject(__validator_class__):
             v= self.__dict__[k]
             if type(v) is lazyobject:
                 ret.update({k:v.__to_dict__()})
-            elif type(v) is list:
-                items = [x.__to_dict__() for x in v if hasattr(x,"__to_dict__")]
-                items.extend([x for x in v if type(x) in [str,unicode]])
-                ret.update(
-                    {
-                        k:items
-                    }
-                )
             else:
                 ret.update({k:v})
         return ret

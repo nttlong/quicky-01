@@ -9,7 +9,6 @@ import re
 import inspect
 from datetime import  datetime
 
-from numpy.testing._private.parameterized import param
 
 _operators=[
     dict(op="$eq",fn=_ast.Eq),
@@ -789,6 +788,13 @@ def get_expr(fx,*params):
                     fx["operator"]: __compile_right_params__(params, fx["right"])
                 }
             }
+
+            # return {
+            #     fx["left"]:{
+            #         fx["operator"]:params
+            #     }
+            # }
+
         if fx["operator"] == "$not":
             if fx['right'][fx['right'].keys()[0]]['operator'] in ["$contains",'$start','$end']:
                 cx = get_expr(dict(operator='contains', right='ccc', left='dddd'))

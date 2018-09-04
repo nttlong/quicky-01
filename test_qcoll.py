@@ -2,8 +2,8 @@
 import sys
 import os
 sys.path.append(os.getcwd()+os.sep+"packages")
+sys.path.append(os.getcwd()+os.sep+"packages/mongodb")
 from qmongo import qcollections
-db=qcollections.connect("hrm",host="localhost",port=27017,name="hrm",user="root",password="123456")
-# db2=qcollections.connect("cs_lms",host="192.168.18.43",port=27017,name="lv_cs_comments_services",user="root",password="123456")
-qr=qcollections.queryable(db.get_collection("test"))
-qr=qr.where("code=={0}","001").pull("users=={0}","admin")
+
+db=qcollections.connect("local",host="localhost",port=27017,name="hrm",user="root",password="123456")
+qr=qcollections.queryable(db.get_collection("test.emps"))

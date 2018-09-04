@@ -247,37 +247,43 @@ def build_urls(module_name,*args,**kwargs):
                     else:
                         f=url_item
 
-            for url_item in default_urls:
-                url_regex = url_item.regex.pattern
-                if host_dir!=None:
-                    url_regex=url_regex.replace("^","^"+host_dir+"/")
-
-
-
-
-                class obj_exec_request():
-                    url_item=None
-                    def __init__(self,url_item):
-                        self.url_item=url_item
-                    def exec_request(self,request, *args, **kwargs):
-                        setattr(request,"not_inclue_tenancy_code",True)
-                        return self.url_item.callback(
-                            request,
-                            get_django_settings_module().MULTI_TENANCY_DEFAULT_SCHEMA,
-                            *args,
-                            **kwargs)
-
-                fx=obj_exec_request(url_item)
-                map_url = url(
-                    url_regex,
-                    fx.exec_request
-                )
-                _apps_.urlpatterns.append(map_url)
+            __buil_default_url__(_apps_, default_urls, host_dir)
 
 
 
 
     __urls__=_apps_.urlpatterns
+
+
+def __buil_default_url__(_apps_, default_urls, host_dir):
+    i =0
+    for url_item in default_urls:
+        url_regex = url_item.regex.pattern
+        if host_dir != None:
+            url_regex = url_regex.replace("^", "^" + host_dir + "/")
+
+        class obj_exec_request():
+            url_item = None
+
+            def __init__(self, url_item):
+                self.url_item = url_item
+
+            def exec_request(self, request, *args, **kwargs):
+                from django.conf import settings
+                setattr(request, "not_inclue_tenancy_code", True)
+                return self.url_item.callback(
+                    request,
+                    settings.MULTI_TENANCY_DEFAULT_SCHEMA,
+                    *args,
+                    **kwargs)
+
+        fx = obj_exec_request(url_item)
+        map_url = url(
+            url_regex,
+            fx.exec_request
+        )
+        _apps_.urlpatterns.insert(i,map_url)
+        i = i + 1
 
 
 

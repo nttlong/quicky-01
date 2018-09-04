@@ -55,14 +55,19 @@ class executor(object):
         self.__app__ = app
         __apps_cache__.update({request.path: self.__app__})
 
-
-
-
-
-
+    def __str_trim__(self,_str_):
+        if _str_ == "":
+            return ""
+        while _str_[0] == '/':
+            _str_ = _str_[1:_str_.__len__()]
+        while _str_[_str_.__len__() - 1] == '/':
+            _str_ = _str_[0:_str_.__len__() - 1]
+        while _str_.count("//") > 0:
+            _str_ = _str_.replace("//", "/")
+        return _str_
     def get_customer_code(self,request):
         from django.conf import settings
-        if __customer__code__.has_key(request.path):
+        if __customer__code__.has_key(request.path) and __customer__code__.has_key(request.path) !="":
             return __customer__code__[request.path]
         if self.__app__.is_persistent_schema():
             __customer__code__.update({
@@ -70,14 +75,20 @@ class executor(object):
             })
 
         elif self.__app__.host_dir == "":
-            path = request.path
-            if path[0] == '/':
-                path = path[1:path.__len__()]
+            path =self.__str_trim__(request.path)
+
             if hasattr(settings,"HOST_DIR") and settings.HOST_DIR != "":
-                path = path[settings.HOST_DIR.__len__():path.__len__()]
+                if path.__len__()>settings.HOST_DIR.__len__():
+                    path = self.__str_trim__(path[settings.HOST_DIR.__len__():path.__len__()])
+                else:
+                    __customer__code__.update({
+                        request.path: settings.MULTI_TENANCY_DEFAULT_SCHEMA
+                    })
+                    return __customer__code__[request.path]
+
             items = path.split('/')
 
-            if items.__len__()>1:
+            if items.__len__()>0:
                 __customer__code__.update({
                     request.path: items[0]
                 })
@@ -110,12 +121,18 @@ class executor(object):
         import tenancy
         from . import get_tenancy_schema
         from django.conf import settings
-        if __schema_cache__.has_key(request.path):
-
+        if __schema_cache__.has_key(request.path) \
+                and __schema_cache__[request.path] !=None\
+                and __schema_cache__[request.path]!="":
             return __schema_cache__[request.path]
         if self.__app__.is_persistent_schema():
             __schema_cache__.update({
                 request.path:self.__app__.get_persistent_schema()
+            })
+        elif self.get_customer_code(request) =="":
+            from . import get_tenancy_schema
+            __schema_cache__.update({
+                request.path: settings.MULTI_TENANCY_DEFAULT_SCHEMA
             })
         else:
             from . import get_tenancy_schema
@@ -221,11 +238,8 @@ class executor(object):
         #     logger.debug(ex)
         #     raise (ex)
     def exec_request_for_multi(self,request,tenancy_code, **kwargs):
-
-
-
         from . import get_tenancy_schema
-        code=get_tenancy_schema(tenancy_code)
+        code=self.get_schema(request)
         if code==None:
             from django.http import HttpResponse, HttpResponseNotFound
             return HttpResponseNotFound("Page not found")

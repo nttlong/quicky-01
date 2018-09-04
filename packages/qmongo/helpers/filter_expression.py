@@ -53,5 +53,20 @@ class filter_expression():
         Get filter as dict for mongodb example: 
         filter('a==1')=> {"a":{"$eq":1}}
         """
-        return self._pipe
+        def replace_index(x):
+            if type(x) is dict:
+                ret = {}
+                for k,v in x.items():
+                    ret.update({
+                        k.replace("[",".").replace("].","."):replace_index(v)
+                    })
+                return ret
+            else:
+                return x
+
+
+
+
+        ret = replace_index(self._pipe)
+        return ret
 

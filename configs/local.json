@@ -1,10 +1,11 @@
 {
   "PACKAGES":[
     "/packages",
-    "/packages/mongo",
+    "/packages/mongodb",
     "/packages/django",
     "/uvenv04/lib/python2.7/site-packages"
   ],
+  "HOST_DIR":"lms",
   "AUTHORIZATION_ENGINE":"quicky.authorize",
   "HOST_DIR_":"test",
   "SECRET_KEY":"12jds*3210d)9",
@@ -154,13 +155,13 @@
       "name":"hrm",
       "path":"apps/hrm",
       "login_url":"/login",
-      "schema":"hrm"
+      "schema_1":"hrm"
 
     },{
-      "host":"per",
+      "host":"",
       "name":"performance",
       "path":"apps/performance",
-      "schema":"lv",
+      "schema_1":"lv",
       "disable":true
     }
   ]

@@ -106,8 +106,11 @@ class queryable(object):
     def database(self):
         return self.__coll__.database
     def where(self,expression,*args,**kwargs):
-        self.__where__ = get_expression(expression,*args,**kwargs)
-        return self
+        try:
+            self.__where__ = get_expression(expression,*args,**kwargs)
+            return self
+        except Exception as ex:
+            raise (Exception("Error expression '{0}'".format(expression)))
     def __fetch__(self,cursor):
         _continue_ =True
         while _continue_:
@@ -227,11 +230,12 @@ class queryable(object):
             })
         for k, v in data.items():
             self.__modifiers__["$push"].update({
-                k: v
+                k.replace("[",".").replace("].","."): v
             })
         return self
     def pull(self,expression,*args,**kwargs):
         from . import helpers
+
         data = kwargs
         if args.__len__() > 0:
             data = args[0]
@@ -239,26 +243,10 @@ class queryable(object):
             self.__modifiers__.update({
                 "$pull": {}
             })
-        cmp_expr = helpers.filter(expression,*args,**kwargs)
-        for k,v in cmp_expr.get_filter().items():
-            _v = r = {}
-            key = k
-            if k.count(".")>0:
-                items = k.split('.')
-                key = items[0]
-                for i in range(0,items.__len__()-1):
-                    _v.update({
-                        items[i]:{}
-                    })
-                    _v = _v[items[i]]
-                _v.update({
-                    items[items.__len__()-1]:v
-                })
-                self.__modifiers__["$pull"].update(r)
-            else:
-                self.__modifiers__["$pull"].update({k:v})
-
-
+        _data = helpers.filter(expression, *args, **kwargs).get_filter()
+        _pull_data = helpers.slice_key_of_dict(_data)
+        _new_pull_ = helpers.merge_dict(self.__modifiers__["$pull"],_pull_data)
+        self.__modifiers__["$pull"].update(_new_pull_)
         return self
 
     def commit(self):
@@ -342,7 +330,6 @@ class queryable(object):
             }
         })
         return self
-
 
 
 

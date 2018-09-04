@@ -359,3 +359,63 @@ def extends_dict(data,*args,**kwargs):
        x =  args[0]
     ret.update(x)
     return ret
+def merge_dict(a,b):
+    if type(a) is dict:
+        r=a.copy()
+    else:
+        r ={}
+    for k,v in b.items():
+        if r.has_key(k):
+            if type(v) is dict:
+                m = merge_dict(r[k],v)
+                r.update({k:m})
+            else:
+                r.update({k: v})
+        else:
+            r.update({k:v})
+    return r
+def __replace_dot_number_of_dict__(a):
+    import re
+    ret = {}
+    for k,v in a.items():
+        keys=re.findall(r"\.\d+\.",k)
+        tmp_k =k
+        for x in keys:
+            tmp_k=tmp_k.replace(x,"_$dot$_"+x[1:x.__len__()-1]+"_$dot$_")
+        ret.update({tmp_k:v})
+    return ret
+def __replace_dolar_dot_dolar_dot__(a):
+    ret ={}
+    for k,v in a.items():
+        if type(v) is dict:
+            ret.update({
+                k.replace("_$dot$_","."):__replace_dolar_dot_dolar_dot__(v)
+            })
+        else:
+            ret.update({
+                k.replace("_$dot$_", "."): v
+            })
+    return ret
+def slice_key_of_dict(d):
+    a= __replace_dot_number_of_dict__(d)
+    ret_val = {}
+    for k,v in a.items():
+        ret ={}
+        if k.count('.')>0:
+            items= k.split('.')
+            tmp=iter = {}
+            for i in range(0,items.__len__()-1):
+                iter.update({
+                    items[i]:{}
+                })
+                iter=iter[items[i]]
+            iter.update({
+                items[items.__len__()-1]:v
+            })
+            ret.update(tmp)
+        else:
+            ret.update({k:v})
+        ret_val = merge_dict(ret_val,ret)
+    ret_dict = __replace_dolar_dot_dolar_dot__(ret_val)
+    return ret_dict
+

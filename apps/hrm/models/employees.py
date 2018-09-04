@@ -12,7 +12,7 @@ extends(
     [[
         "contact_info.email"
     ],[
-        "Dependants.id_card"
+        "dependants.id_card"
     ]],
     first_name =("text",True),
     last_name =("text",True),
@@ -66,7 +66,7 @@ extends(
             description ="text"
         )
     ),
-    Dependants = ("list",
+    dependants = ("list",
                   False,
                   dict(
                       first_name=("text",True),
@@ -74,7 +74,9 @@ extends(
                       id_card = ("text",False),
                       issue_date=("date",False),
                       _provinces_id = ("object"),
-                      _relation_types_id =("object")
+                      _relation_types_id =("object"),
+                      birthdate = ("date"),
+                      description = ("text")
                   ))
 )
 # def employees():

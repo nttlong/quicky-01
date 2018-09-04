@@ -1,0 +1,17 @@
+Metadata-Version: 2.0
+Name: matplotlib-helpers
+Version: 0.1.post6
+Summary: Helper functions, etc. for matplotlib
+Home-page: https://github.com/wheeler-microfluidics/matplotlib-helpers
+Author: Christian Fobel
+Author-email: christian@fobel.net
+License: GPL
+Platform: UNKNOWN
+Requires-Dist: matplotlib
+Requires-Dist: pandas
+Requires-Dist: scikit-learn
+Requires-Dist: scipy
+
+UNKNOWN
+
+

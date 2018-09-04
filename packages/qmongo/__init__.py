@@ -13,15 +13,15 @@ def create_object(*args,**kwargs):
         else:
             setattr(ret, k, v)
     return ret
-from . import fx_model
-from . import helpers
-from . import qview
-from . import db_context
-from . import auto_load_models as auto_loader
-from . import exec_mode as exec_mode
+import fx_model
+import helpers
+import qview
+import db_context
+import auto_load_models as auto_loader
+import exec_mode as exec_mode
 set_except_mode = exec_mode.set_mode
 get_except_mode = exec_mode.get_mode
-from . exec_mode import except_mode #set exception mode when mongodb commit to database
+from exec_mode import exept_mode #set exception mode when mongodb commit to database
 define = helpers.define_model
 extends = helpers.extent_model
 extends_dict=helpers.extends_dict
