@@ -520,7 +520,9 @@ class ENTITY():
                             data=ret
                         )
                     elif exec_mode.get_mode() == "return":
-                        return _data, None
+                        return _data, None,"Update data is successfull"
+                    else:
+                        return ret
 
                 except pymongo.errors.DuplicateKeyError as ex:
                     ret_data = self.get_duplicate_error(ex)
@@ -532,11 +534,11 @@ class ENTITY():
                         raise (Exception("Data is duplicate,\n"
                                          "Duplicate fields are below\n{0}".format(ret_data)))
                     elif exec_mode.get_mode() == "return":
-                        return _data, ret_data
+                        return _data, ret_data,"Update data is error with duplicate value"
                     return ret_data
                 except Exception as ex:
                     if exec_mode.get_mode() == "return":
-                        return _data, ex
+                        return _data, ex,"Update data is error"
                     else:
                         raise (ex)
 
@@ -551,10 +553,12 @@ class ENTITY():
                     if exec_mode.get_mode() == "off":
                         return ret
                     elif exec_mode.get_mode() == "return":
-                        return ret, None
+                        return ret, None,"Delete data is successfull"
+                    else:
+                        return ret
                 except Exception as ex:
                     if exec_mode.get_mode() == "return":
-                        return _data, ex
+                        return _data, ex,"Delete data is error"
                     else:
                         raise (ex)
 

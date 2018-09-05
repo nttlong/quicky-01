@@ -314,8 +314,13 @@ def role_add_user(role,username):
         with qmongo.exept_mode("return"):
             actor=entity.where("role == {0}",role)
             actor=actor.push(users=username)
-            ret,ex =actor.commit()
-            return None,lazyobject(ex),"Add user to role '{0}' is successfull".format(role)
+            ret,ex,message =actor.commit()
+            if ex != None:
+                return None,lazyobject(ex),"Add user '{1} to role '{0}' is error".format(role,username)
+            else:
+                return None, None, "Add user '{1}' to role '{0}' is successfull".format(role,username)
+    else:
+        return None, None, "'{0}' is existing in '{1}'".format(username,role)
 
 
 

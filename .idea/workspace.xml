@@ -2,8 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="525a6499-6d42-4fdb-be6a-abb131219a65" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/packages/auth/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/packages/auth/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/qmongo/database.py" beforeDir="false" afterPath="$PROJECT_DIR$/packages/qmongo/database.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/packages/qmongo/fx_model.py" beforeDir="false" afterPath="$PROJECT_DIR$/packages/qmongo/fx_model.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/qobjects/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/packages/qobjects/__init__.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -21,23 +22,23 @@
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
-          <entry key="py" value="11" />
+          <entry key="py" value="12" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
-          <entry key="Python" value="11" />
+          <entry key="Python" value="12" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="Python Console" value="572" />
-          <entry key="py" value="234" />
+          <entry key="Python Console" value="586" />
+          <entry key="py" value="479" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="Python" value="806" />
+          <entry key="Python" value="1065" />
         </counts>
       </usages-collector>
     </session>
@@ -82,20 +83,29 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/packages/auth/__init__.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="188">
-              <caret line="134" selection-start-line="134" selection-end-line="134" />
+            <state relative-caret-position="374">
+              <caret line="320" column="101" selection-start-line="320" selection-start-column="101" selection-end-line="320" selection-end-column="101" />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/packages/qmongo/fx_model.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="284">
-              <caret line="41" column="122" selection-start-line="41" selection-start-column="122" selection-end-line="41" selection-end-column="122" />
+            <state relative-caret-position="188">
+              <caret line="30" selection-start-line="30" selection-end-line="30" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$USER_HOME$/.PyCharmCE2018.2/system/python_stubs/-1247972723/__builtin__.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="138">
+              <caret line="768" column="8" selection-start-line="768" selection-start-column="8" selection-end-line="768" selection-end-column="8" />
             </state>
           </provider>
         </entry>
@@ -103,8 +113,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/packages/qmongo/database.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1166">
-              <caret line="2089" lean-forward="true" selection-start-line="2089" selection-end-line="2089" />
+            <state relative-caret-position="178">
+              <caret line="563" lean-forward="true" selection-start-line="563" selection-end-line="563" />
               <folding>
                 <element signature="e#0#22#0" expanded="true" />
               </folding>
@@ -126,24 +136,14 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/import_data.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state>
-              <folding>
-                <element signature="e#0#14#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
     </leaf>
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
       <find>objects</find>
-      <find>match</find>
       <find>&quot;$in&quot;</find>
+      <find>role_add_user</find>
+      <find>match</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -152,11 +152,11 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/packages/qmongo/database.py" />
         <option value="$PROJECT_DIR$/packages/qmongo/helpers/expr.py" />
-        <option value="$PROJECT_DIR$/packages/auth/__init__.py" />
         <option value="$PROJECT_DIR$/packages/qobjects/__init__.py" />
         <option value="$PROJECT_DIR$/packages/qmongo/fx_model.py" />
+        <option value="$PROJECT_DIR$/packages/qmongo/database.py" />
+        <option value="$PROJECT_DIR$/packages/auth/__init__.py" />
       </list>
     </option>
   </component>
@@ -182,12 +182,6 @@
               <item name="q03" type="b2602c69:ProjectViewProjectNode" />
               <item name="q03" type="462c0819:PsiDirectoryNode" />
               <item name="packages" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="q03" type="b2602c69:ProjectViewProjectNode" />
-              <item name="q03" type="462c0819:PsiDirectoryNode" />
-              <item name="packages" type="462c0819:PsiDirectoryNode" />
-              <item name="qmongo" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="q03" type="b2602c69:ProjectViewProjectNode" />
@@ -273,16 +267,16 @@
     <editor active="true" />
     <layout>
       <window_info id="Favorites" side_tool="true" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.24972677" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.24972677" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="bottom" id="Version Control" weight="0.32972974" />
-      <window_info anchor="bottom" id="Python Console" visible="true" weight="0.32972974" />
+      <window_info active="true" anchor="bottom" id="Python Console" visible="true" weight="0.32972974" />
       <window_info anchor="bottom" id="Terminal" weight="0.50054055" />
       <window_info anchor="bottom" id="Event Log" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
       <window_info anchor="bottom" id="Run" order="2" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.5178378" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.41189188" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
@@ -301,6 +295,11 @@
           <url>file://$PROJECT_DIR$/packages/qmongo/helpers/expr.py</url>
           <line>1060</line>
           <option name="timeStamp" value="4" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/packages/auth/__init__.py</url>
+          <line>316</line>
+          <option name="timeStamp" value="7" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
@@ -341,27 +340,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/packages/qmongo/database.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1166">
-          <caret line="2089" lean-forward="true" selection-start-line="2089" selection-end-line="2089" />
-          <folding>
-            <element signature="e#0#22#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/packages/qmongo/helpers/expr.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="178">
           <caret line="1061" selection-start-line="1061" selection-end-line="1061" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/packages/auth/__init__.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="188">
-          <caret line="134" selection-start-line="134" selection-end-line="134" />
         </state>
       </provider>
     </entry>
@@ -372,10 +354,34 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$USER_HOME$/.PyCharmCE2018.2/system/python_stubs/-1247972723/__builtin__.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="138">
+          <caret line="768" column="8" selection-start-line="768" selection-start-column="8" selection-end-line="768" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/packages/qmongo/fx_model.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="284">
-          <caret line="41" column="122" selection-start-line="41" selection-start-column="122" selection-end-line="41" selection-end-column="122" />
+        <state relative-caret-position="188">
+          <caret line="30" selection-start-line="30" selection-end-line="30" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/packages/qmongo/database.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="178">
+          <caret line="563" lean-forward="true" selection-start-line="563" selection-end-line="563" />
+          <folding>
+            <element signature="e#0#22#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/packages/auth/__init__.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="374">
+          <caret line="320" column="101" selection-start-line="320" selection-start-column="101" selection-end-line="320" selection-end-column="101" />
         </state>
       </provider>
     </entry>
