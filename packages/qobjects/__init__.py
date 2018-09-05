@@ -106,6 +106,6 @@ class lazyobject(__validator_class__):
 
         return super(lazyobject, self).__getattr__(item)
     def __setattr__(self, key, value):
-        super(d_object, self).__setattr__(key, value)
+        super(lazyobject, self).__setattr__(key, value)
     def __is_emty__(self):
         return self.__dict__ == {}

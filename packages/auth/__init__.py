@@ -137,7 +137,7 @@ def role_create(role,name,description = None,users =[]):
                "'{0}' is already existing"
     with qmongo.exept_mode('return'):
         entity = models.entities.roles.coll
-        ret, ex =  entity.insert_one(role=role,name = name,description=description,user=users)
+        ret, ex,msg =  entity.insert_one(role=role,name = name,description=description,user=users)
         if ex != None:
             return None,ex,"Create role '{0}' is error".format(role)
         else:
