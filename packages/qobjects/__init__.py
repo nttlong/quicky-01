@@ -28,8 +28,8 @@ class __validator_class__(object):
             super(__validator_class__, self).__setattr__(key, value)
             return
         __data_type__ = self.__dict__.get("__properties__",{}).get('type',None)
-        if __data_type__ == "object" and not type(value) is lazyobject:
-            raise Exception("'{0}' is invalid data type, expected type is {1}, but the value is {2}".format(key,__data_type__,value))
+        if __data_type__ == "object" and not hasattr(value,"__to_dict__"):
+            raise Exception("'{0}' is invalid data type, the {1} must have '{2}'".format(key,__data_type__,"__to_dict__"))
         if __data_type__ == "text" and not type(value) in [str,unicode]:
             raise Exception(
                 "'{0}' is invalid data type, expected type is {1}, but the value is {2}".format(key, self.__data_type__,
