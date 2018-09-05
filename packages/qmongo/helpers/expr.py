@@ -785,15 +785,9 @@ def get_expr(fx,*params):
         if fx["operator"] == "$in":
             return {
                 get_expr(fx["left"]): {
-                    fx["operator"]: __compile_right_params__(params, fx["right"])
+                    fx["operator"]: __compile_right_params__(params, fx)
                 }
             }
-
-            # return {
-            #     fx["left"]:{
-            #         fx["operator"]:params
-            #     }
-            # }
 
         if fx["operator"] == "$not":
             if fx['right'][fx['right'].keys()[0]]['operator'] in ["$contains",'$start','$end']:
