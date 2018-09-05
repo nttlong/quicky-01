@@ -1062,7 +1062,7 @@ def get_expr(fx,*params):
                 get_expr(fx["left"],*params),
                 get_expr(fx["right"],*params)
             ]
-        };
+        }
 
 
 def get_calc_exprt_boolean_expression(fx,*params):

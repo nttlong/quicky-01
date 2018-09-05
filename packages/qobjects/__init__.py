@@ -82,8 +82,17 @@ class lazyobject(__validator_class__):
         ret = {}
         for k in keys:
             v= self.__dict__[k]
-            if type(v) is lazyobject:
+            if hasattr(v,"__to_dict__"):
                 ret.update({k:v.__to_dict__()})
+            elif type(v) is list:
+                lst = []
+                for x in v:
+                    if hasattr(x,"__to_dict__"):
+                        lst.append(x.__to_dict__())
+                    else:
+                        lst.append(x)
+                ret.update({k:lst})
+
             else:
                 ret.update({k:v})
         return ret

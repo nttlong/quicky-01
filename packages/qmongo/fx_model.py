@@ -94,6 +94,15 @@ class s_obj(__validator_class__):
             v= self.__dict__[k]
             if type(v) is s_obj:
                 ret.update({k:v.__to_dict__()})
+            elif type(v) is list:
+                lst = []
+                for x in v:
+                    if hasattr(x,"__to_dict__"):
+                        lst.append(x.__to_dict__())
+                    else:
+                        lst.append(x)
+                ret.update({k:lst})
+
             else:
                 ret.update({k:v})
         return ret
@@ -210,7 +219,7 @@ class __obj_model__(object):
     def objects(self,filter = None,*args,**kwargs):
         if filter == None:
             return self.coll.get_objects()
-        ret = self.coll.objects(filter,*args,**args)
+        ret = self.coll.objects(filter,*args,**kwargs)
         self.reset
         return ret
     def set_session(self,session):
