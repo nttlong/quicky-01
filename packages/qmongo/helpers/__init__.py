@@ -129,8 +129,9 @@ def filter(expression,*args,**kwargs):
         expr = _expr
         params = _params
     _expr = vert_expr(_expr, *params)
-    ret = filter_expression(_expr,*params)
+    ret = filter_expression(_expr, params)
     return ret
+
 # def aggregate():
 #     ret=aggregate_expression()
 #     return ret

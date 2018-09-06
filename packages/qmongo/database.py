@@ -1482,9 +1482,9 @@ class AGGREGATE():
             raise (Exception(
                 "What is bellow list of fields?:\n" + err_msg + " \n Your selected fields now is bellow list: \n" + err_msg_fields))
         by_params=False
-        if args==():
-            args=kwargs
-            by_params=True
+        # if args==():
+        #     args=kwargs
+        #     by_params=True
 
         if type(expression) is dict:
             self._pipe.append({
@@ -1494,7 +1494,7 @@ class AGGREGATE():
         if type(expression) in [str,unicode]:
             import helpers
             self._pipe.append({
-                "$match": (lambda :  helpers.filter(expression, args)._pipe if by_params else helpers.filter(expression, *args,**kwargs)._pipe)()
+                "$match": helpers.filter(expression, *args,**kwargs)._pipe
             })
             return self
 

@@ -882,7 +882,14 @@ def get_expr(fx,*params):
                     }
             else:
                 if fx["right"]["type"]=="params":
+                    # if params.__len__()<fx["right"]["value"]:
+                    #     x=1
+                    # try:
                     val=params[fx["right"]["value"]]
+                    # except Exception as ex:
+                    #     x = 1
+                    #     val="error"
+
                     if type(val) in [str,unicode]:
                         if type(fx["left"]) in [str,unicode]:
                             return {
@@ -1347,7 +1354,7 @@ def parse_expression_to_json_expression(expression,*params,**kwargs):
             return expr_tree
         if params.__len__()>0:
             params = params[0]
-            return get_expr(expr_tree, params)
+            return get_expr(expr_tree, *params,**kwargs)
         else:
             params = kwargs
             items = [v for k, v in params.items()]
