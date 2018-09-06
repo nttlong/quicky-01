@@ -353,7 +353,7 @@ def get_tree(expr,*params,**kwargs):
 
     ret={}
     if expr[0:5]=="expr(":
-        return get_calc_expr(expr)
+        return get_calc_expr(expr,*params,**kwargs)
 
     str=vert_expr(expr,*params)
     cmp=compile(str, '<unknown>', 'exec', 1024).body.pop()
@@ -1062,7 +1062,7 @@ def get_expr(fx,*params):
                 get_expr(fx["left"],*params),
                 get_expr(fx["right"],*params)
             ]
-        }
+        };
 
 
 def get_calc_exprt_boolean_expression(fx,*params):
@@ -1253,7 +1253,7 @@ def get_calc_expr(expr,*params,**kwargs):
     if type(params) is tuple and params.__len__() > 0 and type(params[0]) is dict:
         _params = []
         _expr = expr
-        _index = 0;
+        _index = 0
         for key in params[0].keys():
             _expr = _expr.replace("@" + key, "{" + _index.__str__() + "}")
             _params.append(params[0][key])
@@ -1345,7 +1345,13 @@ def parse_expression_to_json_expression(expression,*params,**kwargs):
         expr_tree=get_tree(expression,*params,**kwargs)
         if expression[0:5]=="expr(":
             return expr_tree
-        return get_expr(expr_tree,*params,**kwargs)
+        if params.__len__()>0:
+            params = params[0]
+            return get_expr(expr_tree, params)
+        else:
+            params = kwargs
+            items = [v for k, v in params.items()]
+            return get_expr(expr_tree,*items)
     except Exception as ex:
         print traceback.format_exc()
         raise Exception("Below expression is invalid:\n"

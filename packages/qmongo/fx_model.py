@@ -38,8 +38,8 @@ class __validator_class__(object):
             super(__validator_class__, self).__setattr__(key, value)
             return
         __data_type__ = self.__dict__.get("__properties__",{}).get('type',None)
-        if __data_type__ == "object" and not hasattr(value,"__to_dict__"):
-            raise Exception("'{0}' is invalid data type, the {1} must have '{2}'".format(key,__data_type__,"__to_dict__"))
+        if __data_type__ == "object" and not type(value) is s_obj:
+            raise Exception("'{0}' is invalid data type, expected type is {1}, but the value is {2}".format(key,__data_type__,value))
         if __data_type__ == "text" and not type(value) in [str,unicode]:
             raise Exception(
                 "'{0}' is invalid data type, expected type is {1}, but the value is {2}".format(key, self.__data_type__,
@@ -52,6 +52,8 @@ class __validator_class__(object):
             raise Exception(
                 "'{0}' is invalid data type, expected type is {1}, but the value is {2}".format(key, self.__data_type__,
                                                                                                 value))
+
+
 
         super(__validator_class__, self).__setattr__(key, value)
     def __set_config__(self,property,type,require):
@@ -74,11 +76,16 @@ class s_obj(__validator_class__):
             self.__dict__.update({"__validator__": False})
             for k,v in data.items():
                 if k[0:2] != "__" and k.count('.') == 0:
+                    self.__properties__.update({k: 1})
                     if type(v) is dict:
                         setattr(self,k,s_obj(v))
                     elif type(v) is list:
-                        values = [ x for x in v if type(x) in [str,unicode]]
-                        values.extend([s_obj(x) for x in v if type(x) is dict])
+                        values =[]
+                        for x in v:
+                            if type(x) is dict:
+                                values.append(s_obj(x))
+                            else:
+                                values.append(x)
                         setattr(self,k,values)
                     else:
                         setattr(self, k, v)
@@ -93,14 +100,15 @@ class s_obj(__validator_class__):
             if type(v) is s_obj:
                 ret.update({k:v.__to_dict__()})
             elif type(v) is list:
-                lst = []
+                lst =[]
                 for x in v:
                     if hasattr(x,"__to_dict__"):
                         lst.append(x.__to_dict__())
                     else:
                         lst.append(x)
-                ret.update({k:lst})
-
+                ret.update({
+                    k:lst
+                })
             else:
                 ret.update({k:v})
         return ret
@@ -273,11 +281,14 @@ class __obj_model__(object):
             ret_obj = s_obj(ret[0])
             ret_error = s_obj(ret[1])
             return ret_obj,ret_error
+
         ret_obj = s_obj(ret)
+        ret_obj.__validator__ = False
         ret_obj.is_error = False
         if ret.get("error", None) != None:
             ret_obj.is_error = True
             ret_obj.error_message = "insert data errror '{0}'".format(ret["error"]["code"])
+        ret_obj.__validator__ = True
         return ret_obj
     def delete(self,expression,*arg,**kwargs):
         ret = self.coll.delete(expression,*arg,**kwargs)

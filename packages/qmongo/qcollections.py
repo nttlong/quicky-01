@@ -50,10 +50,10 @@ class __aggregate__():
                 _continue_ = False
     @property
     def items(self):
-        if self.__session == None:
-            cursor = self.__coll__.aggregate(self.__pipeline)
+        if self.__session__ == None:
+            cursor = self.__coll__.aggregate(self.__pipeline__)
         else:
-            cursor = self.__coll__.aggregate(self.__pipeline,self.__session)
+            cursor = self.__coll__.aggregate(self.__pipeline__,self.__session__)
         return list(cursor)
     @property
     def objects(self):
@@ -62,6 +62,7 @@ class __aggregate__():
         else:
             cursor = self.__coll__.aggregate(self.__pipeline, self.__session__)
         return self.__fetch__(cursor)
+
 
 
 
@@ -108,6 +109,7 @@ class queryable(object):
     def where(self,expression,*args,**kwargs):
         try:
             self.__where__ = get_expression(expression,*args,**kwargs)
+            self.__modifiers__ = {}
             return self
         except Exception as ex:
             raise (Exception("Error expression '{0}'".format(expression)))
@@ -131,7 +133,7 @@ class queryable(object):
         if self.__pipe_line__.__len__()>0:
             ret= self.aggregate.items
             self.clean
-            return self
+            return ret
         if self.__where__ == None:
             cursor = self.__coll__.find()
             return list(cursor)
@@ -147,6 +149,8 @@ class queryable(object):
         return list(self.find())
     @property
     def object(self):
+        if self.item == None:
+            return  None
         return s_obj(self.item)
     @property
     def item(self):
@@ -183,9 +187,9 @@ class queryable(object):
                     ret=self.__coll__.insert_many(lst,self.__session__)
                 else:
                     ret = self.__coll__.insert_many(lst)
-                return ret,None
+                return ret,None,"Insert data is successfull"
             except Exception as ex:
-                return  None,ex
+                return  None,ex,"Insert data is error"
         elif type(items) is dict:
             try:
                 if self.__session__ !=None:
@@ -195,30 +199,33 @@ class queryable(object):
                 items.update({
                     "_id":ret.inserted_id
                 })
-                return items,None
+                return items,None,"Insert data is successfull"
             except Exception as ex:
-                return items,ex
+                return items,ex,"Insert data is error"
         elif hasattr(items,"__to_dict__"):
             try:
                 ret =self.__coll__.insert_one(items.__to_dict__())
                 items.__validator__ = False
                 items._id=ret.inserted_id
                 items.__validator__ = True
-                return items,None
+                return items,None,"Insert data is error with duplicate value"
             except Exception as ex:
-                return items,ex
+                return items,ex,"Insert data is error with unknown errors"
     def set(self,*args,**kwargs):
         data = kwargs
         if args.__len__()>0:
             data = args[0]
+        if hasattr(data,"__to_dict__"):
+            data = data.__to_dict__()
         if not self.__modifiers__.has_key("$set"):
             self.__modifiers__.update({
                 "$set":{}
             })
         for k,v in data.items():
-            self.__modifiers__["$set"].update({
-                k:v
-            })
+            if k != "_id":
+                self.__modifiers__["$set"].update({
+                    k:v
+                })
         return self
     def push(self,*args,**kwargs):
         data = kwargs
@@ -244,7 +251,23 @@ class queryable(object):
                 "$pull": {}
             })
         _data = helpers.filter(expression, *args, **kwargs).get_filter()
-        _pull_data = helpers.slice_key_of_dict(_data)
+        def fix_eq(_data):
+            if not type(_data) is dict:
+                return _data
+            if _data.keys()[0]=="$eq":
+                return _data["$eq"]
+            _pull_filter_ = {}
+            for k, v in _data.items():
+                if type(v) is dict and v.has_key("$eq"):
+                    _pull_filter_.update({k: fix_eq(v["$eq"])})
+                elif type(v) is list:
+                    _pull_filter_.update({k:[fix_eq(x) for x in v]})
+                else:
+                    _pull_filter_.update({k: v})
+            return _pull_filter_
+
+        _pull_data = helpers.slice_key_of_dict(fix_eq(_data))
+
         _new_pull_ = helpers.merge_dict(self.__modifiers__["$pull"],_pull_data)
         self.__modifiers__["$pull"].update(_new_pull_)
         return self
@@ -255,15 +278,24 @@ class queryable(object):
                 ret = self.__coll__.update_many(self.__where__, self.__modifiers__)
             else:
                 ret = self.__coll__.update_many(self.__where__, self.__modifiers__,self.__session__)
-            return ret, None
+            return ret, None,"Update data is successfull"
         except Exception as ex:
-            return None,ex
+            return None,ex,"Update data is error"
     @property
     def aggregate(self):
         return __aggregate__(self.__coll__,[x.copy() for x in self.__pipe_line__],self.__session__)
     @property
     def clean(self):
-        self.__pipe_line__ =[]
+        self.__where__ = None
+        self.__pipe_line__ = []
+        self.__modifiers__ = {}
+        self.__session__ = None
+        return self
+    def new(self):
+        self.__where__ = None
+        self.__pipe_line__ = []
+        self.__modifiers__ = {}
+        self.__session__ = None
         return self
     def project(self,*args,**kwargs):
         from . import helpers
@@ -283,10 +315,6 @@ class queryable(object):
         self.__pipe_line__.append({"$project":_project_})
         return self
     def match(self,expression,*args,**kwargs):
-        by_params = False
-        if args == ():
-            args = kwargs
-            by_params = True
         from . import helpers
         if type(expression) is dict:
             self.__pipe_line__.append({
@@ -296,7 +324,7 @@ class queryable(object):
         if type(expression) in [str,unicode]:
             import helpers
             self.__pipe_line__.append({
-                "$match": (lambda :  helpers.filter(expression, args)._pipe if by_params else helpers.filter(expression, *args,**kwargs)._pipe)()
+                "$match": helpers.filter(expression, *args,**kwargs)._pipe
             })
             return self
 

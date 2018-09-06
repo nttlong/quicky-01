@@ -41,4 +41,15 @@ def create(*args,**kwargs):
 def grid_fs(db = None):
     from database import GRIDFS
     return GRIDFS(db)
-
+global __schemas__
+__schemas__ = []
+class schema():
+    def __init__(self,schema_name):
+        self.__schema_name__ = schema_name
+    def __enter__(self):
+        __schemas__.append(get_schema())
+        set_schema(self.__schema_name__)
+    def __exit__(self, exc_type, exc_val, exc_tb):
+        if __schemas__.__len__()>0:
+            _c_schema_ = __schemas__.pop()
+            set_schema(_c_schema_)

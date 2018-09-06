@@ -1,9 +1,9 @@
 from _ast import alias
 
 from sqlalchemy.sql.functions import count
-from datetime import datetime
-from .helpers import expr, validators
-from .helpers import get_model, get_keys_of_model
+from  datetime import datetime
+from . helpers import expr,validators
+from . helpers import get_model,get_keys_of_model
 from pymongo import MongoClient
 from pymongo.errors import OperationFailure
 import threading
@@ -17,98 +17,82 @@ from bson.codec_options import CodecOptions
 from . import helpers
 from . import dict_utils
 from pymongo.client_session import ClientSession
-
-_cache_create_key_for_collection = None
-
-
+_cache_create_key_for_collection=None
 def get_current_schema():
     # type: () -> str
     """
     get current schema in theading
     :return:
     """
-    if hasattr(threading.currentThread(), "tenancy_code"):
+    if hasattr(threading.currentThread(),"tenancy_code"):
         return threading.currentThread().tenancy_code
     else:
         return None
-
-
 logger = logging.getLogger(__name__)
-_db = {}
-
-
+_db={}
 def extract_data(data):
-    ret = {}
+    ret={}
     for key in data.keys():
-        if key.find(".") > -1:
-            items = key.split('.')
+        if key.find(".")>-1:
+            items=key.split('.')
             if not ret.has_key(items[0]):
                 ret.update({
-                    items[0]: {}
+                    items[0]:{}
                 })
-            val = ret[items[0]]
-            for x in items[1:items.__len__() - 1]:
+            val=ret[items[0]]
+            for x in items[1:items.__len__()-1]:
                 if not val.has_key(x):
                     val.update({
-                        x: {}
+                        x:{}
                     })
-                val = val[x]
+                val=val[x]
             val.update({
-                items[items.__len__() - 1]: data[key]
+                items[items.__len__() - 1]:data[key]
             })
 
         else:
             ret.update({
-                key: data[key]
+                key:data[key]
             })
     return ret
-
-
 def get_dict_of_instance(ins):
-    if ins.__dict__.items().__len__() == 0:
-        return None
+    if ins.__dict__.items().__len__() ==0:
+        return  None
     ret = {}
-    for k, v in ins.__dict__.items():
-        if hasattr(v, "__dict__"):
+    for k,v in ins.__dict__.items():
+        if hasattr(v,"__dict__"):
             ret.update({
-                k: get_dict_of_instance(v)
+                k:get_dict_of_instance(v)
             })
         else:
             ret.update({
                 k: v
             })
     return ret
-
-
 class QR():
     """
     Define queryable
     """
 
-    def __init__(self, config=None):
+    def __init__(self,config = None):
         self.db = None
         self._entity = None
         self._codec_options = None
         if config != None:
-            self.db = config["database"]
-            self._codec_options = config["codec_options"]
-
-    def collection(self, name):
+            self.db=config["database"]
+            self._codec_options=config["codec_options"]
+    def collection(self,name):
         "get collection from database. including methods: find_one,find,get_list,get_item,where,entity,aggregate "
-        if name == None or name == "":
+        if name==None or name=="":
             raise Exception("'name' can not be null or empty")
-        return COLL(self, name)
-
+        return COLL(self,name)
     def get_collection_names(self):
         return list(self.db.collection_names())
-
-
 class ENTITY():
     """
         Define entity
     """
-
-    def __init__(self, qr, coll, name):
+    def __init__(self, qr,coll, name):
         # type:(QR,COLL,str)->NotImplemented
         """
         Create new entity instance
@@ -123,9 +107,8 @@ class ENTITY():
         self._expr = None
         self.qr = qr
         self.name = name
-        self._coll = coll
-
-    def insert_one(self, *args, **kwargs):
+        self._coll=coll
+    def insert_one(self,*args,**kwargs):
         # type: (tuple,dict) -> ENTITY
         """
         Insert one item example insert_one(a=1)
@@ -133,19 +116,18 @@ class ENTITY():
         :param kwargs:
         :return:
         """
-        if args == ():
-            self._data = kwargs
+        if args==():
+            self._data=kwargs
         else:
-            if hasattr(args[0], "__dict__"):
+            if hasattr(args[0],"__dict__"):
                 self._data = get_dict_of_instance(args[0])
             else:
                 self._data = args[0]
 
-        self._action = "insert_one"
+        self._action="insert_one"
 
         return self
-
-    def insert_many(self, data):
+    def insert_many(self,data):
         # type: (tuple,dict) -> ENTITY
         """
         Insert many items
@@ -155,8 +137,7 @@ class ENTITY():
         self._action = "insert_many"
         self._data = data
         return self
-
-    def update_one(self, data):
+    def update_one(self,data):
         # type: (dict) -> ENTITY
         """
         update one item
@@ -167,20 +148,19 @@ class ENTITY():
             _data = get_dict_of_instance(data)
         else:
             _data = data
-        self._action = "update_one"
+        self._action="update_one"
         if not self._data.has_key("$set"):
             self._data.update({
-                "$set": _data
+                "$set":_data
             })
         else:
-            x = self._data["$set"]
+            x=self._data["$set"]
             for key in data.keys():
                 x.update({
-                    key: _data[key]
+                    key:_data[key]
                 })
         return self
-
-    def update_many(self, data, *params):
+    def update_many(self,data,*params):
         # type: (tuple,dict) -> ENTITY
         """
         Update many items
@@ -204,8 +184,7 @@ class ENTITY():
                     key: _data[key]
                 })
         return self
-
-    def push(self, data):
+    def push(self,data):
         """
         Push data into collection
         :param data:
@@ -227,8 +206,7 @@ class ENTITY():
                     key: _data[key]
                 })
         return self
-
-    def pull(self, data):
+    def pull(self,data):
         if hasattr(data, "__dict__"):
             _data = get_dict_of_instance(data)
         else:
@@ -246,8 +224,7 @@ class ENTITY():
                     key: _data[key]
                 })
         return self
-
-    def inc(self, data):
+    def inc(self,data):
         if hasattr(data, "__dict__"):
             _data = get_dict_of_instance(data)
         else:
@@ -264,8 +241,7 @@ class ENTITY():
                     key: _data[key]
                 })
         return self
-
-    def dec(self, data):
+    def dec(self,data):
         if hasattr(data, "__dict__"):
             _data = get_dict_of_instance(data)
         else:
@@ -282,8 +258,7 @@ class ENTITY():
                     key: _data[key]
                 })
         return self
-
-    def filter(self, expression, *args, **kwargs):
+    def filter(self,expression,*args,**kwargs):
         """
         Create filter before update or delete
         :param expression:
@@ -293,15 +268,13 @@ class ENTITY():
         """
         self._expr = expression
         if type(expression) is str:
-            expr_tr = expr.get_tree(expression, *args, **kwargs)
-            self._expr = expr.parse_expression_to_json_expression(expression, *args, **kwargs)
+            expr_tr=expr.get_tree(expression,*args,**kwargs)
+            self._expr = expr.parse_expression_to_json_expression(expression,*args,**kwargs)
         return self
-
     def delete(self):
-        self._action = "delete"
+        self._action="delete"
         return self
-
-    def get_duplicate_error(self, ex):
+    def get_duplicate_error(self,ex):
         start = ex.message.find(" index:") + " index:".__len__()
         end = ex.message.find(" dup key:", start)
         key = ex.message[start:end]
@@ -317,37 +290,38 @@ class ENTITY():
                 code="duplicate"
             )
         )
-
-    def commit(self, session=None):
+    def commit(self,session = None):
         """
         Commit actio. Example; insert_many then commit, update or delete require filter before
         :return:
         """
-        _id = None
-        if session != None and not isinstance(session, ClientSession):
+        _id=None
+        if session != None and not isinstance(session,ClientSession):
             raise (Exception("Session must be 'pymongo.client_session.ClientSession'"))
         if self._data.has_key("$set"):
-            _id = self._data["$set"].get("_id", None)
+            _id=self._data["$set"].get("_id",None)
             for key in self._data["$set"].keys():
-                if (key[0:1] == "$" or key == "_id") and (key not in ["$push", "$pull"]):
+                if (key[0:1]=="$" or key == "_id") and (key not in ["$push","$pull"]):
                     self._data["$set"].pop(key)
         else:
             for key in self._data.keys():
-                if (key[0:1] == "$" or key == "_id") and (key not in ["$push", "$pull"]):
+                if (key[0:1]=="$" or key == "_id") and (key not in ["$push","$pull"]):
                     self._data.pop(key)
 
-        _coll = self._coll.get_collection()
+
+
+        _coll=self._coll.get_collection()
         model_events = helpers.events(self._coll._model.name)
-        if self._action == "insert_one":
-            ret_data = {}
+        if self._action=="insert_one":
+            ret_data={}
 
             try:
-                self._data = extract_data(self._data)
-                if model_events != None:
+                self._data=extract_data(self._data)
+                if model_events!=None:
                     for fn in model_events._on_before_insert:
                         fn(self._data)
-                ret_validate_require = validators.validate_require_data(self._coll._model.name, self._data)
-                if ret_validate_require.__len__() > 0:
+                ret_validate_require=validators.validate_require_data(self._coll._model.name,self._data)
+                if ret_validate_require.__len__()>0:
                     if exec_mode.get_mode() == "off":
                         return dict(
                             error=dict(
@@ -355,17 +329,17 @@ class ENTITY():
                                 code="missing"
                             )
                         )
-                    elif exec_mode.get_mode() == "on":
-                        raise (Exception("Data is missing\n"
-                                         "The missing data are below\n{0}".format(ret_validate_require)))
+                    elif exec_mode.get_mode() =="on":
+                        raise(Exception("Data is missing\n"
+                                        "The missing data are below\n{0}".format(ret_validate_require)))
                     elif exec_mode.get_mode() == "return":
-                        return self._data, dict(
-                            fields=ret_validate_require,
-                            code="missing"
-                        )
+                        return self._data,dict(
+                                fields=ret_validate_require,
+                                code="missing"
+                            )
 
-                ret_validate_data_type = validators.validate_type_of_data(self._coll._model.name, self._data)
-                if ret_validate_data_type.__len__() > 0:
+                ret_validate_data_type=validators.validate_type_of_data(self._coll._model.name,self._data)
+                if ret_validate_data_type.__len__()>0:
                     if exec_mode.get_mode() == "off":
                         return dict(
                             error=dict(
@@ -374,14 +348,13 @@ class ENTITY():
                             )
                         )
                     elif exec_mode.get_mode() == "on":
-                        raise (
-                            Exception("Data invalid, the invlid data are below\n {0}".format(ret_validate_data_type)))
+                        raise (Exception("Data invalid, the invlid data are below\n {0}".format(ret_validate_data_type)))
                     elif exec_mode.get_mode() == "return":
-                        return self._data, dict(
-                            fields=ret_validate_data_type,
-                            code="invalid_data"
-                        )
-                ret = _coll.insert_one(self._data, False, session)
+                        return self._data,dict(
+                                fields=ret_validate_data_type,
+                                code="invalid_data"
+                            )
+                ret = _coll.insert_one(self._data,False,session)
                 ret_data = self._data.copy()
                 ret_data.update({
                     "_id": ret.inserted_id
@@ -393,27 +366,26 @@ class ENTITY():
                         error=None,
                         data=ret_data
                     )
-                elif exec_mode.get_mode() == "return":
-                    return ret_data, None, "Insert data is successfull"
+                elif exec_mode.get_mode() =="return":
+                    return ret_data, None,"Insert data is successfull"
                 else:
                     return ret_data
             except pymongo.errors.DuplicateKeyError as ex:
-                ret_data = self.get_duplicate_error(ex)
+                ret_data= self.get_duplicate_error(ex)
                 if exec_mode.get_mode() == "off":
                     ret_data.update({
                         "data": self._data
                     })
                     return ret_data
                 elif exec_mode.get_mode() == "on":
-                    raise (
-                        Exception("Data is duplicate, duplicate fields is in {0}".format(ret_data['error']['fields'])))
+                    raise (Exception("Data is duplicate, duplicate fields is in {0}".format(ret_data['error']['fields'])))
                 elif exec_mode.get_mode() == "return":
-                    return self._data, ret_data, "Duplicate data value when insert data"
+                    return self._data, ret_data,"Duplicate data value when insert data"
             except Exception as ex:
                 raise ex
 
 
-        elif self._action == "insert_many":
+        elif self._action=="insert_many":
             if model_events:
                 for item in self._data:
                     for fn in model_events._on_before_insert:
@@ -423,12 +395,12 @@ class ENTITY():
             self._data = {}
             return ret
         else:
-            if self._expr == None:
+            if self._expr==None:
                 raise Exception("Can not modified data without using filter")
-            if self._action == "update_one":
+            if self._action=="update_one":
                 try:
-                    ret = _coll.update_one(self._expr, self._data)
-                    self._expr = None
+                    ret = _coll.update_one(self._expr,self._data)
+                    self._expr=None
                     self._action = None
                     self._data = {}
                     if exec_mode.get_mode() == "off":
@@ -439,26 +411,26 @@ class ENTITY():
                         return self._data, None, ex
                     raise ex
 
-            if self._action == "update_many":
+
+            if self._action=="update_many":
                 if not self._data.has_key("$set"):
-                    self._data = {
-                        "$set": self._data
+                    self._data={
+                        "$set":self._data
                     }
                 _sub_action_validate_require = []
 
-                _chk_data = self._data
+                _chk_data =self._data
                 if _chk_data.has_key("$set"):
-                    _chk_data = self._data["$set"]
-                _sub_actions = [(k, v.keys()[0]) for k, v in _chk_data.items() if
-                                type(v) is dict and v != {} and k in ["$push", "$inc", "$dec"]]
+                    _chk_data =self._data["$set"]
+                _sub_actions = [(k,v.keys()[0]) for k,v in _chk_data.items() if type(v) is dict and v!={} and k in ["$push","$inc","$dec"]]
                 if model_events:
                     _c_data = self._data.get("$set", {})
                     for fn in model_events._on_before_update:
                         fn(_c_data)
                 # v_data=self._data.get("$set",self._data.get("$push",self._data.get("$pull",None)))
-                ret_validate_require = []
+                ret_validate_require =[]
                 ret_validate_require = validators.validate_require_data(self._coll._model.name, _c_data, partial=True)
-                validate_from_fields = []
+                validate_from_fields =[]
                 for x, y in _sub_actions:
                     vlds = validators.validate_require_data_from_field(self._coll._model.name, _c_data[x], y)
                     ret_validate_require.extend(vlds)
@@ -473,10 +445,10 @@ class ENTITY():
                     elif exec_mode.get_mode() == "on":
                         raise (Exception("Data is missing\n Fields is missing:\n {0}".format(ret_validate_require)))
                     elif exec_mode.get_mode() == "return":
-                        return self._data, dict(
-                            fields=ret_validate_require,
-                            code="missing"
-                        )
+                        return self._data,dict(
+                                fields=ret_validate_require,
+                                code="missing"
+                            )
 
                 ret_validate_data_type = validators.validate_type_of_data(self._coll._model.name, _c_data)
                 if ret_validate_data_type.__len__() > 0:
@@ -490,10 +462,10 @@ class ENTITY():
                     elif exec_mode.get_mode() == "on":
                         raise (Exception("Data is invalid\n Fields is missing:\n {0}".format(ret_validate_data_type)))
                     else:
-                        return self._data, dict(
-                            fields=ret_validate_require,
-                            code="missing"
-                        )
+                        return self._data,dict(
+                                fields=ret_validate_require,
+                                code="missing"
+                            )
                 _x = {}
                 for k, v in _c_data.items():
                     if k[0] == "$":
@@ -509,7 +481,7 @@ class ENTITY():
                 _data = self._data.copy()
                 try:
 
-                    ret = _coll.update_many(self._expr, _x, False, None, False, None, session)
+                    ret = _coll.update_many(self._expr,_x,False,None,False,None,session)
                     self._expr = None
                     self._action = None
 
@@ -519,10 +491,8 @@ class ENTITY():
                             error=None,
                             data=ret
                         )
-                    elif exec_mode.get_mode() == "return":
-                        return _data, None,"Update data is successfull"
-                    else:
-                        return ret
+                    elif exec_mode.get_mode() =="return":
+                        return _data,None
 
                 except pymongo.errors.DuplicateKeyError as ex:
                     ret_data = self.get_duplicate_error(ex)
@@ -534,72 +504,62 @@ class ENTITY():
                         raise (Exception("Data is duplicate,\n"
                                          "Duplicate fields are below\n{0}".format(ret_data)))
                     elif exec_mode.get_mode() == "return":
-                        return _data, ret_data,"Update data is error with duplicate value"
+                        return _data,ret_data
                     return ret_data
                 except Exception as ex:
                     if exec_mode.get_mode() == "return":
-                        return _data, ex,"Update data is error"
+                        return _data,ex
                     else:
                         raise (ex)
 
-            if self._action == "delete":
+            if self._action=="delete":
                 _data = self._data.copy()
-                ret = _coll.delete_many(self._expr, None, session)
+                ret = _coll.delete_many(self._expr,None,session)
                 self._expr = None
                 self._action = None
                 self._data = {}
                 try:
-                    ret = {"deleted": ret.deleted_count}
+                    ret = { "deleted":ret.deleted_count}
                     if exec_mode.get_mode() == "off":
                         return ret
                     elif exec_mode.get_mode() == "return":
-                        return ret, None,"Delete data is successfull"
-                    else:
-                        return ret
+                        return ret,None
                 except Exception as ex:
                     if exec_mode.get_mode() == "return":
-                        return _data, ex,"Delete data is error"
+                        return _data,ex
                     else:
                         raise (ex)
-
-
 class WHERE():
     """
     This class define where for Entity will be remove on the next version
     """
-
     def __init__(self, coll):
         self.name = ""
         self._coll = None
         self._where_ = {}
         self._entity = None
         self._coll = coll
-        self.name = coll.name
-        self._update_data = {}
-
+        self.name=coll.name
+        self._update_data ={}
     @property
     def cursor(self):
         return self._coll.get_collection().find(self._where_)
-
     @property
     def items(self):
         return list(self.cursor)
-
     @property
     def item(self):
         return self._coll.get_collection().find_one(self._where_)
-
     @property
     def objects(self):
         from fx_model import s_obj
-        cursor = self.cursor
+        cursor =self.cursor
         continue_fetch = True
         while continue_fetch:
             try:
                 yield s_obj(cursor.next())
             except StopIteration as ex:
                 continue_fetch = False
-
     @property
     def object(self):
         from fx_model import s_obj
@@ -608,13 +568,11 @@ class WHERE():
             return None
         else:
             return s_obj(item)
-
     def to_entity(self):
-        if self._entity == None:
-            self._entity = ENTITY(self._coll.qr, self._coll, self.name)
+        if self._entity==None:
+            self._entity=ENTITY(self._coll.qr,self._coll,self.name)
         return self._entity
-
-    def where(self, expression, *args, **kwargs):
+    def where(self,expression,*args,**kwargs):
         from . import helpers
         entity = self.to_entity()
         unknown_fields = entity._coll._model.validate_expression(expression, None, *args, **kwargs)
@@ -622,10 +580,9 @@ class WHERE():
             raise (Exception("What is bellow list of fields?:\n" + entity._coll.descibe_fields("\t\t", unknown_fields) +
                              " \n Your selected fields now is bellow list: \n" +
                              entity._coll.descibe_fields("\t\t\t", entity._coll._model.get_fields())))
-        self._where_ = helpers.filter(expression, *args, **kwargs).get_filter()
+        self._where_=helpers.filter(expression,*args,**kwargs).get_filter()
         return self
-
-    def where_and(self, expression, *args, **kwargs):
+    def where_and(self,expression,*args,**kwargs):
         from . import helpers
         entity = self.to_entity()
         unknown_fields = entity._model.validate_expression(expression, None, *args, **kwargs)
@@ -633,15 +590,14 @@ class WHERE():
             raise (Exception("What is bellow list of fields?:\n" + entity._coll.descibe_fields("\t\t", unknown_fields) +
                              " \n Your selected fields now is bellow list: \n" +
                              entity._coll.descibe_fields("\t\t\t", entity._coll._model.get_fields())))
-        filter = helpers.filter(expression, *args, **kwargs).get_filter()
+        filter =helpers.filter(expression,*args,**kwargs).get_filter()
         if not self._where_.has_key("$and"):
-            fx = self._where_
-            self._where_ = {"$and": [fx, filter]}
+            fx =self._where_
+            self._where_ ={"$and":[fx,filter]}
         else:
             self._where_["$and"].append(filter)
         return self
-
-    def where_or(self, expression, *args, **kwargs):
+    def where_or(self,expression, *args, **kwargs):
         from . import helpers
         entity = self.to_entity()
         unknown_fields = entity._model.validate_expression(expression, None, *args, **kwargs)
@@ -655,61 +611,75 @@ class WHERE():
         else:
             self._where_["$or"].append(filter)
         return self
-
-    def set(self, *args, **kwargs):
+    def set(self,*args,**kwargs):
         data = kwargs
-        if args.__len__() > 0:
+        if args.__len__()>0:
             data = args[0]
         self._update_data.update(data)
         _data = {}
-        for k, v in data.items():
+        for k,v in data.items():
             if type(v) is dict:
-                _data.update({k: v})
-            elif hasattr(v, "__to_dict__"):
+                _data.update({k:v})
+            elif hasattr(v,"__to_dict__"):
                 _data.update({k: v.__to_dict__()})
         return self
-
-    def push(self, *args, **kwargs):
+    def push(self,*args,**kwargs):
         import inspect
-        _name = "$" + inspect.stack()[0][3]
+        _name = "$"+inspect.stack()[0][3]
         data = kwargs
         if args.__len__() > 0:
             data = args[0]
 
         _data = {}
-        for k, v in data.items():
+        for k,v in data.items():
             if type(v) is dict:
-                _data.update({k: v})
-            elif hasattr(v, "__to_dict__"):
+                _data.update({k:v})
+            elif hasattr(v,"__to_dict__"):
                 _data.update({k: v.__to_dict__()})
             else:
                 _data.update({k: v})
 
         self._update_data.update({
-            _name: _data
+            _name:_data
         })
         return self
-
-    def pull(self, expression, *args, **kwargs):
+    def pull(self,expression,*args,**kwargs):
         import inspect
         _name = "$" + inspect.stack()[0][3]
 
-        _data = helpers.filter(expression, *args, **kwargs).get_filter()
-        _pull_data_ = helpers.slice_key_of_dict(_data)
+        _data = helpers.filter(expression,*args,**kwargs).get_filter()
+
+        def fix_eq(_data):
+            if not type(_data) is dict:
+                return _data
+            if _data.keys()[0]=="$eq":
+                return _data["$eq"]
+            _pull_filter_ = {}
+            for k, v in _data.items():
+                if type(v) is dict and v.has_key("$eq"):
+                    _pull_filter_.update({k: fix_eq(v["$eq"])})
+                elif type(v) is list:
+                    _pull_filter_.update({k:[fix_eq(x) for x in v]})
+                else:
+                    _pull_filter_.update({k: v})
+            return _pull_filter_
+
+        _pull_data_ = helpers.slice_key_of_dict(fix_eq(_data))
+
+
 
         if not self._update_data.has_key(_name):
             self._update_data.update({
-                _name: {}
+                _name:{}
             })
         _pull_data_old = self._update_data[_name]
 
-        _pull_data_ = helpers.merge_dict(_pull_data_old, _pull_data_)
+        _pull_data_= helpers.merge_dict(_pull_data_old,_pull_data_)
         self._update_data.update({
             _name: _pull_data_
         })
         return self
-
-    def inc(self, *args, **kwargs):
+    def inc(self,*args,**kwargs):
         import inspect
         _name = "$" + inspect.stack()[0][3]
         data = kwargs
@@ -720,8 +690,7 @@ class WHERE():
             _name: data
         })
         return self
-
-    def dec(self, *args, **kwargs):
+    def dec(self,*args,**kwargs):
         import inspect
         _name = "$" + inspect.stack()[0][3]
         data = kwargs
@@ -732,9 +701,8 @@ class WHERE():
             _name: data
         })
         return self
-
-    def delete(self, session=None):
-        if self._update_data == {}:
+    def delete(self,session=None):
+        if self._update_data =={}:
             return None
         if self._where_ == {}:
             raise (Exception("Canot not commit without where conditional"))
@@ -743,26 +711,22 @@ class WHERE():
         entity._expr = self._where_
         ret = entity.commit(session)
         return ret
-
-    def commit(self, session=None):
-        if self._update_data == {}:
+    def commit(self,session = None):
+        if self._update_data =={}:
             return None
         if self._where_ == {}:
             raise (Exception("Canot not commit without where conditional"))
         entity = self.to_entity()
-        entity._data = self._update_data
+        entity._data= self._update_data
         entity._action = "update_many"
         entity._expr = self._where_
         ret = entity.commit(session)
         return ret
-
-
 class COLL():
     """
     Define a collection
     """
-
-    def __init__(self, qr, name):
+    def __init__(self,qr,name):
         # type: (QR,str) -> NotImplemented
         """
         Create instance of COLL
@@ -774,23 +738,22 @@ class COLL():
         self._where = None
         self._entity = None
 
-        self._none_schema_name = name
-        self._never_use_schema = False  # do not use schema whenever extract database from mongodb
+        self._none_schema_name=name
+        self._never_use_schema=False #do not use schema whenever extract database from mongodb
 
-        self._model = get_model(name)
-        self.schema = get_current_schema()
+        self._model=get_model(name)
+        self.schema=get_current_schema()
         self.session = None
 
-        self.qr = qr
 
+        self.qr=qr
     def turn_never_use_schema_on(self):
         """
         This method will tell to database in qmongo never use schema whenever excute mongodb query
         :return:
         """
-        self._never_use_schema = True
-
-    def set_session(self, _session):
+        self._never_use_schema=True
+    def set_session(self,_session):
         # type: (ClientSession) -> COLL
         """
         Join this collection to session
@@ -798,22 +761,21 @@ class COLL():
         :return:
         """
 
-        if not isinstance(_session, ClientSession):
-            raise (Exception("Session must be 'pymongo.client_session.ClientSession'"))
-        self.session = _session
-        return self
 
-    def set_schema(self, schema_name):
+        if not isinstance(_session,ClientSession):
+            raise (Exception("Session must be 'pymongo.client_session.ClientSession'"))
+        self.session=_session
+        return self
+    def set_schema(self,schema_name):
         # type: (str) -> COLL
         """
         Change schema name before use any data operation
         :param schema_name:
         :return:
         """
-        self.schema = schema_name
-        return self
-
-    def descibe_fields(self, tabs, fields):
+        self.schema=schema_name
+        return  self
+    def descibe_fields(self,tabs,fields):
         """
         Return list of fields
         :param tabs:
@@ -822,9 +784,8 @@ class COLL():
         """
         _fields = ""
         for x in fields:
-            _fields += tabs + x + "\n"
-        return _fields
-
+            _fields += tabs+ x + "\n"
+        return  _fields
     def get_name(self):
         # type:() -> str
         """
@@ -835,16 +796,16 @@ class COLL():
 
     def get_collection_name(self):
         if not self._never_use_schema:
-            return self.schema + "." + self._none_schema_name
+            return self.schema+"."+self._none_schema_name
         else:
             return self._none_schema_name
-
     def get_collection(self):
         # type: () -> pymongo.collection.Collection
         """
         get mongodb collection, before get this method will run create unique key script according to 'key' in model
         :return:
         """
+
 
         context = self.qr.db
         if context == None:
@@ -859,57 +820,54 @@ class COLL():
             else:
                 self.qr.db = context.db
         if self.schema == None:
-            from .db_context import get_schema
+            from . db_context import get_schema
             self.schema = get_schema()
             if self.schema == None:
                 raise (Exception("Please use:\n"
                                  "import qmongo\n"
                                  "qmongo.set_schema(schema_name)"))
 
-        if hasattr(self, "__create_mongodb_view__"):
+        if hasattr(self,"__create_mongodb_view__"):
             self.__create_mongodb_view__(self).next()
-            delattr(self, "__create_mongodb_view__")
+            delattr(self,"__create_mongodb_view__")
 
         global _cache_create_key_for_collection
-        if _cache_create_key_for_collection == None:
-            _cache_create_key_for_collection = {}
-        ret_coll = None
+        if _cache_create_key_for_collection==None:
+            _cache_create_key_for_collection={}
+        ret_coll=None
         if self._never_use_schema:
-            ret_coll = self.qr.db.get_collection(self._none_schema_name).with_options(
-                codec_options=self.qr._codec_options)
+            ret_coll = self.qr.db.get_collection(self._none_schema_name).with_options(codec_options=self.qr._codec_options)
         else:
-            ret_coll = self.qr.db.get_collection(self.schema + "." + self._none_schema_name).with_options(
-                codec_options=self.qr._codec_options)
-        key_info = get_keys_of_model(self._none_schema_name)
-        if key_info["keys"] != None and not dict_utils.has_key(_cache_create_key_for_collection,
-                                                               self.get_collection_name()):
+            ret_coll=self.qr.db.get_collection(self.schema+"."+ self._none_schema_name).with_options(codec_options=self.qr._codec_options)
+        key_info=get_keys_of_model(self._none_schema_name)
+        if key_info["keys"]!=None  and not dict_utils.has_key(_cache_create_key_for_collection,self.get_collection_name()):
             for item in key_info["keys"]:
-                keys = []
-                partialFilterExpression = {}
+                keys=[]
+                partialFilterExpression={}
 
                 for field_name in item:
 
-                    keys.append((field_name, pymongo.ASCENDING))
-                    if (self._model.meta[field_name] == "text"):
+                    keys.append((field_name,pymongo.ASCENDING))
+                    if(self._model.meta[field_name]=="text"):
                         partialFilterExpression.update({
-                            field_name: {
-                                "$type": "string"
+                            field_name:{
+                                "$type":"string"
                             }
                         })
                 if keys.__len__() > 0:
 
                     try:
                         ret_coll.create_index(keys,
-                                              unique=True,
-                                              partialFilterExpression=partialFilterExpression)
-                        has_create_index = True
+                                          unique=True,
+                                          partialFilterExpression=partialFilterExpression)
+                        has_create_index=True
                         # ret_coll.create_index(keys,
                         #                       unique=True)
                         # _cache_create_key_for_collection.update({
                         #     self.get_collection_name():True
                         # })
                     except Exception as ex:
-                        if ex.code == 85:
+                        if ex.code==85:
                             _cache_create_key_for_collection.update({
                                 self.get_collection_name(): True
                             })
@@ -917,8 +875,7 @@ class COLL():
                         logger.error(ex)
 
         return ret_coll
-
-    def find_one(self, exprression=None, *args, **kwargs):
+    def find_one(self,exprression=None,*args,**kwargs):
 
         # type: (str,dict|tuple|int|bool|float|datetime|list) -> dict
 
@@ -926,10 +883,10 @@ class COLL():
             find_one("Username='admin'"),
             find_one("Username=@username",username="admin")
          """
-        if exprression == None:
+        if exprression==None:
             return self.get_collection().find_one()
 
-        unknown_fields = self._model.validate_expression(exprression, None, *args, **kwargs)
+        unknown_fields = self._model.validate_expression(exprression,None,*args,**kwargs)
         if unknown_fields.__len__() > 0:
             raise (Exception("What is bellow list of fields?:\n" + self.descibe_fields("\t\t", unknown_fields) +
                              " \n Your selected fields now is bellow list: \n" +
@@ -941,25 +898,23 @@ class COLL():
             ret = self.get_collection().find_one(exprression[0])
             return ret
         else:
-            if type(args) is tuple and args.__len__() > 0 and kwargs == {}:
-                kwargs = args[0]
+            if type(args) is tuple and args.__len__()>0 and kwargs=={}:
+                kwargs=args[0]
             filter = expr.parse_expression_to_json_expression(exprression, kwargs)
-            ret = self.get_collection().find_one(filter)
+            ret=self.get_collection().find_one(filter)
             return ret
-
-    def objects(self, exprression=None, *args, **kwargs):
+    def objects(self,exprression=None,*args,**kwargs):
         from . import fx_model
-
-        iters = self.cursors(exprression, *args, **kwargs)
+        iters= self.cursors(exprression,*args,**kwargs)
         continue_fetch = True
         while continue_fetch:
             try:
                 item = iters.next()
                 yield fx_model.s_obj(item)
             except StopIteration as ex:
-                continue_fetch = False
+                continue_fetch  = False
 
-    def cursors(self, exprression=None, *args, **kwargs):
+    def cursors(self,exprression = None,*args,**kwargs):
         # type: (str,dict|tuple|int|bool|float|datetime|list) -> dict
 
         """find and get a list of items item with conditional ex: find("Username={0}","admin"),
@@ -984,16 +939,14 @@ class COLL():
             y = expr.get_expr(x, *args, **kwargs)
             ret = self.get_collection().find(y)
             return ret
-
-    def find(self, exprression, *args, **kwargs):
+    def find(self,exprression,*args,**kwargs):
         # type: (str,dict|tuple|int|bool|float|datetime|list) -> dict
 
         """find and get a list of items item with conditional ex: find("Username={0}","admin"),
                     find("Username='admin'"),
                     find("Username=@username",username="admin")
                  """
-        return list(self.cursors(exprression, *args, **kwargs))
-
+        return list(self.cursors(exprression,*args,**kwargs))
     def get_list(self):
         # type: () -> list
         """
@@ -1002,7 +955,6 @@ class COLL():
         """
         ret = self.get_collection().find()
         return list(ret)
-
     def get_objects(self):
         # type: () -> list
         """
@@ -1011,7 +963,7 @@ class COLL():
         """
         from . import fx_model
         ret = self.get_collection().find()
-        m = True
+        m= True
         while m:
             try:
                 item = ret.next()
@@ -1027,22 +979,20 @@ class COLL():
         """
         ret = self.get_collection().find_one()
         return ret
-
     def get_object(self):
         # type : ()-> dict
         """
         Get one item from mongodb and return object without filtering
         :return:
         """
-        from . import dynamic_object
+        from . import fx_model
         ret = self.get_collection().find_one()
         if ret == None:
             return None
-        ret_object = dynamic_object.create_from_dict(ret)
+        ret_object = fx_model.s_obj(ret)
 
         return ret_object
-
-    def where(self, exprression, *args, **kwargs):
+    def where(self,exprression,*args,**kwargs):
         # type: (str,dict|tuple) -> COLL
 
         """Create filter expression before get data from mongo
@@ -1051,28 +1001,24 @@ class COLL():
                where("strLenCP(Username)<{0}",5).get_list()
 
         """
-        if self._where == None:
-            self._where = WHERE(self)
-            self._where.where(exprression, *args, **kwargs)
+        if self._where==None:
+            self._where=WHERE(self)
+            self._where.where(exprression,*args,**kwargs)
         return self._where
-
     def entity(self):
         self.get_collection()
-        if self._entity == None:
-            self._entity = ENTITY(self.qr, self, self.name)
+        if self._entity==None:
+            self._entity=ENTITY(self.qr,self,self.name)
         return self._entity
-
     def aggregate(self):
         """create aggregate before create pipeline"""
-        return AGGREGATE(self, self.qr, self.name, self.session)
-
-    def insert_object(self, obj_item):
-        from . import dynamic_object
-        if not type(obj_item) is dynamic_object.dynamic_object:
-            raise (Exception("parameter must be '{0}".format('qmonog.dynamic_object.dynamic_object')))
-        return self.insert(obj_item._dict_)
-
-    def insert(self, *args, **kwargs):
+        return AGGREGATE(self,self.qr,self.name,self.session)
+    def insert_object(self,obj_item):
+        from . import fx_model
+        if not hasattr(obj_item,"__to_dict__"):
+            raise (Exception("Insert object must have '__to_dict__()'"))
+        return self.insert(obj_item.__to_dict__())
+    def insert(self,*args,**kwargs):
         # type: (dict|tuple) -> dict
 
         """
@@ -1082,11 +1028,11 @@ class COLL():
         :return: dict including data has been inserted and error
         """
 
-        ac = self.entity().insert_one(*args, **kwargs)
-        ret = ac.commit(self.session)
+        ac=self.entity().insert_one(*args,**kwargs)
+        ret=ac.commit(self.session)
         return ret
+    def insert_one(self,*args,**kwargs):
 
-    def insert_one(self, *args, **kwargs):
 
         # type: (dict|tuple) -> dict
 
@@ -1096,24 +1042,22 @@ class COLL():
         :param kwargs:
         :return: dict including data has been inserted and error
         """
-        if type(args) is tuple and args.__len__() > 0:
-            if hasattr(args[0], "__to_dict__"):
+        if type(args) is tuple and args.__len__() >0:
+            if hasattr(args[0],"__to_dict__"):
                 _args = args[0].__to_dict__()
                 ac = self.entity().insert_one(_args)
                 ret = ac.commit(self.session)
                 return ret
-        ac = self.entity().insert_one(*args, **kwargs)
-        ret = ac.commit(self.session)
+        ac=self.entity().insert_one(*args,**kwargs)
+        ret=ac.commit(self.session)
         return ret
-
-    def update_object(self, obj_item, filter, *args, **kwargs):
-        from . import dynamic_object
-        if not type(obj_item) is dynamic_object.dynamic_object:
-            raise (Exception("parameter must be '{0}".format('qmonog.dynamic_object.dynamic_object')))
-        return self.update(obj_item._dict_, filter, *args, **kwargs)
-
-    def update(self, data, filter, *args, **kwargs):
+    def update_object(self,obj_item,filter,*args,**kwargs):
+        if not hasattr(obj_item,"__to_dict__"):
+            raise (Exception("update object must have '__to_dict__()'"))
+        return self.update(obj_item.__to_dict__(),filter,*args,**kwargs)
+    def update(self,data,filter,*args,**kwargs):
         # type: (dict,str,int|bool|datetime|float|dict|tuple|list) -> dict
+
 
         """
         Update data example: update({"password":"123"},"username=={0}","admin")
@@ -1123,30 +1067,28 @@ class COLL():
         :param kwargs:
         :return: dict with data and error
         """
-        import dynamic_object
-        unknown_fields = self._model.validate_expression(filter, None, *args, **kwargs)
+        unknown_fields = self._model.validate_expression(filter,None,*args,**kwargs)
         if unknown_fields.__len__() > 0:
             raise (Exception("What is bellow list of fields?:\n" + self.descibe_fields("\t\t", unknown_fields) +
                              " \n Your selected fields now is bellow list: \n" +
                              self.descibe_fields("\t\t\t", self._model.get_fields())))
-        if type(args) is tuple and args.__len__() > 0 and kwargs == {}:
-            kwargs = args[0]
-            if hasattr(kwargs, "__dict__"):
-                kwargs = dynamic_object.convert_to_dict(kwargs)
-        ac = self.entity().filter(filter, kwargs)
+        if type(args) is tuple and args.__len__()>0 and kwargs=={}:
+            kwargs=args[0]
+            if hasattr(kwargs,"__to_dict__"):
+                kwargs=(kwargs.__to_dict__())
+        ac=self.entity().filter(filter,kwargs)
         ac.update_many(data)
-        ret = ac.commit(self.session)
+        ret=ac.commit(self.session)
         return ret
 
     def push_object(self, obj_item, filter, *args, **kwargs):
-        from . import dynamic_object
-        if not type(obj_item) is dynamic_object.dynamic_object:
-            raise (Exception("parameter must be '{0}".format('qmonog.dynamic_object.dynamic_object')))
-        return self.push(obj_item._dict_, filter, *args, **kwargs)
-
-    def push(self, data, filter, *args, **kwargs):
+        if not hasattr(obj_item,"__to_dict__"):
+            raise (Exception("push object must have '__to_dict__()"))
+        return self.push(obj_item.__to_dict__(), filter, *args, **kwargs)
+    def push(self,data,filter,*args,**kwargs):
 
         # type: (dict,str,int|bool|datetime|float|dict|tuple|list) -> dict
+
 
         """
         Update data example: update({"password":"123"},"username=={0}","admin")
@@ -1156,29 +1098,22 @@ class COLL():
         :param kwargs:
         :return: dict with data and error
         """
-        unknown_fields = self._model.validate_expression(filter, None, *args, **kwargs)
+        unknown_fields = self._model.validate_expression(filter,None,*args,**kwargs)
         if unknown_fields.__len__() > 0:
             raise (Exception("What is bellow list of fields?:\n" + self.descibe_fields("\t\t", unknown_fields) +
                              " \n Your selected fields now is bellow list: \n" +
                              self.descibe_fields("\t\t\t", self._model.get_fields())))
-        if type(args) is tuple and args.__len__() > 0 and kwargs == {}:
-            kwargs = args[0]
-            if hasattr(kwargs, "__dict__"):
-                from . import dynamic_object
-                kwargs = dynamic_object.convert_to_dict(kwargs)
-        ac = self.entity().filter(filter, kwargs)
+        if type(args) is tuple and args.__len__()>0 and kwargs=={}:
+            kwargs=args[0]
+            if hasattr(kwargs,"__to_dict__"):
+                kwargs=(kwargs.__to_dict__())
+        ac=self.entity().filter(filter,kwargs)
         ac.push(data)
-        ret = ac.commit(self.session)
+        ret=ac.commit(self.session)
         return ret
-
-    def pull_object(self, obj_item, filter, *args, **kwargs):
-        from . import dynamic_object
-        if not type(obj_item) is dynamic_object.dynamic_object:
-            raise (Exception("parameter must be '{0}".format('qmonog.dynamic_object.dynamic_object')))
-        return self.pull(obj_item._dict_, filter, *args, **kwargs)
-
-    def pull(self, data, filter, *args, **kwargs):
+    def pull(self,data,filter,*args,**kwargs):
         # type: (dict,str,int|bool|datetime|float|dict|tuple|list) -> dict
+
 
         """
         Update data example: update({"password":"123"},"username=={0}","admin")
@@ -1188,39 +1123,33 @@ class COLL():
         :param kwargs:
         :return: dict with data and error
         """
-        unknown_fields = self._model.validate_expression(filter, None, *args, **kwargs)
+        unknown_fields = self._model.validate_expression(filter,None,*args,**kwargs)
         if unknown_fields.__len__() > 0:
             raise (Exception("What is bellow list of fields?:\n" + self.descibe_fields("\t\t", unknown_fields) +
                              " \n Your selected fields now is bellow list: \n" +
                              self.descibe_fields("\t\t\t", self._model.get_fields())))
-        if type(args) is tuple and args.__len__() > 0 and kwargs == {}:
-            kwargs = args[0]
-            if hasattr(kwargs, "__dict__"):
-                from . import dynamic_object
-                kwargs = dynamic_object.convert_to_dict(kwargs)
-        ac = self.entity().filter(filter, kwargs)
+        ac=self.entity().filter(filter,kwargs)
         ac.pull(data)
-        ret = ac.commit(self.session)
+        ret=ac.commit(self.session)
         return ret
-
-    def create_unique_index(self, *args, **kwargs):
+    def create_unique_index(self,*args,**kwargs):
         """
         Create unique key refer to link : https://docs.mongodb.com/manual/reference/method/db.collection.createIndex/
         :param args:
         :param kwargs:
         :return:
         """
-        if type(args) is tuple and args.__len__() > 0:
-            args = args[0]
+        if type(args) is tuple and args.__len__()>0:
+            args=args[0]
         for item in args:
-            keys = []
-            partialFilterExpression = {}
+            keys=[]
+            partialFilterExpression={}
             coll = self.get_collection()
             for x in item:
-                keys.append((x["field"], pymongo.ASCENDING))
+                keys.append((x["field"],pymongo.ASCENDING))
                 partialFilterExpression.update({
-                    x["field"]: {
-                        "$type": x["type"]
+                    x["field"]:{
+                        "$type":x["type"]
                     }
                 })
 
@@ -1231,8 +1160,7 @@ class COLL():
                               partialFilterExpression=partialFilterExpression)
 
         return self
-
-    def delete(self, filter, *args, **kwargs):
+    def delete(self,filter,*args,**kwargs):
         # type: (str,int|float|datetime|str|unicode|dict|tuple|str) -> dict
 
         """
@@ -1242,54 +1170,39 @@ class COLL():
         :param kwargs:
         :return:
         """
-        unknown_fields = self._model.validate_expression(filter, None, *args, **kwargs)
+        unknown_fields = self._model.validate_expression(filter,None,*args,**kwargs)
         if unknown_fields.__len__() > 0:
             raise (Exception("What is bellow list of fields?:\n" + self.descibe_fields("\t\t", unknown_fields) +
                              " \n Your selected fields now is bellow list: \n" +
                              self.descibe_fields("\t\t\t", self._model.get_fields())))
-        ac = self.entity().filter(filter, *args, **kwargs)
+        ac=self.entity().filter(filter,*args,**kwargs)
         ac.delete()
-        ret = ac.commit(self.session)
+        ret=ac.commit(self.session)
         return ret
-
-    def get_filter_keys(self, keys):
-        ret = ""
+    def get_filter_keys(self,keys):
+        ret=""
         for key in keys:
-            ret += "(" + key + "==@" + key + ")and"
-        return ret[0:ret.__len__() - 3]
-
-    def save(self, data, keys):
-        if hasattr(data, "__dict__"):
-            from . import dynamic_object
-            data = dynamic_object.convert_to_dict(data)
-        filter_key = self.get_filter_keys(keys)
-        data_item = self.find_one(filter_key, data)
-        ret = {}
-        if data_item != None:
-            ret_val = self.update(data, filter_key, data)
-            ret.update({
-                "action": "update",
-                "_id": data_item["_id"],
-                "error": ret_val["error"]
-            })
+            ret+="("+key+"==@"+key+")and"
+        return ret[0:ret.__len__()-3]
+    def save(self,data,keys):
+        _data = data
+        if hasattr(data, "__to_dict__"):
+            _data = data.__to_dict__()
+        filter_key=self.get_filter_keys(keys)
+        data_item=self.find_one(filter_key,_data)
+        ret={}
+        if data_item!=None:
+            ret_val=self.update(data,filter_key,_data)
         else:
-            ret_val = self.insert(data)
-            ret.update({
-                "action": "update",
-                "_id": ret_val["data"]["_id"],
-                "error": ret_val["error"]
-            })
-
-        return data_item
-
-
+            ret_val=self.insert(_data)
+        return ret_val
 class AGGREGATE():
     """
     This class is a utility for mongodb aggregation framework. For more detail refer to :https://docs.mongodb.com/manual/aggregation/
 
     """
 
-    def __init__(self, coll, qr, name, session=None):
+    def __init__(self,coll, qr, name,session = None):
         # type: (COLL,QR,str) -> AGGREGATE
         """
         Create instance of AGGREGATE
@@ -1297,32 +1210,30 @@ class AGGREGATE():
         :param qr: instance of QR, this param will be use when get data from mongodb
         :param name: collecion name without schema
         """
-        if session != None and not isinstance(session, ClientSession):
+        if session != None and not isinstance(session,ClientSession):
             raise (Exception("session must be 'pymongo.client_session.ClientSession'"))
-        self.session = session
-        self._coll = coll
+        self.session=session
+        self._coll=coll
         self._selected_fields = None
         self.qr = qr
         self.name = name
-        self._pipe = []
-
+        self._pipe=[]
     def get_selected_fields(self):
         # type: () -> list
         """
         Get current selected fields of aggregate pipeline
         :return:
         """
-        if self._selected_fields == None:
-            self._selected_fields = self._coll._model.get_fields()
+        if self._selected_fields==None:
+            self._selected_fields=self._coll._model.get_fields()
             if self._selected_fields.count("_id") == 0:
                 self._selected_fields.append("_id")
-        ret = []
+        ret =[]
         for x in self._selected_fields:
             if ret.count(x) == 0:
                 ret.append(x)
         return ret
-
-    def descibe_fields(self, tabs, fields):
+    def descibe_fields(self,tabs,fields):
         # type: (str,list) -> str
         """
         Create well form text for list of fields
@@ -1332,20 +1243,19 @@ class AGGREGATE():
         """
         _fields = ""
         for x in fields:
-            _fields += tabs + x + "\n"
-        return _fields
-
-    def check_fields(self, field):
+            _fields += tabs+ x + "\n"
+        return  _fields
+    def check_fields(self,field):
         # type: (str) -> bool
         """
         Check a field if it is in list of current selected fields
         :param field:
         :return: if field was found return True else False
         """
-        ret = [x for x in self.get_selected_fields() if x == field]
-        return ret.__len__() > 0
+        ret=[x for x in self.get_selected_fields() if x==field]
+        return ret.__len__()>0
 
-    def project(self, *args, **kwargs):
+    def project(self,*args,**kwargs):
         # type: (dict|tuple) -> AGGREGATE
 
         """
@@ -1373,40 +1283,41 @@ class AGGREGATE():
         :return:
         """
         _project = {}
-        if kwargs == {}:
+        if kwargs=={}:
             kwargs = args[0]
-            if args.__len__() > 1:
+            if args.__len__()>1:
 
-                params = args[1]
+                params=args[1]
             else:
                 params = args[0]
 
         else:
 
-            params = []
-            if type(args) is tuple and args.__len__() > 1 and type(args[0]) is dict:
+            params=[]
+            if type(args) is tuple and args.__len__()>1 and type(args[0]) is dict:
 
-                params = [e for e in args if args.index(e) > 0]
+                params=[e for e in args if args.index(e)>0]
                 kwargs = args[0]
-                args = []
-            elif type(args) is tuple and args.__len__() == 1 and type(args[0]) is dict:
-                params = kwargs
-                kwargs = args[0]
-        _next_step_fields = []
-        __params__ = [v for k, v in kwargs.items() if k == "__params__"]
-        if __params__.__len__() > 0:
+                args=[]
+            elif type(args) is tuple and args.__len__()==1 and type(args[0]) is dict:
+                params=kwargs
+                kwargs=args[0]
+        _next_step_fields=[]
+        __params__=[v for k,v in kwargs.items() if k=="__params__"]
+        if __params__.__len__()>0:
             params = __params__[0]
-        elif type(args) is tuple and args.__len__() > 0:
-            params = args[0]
+        elif type(args) is tuple and args.__len__()>0:
+            params =args[0]
         _tmp_ = {}
-        for k, v in kwargs.items():
-            if k != "__params__":
-                _tmp_.update({k: v})
-        kwargs = _tmp_
+        for k,v in kwargs.items():
+            if k !="__params__":
+                _tmp_.update({k:v})
+        kwargs =_tmp_
+
 
         for key in kwargs.keys():
             if key != "_id":
-                if kwargs[key] == 1:
+                if kwargs[key]==1:
                     if not self.check_fields(key):
                         raise (Exception("What is '" + key + "'?:\n" +
                                          " \n Your selected fields now is bellow list: \n" +
@@ -1415,30 +1326,27 @@ class AGGREGATE():
                         key: 1
                     })
                     _next_step_fields.append(key)
-                    _next_step_fields.extend([x for x in self._selected_fields if
-                                              x.__len__() > key.__len__() and x[0:key.__len__() + 1] == key + "."])
+                    _next_step_fields.extend([x for x in self._selected_fields if x.__len__()>key.__len__() and x[0:key.__len__()+1]==key+"."])
                 else:
-                    unknown_fields = self._coll._model.validate_expression(kwargs[key], self.get_selected_fields())
-                    if unknown_fields.__len__() > 0:
-                        raise (Exception(
-                            "What is bellow list of fields?:\n" + self.descibe_fields("\t\t", unknown_fields) +
-                            " \n Your selected fields now is bellow list: \n" +
-                            self.descibe_fields("\t\t\t", self.get_selected_fields())))
+                    unknown_fields = self._coll._model.validate_expression(kwargs[key],self.get_selected_fields())
+                    if unknown_fields.__len__()>0:
+                        raise (Exception("What is bellow list of fields?:\n"+self.descibe_fields("\t\t",unknown_fields)+
+                                         " \n Your selected fields now is bellow list: \n"+
+                                         self.descibe_fields("\t\t\t",self.get_selected_fields())))
                     _project.update({
-                        key: expr.get_calc_expr(kwargs[key], *params)
+                        key: expr.get_calc_expr(kwargs[key],*params)
                     })
                     _next_step_fields.append(key)
             else:
                 _project.update({
                     key: kwargs[key]
                 })
-        self._selected_fields = _next_step_fields
+        self._selected_fields=_next_step_fields
         self._pipe.append({
-            "$project": _project
+            "$project":_project
         })
         return self
-
-    def group(self, _id, selectors, *args, **kwargs):
+    def group(self,_id,selectors,*args,**kwargs):
         # type: (dict,dict|tuple|dict) -> AGGREGATE
 
         """
@@ -1457,27 +1365,27 @@ class AGGREGATE():
         :param kwargs:
         :return:
         """
-        _next_step_fields = []
-        __id = {}
+        _next_step_fields=[]
+        __id={}
         if type(_id) is dict:
             for key in _id.keys():
                 unknown_fields = self._coll._model.validate_expression(_id[key], self.get_selected_fields())
-                if unknown_fields.__len__() > 0:
-                    raise (Exception("What is bellow list of fields?:\n" + self.descibe_fields("\t\t", unknown_fields) +
-                                     " \n Your selected fields now is bellow list: \n" +
-                                     self.descibe_fields("\t\t\t", self.get_selected_fields())))
+                if unknown_fields.__len__()>0:
+                    raise (Exception("What is bellow list of fields?:\n"+self.descibe_fields("\t\t",unknown_fields)+
+                                     " \n Your selected fields now is bellow list: \n"+
+                                     self.descibe_fields("\t\t\t",self.get_selected_fields())))
                 _next_step_fields.append("_id")
-                _next_step_fields.append("_id." + key)
+                _next_step_fields.append("_id."+key)
                 __id.update({
-                    key: expr.get_calc_expr(_id[key], *args, **kwargs)
+                    key:expr.get_calc_expr(_id[key],*args,**kwargs)
                 })
         else:
             if not self.check_fields(_id):
-                raise (Exception("What is '" + _id + "'?:\n" +
+                raise (Exception("What is '"+_id+"'?:\n"  +
                                  " \n Your selected fields now is bellow list: \n" +
                                  self.descibe_fields("\t\t\t", self.get_selected_fields())))
 
-            __id = "$" + _id
+            __id="$"+_id
             _next_step_fields.append("_id")
             # _next_step_fields.append("_id."+_id)
 
@@ -1489,6 +1397,7 @@ class AGGREGATE():
         if not type(selectors) is dict:
             raise (Exception("'selectors' must be dict type"))
 
+
         for key in selectors.keys():
             unknown_fields = self._coll._model.validate_expression(selectors[key], self.get_selected_fields())
             if unknown_fields.__len__() > 0:
@@ -1496,14 +1405,13 @@ class AGGREGATE():
                                  " \n Your selected fields now is bellow list: \n" +
                                  self.descibe_fields("\t\t\t", self.get_selected_fields())))
             _group["$group"].update({
-                key: expr.get_calc_expr(selectors[key], *args, **kwargs)
+                key:expr.get_calc_expr(selectors[key],*args,**kwargs)
             })
             _next_step_fields.append(key)
         self._selected_fields = _next_step_fields
         self._pipe.append(_group)
         return self
-
-    def skip(self, len):
+    def skip(self,len):
         # type: (int) ->AGGREGATE
         """
         Skip aggregate
@@ -1511,11 +1419,10 @@ class AGGREGATE():
         :return:
         """
         self._pipe.append({
-            "$skip": len
+            "$skip":len
         })
         return self
-
-    def limit(self, num):
+    def limit(self,num):
         # type: (int) ->AGGREGATE
         """
         Limit aggregate
@@ -1527,29 +1434,29 @@ class AGGREGATE():
         })
         return self
 
-    def unwind(self, field_name, preserve_null_and_empty_arrays=True):
+    def unwind(self,field_name,preserve_null_and_empty_arrays=True):
         # type: (str) -> AGGREGATE
         """
         Unwin aggregate
         :param field_name: the field name for "unwind" without prefix "$"
         :return:
         """
-        if self.get_selected_fields().count(field_name) == 0:
-            msg_detail = ""
+        if self.get_selected_fields().count(field_name)==0:
+            msg_detail=""
             for x in self.get_selected_fields():
-                msg_detail += x + "\n"
-            raise (Exception("What is '{0}'? \n Your selected fields now are: \n {1}".format(field_name, msg_detail)))
-        if field_name[0:1] != "$":
-            field_name = "$" + field_name
+                msg_detail+=x+"\n"
+            raise (Exception("What is '{0}'? \n Your selected fields now are: \n {1}".format(field_name,msg_detail)))
+        if field_name[0:1]!="$":
+            field_name="$"+field_name
         self._pipe.append({
-            "$unwind": {"path": field_name,
-                        "preserveNullAndEmptyArrays": preserve_null_and_empty_arrays
-                        }
+            "$unwind":{"path":field_name,
+                        "preserveNullAndEmptyArrays":preserve_null_and_empty_arrays
+                    }
         })
         return self
-
-    def match(self, expression, *args, **kwargs):
+    def match(self,expression, *args,**kwargs):
         # type: (str,int|bool|datetime|str|unicode|float|dict|tuple|list) -> AGGREGATE
+
 
         """
         Mathc aggregate Example:
@@ -1562,7 +1469,7 @@ class AGGREGATE():
         """Beware! You could not use any Aggregation Pipeline Operators, just use this function with Field Logic comparasion such as:
         and,or, contains,==,!=,>,<,..
         """
-        unknown_fields = self._coll._model.validate_expression(expression, self.get_selected_fields(), *args, **kwargs)
+        unknown_fields=self._coll._model.validate_expression(expression,self.get_selected_fields(), *args,**kwargs)
         if unknown_fields.__len__() > 0:
             err_msg = ""
             for x in unknown_fields:
@@ -1572,41 +1479,38 @@ class AGGREGATE():
                 err_msg_fields += x + "\n"
             raise (Exception(
                 "What is bellow list of fields?:\n" + err_msg + " \n Your selected fields now is bellow list: \n" + err_msg_fields))
-        by_params = False
-        if args == ():
-            args = kwargs
-            by_params = True
+        by_params=False
+        if args==():
+            args=kwargs
+            by_params=True
 
         if type(expression) is dict:
             self._pipe.append({
-                "$match": expression
+                "$match":expression
             })
             return self
-        if type(expression) in [str, unicode]:
+        if type(expression) in [str,unicode]:
             import helpers
             self._pipe.append({
-                "$match": (
-                    lambda: helpers.filter(expression, args)._pipe if by_params else helpers.filter(expression, *args,
-                                                                                                    **kwargs)._pipe)()
+                "$match": (lambda :  helpers.filter(expression, args)._pipe if by_params else helpers.filter(expression, *args,**kwargs)._pipe)()
             })
             return self
 
-    def join(self, source, local_field, foreign_field, alias):
-        self.lookup(source, local_field, foreign_field, alias)
-        self.unwind(alias, False)
-        return self
 
-    def left_join(self, source, local_field, foreign_field, alias):
-        self.lookup(source, local_field, foreign_field, alias)
+    def join(self,source,local_field,foreign_field,alias):
+        self.lookup(source,local_field,foreign_field,alias)
+        self.unwind(alias,False)
+        return self
+    def left_join(self,source,local_field,foreign_field,alias):
+        self.lookup(source,local_field,foreign_field,alias)
         self.unwind(alias)
         return self
-
     def lookup(self,
                source=None,
                local_field=None,
                foreign_field=None,
                alias=None,
-               *args, **kwargs):
+               *args,**kwargs):
         # type: (str|COLL,str,str,str) -> AGGREGATE
         """
         Create lookup aggregate
@@ -1618,115 +1522,109 @@ class AGGREGATE():
         :param kwargs:
         :return:
         """
-        if self.get_selected_fields().count(local_field) == 0:
-            msm_details = ""
+        if self.get_selected_fields().count(local_field)==0:
+            msm_details=""
             for x in self.get_selected_fields():
-                msm_details += x + "\n"
-            raise (Exception("What is '{0}'?, Your selected fields are:\n {1}".format(local_field, msm_details)))
+                msm_details+=x+"\n"
+            raise (Exception("What is '{0}'?, Your selected fields are:\n {1}".format(local_field,msm_details)))
 
-        if args == () and kwargs == {}:
-            _source = source
+
+        if args==() and kwargs=={}:
+            _source=source
             if source.__class__ is COLL:
-                _source = source.get_collection_name()
+                _source=source.get_collection_name()
 
             kwargs.update(source=_source,
                           local_field=local_field,
                           foreign_field=foreign_field,
                           alias=alias)
         else:
-            if not dict_utils.has_key(kwargs, "source"):
+            if not dict_utils.has_key(kwargs,"source"):
                 raise Exception("'source' was not found")
-            if not dict_utils.has_key(kwargs, "local_field"):
+            if not dict_utils.has_key(kwargs,"local_field"):
                 raise Exception("'local_field' was not found")
-            if not dict_utils.has_key(kwargs, "foreign_field"):
+            if not dict_utils.has_key(kwargs,"foreign_field"):
                 raise Exception("'foreign_field' was not found")
-            if not dict_utils.has_key(kwargs, "alias"):
+            if not dict_utils.has_key(kwargs,"alias"):
                 raise Exception("'alias' was not found")
-        source_model = None
-        if isinstance(source, COLL):
-            source_model = source._model
+        source_model=None
+        if isinstance(source,COLL):
+            source_model =source._model
         else:
             source_model = get_model(source)
 
         self._selected_fields = self.get_selected_fields()
         self._selected_fields.append(alias)
-        if source_model.get_fields().count(foreign_field) == 0:
-            msm_details = ""
+        if source_model.get_fields().count(foreign_field)==0:
+            msm_details=""
             for x in source_model.get_fields():
-                msm_details += x + "\n"
-            raise (Exception(
-                "What is '{0}'?\n '{0}'  is not in '{1}'.\n All fields of '{1}' are bellow:\n {2}".format(foreign_field,
-                                                                                                          source,
-                                                                                                          msm_details)))
+                msm_details+=x+"\n"
+            raise (Exception("What is '{0}'?\n '{0}'  is not in '{1}'.\n All fields of '{1}' are bellow:\n {2}".format(foreign_field,source,msm_details)))
         for x in source_model.get_fields():
-            self._selected_fields.append(alias + "." + x)
+            self._selected_fields.append(alias+"."+x)
         self._pipe.append({
-            "$lookup": {
-                "from": kwargs["source"],
-                "localField": kwargs["local_field"],
-                "foreignField": kwargs["foreign_field"],
-                "as": kwargs["alias"]
+            "$lookup":{
+                "from":kwargs["source"],
+                "localField":kwargs["local_field"],
+                "foreignField":kwargs["foreign_field"],
+                "as":kwargs["alias"]
             }
         })
         return self
-
-    def sort(self, *args, **kwargs):
-        if args == () and kwargs == {}:
+    def sort(self,*args,**kwargs):
+        if args==() and kwargs=={}:
             raise (Exception("It look like you forgot set sort fields\nHow to sort?\n"
                              ".sort(\n"
                              "\tfield name=1 or -1\n,"
                              "\t..\n"
                              "\tfield name n=1 or -1"))
-        _sort = {
+        _sort={
 
         }
         for key in kwargs.keys():
-            if self.get_selected_fields().count(key) == 0:
-                msg_detail = ""
+            if self.get_selected_fields().count(key)==0:
+                msg_detail=""
                 for x in self.get_selected_fields():
-                    msg_detail += x + "\n"
+                    msg_detail+=x+"\n"
                 raise (Exception("\n"
                                  "What is '{0}'?\n"
                                  "Your selected fields are:\n"
-                                 "{1}".format(key, msg_detail)))
+                                 "{1}".format(key,msg_detail)))
         _sort = (lambda x, y: y if y != {} else x[0])(args, kwargs)
         self._pipe.append({
-            "$sort": _sort
+            "$sort":_sort
         })
         return self
-
-    def count(self, alias):
+    def count(self,alias):
         """
         Create count aggregate pipeline
         :param alias: Alias field will hold count value
         :return:
         """
         self._pipe.append({
-            "$count": alias
+            "$count":alias
         })
         return self
-
     def get_item(self):
         """
         Get one item from mongdb
         :return:
         """
-        ret = self.get_list()
-        if ret.__len__() == 0:
+        ret=self.get_list()
+        if ret.__len__()==0:
             return None
         else:
             return ret[0]
-
     def get_object(self):
         from . import fx_model
 
-        ret_item = self.get_item()
+        ret_item =self.get_item()
         if ret_item == None:
             return None
-        ret = fx_model.s_obj(ret_item)
+        ret= fx_model.s_obj(ret_item)
         # from . import dynamic_object
         # ret = dynamic_object.create_from_dict(self.get_item())
-        return ret
+        return  ret
 
     def get_all_documents_as_objects(self):
         from . import fx_model
@@ -1738,14 +1636,14 @@ class AGGREGATE():
         # coll = self.qr.db.get_collection(self.name).with_options(codec_options=self.qr._codec_options)
         coll = self._coll.get_collection()
         coll_ret = coll.aggregate(self._pipe)
-        ret = coll.aggregate(self._pipe)
-        continue_fetch = True
+        ret=coll.aggregate(self._pipe)
+        continue_fetch =True
         from . import dynamic_object
         while continue_fetch:
             try:
-                yield fx_model.s_obj(ret.next())
+                yield  fx_model.s_obj(ret.next())
             except StopIteration as ex:
-                continue_fetch = False
+                continue_fetch =False
 
     def get_all_documents(self):
         # type: () -> list
@@ -1757,9 +1655,8 @@ class AGGREGATE():
         # coll = self.qr.db.get_collection(self.name).with_options(codec_options=self.qr._codec_options)
         coll = self._coll.get_collection()
         coll_ret = coll.aggregate(self._pipe)
-        ret = list(coll.aggregate(self._pipe))
+        ret=list(coll.aggregate(self._pipe))
         return ret
-
     def cursor_list(self):
         # type: () -> list
         """
@@ -1775,7 +1672,6 @@ class AGGREGATE():
         coll = self._coll.get_collection()
         coll_ret = coll.aggregate(self._pipe, self.session)
         return coll_ret
-
     def get_objects(self):
         from . import fx_model
         iters = self.cursor_list()
@@ -1784,7 +1680,8 @@ class AGGREGATE():
             try:
                 yield fx_model.s_obj(iters.next())
             except StopIteration as ex:
-                continue_fetch = False
+                continue_fetch =False
+
 
     def get_list(self):
         # type: () -> list
@@ -1799,15 +1696,15 @@ class AGGREGATE():
         #     return list(self.qr.db.get_collection(self.name).aggregate(self._pipe))
         # coll=self.qr.db.get_collection(self.name).with_options(codec_options=self.qr._codec_options)
         coll = self._coll.get_collection()
-        coll_ret = self.cursor_list()
+        coll_ret=self.cursor_list()
 
-        ret = []
-        if sys.version_info[0] <= 2:
+        ret=[]
+        if sys.version_info[0]<=2:
             for doc in coll_ret:
                 for key in self.get_selected_fields():
                     if not doc.has_key(key):
                         doc.update({
-                            key: None
+                            key:None
                         })
                 ret.append(doc)
         else:
@@ -1815,16 +1712,15 @@ class AGGREGATE():
                 for key in self.get_selected_fields():
                     if not doc.__contains__(key):
                         doc.update({
-                            key: None
+                            key:None
                         })
                 ret.append(doc)
 
         # ret=list(coll.aggregate(self._pipe))
-        self._pipe = []
-        self._selected_fields = []
+        self._pipe=[]
+        self._selected_fields=[]
         return ret
-
-    def get_page_of_objects(self, page_index, page_size):
+    def get_page_of_objects(self,page_index,page_size):
         # type: (int,int) -> dict
         """
         get page of item according to page_index and page_size
@@ -1834,32 +1730,27 @@ class AGGREGATE():
         :return: dict including: page_size, page_index, total_items, items
         """
         _tmp_pipe = [x for x in self._pipe]
-        _count_pipe = []
-        if sys.version_info[0] <= 2:
-            _count_pipe = [x for x in self._pipe if
-                           self._pipe.index(x) < self._pipe.__len__() and x.keys()[0] != "$sort"]
+        _count_pipe=[]
+        if sys.version_info[0]<=2:
+            _count_pipe=[x for x in self._pipe if self._pipe.index(x)<self._pipe.__len__() and x.keys()[0]!="$sort"]
         else:
-            _count_pipe = [x for x in self._pipe if
-                           self._pipe.index(x) < self._pipe.__len__() and list(x.keys())[0] != "$sort"]
+            _count_pipe = [x for x in self._pipe if self._pipe.index(x) < self._pipe.__len__() and list(x.keys())[0] != "$sort"]
         self._pipe = _count_pipe
-        _sel_fields = self._selected_fields
-        total_items_agg = self.count("total_items")
-        total_items = total_items_agg.get_item()
-        self._selected_fields = _sel_fields
-        self._pipe = _tmp_pipe
-        items = self.skip(page_index * page_size).limit(page_size).get_objects()
-
+        _sel_fields=self._selected_fields
+        total_items_agg=self.count("total_items")
+        total_items=total_items_agg.get_item()
+        self._selected_fields=_sel_fields
+        self._pipe=_tmp_pipe
+        items=self.skip(page_index*page_size).limit(page_size).get_objects()
         class ret_cls(object):
             pass
-
-        ret_obj = ret_cls()
+        ret_obj=ret_cls()
         ret_obj.page_size = page_size;
         ret_obj.page_index = page_index;
-        ret_obj.total_items = (lambda x: x["total_items"] if x != None else 0)(total_items);
+        ret_obj.total_items = (lambda x: x["total_items"] if x != None else 0) (total_items);
         ret_obj.items = items;
         return ret_obj
-
-    def get_page(self, page_index, page_size):
+    def get_page(self,page_index,page_size):
         # type: (int,int) -> dict
         """
         get page of item according to page_index and page_size
@@ -1869,47 +1760,39 @@ class AGGREGATE():
         :return: dict including: page_size, page_index, total_items, items
         """
         _tmp_pipe = [x for x in self._pipe]
-        _count_pipe = []
-        if sys.version_info[0] <= 2:
-            _count_pipe = [x for x in self._pipe if
-                           self._pipe.index(x) < self._pipe.__len__() and x.keys()[0] != "$sort"]
+        _count_pipe=[]
+        if sys.version_info[0]<=2:
+            _count_pipe=[x for x in self._pipe if self._pipe.index(x)<self._pipe.__len__() and x.keys()[0]!="$sort"]
         else:
-            _count_pipe = [x for x in self._pipe if
-                           self._pipe.index(x) < self._pipe.__len__() and list(x.keys())[0] != "$sort"]
+            _count_pipe = [x for x in self._pipe if self._pipe.index(x) < self._pipe.__len__() and list(x.keys())[0] != "$sort"]
         self._pipe = _count_pipe
-        _sel_fields = self._selected_fields
-        total_items_agg = self.count("total_items")
-        total_items = total_items_agg.get_item()
-        self._selected_fields = _sel_fields
-        self._pipe = _tmp_pipe
-        items = self.skip(page_index * page_size).limit(page_size).get_list()
+        _sel_fields=self._selected_fields
+        total_items_agg=self.count("total_items")
+        total_items=total_items_agg.get_item()
+        self._selected_fields=_sel_fields
+        self._pipe=_tmp_pipe
+        items=self.skip(page_index*page_size).limit(page_size).get_list()
         return dict(
             page_size=page_size,
             page_index=page_index,
-            total_items=(lambda x: x["total_items"] if x != None else 0)(total_items),
+            total_items= (lambda x: x["total_items"] if x != None else 0) (total_items),
             items=items
         )
-
     def __copy__(self):
-        ret = AGGREGATE(self.qr, self.name)
-        ret._pipe = [x for x in self._pipe]
+        ret=AGGREGATE(self.qr,self.name)
+        ret._pipe=[x for x in self._pipe]
         return ret
-
     def copy(self):
         return self.__copy__()
-
-    def replace_root(self, field):
+    def replace_root(self,field):
         self.check_fields(field)
-        fields = [x[field.__len__() + 1:x.__len__()] for x in self.get_selected_fields() if
-                  x.__len__() > field.__len__() and x[0:field.__len__() + 1] == field + "."]
+        fields = [x[field.__len__()+1:x.__len__()] for x in self.get_selected_fields() if x.__len__()>field.__len__() and x[0:field.__len__()+1] ==field+"."]
         self._selected_fields = fields
         self._pipe.append({
-            "$replaceRoot": {"newRoot": (lambda x: "$" + x if x[0] != "$" else x)(field)}
+            "$replaceRoot":{"newRoot":(lambda x : "$"+x if x[0] != "$" else x)(field)}
         })
         return self
-
-
-def connect(*args, **kwargs):
+def connect(*args,**kwargs):
     """
     Create db instance <br/>
     Ex:query.get_query(host="ip address",\n
@@ -1930,40 +1813,39 @@ def connect(*args, **kwargs):
     """
     try:
         global _db
-        if args.__len__() == 0:
-            args = kwargs
+        if args.__len__()==0:
+            args=kwargs
         else:
-            args = args[0]
-        if not dict_utils.has_key(args, "host"):
+            args=args[0]
+        if not dict_utils.has_key(args,"host"):
             raise (Exception("This look like you forgot set 'host' param.\n Where is your mongodb hosting?"))
-        if not dict_utils.has_key(args, "port"):
+        if not dict_utils.has_key(args,"port"):
             raise (Exception("This look like you forgot set 'port' param.\n What is your mongodb port? Is it '27017'"))
-        if not dict_utils.has_key(args, "name"):
+        if not dict_utils.has_key(args,"name"):
             raise (Exception(
                 "This look like you forgot set 'name' (The name of database) param.\n Which is your mongodb database?"))
-        if dict_utils.has_key(args, "user") and args.get("user", None) != None:
-            if not dict_utils.has_key(args, "password") or args.get("password", "") == "":
-                raise (Exception(
-                    "This look like you forgot set 'user' and 'password' params.\n How is your mongodb authorization?"))
+        if dict_utils.has_key(args,"user") and args.get("user",None)!=None:
+            if not dict_utils.has_key(args,"password") or args.get("password", "") == "":
+                raise (Exception("This look like you forgot set 'user' and 'password' params.\n How is your mongodb authorization?"))
 
-        key = "host={0};port={1};user={2};pass={3};name={4}".format(
+        key="host={0};port={1};user={2};pass={3};name={4}".format(
             args["host"],
             args["port"],
-            args.get("user", "none"),
-            args.get("password", "none"),
+            args.get("user","none"),
+            args.get("password","none"),
             args["name"],
-            args.get("tz_aware", False),
-            args.get("timezone", None)
+            args.get("tz_aware",False),
+            args.get("timezone",None)
         )
-        if not dict_utils.has_key(_db, key):
-            cnn = MongoClient(
+        if not dict_utils.has_key(_db,key):
+            cnn=MongoClient(
                 host=args["host"],
                 port=args["port"]
             )
-            db = cnn.get_database(args["name"])
-            if args["user"] != None:
-                db.authenticate(args["user"], args["password"])
-            if args.get("tz_aware", False):
+            db=cnn.get_database(args["name"])
+            if args["user"]!=None:
+                db.authenticate(args["user"],args["password"])
+            if args.get("tz_aware",False):
                 codec_options = CodecOptions(
                     tz_aware=True,
                     tzinfo=pytz.timezone(args["timezone"])
@@ -1973,13 +1855,13 @@ def connect(*args, **kwargs):
                     tz_aware=False
                 )
 
-            version = db.eval("return db.version()")
+            version=db.eval("return db.version()")
 
-            _db[key] = {
-                "database": db,
-                "codec_options": codec_options,
-                "version": version,
-                "versions": version.split('.')
+            _db[key]={
+                "database":db,
+                "codec_options":codec_options,
+                "version":version,
+                "versions":version.split('.')
             }
         return QR(_db[key])
     except OperationFailure as ex:
@@ -1988,13 +1870,10 @@ def connect(*args, **kwargs):
     except Exception as ex:
         logger.debug(ex)
         raise (ex)
-
-
 class GRIDFS(object):
-    def __init__(self, db=None):
-        self.__db__ = db
+    def __init__(self,db = None):
+        self.__db__= db
         self.__where__ = None
-
     def __db_context__(self):
         if self.__db__ == None:
             from . import db_context
@@ -2008,12 +1887,11 @@ class GRIDFS(object):
             else:
                 self.__db__ = context.db
         return self.__db__
-
-    def put(self, filename, contentType, content, aliases=None, meta=None, *args, **kwargs):
+    def put(self,filename,contentType,content,aliases=None,meta=None,*args,**kwargs):
         import gridfs
         fs = gridfs.GridFS(self.__db_context__())
         try:
-            ret = fs.put(content, filename=filename, contentType=contentType, alias=aliases, meta=meta)
+            ret = fs.put(content,filename=filename,contentType=contentType,alias=aliases,meta=meta)
             if exec_mode.get_mode() == "off":
                 return dict(
                     error=None,
@@ -2024,56 +1902,49 @@ class GRIDFS(object):
         except Exception as ex:
             if exec_mode.get_mode() == "off":
                 return dict(
-                    error=ex,
-                    data=None
+                    error = ex,
+                    data = None
                 )
             elif exec_mode.get_mode() == "on":
                 raise ex
             elif exec_mode.get_mode() == "return":
-                return None, ex
-
-    def get_content_by_id(self, id):
+                return None,ex
+    def get_content_by_id(self,id):
         from bson import ObjectId
         import gridfs
-        if type(id) in [str, unicode]:
+        if type(id) in [str,unicode]:
             id = ObjectId(id)
         content = gridfs.GridFS(self.__db_context__()).get(id)
         return content
-
     def get_items(self):
-        import gridfs
+        import  gridfs
         return gridfs.GridFS(self.__db_context__()).list()
-
-    def where(self, expression, *args, **kwargs):
-        ret = GRIDFS(self.__db__)
-        ret.__where__ = helpers.filter(expression, *args, **kwargs).get_filter()
+    def where(self,expression,*args,**kwargs):
+        ret  = GRIDFS(self.__db__)
+        ret.__where__ = helpers.filter(expression,*args,**kwargs).get_filter()
         return ret
-
     @property
     def items(self):
         import gridfs
         return list(gridfs.GridFS(self.__db_context__()).find(self.__where__))
-
     @property
     def item(self):
         import gridfs
         return gridfs.GridFS(self.__db_context__()).find_one(self.__where__)
-
     def __iter__(self):
         return self.items
-
-    def put_from_file(self, path, filename=None, meta=None):
+    def put_from_file(self,path,filename = None,meta=None):
         from mimetypes import MimeTypes
         import os
         mime = MimeTypes()
-        with open(path, "r") as f:
-            stm = f.read()
+        with open(path,"r") as f:
+            stm =f.read()
             import gridfs
             fs = gridfs.GridFS(self.__db_context__())
             try:
                 if filename == None:
                     filename = os.path.basename(path)
-                ret = fs.put(stm, filename=filename, contentType=mime.guess_type(path)[0], originalPath=path, meta=meta)
+                ret = fs.put(stm, filename=filename, contentType=mime.guess_type(path)[0],originalPath=path, meta=meta)
                 if exec_mode.get_mode() == "off":
                     return dict(
                         error=None,
