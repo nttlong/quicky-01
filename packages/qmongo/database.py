@@ -491,8 +491,10 @@ class ENTITY():
                             error=None,
                             data=ret
                         )
-                    elif exec_mode.get_mode() =="return":
-                        return _data,None
+                    elif exec_mode.get_mode() == "return":
+                        return _data,None,"Update is successfull"
+                    else:
+                        return _data
 
                 except pymongo.errors.DuplicateKeyError as ex:
                     ret_data = self.get_duplicate_error(ex)
@@ -504,11 +506,11 @@ class ENTITY():
                         raise (Exception("Data is duplicate,\n"
                                          "Duplicate fields are below\n{0}".format(ret_data)))
                     elif exec_mode.get_mode() == "return":
-                        return _data,ret_data
+                        return _data,ret_data,"Update is error with duplicate values"
                     return ret_data
                 except Exception as ex:
                     if exec_mode.get_mode() == "return":
-                        return _data,ex
+                        return _data,ex,"Update data is error with unknown error"
                     else:
                         raise (ex)
 
@@ -523,10 +525,10 @@ class ENTITY():
                     if exec_mode.get_mode() == "off":
                         return ret
                     elif exec_mode.get_mode() == "return":
-                        return ret,None
+                        return ret,None,"Delete data is successfull"
                 except Exception as ex:
                     if exec_mode.get_mode() == "return":
-                        return _data,ex
+                        return _data,ex,"Delete data is error with unknown error"
                     else:
                         raise (ex)
 class WHERE():
@@ -1638,7 +1640,7 @@ class AGGREGATE():
         coll_ret = coll.aggregate(self._pipe)
         ret=coll.aggregate(self._pipe)
         continue_fetch =True
-        from . import dynamic_object
+
         while continue_fetch:
             try:
                 yield  fx_model.s_obj(ret.next())

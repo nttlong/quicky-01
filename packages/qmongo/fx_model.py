@@ -364,19 +364,19 @@ class __obj_model__(object):
             else:
                 ret = self.coll.insert_one(obj_item)
             return ret
-        else:
-            from . import dynamic_object
-            item = dynamic_object.convert_to_dict(obj_item)
+        elif hasattr(obj_item,"__to_dict__"):
+
+            item = obj_item.__to_dict__()
             find_item = self.coll.find_one("_id=={0}", item["_id"])
             if find_item != None:
                 ret = self.coll.update(item,"_id=={0}",item["_id"])
-                ret_object = dynamic_object.create_from_dict(ret)
+                ret_object = s_obj(ret)
                 if ret.get("error",None) != None:
                     setattr(ret_object,"error_message","Update data error, error code is '{0}".format(ret["error"]["code"]))
                 return ret_object
             else:
                 ret = self.coll.insert_one(item)
-                ret_object = dynamic_object.create_from_dict(ret)
+                ret_object = s_obj(ret)
                 if ret.get("error",None) != None:
                     setattr(ret_object,"error_message","Insert data error, error code is '{0}".format(ret["error"]["code"]))
                 return ret_object
