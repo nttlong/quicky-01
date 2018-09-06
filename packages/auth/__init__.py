@@ -139,7 +139,7 @@ def role_create(schema,role,name,description = None,users =[]):
         entity = models.entities.roles.coll
         ret, ex,msg =  entity.insert_one(role=role,name = name,description=description,user=users)
         if ex != None:
-            return None,ex,"Create role '{0}' is error".format(role)
+            return None,ex,"Create role '{0}' is error,\n {1}".format(role,msg)
         else:
             role_item = role_get(name)
             return role_item, None, "Create role '{0}' is successfull".format(role)

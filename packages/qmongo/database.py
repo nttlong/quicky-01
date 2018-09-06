@@ -336,7 +336,7 @@ class ENTITY():
                         return self._data,dict(
                                 fields=ret_validate_require,
                                 code="missing"
-                            )
+                            ),"Missing data for updating"
 
                 ret_validate_data_type=validators.validate_type_of_data(self._coll._model.name,self._data)
                 if ret_validate_data_type.__len__()>0:
