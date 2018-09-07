@@ -309,6 +309,13 @@ def vert_expr(str,*params):
         ret=ret.replace("{"+index.__str__()+"}","get_params("+index.__str__()+")")
         index=index+1
     return ret
+def __trim_first_charator(c,content):
+    if content=="" or content==None:
+        return content
+    else:
+        while content[0] == c:
+            content =content[1:content.__len__()]
+    return content
 def get_tree(expr,*params,**kwargs):
     """
     get full tree of expression
@@ -453,7 +460,7 @@ def get_tree(expr,*params,**kwargs):
             if not type(val) in [type(str), type(unicode)]:
                 raise Exception("notContains function is expected one text param, but the value {0} is not a text".format(val))
             return {
-                "left": fx['params'][0],
+                "left":__trim_first_charator("$",fx['params'][0]),
                 "operator": "$notContains",
                 "right": fx['params'][1]
             }
@@ -461,7 +468,7 @@ def get_tree(expr,*params,**kwargs):
         elif cmp.value.func.id == "exists":
             fx= get_left(cmp.value)
             return {
-                "left":fx['params'][0],
+                "left":__trim_first_charator("$",fx['params'][0]),
                 "operator":"$exists",
                 "right":True
             }
@@ -469,7 +476,7 @@ def get_tree(expr,*params,**kwargs):
         elif cmp.value.func.id == "notExists":
             fx = get_left(cmp.value)
             return {
-                "left": fx['params'][0],
+                "left": __trim_first_charator("$",fx['params'][0]),
                 "operator": "$exists",
                 "right": False
             }

@@ -135,13 +135,23 @@ def role_create(schema,role,name,description = None,users =[]):
                    message="Role '{0}' in schema '{1}' is existing".format(role,schema)
                ),\
                "Role '{0}' in schema '{1}' is already existing".format(role,schema)
+    schema_item = schema_get(schema)
+
+    if schema_item == None:
+        return None,\
+               lazyobject(
+                   code="not_found",
+                   message="Schema '{0}' was not founsd ".format(schema)
+               ),\
+               "Schema '{0}' was not founsd ".format(schema)
+
     with qmongo.exept_mode('return'):
         entity = models.entities.roles.coll
-        ret, ex,msg =  entity.insert_one(role=role,name = name,description=description,user=users)
+        ret, ex,msg =  entity.insert_one(schema=schema, role=role,name = name,description=description,user=users)
         if ex != None:
             return None,ex,"Create role '{0}' is error,\n {1}".format(role,msg)
         else:
-            role_item = role_get(name)
+            role_item = role_get(schema, role)
             return role_item, None, "Create role '{0}' is successfull".format(role)
 def app_modify_role(name,view_path,role,is_full_access = False,privileges =[]):
     app = app_get(name)
