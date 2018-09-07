@@ -1,2 +1,11 @@
 # Created by .ignore support plugin (hsz.mobi)
 
+/.idea/workspace.xml
+/.idea/misc.xml
+/.gitignore
+/.idea/libraries/R_User_Library.xml
+/.idea/code-comments.xml
+.idea/code-comments.xml
+.idea/libraries/
+.idea/snapshots/
+
