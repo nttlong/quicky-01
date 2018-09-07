@@ -66,7 +66,6 @@ class __aggregate__():
 
 
 
-
 class queryable(object):
     def __init__(self,*args,**kwargs):
         if args ==() and kwargs == {}:
@@ -187,9 +186,9 @@ class queryable(object):
                     ret=self.__coll__.insert_many(lst,self.__session__)
                 else:
                     ret = self.__coll__.insert_many(lst)
-                return ret,None,"Insert data is successfull"
+                return ret,None
             except Exception as ex:
-                return  None,ex,"Insert data is error"
+                return  None,ex
         elif type(items) is dict:
             try:
                 if self.__session__ !=None:
@@ -199,18 +198,18 @@ class queryable(object):
                 items.update({
                     "_id":ret.inserted_id
                 })
-                return items,None,"Insert data is successfull"
+                return items,None
             except Exception as ex:
-                return items,ex,"Insert data is error"
+                return items,ex
         elif hasattr(items,"__to_dict__"):
             try:
                 ret =self.__coll__.insert_one(items.__to_dict__())
                 items.__validator__ = False
                 items._id=ret.inserted_id
                 items.__validator__ = True
-                return items,None,"Insert data is error with duplicate value"
+                return items,None
             except Exception as ex:
-                return items,ex,"Insert data is error with unknown errors"
+                return items,ex
     def set(self,*args,**kwargs):
         data = kwargs
         if args.__len__()>0:
@@ -251,23 +250,7 @@ class queryable(object):
                 "$pull": {}
             })
         _data = helpers.filter(expression, *args, **kwargs).get_filter()
-        def fix_eq(_data):
-            if not type(_data) is dict:
-                return _data
-            if _data.keys()[0]=="$eq":
-                return _data["$eq"]
-            _pull_filter_ = {}
-            for k, v in _data.items():
-                if type(v) is dict and v.has_key("$eq"):
-                    _pull_filter_.update({k: fix_eq(v["$eq"])})
-                elif type(v) is list:
-                    _pull_filter_.update({k:[fix_eq(x) for x in v]})
-                else:
-                    _pull_filter_.update({k: v})
-            return _pull_filter_
-
-        _pull_data = helpers.slice_key_of_dict(fix_eq(_data))
-
+        _pull_data = helpers.slice_key_of_dict(_data)
         _new_pull_ = helpers.merge_dict(self.__modifiers__["$pull"],_pull_data)
         self.__modifiers__["$pull"].update(_new_pull_)
         return self
@@ -278,9 +261,9 @@ class queryable(object):
                 ret = self.__coll__.update_many(self.__where__, self.__modifiers__)
             else:
                 ret = self.__coll__.update_many(self.__where__, self.__modifiers__,self.__session__)
-            return ret, None,"Update data is successfull"
+            return ret, None
         except Exception as ex:
-            return None,ex,"Update data is error"
+            return None,ex
     @property
     def aggregate(self):
         return __aggregate__(self.__coll__,[x.copy() for x in self.__pipe_line__],self.__session__)

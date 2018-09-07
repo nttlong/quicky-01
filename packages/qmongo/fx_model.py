@@ -80,12 +80,8 @@ class s_obj(__validator_class__):
                     if type(v) is dict:
                         setattr(self,k,s_obj(v))
                     elif type(v) is list:
-                        values =[]
-                        for x in v:
-                            if type(x) is dict:
-                                values.append(s_obj(x))
-                            else:
-                                values.append(x)
+                        values = [ x for x in v if type(x) in [str,unicode]]
+                        values.extend([s_obj(x) for x in v if type(x) is dict])
                         setattr(self,k,values)
                     else:
                         setattr(self, k, v)
@@ -364,19 +360,19 @@ class __obj_model__(object):
             else:
                 ret = self.coll.insert_one(obj_item)
             return ret
-        elif hasattr(obj_item,"__to_dict__"):
-
-            item = obj_item.__to_dict__()
+        else:
+            from . import dynamic_object
+            item = dynamic_object.convert_to_dict(obj_item)
             find_item = self.coll.find_one("_id=={0}", item["_id"])
             if find_item != None:
                 ret = self.coll.update(item,"_id=={0}",item["_id"])
-                ret_object = s_obj(ret)
+                ret_object = dynamic_object.create_from_dict(ret)
                 if ret.get("error",None) != None:
                     setattr(ret_object,"error_message","Update data error, error code is '{0}".format(ret["error"]["code"]))
                 return ret_object
             else:
                 ret = self.coll.insert_one(item)
-                ret_object = s_obj(ret)
+                ret_object = dynamic_object.create_from_dict(ret)
                 if ret.get("error",None) != None:
                     setattr(ret_object,"error_message","Insert data error, error code is '{0}".format(ret["error"]["code"]))
                 return ret_object
