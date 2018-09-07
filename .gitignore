@@ -9,3 +9,7 @@
 .idea/libraries/
 .idea/snapshots/
 
+/uvenv/
+/venv/
+/venv02/
+/wvenv/

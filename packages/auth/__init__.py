@@ -338,13 +338,17 @@ def schema_create(name,description = None):
     ret = schema_get(name)
     if ret != None:
         return ret,None,"Schema '{0}' is existing".format(name)
+
     with qmongo.exept_mode("return"):
         entity =  models.entities.schemas
-        ret,ex,msg = entity.coll.insert_one(schema = name,description= description)
+        data = entity.mk_obj()
+        data.schema = name
+        data.description = description
+        ret,ex,msg = entity.insert_one(data)
         if ex != None:
             return None,ex,"Create schema is error,\n {0}".format(msg)
         else:
-            return ret,None,"Create schema is successfull"
+            return  ret,None,"Create schema is successfull"
 
 
 
