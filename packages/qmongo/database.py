@@ -348,7 +348,7 @@ class ENTITY():
                             )
                         )
                     elif exec_mode.get_mode() == "on":
-                        raise (Exception("Data invalid, the invlid data are below\n {0}".format(ret_validate_data_type)))
+                        raise (Exception("Data invalid, the invalid data are below\n {0}".format(ret_validate_data_type)))
                     elif exec_mode.get_mode() == "return":
                         return self._data,dict(
                                 fields=ret_validate_data_type,
