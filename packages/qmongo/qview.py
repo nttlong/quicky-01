@@ -9,7 +9,6 @@ class listofviews(dict):
         ret.__create_mongodb_view__(ret,"{0}.{1}".format(schema,ret.__source_name__))
 
         return ret
-
 global _cach_view
 _cach_view=listofviews()
 global __cach_has_exec_command_create_view__

@@ -268,8 +268,7 @@ class ENTITY():
         """
         self._expr = expression
         if type(expression) is str:
-            expr_tr=expr.get_tree(expression,*args,**kwargs)
-            self._expr = expr.parse_expression_to_json_expression(expression,*args,**kwargs)
+            self._expr = helpers.filter(expression,*args,**kwargs).get_filter()
         return self
     def delete(self):
         self._action="delete"
@@ -336,7 +335,7 @@ class ENTITY():
                         return self._data,dict(
                                 fields=ret_validate_require,
                                 code="missing"
-                            )
+                            ),"Miss require value when insert data"
 
                 ret_validate_data_type=validators.validate_type_of_data(self._coll._model.name,self._data)
                 if ret_validate_data_type.__len__()>0:
@@ -380,7 +379,7 @@ class ENTITY():
                 elif exec_mode.get_mode() == "on":
                     raise (Exception("Data is duplicate, duplicate fields is in {0}".format(ret_data['error']['fields'])))
                 elif exec_mode.get_mode() == "return":
-                    return self._data, ret_data,"Duplicate data value when insert data"
+                    return self._data, ret_data,"Data is duplicate, duplicate fields is in {0}".format(ret_data['error']['fields'])
             except Exception as ex:
                 raise ex
 
@@ -448,7 +447,7 @@ class ENTITY():
                         return self._data,dict(
                                 fields=ret_validate_require,
                                 code="missing"
-                            )
+                            ),"Data is missing\n Fields is missing:\n {0}".format(ret_validate_require)
 
                 ret_validate_data_type = validators.validate_type_of_data(self._coll._model.name, _c_data)
                 if ret_validate_data_type.__len__() > 0:
@@ -465,7 +464,7 @@ class ENTITY():
                         return self._data,dict(
                                 fields=ret_validate_require,
                                 code="missing"
-                            )
+                            ),"Data is invalid\n Fields is missing:\n {0}".format(ret_validate_data_type)
                 _x = {}
                 for k, v in _c_data.items():
                     if k[0] == "$":
@@ -506,7 +505,7 @@ class ENTITY():
                         raise (Exception("Data is duplicate,\n"
                                          "Duplicate fields are below\n{0}".format(ret_data)))
                     elif exec_mode.get_mode() == "return":
-                        return _data,ret_data,"Update is error with duplicate values"
+                        return _data,ret_data,"Duplicate fields are below\n{0}".format(ret_data)
                     return ret_data
                 except Exception as ex:
                     if exec_mode.get_mode() == "return":
@@ -829,9 +828,9 @@ class COLL():
                                  "import qmongo\n"
                                  "qmongo.set_schema(schema_name)"))
 
-        if hasattr(self,"__create_mongodb_view__"):
-            self.__create_mongodb_view__(self).next()
-            delattr(self,"__create_mongodb_view__")
+        # if hasattr(self,"__create_mongodb_view__"):
+        #     self.__create_mongodb_view__(self)
+        #     delattr(self,"__create_mongodb_view__")
 
         global _cache_create_key_for_collection
         if _cache_create_key_for_collection==None:
@@ -1075,10 +1074,10 @@ class COLL():
                              " \n Your selected fields now is bellow list: \n" +
                              self.descibe_fields("\t\t\t", self._model.get_fields())))
         if type(args) is tuple and args.__len__()>0 and kwargs=={}:
-            kwargs=args[0]
-            if hasattr(kwargs,"__to_dict__"):
-                kwargs=(kwargs.__to_dict__())
-        ac=self.entity().filter(filter,kwargs)
+            if hasattr(args[0],"__to_dict__"):
+                kwargs=(args[0].__to_dict__())
+                args =()
+        ac=self.entity().filter(filter,*args,**kwargs)
         ac.update_many(data)
         ret=ac.commit(self.session)
         return ret
