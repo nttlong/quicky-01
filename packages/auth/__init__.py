@@ -36,8 +36,8 @@ def app_add_schema(name,schema):
         qr.project([schema], index_of_schema="indexOfArray(schemas,{0})")
         result= qr.get_object()
         if result.index_of_schema == None or result.index_of_schema == -1:
-            ret,ex =models.entities.apps.coll.where("name=={0}", name).push(schemas=schema).commit()
-            return None,ex,None
+            ret,ex,msg =models.entities.apps.coll.where("name=={0}", name).push(schemas=schema).commit()
+            return None,ex,msg
         else:
             return None, None, "'{0}/{1}' is already existing".format(name,schema)
     return None,None,None
@@ -82,8 +82,11 @@ def app_add_view(name,path,view=None,is_public=False,privileges=[]):
                 is_public= is_public,
                 privileges= privileges
             ))
-            ret,ex = actor.commit()
-            return None,ex,"Insert new view {0} with path={1} in {2}".format(view,path,name)
+            ret,ex,msg = actor.commit()
+            if ex == None:
+                return ret,None,"Add view '{0}' to app '{1}' is successful".format(name,path)
+            else:
+                return None,ex,"Add view '{0}' to app '{1}' is error\n{2}".format(name,path,msg)
         else:
             actor = models.entities.apps.coll.where("name=={0}",name)
             actor =actor.set({
@@ -94,8 +97,11 @@ def app_add_view(name,path,view=None,is_public=False,privileges=[]):
                     privileges=privileges
                 )
             })
-            ret ,ex = actor.commit()
-            return None,ex, "Update new view {0} with path={1} in {2}".format(view,path,name)
+            ret ,ex,msg = actor.commit()
+            if ex == None:
+                return ret,None,"Update view '{0}' of '{1}' is successful".format(path,name)
+            else:
+                return None,ex, "Update view '{0}' of '{1}' is error\n{2}".format(path,name,msg)
 def app_remove_view(name,path):
     app = app_get(name)
     if app == None:
@@ -152,8 +158,8 @@ def role_create(schema,role,name,description = None,users =[]):
             return None,ex,"Create role '{0}' is error,\n {1}".format(role,msg)
         else:
             role_item = role_get(schema, role)
-            return role_item, None, "Create role '{0}' is successfull".format(role)
-def app_modify_role(name,view_path,role,is_full_access = False,privileges =[]):
+            return role_item, None, "Create role '{0}' is successful".format(role)
+def app_modify_role(name,view_path,schema,role,is_full_access = False,privileges =[]):
     app = app_get(name)
     if app == None:
         return None,\
@@ -162,14 +168,20 @@ def app_modify_role(name,view_path,role,is_full_access = False,privileges =[]):
                    code="not_found"
                ),\
                "'{0}' was not found".format(name)
-    role_item =role_get(role)
+    if app.schemas.count(schema) ==0 :
+        return None,\
+               lazyobject(
+                   message="App '{0}' does not support schema '{1}".format(name,schema)),\
+               "App '{0}' does not support schema '{1}".format(name,schema)
+
+    role_item =role_get(schema,role)
     if role_item == None:
         return None, \
                lazyobject(
-                   message="Role '{0}' was not found".format(name),
+                   message="Role '{0}' was not found in schema '{1}'".format(role,schema),
                    code="not_found"
                ), \
-               "'{0}' was not found".format(name)
+               "Role '{0}' was not found in schema '{1}'".format(role,schema)
     qr = models.entities.apps.coll.aggregate()
     qr= qr.match("name=={0}",name)
     qr=qr.project(
@@ -216,15 +228,15 @@ def app_modify_role(name,view_path,role,is_full_access = False,privileges =[]):
                 is_full_access=is_full_access,
                 privileges=privileges
             )})
-            ret,ex =actor.commit()
+            ret,ex,msg =actor.commit()
             if ex!=None:
                 return None,\
                        lazyobject(ex),\
-                       "Add role '{0}' to view '{1}' of app '{2}' is error".format(role,view_path,name)
+                       "Add role '{0}' to view '{1}' of app '{2}' is error\n{3]".format(role,view_path,name,msg)
             else:
                 return None, \
                        None, \
-                       "Add role '{0}' to view '{1}' of app '{2}' is successfull".format(role, view_path, name)
+                       "Add role '{0}' to view '{1}' of app '{2}' is successful".format(role, view_path, name)
     else:
         with qmongo.exept_mode("return"):
             entity = models.entities.apps.coll
@@ -237,15 +249,15 @@ def app_modify_role(name,view_path,role,is_full_access = False,privileges =[]):
                         privileges=privileges
                     )
             })
-            ret, ex = actor.commit()
+            ret, ex,msg = actor.commit()
             if ex != None:
                 return None, \
                        lazyobject(ex), \
-                       "Update role '{0}' to view '{1}' of app '{2}' is error".format(role, view_path, name)
+                       "Update role '{0}' to view '{1}' of app '{2}' is error\n{3}".format(role, view_path, name,msg)
             else:
                 return None, \
                        None, \
-                       "Update role '{0}' to view '{1}' of app '{2}' is successfull".format(role, view_path, name)
+                       "Update role '{0}' to view '{1}' of app '{2}' is successful".format(role, view_path, name)
 
 def app_remove_role(name,view_path,role):
     app = app_get(name)
@@ -307,7 +319,7 @@ def app_remove_role(name,view_path,role):
             else:
                 return None, \
                        None, \
-                       "Remove role '{0}' to view '{1}' of app '{2}' is successfull".format(role, view_path, name)
+                       "Remove role '{0}' to view '{1}' of app '{2}' is successful".format(role, view_path, name)
 def role_add_user(role,username):
     role_item =role_get(role)
     if role_item == None:
@@ -328,7 +340,7 @@ def role_add_user(role,username):
             if ex != None:
                 return None,lazyobject(ex),"Add user '{1} to role '{0}' is error".format(role,username)
             else:
-                return None, None, "Add user '{1}' to role '{0}' is successfull".format(role,username)
+                return None, None, "Add user '{1}' to role '{0}' is successful".format(role,username)
     else:
         return None, None, "'{0}' is existing in '{1}'".format(username,role)
 def schema_get(name):
@@ -348,7 +360,7 @@ def schema_create(name,description = None):
         if ex != None:
             return None,ex,"Create schema is error,\n {0}".format(msg)
         else:
-            return  ret,None,"Create schema is successfull"
+            return  ret,None,"Create schema is successful"
 
 
 
