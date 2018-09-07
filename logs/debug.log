@@ -7553,128 +7553,17 @@ test.auth_user.find (0.00) {'username': 'sys'}
 test.auth_user.save (0.02) {'username': 'sys', 'first_name': u'', 'last_name': u'', 'is_active': True, '_id': ObjectId('5b8e8734367cc40ba554dc25'), 'is_superuser': False, 'is_staff': False, 'last_login': datetime.datetime(2018, 9, 4, 13, 23, 0, 364000, tzinfo=<UTC>), 'password': u'pbkdf2_sha256$12000$IX15s4fXJ0ub$2msj7CD3SMdBivDV/UUHyX8b/Ghj8rVtpQ5M4qPGOxA=', 'email': u'sys@beatles.com', 'date_joined': datetime.datetime(2018, 9, 4, 13, 23, 0, 364000, tzinfo=<UTC>)}
 test.auth_user.save (0.00) {'username': 'sys', 'first_name': u'', 'last_name': u'', '_id': ObjectId('5b8e8734367cc40ba554dc25'), 'is_active': True, 'email': u'sys@beatles.com', 'is_superuser': True, 'is_staff': True, 'last_login': datetime.datetime(2018, 9, 4, 13, 23, 0, 364000, tzinfo=<UTC>), 'password': u'pbkdf2_sha256$12000$IX15s4fXJ0ub$2msj7CD3SMdBivDV/UUHyX8b/Ghj8rVtpQ5M4qPGOxA=', 'date_joined': datetime.datetime(2018, 9, 4, 13, 23, 0, 364000, tzinfo=<UTC>)}
 django_session.save (0.00) {'schema': u'test', '_id': 'nn4rfegrk96zy5j3nuv6lmoprnj67zw5', 'expire_date': datetime.datetime(2018, 9, 18, 13, 23, 0, 565000, tzinfo=<UTC>), 'session_data': u'YTIwMDM1ZDE4Mzg1ZWU5ZTUxNjkzNTM0NWMyMDc3YjYwMjFiODVjYzp7Imxhbmd1YWdlIjoiZW4ifQ=='}
-test.auth_user.find (0.00) {'username': 'sys'}
-test.auth_user.save (0.00) {'username': u'sys', 'first_name': u'', 'last_name': u'', '_id': ObjectId('5b8e8734367cc40ba554dc25'), 'is_active': True, 'email': u'sys@beatles.com', 'is_superuser': True, 'is_staff': True, 'last_login': datetime.datetime(2018, 9, 4, 13, 23, 0, 364000, tzinfo=<UTC>), 'password': u'pbkdf2_sha256$12000$IX15s4fXJ0ub$2msj7CD3SMdBivDV/UUHyX8b/Ghj8rVtpQ5M4qPGOxA=', 'date_joined': datetime.datetime(2018, 9, 4, 13, 23, 0, 364000, tzinfo=<UTC>)}
-test.auth_user.find (0.00) {'username': u'sys'}
-django_session.save (0.00) {'schema': u'test', '_id': u'fcdwwdv3kxgem62mm03vgzdevsbbwrvm', 'expire_date': datetime.datetime(2018, 9, 18, 13, 42, 45, 553000, tzinfo=<UTC>), 'session_data': u'YTIwMDM1ZDE4Mzg1ZWU5ZTUxNjkzNTM0NWMyMDc3YjYwMjFiODVjYzp7Imxhbmd1YWdlIjoiZW4ifQ=='}
-django_session.remove (0.00) {'_id': {'$in': [u'nn4rfegrk96zy5j3nuv6lmoprnj67zw5']}, 'schema': u'test'}
-test.auth_user.save (0.00) {'username': u'sys', 'first_name': u'', 'last_name': u'', '_id': ObjectId('5b8e8734367cc40ba554dc25'), 'is_active': True, 'email': u'sys@beatles.com', 'is_superuser': True, 'is_staff': True, 'last_login': datetime.datetime(2018, 9, 4, 13, 42, 45, 560000, tzinfo=<UTC>), 'password': u'pbkdf2_sha256$12000$IX15s4fXJ0ub$2msj7CD3SMdBivDV/UUHyX8b/Ghj8rVtpQ5M4qPGOxA=', 'date_joined': datetime.datetime(2018, 9, 4, 13, 23, 0, 364000, tzinfo=<UTC>)}
-django_session.save (0.00) {'schema': u'test', '_id': u'fcdwwdv3kxgem62mm03vgzdevsbbwrvm', 'expire_date': datetime.datetime(2018, 9, 18, 13, 42, 45, 564000, tzinfo=<UTC>), 'session_data': u'NDljYjMzYjI3MGJlNDhhODFkYWZmMWQ2YTZlMzc4OTcwNDlkYWJlZDp7Il9hdXRoX3VzZXJfYmFja2VuZCI6InBlcm1pc3Npb25fYmFja2VuZF9ub25yZWwuYmFja2VuZHMuTm9ucmVsUGVybWlzc2lvbkJhY2tlbmQiLCJfYXV0aF91c2VyX2lkIjoiNWI4ZTg3MzQzNjdjYzQwYmE1NTRkYzI1IiwibGFuZ3VhZ2UiOiJlbiJ9'}
-test.auth_user.find (0.00) {'_id': ObjectId('5b8e8734367cc40ba554dc25')}
-Not Found: /lms/test/
-test.auth_user.find (0.00) {'_id': ObjectId('5b8e8734367cc40ba554dc25')}
-test.auth_user.find (0.00) {'username': u'sys'}
-test.auth_user.find (0.00) {'_id': ObjectId('5b8e8734367cc40ba554dc25')}
-test.auth_user.find (0.00) {'username': u'sys'}
-test.auth_user.find (0.00) {'_id': ObjectId('5b8e8734367cc40ba554dc25')}
-test.auth_user.find (0.00) {'username': u'sys'}
-test.auth_user.find (0.00) {'_id': ObjectId('5b8e8734367cc40ba554dc25')}
-test.auth_user.find (0.00) {'username': u'sys'}
-test.auth_user.find (0.00) {'_id': ObjectId('5b8e8734367cc40ba554dc25')}
-test.auth_user.find (0.00) {'username': u'sys'}
-test.auth_user.find (0.00) {'_id': ObjectId('5b8e8734367cc40ba554dc25')}
-test.auth_user.find (0.00) {'username': u'sys'}
-test.auth_user.find (0.00) {'_id': ObjectId('5b8e8734367cc40ba554dc25')}
-test.auth_user.find (0.00) {'username': u'sys'}
-test.auth_user.find (0.00) {'_id': ObjectId('5b8e8734367cc40ba554dc25')}
-test.auth_user.find (0.00) {'username': u'sys'}
-test.auth_user.find (0.00) {'_id': ObjectId('5b8e8734367cc40ba554dc25')}
-test.auth_user.find (0.00) {'username': u'sys'}
-test.auth_user.find (0.00) {'_id': ObjectId('5b8e8734367cc40ba554dc25')}
-test.auth_user.find (0.00) {'username': u'sys'}
-Internal Server Error: /lms/test/api
-Traceback (most recent call last):
-  File "E:\code\quicky-01\packages/django\django\core\handlers\base.py", line 112, in get_response
-    response = wrapped_callback(request, *callback_args, **callback_kwargs)
-  File "E:\code\quicky-01\packages/django\django\views\decorators\http.py", line 41, in inner
-    return func(request, *args, **kwargs)
-  File "E:\code\quicky-01\packages/django\django\views\decorators\csrf.py", line 57, in wrapped_view
-    return view_func(*args, **kwargs)
-  File "E:\code\quicky-01\packages\quicky\executor.py", line 231, in exec_request
-    return self.__fn__ (request, **kwargs)
-  File "E:\code\quicky-01\packages\quicky\api.py", line 172, in call
-    raise ex
-Exception: Call  'get_list' in 'hrm.api.categories' encountered ''module' object has no attribute 'employees''
-test.auth_user.find (0.00) {'_id': ObjectId('5b8e8734367cc40ba554dc25')}
-test.auth_user.find (0.00) {'username': u'sys'}
-test.auth_user.find (0.00) {'_id': ObjectId('5b8e8734367cc40ba554dc25')}
-test.auth_user.find (0.00) {'username': u'sys'}
-test.auth_user.find (0.00) {'_id': ObjectId('5b8e8734367cc40ba554dc25')}
-test.auth_user.find (0.00) {'username': u'sys'}
-test.auth_user.find (0.00) {'_id': ObjectId('5b8e8734367cc40ba554dc25')}
-test.auth_user.find (0.00) {'username': u'sys'}
-test.auth_user.find (0.00) {'_id': ObjectId('5b8e8734367cc40ba554dc25')}
-test.auth_user.find (0.00) {'username': u'sys'}
-test.auth_user.find (0.00) {'_id': ObjectId('5b8e8734367cc40ba554dc25')}
-test.auth_user.find (0.00) {'username': u'sys'}
-test.auth_user.find (0.00) {'_id': ObjectId('5b8e8734367cc40ba554dc25')}
-test.auth_user.find (0.00) {'username': u'sys'}
-test.auth_user.find (0.00) {'_id': ObjectId('5b8e8734367cc40ba554dc25')}
-test.auth_user.find (0.00) {'username': u'sys'}
-test.auth_user.find (0.00) {'_id': ObjectId('5b8e8734367cc40ba554dc25')}
-test.auth_user.find (0.00) {'username': u'sys'}
-test.auth_user.find (0.00) {'_id': ObjectId('5b8e8734367cc40ba554dc25')}
-test.auth_user.find (0.00) {'username': u'sys'}
-test.auth_user.find (0.00) {'_id': ObjectId('5b8e8734367cc40ba554dc25')}
-test.auth_user.find (0.00) {'username': u'sys'}
-Not Found: /lms/test/sign_out
-django_session.save (0.00) {'schema': u'lv', '_id': u'8b352f58fudz1d8zqmcpawazlkgsi30f', 'expire_date': datetime.datetime(2018, 9, 18, 13, 43, 50, 338000, tzinfo=<UTC>), 'session_data': u'OTE2OWEzNjFmMzk3MzVhMTZiNjlmM2EwODhiNTVkOGExNWRjM2JlYzp7fQ=='}
-django_session.save (0.00) {'schema': u'lv', '_id': u'8b352f58fudz1d8zqmcpawazlkgsi30f', 'expire_date': datetime.datetime(2018, 9, 18, 13, 43, 50, 342000, tzinfo=<UTC>), 'session_data': u'OTE2OWEzNjFmMzk3MzVhMTZiNjlmM2EwODhiNTVkOGExNWRjM2JlYzp7fQ=='}
+Not Found: /
+Not Found: /favicon.ico
 lv.auth_user.find (0.00) {'username': 'sys'}
-lv.auth_user.save (0.00) {'username': u'sys', 'first_name': u'', 'last_name': u'', '_id': ObjectId('5b72d435367cc442f4efeea8'), 'is_active': True, 'email': u'sys@beatles.com', 'is_superuser': True, 'is_staff': True, 'last_login': datetime.datetime(2018, 8, 14, 13, 8, 20, 578000, tzinfo=<UTC>), 'password': u'pbkdf2_sha256$12000$KiSzSJaDViXe$XODfZ0RPLijSe0mfEcY2kSDKgWYgPU/L9f/gu/885Ws=', 'date_joined': datetime.datetime(2018, 8, 14, 13, 8, 5, 372000, tzinfo=<UTC>)}
-django_session.save (0.00) {'schema': u'lv', '_id': '8b352f58fudz1d8zqmcpawazlkgsi30f', 'expire_date': datetime.datetime(2018, 9, 18, 13, 43, 50, 470000, tzinfo=<UTC>), 'session_data': u'YTIwMDM1ZDE4Mzg1ZWU5ZTUxNjkzNTM0NWMyMDc3YjYwMjFiODVjYzp7Imxhbmd1YWdlIjoiZW4ifQ=='}
+lv.auth_user.save (0.00) {'username': u'sys', 'first_name': u'', 'last_name': u'', '_id': ObjectId('5b85fbd485740f2b3d7067a4'), 'is_active': True, 'email': u'sys@beatles.com', 'is_superuser': True, 'is_staff': True, 'last_login': datetime.datetime(2018, 8, 29, 2, 35, 25, 469000, tzinfo=<UTC>), 'password': u'pbkdf2_sha256$12000$RthRkhWv7lFO$owgegdATSToj2jfm/sqULHHJMlvEUgJaZuLHXazFA9E=', 'date_joined': datetime.datetime(2018, 8, 29, 1, 50, 11, 947000, tzinfo=<UTC>)}
+django_session.save (0.00) {'schema': u'lv', '_id': 'wehmimqy56w8zyhyo7oqcxm2856qabn9', 'expire_date': datetime.datetime(2018, 9, 19, 8, 6, 24, 157178, tzinfo=<UTC>), 'session_data': u'YTIwMDM1ZDE4Mzg1ZWU5ZTUxNjkzNTM0NWMyMDc3YjYwMjFiODVjYzp7Imxhbmd1YWdlIjoiZW4ifQ=='}
 lv.auth_user.find (0.00) {'username': 'sys'}
-lv.auth_user.save (0.00) {'username': u'sys', 'first_name': u'', 'last_name': u'', '_id': ObjectId('5b72d435367cc442f4efeea8'), 'is_active': True, 'email': u'sys@beatles.com', 'is_superuser': True, 'is_staff': True, 'last_login': datetime.datetime(2018, 8, 14, 13, 8, 20, 578000, tzinfo=<UTC>), 'password': u'pbkdf2_sha256$12000$KiSzSJaDViXe$XODfZ0RPLijSe0mfEcY2kSDKgWYgPU/L9f/gu/885Ws=', 'date_joined': datetime.datetime(2018, 8, 14, 13, 8, 5, 372000, tzinfo=<UTC>)}
+lv.auth_user.save (0.00) {'username': u'sys', 'first_name': u'', 'last_name': u'', '_id': ObjectId('5b85fbd485740f2b3d7067a4'), 'is_active': True, 'email': u'sys@beatles.com', 'is_superuser': True, 'is_staff': True, 'last_login': datetime.datetime(2018, 8, 29, 2, 35, 25, 469000, tzinfo=<UTC>), 'password': u'pbkdf2_sha256$12000$RthRkhWv7lFO$owgegdATSToj2jfm/sqULHHJMlvEUgJaZuLHXazFA9E=', 'date_joined': datetime.datetime(2018, 8, 29, 1, 50, 11, 947000, tzinfo=<UTC>)}
 lv.auth_user.find (0.00) {'username': u'sys'}
-django_session.save (0.00) {'schema': u'lv', '_id': u'dqei21qrltg1hlsydyp4j9nlrx0j4xdh', 'expire_date': datetime.datetime(2018, 9, 18, 13, 43, 52, 409000, tzinfo=<UTC>), 'session_data': u'YTIwMDM1ZDE4Mzg1ZWU5ZTUxNjkzNTM0NWMyMDc3YjYwMjFiODVjYzp7Imxhbmd1YWdlIjoiZW4ifQ=='}
-django_session.remove (0.00) {'_id': {'$in': [u'8b352f58fudz1d8zqmcpawazlkgsi30f']}, 'schema': u'lv'}
-lv.auth_user.save (0.00) {'username': u'sys', 'first_name': u'', 'last_name': u'', '_id': ObjectId('5b72d435367cc442f4efeea8'), 'is_active': True, 'email': u'sys@beatles.com', 'is_superuser': True, 'is_staff': True, 'last_login': datetime.datetime(2018, 9, 4, 13, 43, 52, 417000, tzinfo=<UTC>), 'password': u'pbkdf2_sha256$12000$KiSzSJaDViXe$XODfZ0RPLijSe0mfEcY2kSDKgWYgPU/L9f/gu/885Ws=', 'date_joined': datetime.datetime(2018, 8, 14, 13, 8, 5, 372000, tzinfo=<UTC>)}
-django_session.save (0.00) {'schema': u'lv', '_id': u'dqei21qrltg1hlsydyp4j9nlrx0j4xdh', 'expire_date': datetime.datetime(2018, 9, 18, 13, 43, 52, 420000, tzinfo=<UTC>), 'session_data': u'OWE0MzM1MDdjYTlmNGMyYWFjNTdmZmZlYjBlOGU4MjYxYTFlM2NkNTp7Il9hdXRoX3VzZXJfYmFja2VuZCI6InBlcm1pc3Npb25fYmFja2VuZF9ub25yZWwuYmFja2VuZHMuTm9ucmVsUGVybWlzc2lvbkJhY2tlbmQiLCJfYXV0aF91c2VyX2lkIjoiNWI3MmQ0MzUzNjdjYzQ0MmY0ZWZlZWE4IiwibGFuZ3VhZ2UiOiJlbiJ9'}
-lv.auth_user.find (0.00) {'_id': ObjectId('5b72d435367cc442f4efeea8')}
+django_session.save (0.00) {'schema': u'lv', '_id': u'7awu62qcg6arvuqirbxdppu8zegd7rbc', 'expire_date': datetime.datetime(2018, 9, 19, 9, 17, 30, 251629, tzinfo=<UTC>), 'session_data': u'YTIwMDM1ZDE4Mzg1ZWU5ZTUxNjkzNTM0NWMyMDc3YjYwMjFiODVjYzp7Imxhbmd1YWdlIjoiZW4ifQ=='}
+django_session.remove (0.00) {'_id': {'$in': [u'wehmimqy56w8zyhyo7oqcxm2856qabn9']}, 'schema': u'lv'}
+lv.auth_user.save (0.00) {'username': u'sys', 'first_name': u'', 'last_name': u'', '_id': ObjectId('5b85fbd485740f2b3d7067a4'), 'is_active': True, 'email': u'sys@beatles.com', 'is_superuser': True, 'is_staff': True, 'last_login': datetime.datetime(2018, 9, 5, 9, 17, 30, 258785, tzinfo=<UTC>), 'password': u'pbkdf2_sha256$12000$RthRkhWv7lFO$owgegdATSToj2jfm/sqULHHJMlvEUgJaZuLHXazFA9E=', 'date_joined': datetime.datetime(2018, 8, 29, 1, 50, 11, 947000, tzinfo=<UTC>)}
+django_session.save (0.00) {'schema': u'lv', '_id': u'7awu62qcg6arvuqirbxdppu8zegd7rbc', 'expire_date': datetime.datetime(2018, 9, 19, 9, 17, 30, 263027, tzinfo=<UTC>), 'session_data': u'YmIzYjMyZGE2ZjdkYzZjM2YzZDg5ZGZiMWFhMTUxYTNkYzVlMjNjZDp7Il9hdXRoX3VzZXJfYmFja2VuZCI6InBlcm1pc3Npb25fYmFja2VuZF9ub25yZWwuYmFja2VuZHMuTm9ucmVsUGVybWlzc2lvbkJhY2tlbmQiLCJfYXV0aF91c2VyX2lkIjoiNWI4NWZiZDQ4NTc0MGYyYjNkNzA2N2E0IiwibGFuZ3VhZ2UiOiJlbiJ9'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
 Not Found: /lms/lv/
-lv.auth_user.find (0.00) {'_id': ObjectId('5b72d435367cc442f4efeea8')}
-lv.auth_user.find (0.00) {'username': u'sys'}
-lv.auth_user.find (0.00) {'_id': ObjectId('5b72d435367cc442f4efeea8')}
-lv.auth_user.find (0.00) {'username': u'sys'}
-lv.auth_user.find (0.00) {'_id': ObjectId('5b72d435367cc442f4efeea8')}
-lv.auth_user.find (0.00) {'username': u'sys'}
-lv.auth_user.find (0.00) {'_id': ObjectId('5b72d435367cc442f4efeea8')}
-lv.auth_user.find (0.00) {'username': u'sys'}
-lv.auth_user.find (0.00) {'_id': ObjectId('5b72d435367cc442f4efeea8')}
-lv.auth_user.find (0.00) {'username': u'sys'}
-lv.auth_user.find (0.00) {'_id': ObjectId('5b72d435367cc442f4efeea8')}
-lv.auth_user.find (0.00) {'username': u'sys'}
-lv.auth_user.find (0.00) {'_id': ObjectId('5b72d435367cc442f4efeea8')}
-lv.auth_user.find (0.00) {'username': u'sys'}
-lv.auth_user.find (0.00) {'_id': ObjectId('5b72d435367cc442f4efeea8')}
-lv.auth_user.find (0.00) {'username': u'sys'}
-django_session.save (0.00) {'schema': u'hrm', '_id': u'xukneszqsj730ngl8qy7fu1yxyllo0w9', 'expire_date': datetime.datetime(2018, 9, 18, 13, 44, 23, 95000, tzinfo=<UTC>), 'session_data': u'OTE2OWEzNjFmMzk3MzVhMTZiNjlmM2EwODhiNTVkOGExNWRjM2JlYzp7fQ=='}
-django_session.save (0.00) {'schema': u'hrm', '_id': u'xukneszqsj730ngl8qy7fu1yxyllo0w9', 'expire_date': datetime.datetime(2018, 9, 18, 13, 44, 23, 103000, tzinfo=<UTC>), 'session_data': u'OTE2OWEzNjFmMzk3MzVhMTZiNjlmM2EwODhiNTVkOGExNWRjM2JlYzp7fQ=='}
-hrm.auth_user.find (0.00) {'username': 'sys'}
-hrm.auth_user.save (0.00) {'username': u'sys', 'first_name': u'', 'last_name': u'', '_id': ObjectId('5b54289b367cc4201c6a3db9'), 'is_active': True, 'email': u'sys@beatles.com', 'is_superuser': True, 'is_staff': True, 'last_login': datetime.datetime(2018, 9, 3, 13, 15, 11, 48000, tzinfo=<UTC>), 'password': u'pbkdf2_sha256$12000$Bzj4Qmyccy5i$KrZbxGSW08bLbVDd/v6dN4Ko06L0lJs7fIybYy5R+50=', 'date_joined': datetime.datetime(2018, 7, 22, 6, 47, 55, 322000, tzinfo=<UTC>)}
-django_session.save (0.00) {'schema': u'hrm', '_id': 'xukneszqsj730ngl8qy7fu1yxyllo0w9', 'expire_date': datetime.datetime(2018, 9, 18, 13, 44, 23, 256000, tzinfo=<UTC>), 'session_data': u'YTIwMDM1ZDE4Mzg1ZWU5ZTUxNjkzNTM0NWMyMDc3YjYwMjFiODVjYzp7Imxhbmd1YWdlIjoiZW4ifQ=='}
-hrm.auth_user.find (0.00) {'username': 'sys'}
-hrm.auth_user.save (0.00) {'username': u'sys', 'first_name': u'', 'last_name': u'', '_id': ObjectId('5b54289b367cc4201c6a3db9'), 'is_active': True, 'email': u'sys@beatles.com', 'is_superuser': True, 'is_staff': True, 'last_login': datetime.datetime(2018, 9, 3, 13, 15, 11, 48000, tzinfo=<UTC>), 'password': u'pbkdf2_sha256$12000$Bzj4Qmyccy5i$KrZbxGSW08bLbVDd/v6dN4Ko06L0lJs7fIybYy5R+50=', 'date_joined': datetime.datetime(2018, 7, 22, 6, 47, 55, 322000, tzinfo=<UTC>)}
-hrm.auth_user.find (0.00) {'username': u'sys'}
-django_session.save (0.00) {'schema': u'hrm', '_id': u'2q0vhjz9nxccp63u8ijngg60a5ub95o0', 'expire_date': datetime.datetime(2018, 9, 18, 13, 44, 24, 682000, tzinfo=<UTC>), 'session_data': u'YTIwMDM1ZDE4Mzg1ZWU5ZTUxNjkzNTM0NWMyMDc3YjYwMjFiODVjYzp7Imxhbmd1YWdlIjoiZW4ifQ=='}
-django_session.remove (0.00) {'_id': {'$in': [u'xukneszqsj730ngl8qy7fu1yxyllo0w9']}, 'schema': u'hrm'}
-hrm.auth_user.save (0.00) {'username': u'sys', 'first_name': u'', 'last_name': u'', '_id': ObjectId('5b54289b367cc4201c6a3db9'), 'is_active': True, 'email': u'sys@beatles.com', 'is_superuser': True, 'is_staff': True, 'last_login': datetime.datetime(2018, 9, 4, 13, 44, 24, 689000, tzinfo=<UTC>), 'password': u'pbkdf2_sha256$12000$Bzj4Qmyccy5i$KrZbxGSW08bLbVDd/v6dN4Ko06L0lJs7fIybYy5R+50=', 'date_joined': datetime.datetime(2018, 7, 22, 6, 47, 55, 322000, tzinfo=<UTC>)}
-django_session.save (0.00) {'schema': u'hrm', '_id': u'2q0vhjz9nxccp63u8ijngg60a5ub95o0', 'expire_date': datetime.datetime(2018, 9, 18, 13, 44, 24, 691000, tzinfo=<UTC>), 'session_data': u'MmFjOWRiYTlhNGM5ZjcxOGM4NjZlMGZkNjhjZDExMjI2YmZhMzM2Njp7Il9hdXRoX3VzZXJfYmFja2VuZCI6InBlcm1pc3Npb25fYmFja2VuZF9ub25yZWwuYmFja2VuZHMuTm9ucmVsUGVybWlzc2lvbkJhY2tlbmQiLCJfYXV0aF91c2VyX2lkIjoiNWI1NDI4OWIzNjdjYzQyMDFjNmEzZGI5IiwibGFuZ3VhZ2UiOiJlbiJ9'}
-hrm.auth_user.find (0.00) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
-Not Found: /lms/hrm/
-hrm.auth_user.find (0.00) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
-hrm.auth_user.find (0.00) {'username': u'sys'}
-hrm.auth_user.find (0.00) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
-hrm.auth_user.find (0.00) {'username': u'sys'}
-hrm.auth_user.find (0.00) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
-hrm.auth_user.find (0.00) {'username': u'sys'}
-hrm.auth_user.find (0.00) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
-hrm.auth_user.find (0.00) {'username': u'sys'}
-hrm.auth_user.find (0.00) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
-hrm.auth_user.find (0.00) {'username': u'sys'}
-hrm.auth_user.find (0.00) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
-hrm.auth_user.find (0.00) {'username': u'sys'}
-hrm.auth_user.find (0.00) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
-hrm.auth_user.find (0.00) {'username': u'sys'}
-hrm.auth_user.find (0.00) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
-hrm.auth_user.find (0.00) {'username': u'sys'}

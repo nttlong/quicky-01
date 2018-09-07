@@ -66,11 +66,16 @@ class lazyobject(__validator_class__):
             self.__dict__.update({"__validator__": False})
             for k,v in data.items():
                 if k[0:2] != "__" and k.count('.') == 0:
+                    self.__properties__.update({k:1})
                     if type(v) is dict:
                         setattr(self,k,lazyobject(v))
                     elif type(v) is list:
-                        values = [ x for x in v if type(x) in [str,unicode]]
-                        values.extend([lazyobject(x) for x in v if type(x) is dict])
+                        values = []
+                        for x in v:
+                            if type(x) is dict:
+                                values.append(lazyobject(x))
+                            else:
+                                values.append(x)
                         setattr(self,k,values)
                     else:
                         setattr(self, k, v)
@@ -82,8 +87,16 @@ class lazyobject(__validator_class__):
         ret = {}
         for k in keys:
             v= self.__dict__[k]
-            if type(v) is lazyobject:
+            if hasattr(v,"__to_dict__"):
                 ret.update({k:v.__to_dict__()})
+            elif type(v) is list:
+                lst = []
+                for x in v:
+                    if hasattr(x,"__to_dict__"):
+                        lst.append(x.__to_dict__())
+                    else:
+                        lst.append(x)
+                ret.update({k: lst})
             else:
                 ret.update({k:v})
         return ret
@@ -97,6 +110,6 @@ class lazyobject(__validator_class__):
 
         return super(lazyobject, self).__getattr__(item)
     def __setattr__(self, key, value):
-        super(d_object, self).__setattr__(key, value)
+        super(lazyobject, self).__setattr__(key, value)
     def __is_emty__(self):
         return self.__dict__ == {}

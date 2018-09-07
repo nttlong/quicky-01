@@ -76,6 +76,7 @@ class s_obj(__validator_class__):
             self.__dict__.update({"__validator__": False})
             for k,v in data.items():
                 if k[0:2] != "__" and k.count('.') == 0:
+                    self.__properties__.update({k: 1})
                     if type(v) is dict:
                         setattr(self,k,s_obj(v))
                     elif type(v) is list:
@@ -94,6 +95,16 @@ class s_obj(__validator_class__):
             v= self.__dict__[k]
             if type(v) is s_obj:
                 ret.update({k:v.__to_dict__()})
+            elif type(v) is list:
+                lst =[]
+                for x in v:
+                    if hasattr(x,"__to_dict__"):
+                        lst.append(x.__to_dict__())
+                    else:
+                        lst.append(x)
+                ret.update({
+                    k:lst
+                })
             else:
                 ret.update({k:v})
         return ret
@@ -114,7 +125,7 @@ class s_obj(__validator_class__):
         try:
             ins.__setattr__(key, value)
         except Exception as ex:
-            print value
+            raise ex
     def __is_emty__(self):
         return self.__dict__ == {}
 models = s_obj()
@@ -210,7 +221,7 @@ class __obj_model__(object):
     def objects(self,filter = None,*args,**kwargs):
         if filter == None:
             return self.coll.get_objects()
-        ret = self.coll.objects(filter,*args,**args)
+        ret = self.coll.objects(filter,*args,**kwargs)
         self.reset
         return ret
     def set_session(self,session):
@@ -266,11 +277,14 @@ class __obj_model__(object):
             ret_obj = s_obj(ret[0])
             ret_error = s_obj(ret[1])
             return ret_obj,ret_error
+
         ret_obj = s_obj(ret)
+        ret_obj.__validator__ = False
         ret_obj.is_error = False
         if ret.get("error", None) != None:
             ret_obj.is_error = True
             ret_obj.error_message = "insert data errror '{0}'".format(ret["error"]["code"])
+        ret_obj.__validator__ = True
         return ret_obj
     def delete(self,expression,*arg,**kwargs):
         ret = self.coll.delete(expression,*arg,**kwargs)

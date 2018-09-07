@@ -1,4 +1,19 @@
-_cach_view={}
+class listofviews(dict):
+    def __setitem__(self, item, value):
+        print "You are changing the value of %s to %s!!"%(item, value)
+        super(listofviews, self).__setitem__(item, value)
+    def __getitem__(self, item):
+
+        ret = super(listofviews, self).__getitem__(item)
+        schema = ret.get_collection_name().split('.')[0]
+        ret.__create_mongodb_view__(ret,"{0}.{1}".format(schema,ret.__source_name__))
+
+        return ret
+global _cach_view
+_cach_view=listofviews()
+global __cach_has_exec_command_create_view__
+__cach_has_exec_command_create_view__ = {}
+
 from . database import AGGREGATE
 from . import helpers
 from . import fx_model
@@ -9,7 +24,7 @@ def create_mongodb_view(aggregate,name):
     if not isinstance(aggregate,AGGREGATE):
         raise (Exception("It looks like you create view from object is not '{0}'".format("qmomgo.database.AGGREGATE")))
     global _cach_view
-    def __create_mongodb_view__(self):
+    def __create_mongodb_view__(self,sourcename):
         def excec_command():
             import json
             context = self.qr.db
@@ -37,7 +52,7 @@ def create_mongodb_view(aggregate,name):
 
             command_object = (
                 view_name,
-                self.__source_name__,
+                sourcename,
                 self.__initial_pipe__
             )
             self.qr.db.drop_collection(view_name)
@@ -45,11 +60,9 @@ def create_mongodb_view(aggregate,name):
             param_text = param_text[1:param_text.__len__() - 1]
             command_text = "db.createView(" + param_text + ")"
             self.qr.db.eval(command_text)
-
-        yield excec_command()
+        if not __cach_has_exec_command_create_view__.has_key("{0}.{1}".format(self.schema,self._none_schema_name)):
+            excec_command()
     if not _cach_view.has_key(name):
-
-
         view_model_fields={}
         for field in aggregate.get_selected_fields():
             view_model_fields.update(
@@ -85,7 +98,7 @@ def create_mongodb_view(aggregate,name):
             delattr(qmongo.models, name)
 
 
-        return ret
+        return _cach_view[name]
     else:
         return _cach_view[name]
 def create_mongod_view_from_pipeline(db,pipe_line,from_collection,schema,view_name):

@@ -309,6 +309,13 @@ def vert_expr(str,*params):
         ret=ret.replace("{"+index.__str__()+"}","get_params("+index.__str__()+")")
         index=index+1
     return ret
+def __trim_first_charator(c,content):
+    if content=="" or content==None:
+        return content
+    else:
+        while content[0] == c:
+            content =content[1:content.__len__()]
+    return content
 def get_tree(expr,*params,**kwargs):
     """
     get full tree of expression
@@ -353,7 +360,7 @@ def get_tree(expr,*params,**kwargs):
 
     ret={}
     if expr[0:5]=="expr(":
-        return get_calc_expr(expr)
+        return get_calc_expr(expr,*params,**kwargs)
 
     str=vert_expr(expr,*params)
     cmp=compile(str, '<unknown>', 'exec', 1024).body.pop()
@@ -453,7 +460,7 @@ def get_tree(expr,*params,**kwargs):
             if not type(val) in [type(str), type(unicode)]:
                 raise Exception("notContains function is expected one text param, but the value {0} is not a text".format(val))
             return {
-                "left": fx['params'][0],
+                "left":__trim_first_charator("$",fx['params'][0]),
                 "operator": "$notContains",
                 "right": fx['params'][1]
             }
@@ -461,7 +468,7 @@ def get_tree(expr,*params,**kwargs):
         elif cmp.value.func.id == "exists":
             fx= get_left(cmp.value)
             return {
-                "left":fx['params'][0],
+                "left":__trim_first_charator("$",fx['params'][0]),
                 "operator":"$exists",
                 "right":True
             }
@@ -469,7 +476,7 @@ def get_tree(expr,*params,**kwargs):
         elif cmp.value.func.id == "notExists":
             fx = get_left(cmp.value)
             return {
-                "left": fx['params'][0],
+                "left": __trim_first_charator("$",fx['params'][0]),
                 "operator": "$exists",
                 "right": False
             }
@@ -785,15 +792,9 @@ def get_expr(fx,*params):
         if fx["operator"] == "$in":
             return {
                 get_expr(fx["left"]): {
-                    fx["operator"]: __compile_right_params__(params, fx["right"])
+                    fx["operator"]: __compile_right_params__(params, fx)
                 }
             }
-
-            # return {
-            #     fx["left"]:{
-            #         fx["operator"]:params
-            #     }
-            # }
 
         if fx["operator"] == "$not":
             if fx['right'][fx['right'].keys()[0]]['operator'] in ["$contains",'$start','$end']:
@@ -888,7 +889,14 @@ def get_expr(fx,*params):
                     }
             else:
                 if fx["right"]["type"]=="params":
+                    # if params.__len__()<fx["right"]["value"]:
+                    #     x=1
+                    # try:
                     val=params[fx["right"]["value"]]
+                    # except Exception as ex:
+                    #     x = 1
+                    #     val="error"
+
                     if type(val) in [str,unicode]:
                         if type(fx["left"]) in [str,unicode]:
                             return {
@@ -1259,7 +1267,7 @@ def get_calc_expr(expr,*params,**kwargs):
     if type(params) is tuple and params.__len__() > 0 and type(params[0]) is dict:
         _params = []
         _expr = expr
-        _index = 0;
+        _index = 0
         for key in params[0].keys():
             _expr = _expr.replace("@" + key, "{" + _index.__str__() + "}")
             _params.append(params[0][key])
@@ -1351,7 +1359,14 @@ def parse_expression_to_json_expression(expression,*params,**kwargs):
         expr_tree=get_tree(expression,*params,**kwargs)
         if expression[0:5]=="expr(":
             return expr_tree
-        return get_expr(expr_tree,*params,**kwargs)
+
+        if params.__len__()>0:
+            params = params[0]
+            return get_expr(expr_tree, *params,**kwargs)
+        else:
+            params = kwargs
+            items = [v for k, v in params.items()]
+            return get_expr(expr_tree,*items)
     except Exception as ex:
         print traceback.format_exc()
         raise Exception("Below expression is invalid:\n"

@@ -268,8 +268,7 @@ class ENTITY():
         """
         self._expr = expression
         if type(expression) is str:
-            expr_tr=expr.get_tree(expression,*args,**kwargs)
-            self._expr = expr.parse_expression_to_json_expression(expression,*args,**kwargs)
+            self._expr = helpers.filter(expression,*args,**kwargs).get_filter()
         return self
     def delete(self):
         self._action="delete"
@@ -307,7 +306,7 @@ class ENTITY():
             for key in self._data.keys():
                 if (key[0:1]=="$" or key == "_id") and (key not in ["$push","$pull"]):
                     self._data.pop(key)
-                
+
 
 
         _coll=self._coll.get_collection()
@@ -336,7 +335,7 @@ class ENTITY():
                         return self._data,dict(
                                 fields=ret_validate_require,
                                 code="missing"
-                            )
+                            ),"Miss require value when insert data"
 
                 ret_validate_data_type=validators.validate_type_of_data(self._coll._model.name,self._data)
                 if ret_validate_data_type.__len__()>0:
@@ -380,7 +379,7 @@ class ENTITY():
                 elif exec_mode.get_mode() == "on":
                     raise (Exception("Data is duplicate, duplicate fields is in {0}".format(ret_data['error']['fields'])))
                 elif exec_mode.get_mode() == "return":
-                    return self._data, ret_data,"Duplicate data value when insert data"
+                    return self._data, ret_data,"Data is duplicate, duplicate fields is in {0}".format(ret_data['error']['fields'])
             except Exception as ex:
                 raise ex
 
@@ -448,7 +447,7 @@ class ENTITY():
                         return self._data,dict(
                                 fields=ret_validate_require,
                                 code="missing"
-                            )
+                            ),"Data is missing\n Fields is missing:\n {0}".format(ret_validate_require)
 
                 ret_validate_data_type = validators.validate_type_of_data(self._coll._model.name, _c_data)
                 if ret_validate_data_type.__len__() > 0:
@@ -465,7 +464,7 @@ class ENTITY():
                         return self._data,dict(
                                 fields=ret_validate_require,
                                 code="missing"
-                            )
+                            ),"Data is invalid\n Fields is missing:\n {0}".format(ret_validate_data_type)
                 _x = {}
                 for k, v in _c_data.items():
                     if k[0] == "$":
@@ -491,8 +490,10 @@ class ENTITY():
                             error=None,
                             data=ret
                         )
-                    elif exec_mode.get_mode() =="return":
-                        return _data,None
+                    elif exec_mode.get_mode() == "return":
+                        return _data,None,"Update is successfull"
+                    else:
+                        return _data
 
                 except pymongo.errors.DuplicateKeyError as ex:
                     ret_data = self.get_duplicate_error(ex)
@@ -504,11 +505,11 @@ class ENTITY():
                         raise (Exception("Data is duplicate,\n"
                                          "Duplicate fields are below\n{0}".format(ret_data)))
                     elif exec_mode.get_mode() == "return":
-                        return _data,ret_data
+                        return _data,ret_data,"Duplicate fields are below\n{0}".format(ret_data)
                     return ret_data
                 except Exception as ex:
                     if exec_mode.get_mode() == "return":
-                        return _data,ex
+                        return _data,ex,"Update data is error with unknown error"
                     else:
                         raise (ex)
 
@@ -523,10 +524,10 @@ class ENTITY():
                     if exec_mode.get_mode() == "off":
                         return ret
                     elif exec_mode.get_mode() == "return":
-                        return ret,None
+                        return ret,None,"Delete data is successfull"
                 except Exception as ex:
                     if exec_mode.get_mode() == "return":
-                        return _data,ex
+                        return _data,ex,"Delete data is error with unknown error"
                     else:
                         raise (ex)
 class WHERE():
@@ -648,7 +649,25 @@ class WHERE():
         _name = "$" + inspect.stack()[0][3]
 
         _data = helpers.filter(expression,*args,**kwargs).get_filter()
-        _pull_data_ = helpers.slice_key_of_dict(_data)
+
+        def fix_eq(_data):
+            if not type(_data) is dict:
+                return _data
+            if _data.keys()[0]=="$eq":
+                return _data["$eq"]
+            _pull_filter_ = {}
+            for k, v in _data.items():
+                if type(v) is dict and v.has_key("$eq"):
+                    _pull_filter_.update({k: fix_eq(v["$eq"])})
+                elif type(v) is list:
+                    _pull_filter_.update({k:[fix_eq(x) for x in v]})
+                else:
+                    _pull_filter_.update({k: v})
+            return _pull_filter_
+
+        _pull_data_ = helpers.slice_key_of_dict(fix_eq(_data))
+
+
 
         if not self._update_data.has_key(_name):
             self._update_data.update({
@@ -726,7 +745,7 @@ class COLL():
         self._model=get_model(name)
         self.schema=get_current_schema()
         self.session = None
-       
+
 
         self.qr=qr
     def turn_never_use_schema_on(self):
@@ -809,9 +828,9 @@ class COLL():
                                  "import qmongo\n"
                                  "qmongo.set_schema(schema_name)"))
 
-        if hasattr(self,"__create_mongodb_view__"):
-            self.__create_mongodb_view__(self).next()
-            delattr(self,"__create_mongodb_view__")
+        # if hasattr(self,"__create_mongodb_view__"):
+        #     self.__create_mongodb_view__(self)
+        #     delattr(self,"__create_mongodb_view__")
 
         global _cache_create_key_for_collection
         if _cache_create_key_for_collection==None:
@@ -826,9 +845,9 @@ class COLL():
             for item in key_info["keys"]:
                 keys=[]
                 partialFilterExpression={}
-                
+
                 for field_name in item:
-                    
+
                     keys.append((field_name,pymongo.ASCENDING))
                     if(self._model.meta[field_name]=="text"):
                         partialFilterExpression.update({
@@ -886,13 +905,13 @@ class COLL():
             ret=self.get_collection().find_one(filter)
             return ret
     def objects(self,exprression=None,*args,**kwargs):
-        from . import dynamic_object
+        from . import fx_model
         iters= self.cursors(exprression,*args,**kwargs)
         continue_fetch = True
         while continue_fetch:
             try:
                 item = iters.next()
-                yield dynamic_object.create_from_dict(item)
+                yield fx_model.s_obj(item)
             except StopIteration as ex:
                 continue_fetch  = False
 
@@ -967,11 +986,11 @@ class COLL():
         Get one item from mongodb and return object without filtering
         :return:
         """
-        from . import dynamic_object
+        from . import fx_model
         ret = self.get_collection().find_one()
         if ret == None:
             return None
-        ret_object = dynamic_object.create_from_dict(ret)
+        ret_object = fx_model.s_obj(ret)
 
         return ret_object
     def where(self,exprression,*args,**kwargs):
@@ -996,10 +1015,10 @@ class COLL():
         """create aggregate before create pipeline"""
         return AGGREGATE(self,self.qr,self.name,self.session)
     def insert_object(self,obj_item):
-        from . import dynamic_object
-        if not type(obj_item) is dynamic_object.dynamic_object:
-            raise (Exception("parameter must be '{0}".format('qmonog.dynamic_object.dynamic_object')))
-        return self.insert(obj_item._dict_)
+        from . import fx_model
+        if not hasattr(obj_item,"__to_dict__"):
+            raise (Exception("Insert object must have '__to_dict__()'"))
+        return self.insert(obj_item.__to_dict__())
     def insert(self,*args,**kwargs):
         # type: (dict|tuple) -> dict
 
@@ -1034,10 +1053,9 @@ class COLL():
         ret=ac.commit(self.session)
         return ret
     def update_object(self,obj_item,filter,*args,**kwargs):
-        from . import dynamic_object
-        if not type(obj_item) is dynamic_object.dynamic_object:
-            raise (Exception("parameter must be '{0}".format('qmonog.dynamic_object.dynamic_object')))
-        return self.update(obj_item._dict_,filter,*args,**kwargs)
+        if not hasattr(obj_item,"__to_dict__"):
+            raise (Exception("update object must have '__to_dict__()'"))
+        return self.update(obj_item.__to_dict__(),filter,*args,**kwargs)
     def update(self,data,filter,*args,**kwargs):
         # type: (dict,str,int|bool|datetime|float|dict|tuple|list) -> dict
 
@@ -1050,26 +1068,24 @@ class COLL():
         :param kwargs:
         :return: dict with data and error
         """
-        import dynamic_object
         unknown_fields = self._model.validate_expression(filter,None,*args,**kwargs)
         if unknown_fields.__len__() > 0:
             raise (Exception("What is bellow list of fields?:\n" + self.descibe_fields("\t\t", unknown_fields) +
                              " \n Your selected fields now is bellow list: \n" +
                              self.descibe_fields("\t\t\t", self._model.get_fields())))
         if type(args) is tuple and args.__len__()>0 and kwargs=={}:
-            kwargs=args[0]
-            if hasattr(kwargs,"__dict__"):
-                kwargs=dynamic_object.convert_to_dict(kwargs)
-        ac=self.entity().filter(filter,kwargs)
+            if hasattr(args[0],"__to_dict__"):
+                kwargs=(args[0].__to_dict__())
+                args =()
+        ac=self.entity().filter(filter,*args,**kwargs)
         ac.update_many(data)
         ret=ac.commit(self.session)
         return ret
 
     def push_object(self, obj_item, filter, *args, **kwargs):
-        from . import dynamic_object
-        if not type(obj_item) is dynamic_object.dynamic_object:
-            raise (Exception("parameter must be '{0}".format('qmonog.dynamic_object.dynamic_object')))
-        return self.push(obj_item._dict_, filter, *args, **kwargs)
+        if not hasattr(obj_item,"__to_dict__"):
+            raise (Exception("push object must have '__to_dict__()"))
+        return self.push(obj_item.__to_dict__(), filter, *args, **kwargs)
     def push(self,data,filter,*args,**kwargs):
 
         # type: (dict,str,int|bool|datetime|float|dict|tuple|list) -> dict
@@ -1090,19 +1106,12 @@ class COLL():
                              self.descibe_fields("\t\t\t", self._model.get_fields())))
         if type(args) is tuple and args.__len__()>0 and kwargs=={}:
             kwargs=args[0]
-            if hasattr(kwargs,"__dict__"):
-                from . import dynamic_object
-                kwargs=dynamic_object.convert_to_dict(kwargs)
+            if hasattr(kwargs,"__to_dict__"):
+                kwargs=(kwargs.__to_dict__())
         ac=self.entity().filter(filter,kwargs)
         ac.push(data)
         ret=ac.commit(self.session)
         return ret
-
-    def pull_object(self, obj_item, filter, *args, **kwargs):
-        from . import dynamic_object
-        if not type(obj_item) is dynamic_object.dynamic_object:
-            raise (Exception("parameter must be '{0}".format('qmonog.dynamic_object.dynamic_object')))
-        return self.pull(obj_item._dict_, filter, *args, **kwargs)
     def pull(self,data,filter,*args,**kwargs):
         # type: (dict,str,int|bool|datetime|float|dict|tuple|list) -> dict
 
@@ -1120,11 +1129,6 @@ class COLL():
             raise (Exception("What is bellow list of fields?:\n" + self.descibe_fields("\t\t", unknown_fields) +
                              " \n Your selected fields now is bellow list: \n" +
                              self.descibe_fields("\t\t\t", self._model.get_fields())))
-        if type(args) is tuple and args.__len__()>0 and kwargs=={}:
-            kwargs=args[0]
-            if hasattr(kwargs,"__dict__"):
-                from . import dynamic_object
-                kwargs=dynamic_object.convert_to_dict(kwargs)
         ac=self.entity().filter(filter,kwargs)
         ac.pull(data)
         ret=ac.commit(self.session)
@@ -1182,28 +1186,17 @@ class COLL():
             ret+="("+key+"==@"+key+")and"
         return ret[0:ret.__len__()-3]
     def save(self,data,keys):
-        if hasattr(data, "__dict__"):
-            from . import dynamic_object
-            data = dynamic_object.convert_to_dict(data)
+        _data = data
+        if hasattr(data, "__to_dict__"):
+            _data = data.__to_dict__()
         filter_key=self.get_filter_keys(keys)
-        data_item=self.find_one(filter_key,data)
+        data_item=self.find_one(filter_key,_data)
         ret={}
         if data_item!=None:
-            ret_val=self.update(data,filter_key,data)
-            ret.update({
-                "action":"update",
-                "_id":data_item["_id"],
-                "error": ret_val["error"]
-            })
+            ret_val=self.update(data,filter_key,_data)
         else:
-            ret_val=self.insert(data)
-            ret.update({
-                "action": "update",
-                "_id": ret_val["data"]["_id"],
-                "error": ret_val["error"]
-            })
-
-        return data_item
+            ret_val=self.insert(_data)
+        return ret_val
 class AGGREGATE():
     """
     This class is a utility for mongodb aggregation framework. For more detail refer to :https://docs.mongodb.com/manual/aggregation/
@@ -1441,7 +1434,7 @@ class AGGREGATE():
             "$limit": num
         })
         return self
-     
+
     def unwind(self,field_name,preserve_null_and_empty_arrays=True):
         # type: (str) -> AGGREGATE
         """
@@ -1488,9 +1481,9 @@ class AGGREGATE():
             raise (Exception(
                 "What is bellow list of fields?:\n" + err_msg + " \n Your selected fields now is bellow list: \n" + err_msg_fields))
         by_params=False
-        if args==():
-            args=kwargs
-            by_params=True
+        # if args==():
+        #     args=kwargs
+        #     by_params=True
 
         if type(expression) is dict:
             self._pipe.append({
@@ -1500,7 +1493,7 @@ class AGGREGATE():
         if type(expression) in [str,unicode]:
             import helpers
             self._pipe.append({
-                "$match": (lambda :  helpers.filter(expression, args)._pipe if by_params else helpers.filter(expression, *args,**kwargs)._pipe)()
+                "$match": helpers.filter(expression, *args,**kwargs)._pipe
             })
             return self
 
@@ -1646,7 +1639,7 @@ class AGGREGATE():
         coll_ret = coll.aggregate(self._pipe)
         ret=coll.aggregate(self._pipe)
         continue_fetch =True
-        from . import dynamic_object
+
         while continue_fetch:
             try:
                 yield  fx_model.s_obj(ret.next())

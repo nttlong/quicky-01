@@ -115,10 +115,10 @@ def app_remove_view(name,path):
             actor =actor.pull("views.path=={0}",path)
             ret ,ex = actor.commit()
             return None,ex, "'{0}' has remove  view with path={1}".format(name,path)
-def role_get(role):
-    return models.entities.roles.coll.aggregate().match("role=={0}",role).get_object()
+def role_get(schema,role):
+    return models.entities.roles.coll.aggregate().match("role=={0} and schema =={1}",role,schema).get_object()
 
-def role_create(role,name,description = None,users =[]):
+def role_create(schema,role,name,description = None,users =[]):
     """
     Create role
     :param role: role code
@@ -127,21 +127,31 @@ def role_create(role,name,description = None,users =[]):
     :param users: list of username are in role
     :return: role
     """
-    role_item = role_get(role)
+    role_item = role_get(schema, role)
     if role_item != None:
         return None,\
                lazyobject(
                    code="not_found",
-                   message="Role '{0}' was not found"
+                   message="Role '{0}' in schema '{1}' is existing".format(role,schema)
                ),\
-               "'{0}' is already existing"
+               "Role '{0}' in schema '{1}' is already existing".format(role,schema)
+    schema_item = schema_get(schema)
+
+    if schema_item == None:
+        return None,\
+               lazyobject(
+                   code="not_found",
+                   message="Schema '{0}' was not founsd ".format(schema)
+               ),\
+               "Schema '{0}' was not founsd ".format(schema)
+
     with qmongo.exept_mode('return'):
         entity = models.entities.roles.coll
-        ret, ex =  entity.insert_one(role=role,name = name,description=description,user=users)
+        ret, ex,msg =  entity.insert_one(schema=schema, role=role,name = name,description=description,user=users)
         if ex != None:
-            return None,ex,"Create role '{0}' is error".format(role)
+            return None,ex,"Create role '{0}' is error,\n {1}".format(role,msg)
         else:
-            role_item = role_get(name)
+            role_item = role_get(schema, role)
             return role_item, None, "Create role '{0}' is successfull".format(role)
 def app_modify_role(name,view_path,role,is_full_access = False,privileges =[]):
     app = app_get(name)
@@ -314,8 +324,31 @@ def role_add_user(role,username):
         with qmongo.exept_mode("return"):
             actor=entity.where("role == {0}",role)
             actor=actor.push(users=username)
-            ret,ex =actor.commit()
-            return None,lazyobject(ex),"Add user to role '{0}' is successfull".format(role)
+            ret,ex,message =actor.commit()
+            if ex != None:
+                return None,lazyobject(ex),"Add user '{1} to role '{0}' is error".format(role,username)
+            else:
+                return None, None, "Add user '{1}' to role '{0}' is successfull".format(role,username)
+    else:
+        return None, None, "'{0}' is existing in '{1}'".format(username,role)
+def schema_get(name):
+    return models.entities.schemas.coll.where("schema=={0}",name).object
+
+def schema_create(name,description = None):
+    ret = schema_get(name)
+    if ret != None:
+        return ret,None,"Schema '{0}' is existing".format(name)
+    with qmongo.exept_mode("return"):
+        entity =  models.entities.schemas
+        ret,ex,msg = entity.coll.insert_one(schema = name,description= description)
+        if ex != None:
+            return None,ex,"Create schema is error,\n {0}".format(msg)
+        else:
+            return ret,None,"Create schema is successfull"
+
+
+
+
 
 
 

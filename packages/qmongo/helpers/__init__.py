@@ -83,6 +83,19 @@ def create_obj_fields(data):
         elif v["type"] == "object":
             setattr(ret, v, create_obj_fields(v))
     return ret
+def vert_expr(str,*params):
+    """
+    Parameterize expression
+    :param str:
+    :param params:
+    :return:
+    """
+    ret=str
+    index=0
+    for p in params:
+        ret=ret.replace("{"+index.__str__()+"}","get_params("+index.__str__()+")")
+        index=index+1
+    return ret
 def filter(expression,*args,**kwargs):
     # type: (str, tuple|str|bool|int, dict) -> filter()|filter_expression
     """
@@ -92,9 +105,33 @@ def filter(expression,*args,**kwargs):
     :param kwargs:
     :return:filter_expression will call by get_filter
     """
-
-    ret = filter_expression(expression,*args,**kwargs)
+    params= args
+    expr = expression
+    _expr = expression
+    if type(params) is tuple and params.__len__() > 0 and type(params[0]) is dict:
+        _params = []
+        _expr = expr
+        _index = 0
+        for key in params[0].keys():
+            _expr = _expr.replace("@" + key, "{" + _index.__str__() + "}")
+            _params.append(params[0][key])
+            _index += 1
+        expr = _expr
+        params = _params
+    elif params == ():
+        _params = []
+        _expr = expr
+        _index = 0;
+        for key in kwargs.keys():
+            _expr = _expr.replace("@" + key, "{" + _index.__str__() + "}")
+            _params.append(kwargs[key])
+            _index += 1
+        expr = _expr
+        params = _params
+    _expr = vert_expr(_expr, *params)
+    ret = filter_expression(_expr, params)
     return ret
+
 # def aggregate():
 #     ret=aggregate_expression()
 #     return ret
