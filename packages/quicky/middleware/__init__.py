@@ -296,7 +296,7 @@ class extension(object):
             app =request.get_app()
             if hasattr(request, "__view_path"):
                 if request.__view_path == "":
-                    request.__view_path = "ifndex"
+                    request.__view_path = "index"
                 __view_path__.update({
                     request.path:request.__view_path
                 })
@@ -324,11 +324,11 @@ class extension(object):
                         })
                         return ret
                     else:
-                        setattr(request, "__view_path", (lambda x: x if x != "" else "index")(ret))
+                        ret = (lambda x: x if x != "" else "index")(ret)
                         __view_path__.update({
-                            request.path: request.__view_path
+                            request.path: ret
                         })
-                        return (lambda x: x if x != "" else "index")(ret)
+                        return ret
             else:
                 if app.is_persistent_schema():
                     if ret[0:1] == "/":
@@ -445,4 +445,4 @@ class extension(object):
         setattr(request,"__customer_code__",__customer__code__[request.path])
         self.init_schema(request)
         self.apply(request)
-        print request.get_view_path()
+        print "load "+ request.get_view_path()

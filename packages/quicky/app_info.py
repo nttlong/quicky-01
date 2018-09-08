@@ -163,7 +163,7 @@ class app_config():
         if self.host_dir == "":
             if customer_code == None:
                 self.__login_url__.update({
-                    "-":self.__str_trim__(self.mdl.settings.login_url)
+                    "-":__str_trim__(self.mdl.settings.login_url)
                 })
             else:
                 __login_url__ = customer_code+"/"+self.mdl.settings.login_url

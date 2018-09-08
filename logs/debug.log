@@ -29401,3 +29401,175 @@ sys.auth_user.find (0.00) {'username': u'root'}
 sys.auth_user.find (0.00) {'_id': ObjectId('5b541a58367cc4338cf5fe68')}
 sys.auth_user.find (0.00) {'_id': ObjectId('5b541a58367cc4338cf5fe68')}
 sys.auth_user.find (0.00) {'username': u'root'}
+Not Found: /lms/sys
+django_session.save (0.00) {'schema': u'hrm', '_id': u'ktuibwbhco4rtu031z2j6maqzsn5lrqk', 'expire_date': datetime.datetime(2018, 9, 22, 9, 29, 35, 803000, tzinfo=<UTC>), 'session_data': u'OTE2OWEzNjFmMzk3MzVhMTZiNjlmM2EwODhiNTVkOGExNWRjM2JlYzp7fQ=='}
+Internal Server Error: /
+Traceback (most recent call last):
+  File "E:\code\quicky-01\packages/django\django\core\handlers\base.py", line 112, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "E:\code\quicky-01\packages\quicky\executor.py", line 193, in exec_request
+    login_url = self.__app__.get_login_url(self.get_customer_code(request))
+  File "E:\code\quicky-01\packages\quicky\app_info.py", line 166, in get_login_url
+    "-":self.__str_trim__(self.mdl.settings.login_url)
+AttributeError: app_config instance has no attribute '__str_trim__'
+django_session.save (0.00) {'schema': u'hrm', '_id': u'18wsyj6oi0b0kyyhsnv4ucegcrqxwce2', 'expire_date': datetime.datetime(2018, 9, 22, 9, 31, 42, 593000, tzinfo=<UTC>), 'session_data': u'OTE2OWEzNjFmMzk3MzVhMTZiNjlmM2EwODhiNTVkOGExNWRjM2JlYzp7fQ=='}
+Internal Server Error: /
+Traceback (most recent call last):
+  File "E:\code\quicky-01\packages/django\django\core\handlers\base.py", line 112, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "E:\code\quicky-01\packages\quicky\executor.py", line 193, in exec_request
+    login_url = self.__app__.get_login_url(self.get_customer_code(request))
+  File "E:\code\quicky-01\packages\quicky\app_info.py", line 166, in get_login_url
+    "-":__str_trim__(self.mdl.settings.login_url)
+AttributeError: app_config instance has no attribute '__str_trim__'
+django_session.save (0.00) {'schema': u'hrm', '_id': u'6cz5591zvfbsjpdi8ihkhxx2w805fu0j', 'expire_date': datetime.datetime(2018, 9, 22, 9, 31, 51, 330000, tzinfo=<UTC>), 'session_data': u'OTE2OWEzNjFmMzk3MzVhMTZiNjlmM2EwODhiNTVkOGExNWRjM2JlYzp7fQ=='}
+Internal Server Error: /
+Traceback (most recent call last):
+  File "E:\code\quicky-01\packages/django\django\core\handlers\base.py", line 112, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "E:\code\quicky-01\packages\quicky\executor.py", line 193, in exec_request
+    login_url = self.__app__.get_login_url(self.get_customer_code(request))
+  File "E:\code\quicky-01\packages\quicky\app_info.py", line 166, in get_login_url
+    "-":__str_trim__(self.mdl.settings.login_url)
+AttributeError: app_config instance has no attribute '__str_trim__'
+django_session.save (0.00) {'schema': u'hrm', '_id': u'0suzuso9jqdhd5k4lwoqzrhpxfdavpa9', 'expire_date': datetime.datetime(2018, 9, 22, 9, 32, 28, 614000, tzinfo=<UTC>), 'session_data': u'OTE2OWEzNjFmMzk3MzVhMTZiNjlmM2EwODhiNTVkOGExNWRjM2JlYzp7fQ=='}
+django_session.save (0.00) {'schema': u'hrm', '_id': u'0suzuso9jqdhd5k4lwoqzrhpxfdavpa9', 'expire_date': datetime.datetime(2018, 9, 22, 9, 32, 33, 118000, tzinfo=<UTC>), 'session_data': u'OTE2OWEzNjFmMzk3MzVhMTZiNjlmM2EwODhiNTVkOGExNWRjM2JlYzp7fQ=='}
+Internal Server Error: /login
+Traceback (most recent call last):
+  File "E:\code\quicky-01\packages/django\django\core\handlers\base.py", line 88, in get_response
+    response = middleware_method(request)
+  File "E:\code\quicky-01\packages\quicky\middleware\__init__.py", line 448, in process_request
+    print request.get_view_path()
+  File "E:\code\quicky-01\packages\quicky\middleware\__init__.py", line 329, in get_view_path
+    request.path: request.__view_path
+AttributeError: 'WSGIRequest' object has no attribute '_extension__view_path'
+Internal Server Error: /login
+Traceback (most recent call last):
+  File "E:\code\quicky-01\packages/django\django\core\handlers\base.py", line 88, in get_response
+    response = middleware_method(request)
+  File "E:\code\quicky-01\packages\quicky\middleware\__init__.py", line 448, in process_request
+    print request.get_view_path()
+  File "E:\code\quicky-01\packages\quicky\middleware\__init__.py", line 329, in get_view_path
+    request.path: ret
+AttributeError: 'WSGIRequest' object has no attribute '_extension__view_path'
+Internal Server Error: /login
+Traceback (most recent call last):
+  File "E:\code\quicky-01\packages/django\django\core\handlers\base.py", line 88, in get_response
+    response = middleware_method(request)
+  File "E:\code\quicky-01\packages\quicky\middleware\__init__.py", line 448, in process_request
+    print request.get_view_path()
+  File "E:\code\quicky-01\packages\quicky\middleware\__init__.py", line 329, in get_view_path
+    request.path: ret
+AttributeError: 'WSGIRequest' object has no attribute '_extension__view_path'
+Internal Server Error: /login
+Traceback (most recent call last):
+  File "E:\code\quicky-01\packages/django\django\core\handlers\base.py", line 88, in get_response
+    response = middleware_method(request)
+  File "E:\code\quicky-01\packages\quicky\middleware\__init__.py", line 448, in process_request
+    print request.get_view_path()
+  File "E:\code\quicky-01\packages\quicky\middleware\__init__.py", line 329, in get_view_path
+    request.path: ret
+AttributeError: 'WSGIRequest' object has no attribute '_extension__view_path'
+hrm.auth_user.find (0.04) {'username': 'sys'}
+hrm.auth_user.save (0.01) {'username': u'sys', 'first_name': u'', 'last_name': u'', '_id': ObjectId('5b54289b367cc4201c6a3db9'), 'is_active': True, 'email': u'sys@beatles.com', 'is_superuser': True, 'is_staff': True, 'last_login': datetime.datetime(2018, 9, 4, 13, 44, 24, 689000, tzinfo=<UTC>), 'password': u'pbkdf2_sha256$12000$Bzj4Qmyccy5i$KrZbxGSW08bLbVDd/v6dN4Ko06L0lJs7fIybYy5R+50=', 'date_joined': datetime.datetime(2018, 7, 22, 6, 47, 55, 322000, tzinfo=<UTC>)}
+django_session.save (0.00) {'schema': u'hrm', '_id': '0suzuso9jqdhd5k4lwoqzrhpxfdavpa9', 'expire_date': datetime.datetime(2018, 9, 22, 9, 38, 28, 869000, tzinfo=<UTC>), 'session_data': u'YTIwMDM1ZDE4Mzg1ZWU5ZTUxNjkzNTM0NWMyMDc3YjYwMjFiODVjYzp7Imxhbmd1YWdlIjoiZW4ifQ=='}
+hrm.auth_user.find (0.00) {'username': 'sys'}
+hrm.auth_user.save (0.00) {'username': u'sys', 'first_name': u'', 'last_name': u'', '_id': ObjectId('5b54289b367cc4201c6a3db9'), 'is_active': True, 'email': u'sys@beatles.com', 'is_superuser': True, 'is_staff': True, 'last_login': datetime.datetime(2018, 9, 4, 13, 44, 24, 689000, tzinfo=<UTC>), 'password': u'pbkdf2_sha256$12000$Bzj4Qmyccy5i$KrZbxGSW08bLbVDd/v6dN4Ko06L0lJs7fIybYy5R+50=', 'date_joined': datetime.datetime(2018, 7, 22, 6, 47, 55, 322000, tzinfo=<UTC>)}
+hrm.auth_user.find (0.00) {'username': u'root'}
+hrm.auth_user.find (0.00) {'username': u'root'}
+django_session.save (0.00) {'schema': u'hrm', '_id': '0suzuso9jqdhd5k4lwoqzrhpxfdavpa9', 'expire_date': datetime.datetime(2018, 9, 22, 9, 38, 46, 732000, tzinfo=<UTC>), 'session_data': u'YTIwMDM1ZDE4Mzg1ZWU5ZTUxNjkzNTM0NWMyMDc3YjYwMjFiODVjYzp7Imxhbmd1YWdlIjoiZW4ifQ=='}
+hrm.auth_user.find (0.00) {'username': 'sys'}
+hrm.auth_user.save (0.00) {'username': u'sys', 'first_name': u'', 'last_name': u'', '_id': ObjectId('5b54289b367cc4201c6a3db9'), 'is_active': True, 'email': u'sys@beatles.com', 'is_superuser': True, 'is_staff': True, 'last_login': datetime.datetime(2018, 9, 4, 13, 44, 24, 689000, tzinfo=<UTC>), 'password': u'pbkdf2_sha256$12000$Bzj4Qmyccy5i$KrZbxGSW08bLbVDd/v6dN4Ko06L0lJs7fIybYy5R+50=', 'date_joined': datetime.datetime(2018, 7, 22, 6, 47, 55, 322000, tzinfo=<UTC>)}
+hrm.auth_user.find (0.00) {'username': u'root'}
+hrm.auth_user.find (0.00) {'username': u'root'}
+django_session.save (0.00) {'schema': u'hrm', '_id': '0suzuso9jqdhd5k4lwoqzrhpxfdavpa9', 'expire_date': datetime.datetime(2018, 9, 22, 9, 39, 8, 759000, tzinfo=<UTC>), 'session_data': u'YTIwMDM1ZDE4Mzg1ZWU5ZTUxNjkzNTM0NWMyMDc3YjYwMjFiODVjYzp7Imxhbmd1YWdlIjoiZW4ifQ=='}
+hrm.auth_user.find (0.00) {'username': 'sys'}
+hrm.auth_user.save (0.00) {'username': u'sys', 'first_name': u'', 'last_name': u'', '_id': ObjectId('5b54289b367cc4201c6a3db9'), 'is_active': True, 'email': u'sys@beatles.com', 'is_superuser': True, 'is_staff': True, 'last_login': datetime.datetime(2018, 9, 4, 13, 44, 24, 689000, tzinfo=<UTC>), 'password': u'pbkdf2_sha256$12000$Bzj4Qmyccy5i$KrZbxGSW08bLbVDd/v6dN4Ko06L0lJs7fIybYy5R+50=', 'date_joined': datetime.datetime(2018, 7, 22, 6, 47, 55, 322000, tzinfo=<UTC>)}
+hrm.auth_user.find (0.00) {'username': u'root'}
+hrm.auth_user.find (0.00) {'username': u'root'}
+django_session.save (0.00) {'schema': u'hrm', '_id': '0suzuso9jqdhd5k4lwoqzrhpxfdavpa9', 'expire_date': datetime.datetime(2018, 9, 22, 9, 39, 14, 97000, tzinfo=<UTC>), 'session_data': u'YTIwMDM1ZDE4Mzg1ZWU5ZTUxNjkzNTM0NWMyMDc3YjYwMjFiODVjYzp7Imxhbmd1YWdlIjoiZW4ifQ=='}
+hrm.auth_user.find (0.00) {'username': 'sys'}
+hrm.auth_user.save (0.00) {'username': u'sys', 'first_name': u'', 'last_name': u'', '_id': ObjectId('5b54289b367cc4201c6a3db9'), 'is_active': True, 'email': u'sys@beatles.com', 'is_superuser': True, 'is_staff': True, 'last_login': datetime.datetime(2018, 9, 4, 13, 44, 24, 689000, tzinfo=<UTC>), 'password': u'pbkdf2_sha256$12000$Bzj4Qmyccy5i$KrZbxGSW08bLbVDd/v6dN4Ko06L0lJs7fIybYy5R+50=', 'date_joined': datetime.datetime(2018, 7, 22, 6, 47, 55, 322000, tzinfo=<UTC>)}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+django_session.save (0.00) {'schema': u'hrm', '_id': u'66br2kanocuchcxu3qp10as1qnpvtr5k', 'expire_date': datetime.datetime(2018, 9, 22, 9, 39, 17, 54000, tzinfo=<UTC>), 'session_data': u'YTIwMDM1ZDE4Mzg1ZWU5ZTUxNjkzNTM0NWMyMDc3YjYwMjFiODVjYzp7Imxhbmd1YWdlIjoiZW4ifQ=='}
+django_session.remove (0.00) {'_id': {'$in': [u'0suzuso9jqdhd5k4lwoqzrhpxfdavpa9']}, 'schema': u'hrm'}
+hrm.auth_user.save (0.00) {'username': u'sys', 'first_name': u'', 'last_name': u'', '_id': ObjectId('5b54289b367cc4201c6a3db9'), 'is_active': True, 'email': u'sys@beatles.com', 'is_superuser': True, 'is_staff': True, 'last_login': datetime.datetime(2018, 9, 8, 9, 39, 17, 60000, tzinfo=<UTC>), 'password': u'pbkdf2_sha256$12000$Bzj4Qmyccy5i$KrZbxGSW08bLbVDd/v6dN4Ko06L0lJs7fIybYy5R+50=', 'date_joined': datetime.datetime(2018, 7, 22, 6, 47, 55, 322000, tzinfo=<UTC>)}
+django_session.save (0.00) {'schema': u'hrm', '_id': u'66br2kanocuchcxu3qp10as1qnpvtr5k', 'expire_date': datetime.datetime(2018, 9, 22, 9, 39, 17, 69000, tzinfo=<UTC>), 'session_data': u'MmFjOWRiYTlhNGM5ZjcxOGM4NjZlMGZkNjhjZDExMjI2YmZhMzM2Njp7Il9hdXRoX3VzZXJfYmFja2VuZCI6InBlcm1pc3Npb25fYmFja2VuZF9ub25yZWwuYmFja2VuZHMuTm9ucmVsUGVybWlzc2lvbkJhY2tlbmQiLCJfYXV0aF91c2VyX2lkIjoiNWI1NDI4OWIzNjdjYzQyMDFjNmEzZGI5IiwibGFuZ3VhZ2UiOiJlbiJ9'}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
+Not Found: /polyfills/promise-6.1.0.js.map
+Not Found: /hrm/static/js/angular.min.js.map
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
+hrm.auth_user.find (0.01) {'username': u'sys'}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
+hrm.auth_user.find (0.01) {'username': u'sys'}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
+hrm.auth_user.find (0.01) {'username': u'sys'}
+hrm.auth_user.find (0.01) {'username': u'sys'}
+hrm.auth_user.find (0.01) {'username': u'sys'}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+Internal Server Error: /api
+Traceback (most recent call last):
+  File "E:\code\quicky-01\packages/django\django\core\handlers\base.py", line 112, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "E:\code\quicky-01\packages/django\django\views\decorators\http.py", line 41, in inner
+    return func(request, *args, **kwargs)
+  File "E:\code\quicky-01\packages/django\django\views\decorators\csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "E:\code\quicky-01\packages\quicky\executor.py", line 234, in exec_request
+    ret_data = self.__fn__(request, **kwargs)
+  File "E:\code\quicky-01\packages\quicky\api.py", line 172, in call
+    raise ex
+Exception: Call  'get_list' in 'hrm.api.categories' encountered ''module' object has no attribute 'employees''
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+Not Found: /
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
