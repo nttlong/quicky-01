@@ -173,7 +173,7 @@ class extension(object):
             return __schema_cache__[request.path]
         if request.__app__.is_persistent_schema():
             __schema_cache__.update({
-                request.path:self.__app__.get_persistent_schema()
+                request.path:request.__app__.get_persistent_schema()
             })
         elif request.__customer_code__ =="":
             from .. import get_tenancy_schema
