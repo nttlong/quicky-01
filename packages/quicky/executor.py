@@ -267,3 +267,5 @@ class executor(object):
                 return self.exec_request_for_multi
         else:
             return self.exec_request
+    def process_request(selfs,request):
+        print "OK"
