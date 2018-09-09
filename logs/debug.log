@@ -30175,3 +30175,165 @@ hrm.auth_user.find (0.00) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
 hrm.auth_user.find (0.00) {'username': u'sys'}
 hrm.auth_user.find (0.00) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
 hrm.auth_user.find (0.00) {'username': u'sys'}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+Not Found: /lms/lv
+Internal Server Error: /lms/lv
+Traceback (most recent call last):
+  File "E:\code\quicky-01\packages/django\django\core\handlers\base.py", line 112, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "E:\code\quicky-01\packages\quicky\executor.py", line 120, in exec_request_for_multi
+    code=self.get_schema(request)
+AttributeError: 'executor' object has no attribute 'get_schema'
+Internal Server Error: /lms/lv
+Traceback (most recent call last):
+  File "E:\code\quicky-01\packages/django\django\core\handlers\base.py", line 112, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "E:\code\quicky-01\packages\quicky\executor.py", line 120, in exec_request_for_multi
+    code=self.get_schema(request)
+AttributeError: 'executor' object has no attribute 'get_schema'
+django_session.save (0.00) {'schema': u'lv', '_id': u'oawk3q67phdzs9f2l2w5butmwwwv6t9g', 'expire_date': datetime.datetime(2018, 9, 23, 5, 43, 56, 2000, tzinfo=<UTC>), 'session_data': u'OTE2OWEzNjFmMzk3MzVhMTZiNjlmM2EwODhiNTVkOGExNWRjM2JlYzp7fQ=='}
+django_session.save (0.00) {'schema': u'lv', '_id': u'oawk3q67phdzs9f2l2w5butmwwwv6t9g', 'expire_date': datetime.datetime(2018, 9, 23, 5, 43, 56, 34000, tzinfo=<UTC>), 'session_data': u'OTE2OWEzNjFmMzk3MzVhMTZiNjlmM2EwODhiNTVkOGExNWRjM2JlYzp7fQ=='}
+Internal Server Error: /lms/login
+Traceback (most recent call last):
+  File "E:\code\quicky-01\packages/django\django\core\handlers\base.py", line 88, in get_response
+    response = middleware_method(request)
+  File "E:\code\quicky-01\packages\quicky\middleware\__init__.py", line 457, in process_request
+    print "load "+ request.get_view_path()
+  File "E:\code\quicky-01\packages\quicky\middleware\__init__.py", line 320, in get_view_path
+    setattr(request, "__view_path", ret[code.__len__():ret.__len__()])
+AttributeError: 'NoneType' object has no attribute '__len__'
+Internal Server Error: /lms/login
+Traceback (most recent call last):
+  File "E:\code\quicky-01\packages/django\django\core\handlers\base.py", line 88, in get_response
+    response = middleware_method(request)
+  File "E:\code\quicky-01\packages\quicky\middleware\__init__.py", line 457, in process_request
+    print "load "+ request.get_view_path()
+  File "E:\code\quicky-01\packages\quicky\middleware\__init__.py", line 320, in get_view_path
+    setattr(request, "__view_path", ret[code.__len__():ret.__len__()])
+AttributeError: 'NoneType' object has no attribute '__len__'
+Internal Server Error: /lms/login
+Traceback (most recent call last):
+  File "E:\code\quicky-01\packages/django\django\core\handlers\base.py", line 88, in get_response
+    response = middleware_method(request)
+  File "E:\code\quicky-01\packages\quicky\middleware\__init__.py", line 457, in process_request
+    print "load "+ request.get_view_path()
+  File "E:\code\quicky-01\packages\quicky\middleware\__init__.py", line 320, in get_view_path
+    setattr(request, "__view_path", ret[code.__len__():ret.__len__()])
+AttributeError: 'NoneType' object has no attribute '__len__'
+Internal Server Error: /lms/login
+Traceback (most recent call last):
+  File "E:\code\quicky-01\packages/django\django\core\handlers\base.py", line 88, in get_response
+    response = middleware_method(request)
+  File "E:\code\quicky-01\packages\quicky\middleware\__init__.py", line 457, in process_request
+    print "load "+ request.get_view_path()
+  File "E:\code\quicky-01\packages\quicky\middleware\__init__.py", line 320, in get_view_path
+    setattr(request, "__view_path", ret[code.__len__():ret.__len__()])
+AttributeError: 'NoneType' object has no attribute '__len__'
+Internal Server Error: /lms/login
+Traceback (most recent call last):
+  File "E:\code\quicky-01\packages/django\django\core\handlers\base.py", line 88, in get_response
+    response = middleware_method(request)
+  File "E:\code\quicky-01\packages\quicky\middleware\__init__.py", line 457, in process_request
+    print "load "+ request.get_view_path()
+  File "E:\code\quicky-01\packages\quicky\middleware\__init__.py", line 320, in get_view_path
+    setattr(request, "__view_path", ret[code.__len__():ret.__len__()])
+AttributeError: 'NoneType' object has no attribute '__len__'
+Internal Server Error: /lms/login
+Traceback (most recent call last):
+  File "E:\code\quicky-01\packages/django\django\core\handlers\base.py", line 88, in get_response
+    response = middleware_method(request)
+  File "E:\code\quicky-01\packages\quicky\middleware\__init__.py", line 457, in process_request
+    print "load "+ request.get_view_path()
+  File "E:\code\quicky-01\packages\quicky\middleware\__init__.py", line 320, in get_view_path
+    setattr(request, "__view_path", ret[code.__len__():ret.__len__()])
+AttributeError: 'NoneType' object has no attribute '__len__'
+lv.auth_user.find (0.00) {'username': 'sys'}
+lv.auth_user.save (0.00) {'username': u'sys', 'first_name': u'', 'last_name': u'', '_id': ObjectId('5b72d435367cc442f4efeea8'), 'is_active': True, 'email': u'sys@beatles.com', 'is_superuser': True, 'is_staff': True, 'last_login': datetime.datetime(2018, 9, 8, 9, 1, 9, 698000, tzinfo=<UTC>), 'password': u'pbkdf2_sha256$12000$KiSzSJaDViXe$XODfZ0RPLijSe0mfEcY2kSDKgWYgPU/L9f/gu/885Ws=', 'date_joined': datetime.datetime(2018, 8, 14, 13, 8, 5, 372000, tzinfo=<UTC>)}
+django_session.save (0.00) {'schema': u'lv', '_id': 'oawk3q67phdzs9f2l2w5butmwwwv6t9g', 'expire_date': datetime.datetime(2018, 9, 23, 5, 47, 52, 826000, tzinfo=<UTC>), 'session_data': u'YTIwMDM1ZDE4Mzg1ZWU5ZTUxNjkzNTM0NWMyMDc3YjYwMjFiODVjYzp7Imxhbmd1YWdlIjoiZW4ifQ=='}
+lv.auth_user.find (0.00) {'username': 'sys'}
+lv.auth_user.save (0.00) {'username': u'sys', 'first_name': u'', 'last_name': u'', '_id': ObjectId('5b72d435367cc442f4efeea8'), 'is_active': True, 'email': u'sys@beatles.com', 'is_superuser': True, 'is_staff': True, 'last_login': datetime.datetime(2018, 9, 8, 9, 1, 9, 698000, tzinfo=<UTC>), 'password': u'pbkdf2_sha256$12000$KiSzSJaDViXe$XODfZ0RPLijSe0mfEcY2kSDKgWYgPU/L9f/gu/885Ws=', 'date_joined': datetime.datetime(2018, 8, 14, 13, 8, 5, 372000, tzinfo=<UTC>)}
+lv.auth_user.find (0.00) {'username': u'sys'}
+django_session.save (0.00) {'schema': u'lv', '_id': u'oy0fenxrweu8ulodrex57bq60lejcgfq', 'expire_date': datetime.datetime(2018, 9, 23, 5, 48, 4, 50000, tzinfo=<UTC>), 'session_data': u'YTIwMDM1ZDE4Mzg1ZWU5ZTUxNjkzNTM0NWMyMDc3YjYwMjFiODVjYzp7Imxhbmd1YWdlIjoiZW4ifQ=='}
+django_session.remove (0.00) {'_id': {'$in': [u'oawk3q67phdzs9f2l2w5butmwwwv6t9g']}, 'schema': u'lv'}
+lv.auth_user.save (0.00) {'username': u'sys', 'first_name': u'', 'last_name': u'', '_id': ObjectId('5b72d435367cc442f4efeea8'), 'is_active': True, 'email': u'sys@beatles.com', 'is_superuser': True, 'is_staff': True, 'last_login': datetime.datetime(2018, 9, 9, 5, 48, 4, 57000, tzinfo=<UTC>), 'password': u'pbkdf2_sha256$12000$KiSzSJaDViXe$XODfZ0RPLijSe0mfEcY2kSDKgWYgPU/L9f/gu/885Ws=', 'date_joined': datetime.datetime(2018, 8, 14, 13, 8, 5, 372000, tzinfo=<UTC>)}
+django_session.save (0.00) {'schema': u'lv', '_id': u'oy0fenxrweu8ulodrex57bq60lejcgfq', 'expire_date': datetime.datetime(2018, 9, 23, 5, 48, 4, 61000, tzinfo=<UTC>), 'session_data': u'OWE0MzM1MDdjYTlmNGMyYWFjNTdmZmZlYjBlOGU4MjYxYTFlM2NkNTp7Il9hdXRoX3VzZXJfYmFja2VuZCI6InBlcm1pc3Npb25fYmFja2VuZF9ub25yZWwuYmFja2VuZHMuTm9ucmVsUGVybWlzc2lvbkJhY2tlbmQiLCJfYXV0aF91c2VyX2lkIjoiNWI3MmQ0MzUzNjdjYzQ0MmY0ZWZlZWE4IiwibGFuZ3VhZ2UiOiJlbiJ9'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b72d435367cc442f4efeea8')}
+Not Found: /lms/lv/
+Not Found: /lms/hrm/static/js/angular.min.js.map
+Internal Server Error: /polyfills/promise-6.1.0.js.map
+Traceback (most recent call last):
+  File "E:\code\quicky-01\packages/django\django\core\handlers\base.py", line 88, in get_response
+    response = middleware_method(request)
+  File "E:\code\quicky-01\packages\quicky\middleware\__init__.py", line 457, in process_request
+    print "load "+ request.get_view_path()
+  File "E:\code\quicky-01\packages\quicky\middleware\__init__.py", line 320, in get_view_path
+    setattr(request, "__view_path", ret[code.__len__():ret.__len__()])
+AttributeError: 'NoneType' object has no attribute '__len__'
+Not Found: /lms/lv/
+lv.auth_user.find (0.00) {'_id': ObjectId('5b72d435367cc442f4efeea8')}
+lv.auth_user.find (0.00) {'username': u'sys'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b72d435367cc442f4efeea8')}
+lv.auth_user.find (0.00) {'username': u'sys'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b72d435367cc442f4efeea8')}
+lv.auth_user.find (0.00) {'username': u'sys'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b72d435367cc442f4efeea8')}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b72d435367cc442f4efeea8')}
+lv.auth_user.find (0.01) {'username': u'sys'}
+lv.auth_user.find (0.02) {'username': u'sys'}
+django_session.save (0.00) {'schema': u'hrm', '_id': u'tn2wk3o18meqp5v8fmufyrijkgj7rmdt', 'expire_date': datetime.datetime(2018, 9, 23, 5, 48, 46, 792000, tzinfo=<UTC>), 'session_data': u'OTE2OWEzNjFmMzk3MzVhMTZiNjlmM2EwODhiNTVkOGExNWRjM2JlYzp7fQ=='}
+django_session.save (0.00) {'schema': u'hrm', '_id': u'tn2wk3o18meqp5v8fmufyrijkgj7rmdt', 'expire_date': datetime.datetime(2018, 9, 23, 5, 48, 46, 798000, tzinfo=<UTC>), 'session_data': u'OTE2OWEzNjFmMzk3MzVhMTZiNjlmM2EwODhiNTVkOGExNWRjM2JlYzp7fQ=='}
+hrm.auth_user.find (0.00) {'username': 'sys'}
+hrm.auth_user.save (0.00) {'username': u'sys', 'first_name': u'', 'last_name': u'', '_id': ObjectId('5b54289b367cc4201c6a3db9'), 'is_active': True, 'email': u'sys@beatles.com', 'is_superuser': True, 'is_staff': True, 'last_login': datetime.datetime(2018, 9, 9, 5, 30, 56, 167000, tzinfo=<UTC>), 'password': u'pbkdf2_sha256$12000$Bzj4Qmyccy5i$KrZbxGSW08bLbVDd/v6dN4Ko06L0lJs7fIybYy5R+50=', 'date_joined': datetime.datetime(2018, 7, 22, 6, 47, 55, 322000, tzinfo=<UTC>)}
+django_session.save (0.00) {'schema': u'hrm', '_id': 'tn2wk3o18meqp5v8fmufyrijkgj7rmdt', 'expire_date': datetime.datetime(2018, 9, 23, 5, 48, 46, 931000, tzinfo=<UTC>), 'session_data': u'YTIwMDM1ZDE4Mzg1ZWU5ZTUxNjkzNTM0NWMyMDc3YjYwMjFiODVjYzp7Imxhbmd1YWdlIjoiZW4ifQ=='}
+hrm.auth_user.find (0.00) {'username': 'sys'}
+hrm.auth_user.save (0.00) {'username': u'sys', 'first_name': u'', 'last_name': u'', '_id': ObjectId('5b54289b367cc4201c6a3db9'), 'is_active': True, 'email': u'sys@beatles.com', 'is_superuser': True, 'is_staff': True, 'last_login': datetime.datetime(2018, 9, 9, 5, 30, 56, 167000, tzinfo=<UTC>), 'password': u'pbkdf2_sha256$12000$Bzj4Qmyccy5i$KrZbxGSW08bLbVDd/v6dN4Ko06L0lJs7fIybYy5R+50=', 'date_joined': datetime.datetime(2018, 7, 22, 6, 47, 55, 322000, tzinfo=<UTC>)}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+django_session.save (0.00) {'schema': u'hrm', '_id': u'iair6w6j446bp8xppz1orupr0fhxk6cj', 'expire_date': datetime.datetime(2018, 9, 23, 5, 48, 49, 493000, tzinfo=<UTC>), 'session_data': u'YTIwMDM1ZDE4Mzg1ZWU5ZTUxNjkzNTM0NWMyMDc3YjYwMjFiODVjYzp7Imxhbmd1YWdlIjoiZW4ifQ=='}
+django_session.remove (0.00) {'_id': {'$in': [u'tn2wk3o18meqp5v8fmufyrijkgj7rmdt']}, 'schema': u'hrm'}
+hrm.auth_user.save (0.00) {'username': u'sys', 'first_name': u'', 'last_name': u'', '_id': ObjectId('5b54289b367cc4201c6a3db9'), 'is_active': True, 'email': u'sys@beatles.com', 'is_superuser': True, 'is_staff': True, 'last_login': datetime.datetime(2018, 9, 9, 5, 48, 49, 500000, tzinfo=<UTC>), 'password': u'pbkdf2_sha256$12000$Bzj4Qmyccy5i$KrZbxGSW08bLbVDd/v6dN4Ko06L0lJs7fIybYy5R+50=', 'date_joined': datetime.datetime(2018, 7, 22, 6, 47, 55, 322000, tzinfo=<UTC>)}
+django_session.save (0.00) {'schema': u'hrm', '_id': u'iair6w6j446bp8xppz1orupr0fhxk6cj', 'expire_date': datetime.datetime(2018, 9, 23, 5, 48, 49, 503000, tzinfo=<UTC>), 'session_data': u'MmFjOWRiYTlhNGM5ZjcxOGM4NjZlMGZkNjhjZDExMjI2YmZhMzM2Njp7Il9hdXRoX3VzZXJfYmFja2VuZCI6InBlcm1pc3Npb25fYmFja2VuZF9ub25yZWwuYmFja2VuZHMuTm9ucmVsUGVybWlzc2lvbkJhY2tlbmQiLCJfYXV0aF91c2VyX2lkIjoiNWI1NDI4OWIzNjdjYzQyMDFjNmEzZGI5IiwibGFuZ3VhZ2UiOiJlbiJ9'}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
+Not Found: /lms/hrm/
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
+hrm.auth_user.find (0.00) {'username': u'sys'}

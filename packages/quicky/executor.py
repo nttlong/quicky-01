@@ -68,7 +68,7 @@ class executor(object):
             from django.http.response import HttpResponseRedirect
 
             ret_auth=request.get_app().settings.authenticate(request)
-            login_url = request.get_app().get_login_url()
+            login_url = request.get_login_url()
 
 
             if ret_auth != True:
@@ -117,7 +117,7 @@ class executor(object):
         #     raise (ex)
     def exec_request_for_multi(self,request,tenancy_code, **kwargs):
         from . import get_tenancy_schema
-        code=self.get_schema(request)
+        code=request.get_schema()
         if code==None:
             from django.http import HttpResponse, HttpResponseNotFound
             return HttpResponseNotFound("Page not found")
