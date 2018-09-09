@@ -3,16 +3,12 @@
   <component name="ChangeListManager">
     <list default="true" id="876e7e9a-d28e-4048-9413-cbdf554a4d5a" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/hrm/api/categories.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/hrm/api/categories.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/hrm/static/css/site.css" beforeDir="false" afterPath="$PROJECT_DIR$/apps/hrm/static/css/site.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/hrm/templates/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/apps/hrm/templates/base.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/hrm/templates/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/apps/hrm/templates/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/apps/hrm/templates/jsvendor.html" beforeDir="false" afterPath="$PROJECT_DIR$/apps/hrm/templates/jsvendor.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/hrm/templates/views/dasd.html" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/apps/hrm/templates/views/list/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/apps/hrm/templates/views/list/base.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/hrm/templates/views/list/xxx.js.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/hrm/templates/views/list/toolbar.html" beforeDir="false" afterPath="$PROJECT_DIR$/apps/hrm/templates/views/list/toolbar.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/hrm/templates/views/list/xxxx.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/hrm/templates/xxx.html" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/logs/debug.log" beforeDir="false" afterPath="$PROJECT_DIR$/logs/debug.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/quicky/executor.py" beforeDir="false" afterPath="$PROJECT_DIR$/packages/quicky/executor.py" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/lv-packages/uvenv02/" />
     <ignored path="$PROJECT_DIR$/uvenv02/" />
@@ -84,21 +80,21 @@
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="Python Console" value="1026" />
+          <entry key="Python Console" value="1362" />
           <entry key="R" value="9" />
           <entry key="gitignore" value="1" />
           <entry key="json" value="113" />
-          <entry key="py" value="4169" />
+          <entry key="py" value="4204" />
           <entry key="rst" value="161" />
-          <entry key="txt" value="28" />
+          <entry key="txt" value="83" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="Git file" value="1" />
           <entry key="JSON" value="113" />
-          <entry key="PLAIN_TEXT" value="28" />
-          <entry key="Python" value="5195" />
+          <entry key="PLAIN_TEXT" value="83" />
+          <entry key="Python" value="5566" />
           <entry key="R" value="9" />
           <entry key="ReST" value="161" />
         </counts>
@@ -109,7 +105,7 @@
           <entry key="gitignore" value="1" />
           <entry key="html" value="4" />
           <entry key="json" value="4" />
-          <entry key="py" value="14" />
+          <entry key="py" value="18" />
           <entry key="rst" value="1" />
         </counts>
       </usages-collector>
@@ -118,7 +114,7 @@
           <entry key="Git file" value="1" />
           <entry key="HTML" value="4" />
           <entry key="JSON" value="4" />
-          <entry key="Python" value="14" />
+          <entry key="Python" value="18" />
           <entry key="R" value="2" />
           <entry key="ReST" value="1" />
         </counts>
@@ -130,8 +126,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/apps/hrm/api/categories.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="854">
-              <caret line="65" selection-start-line="65" selection-end-line="65" />
+            <state relative-caret-position="94">
+              <caret line="42" selection-start-line="42" selection-end-line="42" />
               <folding>
                 <element signature="e#0#13#0" expanded="true" />
               </folding>
@@ -140,18 +136,56 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/apps/hrm/templates/category.html">
+        <entry file="file://$PROJECT_DIR$/packages/qmongo/database.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-580">
-              <caret line="19" column="11" lean-forward="true" selection-start-line="19" selection-start-column="11" selection-end-line="19" selection-end-column="11" />
+            <state relative-caret-position="115">
+              <caret line="937" column="13" selection-start-line="937" selection-start-column="13" selection-end-line="937" selection-end-column="13" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/packages/qmongo/helpers/__init__.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="36">
+              <caret line="129" column="24" selection-start-line="129" selection-start-column="24" selection-end-line="129" selection-end-column="24" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/wvenv/Lib/encodings/utf_8.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="103">
+              <caret line="15" selection-start-line="15" selection-end-line="15" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/apps/hrm/templates/category.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-580">
+              <caret line="19" column="11" selection-start-line="19" selection-start-column="11" selection-end-line="19" selection-end-column="11" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/apps/hrm/templates/base.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-260" />
+            <state relative-caret-position="64">
+              <caret line="24" column="7" lean-forward="true" selection-start-line="24" selection-start-column="7" selection-end-line="24" selection-end-column="7" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/packages/qmongo/helpers/expr.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="77">
+              <caret line="1353" column="18" selection-start-line="1353" selection-start-column="18" selection-end-line="1353" selection-end-column="18" />
+            </state>
           </provider>
         </entry>
       </file>
@@ -208,6 +242,8 @@
         <option value="$PROJECT_DIR$/packages/quicky/help/xx.R" />
         <option value="$PROJECT_DIR$/packages/quicky/executor.py" />
         <option value="$PROJECT_DIR$/apps/hrm/api/categories.py" />
+        <option value="$PROJECT_DIR$/packages/qmongo/helpers/__init__.py" />
+        <option value="$PROJECT_DIR$/packages/qmongo/database.py" />
       </list>
     </option>
   </component>
@@ -402,7 +438,28 @@
       <option name="project" value="LOCAL" />
       <updated>1536472175625</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="fix ag grid date column">
+      <created>1536491028203</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1536491028203</updated>
+    </task>
+    <task id="LOCAL-00011" summary="fix match with params">
+      <created>1536492261575</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1536492261575</updated>
+    </task>
+    <task id="LOCAL-00012" summary="fix match with params">
+      <created>1536492581618</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1536492581618</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -415,7 +472,7 @@
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
       <window_info anchor="bottom" id="Run" order="2" />
-      <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.49878544" visible="true" weight="0.24709785" />
+      <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.49878544" visible="true" weight="0.34494194" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
@@ -423,7 +480,7 @@
       <window_info anchor="bottom" id="Version Control" order="8" sideWeight="0.49878544" weight="0.4013267" />
       <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.50121456" side_tool="true" weight="0.69320065" />
       <window_info anchor="bottom" id="Terminal" order="10" sideWeight="0.69068825" weight="0.6368159" />
-      <window_info anchor="bottom" id="Python Console" order="11" sideWeight="0.49959514" weight="0.38142622" />
+      <window_info anchor="bottom" id="Python Console" order="11" sideWeight="0.49959514" weight="0.5572139" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -439,7 +496,9 @@
     <MESSAGE value="save" />
     <MESSAGE value="create quicky middleware" />
     <MESSAGE value="fix quicky middleware" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix quicky middleware" />
+    <MESSAGE value="fix ag grid date column" />
+    <MESSAGE value="fix match with params" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix match with params" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -478,6 +537,11 @@
           <url>file://$PROJECT_DIR$/packages/quicky/middleware/__init__.py</url>
           <line>302</line>
           <option name="timeStamp" value="48" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/packages/qmongo/helpers/__init__.py</url>
+          <line>135</line>
+          <option name="timeStamp" value="66" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="the-r-line">
           <url>file://$PROJECT_DIR$/packages/quicky/help/xx.R</url>
@@ -620,13 +684,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/packages/qmongo/database.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="83">
-          <caret line="549" selection-start-line="549" selection-end-line="549" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/packages/qmongo/helpers/filter_expression.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="102">
@@ -638,13 +695,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-18">
           <caret line="8" column="26" lean-forward="true" selection-start-line="8" selection-start-column="26" selection-end-line="8" selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/packages/qmongo/helpers/expr.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="263">
-          <caret line="465" selection-start-line="465" selection-end-line="465" />
         </state>
       </provider>
     </entry>
@@ -826,26 +876,56 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/apps/hrm/templates/category.html">
+    <entry file="file://$PROJECT_DIR$/wvenv/Lib/encodings/utf_8.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-580">
-          <caret line="19" column="11" lean-forward="true" selection-start-line="19" selection-start-column="11" selection-end-line="19" selection-end-column="11" />
+        <state relative-caret-position="103">
+          <caret line="15" selection-start-line="15" selection-end-line="15" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/apps/hrm/api/categories.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="854">
-          <caret line="65" selection-start-line="65" selection-end-line="65" />
+        <state relative-caret-position="94">
+          <caret line="42" selection-start-line="42" selection-end-line="42" />
           <folding>
             <element signature="e#0#13#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/packages/qmongo/helpers/expr.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="77">
+          <caret line="1353" column="18" selection-start-line="1353" selection-start-column="18" selection-end-line="1353" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/packages/qmongo/helpers/__init__.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="36">
+          <caret line="129" column="24" selection-start-line="129" selection-start-column="24" selection-end-line="129" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/packages/qmongo/database.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="115">
+          <caret line="937" column="13" selection-start-line="937" selection-start-column="13" selection-end-line="937" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/apps/hrm/templates/base.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-260" />
+        <state relative-caret-position="64">
+          <caret line="24" column="7" lean-forward="true" selection-start-line="24" selection-start-column="7" selection-end-line="24" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/apps/hrm/templates/category.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-580">
+          <caret line="19" column="11" selection-start-line="19" selection-start-column="11" selection-end-line="19" selection-end-column="11" />
+        </state>
       </provider>
     </entry>
   </component>

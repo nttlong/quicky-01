@@ -28,8 +28,7 @@
             s.columns.push(agGridColumn(
                 s,
                 _cols[i].title,
-                _cols[i].field,
-                _cols[i].type
+                _cols[i].field
 
             ))
         }
@@ -39,6 +38,7 @@
 ${self.body()}
 <div class="row">
 	<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+        
         <div class="btn-toolbar pull-right" role="toolbar">
             <div class="btn-group">
 
@@ -63,8 +63,10 @@ ${self.body()}
 	</div>
 </div>
 <div class="row">
-<div ag-grid="gridOptions" class="ag-theme-fresh" style="height: 100%;"></div>
+    <div b-ag-grid columns="{{columns}}" id="agGrid" on-load-data="doLoadData"></div>
+<!--<div ag-grid="gridOptions" class="ag-theme-fresh" style="height: 100%;"></div> -->
 </div>
+
 
 <script>
     (function(s){
@@ -72,15 +74,14 @@ ${self.body()}
         s.url_export_dialog='${get_app_url("dialogs/exports/download_excel")}';
         s.url_import_dialog='${get_app_url("dialogs/imports/upload_excel")}';
         s.source='${encryptor.get_key(model["path"].split('/')[1])}';
-        s.doLoadData=function(params,cb){
+        s.doLoadData=function(sender){
             s.$ws.api('${get_api_key("api.categories/get_list")}')
             .data({
                 source:s.source,
-                params:params
+                params:sender.params
             }).done()
             .then(function(res){
-
-                cb(null,res);
+                sender.done(res);
             });
         };
 
@@ -106,49 +107,16 @@ ${self.body()}
                 s.doLoadData();
             });
         };
-        var dataSource = {
-            rowCount: null,
-            getRows: function (params) {
-                pageIndex=params.endRow/100 -1;
-                s.doLoadData({
-                    filter:params.filterModel,
-                    sort:params.sortModel,
-                    pageIndex:pageIndex,
-                    pageSize:params.endRow-params.startRow
-                },function(ex,res){
-                        console.log(res);
-                        params.successCallback(res.items, res.total_items);
-                });
-
-            }
-        };
-
-        s.gridOptions = {
-            columnDefs: s.columns,
-            enableServerSideFilter: true,
-            floatingFilter:false,
-            enableServerSideSorting: true,
-            enableColResize: true,
-            rowBuffer: 0,
-            debug: true,
-            rowSelection: 'multiple',
-            rowDeselection: true,
-            rowModelType: 'infinite',
-            paginationPageSize: 20,
-            cacheOverflowSize: 2,
-            maxConcurrentDatasourceRequests: 2,
-            infiniteInitialRowCount: 1,
-            maxBlocksInCache: 2,
-            onGridReady: function(params) {
-                console.log(params);
-                debugger;
-                params.api.sizeColumnsToFit();
-                params.api.setDatasource(dataSource);
-            }
-        };
-
-        
-
-
+        setTimeout(function(){
+            $("#agGrid").css({
+                height:$(window).height()-250
+            });
+        },200);
+       
+        $(window).resize(function(){
+            $("#agGrid").css({
+                height:$(window).height()-250
+            })
+        });
     });
 </script>
