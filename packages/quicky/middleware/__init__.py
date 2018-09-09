@@ -415,6 +415,9 @@ class extension(object):
             else:
                 return csrf(request)["csrf_token"].encode()
         #-----------------------------------------------------------
+        def get_login_url():
+            return request.__app__.get_login_url(request.get_customer_code())
+        #-----------------------------------------------------------
         extends_functions =[
             get_language,
             set_language,
@@ -434,10 +437,16 @@ class extension(object):
             get_app_name,
             get_api_key,
             get_api_path,
-            get_csrftoken
+            get_csrftoken,
+            get_login_url
         ]
+        setattr(request,"__fn__",{})
+        _fn_=getattr(request,"__fn__")
         for fn in extends_functions:
             setattr(request,fn.func_name,fn)
+            _fn_.update({
+                fn.func_name:fn
+            })
 
     def process_request(self,request):
         self.init_app(request)

@@ -22,132 +22,10 @@ class executor(object):
         if self.__app__ != None:
             if hasattr(self.__app__.settings, "DEFAULT_DB_SCHEMA") and not has_set_schema:
                 tenancy.set_schema(self.__app__.settings.DEFAULT_DB_SCHEMA)
-    def load_app(self,request):
-        if self.__app__ !=None and self.__app__ != -1:
-            return
-        if __apps_cache__.has_key(request.path):
-            self.__app__ = __apps_cache__[request.path]
-        import applications
-        from django.conf import settings
-        path = request.path
-        path = path[1:path.__len__()]
-
-
-
-
-        if hasattr(settings,"HOST_DIR") and settings.HOST_DIR!="":
-            path = path[settings.HOST_DIR.__len__():path.__len__()]
-        if path == "api":
-            self.__app__ =applications.get_app_by_host_dir("")
-            __apps_cache__.update({request.path: self.__app__})
-            return
-        elif path[path.__len__()-4:path.__len__()] == "/api":
-            path = path[0:path.__len__() - 4]
-        items = path.split('/')
-
-        if items.__len__()>1:
-            app = applications.get_app_by_host_dir(items[1])
-        else:
-            app = applications.get_app_by_host_dir(items[0])
-        if app ==-1:
-            app = applications.get_app_by_host_dir("")
-
-        self.__app__ = app
-        __apps_cache__.update({request.path: self.__app__})
-
-    def __str_trim__(self,_str_):
-        if _str_ == "":
-            return ""
-        while _str_[0] == '/':
-            _str_ = _str_[1:_str_.__len__()]
-        while _str_[_str_.__len__() - 1] == '/':
-            _str_ = _str_[0:_str_.__len__() - 1]
-        while _str_.count("//") > 0:
-            _str_ = _str_.replace("//", "/")
-        return _str_
-    def get_customer_code(self,request):
-        from django.conf import settings
-        if __customer__code__.has_key(request.path) and __customer__code__.has_key(request.path) !="":
-            return __customer__code__[request.path]
-        if self.__app__.is_persistent_schema():
-            __customer__code__.update({
-                request.path: None
-            })
-
-        elif self.__app__.host_dir == "":
-            path =self.__str_trim__(request.path)
-
-            if hasattr(settings,"HOST_DIR") and settings.HOST_DIR != "":
-                if path.__len__()>settings.HOST_DIR.__len__():
-                    path = self.__str_trim__(path[settings.HOST_DIR.__len__():path.__len__()])
-                else:
-                    __customer__code__.update({
-                        request.path: settings.MULTI_TENANCY_DEFAULT_SCHEMA
-                    })
-                    return __customer__code__[request.path]
-
-            items = path.split('/')
-
-            if items.__len__()>0:
-                __customer__code__.update({
-                    request.path: items[0]
-                })
-            else:
-                __customer__code__.update({
-                    request.path: settings.MULTI_TENANCY_DEFAULT_SCHEMA
-                })
-        else:
-            path = request.path
-            if path[0] == '/':
-                path = path[1:path.__len__()]
-            if hasattr(settings,"HOST_DIR") and settings.HOST_DIR != "":
-                path = path[settings.HOST_DIR.__len__():path.__len__()]
-            path = path[0:path.__len__() -self.__app__.host_dir.__len__()]
-            if path[0] == '/':
-                path = path[1:path.__len__()]
-            items = path.split('/')
-
-            if items.__len__() > 1:
-                __customer__code__.update({
-                    request.path: items[0]
-                })
-            else:
-                __customer__code__.update({
-                    request.path: settings.MULTI_TENANCY_DEFAULT_SCHEMA
-                })
-        return __customer__code__[request.path]
-
-    def get_schema(self,request):
-        import tenancy
-        from . import get_tenancy_schema
-        from django.conf import settings
-        if __schema_cache__.has_key(request.path) \
-                and __schema_cache__[request.path] !=None\
-                and __schema_cache__[request.path]!="":
-            return __schema_cache__[request.path]
-        if self.__app__.is_persistent_schema():
-            __schema_cache__.update({
-                request.path:self.__app__.get_persistent_schema()
-            })
-        elif self.get_customer_code(request) =="":
-            from . import get_tenancy_schema
-            __schema_cache__.update({
-                request.path: settings.MULTI_TENANCY_DEFAULT_SCHEMA
-            })
-        else:
-            from . import get_tenancy_schema
-            __schema_cache__.update({
-                request.path:get_tenancy_schema(self.get_customer_code(request))
-            })
-
-        return __schema_cache__[request.path]
     def exec_request(self, request, **kwargs):
         import urllib
-        self.load_app(request)
-
-        schema =self.get_schema(request)
+        schema =request.get_schema()
         tenancy.set_schema(schema)
-
         # from . import language
         setattr(threading.current_thread(), "user", request.user)
         setattr(threading.currentThread(), "user", request.user)
@@ -186,11 +64,11 @@ class executor(object):
                     login_url = "/" + self.__app__.host_dir + "/" + self.__path_fn__["login_url"]
                 else:
                     login_url = "/" + self.__path_fn__["login_url"]
-        if hasattr(self.__app__.settings, "authenticate"):
+        if hasattr(request.get_app().settings, "authenticate"):
             from django.http.response import HttpResponseRedirect
 
-            ret_auth=self.__app__.settings.authenticate(request)
-            login_url = self.__app__.get_login_url(self.get_customer_code(request))
+            ret_auth=request.get_app().settings.authenticate(request)
+            login_url = request.get_app().get_login_url()
 
 
             if ret_auth != True:
@@ -227,7 +105,7 @@ class executor(object):
         language.set_language("vi")
         import qtracking
         if request.get_view_path()!="api":
-            qtracking.track_load_page(self.__app__.name,tenancy.get_schema(),request.get_view_path(),request.user.username)
+            qtracking.track_load_page(request.get_app().name,tenancy.get_schema(),request.get_view_path(),request.user.username)
             return self.__fn__ (request, **kwargs)
         else:
             ret_id=qtracking.track_call_api_before(self.__app__.name,tenancy.get_schema(), request.body, request.user.username)
