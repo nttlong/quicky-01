@@ -7,13 +7,13 @@
 <%
     import json
     self.cols=[
-            {"headerName": request.get_app_res("Code"), "field": "code"},
-            {"headerName": request.get_app_res("Name"), "field": "name"},
-            {"headerName": request.get_app_res("Description"), "field": "description"},
-            {"headerName": request.get_app_res("Created on"), "field": "created_on"},
-            {"headerName": request.get_app_res("Created by"), "field": "created_by"},
-            {"headerName": request.get_app_res("Modified on"), "field": "modified_on"},
-            {"headerName": request.get_app_res("Modified by"), "field": "modified_by"}
+            {"title": request.get_app_res("Code"), "field": "code"},
+            {"title": request.get_app_res("Name"), "field": "name"},
+            {"title": request.get_app_res("Description"), "field": "description"},
+            {"title": request.get_app_res("Created on"), "field": "created_on","type":"date"},
+            {"title": request.get_app_res("Created by"), "field": "created_by"},
+            {"title": request.get_app_res("Modified on"), "field": "modified_on","type":"date"},
+            {"title": request.get_app_res("Modified by"), "field": "modified_by"}
 
         ]
 
@@ -22,7 +22,17 @@
 
 <script>
     (function(s){
-        s.columns=${json.dumps(self.cols)};
+        _cols = ${json.dumps(self.cols)};
+        s.columns=[];
+        for(var i=0;i<_cols.length;i++){
+            s.columns.push(agGridColumn(
+                s,
+                _cols[i].title,
+                _cols[i].field,
+                _cols[i].type
+
+            ))
+        }
 
     });
 </script>
@@ -53,9 +63,8 @@ ${self.body()}
 	</div>
 </div>
 <div class="row">
-<div ag-grid="gridOptions" class="ag-theme-balham" style="height: 100%;"></div>
+<div ag-grid="gridOptions" class="ag-theme-fresh" style="height: 100%;"></div>
 </div>
-
 
 <script>
     (function(s){
@@ -64,7 +73,7 @@ ${self.body()}
         s.url_import_dialog='${get_app_url("dialogs/imports/upload_excel")}';
         s.source='${encryptor.get_key(model["path"].split('/')[1])}';
         s.doLoadData=function(params,cb){
-            s.$ws.api('${get_api_key('api.categories/get_list')}')
+            s.$ws.api('${get_api_key("api.categories/get_list")}')
             .data({
                 source:s.source,
                 params:params
@@ -76,7 +85,7 @@ ${self.body()}
         };
 
         s.doAddNew=function(item,callback){
-            s.$ws.api('${get_api_key('api.categories/add_new_item')}')
+            s.$ws.api('${get_api_key("api.categories/add_new_item")}')
             .data({
                 source:s.source,
                 item:item
@@ -87,7 +96,7 @@ ${self.body()}
             });
         };
         s.doUpdate=function(item){
-            s.$ws.api('${get_api_key('api.categories/update_item')}')
+            s.$ws.api('${get_api_key("api.categories/update_item")}')
             .data({
                 source:s.source,
                 item:item
@@ -97,9 +106,6 @@ ${self.body()}
                 s.doLoadData();
             });
         };
-
-
-
         var dataSource = {
             rowCount: null,
             getRows: function (params) {
@@ -107,7 +113,8 @@ ${self.body()}
                 s.doLoadData({
                     filter:params.filterModel,
                     sort:params.sortModel,
-                    pageIndex:pageIndex
+                    pageIndex:pageIndex,
+                    pageSize:params.endRow-params.startRow
                 },function(ex,res){
                         console.log(res);
                         params.successCallback(res.items, res.total_items);
@@ -119,7 +126,7 @@ ${self.body()}
         s.gridOptions = {
             columnDefs: s.columns,
             enableServerSideFilter: true,
-            floatingFilter:true,
+            floatingFilter:false,
             enableServerSideSorting: true,
             enableColResize: true,
             rowBuffer: 0,
@@ -139,6 +146,8 @@ ${self.body()}
                 params.api.setDatasource(dataSource);
             }
         };
+
+        
 
 
     });

@@ -63,12 +63,7 @@ def get_list(params):
                 if f["type"] == "notContains":
                     expr = "notContains(" + x + ",{0})"
                     qr = qr.match(expr, f["filter"])
-
-
-
-
-
-    data =qr.get_page(params["data"].get("pageIndex",0),params["data"].get("pageSize",50))
+    data =qr.get_page(params["data"].get("pageIndex",0),params["data"].get("pageSize",100))
     return data
 def update_item(args):
     coll = get_coll(args["data"]["source"])

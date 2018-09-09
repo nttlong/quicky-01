@@ -18,10 +18,11 @@
 <script>
 agGrid.initialiseAgGridWithAngular1(angular);
 var app=angular.module("app",["c-ui","ui","agGrid"])
-app.controller("app",["$compile","$dialog","$scope",function($compile,$dialog,scope){
+app.controller("app",["$compile","$dialog","$filter","$scope",function($compile,$dialog,$filter,scope){
     $dialog(scope.$root)
     scope.$root.url=$url;
     scope.$root.$compile=$compile;
+    scope.$root.$filter=$filter;
     ws_set_url("${get_app_url('api')}")
     ws_onBeforeCall(function(){
         mask=$("<div class='mask'></div>")

@@ -30337,3 +30337,2170 @@ hrm.auth_user.find (0.00) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
 hrm.auth_user.find (0.00) {'username': u'sys'}
 hrm.auth_user.find (0.00) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
 hrm.auth_user.find (0.00) {'username': u'sys'}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+Not Found: /lms/hrm/static/js/angular.min.js.map
+Internal Server Error: /polyfills/promise-6.1.0.js.map
+Traceback (most recent call last):
+  File "E:\code\quicky-01\packages/django\django\core\handlers\base.py", line 88, in get_response
+    response = middleware_method(request)
+  File "E:\code\quicky-01\packages\quicky\middleware\__init__.py", line 457, in process_request
+    print "load "+ request.get_view_path()
+  File "E:\code\quicky-01\packages\quicky\middleware\__init__.py", line 320, in get_view_path
+    setattr(request, "__view_path", ret[code.__len__():ret.__len__()])
+AttributeError: 'NoneType' object has no attribute '__len__'
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
+Not Found: /lms/hrm/static/js/angular.min.js.map
+Internal Server Error: /polyfills/promise-6.1.0.js.map
+Traceback (most recent call last):
+  File "E:\code\quicky-01\packages/django\django\core\handlers\base.py", line 88, in get_response
+    response = middleware_method(request)
+  File "E:\code\quicky-01\packages\quicky\middleware\__init__.py", line 457, in process_request
+    print "load "+ request.get_view_path()
+  File "E:\code\quicky-01\packages\quicky\middleware\__init__.py", line 320, in get_view_path
+    setattr(request, "__view_path", ret[code.__len__():ret.__len__()])
+AttributeError: 'NoneType' object has no attribute '__len__'
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+Internal Server Error: /lms/hrm/api
+Traceback (most recent call last):
+  File "E:\code\quicky-01\packages/django\django\core\handlers\base.py", line 112, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "E:\code\quicky-01\packages/django\django\views\decorators\http.py", line 41, in inner
+    return func(request, *args, **kwargs)
+  File "E:\code\quicky-01\packages/django\django\views\decorators\csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "E:\code\quicky-01\packages\quicky\executor.py", line 105, in exec_request
+    return self.__fn__ (request, **kwargs)
+  File "E:\code\quicky-01\packages\quicky\api.py", line 172, in call
+    raise ex
+Exception: Call  'get_list' in 'hrm.api.categories' encountered 'Below expression is invalid:
+contains(code,get_params(0))
+params ((u'x',),)
+	detail:
+		contains function is expected one text param, but the value (u'x',) is not a text
+None'
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
+hrm.auth_user.find (0.01) {'username': u'sys'}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
+hrm.auth_user.find (0.01) {'username': u'sys'}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
+hrm.auth_user.find (0.01) {'username': u'sys'}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+Not Found: /lms/hrm/static/js/angular.min.js.map
+Internal Server Error: /polyfills/promise-6.1.0.js.map
+Traceback (most recent call last):
+  File "E:\code\quicky-01\packages/django\django\core\handlers\base.py", line 88, in get_response
+    response = middleware_method(request)
+  File "E:\code\quicky-01\packages\quicky\middleware\__init__.py", line 457, in process_request
+    print "load "+ request.get_view_path()
+  File "E:\code\quicky-01\packages\quicky\middleware\__init__.py", line 320, in get_view_path
+    setattr(request, "__view_path", ret[code.__len__():ret.__len__()])
+AttributeError: 'NoneType' object has no attribute '__len__'
+Not Found: /lms/hrm/static/js/angular.min.js.map
+Internal Server Error: /polyfills/promise-6.1.0.js.map
+Traceback (most recent call last):
+  File "E:\code\quicky-01\packages/django\django\core\handlers\base.py", line 88, in get_response
+    response = middleware_method(request)
+  File "E:\code\quicky-01\packages\quicky\middleware\__init__.py", line 457, in process_request
+    print "load "+ request.get_view_path()
+  File "E:\code\quicky-01\packages\quicky\middleware\__init__.py", line 320, in get_view_path
+    setattr(request, "__view_path", ret[code.__len__():ret.__len__()])
+AttributeError: 'NoneType' object has no attribute '__len__'
+Not Found: /lms/hrm/static/js/angular.min.js.map
+Internal Server Error: /polyfills/promise-6.1.0.js.map
+Traceback (most recent call last):
+  File "E:\code\quicky-01\packages/django\django\core\handlers\base.py", line 88, in get_response
+    response = middleware_method(request)
+  File "E:\code\quicky-01\packages\quicky\middleware\__init__.py", line 457, in process_request
+    print "load "+ request.get_view_path()
+  File "E:\code\quicky-01\packages\quicky\middleware\__init__.py", line 320, in get_view_path
+    setattr(request, "__view_path", ret[code.__len__():ret.__len__()])
+AttributeError: 'NoneType' object has no attribute '__len__'
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
+Not Found: /lms/hrm/static/js/angular.min.js.map
+Internal Server Error: /polyfills/promise-6.1.0.js.map
+Traceback (most recent call last):
+  File "E:\code\quicky-01\packages/django\django\core\handlers\base.py", line 88, in get_response
+    response = middleware_method(request)
+  File "E:\code\quicky-01\packages\quicky\middleware\__init__.py", line 457, in process_request
+    print "load "+ request.get_view_path()
+  File "E:\code\quicky-01\packages\quicky\middleware\__init__.py", line 320, in get_view_path
+    setattr(request, "__view_path", ret[code.__len__():ret.__len__()])
+AttributeError: 'NoneType' object has no attribute '__len__'
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
+hrm.auth_user.find (0.01) {'username': u'sys'}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+Internal Server Error: /favicon.ico
+Traceback (most recent call last):
+  File "E:\code\quicky-01\packages/django\django\core\handlers\base.py", line 88, in get_response
+    response = middleware_method(request)
+  File "E:\code\quicky-01\packages\quicky\middleware\__init__.py", line 457, in process_request
+    print "load "+ request.get_view_path()
+  File "E:\code\quicky-01\packages\quicky\middleware\__init__.py", line 320, in get_view_path
+    setattr(request, "__view_path", ret[code.__len__():ret.__len__()])
+AttributeError: 'NoneType' object has no attribute '__len__'
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+Internal Server Error: /favicon.ico
+Traceback (most recent call last):
+  File "E:\code\quicky-01\packages/django\django\core\handlers\base.py", line 88, in get_response
+    response = middleware_method(request)
+  File "E:\code\quicky-01\packages\quicky\middleware\__init__.py", line 457, in process_request
+    print "load "+ request.get_view_path()
+  File "E:\code\quicky-01\packages\quicky\middleware\__init__.py", line 320, in get_view_path
+    setattr(request, "__view_path", ret[code.__len__():ret.__len__()])
+AttributeError: 'NoneType' object has no attribute '__len__'
+Internal Server Error: /favicon.ico
+Traceback (most recent call last):
+  File "E:\code\quicky-01\packages/django\django\core\handlers\base.py", line 88, in get_response
+    response = middleware_method(request)
+  File "E:\code\quicky-01\packages\quicky\middleware\__init__.py", line 457, in process_request
+    print "load "+ request.get_view_path()
+  File "E:\code\quicky-01\packages\quicky\middleware\__init__.py", line 320, in get_view_path
+    setattr(request, "__view_path", ret[code.__len__():ret.__len__()])
+AttributeError: 'NoneType' object has no attribute '__len__'
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
+Internal Server Error: /favicon.ico
+Traceback (most recent call last):
+  File "E:\code\quicky-01\packages/django\django\core\handlers\base.py", line 88, in get_response
+    response = middleware_method(request)
+  File "E:\code\quicky-01\packages\quicky\middleware\__init__.py", line 457, in process_request
+    print "load "+ request.get_view_path()
+  File "E:\code\quicky-01\packages\quicky\middleware\__init__.py", line 320, in get_view_path
+    setattr(request, "__view_path", ret[code.__len__():ret.__len__()])
+AttributeError: 'NoneType' object has no attribute '__len__'
+hrm.auth_user.find (0.01) {'username': u'sys'}
+Not Found: /lms/hrm/static/js/angular.min.js.map
+Internal Server Error: /polyfills/promise-6.1.0.js.map
+Traceback (most recent call last):
+  File "E:\code\quicky-01\packages/django\django\core\handlers\base.py", line 88, in get_response
+    response = middleware_method(request)
+  File "E:\code\quicky-01\packages\quicky\middleware\__init__.py", line 457, in process_request
+    print "load "+ request.get_view_path()
+  File "E:\code\quicky-01\packages\quicky\middleware\__init__.py", line 320, in get_view_path
+    setattr(request, "__view_path", ret[code.__len__():ret.__len__()])
+AttributeError: 'NoneType' object has no attribute '__len__'
+Internal Server Error: /favicon.ico
+Traceback (most recent call last):
+  File "E:\code\quicky-01\packages/django\django\core\handlers\base.py", line 88, in get_response
+    response = middleware_method(request)
+  File "E:\code\quicky-01\packages\quicky\middleware\__init__.py", line 457, in process_request
+    print "load "+ request.get_view_path()
+  File "E:\code\quicky-01\packages\quicky\middleware\__init__.py", line 320, in get_view_path
+    setattr(request, "__view_path", ret[code.__len__():ret.__len__()])
+AttributeError: 'NoneType' object has no attribute '__len__'
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
+Not Found: /lms/hrm/static/js/angular.min.js.map
+Internal Server Error: /polyfills/promise-6.1.0.js.map
+Traceback (most recent call last):
+  File "E:\code\quicky-01\packages/django\django\core\handlers\base.py", line 88, in get_response
+    response = middleware_method(request)
+  File "E:\code\quicky-01\packages\quicky\middleware\__init__.py", line 457, in process_request
+    print "load "+ request.get_view_path()
+  File "E:\code\quicky-01\packages\quicky\middleware\__init__.py", line 320, in get_view_path
+    setattr(request, "__view_path", ret[code.__len__():ret.__len__()])
+AttributeError: 'NoneType' object has no attribute '__len__'
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
+Internal Server Error: /favicon.ico
+Traceback (most recent call last):
+  File "E:\code\quicky-01\packages/django\django\core\handlers\base.py", line 88, in get_response
+    response = middleware_method(request)
+  File "E:\code\quicky-01\packages\quicky\middleware\__init__.py", line 457, in process_request
+    print "load "+ request.get_view_path()
+  File "E:\code\quicky-01\packages\quicky\middleware\__init__.py", line 320, in get_view_path
+    setattr(request, "__view_path", ret[code.__len__():ret.__len__()])
+AttributeError: 'NoneType' object has no attribute '__len__'
+hrm.auth_user.find (0.00) {'username': u'sys'}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
+Internal Server Error: /favicon.ico
+Traceback (most recent call last):
+  File "E:\code\quicky-01\packages/django\django\core\handlers\base.py", line 88, in get_response
+    response = middleware_method(request)
+  File "E:\code\quicky-01\packages\quicky\middleware\__init__.py", line 457, in process_request
+    print "load "+ request.get_view_path()
+  File "E:\code\quicky-01\packages\quicky\middleware\__init__.py", line 320, in get_view_path
+    setattr(request, "__view_path", ret[code.__len__():ret.__len__()])
+AttributeError: 'NoneType' object has no attribute '__len__'
+hrm.auth_user.find (0.00) {'username': u'sys'}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
+Internal Server Error: /favicon.ico
+Traceback (most recent call last):
+  File "E:\code\quicky-01\packages/django\django\core\handlers\base.py", line 88, in get_response
+    response = middleware_method(request)
+  File "E:\code\quicky-01\packages\quicky\middleware\__init__.py", line 457, in process_request
+    print "load "+ request.get_view_path()
+  File "E:\code\quicky-01\packages\quicky\middleware\__init__.py", line 320, in get_view_path
+    setattr(request, "__view_path", ret[code.__len__():ret.__len__()])
+AttributeError: 'NoneType' object has no attribute '__len__'
+hrm.auth_user.find (0.01) {'username': u'sys'}
+Internal Server Error: /favicon.ico
+Traceback (most recent call last):
+  File "E:\code\quicky-01\packages/django\django\core\handlers\base.py", line 88, in get_response
+    response = middleware_method(request)
+  File "E:\code\quicky-01\packages\quicky\middleware\__init__.py", line 457, in process_request
+    print "load "+ request.get_view_path()
+  File "E:\code\quicky-01\packages\quicky\middleware\__init__.py", line 320, in get_view_path
+    setattr(request, "__view_path", ret[code.__len__():ret.__len__()])
+AttributeError: 'NoneType' object has no attribute '__len__'
+Not Found: /lms/hrm/static/js/angular.min.js.map
+Internal Server Error: /polyfills/promise-6.1.0.js.map
+Traceback (most recent call last):
+  File "E:\code\quicky-01\packages/django\django\core\handlers\base.py", line 88, in get_response
+    response = middleware_method(request)
+  File "E:\code\quicky-01\packages\quicky\middleware\__init__.py", line 457, in process_request
+    print "load "+ request.get_view_path()
+  File "E:\code\quicky-01\packages\quicky\middleware\__init__.py", line 320, in get_view_path
+    setattr(request, "__view_path", ret[code.__len__():ret.__len__()])
+AttributeError: 'NoneType' object has no attribute '__len__'
+Internal Server Error: /favicon.ico
+Traceback (most recent call last):
+  File "E:\code\quicky-01\packages/django\django\core\handlers\base.py", line 88, in get_response
+    response = middleware_method(request)
+  File "E:\code\quicky-01\packages\quicky\middleware\__init__.py", line 457, in process_request
+    print "load "+ request.get_view_path()
+  File "E:\code\quicky-01\packages\quicky\middleware\__init__.py", line 320, in get_view_path
+    setattr(request, "__view_path", ret[code.__len__():ret.__len__()])
+AttributeError: 'NoneType' object has no attribute '__len__'
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
+Not Found: /lms/hrm/static/js/angular.min.js.map
+Internal Server Error: /polyfills/promise-6.1.0.js.map
+Traceback (most recent call last):
+  File "E:\code\quicky-01\packages/django\django\core\handlers\base.py", line 88, in get_response
+    response = middleware_method(request)
+  File "E:\code\quicky-01\packages\quicky\middleware\__init__.py", line 457, in process_request
+    print "load "+ request.get_view_path()
+  File "E:\code\quicky-01\packages\quicky\middleware\__init__.py", line 320, in get_view_path
+    setattr(request, "__view_path", ret[code.__len__():ret.__len__()])
+AttributeError: 'NoneType' object has no attribute '__len__'
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+Internal Server Error: /favicon.ico
+Traceback (most recent call last):
+  File "E:\code\quicky-01\packages/django\django\core\handlers\base.py", line 88, in get_response
+    response = middleware_method(request)
+  File "E:\code\quicky-01\packages\quicky\middleware\__init__.py", line 457, in process_request
+    print "load "+ request.get_view_path()
+  File "E:\code\quicky-01\packages\quicky\middleware\__init__.py", line 320, in get_view_path
+    setattr(request, "__view_path", ret[code.__len__():ret.__len__()])
+AttributeError: 'NoneType' object has no attribute '__len__'
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+Internal Server Error: /favicon.ico
+Traceback (most recent call last):
+  File "E:\code\quicky-01\packages/django\django\core\handlers\base.py", line 88, in get_response
+    response = middleware_method(request)
+  File "E:\code\quicky-01\packages\quicky\middleware\__init__.py", line 457, in process_request
+    print "load "+ request.get_view_path()
+  File "E:\code\quicky-01\packages\quicky\middleware\__init__.py", line 320, in get_view_path
+    setattr(request, "__view_path", ret[code.__len__():ret.__len__()])
+AttributeError: 'NoneType' object has no attribute '__len__'
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+Not Found: /lms/hrm/static/js/angular.min.js.map
+Internal Server Error: /polyfills/promise-6.1.0.js.map
+Traceback (most recent call last):
+  File "E:\code\quicky-01\packages/django\django\core\handlers\base.py", line 88, in get_response
+    response = middleware_method(request)
+  File "E:\code\quicky-01\packages\quicky\middleware\__init__.py", line 457, in process_request
+    print "load "+ request.get_view_path()
+  File "E:\code\quicky-01\packages\quicky\middleware\__init__.py", line 320, in get_view_path
+    setattr(request, "__view_path", ret[code.__len__():ret.__len__()])
+AttributeError: 'NoneType' object has no attribute '__len__'
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+Internal Server Error: /favicon.ico
+Traceback (most recent call last):
+  File "E:\code\quicky-01\packages/django\django\core\handlers\base.py", line 88, in get_response
+    response = middleware_method(request)
+  File "E:\code\quicky-01\packages\quicky\middleware\__init__.py", line 457, in process_request
+    print "load "+ request.get_view_path()
+  File "E:\code\quicky-01\packages\quicky\middleware\__init__.py", line 320, in get_view_path
+    setattr(request, "__view_path", ret[code.__len__():ret.__len__()])
+AttributeError: 'NoneType' object has no attribute '__len__'
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+Internal Server Error: /favicon.ico
+Traceback (most recent call last):
+  File "E:\code\quicky-01\packages/django\django\core\handlers\base.py", line 88, in get_response
+    response = middleware_method(request)
+  File "E:\code\quicky-01\packages\quicky\middleware\__init__.py", line 457, in process_request
+    print "load "+ request.get_view_path()
+  File "E:\code\quicky-01\packages\quicky\middleware\__init__.py", line 320, in get_view_path
+    setattr(request, "__view_path", ret[code.__len__():ret.__len__()])
+AttributeError: 'NoneType' object has no attribute '__len__'
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+Not Found: /lms/hrm/static/js/angular.min.js.map
+Internal Server Error: /polyfills/promise-6.1.0.js.map
+Traceback (most recent call last):
+  File "E:\code\quicky-01\packages/django\django\core\handlers\base.py", line 88, in get_response
+    response = middleware_method(request)
+  File "E:\code\quicky-01\packages\quicky\middleware\__init__.py", line 457, in process_request
+    print "load "+ request.get_view_path()
+  File "E:\code\quicky-01\packages\quicky\middleware\__init__.py", line 320, in get_view_path
+    setattr(request, "__view_path", ret[code.__len__():ret.__len__()])
+AttributeError: 'NoneType' object has no attribute '__len__'
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
+Not Found: /lms/hrm/static/js/angular.min.js.map
+Internal Server Error: /polyfills/promise-6.1.0.js.map
+Traceback (most recent call last):
+  File "E:\code\quicky-01\packages/django\django\core\handlers\base.py", line 88, in get_response
+    response = middleware_method(request)
+  File "E:\code\quicky-01\packages\quicky\middleware\__init__.py", line 457, in process_request
+    print "load "+ request.get_view_path()
+  File "E:\code\quicky-01\packages\quicky\middleware\__init__.py", line 320, in get_view_path
+    setattr(request, "__view_path", ret[code.__len__():ret.__len__()])
+AttributeError: 'NoneType' object has no attribute '__len__'
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+Internal Server Error: /favicon.ico
+Traceback (most recent call last):
+  File "E:\code\quicky-01\packages/django\django\core\handlers\base.py", line 88, in get_response
+    response = middleware_method(request)
+  File "E:\code\quicky-01\packages\quicky\middleware\__init__.py", line 457, in process_request
+    print "load "+ request.get_view_path()
+  File "E:\code\quicky-01\packages\quicky\middleware\__init__.py", line 320, in get_view_path
+    setattr(request, "__view_path", ret[code.__len__():ret.__len__()])
+AttributeError: 'NoneType' object has no attribute '__len__'
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
+Internal Server Error: /favicon.ico
+Traceback (most recent call last):
+  File "E:\code\quicky-01\packages/django\django\core\handlers\base.py", line 88, in get_response
+    response = middleware_method(request)
+  File "E:\code\quicky-01\packages\quicky\middleware\__init__.py", line 457, in process_request
+    print "load "+ request.get_view_path()
+  File "E:\code\quicky-01\packages\quicky\middleware\__init__.py", line 320, in get_view_path
+    setattr(request, "__view_path", ret[code.__len__():ret.__len__()])
+AttributeError: 'NoneType' object has no attribute '__len__'
+hrm.auth_user.find (0.01) {'username': u'sys'}
+Not Found: /lms/hrm/static/js/angular.min.js.map
+Internal Server Error: /polyfills/promise-6.1.0.js.map
+Traceback (most recent call last):
+  File "E:\code\quicky-01\packages/django\django\core\handlers\base.py", line 88, in get_response
+    response = middleware_method(request)
+  File "E:\code\quicky-01\packages\quicky\middleware\__init__.py", line 457, in process_request
+    print "load "+ request.get_view_path()
+  File "E:\code\quicky-01\packages\quicky\middleware\__init__.py", line 320, in get_view_path
+    setattr(request, "__view_path", ret[code.__len__():ret.__len__()])
+AttributeError: 'NoneType' object has no attribute '__len__'
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+Internal Server Error: /favicon.ico
+Traceback (most recent call last):
+  File "E:\code\quicky-01\packages/django\django\core\handlers\base.py", line 88, in get_response
+    response = middleware_method(request)
+  File "E:\code\quicky-01\packages\quicky\middleware\__init__.py", line 457, in process_request
+    print "load "+ request.get_view_path()
+  File "E:\code\quicky-01\packages\quicky\middleware\__init__.py", line 320, in get_view_path
+    setattr(request, "__view_path", ret[code.__len__():ret.__len__()])
+AttributeError: 'NoneType' object has no attribute '__len__'
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+Internal Server Error: /favicon.ico
+Traceback (most recent call last):
+  File "E:\code\quicky-01\packages/django\django\core\handlers\base.py", line 88, in get_response
+    response = middleware_method(request)
+  File "E:\code\quicky-01\packages\quicky\middleware\__init__.py", line 457, in process_request
+    print "load "+ request.get_view_path()
+  File "E:\code\quicky-01\packages\quicky\middleware\__init__.py", line 320, in get_view_path
+    setattr(request, "__view_path", ret[code.__len__():ret.__len__()])
+AttributeError: 'NoneType' object has no attribute '__len__'
+Internal Server Error: /favicon.ico
+Traceback (most recent call last):
+  File "E:\code\quicky-01\packages/django\django\core\handlers\base.py", line 88, in get_response
+    response = middleware_method(request)
+  File "E:\code\quicky-01\packages\quicky\middleware\__init__.py", line 457, in process_request
+    print "load "+ request.get_view_path()
+  File "E:\code\quicky-01\packages\quicky\middleware\__init__.py", line 320, in get_view_path
+    setattr(request, "__view_path", ret[code.__len__():ret.__len__()])
+AttributeError: 'NoneType' object has no attribute '__len__'
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+Internal Server Error: /favicon.ico
+Traceback (most recent call last):
+  File "E:\code\quicky-01\packages/django\django\core\handlers\base.py", line 88, in get_response
+    response = middleware_method(request)
+  File "E:\code\quicky-01\packages\quicky\middleware\__init__.py", line 457, in process_request
+    print "load "+ request.get_view_path()
+  File "E:\code\quicky-01\packages\quicky\middleware\__init__.py", line 320, in get_view_path
+    setattr(request, "__view_path", ret[code.__len__():ret.__len__()])
+AttributeError: 'NoneType' object has no attribute '__len__'
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+Not Found: /lms/hrm/static/js/angular.min.js.map
+Internal Server Error: /polyfills/promise-6.1.0.js.map
+Traceback (most recent call last):
+  File "E:\code\quicky-01\packages/django\django\core\handlers\base.py", line 88, in get_response
+    response = middleware_method(request)
+  File "E:\code\quicky-01\packages\quicky\middleware\__init__.py", line 457, in process_request
+    print "load "+ request.get_view_path()
+  File "E:\code\quicky-01\packages\quicky\middleware\__init__.py", line 320, in get_view_path
+    setattr(request, "__view_path", ret[code.__len__():ret.__len__()])
+AttributeError: 'NoneType' object has no attribute '__len__'
+Internal Server Error: /favicon.ico
+Traceback (most recent call last):
+  File "E:\code\quicky-01\packages/django\django\core\handlers\base.py", line 88, in get_response
+    response = middleware_method(request)
+  File "E:\code\quicky-01\packages\quicky\middleware\__init__.py", line 457, in process_request
+    print "load "+ request.get_view_path()
+  File "E:\code\quicky-01\packages\quicky\middleware\__init__.py", line 320, in get_view_path
+    setattr(request, "__view_path", ret[code.__len__():ret.__len__()])
+AttributeError: 'NoneType' object has no attribute '__len__'
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+Internal Server Error: /favicon.ico
+Traceback (most recent call last):
+  File "E:\code\quicky-01\packages/django\django\core\handlers\base.py", line 88, in get_response
+    response = middleware_method(request)
+  File "E:\code\quicky-01\packages\quicky\middleware\__init__.py", line 457, in process_request
+    print "load "+ request.get_view_path()
+  File "E:\code\quicky-01\packages\quicky\middleware\__init__.py", line 320, in get_view_path
+    setattr(request, "__view_path", ret[code.__len__():ret.__len__()])
+AttributeError: 'NoneType' object has no attribute '__len__'
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+Internal Server Error: /polyfills/promise-6.1.0.js.map
+Traceback (most recent call last):
+  File "E:\code\quicky-01\packages/django\django\core\handlers\base.py", line 88, in get_response
+    response = middleware_method(request)
+  File "E:\code\quicky-01\packages\quicky\middleware\__init__.py", line 457, in process_request
+    print "load "+ request.get_view_path()
+  File "E:\code\quicky-01\packages\quicky\middleware\__init__.py", line 320, in get_view_path
+    setattr(request, "__view_path", ret[code.__len__():ret.__len__()])
+AttributeError: 'NoneType' object has no attribute '__len__'
+Not Found: /lms/hrm/static/js/angular.min.js.map
+Internal Server Error: /favicon.ico
+Traceback (most recent call last):
+  File "E:\code\quicky-01\packages/django\django\core\handlers\base.py", line 88, in get_response
+    response = middleware_method(request)
+  File "E:\code\quicky-01\packages\quicky\middleware\__init__.py", line 457, in process_request
+    print "load "+ request.get_view_path()
+  File "E:\code\quicky-01\packages\quicky\middleware\__init__.py", line 320, in get_view_path
+    setattr(request, "__view_path", ret[code.__len__():ret.__len__()])
+AttributeError: 'NoneType' object has no attribute '__len__'
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+Internal Server Error: /favicon.ico
+Traceback (most recent call last):
+  File "E:\code\quicky-01\packages/django\django\core\handlers\base.py", line 88, in get_response
+    response = middleware_method(request)
+  File "E:\code\quicky-01\packages\quicky\middleware\__init__.py", line 457, in process_request
+    print "load "+ request.get_view_path()
+  File "E:\code\quicky-01\packages\quicky\middleware\__init__.py", line 320, in get_view_path
+    setattr(request, "__view_path", ret[code.__len__():ret.__len__()])
+AttributeError: 'NoneType' object has no attribute '__len__'
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+Internal Server Error: /favicon.ico
+Traceback (most recent call last):
+  File "E:\code\quicky-01\packages/django\django\core\handlers\base.py", line 88, in get_response
+    response = middleware_method(request)
+  File "E:\code\quicky-01\packages\quicky\middleware\__init__.py", line 457, in process_request
+    print "load "+ request.get_view_path()
+  File "E:\code\quicky-01\packages\quicky\middleware\__init__.py", line 320, in get_view_path
+    setattr(request, "__view_path", ret[code.__len__():ret.__len__()])
+AttributeError: 'NoneType' object has no attribute '__len__'
+Internal Server Error: /polyfills/promise-6.1.0.js.map
+Traceback (most recent call last):
+  File "E:\code\quicky-01\packages/django\django\core\handlers\base.py", line 88, in get_response
+    response = middleware_method(request)
+  File "E:\code\quicky-01\packages\quicky\middleware\__init__.py", line 457, in process_request
+    print "load "+ request.get_view_path()
+  File "E:\code\quicky-01\packages\quicky\middleware\__init__.py", line 320, in get_view_path
+    setattr(request, "__view_path", ret[code.__len__():ret.__len__()])
+AttributeError: 'NoneType' object has no attribute '__len__'
+Not Found: /lms/hrm/static/js/angular.min.js.map
+Internal Server Error: /favicon.ico
+Traceback (most recent call last):
+  File "E:\code\quicky-01\packages/django\django\core\handlers\base.py", line 88, in get_response
+    response = middleware_method(request)
+  File "E:\code\quicky-01\packages\quicky\middleware\__init__.py", line 457, in process_request
+    print "load "+ request.get_view_path()
+  File "E:\code\quicky-01\packages\quicky\middleware\__init__.py", line 320, in get_view_path
+    setattr(request, "__view_path", ret[code.__len__():ret.__len__()])
+AttributeError: 'NoneType' object has no attribute '__len__'
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+Internal Server Error: /favicon.ico
+Traceback (most recent call last):
+  File "E:\code\quicky-01\packages/django\django\core\handlers\base.py", line 88, in get_response
+    response = middleware_method(request)
+  File "E:\code\quicky-01\packages\quicky\middleware\__init__.py", line 457, in process_request
+    print "load "+ request.get_view_path()
+  File "E:\code\quicky-01\packages\quicky\middleware\__init__.py", line 320, in get_view_path
+    setattr(request, "__view_path", ret[code.__len__():ret.__len__()])
+AttributeError: 'NoneType' object has no attribute '__len__'
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+Internal Server Error: /favicon.ico
+Traceback (most recent call last):
+  File "E:\code\quicky-01\packages/django\django\core\handlers\base.py", line 88, in get_response
+    response = middleware_method(request)
+  File "E:\code\quicky-01\packages\quicky\middleware\__init__.py", line 457, in process_request
+    print "load "+ request.get_view_path()
+  File "E:\code\quicky-01\packages\quicky\middleware\__init__.py", line 320, in get_view_path
+    setattr(request, "__view_path", ret[code.__len__():ret.__len__()])
+AttributeError: 'NoneType' object has no attribute '__len__'
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
+Internal Server Error: /favicon.ico
+Traceback (most recent call last):
+  File "E:\code\quicky-01\packages/django\django\core\handlers\base.py", line 88, in get_response
+    response = middleware_method(request)
+  File "E:\code\quicky-01\packages\quicky\middleware\__init__.py", line 457, in process_request
+    print "load "+ request.get_view_path()
+  File "E:\code\quicky-01\packages\quicky\middleware\__init__.py", line 320, in get_view_path
+    setattr(request, "__view_path", ret[code.__len__():ret.__len__()])
+AttributeError: 'NoneType' object has no attribute '__len__'
+hrm.auth_user.find (0.01) {'username': u'sys'}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
+Internal Server Error: /favicon.ico
+Traceback (most recent call last):
+  File "E:\code\quicky-01\packages/django\django\core\handlers\base.py", line 88, in get_response
+    response = middleware_method(request)
+  File "E:\code\quicky-01\packages\quicky\middleware\__init__.py", line 457, in process_request
+    print "load "+ request.get_view_path()
+  File "E:\code\quicky-01\packages\quicky\middleware\__init__.py", line 320, in get_view_path
+    setattr(request, "__view_path", ret[code.__len__():ret.__len__()])
+AttributeError: 'NoneType' object has no attribute '__len__'
+hrm.auth_user.find (0.01) {'username': u'sys'}
+Not Found: /lms/hrm/static/js/angular.min.js.map
+Internal Server Error: /polyfills/promise-6.1.0.js.map
+Traceback (most recent call last):
+  File "E:\code\quicky-01\packages/django\django\core\handlers\base.py", line 88, in get_response
+    response = middleware_method(request)
+  File "E:\code\quicky-01\packages\quicky\middleware\__init__.py", line 457, in process_request
+    print "load "+ request.get_view_path()
+  File "E:\code\quicky-01\packages\quicky\middleware\__init__.py", line 320, in get_view_path
+    setattr(request, "__view_path", ret[code.__len__():ret.__len__()])
+AttributeError: 'NoneType' object has no attribute '__len__'
+Internal Server Error: /favicon.ico
+Traceback (most recent call last):
+  File "E:\code\quicky-01\packages/django\django\core\handlers\base.py", line 88, in get_response
+    response = middleware_method(request)
+  File "E:\code\quicky-01\packages\quicky\middleware\__init__.py", line 457, in process_request
+    print "load "+ request.get_view_path()
+  File "E:\code\quicky-01\packages\quicky\middleware\__init__.py", line 320, in get_view_path
+    setattr(request, "__view_path", ret[code.__len__():ret.__len__()])
+AttributeError: 'NoneType' object has no attribute '__len__'
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+Internal Server Error: /favicon.ico
+Traceback (most recent call last):
+  File "E:\code\quicky-01\packages/django\django\core\handlers\base.py", line 88, in get_response
+    response = middleware_method(request)
+  File "E:\code\quicky-01\packages\quicky\middleware\__init__.py", line 457, in process_request
+    print "load "+ request.get_view_path()
+  File "E:\code\quicky-01\packages\quicky\middleware\__init__.py", line 320, in get_view_path
+    setattr(request, "__view_path", ret[code.__len__():ret.__len__()])
+AttributeError: 'NoneType' object has no attribute '__len__'
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
+Internal Server Error: /favicon.ico
+Traceback (most recent call last):
+  File "E:\code\quicky-01\packages/django\django\core\handlers\base.py", line 88, in get_response
+    response = middleware_method(request)
+  File "E:\code\quicky-01\packages\quicky\middleware\__init__.py", line 457, in process_request
+    print "load "+ request.get_view_path()
+  File "E:\code\quicky-01\packages\quicky\middleware\__init__.py", line 320, in get_view_path
+    setattr(request, "__view_path", ret[code.__len__():ret.__len__()])
+AttributeError: 'NoneType' object has no attribute '__len__'
+hrm.auth_user.find (0.00) {'username': u'sys'}
+Not Found: /lms/hrm/static/js/angular.min.js.map
+Internal Server Error: /polyfills/promise-6.1.0.js.map
+Traceback (most recent call last):
+  File "E:\code\quicky-01\packages/django\django\core\handlers\base.py", line 88, in get_response
+    response = middleware_method(request)
+  File "E:\code\quicky-01\packages\quicky\middleware\__init__.py", line 457, in process_request
+    print "load "+ request.get_view_path()
+  File "E:\code\quicky-01\packages\quicky\middleware\__init__.py", line 320, in get_view_path
+    setattr(request, "__view_path", ret[code.__len__():ret.__len__()])
+AttributeError: 'NoneType' object has no attribute '__len__'
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+Internal Server Error: /favicon.ico
+Traceback (most recent call last):
+  File "E:\code\quicky-01\packages/django\django\core\handlers\base.py", line 88, in get_response
+    response = middleware_method(request)
+  File "E:\code\quicky-01\packages\quicky\middleware\__init__.py", line 457, in process_request
+    print "load "+ request.get_view_path()
+  File "E:\code\quicky-01\packages\quicky\middleware\__init__.py", line 320, in get_view_path
+    setattr(request, "__view_path", ret[code.__len__():ret.__len__()])
+AttributeError: 'NoneType' object has no attribute '__len__'
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+Internal Server Error: /favicon.ico
+Traceback (most recent call last):
+  File "E:\code\quicky-01\packages/django\django\core\handlers\base.py", line 88, in get_response
+    response = middleware_method(request)
+  File "E:\code\quicky-01\packages\quicky\middleware\__init__.py", line 457, in process_request
+    print "load "+ request.get_view_path()
+  File "E:\code\quicky-01\packages\quicky\middleware\__init__.py", line 320, in get_view_path
+    setattr(request, "__view_path", ret[code.__len__():ret.__len__()])
+AttributeError: 'NoneType' object has no attribute '__len__'
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+Not Found: /lms/hrm/static/js/angular.min.js.map
+Internal Server Error: /polyfills/promise-6.1.0.js.map
+Traceback (most recent call last):
+  File "E:\code\quicky-01\packages/django\django\core\handlers\base.py", line 88, in get_response
+    response = middleware_method(request)
+  File "E:\code\quicky-01\packages\quicky\middleware\__init__.py", line 457, in process_request
+    print "load "+ request.get_view_path()
+  File "E:\code\quicky-01\packages\quicky\middleware\__init__.py", line 320, in get_view_path
+    setattr(request, "__view_path", ret[code.__len__():ret.__len__()])
+AttributeError: 'NoneType' object has no attribute '__len__'
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+Internal Server Error: /favicon.ico
+Traceback (most recent call last):
+  File "E:\code\quicky-01\packages/django\django\core\handlers\base.py", line 88, in get_response
+    response = middleware_method(request)
+  File "E:\code\quicky-01\packages\quicky\middleware\__init__.py", line 457, in process_request
+    print "load "+ request.get_view_path()
+  File "E:\code\quicky-01\packages\quicky\middleware\__init__.py", line 320, in get_view_path
+    setattr(request, "__view_path", ret[code.__len__():ret.__len__()])
+AttributeError: 'NoneType' object has no attribute '__len__'
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+Internal Server Error: /polyfills/promise-6.1.0.js.map
+Traceback (most recent call last):
+  File "E:\code\quicky-01\packages/django\django\core\handlers\base.py", line 88, in get_response
+    response = middleware_method(request)
+  File "E:\code\quicky-01\packages\quicky\middleware\__init__.py", line 457, in process_request
+    print "load "+ request.get_view_path()
+  File "E:\code\quicky-01\packages\quicky\middleware\__init__.py", line 320, in get_view_path
+    setattr(request, "__view_path", ret[code.__len__():ret.__len__()])
+AttributeError: 'NoneType' object has no attribute '__len__'
+Not Found: /lms/hrm/static/js/angular.min.js.map
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+Internal Server Error: /favicon.ico
+Traceback (most recent call last):
+  File "E:\code\quicky-01\packages/django\django\core\handlers\base.py", line 88, in get_response
+    response = middleware_method(request)
+  File "E:\code\quicky-01\packages\quicky\middleware\__init__.py", line 457, in process_request
+    print "load "+ request.get_view_path()
+  File "E:\code\quicky-01\packages\quicky\middleware\__init__.py", line 320, in get_view_path
+    setattr(request, "__view_path", ret[code.__len__():ret.__len__()])
+AttributeError: 'NoneType' object has no attribute '__len__'
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+Internal Server Error: /favicon.ico
+Traceback (most recent call last):
+  File "E:\code\quicky-01\packages/django\django\core\handlers\base.py", line 88, in get_response
+    response = middleware_method(request)
+  File "E:\code\quicky-01\packages\quicky\middleware\__init__.py", line 457, in process_request
+    print "load "+ request.get_view_path()
+  File "E:\code\quicky-01\packages\quicky\middleware\__init__.py", line 320, in get_view_path
+    setattr(request, "__view_path", ret[code.__len__():ret.__len__()])
+AttributeError: 'NoneType' object has no attribute '__len__'
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+Not Found: /lms/hrm/static/js/angular.min.js.map
+Internal Server Error: /polyfills/promise-6.1.0.js.map
+Traceback (most recent call last):
+  File "E:\code\quicky-01\packages/django\django\core\handlers\base.py", line 88, in get_response
+    response = middleware_method(request)
+  File "E:\code\quicky-01\packages\quicky\middleware\__init__.py", line 457, in process_request
+    print "load "+ request.get_view_path()
+  File "E:\code\quicky-01\packages\quicky\middleware\__init__.py", line 320, in get_view_path
+    setattr(request, "__view_path", ret[code.__len__():ret.__len__()])
+AttributeError: 'NoneType' object has no attribute '__len__'
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+Internal Server Error: /favicon.ico
+Traceback (most recent call last):
+  File "E:\code\quicky-01\packages/django\django\core\handlers\base.py", line 88, in get_response
+    response = middleware_method(request)
+  File "E:\code\quicky-01\packages\quicky\middleware\__init__.py", line 457, in process_request
+    print "load "+ request.get_view_path()
+  File "E:\code\quicky-01\packages\quicky\middleware\__init__.py", line 320, in get_view_path
+    setattr(request, "__view_path", ret[code.__len__():ret.__len__()])
+AttributeError: 'NoneType' object has no attribute '__len__'
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
+hrm.auth_user.find (0.01) {'username': u'sys'}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+Internal Server Error: /favicon.ico
+Traceback (most recent call last):
+  File "E:\code\quicky-01\packages/django\django\core\handlers\base.py", line 88, in get_response
+    response = middleware_method(request)
+  File "E:\code\quicky-01\packages\quicky\middleware\__init__.py", line 457, in process_request
+    print "load "+ request.get_view_path()
+  File "E:\code\quicky-01\packages\quicky\middleware\__init__.py", line 320, in get_view_path
+    setattr(request, "__view_path", ret[code.__len__():ret.__len__()])
+AttributeError: 'NoneType' object has no attribute '__len__'
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
+hrm.auth_user.find (0.01) {'username': u'sys'}
+hrm.auth_user.find (0.01) {'username': u'sys'}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+Internal Server Error: /favicon.ico
+Traceback (most recent call last):
+  File "E:\code\quicky-01\packages/django\django\core\handlers\base.py", line 88, in get_response
+    response = middleware_method(request)
+  File "E:\code\quicky-01\packages\quicky\middleware\__init__.py", line 457, in process_request
+    print "load "+ request.get_view_path()
+  File "E:\code\quicky-01\packages\quicky\middleware\__init__.py", line 320, in get_view_path
+    setattr(request, "__view_path", ret[code.__len__():ret.__len__()])
+AttributeError: 'NoneType' object has no attribute '__len__'
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
+hrm.auth_user.find (0.01) {'username': u'sys'}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+Internal Server Error: /favicon.ico
+Traceback (most recent call last):
+  File "E:\code\quicky-01\packages/django\django\core\handlers\base.py", line 88, in get_response
+    response = middleware_method(request)
+  File "E:\code\quicky-01\packages\quicky\middleware\__init__.py", line 457, in process_request
+    print "load "+ request.get_view_path()
+  File "E:\code\quicky-01\packages\quicky\middleware\__init__.py", line 320, in get_view_path
+    setattr(request, "__view_path", ret[code.__len__():ret.__len__()])
+AttributeError: 'NoneType' object has no attribute '__len__'
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+Internal Server Error: /favicon.ico
+Traceback (most recent call last):
+  File "E:\code\quicky-01\packages/django\django\core\handlers\base.py", line 88, in get_response
+    response = middleware_method(request)
+  File "E:\code\quicky-01\packages\quicky\middleware\__init__.py", line 457, in process_request
+    print "load "+ request.get_view_path()
+  File "E:\code\quicky-01\packages\quicky\middleware\__init__.py", line 320, in get_view_path
+    setattr(request, "__view_path", ret[code.__len__():ret.__len__()])
+AttributeError: 'NoneType' object has no attribute '__len__'
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+Not Found: /lms/hrm/static/js/angular.min.js.map
+Internal Server Error: /polyfills/promise-6.1.0.js.map
+Traceback (most recent call last):
+  File "E:\code\quicky-01\packages/django\django\core\handlers\base.py", line 88, in get_response
+    response = middleware_method(request)
+  File "E:\code\quicky-01\packages\quicky\middleware\__init__.py", line 457, in process_request
+    print "load "+ request.get_view_path()
+  File "E:\code\quicky-01\packages\quicky\middleware\__init__.py", line 320, in get_view_path
+    setattr(request, "__view_path", ret[code.__len__():ret.__len__()])
+AttributeError: 'NoneType' object has no attribute '__len__'
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+Internal Server Error: /favicon.ico
+Traceback (most recent call last):
+  File "E:\code\quicky-01\packages/django\django\core\handlers\base.py", line 88, in get_response
+    response = middleware_method(request)
+  File "E:\code\quicky-01\packages\quicky\middleware\__init__.py", line 457, in process_request
+    print "load "+ request.get_view_path()
+  File "E:\code\quicky-01\packages\quicky\middleware\__init__.py", line 320, in get_view_path
+    setattr(request, "__view_path", ret[code.__len__():ret.__len__()])
+AttributeError: 'NoneType' object has no attribute '__len__'
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+Internal Server Error: /favicon.ico
+Traceback (most recent call last):
+  File "E:\code\quicky-01\packages/django\django\core\handlers\base.py", line 88, in get_response
+    response = middleware_method(request)
+  File "E:\code\quicky-01\packages\quicky\middleware\__init__.py", line 457, in process_request
+    print "load "+ request.get_view_path()
+  File "E:\code\quicky-01\packages\quicky\middleware\__init__.py", line 320, in get_view_path
+    setattr(request, "__view_path", ret[code.__len__():ret.__len__()])
+AttributeError: 'NoneType' object has no attribute '__len__'
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+Internal Server Error: /polyfills/promise-6.1.0.js.map
+Traceback (most recent call last):
+  File "E:\code\quicky-01\packages/django\django\core\handlers\base.py", line 88, in get_response
+    response = middleware_method(request)
+  File "E:\code\quicky-01\packages\quicky\middleware\__init__.py", line 457, in process_request
+    print "load "+ request.get_view_path()
+  File "E:\code\quicky-01\packages\quicky\middleware\__init__.py", line 320, in get_view_path
+    setattr(request, "__view_path", ret[code.__len__():ret.__len__()])
+AttributeError: 'NoneType' object has no attribute '__len__'
+Not Found: /lms/hrm/static/js/angular.min.js.map
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
+Not Found: /lms/hrm/static/js/angular.min.js.map
+Internal Server Error: /polyfills/promise-6.1.0.js.map
+Traceback (most recent call last):
+  File "E:\code\quicky-01\packages/django\django\core\handlers\base.py", line 88, in get_response
+    response = middleware_method(request)
+  File "E:\code\quicky-01\packages\quicky\middleware\__init__.py", line 457, in process_request
+    print "load "+ request.get_view_path()
+  File "E:\code\quicky-01\packages\quicky\middleware\__init__.py", line 320, in get_view_path
+    setattr(request, "__view_path", ret[code.__len__():ret.__len__()])
+AttributeError: 'NoneType' object has no attribute '__len__'
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+Internal Server Error: /favicon.ico
+Traceback (most recent call last):
+  File "E:\code\quicky-01\packages/django\django\core\handlers\base.py", line 88, in get_response
+    response = middleware_method(request)
+  File "E:\code\quicky-01\packages\quicky\middleware\__init__.py", line 457, in process_request
+    print "load "+ request.get_view_path()
+  File "E:\code\quicky-01\packages\quicky\middleware\__init__.py", line 320, in get_view_path
+    setattr(request, "__view_path", ret[code.__len__():ret.__len__()])
+AttributeError: 'NoneType' object has no attribute '__len__'
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+Internal Server Error: /favicon.ico
+Traceback (most recent call last):
+  File "E:\code\quicky-01\packages/django\django\core\handlers\base.py", line 88, in get_response
+    response = middleware_method(request)
+  File "E:\code\quicky-01\packages\quicky\middleware\__init__.py", line 457, in process_request
+    print "load "+ request.get_view_path()
+  File "E:\code\quicky-01\packages\quicky\middleware\__init__.py", line 320, in get_view_path
+    setattr(request, "__view_path", ret[code.__len__():ret.__len__()])
+AttributeError: 'NoneType' object has no attribute '__len__'
+Not Found: /lms/hrm/
+Internal Server Error: /favicon.ico
+Traceback (most recent call last):
+  File "E:\code\quicky-01\packages/django\django\core\handlers\base.py", line 88, in get_response
+    response = middleware_method(request)
+  File "E:\code\quicky-01\packages\quicky\middleware\__init__.py", line 457, in process_request
+    print "load "+ request.get_view_path()
+  File "E:\code\quicky-01\packages\quicky\middleware\__init__.py", line 320, in get_view_path
+    setattr(request, "__view_path", ret[code.__len__():ret.__len__()])
+AttributeError: 'NoneType' object has no attribute '__len__'
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+Internal Server Error: /favicon.ico
+Traceback (most recent call last):
+  File "E:\code\quicky-01\packages/django\django\core\handlers\base.py", line 88, in get_response
+    response = middleware_method(request)
+  File "E:\code\quicky-01\packages\quicky\middleware\__init__.py", line 457, in process_request
+    print "load "+ request.get_view_path()
+  File "E:\code\quicky-01\packages\quicky\middleware\__init__.py", line 320, in get_view_path
+    setattr(request, "__view_path", ret[code.__len__():ret.__len__()])
+AttributeError: 'NoneType' object has no attribute '__len__'
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
+hrm.auth_user.find (0.01) {'username': u'sys'}
+Not Found: /lms/hrm/static/js/angular.min.js.map
+Internal Server Error: /polyfills/promise-6.1.0.js.map
+Traceback (most recent call last):
+  File "E:\code\quicky-01\packages/django\django\core\handlers\base.py", line 88, in get_response
+    response = middleware_method(request)
+  File "E:\code\quicky-01\packages\quicky\middleware\__init__.py", line 457, in process_request
+    print "load "+ request.get_view_path()
+  File "E:\code\quicky-01\packages\quicky\middleware\__init__.py", line 320, in get_view_path
+    setattr(request, "__view_path", ret[code.__len__():ret.__len__()])
+AttributeError: 'NoneType' object has no attribute '__len__'
+Internal Server Error: /favicon.ico
+Traceback (most recent call last):
+  File "E:\code\quicky-01\packages/django\django\core\handlers\base.py", line 88, in get_response
+    response = middleware_method(request)
+  File "E:\code\quicky-01\packages\quicky\middleware\__init__.py", line 457, in process_request
+    print "load "+ request.get_view_path()
+  File "E:\code\quicky-01\packages\quicky\middleware\__init__.py", line 320, in get_view_path
+    setattr(request, "__view_path", ret[code.__len__():ret.__len__()])
+AttributeError: 'NoneType' object has no attribute '__len__'
+Not Found: /lms/hrm/
+Internal Server Error: /favicon.ico
+Traceback (most recent call last):
+  File "E:\code\quicky-01\packages/django\django\core\handlers\base.py", line 88, in get_response
+    response = middleware_method(request)
+  File "E:\code\quicky-01\packages\quicky\middleware\__init__.py", line 457, in process_request
+    print "load "+ request.get_view_path()
+  File "E:\code\quicky-01\packages\quicky\middleware\__init__.py", line 320, in get_view_path
+    setattr(request, "__view_path", ret[code.__len__():ret.__len__()])
+AttributeError: 'NoneType' object has no attribute '__len__'
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+Internal Server Error: /favicon.ico
+Traceback (most recent call last):
+  File "E:\code\quicky-01\packages/django\django\core\handlers\base.py", line 88, in get_response
+    response = middleware_method(request)
+  File "E:\code\quicky-01\packages\quicky\middleware\__init__.py", line 457, in process_request
+    print "load "+ request.get_view_path()
+  File "E:\code\quicky-01\packages\quicky\middleware\__init__.py", line 320, in get_view_path
+    setattr(request, "__view_path", ret[code.__len__():ret.__len__()])
+AttributeError: 'NoneType' object has no attribute '__len__'
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+Internal Server Error: /favicon.ico
+Traceback (most recent call last):
+  File "E:\code\quicky-01\packages/django\django\core\handlers\base.py", line 88, in get_response
+    response = middleware_method(request)
+  File "E:\code\quicky-01\packages\quicky\middleware\__init__.py", line 457, in process_request
+    print "load "+ request.get_view_path()
+  File "E:\code\quicky-01\packages\quicky\middleware\__init__.py", line 320, in get_view_path
+    setattr(request, "__view_path", ret[code.__len__():ret.__len__()])
+AttributeError: 'NoneType' object has no attribute '__len__'
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+Internal Server Error: /lms/hrm/api
+Traceback (most recent call last):
+  File "E:\code\quicky-01\packages/django\django\core\handlers\base.py", line 112, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "E:\code\quicky-01\packages/django\django\views\decorators\http.py", line 41, in inner
+    return func(request, *args, **kwargs)
+  File "E:\code\quicky-01\packages/django\django\views\decorators\csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "E:\code\quicky-01\packages\quicky\executor.py", line 105, in exec_request
+    return self.__fn__ (request, **kwargs)
+  File "E:\code\quicky-01\packages\quicky\api.py", line 172, in call
+    raise ex
+Exception: Call  'get_list' in 'hrm.api.categories' encountered 'Below expression is invalid:
+contains(code,get_params(0))
+params ((u'p0',),)
+	detail:
+		contains function is expected one text param, but the value (u'p0',) is not a text
+None'
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+Internal Server Error: /lms/hrm/api
+Traceback (most recent call last):
+  File "E:\code\quicky-01\packages/django\django\core\handlers\base.py", line 112, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "E:\code\quicky-01\packages/django\django\views\decorators\http.py", line 41, in inner
+    return func(request, *args, **kwargs)
+  File "E:\code\quicky-01\packages/django\django\views\decorators\csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "E:\code\quicky-01\packages\quicky\executor.py", line 105, in exec_request
+    return self.__fn__ (request, **kwargs)
+  File "E:\code\quicky-01\packages\quicky\api.py", line 172, in call
+    raise ex
+Exception: Call  'get_list' in 'hrm.api.categories' encountered 'Below expression is invalid:
+contains(code,get_params(0))
+params ((u'p00',),)
+	detail:
+		contains function is expected one text param, but the value (u'p00',) is not a text
+None'
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+Internal Server Error: /favicon.ico
+Traceback (most recent call last):
+  File "E:\code\quicky-01\packages/django\django\core\handlers\base.py", line 88, in get_response
+    response = middleware_method(request)
+  File "E:\code\quicky-01\packages\quicky\middleware\__init__.py", line 457, in process_request
+    print "load "+ request.get_view_path()
+  File "E:\code\quicky-01\packages\quicky\middleware\__init__.py", line 320, in get_view_path
+    setattr(request, "__view_path", ret[code.__len__():ret.__len__()])
+AttributeError: 'NoneType' object has no attribute '__len__'
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+Not Found: /lms/hrm/static/js/angular.min.js.map
+Internal Server Error: /polyfills/promise-6.1.0.js.map
+Traceback (most recent call last):
+  File "E:\code\quicky-01\packages/django\django\core\handlers\base.py", line 88, in get_response
+    response = middleware_method(request)
+  File "E:\code\quicky-01\packages\quicky\middleware\__init__.py", line 457, in process_request
+    print "load "+ request.get_view_path()
+  File "E:\code\quicky-01\packages\quicky\middleware\__init__.py", line 320, in get_view_path
+    setattr(request, "__view_path", ret[code.__len__():ret.__len__()])
+AttributeError: 'NoneType' object has no attribute '__len__'
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+Internal Server Error: /favicon.ico
+Traceback (most recent call last):
+  File "E:\code\quicky-01\packages/django\django\core\handlers\base.py", line 88, in get_response
+    response = middleware_method(request)
+  File "E:\code\quicky-01\packages\quicky\middleware\__init__.py", line 457, in process_request
+    print "load "+ request.get_view_path()
+  File "E:\code\quicky-01\packages\quicky\middleware\__init__.py", line 320, in get_view_path
+    setattr(request, "__view_path", ret[code.__len__():ret.__len__()])
+AttributeError: 'NoneType' object has no attribute '__len__'
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+Not Found: /lms/hrm/static/js/angular.min.js.map
+Internal Server Error: /polyfills/promise-6.1.0.js.map
+Traceback (most recent call last):
+  File "E:\code\quicky-01\packages/django\django\core\handlers\base.py", line 88, in get_response
+    response = middleware_method(request)
+  File "E:\code\quicky-01\packages\quicky\middleware\__init__.py", line 457, in process_request
+    print "load "+ request.get_view_path()
+  File "E:\code\quicky-01\packages\quicky\middleware\__init__.py", line 320, in get_view_path
+    setattr(request, "__view_path", ret[code.__len__():ret.__len__()])
+AttributeError: 'NoneType' object has no attribute '__len__'
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
+Internal Server Error: /polyfills/promise-6.1.0.js.map
+Traceback (most recent call last):
+  File "E:\code\quicky-01\packages/django\django\core\handlers\base.py", line 88, in get_response
+    response = middleware_method(request)
+  File "E:\code\quicky-01\packages\quicky\middleware\__init__.py", line 457, in process_request
+    print "load "+ request.get_view_path()
+  File "E:\code\quicky-01\packages\quicky\middleware\__init__.py", line 320, in get_view_path
+    setattr(request, "__view_path", ret[code.__len__():ret.__len__()])
+AttributeError: 'NoneType' object has no attribute '__len__'
+Not Found: /lms/hrm/static/js/angular.min.js.map
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+Internal Server Error: /favicon.ico
+Traceback (most recent call last):
+  File "E:\code\quicky-01\packages/django\django\core\handlers\base.py", line 88, in get_response
+    response = middleware_method(request)
+  File "E:\code\quicky-01\packages\quicky\middleware\__init__.py", line 457, in process_request
+    print "load "+ request.get_view_path()
+  File "E:\code\quicky-01\packages\quicky\middleware\__init__.py", line 320, in get_view_path
+    setattr(request, "__view_path", ret[code.__len__():ret.__len__()])
+AttributeError: 'NoneType' object has no attribute '__len__'
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+Internal Server Error: /favicon.ico
+Traceback (most recent call last):
+  File "E:\code\quicky-01\packages/django\django\core\handlers\base.py", line 88, in get_response
+    response = middleware_method(request)
+  File "E:\code\quicky-01\packages\quicky\middleware\__init__.py", line 457, in process_request
+    print "load "+ request.get_view_path()
+  File "E:\code\quicky-01\packages\quicky\middleware\__init__.py", line 320, in get_view_path
+    setattr(request, "__view_path", ret[code.__len__():ret.__len__()])
+AttributeError: 'NoneType' object has no attribute '__len__'
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+Not Found: /lms/hrm/static/js/angular.min.js.map
+Internal Server Error: /polyfills/promise-6.1.0.js.map
+Traceback (most recent call last):
+  File "E:\code\quicky-01\packages/django\django\core\handlers\base.py", line 88, in get_response
+    response = middleware_method(request)
+  File "E:\code\quicky-01\packages\quicky\middleware\__init__.py", line 457, in process_request
+    print "load "+ request.get_view_path()
+  File "E:\code\quicky-01\packages\quicky\middleware\__init__.py", line 320, in get_view_path
+    setattr(request, "__view_path", ret[code.__len__():ret.__len__()])
+AttributeError: 'NoneType' object has no attribute '__len__'
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
+Not Found: /lms/hrm/static/js/angular.min.js.map
+Internal Server Error: /polyfills/promise-6.1.0.js.map
+Traceback (most recent call last):
+  File "E:\code\quicky-01\packages/django\django\core\handlers\base.py", line 88, in get_response
+    response = middleware_method(request)
+  File "E:\code\quicky-01\packages\quicky\middleware\__init__.py", line 457, in process_request
+    print "load "+ request.get_view_path()
+  File "E:\code\quicky-01\packages\quicky\middleware\__init__.py", line 320, in get_view_path
+    setattr(request, "__view_path", ret[code.__len__():ret.__len__()])
+AttributeError: 'NoneType' object has no attribute '__len__'
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
+Internal Server Error: /favicon.ico
+Traceback (most recent call last):
+  File "E:\code\quicky-01\packages/django\django\core\handlers\base.py", line 88, in get_response
+    response = middleware_method(request)
+  File "E:\code\quicky-01\packages\quicky\middleware\__init__.py", line 457, in process_request
+    print "load "+ request.get_view_path()
+  File "E:\code\quicky-01\packages\quicky\middleware\__init__.py", line 320, in get_view_path
+    setattr(request, "__view_path", ret[code.__len__():ret.__len__()])
+AttributeError: 'NoneType' object has no attribute '__len__'
+hrm.auth_user.find (0.00) {'username': u'sys'}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+Internal Server Error: /favicon.ico
+Traceback (most recent call last):
+  File "E:\code\quicky-01\packages/django\django\core\handlers\base.py", line 88, in get_response
+    response = middleware_method(request)
+  File "E:\code\quicky-01\packages\quicky\middleware\__init__.py", line 457, in process_request
+    print "load "+ request.get_view_path()
+  File "E:\code\quicky-01\packages\quicky\middleware\__init__.py", line 320, in get_view_path
+    setattr(request, "__view_path", ret[code.__len__():ret.__len__()])
+AttributeError: 'NoneType' object has no attribute '__len__'
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
+hrm.auth_user.find (0.01) {'username': u'sys'}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
+hrm.auth_user.find (0.01) {'username': u'sys'}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+Internal Server Error: /lms/hrm/api
+Traceback (most recent call last):
+  File "E:\code\quicky-01\packages/django\django\core\handlers\base.py", line 112, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "E:\code\quicky-01\packages/django\django\views\decorators\http.py", line 41, in inner
+    return func(request, *args, **kwargs)
+  File "E:\code\quicky-01\packages/django\django\views\decorators\csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "E:\code\quicky-01\packages\quicky\executor.py", line 105, in exec_request
+    return self.__fn__ (request, **kwargs)
+  File "E:\code\quicky-01\packages\quicky\api.py", line 172, in call
+    raise ex
+Exception: Call  'get_list' in 'hrm.api.categories' encountered 'Below expression is invalid:
+contains(code,get_params(0))
+params ((u'p',),)
+	detail:
+		contains function is expected one text param, but the value (u'p',) is not a text
+None'
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+Internal Server Error: /lms/hrm/api
+Traceback (most recent call last):
+  File "E:\code\quicky-01\packages/django\django\core\handlers\base.py", line 112, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "E:\code\quicky-01\packages/django\django\views\decorators\http.py", line 41, in inner
+    return func(request, *args, **kwargs)
+  File "E:\code\quicky-01\packages/django\django\views\decorators\csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "E:\code\quicky-01\packages\quicky\executor.py", line 105, in exec_request
+    return self.__fn__ (request, **kwargs)
+  File "E:\code\quicky-01\packages\quicky\api.py", line 172, in call
+    raise ex
+Exception: Call  'get_list' in 'hrm.api.categories' encountered 'Below expression is invalid:
+contains(code,get_params(0))
+params ((u'p',),)
+	detail:
+		contains function is expected one text param, but the value (u'p',) is not a text
+None'
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+Internal Server Error: /lms/hrm/api
+Traceback (most recent call last):
+  File "E:\code\quicky-01\packages/django\django\core\handlers\base.py", line 112, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "E:\code\quicky-01\packages/django\django\views\decorators\http.py", line 41, in inner
+    return func(request, *args, **kwargs)
+  File "E:\code\quicky-01\packages/django\django\views\decorators\csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "E:\code\quicky-01\packages\quicky\executor.py", line 105, in exec_request
+    return self.__fn__ (request, **kwargs)
+  File "E:\code\quicky-01\packages\quicky\api.py", line 172, in call
+    raise ex
+Exception: Call  'get_list' in 'hrm.api.categories' encountered 'Below expression is invalid:
+contains(code,get_params(0))
+params ((u'p',),)
+	detail:
+		contains function is expected one text param, but the value (u'p',) is not a text
+None'
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
+Internal Server Error: /lms/hrm/download/excel/ff35276b-1e42-4cb4-9085-969894c08a19
+Traceback (most recent call last):
+  File "E:\code\quicky-01\packages/django\django\core\handlers\base.py", line 112, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "E:\code\quicky-01\packages\quicky\executor.py", line 130, in exec_request_for_multi
+    return self.exec_request(request,**kwargs)
+  File "E:\code\quicky-01\packages\quicky\executor.py", line 105, in exec_request
+    return self.__fn__ (request, **kwargs)
+  File "E:\code\quicky-01\apps\hrm\views.py", line 152, in download_excel
+    ret = export_excel.do_export(request.get_language(), application.name, tenancy.get_schema(), coll()._model.name, qr)
+  File "E:\code\quicky-01\packages\qexcel\export_excel.py", line 24, in do_export
+    from openpyxl import Workbook
+  File "E:\code\quicky-01\packages\openpyxl\__init__.py", line 6, in <module>
+    from openpyxl.workbook import Workbook
+  File "E:\code\quicky-01\packages\openpyxl\workbook\__init__.py", line 5, in <module>
+    from .workbook import Workbook
+  File "E:\code\quicky-01\packages\openpyxl\workbook\workbook.py", line 7, in <module>
+    from openpyxl.worksheet import Worksheet
+  File "E:\code\quicky-01\packages\openpyxl\worksheet\__init__.py", line 4, in <module>
+    from .worksheet import Worksheet
+  File "E:\code\quicky-01\packages\openpyxl\worksheet\worksheet.py", line 35, in <module>
+    from openpyxl.cell import Cell
+  File "E:\code\quicky-01\packages\openpyxl\cell\__init__.py", line 4, in <module>
+    from .cell import Cell, WriteOnlyCell
+  File "E:\code\quicky-01\packages\openpyxl\cell\cell.py", line 31, in <module>
+    from openpyxl.utils.datetime  import (
+  File "E:\code\quicky-01\packages\openpyxl\utils\datetime.py", line 13, in <module>
+    from jdcal import (
+ImportError: No module named jdcal
+Internal Server Error: /favicon.ico
+Traceback (most recent call last):
+  File "E:\code\quicky-01\packages/django\django\core\handlers\base.py", line 88, in get_response
+    response = middleware_method(request)
+  File "E:\code\quicky-01\packages\quicky\middleware\__init__.py", line 457, in process_request
+    print "load "+ request.get_view_path()
+  File "E:\code\quicky-01\packages\quicky\middleware\__init__.py", line 320, in get_view_path
+    setattr(request, "__view_path", ret[code.__len__():ret.__len__()])
+AttributeError: 'NoneType' object has no attribute '__len__'
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
+Internal Server Error: /lms/hrm/download/excel/ff35276b-1e42-4cb4-9085-969894c08a19
+Traceback (most recent call last):
+  File "E:\code\quicky-01\packages/django\django\core\handlers\base.py", line 112, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "E:\code\quicky-01\packages\quicky\executor.py", line 130, in exec_request_for_multi
+    return self.exec_request(request,**kwargs)
+  File "E:\code\quicky-01\packages\quicky\executor.py", line 105, in exec_request
+    return self.__fn__ (request, **kwargs)
+  File "E:\code\quicky-01\apps\hrm\views.py", line 152, in download_excel
+    ret = export_excel.do_export(request.get_language(), application.name, tenancy.get_schema(), coll()._model.name, qr)
+  File "E:\code\quicky-01\packages\qexcel\export_excel.py", line 24, in do_export
+    from openpyxl import Workbook
+  File "E:\code\quicky-01\packages\openpyxl\__init__.py", line 6, in <module>
+    from openpyxl.workbook import Workbook
+  File "E:\code\quicky-01\packages\openpyxl\workbook\__init__.py", line 5, in <module>
+    from .workbook import Workbook
+  File "E:\code\quicky-01\packages\openpyxl\workbook\workbook.py", line 7, in <module>
+    from openpyxl.worksheet import Worksheet
+  File "E:\code\quicky-01\packages\openpyxl\worksheet\__init__.py", line 4, in <module>
+    from .worksheet import Worksheet
+  File "E:\code\quicky-01\packages\openpyxl\worksheet\worksheet.py", line 35, in <module>
+    from openpyxl.cell import Cell
+  File "E:\code\quicky-01\packages\openpyxl\cell\__init__.py", line 4, in <module>
+    from .cell import Cell, WriteOnlyCell
+  File "E:\code\quicky-01\packages\openpyxl\cell\cell.py", line 31, in <module>
+    from openpyxl.utils.datetime  import (
+  File "E:\code\quicky-01\packages\openpyxl\utils\datetime.py", line 13, in <module>
+    from jdcal import (
+ImportError: No module named jdcal
+Internal Server Error: /favicon.ico
+Traceback (most recent call last):
+  File "E:\code\quicky-01\packages/django\django\core\handlers\base.py", line 88, in get_response
+    response = middleware_method(request)
+  File "E:\code\quicky-01\packages\quicky\middleware\__init__.py", line 457, in process_request
+    print "load "+ request.get_view_path()
+  File "E:\code\quicky-01\packages\quicky\middleware\__init__.py", line 320, in get_view_path
+    setattr(request, "__view_path", ret[code.__len__():ret.__len__()])
+AttributeError: 'NoneType' object has no attribute '__len__'
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+Internal Server Error: /favicon.ico
+Traceback (most recent call last):
+  File "E:\code\quicky-01\packages/django\django\core\handlers\base.py", line 88, in get_response
+    response = middleware_method(request)
+  File "E:\code\quicky-01\packages\quicky\middleware\__init__.py", line 457, in process_request
+    print "load "+ request.get_view_path()
+  File "E:\code\quicky-01\packages\quicky\middleware\__init__.py", line 320, in get_view_path
+    setattr(request, "__view_path", ret[code.__len__():ret.__len__()])
+AttributeError: 'NoneType' object has no attribute '__len__'
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+Internal Server Error: /lms/hrm/api
+Traceback (most recent call last):
+  File "E:\code\quicky-01\packages/django\django\core\handlers\base.py", line 112, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "E:\code\quicky-01\packages/django\django\views\decorators\http.py", line 41, in inner
+    return func(request, *args, **kwargs)
+  File "E:\code\quicky-01\packages/django\django\views\decorators\csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "E:\code\quicky-01\packages\quicky\executor.py", line 105, in exec_request
+    return self.__fn__ (request, **kwargs)
+  File "E:\code\quicky-01\packages\quicky\api.py", line 172, in call
+    raise ex
+Exception: Call  'get_list' in 'hrm.api.categories' encountered ''module' object has no attribute 'employees''
+Internal Server Error: /favicon.ico
+Traceback (most recent call last):
+  File "E:\code\quicky-01\packages/django\django\core\handlers\base.py", line 88, in get_response
+    response = middleware_method(request)
+  File "E:\code\quicky-01\packages\quicky\middleware\__init__.py", line 457, in process_request
+    print "load "+ request.get_view_path()
+  File "E:\code\quicky-01\packages\quicky\middleware\__init__.py", line 320, in get_view_path
+    setattr(request, "__view_path", ret[code.__len__():ret.__len__()])
+AttributeError: 'NoneType' object has no attribute '__len__'
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+Internal Server Error: /favicon.ico
+Traceback (most recent call last):
+  File "E:\code\quicky-01\packages/django\django\core\handlers\base.py", line 88, in get_response
+    response = middleware_method(request)
+  File "E:\code\quicky-01\packages\quicky\middleware\__init__.py", line 457, in process_request
+    print "load "+ request.get_view_path()
+  File "E:\code\quicky-01\packages\quicky\middleware\__init__.py", line 320, in get_view_path
+    setattr(request, "__view_path", ret[code.__len__():ret.__len__()])
+AttributeError: 'NoneType' object has no attribute '__len__'
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+Not Found: /lms/hrm/static/js/angular.min.js.map
+Internal Server Error: /polyfills/promise-6.1.0.js.map
+Traceback (most recent call last):
+  File "E:\code\quicky-01\packages/django\django\core\handlers\base.py", line 88, in get_response
+    response = middleware_method(request)
+  File "E:\code\quicky-01\packages\quicky\middleware\__init__.py", line 457, in process_request
+    print "load "+ request.get_view_path()
+  File "E:\code\quicky-01\packages\quicky\middleware\__init__.py", line 320, in get_view_path
+    setattr(request, "__view_path", ret[code.__len__():ret.__len__()])
+AttributeError: 'NoneType' object has no attribute '__len__'
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
+Not Found: /lms/hrm/static/js/angular.min.js.map
+Internal Server Error: /polyfills/promise-6.1.0.js.map
+Traceback (most recent call last):
+  File "E:\code\quicky-01\packages/django\django\core\handlers\base.py", line 88, in get_response
+    response = middleware_method(request)
+  File "E:\code\quicky-01\packages\quicky\middleware\__init__.py", line 457, in process_request
+    print "load "+ request.get_view_path()
+  File "E:\code\quicky-01\packages\quicky\middleware\__init__.py", line 320, in get_view_path
+    setattr(request, "__view_path", ret[code.__len__():ret.__len__()])
+AttributeError: 'NoneType' object has no attribute '__len__'
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+Internal Server Error: /favicon.ico
+Traceback (most recent call last):
+  File "E:\code\quicky-01\packages/django\django\core\handlers\base.py", line 88, in get_response
+    response = middleware_method(request)
+  File "E:\code\quicky-01\packages\quicky\middleware\__init__.py", line 457, in process_request
+    print "load "+ request.get_view_path()
+  File "E:\code\quicky-01\packages\quicky\middleware\__init__.py", line 320, in get_view_path
+    setattr(request, "__view_path", ret[code.__len__():ret.__len__()])
+AttributeError: 'NoneType' object has no attribute '__len__'
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
+Not Found: /lms/hrm/static/js/angular.min.js.map
+Internal Server Error: /polyfills/promise-6.1.0.js.map
+Traceback (most recent call last):
+  File "E:\code\quicky-01\packages/django\django\core\handlers\base.py", line 88, in get_response
+    response = middleware_method(request)
+  File "E:\code\quicky-01\packages\quicky\middleware\__init__.py", line 457, in process_request
+    print "load "+ request.get_view_path()
+  File "E:\code\quicky-01\packages\quicky\middleware\__init__.py", line 320, in get_view_path
+    setattr(request, "__view_path", ret[code.__len__():ret.__len__()])
+AttributeError: 'NoneType' object has no attribute '__len__'
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+Internal Server Error: /favicon.ico
+Traceback (most recent call last):
+  File "E:\code\quicky-01\packages/django\django\core\handlers\base.py", line 88, in get_response
+    response = middleware_method(request)
+  File "E:\code\quicky-01\packages\quicky\middleware\__init__.py", line 457, in process_request
+    print "load "+ request.get_view_path()
+  File "E:\code\quicky-01\packages\quicky\middleware\__init__.py", line 320, in get_view_path
+    setattr(request, "__view_path", ret[code.__len__():ret.__len__()])
+AttributeError: 'NoneType' object has no attribute '__len__'
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
+Not Found: /lms/hrm/static/js/angular.min.js.map
+Internal Server Error: /polyfills/promise-6.1.0.js.map
+Traceback (most recent call last):
+  File "E:\code\quicky-01\packages/django\django\core\handlers\base.py", line 88, in get_response
+    response = middleware_method(request)
+  File "E:\code\quicky-01\packages\quicky\middleware\__init__.py", line 457, in process_request
+    print "load "+ request.get_view_path()
+  File "E:\code\quicky-01\packages\quicky\middleware\__init__.py", line 320, in get_view_path
+    setattr(request, "__view_path", ret[code.__len__():ret.__len__()])
+AttributeError: 'NoneType' object has no attribute '__len__'
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+Internal Server Error: /favicon.ico
+Traceback (most recent call last):
+  File "E:\code\quicky-01\packages/django\django\core\handlers\base.py", line 88, in get_response
+    response = middleware_method(request)
+  File "E:\code\quicky-01\packages\quicky\middleware\__init__.py", line 457, in process_request
+    print "load "+ request.get_view_path()
+  File "E:\code\quicky-01\packages\quicky\middleware\__init__.py", line 320, in get_view_path
+    setattr(request, "__view_path", ret[code.__len__():ret.__len__()])
+AttributeError: 'NoneType' object has no attribute '__len__'
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+Internal Server Error: /favicon.ico
+Traceback (most recent call last):
+  File "E:\code\quicky-01\packages/django\django\core\handlers\base.py", line 88, in get_response
+    response = middleware_method(request)
+  File "E:\code\quicky-01\packages\quicky\middleware\__init__.py", line 457, in process_request
+    print "load "+ request.get_view_path()
+  File "E:\code\quicky-01\packages\quicky\middleware\__init__.py", line 320, in get_view_path
+    setattr(request, "__view_path", ret[code.__len__():ret.__len__()])
+AttributeError: 'NoneType' object has no attribute '__len__'
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+Not Found: /lms/hrm/static/js/angular.min.js.map
+Internal Server Error: /polyfills/promise-6.1.0.js.map
+Traceback (most recent call last):
+  File "E:\code\quicky-01\packages/django\django\core\handlers\base.py", line 88, in get_response
+    response = middleware_method(request)
+  File "E:\code\quicky-01\packages\quicky\middleware\__init__.py", line 457, in process_request
+    print "load "+ request.get_view_path()
+  File "E:\code\quicky-01\packages\quicky\middleware\__init__.py", line 320, in get_view_path
+    setattr(request, "__view_path", ret[code.__len__():ret.__len__()])
+AttributeError: 'NoneType' object has no attribute '__len__'
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
+Not Found: /lms/hrm/static/js/angular.min.js.map
+Internal Server Error: /polyfills/promise-6.1.0.js.map
+Traceback (most recent call last):
+  File "E:\code\quicky-01\packages/django\django\core\handlers\base.py", line 88, in get_response
+    response = middleware_method(request)
+  File "E:\code\quicky-01\packages\quicky\middleware\__init__.py", line 457, in process_request
+    print "load "+ request.get_view_path()
+  File "E:\code\quicky-01\packages\quicky\middleware\__init__.py", line 320, in get_view_path
+    setattr(request, "__view_path", ret[code.__len__():ret.__len__()])
+AttributeError: 'NoneType' object has no attribute '__len__'
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+Internal Server Error: /favicon.ico
+Traceback (most recent call last):
+  File "E:\code\quicky-01\packages/django\django\core\handlers\base.py", line 88, in get_response
+    response = middleware_method(request)
+  File "E:\code\quicky-01\packages\quicky\middleware\__init__.py", line 457, in process_request
+    print "load "+ request.get_view_path()
+  File "E:\code\quicky-01\packages\quicky\middleware\__init__.py", line 320, in get_view_path
+    setattr(request, "__view_path", ret[code.__len__():ret.__len__()])
+AttributeError: 'NoneType' object has no attribute '__len__'
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
+Not Found: /lms/hrm/static/js/angular.min.js.map
+Internal Server Error: /polyfills/promise-6.1.0.js.map
+Traceback (most recent call last):
+  File "E:\code\quicky-01\packages/django\django\core\handlers\base.py", line 88, in get_response
+    response = middleware_method(request)
+  File "E:\code\quicky-01\packages\quicky\middleware\__init__.py", line 457, in process_request
+    print "load "+ request.get_view_path()
+  File "E:\code\quicky-01\packages\quicky\middleware\__init__.py", line 320, in get_view_path
+    setattr(request, "__view_path", ret[code.__len__():ret.__len__()])
+AttributeError: 'NoneType' object has no attribute '__len__'
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+Internal Server Error: /favicon.ico
+Traceback (most recent call last):
+  File "E:\code\quicky-01\packages/django\django\core\handlers\base.py", line 88, in get_response
+    response = middleware_method(request)
+  File "E:\code\quicky-01\packages\quicky\middleware\__init__.py", line 457, in process_request
+    print "load "+ request.get_view_path()
+  File "E:\code\quicky-01\packages\quicky\middleware\__init__.py", line 320, in get_view_path
+    setattr(request, "__view_path", ret[code.__len__():ret.__len__()])
+AttributeError: 'NoneType' object has no attribute '__len__'
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
+Not Found: /lms/hrm/static/js/angular.min.js.map
+Internal Server Error: /polyfills/promise-6.1.0.js.map
+Traceback (most recent call last):
+  File "E:\code\quicky-01\packages/django\django\core\handlers\base.py", line 88, in get_response
+    response = middleware_method(request)
+  File "E:\code\quicky-01\packages\quicky\middleware\__init__.py", line 457, in process_request
+    print "load "+ request.get_view_path()
+  File "E:\code\quicky-01\packages\quicky\middleware\__init__.py", line 320, in get_view_path
+    setattr(request, "__view_path", ret[code.__len__():ret.__len__()])
+AttributeError: 'NoneType' object has no attribute '__len__'
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+Internal Server Error: /favicon.ico
+Traceback (most recent call last):
+  File "E:\code\quicky-01\packages/django\django\core\handlers\base.py", line 88, in get_response
+    response = middleware_method(request)
+  File "E:\code\quicky-01\packages\quicky\middleware\__init__.py", line 457, in process_request
+    print "load "+ request.get_view_path()
+  File "E:\code\quicky-01\packages\quicky\middleware\__init__.py", line 320, in get_view_path
+    setattr(request, "__view_path", ret[code.__len__():ret.__len__()])
+AttributeError: 'NoneType' object has no attribute '__len__'
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
+Not Found: /lms/hrm/static/js/angular.min.js.map
+Internal Server Error: /polyfills/promise-6.1.0.js.map
+Traceback (most recent call last):
+  File "E:\code\quicky-01\packages/django\django\core\handlers\base.py", line 88, in get_response
+    response = middleware_method(request)
+  File "E:\code\quicky-01\packages\quicky\middleware\__init__.py", line 457, in process_request
+    print "load "+ request.get_view_path()
+  File "E:\code\quicky-01\packages\quicky\middleware\__init__.py", line 320, in get_view_path
+    setattr(request, "__view_path", ret[code.__len__():ret.__len__()])
+AttributeError: 'NoneType' object has no attribute '__len__'
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+Internal Server Error: /favicon.ico
+Traceback (most recent call last):
+  File "E:\code\quicky-01\packages/django\django\core\handlers\base.py", line 88, in get_response
+    response = middleware_method(request)
+  File "E:\code\quicky-01\packages\quicky\middleware\__init__.py", line 457, in process_request
+    print "load "+ request.get_view_path()
+  File "E:\code\quicky-01\packages\quicky\middleware\__init__.py", line 320, in get_view_path
+    setattr(request, "__view_path", ret[code.__len__():ret.__len__()])
+AttributeError: 'NoneType' object has no attribute '__len__'
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+Not Found: /lms/hrm/static/js/angular.min.js.map
+Internal Server Error: /polyfills/promise-6.1.0.js.map
+Traceback (most recent call last):
+  File "E:\code\quicky-01\packages/django\django\core\handlers\base.py", line 88, in get_response
+    response = middleware_method(request)
+  File "E:\code\quicky-01\packages\quicky\middleware\__init__.py", line 457, in process_request
+    print "load "+ request.get_view_path()
+  File "E:\code\quicky-01\packages\quicky\middleware\__init__.py", line 320, in get_view_path
+    setattr(request, "__view_path", ret[code.__len__():ret.__len__()])
+AttributeError: 'NoneType' object has no attribute '__len__'
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
+Not Found: /lms/hrm/static/js/angular.min.js.map
+Internal Server Error: /polyfills/promise-6.1.0.js.map
+Traceback (most recent call last):
+  File "E:\code\quicky-01\packages/django\django\core\handlers\base.py", line 88, in get_response
+    response = middleware_method(request)
+  File "E:\code\quicky-01\packages\quicky\middleware\__init__.py", line 457, in process_request
+    print "load "+ request.get_view_path()
+  File "E:\code\quicky-01\packages\quicky\middleware\__init__.py", line 320, in get_view_path
+    setattr(request, "__view_path", ret[code.__len__():ret.__len__()])
+AttributeError: 'NoneType' object has no attribute '__len__'
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
+Internal Server Error: /favicon.ico
+Traceback (most recent call last):
+  File "E:\code\quicky-01\packages/django\django\core\handlers\base.py", line 88, in get_response
+    response = middleware_method(request)
+  File "E:\code\quicky-01\packages\quicky\middleware\__init__.py", line 457, in process_request
+    print "load "+ request.get_view_path()
+  File "E:\code\quicky-01\packages\quicky\middleware\__init__.py", line 320, in get_view_path
+    setattr(request, "__view_path", ret[code.__len__():ret.__len__()])
+AttributeError: 'NoneType' object has no attribute '__len__'
+hrm.auth_user.find (0.01) {'username': u'sys'}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+Internal Server Error: /favicon.ico
+Traceback (most recent call last):
+  File "E:\code\quicky-01\packages/django\django\core\handlers\base.py", line 88, in get_response
+    response = middleware_method(request)
+  File "E:\code\quicky-01\packages\quicky\middleware\__init__.py", line 457, in process_request
+    print "load "+ request.get_view_path()
+  File "E:\code\quicky-01\packages\quicky\middleware\__init__.py", line 320, in get_view_path
+    setattr(request, "__view_path", ret[code.__len__():ret.__len__()])
+AttributeError: 'NoneType' object has no attribute '__len__'
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
+hrm.auth_user.find (0.01) {'username': u'sys'}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+Internal Server Error: /favicon.ico
+Traceback (most recent call last):
+  File "E:\code\quicky-01\packages/django\django\core\handlers\base.py", line 88, in get_response
+    response = middleware_method(request)
+  File "E:\code\quicky-01\packages\quicky\middleware\__init__.py", line 457, in process_request
+    print "load "+ request.get_view_path()
+  File "E:\code\quicky-01\packages\quicky\middleware\__init__.py", line 320, in get_view_path
+    setattr(request, "__view_path", ret[code.__len__():ret.__len__()])
+AttributeError: 'NoneType' object has no attribute '__len__'
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+Not Found: /lms/hrm/static/js/angular.min.js.map
+Internal Server Error: /polyfills/promise-6.1.0.js.map
+Traceback (most recent call last):
+  File "E:\code\quicky-01\packages/django\django\core\handlers\base.py", line 88, in get_response
+    response = middleware_method(request)
+  File "E:\code\quicky-01\packages\quicky\middleware\__init__.py", line 457, in process_request
+    print "load "+ request.get_view_path()
+  File "E:\code\quicky-01\packages\quicky\middleware\__init__.py", line 320, in get_view_path
+    setattr(request, "__view_path", ret[code.__len__():ret.__len__()])
+AttributeError: 'NoneType' object has no attribute '__len__'
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
+Not Found: /lms/hrm/static/js/angular.min.js.map
+Internal Server Error: /polyfills/promise-6.1.0.js.map
+Traceback (most recent call last):
+  File "E:\code\quicky-01\packages/django\django\core\handlers\base.py", line 88, in get_response
+    response = middleware_method(request)
+  File "E:\code\quicky-01\packages\quicky\middleware\__init__.py", line 457, in process_request
+    print "load "+ request.get_view_path()
+  File "E:\code\quicky-01\packages\quicky\middleware\__init__.py", line 320, in get_view_path
+    setattr(request, "__view_path", ret[code.__len__():ret.__len__()])
+AttributeError: 'NoneType' object has no attribute '__len__'
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+Internal Server Error: /favicon.ico
+Traceback (most recent call last):
+  File "E:\code\quicky-01\packages/django\django\core\handlers\base.py", line 88, in get_response
+    response = middleware_method(request)
+  File "E:\code\quicky-01\packages\quicky\middleware\__init__.py", line 457, in process_request
+    print "load "+ request.get_view_path()
+  File "E:\code\quicky-01\packages\quicky\middleware\__init__.py", line 320, in get_view_path
+    setattr(request, "__view_path", ret[code.__len__():ret.__len__()])
+AttributeError: 'NoneType' object has no attribute '__len__'
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
+Not Found: /lms/hrm/static/js/angular.min.js.map
+Internal Server Error: /polyfills/promise-6.1.0.js.map
+Traceback (most recent call last):
+  File "E:\code\quicky-01\packages/django\django\core\handlers\base.py", line 88, in get_response
+    response = middleware_method(request)
+  File "E:\code\quicky-01\packages\quicky\middleware\__init__.py", line 457, in process_request
+    print "load "+ request.get_view_path()
+  File "E:\code\quicky-01\packages\quicky\middleware\__init__.py", line 320, in get_view_path
+    setattr(request, "__view_path", ret[code.__len__():ret.__len__()])
+AttributeError: 'NoneType' object has no attribute '__len__'
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+Internal Server Error: /favicon.ico
+Traceback (most recent call last):
+  File "E:\code\quicky-01\packages/django\django\core\handlers\base.py", line 88, in get_response
+    response = middleware_method(request)
+  File "E:\code\quicky-01\packages\quicky\middleware\__init__.py", line 457, in process_request
+    print "load "+ request.get_view_path()
+  File "E:\code\quicky-01\packages\quicky\middleware\__init__.py", line 320, in get_view_path
+    setattr(request, "__view_path", ret[code.__len__():ret.__len__()])
+AttributeError: 'NoneType' object has no attribute '__len__'
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
+Not Found: /lms/hrm/static/js/angular.min.js.map
+Internal Server Error: /polyfills/promise-6.1.0.js.map
+Traceback (most recent call last):
+  File "E:\code\quicky-01\packages/django\django\core\handlers\base.py", line 88, in get_response
+    response = middleware_method(request)
+  File "E:\code\quicky-01\packages\quicky\middleware\__init__.py", line 457, in process_request
+    print "load "+ request.get_view_path()
+  File "E:\code\quicky-01\packages\quicky\middleware\__init__.py", line 320, in get_view_path
+    setattr(request, "__view_path", ret[code.__len__():ret.__len__()])
+AttributeError: 'NoneType' object has no attribute '__len__'
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+Internal Server Error: /favicon.ico
+Traceback (most recent call last):
+  File "E:\code\quicky-01\packages/django\django\core\handlers\base.py", line 88, in get_response
+    response = middleware_method(request)
+  File "E:\code\quicky-01\packages\quicky\middleware\__init__.py", line 457, in process_request
+    print "load "+ request.get_view_path()
+  File "E:\code\quicky-01\packages\quicky\middleware\__init__.py", line 320, in get_view_path
+    setattr(request, "__view_path", ret[code.__len__():ret.__len__()])
+AttributeError: 'NoneType' object has no attribute '__len__'
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+Internal Server Error: /favicon.ico
+Traceback (most recent call last):
+  File "E:\code\quicky-01\packages/django\django\core\handlers\base.py", line 88, in get_response
+    response = middleware_method(request)
+  File "E:\code\quicky-01\packages\quicky\middleware\__init__.py", line 457, in process_request
+    print "load "+ request.get_view_path()
+  File "E:\code\quicky-01\packages\quicky\middleware\__init__.py", line 320, in get_view_path
+    setattr(request, "__view_path", ret[code.__len__():ret.__len__()])
+AttributeError: 'NoneType' object has no attribute '__len__'
+Not Found: /lms/hrm/static/js/angular.min.js.map
+Internal Server Error: /polyfills/promise-6.1.0.js.map
+Traceback (most recent call last):
+  File "E:\code\quicky-01\packages/django\django\core\handlers\base.py", line 88, in get_response
+    response = middleware_method(request)
+  File "E:\code\quicky-01\packages\quicky\middleware\__init__.py", line 457, in process_request
+    print "load "+ request.get_view_path()
+  File "E:\code\quicky-01\packages\quicky\middleware\__init__.py", line 320, in get_view_path
+    setattr(request, "__view_path", ret[code.__len__():ret.__len__()])
+AttributeError: 'NoneType' object has no attribute '__len__'
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
+Not Found: /lms/hrm/static/js/angular.min.js.map
+Internal Server Error: /polyfills/promise-6.1.0.js.map
+Traceback (most recent call last):
+  File "E:\code\quicky-01\packages/django\django\core\handlers\base.py", line 88, in get_response
+    response = middleware_method(request)
+  File "E:\code\quicky-01\packages\quicky\middleware\__init__.py", line 457, in process_request
+    print "load "+ request.get_view_path()
+  File "E:\code\quicky-01\packages\quicky\middleware\__init__.py", line 320, in get_view_path
+    setattr(request, "__view_path", ret[code.__len__():ret.__len__()])
+AttributeError: 'NoneType' object has no attribute '__len__'
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+Internal Server Error: /favicon.ico
+Traceback (most recent call last):
+  File "E:\code\quicky-01\packages/django\django\core\handlers\base.py", line 88, in get_response
+    response = middleware_method(request)
+  File "E:\code\quicky-01\packages\quicky\middleware\__init__.py", line 457, in process_request
+    print "load "+ request.get_view_path()
+  File "E:\code\quicky-01\packages\quicky\middleware\__init__.py", line 320, in get_view_path
+    setattr(request, "__view_path", ret[code.__len__():ret.__len__()])
+AttributeError: 'NoneType' object has no attribute '__len__'
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
+Not Found: /lms/hrm/static/js/angular.min.js.map
+Internal Server Error: /polyfills/promise-6.1.0.js.map
+Traceback (most recent call last):
+  File "E:\code\quicky-01\packages/django\django\core\handlers\base.py", line 88, in get_response
+    response = middleware_method(request)
+  File "E:\code\quicky-01\packages\quicky\middleware\__init__.py", line 457, in process_request
+    print "load "+ request.get_view_path()
+  File "E:\code\quicky-01\packages\quicky\middleware\__init__.py", line 320, in get_view_path
+    setattr(request, "__view_path", ret[code.__len__():ret.__len__()])
+AttributeError: 'NoneType' object has no attribute '__len__'
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
+Internal Server Error: /favicon.ico
+Traceback (most recent call last):
+  File "E:\code\quicky-01\packages/django\django\core\handlers\base.py", line 88, in get_response
+    response = middleware_method(request)
+  File "E:\code\quicky-01\packages\quicky\middleware\__init__.py", line 457, in process_request
+    print "load "+ request.get_view_path()
+  File "E:\code\quicky-01\packages\quicky\middleware\__init__.py", line 320, in get_view_path
+    setattr(request, "__view_path", ret[code.__len__():ret.__len__()])
+AttributeError: 'NoneType' object has no attribute '__len__'
+hrm.auth_user.find (0.01) {'username': u'sys'}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+Internal Server Error: /favicon.ico
+Traceback (most recent call last):
+  File "E:\code\quicky-01\packages/django\django\core\handlers\base.py", line 88, in get_response
+    response = middleware_method(request)
+  File "E:\code\quicky-01\packages\quicky\middleware\__init__.py", line 457, in process_request
+    print "load "+ request.get_view_path()
+  File "E:\code\quicky-01\packages\quicky\middleware\__init__.py", line 320, in get_view_path
+    setattr(request, "__view_path", ret[code.__len__():ret.__len__()])
+AttributeError: 'NoneType' object has no attribute '__len__'
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+Internal Server Error: /favicon.ico
+Traceback (most recent call last):
+  File "E:\code\quicky-01\packages/django\django\core\handlers\base.py", line 88, in get_response
+    response = middleware_method(request)
+  File "E:\code\quicky-01\packages\quicky\middleware\__init__.py", line 457, in process_request
+    print "load "+ request.get_view_path()
+  File "E:\code\quicky-01\packages\quicky\middleware\__init__.py", line 320, in get_view_path
+    setattr(request, "__view_path", ret[code.__len__():ret.__len__()])
+AttributeError: 'NoneType' object has no attribute '__len__'
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
+hrm.auth_user.find (0.01) {'username': u'sys'}
+Not Found: /lms/hrm/static/js/angular.min.js.map
+Internal Server Error: /polyfills/promise-6.1.0.js.map
+Traceback (most recent call last):
+  File "E:\code\quicky-01\packages/django\django\core\handlers\base.py", line 88, in get_response
+    response = middleware_method(request)
+  File "E:\code\quicky-01\packages\quicky\middleware\__init__.py", line 457, in process_request
+    print "load "+ request.get_view_path()
+  File "E:\code\quicky-01\packages\quicky\middleware\__init__.py", line 320, in get_view_path
+    setattr(request, "__view_path", ret[code.__len__():ret.__len__()])
+AttributeError: 'NoneType' object has no attribute '__len__'
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
+Not Found: /lms/hrm/static/js/angular.min.js.map
+Internal Server Error: /polyfills/promise-6.1.0.js.map
+Traceback (most recent call last):
+  File "E:\code\quicky-01\packages/django\django\core\handlers\base.py", line 88, in get_response
+    response = middleware_method(request)
+  File "E:\code\quicky-01\packages\quicky\middleware\__init__.py", line 457, in process_request
+    print "load "+ request.get_view_path()
+  File "E:\code\quicky-01\packages\quicky\middleware\__init__.py", line 320, in get_view_path
+    setattr(request, "__view_path", ret[code.__len__():ret.__len__()])
+AttributeError: 'NoneType' object has no attribute '__len__'
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+Internal Server Error: /favicon.ico
+Traceback (most recent call last):
+  File "E:\code\quicky-01\packages/django\django\core\handlers\base.py", line 88, in get_response
+    response = middleware_method(request)
+  File "E:\code\quicky-01\packages\quicky\middleware\__init__.py", line 457, in process_request
+    print "load "+ request.get_view_path()
+  File "E:\code\quicky-01\packages\quicky\middleware\__init__.py", line 320, in get_view_path
+    setattr(request, "__view_path", ret[code.__len__():ret.__len__()])
+AttributeError: 'NoneType' object has no attribute '__len__'
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+Internal Server Error: /favicon.ico
+Traceback (most recent call last):
+  File "E:\code\quicky-01\packages/django\django\core\handlers\base.py", line 88, in get_response
+    response = middleware_method(request)
+  File "E:\code\quicky-01\packages\quicky\middleware\__init__.py", line 457, in process_request
+    print "load "+ request.get_view_path()
+  File "E:\code\quicky-01\packages\quicky\middleware\__init__.py", line 320, in get_view_path
+    setattr(request, "__view_path", ret[code.__len__():ret.__len__()])
+AttributeError: 'NoneType' object has no attribute '__len__'
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+Internal Server Error: /favicon.ico
+Traceback (most recent call last):
+  File "E:\code\quicky-01\packages/django\django\core\handlers\base.py", line 88, in get_response
+    response = middleware_method(request)
+  File "E:\code\quicky-01\packages\quicky\middleware\__init__.py", line 457, in process_request
+    print "load "+ request.get_view_path()
+  File "E:\code\quicky-01\packages\quicky\middleware\__init__.py", line 320, in get_view_path
+    setattr(request, "__view_path", ret[code.__len__():ret.__len__()])
+AttributeError: 'NoneType' object has no attribute '__len__'
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
+hrm.auth_user.find (0.01) {'username': u'sys'}
+Not Found: /lms/hrm/static/js/angular.min.js.map
+Internal Server Error: /polyfills/promise-6.1.0.js.map
+Traceback (most recent call last):
+  File "E:\code\quicky-01\packages/django\django\core\handlers\base.py", line 88, in get_response
+    response = middleware_method(request)
+  File "E:\code\quicky-01\packages\quicky\middleware\__init__.py", line 457, in process_request
+    print "load "+ request.get_view_path()
+  File "E:\code\quicky-01\packages\quicky\middleware\__init__.py", line 320, in get_view_path
+    setattr(request, "__view_path", ret[code.__len__():ret.__len__()])
+AttributeError: 'NoneType' object has no attribute '__len__'
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
+Not Found: /lms/hrm/static/js/angular.min.js.map
+Internal Server Error: /polyfills/promise-6.1.0.js.map
+Traceback (most recent call last):
+  File "E:\code\quicky-01\packages/django\django\core\handlers\base.py", line 88, in get_response
+    response = middleware_method(request)
+  File "E:\code\quicky-01\packages\quicky\middleware\__init__.py", line 457, in process_request
+    print "load "+ request.get_view_path()
+  File "E:\code\quicky-01\packages\quicky\middleware\__init__.py", line 320, in get_view_path
+    setattr(request, "__view_path", ret[code.__len__():ret.__len__()])
+AttributeError: 'NoneType' object has no attribute '__len__'
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+Internal Server Error: /favicon.ico
+Traceback (most recent call last):
+  File "E:\code\quicky-01\packages/django\django\core\handlers\base.py", line 88, in get_response
+    response = middleware_method(request)
+  File "E:\code\quicky-01\packages\quicky\middleware\__init__.py", line 457, in process_request
+    print "load "+ request.get_view_path()
+  File "E:\code\quicky-01\packages\quicky\middleware\__init__.py", line 320, in get_view_path
+    setattr(request, "__view_path", ret[code.__len__():ret.__len__()])
+AttributeError: 'NoneType' object has no attribute '__len__'
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
+hrm.auth_user.find (0.01) {'username': u'sys'}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+Internal Server Error: /favicon.ico
+Traceback (most recent call last):
+  File "E:\code\quicky-01\packages/django\django\core\handlers\base.py", line 88, in get_response
+    response = middleware_method(request)
+  File "E:\code\quicky-01\packages\quicky\middleware\__init__.py", line 457, in process_request
+    print "load "+ request.get_view_path()
+  File "E:\code\quicky-01\packages\quicky\middleware\__init__.py", line 320, in get_view_path
+    setattr(request, "__view_path", ret[code.__len__():ret.__len__()])
+AttributeError: 'NoneType' object has no attribute '__len__'
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+Internal Server Error: /favicon.ico
+Traceback (most recent call last):
+  File "E:\code\quicky-01\packages/django\django\core\handlers\base.py", line 88, in get_response
+    response = middleware_method(request)
+  File "E:\code\quicky-01\packages\quicky\middleware\__init__.py", line 457, in process_request
+    print "load "+ request.get_view_path()
+  File "E:\code\quicky-01\packages\quicky\middleware\__init__.py", line 320, in get_view_path
+    setattr(request, "__view_path", ret[code.__len__():ret.__len__()])
+AttributeError: 'NoneType' object has no attribute '__len__'
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+Internal Server Error: /favicon.ico
+Traceback (most recent call last):
+  File "E:\code\quicky-01\packages/django\django\core\handlers\base.py", line 88, in get_response
+    response = middleware_method(request)
+  File "E:\code\quicky-01\packages\quicky\middleware\__init__.py", line 457, in process_request
+    print "load "+ request.get_view_path()
+  File "E:\code\quicky-01\packages\quicky\middleware\__init__.py", line 320, in get_view_path
+    setattr(request, "__view_path", ret[code.__len__():ret.__len__()])
+AttributeError: 'NoneType' object has no attribute '__len__'
+Not Found: /lms/hrm/static/js/angular.min.js.map
+Internal Server Error: /polyfills/promise-6.1.0.js.map
+Traceback (most recent call last):
+  File "E:\code\quicky-01\packages/django\django\core\handlers\base.py", line 88, in get_response
+    response = middleware_method(request)
+  File "E:\code\quicky-01\packages\quicky\middleware\__init__.py", line 457, in process_request
+    print "load "+ request.get_view_path()
+  File "E:\code\quicky-01\packages\quicky\middleware\__init__.py", line 320, in get_view_path
+    setattr(request, "__view_path", ret[code.__len__():ret.__len__()])
+AttributeError: 'NoneType' object has no attribute '__len__'
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
+Not Found: /lms/hrm/static/js/angular.min.js.map
+Internal Server Error: /polyfills/promise-6.1.0.js.map
+Traceback (most recent call last):
+  File "E:\code\quicky-01\packages/django\django\core\handlers\base.py", line 88, in get_response
+    response = middleware_method(request)
+  File "E:\code\quicky-01\packages\quicky\middleware\__init__.py", line 457, in process_request
+    print "load "+ request.get_view_path()
+  File "E:\code\quicky-01\packages\quicky\middleware\__init__.py", line 320, in get_view_path
+    setattr(request, "__view_path", ret[code.__len__():ret.__len__()])
+AttributeError: 'NoneType' object has no attribute '__len__'
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+Internal Server Error: /favicon.ico
+Traceback (most recent call last):
+  File "E:\code\quicky-01\packages/django\django\core\handlers\base.py", line 88, in get_response
+    response = middleware_method(request)
+  File "E:\code\quicky-01\packages\quicky\middleware\__init__.py", line 457, in process_request
+    print "load "+ request.get_view_path()
+  File "E:\code\quicky-01\packages\quicky\middleware\__init__.py", line 320, in get_view_path
+    setattr(request, "__view_path", ret[code.__len__():ret.__len__()])
+AttributeError: 'NoneType' object has no attribute '__len__'
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
+Not Found: /lms/hrm/static/js/angular.min.js.map
+Internal Server Error: /polyfills/promise-6.1.0.js.map
+Traceback (most recent call last):
+  File "E:\code\quicky-01\packages/django\django\core\handlers\base.py", line 88, in get_response
+    response = middleware_method(request)
+  File "E:\code\quicky-01\packages\quicky\middleware\__init__.py", line 457, in process_request
+    print "load "+ request.get_view_path()
+  File "E:\code\quicky-01\packages\quicky\middleware\__init__.py", line 320, in get_view_path
+    setattr(request, "__view_path", ret[code.__len__():ret.__len__()])
+AttributeError: 'NoneType' object has no attribute '__len__'
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+Internal Server Error: /favicon.ico
+Traceback (most recent call last):
+  File "E:\code\quicky-01\packages/django\django\core\handlers\base.py", line 88, in get_response
+    response = middleware_method(request)
+  File "E:\code\quicky-01\packages\quicky\middleware\__init__.py", line 457, in process_request
+    print "load "+ request.get_view_path()
+  File "E:\code\quicky-01\packages\quicky\middleware\__init__.py", line 320, in get_view_path
+    setattr(request, "__view_path", ret[code.__len__():ret.__len__()])
+AttributeError: 'NoneType' object has no attribute '__len__'
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+Internal Server Error: /favicon.ico
+Traceback (most recent call last):
+  File "E:\code\quicky-01\packages/django\django\core\handlers\base.py", line 88, in get_response
+    response = middleware_method(request)
+  File "E:\code\quicky-01\packages\quicky\middleware\__init__.py", line 457, in process_request
+    print "load "+ request.get_view_path()
+  File "E:\code\quicky-01\packages\quicky\middleware\__init__.py", line 320, in get_view_path
+    setattr(request, "__view_path", ret[code.__len__():ret.__len__()])
+AttributeError: 'NoneType' object has no attribute '__len__'
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
+hrm.auth_user.find (0.00) {'username': u'sys'}

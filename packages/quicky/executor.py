@@ -66,13 +66,9 @@ class executor(object):
                     login_url = "/" + self.__path_fn__["login_url"]
         if hasattr(request.get_app().settings, "authenticate"):
             from django.http.response import HttpResponseRedirect
-
             ret_auth=request.get_app().settings.authenticate(request)
             login_url = request.get_login_url()
-
-
             if ret_auth != True:
-
                 if ret_auth == False:
                     if login_url==None:
                         raise (Exception("it look like you forgot set 'login_url' in {0}/settings.py".format(app.path)))
