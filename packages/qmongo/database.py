@@ -936,9 +936,8 @@ class COLL():
             ret = self.get_collection().find(exprression[0])
             return ret
         else:
-            x = expr.get_tree(exprression, *args, **kwargs)
-            y = expr.get_expr(x, *args, **kwargs)
-            ret = self.get_collection().find(y)
+            from . import helpers
+            ret = self.get_collection().find(helpers.filter(exprression, *args, **kwargs).get_filter())
             return ret
     def find(self,exprression,*args,**kwargs):
         # type: (str,dict|tuple|int|bool|float|datetime|list) -> dict
