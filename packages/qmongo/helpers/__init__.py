@@ -128,9 +128,14 @@ def filter(expression,*args,**kwargs):
             _index += 1
         expr = _expr
         params = _params
-    _expr = vert_expr(_expr, *params)
-    ret = filter_expression(_expr, params)
-    return ret
+    if expression.count("@")>0:
+        _expr = vert_expr(_expr, params)
+        ret = filter_expression(_expr, params)
+        return ret
+    else:
+        _expr = vert_expr(_expr, *params,**kwargs)
+        ret = filter_expression(_expr, *params,**kwargs)
+        return ret
 
 # def aggregate():
 #     ret=aggregate_expression()
