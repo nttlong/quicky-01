@@ -736,6 +736,8 @@ def get_expr(fx,*params):
     :param params:
     :return:
     """
+    if type(params) is tuple and params.__len__() == 1:
+        params = params[0]
     while type(params) is tuple and params.__len__()>0 and type(params[0]) is tuple:
         params=params[0]
     while type(params) is tuple and params.__len__()>0 and type(params[0]) is dict:
@@ -790,6 +792,7 @@ def get_expr(fx,*params):
             }
 
         if fx["operator"] == "$in":
+
             return {
                 get_expr(fx["left"]): {
                     fx["operator"]: __compile_right_params__(params, fx)
