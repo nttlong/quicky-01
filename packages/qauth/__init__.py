@@ -7,6 +7,8 @@ from qobjects import lazyobject
 from . import exceptions
 global __schema__
 __schema__ = "sys"
+from . import  authorize
+auth = authorize.authorize
 def schema(_schema):
     __schema__ = _schema
 def create_app(name):

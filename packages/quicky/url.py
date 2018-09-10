@@ -123,7 +123,7 @@ def build_urls(module_name,*args,**kwargs):
                     root_doc = static_urls[0].default_args["document_root"]
                     reg_ex = static_urls[0].regex.pattern
                     if host_dir!=None:
-                        reg_ex =reg_ex.replace("^","^(?i)"+host_dir+"/")
+                        reg_ex =reg_ex.replace("^","^"+host_dir+"/")
 
                     _apps_.urlpatterns.append(
                         url(

@@ -33,8 +33,11 @@
 
         "django.contrib.messages.middleware.MessageMiddleware",
         "django.middleware.clickjacking.XFrameOptionsMiddleware",
+
         "quicky.middleware.extension",
         "qauth.authorization.auth"
+
+
 
 
     ],

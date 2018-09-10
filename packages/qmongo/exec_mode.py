@@ -1,6 +1,6 @@
 __key__ = "__qmongo_exception_mode__"
 __current_mode__ = "off"
-class exept_mode():
+class except_mode():
     def __init__(self,mode):
         # if not mode in ['exception_on', 'exception_off', 'exception_return']:
         self.__old_value__= __current_mode__

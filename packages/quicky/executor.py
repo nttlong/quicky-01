@@ -104,9 +104,9 @@ class executor(object):
             qtracking.track_load_page(request.get_app().name,tenancy.get_schema(),request.get_view_path(),request.user.username)
             return self.__fn__ (request, **kwargs)
         else:
-            ret_id=qtracking.track_call_api_before(self.__app__.name,tenancy.get_schema(), request.body, request.user.username)
+            ret_id=qtracking.track_call_api_before(request.get_app().name,tenancy.get_schema(), request.body, request.user.username)
             ret_data = self.__fn__(request, **kwargs)
-            qtracking.track_call_api_after(self.__app__.name,tenancy.get_schema(),ret_id,ret_data.content,request.user.username)
+            qtracking.track_call_api_after(request.get_app().name,tenancy.get_schema(),ret_id,ret_data.content,request.user.username)
             return ret_data
         # except Exception as ex:
         #     logger.debug(ex)

@@ -19,7 +19,20 @@ __customer__code__ = {}
 __view_path__ = {}
 lock=threading.Lock()
 __app_host__ = {}
-
+def __remove_first__(x,y):
+    if y== None or y == "":
+        return y
+    else:
+        while y!="" and y[0]==x:
+            y=y[1:y.__len__()]
+        return y
+def __remove_last__(x,y):
+    if y== None or y == "":
+        return y
+    else:
+        while y!="" and y[y.__len__()-1]==x:
+            y=y[0:y.__len__()-1]
+        return y
 def get_language_item(schema,language,app_name,view,key,value):
 
     hash_key="schema={4},language={0};app={1};view={2};key={3}".format(language,app_name,view,key,schema).lower()
@@ -37,11 +50,11 @@ class extension(object):
     def __str_trim__(self,_str_):
         if _str_ == "":
             return ""
-        while _str_[0] == '/':
+        while _str_.__len__()>0 and _str_[0] == '/':
             _str_ = _str_[1:_str_.__len__()]
-        while _str_[_str_.__len__() - 1] == '/':
+        while _str_.__len__()>0 and _str_[_str_.__len__() - 1] == '/':
             _str_ = _str_[0:_str_.__len__() - 1]
-        while _str_.count("//") > 0:
+        while _str_.__len__()>0 and _str_.count("//") > 0:
             _str_ = _str_.replace("//", "/")
         return _str_
     def init_app(self,request):
@@ -290,6 +303,7 @@ class extension(object):
                 return (get_abs_url() + "/" + get_app_host() + (lambda: "" if path == "" else "/" + path)())
         #-----------------------------------------------------------------
         def get_view_path():
+            from django.conf import settings
             if __view_path__.get(request.path,None)!=None:
                 return __view_path__[request.path]
             from  .. import tenancy
@@ -306,9 +320,19 @@ class extension(object):
             if hasattr(request, "not_inclue_tenancy_code"):
                 not_inclue_tenancy_code = request.not_inclue_tenancy_code
             ret = request.get_full_path().split("?")[0]
+            ret = __remove_last__("/", __remove_first__("/", ret))
+            if hasattr(settings,"HOST_DIR"):
+                if ret.lower() == settings.HOST_DIR.lower():
+                    __view_path__.update({
+                        request.path: "index"
+                    })
+                    setattr(request, "__view_path", "index")
+                    return "index"
+                if ret.lower().find(settings.HOST_DIR.lower()+"/")==0:
+                    ret = ret[settings.HOST_DIR.__len__():ret.__len__()]
             if app.name == "default" or app.host_dir == "":
-                if ret[0:1] == "/":
-                    ret = ret[1:ret.__len__()]
+                ret = __remove_last__("/", __remove_first__("/", ret))
+
                 if ret == "":
                     __view_path__.update({
                         request.path:  "index"
@@ -317,25 +341,36 @@ class extension(object):
                     return "index"
                 else:
                     if not app.is_persistent_schema():
-                        setattr(request, "__view_path", ret[code.__len__():ret.__len__()])
-                        ret = ret[code.__len__():ret.__len__()]
-                        __view_path__.update({
-                            request.path: ret
-                        })
-                        return ret
+                        if code == None:
+                            return  None
+                        if ret.lower().find(code.lower()+"/")==0:
+                            ret= ret[code.__len__()+1:ret.__len__()]
+                            ret = __remove_last__("/", __remove_first__("/", ret))
+                            setattr(request, "__view_path", ret)
+                            __view_path__.update({
+                                request.path: ret
+                            })
+                            return ret
+                        else:
+                            ret = __remove_last__("/", __remove_first__("/", ret))
+                            setattr(request, "__view_path", ret)
+                            __view_path__.update({
+                                request.path: ret
+                            })
+                            return ret
                     else:
                         ret = (lambda x: x if x != "" else "index")(ret)
+                        ret = __remove_last__("/", __remove_first__("/", ret))
                         __view_path__.update({
                             request.path: ret
                         })
                         return ret
             else:
                 if app.is_persistent_schema():
-                    if ret[0:1] == "/":
-                        ret = ret[1:ret.__len__()]
+                    ret = __remove_last__("/", __remove_first__("/", ret))
                     ret = ret[app.host_dir.__len__():ret.__len__()]
-                    if ret[0:1] == "/":
-                        ret = ret[1:ret.__len__()]
+                    ret = __remove_last__("/", __remove_first__("/", ret))
+
                     if ret == "":
                         setattr(request, "__view_path", "index")
                         __view_path__.update({
@@ -349,14 +384,15 @@ class extension(object):
                         setattr(request, "__view_path", ret)
                         return ret
                 else:
-                    if ret[0:1] == "/":
-                        ret = ret[1:ret.__len__()]
+                    ret = __remove_last__("/", __remove_first__("/", ret))
+
                     ret = ret[code.__len__():ret.__len__()]
-                    if ret[0:1] == "/":
-                        ret = ret[1:ret.__len__()]
+
+                    ret = __remove_last__("/", __remove_first__("/", ret))
+
                     ret = ret[app.host_dir.__len__():ret.__len__()]
-                    if ret[0:1] == "/":
-                        ret = ret[1:ret.__len__()]
+
+                    ret = __remove_last__("/", __remove_first__("/", ret))
                     if ret == "":
                         __view_path__.update({
                             request.path: "index"
@@ -454,4 +490,3 @@ class extension(object):
         setattr(request,"__customer_code__",__customer__code__[request.path])
         self.init_schema(request)
         self.apply(request)
-        print "load "+ request.get_view_path()

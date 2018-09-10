@@ -22,7 +22,10 @@ class filter_expression():
         self._pipe = {}
         params = get_param_kw(*args,**kwargs)
         if type(params) is list:
-            self._pipe=expr.parse_expression_to_json_expression(expression, *params)
+            if params.__len__() ==1 and type(params[0]) is list:
+                self._pipe = expr.parse_expression_to_json_expression(expression, params[0])
+            else:
+                self._pipe=expr.parse_expression_to_json_expression(expression, params)
         else:
             self._pipe=expr.parse_expression_to_json_expression(expression, params)
     def And(self,expression,*args,**kwargs):

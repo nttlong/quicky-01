@@ -2,8 +2,25 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="876e7e9a-d28e-4048-9413-cbdf554a4d5a" name="Default Changelist" comment="create ag grid directive">
+      <change afterPath="$PROJECT_DIR$/packages/qauth/authorize.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/packages/qauth/models/schemas.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/q03.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/q03.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/hrm/static/js/directives/hh.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/configs/local.json" beforeDir="false" afterPath="$PROJECT_DIR$/configs/local.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/logs/debug.log" beforeDir="false" afterPath="$PROJECT_DIR$/logs/debug.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/qauth/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/packages/qauth/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/qauth/authorization.py" beforeDir="false" afterPath="$PROJECT_DIR$/packages/qauth/authorization.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/qauth/models/roles.py" beforeDir="false" afterPath="$PROJECT_DIR$/packages/qauth/models/roles.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/qmongo/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/packages/qmongo/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/qmongo/database.py" beforeDir="false" afterPath="$PROJECT_DIR$/packages/qmongo/database.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/qmongo/db_context.py" beforeDir="false" afterPath="$PROJECT_DIR$/packages/qmongo/db_context.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/qmongo/exec_mode.py" beforeDir="false" afterPath="$PROJECT_DIR$/packages/qmongo/exec_mode.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/qmongo/helpers/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/packages/qmongo/helpers/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/qmongo/helpers/filter_expression.py" beforeDir="false" afterPath="$PROJECT_DIR$/packages/qmongo/helpers/filter_expression.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/quicky/executor.py" beforeDir="false" afterPath="$PROJECT_DIR$/packages/quicky/executor.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/quicky/middleware/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/packages/quicky/middleware/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/quicky/url.py" beforeDir="false" afterPath="$PROJECT_DIR$/packages/quicky/url.py" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/lv-packages/uvenv02/" />
     <ignored path="$PROJECT_DIR$/uvenv02/" />
@@ -37,30 +54,34 @@
       <usages-collector id="statistics.file.extensions.open">
         <counts>
           <entry key="gitignore" value="1" />
-          <entry key="py" value="35" />
+          <entry key="json" value="2" />
+          <entry key="py" value="66" />
           <entry key="rst" value="1" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
           <entry key="Git file" value="1" />
-          <entry key="Python" value="35" />
+          <entry key="JSON" value="2" />
+          <entry key="Python" value="66" />
           <entry key="ReST" value="1" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="Python Console" value="1296" />
+          <entry key="Python Console" value="2189" />
           <entry key="gitignore" value="1" />
-          <entry key="py" value="1856" />
+          <entry key="json" value="11" />
+          <entry key="py" value="3456" />
           <entry key="txt" value="33" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="Git file" value="1" />
+          <entry key="JSON" value="11" />
           <entry key="PLAIN_TEXT" value="33" />
-          <entry key="Python" value="3152" />
+          <entry key="Python" value="5645" />
         </counts>
       </usages-collector>
     </session>
@@ -121,12 +142,15 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/apps/hrm/api/categories.py">
+        <entry file="file://$PROJECT_DIR$/packages/qauth/authorize.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="94">
-              <caret line="42" selection-start-line="42" selection-end-line="42" />
+            <state relative-caret-position="330">
+              <caret line="78" column="36" selection-start-line="78" selection-start-column="36" selection-end-line="78" selection-end-column="36" />
               <folding>
                 <element signature="e#0#13#0" expanded="true" />
+                <marker date="1536555200566" expanded="true" signature="69:807" ph="..." />
+                <marker date="1536555200566" expanded="true" signature="172:486" ph="..." />
+                <marker date="1536555200566" expanded="true" signature="826:831" ph="..." />
               </folding>
             </state>
           </provider>
@@ -135,44 +159,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/packages/qmongo/database.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="115">
-              <caret line="937" column="13" selection-start-line="937" selection-start-column="13" selection-end-line="937" selection-end-column="13" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/packages/qmongo/helpers/__init__.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="36">
-              <caret line="129" column="24" selection-start-line="129" selection-start-column="24" selection-end-line="129" selection-end-column="24" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/wvenv/Lib/encodings/utf_8.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="103">
-              <caret line="15" selection-start-line="15" selection-end-line="15" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/apps/hrm/templates/category.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="100">
-              <caret line="59" column="21" lean-forward="true" selection-start-line="59" selection-start-column="21" selection-end-line="59" selection-end-column="21" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/apps/hrm/templates/base.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="64">
-              <caret line="24" column="7" selection-start-line="24" selection-start-column="7" selection-end-line="24" selection-end-column="7" />
+            <state relative-caret-position="260">
+              <caret line="587" column="19" selection-start-line="587" selection-start-column="19" selection-end-line="587" selection-end-column="19" />
             </state>
           </provider>
         </entry>
@@ -180,8 +168,88 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/packages/qmongo/helpers/expr.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="77">
-              <caret line="1353" column="18" selection-start-line="1353" selection-start-column="18" selection-end-line="1353" selection-end-column="18" />
+            <state relative-caret-position="154">
+              <caret line="1358" selection-start-line="1358" selection-end-line="1358" />
+              <folding>
+                <marker date="1536318314865" expanded="true" signature="8706:8877" ph="..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/packages/qauth/authorization.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="126">
+              <caret line="7" selection-start-line="7" selection-end-line="7" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/packages/qauth/models/apps.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="270">
+              <caret line="15" column="33" selection-start-line="15" selection-start-column="33" selection-end-line="15" selection-end-column="33" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/packages/quicky/middleware/__init__.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="405">
+              <caret line="347" selection-start-line="347" selection-end-line="347" />
+              <folding>
+                <element signature="e#0#25#0" expanded="true" />
+                <element signature="e#545#1025#0" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/packages/quicky/executor.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="510">
+              <caret line="108" column="65" selection-start-line="108" selection-start-column="65" selection-end-line="108" selection-end-column="65" />
+              <folding>
+                <element signature="e#0#17#0" expanded="true" />
+                <element signature="e#194#807#0" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/packages/qmongo/helpers/filter_expression.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-6">
+              <caret line="12" selection-start-line="12" selection-end-line="12" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/packages/qmongo/helpers/__init__.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="68">
+              <caret line="132" selection-start-line="132" selection-end-line="132" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/packages/qmongo/db_context.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="504">
+              <caret line="56" selection-start-line="56" selection-end-line="56" />
+              <folding>
+                <element signature="e#0#30#0" expanded="true" />
+                <element signature="e#186#237#0" />
+                <element signature="e#319#1154#0" />
+                <marker date="1536547719191" expanded="true" signature="1879:1881" ph="..." />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -191,8 +259,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Python Script" />
         <option value="HTML File" />
+        <option value="Python Script" />
       </list>
     </option>
   </component>
@@ -219,6 +287,8 @@
       <find>get_app_ho</find>
       <find>_view_path</find>
       <find>code=self.get_schema(request)</find>
+      <find>set</find>
+      <find>set_schema</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -228,21 +298,31 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/.gitignore" />
-        <option value="$PROJECT_DIR$/packages/qauth/__init__.py" />
         <option value="$PROJECT_DIR$/packages/auth/__init__.py" />
         <option value="$PROJECT_DIR$/packages/quicky/__init__.py" />
-        <option value="$PROJECT_DIR$/packages/qauth/authorization.py" />
         <option value="$PROJECT_DIR$/packages/quicky/app_info.py" />
-        <option value="$PROJECT_DIR$/packages/quicky/middleware/__init__.py" />
         <option value="$PROJECT_DIR$/packages/quicky/extens.py" />
         <option value="$PROJECT_DIR$/packages/quicky/help/middelware.rst" />
-        <option value="$PROJECT_DIR$/configs/local.json" />
         <option value="$PROJECT_DIR$/packages/quicky/help/xx.R" />
-        <option value="$PROJECT_DIR$/packages/quicky/executor.py" />
         <option value="$PROJECT_DIR$/apps/hrm/api/categories.py" />
-        <option value="$PROJECT_DIR$/packages/qmongo/helpers/__init__.py" />
-        <option value="$PROJECT_DIR$/packages/qmongo/database.py" />
         <option value="$PROJECT_DIR$/apps/hrm/static/js/directives/hh.html" />
+        <option value="$PROJECT_DIR$/packages/quicky/url.py" />
+        <option value="$PROJECT_DIR$/configs/local.json" />
+        <option value="$PROJECT_DIR$/packages/qauth/models/apps.py" />
+        <option value="$PROJECT_DIR$/packages/qauth/models/roles.py" />
+        <option value="$PROJECT_DIR$/packages/qauth/application/__init__.py" />
+        <option value="$PROJECT_DIR$/packages/qauth/app.py" />
+        <option value="$PROJECT_DIR$/packages/qauth/__init__.py" />
+        <option value="$PROJECT_DIR$/packages/qmongo/exec_mode.py" />
+        <option value="$PROJECT_DIR$/packages/qmongo/__init__.py" />
+        <option value="$PROJECT_DIR$/packages/qmongo/db_context.py" />
+        <option value="$PROJECT_DIR$/packages/qmongo/database.py" />
+        <option value="$PROJECT_DIR$/packages/qmongo/helpers/filter_expression.py" />
+        <option value="$PROJECT_DIR$/packages/qmongo/helpers/__init__.py" />
+        <option value="$PROJECT_DIR$/packages/qauth/authorization.py" />
+        <option value="$PROJECT_DIR$/packages/qauth/authorize.py" />
+        <option value="$PROJECT_DIR$/packages/quicky/middleware/__init__.py" />
+        <option value="$PROJECT_DIR$/packages/quicky/executor.py" />
       </list>
     </option>
   </component>
@@ -262,48 +342,24 @@
         <subPane>
           <expand>
             <path>
-              <item name="quicky-01" type="b2602c69:ProjectViewProjectNode" />
-              <item name="quicky-01" type="462c0819:PsiDirectoryNode" />
+              <item name="q03" type="b2602c69:ProjectViewProjectNode" />
+              <item name="q03" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="quicky-01" type="b2602c69:ProjectViewProjectNode" />
-              <item name="quicky-01" type="462c0819:PsiDirectoryNode" />
-              <item name="apps" type="462c0819:PsiDirectoryNode" />
+              <item name="q03" type="b2602c69:ProjectViewProjectNode" />
+              <item name="q03" type="462c0819:PsiDirectoryNode" />
+              <item name="configs" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="quicky-01" type="b2602c69:ProjectViewProjectNode" />
-              <item name="quicky-01" type="462c0819:PsiDirectoryNode" />
-              <item name="apps" type="462c0819:PsiDirectoryNode" />
-              <item name="hrm" type="462c0819:PsiDirectoryNode" />
+              <item name="q03" type="b2602c69:ProjectViewProjectNode" />
+              <item name="q03" type="462c0819:PsiDirectoryNode" />
+              <item name="packages" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="quicky-01" type="b2602c69:ProjectViewProjectNode" />
-              <item name="quicky-01" type="462c0819:PsiDirectoryNode" />
-              <item name="apps" type="462c0819:PsiDirectoryNode" />
-              <item name="hrm" type="462c0819:PsiDirectoryNode" />
-              <item name="static" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="quicky-01" type="b2602c69:ProjectViewProjectNode" />
-              <item name="quicky-01" type="462c0819:PsiDirectoryNode" />
-              <item name="apps" type="462c0819:PsiDirectoryNode" />
-              <item name="hrm" type="462c0819:PsiDirectoryNode" />
-              <item name="static" type="462c0819:PsiDirectoryNode" />
-              <item name="js" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="quicky-01" type="b2602c69:ProjectViewProjectNode" />
-              <item name="quicky-01" type="462c0819:PsiDirectoryNode" />
-              <item name="apps" type="462c0819:PsiDirectoryNode" />
-              <item name="hrm" type="462c0819:PsiDirectoryNode" />
-              <item name="static" type="462c0819:PsiDirectoryNode" />
-              <item name="js" type="462c0819:PsiDirectoryNode" />
-              <item name="directives" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="quicky-01" type="b2602c69:ProjectViewProjectNode" />
-              <item name="quicky-01" type="462c0819:PsiDirectoryNode" />
-              <item name="xls" type="462c0819:PsiDirectoryNode" />
+              <item name="q03" type="b2602c69:ProjectViewProjectNode" />
+              <item name="q03" type="462c0819:PsiDirectoryNode" />
+              <item name="packages" type="462c0819:PsiDirectoryNode" />
+              <item name="quicky" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -326,6 +382,9 @@
     </option>
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/packages/qauth/models" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/packages/quicky" />
     </key>
@@ -353,8 +412,8 @@
       <option name="SDK_HOME" value="" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
       <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="false" />
+      <option name="ADD_SOURCE_ROOTS" value="false" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/manage.py" />
       <option name="PARAMETERS" value="runserver --config=local" />
       <option name="SHOW_COMMAND_LINE" value="true" />
@@ -373,13 +432,7 @@
     </configuration>
     <list>
       <item itemvalue="Python.manage" />
-      <item itemvalue="R.xx" />
     </list>
-    <recent_temporary>
-      <list>
-        <item itemvalue="R.xx" />
-      </list>
-    </recent_temporary>
   </component>
   <component name="SvnConfiguration">
     <configuration />
@@ -494,24 +547,24 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-7" y="-7" width="1295" height="735" extended-state="6" />
+    <frame x="67" y="25" width="1853" height="1055" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.22753036" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.15956284" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
       <window_info anchor="bottom" id="Run" order="2" />
-      <window_info active="true" anchor="bottom" id="Debug" order="3" sideWeight="0.49878544" visible="true" weight="0.3631841" />
+      <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.49878544" visible="true" weight="0.10378379" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Code comment" order="7" />
       <window_info anchor="bottom" id="Version Control" order="8" sideWeight="0.49878544" weight="0.4013267" />
       <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.50121456" side_tool="true" weight="0.69320065" />
-      <window_info anchor="bottom" id="Terminal" order="10" sideWeight="0.69068825" weight="0.6368159" />
-      <window_info anchor="bottom" id="Python Console" order="11" sideWeight="0.49959514" weight="0.5572139" />
+      <window_info anchor="bottom" id="Terminal" order="10" sideWeight="0.69068825" weight="0.24324325" />
+      <window_info anchor="bottom" id="Python Console" order="11" sideWeight="0.49959514" weight="0.43027028" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -567,90 +620,38 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/packages/quicky/middleware/__init__.py</url>
-          <line>302</line>
-          <option name="timeStamp" value="48" />
+          <line>331</line>
+          <option name="timeStamp" value="102" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/packages/qmongo/helpers/__init__.py</url>
-          <line>135</line>
-          <option name="timeStamp" value="66" />
+          <url>file://$PROJECT_DIR$/packages/quicky/middleware/__init__.py</url>
+          <line>311</line>
+          <option name="timeStamp" value="104" />
         </line-breakpoint>
-        <line-breakpoint enabled="true" type="the-r-line">
-          <url>file://$PROJECT_DIR$/packages/quicky/help/xx.R</url>
-          <line>5</line>
-          <option name="timeStamp" value="56" />
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/packages/quicky/middleware/__init__.py</url>
+          <line>347</line>
+          <option name="timeStamp" value="105" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/packages/quicky/middleware/__init__.py</url>
+          <line>346</line>
+          <option name="timeStamp" value="106" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/packages/quicky/middleware/__init__.py</url>
+          <line>369</line>
+          <option name="timeStamp" value="107" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/packages/quicky/middleware/__init__.py</url>
+          <line>388</line>
+          <option name="timeStamp" value="108" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/packages/qmongo/json_file.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="234">
-          <caret line="14" column="49" selection-start-line="14" selection-start-column="49" selection-end-line="14" selection-end-column="49" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/packages/qobjects/__init__.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="558">
-          <caret line="31" column="122" selection-start-line="30" selection-start-column="8" selection-end-line="31" selection-end-column="122" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/.PyCharmCE2018.2/system/python_stubs/-1247972723/__builtin__.py" />
-    <entry file="file://$PROJECT_DIR$/apps/hrm/views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2412">
-          <caret line="149" column="35" selection-start-line="149" selection-start-column="35" selection-end-line="149" selection-end-column="35" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/help/qmongo.models.rst">
-      <provider selected="true" editor-type-id="restructured-text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/packages/qmongo/qcollections.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-486" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/packages/qmongo/__init__.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="474">
-          <caret line="38" column="38" lean-forward="true" selection-start-line="38" selection-start-column="38" selection-end-line="38" selection-end-column="38" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/packages/qmongo/dynamic_object.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-228" />
-      </provider>
-    </entry>
-    <entry file="file:///usr/lib/python2.7/code.py" />
-    <entry file="file://$PROJECT_DIR$/packages/qmongo/exec_mode.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="10" selection-start-line="10" selection-end-line="10" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/test_qcoll.py">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/packages/auth/models/apps.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="324">
-          <caret line="18" column="42" selection-start-line="18" selection-start-column="42" selection-end-line="18" selection-end-column="42" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/packages/auth/models/schemas.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="72">
-          <caret line="4" column="17" selection-start-line="4" selection-start-column="17" selection-end-line="4" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/apps/video/__init__.py">
       <provider selected="true" editor-type-id="text-editor">
         <state>
@@ -689,13 +690,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/packages/auth/models/roles.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="10" column="1" selection-start-line="10" selection-start-column="1" selection-end-line="10" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/apps/video/views.py">
       <provider selected="true" editor-type-id="text-editor">
         <state>
@@ -707,13 +701,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="102">
           <caret line="154" selection-start-line="154" selection-end-line="154" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/packages/qmongo/helpers/filter_expression.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="24" selection-start-line="24" selection-end-line="24" />
         </state>
       </provider>
     </entry>
@@ -738,24 +725,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/packages/auth/__init__.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="611">
-          <caret line="251" column="40" selection-start-line="251" selection-start-column="40" selection-end-line="251" selection-end-column="40" />
-          <folding>
-            <element signature="e#166#398#0" />
-            <element signature="e#422#585#0" />
-            <element signature="e#623#1462#0" />
-            <element signature="e#1503#2334#0" />
-            <element signature="e#3870#4726#0" />
-            <element signature="e#4758#4864#0" />
-            <element signature="e#7319#7532#0" />
-            <element signature="e#7608#7819#0" />
-            <element signature="e#8041#8309#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/packages/quicky/view.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-360" />
@@ -771,42 +740,10 @@
     <entry file="file://$PROJECT_DIR$/apps/hrm/templates/index.html">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/packages/django/django/core/handlers/base.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1420">
-          <caret line="86" column="56" selection-start-line="86" selection-start-column="56" selection-end-line="86" selection-end-column="56" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/packages/qauth/__init__.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <folding>
-            <element signature="e#0#32#0" expanded="true" />
-            <element signature="e#1880#2728#0" />
-            <element signature="e#2802#4297#0" />
-            <element signature="e#4334#5215#0" />
-            <element signature="e#5240#5345#0" />
-            <element signature="e#5407#6286#0" />
-            <element signature="e#6698#6913#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/apps/hrm/templates/login.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-320">
           <caret line="44" column="19" selection-start-line="44" selection-start-column="19" selection-end-line="44" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/packages/qauth/authorization.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="60">
-          <caret line="3" selection-start-line="3" selection-end-line="3" />
-          <folding>
-            <marker date="1536389515404" expanded="true" signature="19:24" ph="..." />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -830,15 +767,7 @@
           <folding>
             <element signature="e#55#65#0" expanded="true" />
             <element signature="e#2317#2464#0" />
-            <marker date="1536470653712" expanded="true" signature="972:976" ph="..." />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/configs/local.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="60">
-          <caret line="153" column="30" selection-start-line="153" selection-start-column="30" selection-end-line="153" selection-end-column="30" />
         </state>
       </provider>
     </entry>
@@ -846,59 +775,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="120">
           <caret line="6" selection-start-line="6" selection-end-line="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/packages/quicky/middleware/__init__.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="94">
-          <caret line="418" selection-start-line="418" selection-end-line="418" />
-          <folding>
-            <element signature="e#0#25#0" expanded="true" />
-            <element signature="e#545#1025#0" />
-            <element signature="e#1093#1407#0" />
-            <element signature="e#1448#2580#0" />
-            <element signature="e#2631#4533#0" />
-            <element signature="e#4578#6141#0" />
-            <element signature="e#6572#6681#0" />
-            <element signature="e#6739#6893#0" />
-            <element signature="e#6920#7081#0" />
-            <element signature="e#7198#7475#0" />
-            <element signature="e#7593#7915#0" />
-            <element signature="e#8033#8341#0" />
-            <element signature="e#8453#8827#0" />
-            <element signature="e#8936#8973#0" />
-            <element signature="e#9088#9120#0" />
-            <element signature="e#9225#9247#0" />
-            <element signature="e#9355#9387#0" />
-            <element signature="e#9497#10935#0" />
-            <element signature="e#11048#11283#0" />
-            <element signature="e#15034#15237#0" />
-            <element signature="e#15368#15559#0" />
-            <element signature="e#15694#15866#0" />
-            <element signature="e#15988#16208#0" />
-            <element signature="e#16468#16716#0" />
-            <element signature="e#16828#16855#0" />
-            <element signature="e#16966#17139#0" />
-            <marker date="1536469075021" expanded="true" signature="7157:18177" ph="..." />
-            <marker date="1536469075021" expanded="true" signature="9342:17393" ph="..." />
-            <marker date="1536469075021" expanded="true" signature="15021:15246" ph="..." />
-            <marker date="1536469075021" expanded="true" signature="16011:16024" ph="..." />
-            <marker date="1536469075021" expanded="true" signature="16315:16328" ph="..." />
-            <marker date="1536469075021" expanded="true" signature="17237:17324" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/packages/quicky/executor.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="114">
-          <caret line="71" selection-start-line="71" selection-end-line="71" />
-          <folding>
-            <element signature="e#0#17#0" expanded="true" />
-            <element signature="e#194#807#0" />
-            <element signature="e#10858#11222#0" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -913,30 +789,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="94">
           <caret line="42" selection-start-line="42" selection-end-line="42" />
-          <folding>
-            <element signature="e#0#13#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/packages/qmongo/helpers/expr.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="77">
-          <caret line="1353" column="18" selection-start-line="1353" selection-start-column="18" selection-end-line="1353" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/packages/qmongo/helpers/__init__.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="36">
-          <caret line="129" column="24" selection-start-line="129" selection-start-column="24" selection-end-line="129" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/packages/qmongo/database.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="115">
-          <caret line="937" column="13" selection-start-line="937" selection-start-column="13" selection-end-line="937" selection-end-column="13" />
         </state>
       </provider>
     </entry>
@@ -954,17 +806,225 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/apps/hrm/static/js/directives/hh.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="9" column="7" lean-forward="true" selection-start-line="9" selection-start-column="7" selection-end-line="9" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/apps/hrm/static/js/directives/hh.html" />
     <entry file="file://$PROJECT_DIR$/apps/hrm/templates/category.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="100">
           <caret line="59" column="21" lean-forward="true" selection-start-line="59" selection-start-column="21" selection-end-line="59" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/packages/quicky/url.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="125" selection-start-line="125" selection-end-line="125" />
+          <folding>
+            <element signature="e#0#9#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/packages/auth/models/apps.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="126">
+          <caret line="7" column="25" lean-forward="true" selection-end-line="21" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/packages/qauth/models/roles.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="10" column="1" selection-start-line="10" selection-start-column="1" selection-end-line="10" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/packages/qauth/models/schemas.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="126">
+          <caret line="7" column="1" lean-forward="true" selection-start-line="7" selection-start-column="1" selection-end-line="7" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/packages/auth/models/__init__.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/packages/qauth/application/__init__.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="540">
+          <caret line="33" column="19" lean-forward="true" selection-start-line="33" selection-start-column="19" selection-end-line="33" selection-end-column="19" />
+          <folding>
+            <element signature="e#0#32#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/packages/qauth/app.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="54">
+          <caret line="3" column="4" selection-start-line="3" selection-start-column="4" selection-end-line="3" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/packages/auth/models/roles.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="10" column="1" lean-forward="true" selection-start-line="10" selection-start-column="1" selection-end-line="10" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/packages/auth/__init__.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="324">
+          <caret line="364" lean-forward="true" selection-start-line="364" selection-end-line="364" />
+          <folding>
+            <element signature="e#166#398#0" />
+            <element signature="e#422#585#0" />
+            <element signature="e#623#1465#0" />
+            <element signature="e#1506#2337#0" />
+            <element signature="e#2411#4128#0" />
+            <element signature="e#4165#5021#0" />
+            <element signature="e#5053#5159#0" />
+            <element signature="e#5229#6510#0" />
+            <element signature="e#6602#10781#0" />
+            <element signature="e#10829#13227#0" />
+            <element signature="e#13266#14315#0" />
+            <element signature="e#14342#14410#0" />
+            <element signature="e#14460#14956#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/packages/qmongo/__init__.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="108">
+          <caret line="23" column="33" selection-start-line="23" selection-start-column="33" selection-end-line="23" selection-end-column="33" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/packages/qmongo/exec_mode.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="36">
+          <caret line="2" column="17" selection-start-line="2" selection-start-column="17" selection-end-line="2" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/packages/qauth/__init__.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="58">
+          <caret line="11" column="20" lean-forward="true" selection-start-line="11" selection-start-column="20" selection-end-line="11" selection-end-column="20" />
+          <folding>
+            <element signature="e#0#32#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/packages/django/django/core/handlers/base.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="126">
+          <caret line="87" selection-start-line="87" selection-end-line="87" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/packages/qmongo/connection.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/configs/local.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1902">
+          <caret line="35" selection-start-line="35" selection-end-line="35" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/packages/qmongo/db_context.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="504">
+          <caret line="56" selection-start-line="56" selection-end-line="56" />
+          <folding>
+            <element signature="e#0#30#0" expanded="true" />
+            <element signature="e#186#237#0" />
+            <element signature="e#319#1154#0" />
+            <marker date="1536547719191" expanded="true" signature="1879:1881" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/packages/qauth/models/apps.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="270">
+          <caret line="15" column="33" selection-start-line="15" selection-start-column="33" selection-end-line="15" selection-end-column="33" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/packages/qmongo/helpers/expr.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="154">
+          <caret line="1358" selection-start-line="1358" selection-end-line="1358" />
+          <folding>
+            <marker date="1536318314865" expanded="true" signature="8706:8877" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/packages/qmongo/database.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="260">
+          <caret line="587" column="19" selection-start-line="587" selection-start-column="19" selection-end-line="587" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/packages/qmongo/helpers/__init__.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="132" selection-start-line="132" selection-end-line="132" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/packages/qmongo/helpers/filter_expression.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-6">
+          <caret line="12" selection-start-line="12" selection-end-line="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/packages/qauth/authorize.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="330">
+          <caret line="78" column="36" selection-start-line="78" selection-start-column="36" selection-end-line="78" selection-end-column="36" />
+          <folding>
+            <element signature="e#0#13#0" expanded="true" />
+            <marker date="1536555200566" expanded="true" signature="69:807" ph="..." />
+            <marker date="1536555200566" expanded="true" signature="172:486" ph="..." />
+            <marker date="1536555200566" expanded="true" signature="826:831" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/packages/qauth/authorization.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="126">
+          <caret line="7" selection-start-line="7" selection-end-line="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/packages/quicky/middleware/__init__.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="405">
+          <caret line="347" selection-start-line="347" selection-end-line="347" />
+          <folding>
+            <element signature="e#0#25#0" expanded="true" />
+            <element signature="e#545#1025#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/packages/quicky/executor.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="510">
+          <caret line="108" column="65" selection-start-line="108" selection-start-column="65" selection-end-line="108" selection-end-column="65" />
+          <folding>
+            <element signature="e#0#17#0" expanded="true" />
+            <element signature="e#194#807#0" />
+          </folding>
         </state>
       </provider>
     </entry>
