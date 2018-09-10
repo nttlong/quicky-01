@@ -8,19 +8,25 @@
  <div class="col-md-12 col-sm-12 col-12">
     <collapse-box class="zb-form-common" title="${get_global_res('data_generate_source','Nguồn phát sinh dữ liệu')}">        
          <div class="col-md-12 col-sm-12 col-12">
-               <div class="form-group zb-form-group">
-                            <input type="radio" name="optradio" checked/>
-                             <label class="col-md-4 col-sm-4 col-4 zb-form-label">${get_res('get_by_result_aprPeriod','Lấy theo kết quả của kỳ đánh giá')}</label>
-                             <div class="col-md-8 col-sm-8 col-8">
+			 <div class="form-group zb-form-group">
+				 <div class="col-md-5 col-sm-5 col-5 zb-form-label">
+                      <label class="radio ">${get_res('get_by_result_aprPeriod','Lấy theo kết quả của kỳ đánh giá')}
+                          <input type="radio" checked>
+                          <span class="checkround"></span>
+                      </label>
+					 </div>
+					 <div class="col-md-7 col-sm-7 col-7">
                                  <input-select data-list="cbbApprovalPeriod" ng-model="entity.apr_now_result_period" data-value="value" data-caption="caption"/>
                              </div>
-                         </div>
+            </div>
               </div>
+
+
         <br />
-        <div class="col-md-12 col-sm-12 col-12" style="margin-top:40px;">
-               <div class="form-group zb-form-group">
+        <div class="col-md-12 col-sm-12 col-12" style="margin-top:30px;">
+               <div class="form-group zb-form-group"  style="margin-left:6px;">
                             <input type="checkbox" ng-model="entity.chk_genExchangeData"/>
-                             <label class="col-md-4 col-sm-4 col-4 zb-form-label">${get_res('exchange_list_present','Thay thế danh sách hiện có')}</label>
+                               <label class="col-md-4 col-sm-4 col-4 zb-form-label" style="margin-left: 8px;">${get_res('exchange_list_present','Thay thế danh sách hiện có')}</label>
                          </div>
               </div>
         </collapse-box>
@@ -28,15 +34,28 @@
     </%block>
 
 <%block name="modal_script">
+
 <style>
-    input[type=radio] {
+
+	/*.checkround {
+    position: absolute;
+    left: 0;
+    height: 18px;
+    width: 18px;
+    background-color: #fff;
+    border-color: #666;
+    border-style: solid;
+    border-width: 2px;
+    border-radius: 50%;
+    border-width: thin;
+}*/
+
+
+    input[type=checkbox] {
     width: 20px;
     height: 20px;
 }
-    input[type=checkbox] {
-    width: 25px;
-    height: 25px;
-}
+
 </style>
 <script>
     (function (scope) {
@@ -62,6 +81,11 @@
                         callback(res)
                     })
 		}
+		scope.cancelBtn = cancelBtn;
+		function cancelBtn() {
+			$dialog.closeDialog();
+		}
+
 		scope.selectBtn = selectBtn;
         (function _init_() {
 			_loadCombobox(function (res) {

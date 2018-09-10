@@ -11,25 +11,21 @@
                     <label for="inputEmp_Train_Mode_Name" class="col-sm-3 zb-form-label">${get_res('show_result','Show Result in')}</label>
                     <div class="col-sm-4">
                             <div>
-                                <input-select ng-model="entity.show_result" data-list="cbbQuestionPicking" data-value="value" data-caption="caption"></input-select>
+                                <input-select ng-click="onShowDecimalPlace()" ng-model="entity.show_result" data-list="cbbShowResult" data-value="value" data-caption="caption"></input-select>
                             </div>
                     </div>
                 </div>
             </div>
-            <div class="col-md-{{col}}" style="padding-bottom: 20px;">
+            <div class="col-md-{{col}}" style="padding-bottom: 20px;" ng-if="DecimalPlace">
                 <div class="form-group zb-form-group">
                     <!--Mô tả tài liệu-->
                     <label for="inputEmp_Train_Mode_Name" class="col-sm-3 zb-form-label">${get_res('customize','Customize decimal places')}</label>
                     <div class="col-sm-4">
                             <div>
-                                <input-select ng-model="entity.customize" data-list="cbbQuestionPicking" data-value="value" data-caption="caption"></input-select>
+                                <input-select ng-model="entity.customize" data-list="cbbCustomizeDecimal" data-value="value" data-caption="caption"></input-select>
                             </div>
                     </div>
-                    <div class="col-sm-5">
-                            <a style="font-size:12px">
-                                Add Feedback
-                            </a>
-                    </div>
+                    
                 </div>
             </div>
             <div class="col-md-{{col}}" style="padding-bottom: 20px;">
@@ -38,10 +34,19 @@
                     <label for="inputEmp_Train_Mode_Name" class="col-sm-3 zb-form-label">${get_res('minium_score','Minimum Passing Score')}</label>
                     <div class="col-sm-4">
                             <div>
-                                <input-select ng-model="entity.minium_score" data-list="cbbQuestionPicking" data-value="value" data-caption="caption"></input-select>
+                                <input-select ng-model="entity.minium_score" data-list="cbbNegativeMarks" data-value="caption" data-caption="caption"></input-select>
                             </div>
                     </div>
+                    <div class="col-sm-5" >
+                            <a style="font-size:12px;cursor:pointer" ng-click="onAddFeedBack()" >
+                                Add Feedback
+                            </a>
+                    </div>
                 </div>
+            </div>
+            <div class="col-md-{{col}}"  ng-if="addFeedBack" style="padding-bottom: 20px;">
+                   <div class="clearblock" style="display:inline-block"></div>
+                    <c-html-box style="height: 100px;" data-rows="6" ng-model="entity.add_feedback"></c-html-box>
             </div>
             <div class="col-md-{{col}}" style="padding-bottom: 20px;">
                 <div class="form-group zb-form-group">
@@ -49,7 +54,7 @@
                     <label for="inputEmp_Train_Mode_Name" class="col-sm-3 zb-form-label">${get_res('return_type','Result Type')}</label>
                     <div class="col-sm-4">
                             <div>
-                                <input-select ng-model="entity.return_type" data-list="cbbQuestionPicking" data-value="value" data-caption="caption"></input-select>
+                                <input-select ng-model="entity.result_type" data-list="cbbResultType" data-value="caption" data-caption="caption"></input-select>
                             </div>
                     </div>
                     <div class="col-sm-5" style="border:1px solid grey;padding:0">
@@ -57,7 +62,7 @@
                              <div class="form-group zb-form-group">
                                 <label for="inputEmp_Train_Mode_Name" class="col-sm-7 zb-form-label">${get_res('Assign this exam to')}</label>
                                  <div class="col-sm-4" style="margin-top: -9px;">
-                                <input-select ng-model="entity.return_type" data-list="cbbQuestionPicking" data-value="value" data-caption="caption"></input-select>
+                                <input-select ng-model="entity.assign_exam" data-list="cbbNegativeMarks" data-value="value" data-caption="caption"></input-select>
                                 </div>
                             </div>
                           </div>
@@ -65,7 +70,7 @@
                             <div class="form-group zb-form-group">
                                 <label for="inputEmp_Train_Mode_Name" class="col-sm-7 zb-form-label">${get_res('Minimum required score')}</label>
                                 <div class="col-sm-4" style="margin-top: -9px;">
-                                <input-select ng-model="entity.return_type" data-list="cbbQuestionPicking" data-value="value" data-caption="caption"></input-select>
+                                <input-select ng-model="entity.minimum_score" data-list="cbbResultType" data-value="value" data-caption="caption"></input-select>
                                   </div>
                                 <a style="font-size:12px; padding-top: 10px;">New</a>
                             </div>
@@ -80,7 +85,7 @@
                     <label for="inputEmp_Train_Mode_Name" class="col-sm-3 zb-form-label">${get_res('certificate','Certificate')}</label>
                     <div class="col-sm-4">
                             <div>
-                                <input-select ng-model="entity.certificate" data-list="cbbQuestionPicking" data-value="value" data-caption="caption"></input-select>
+                                <input-select ng-model="entity.certificate" data-list="cbbCertificate" data-value="value" data-caption="caption"></input-select>
                             </div>
                     </div>
                 </div>
@@ -91,7 +96,7 @@
                     <label for="inputEmp_Train_Mode_Name" class="col-sm-3 zb-form-label">${get_res('display_result','Display Result')}</label>
                     <div class="col-sm-4">
                             <div>
-                                <input-select ng-model="entity.display_result" data-list="cbbQuestionPicking" data-value="value" data-caption="caption"></input-select>
+                                <input-select ng-model="entity.display_result" data-list="cbbDisplayResult" data-value="value" data-caption="caption"></input-select>
                             </div>
                     </div>
                 </div>
@@ -102,7 +107,7 @@
                     <label for="inputEmp_Train_Mode_Name" class="col-sm-3 zb-form-label">${get_res('ques_order','Question Order')}</label>
                     <div class="col-sm-4">
                             <div>
-                                <input-select ng-model="entity.ques_order" data-list="cbbQuestionPicking" data-value="value" data-caption="caption"></input-select>
+                                <input-select ng-model="entity.ques_order" data-list="cbbQuestionOrder" data-value="value" data-caption="caption"></input-select>
                             </div>
                     </div>
                 </div>
@@ -114,18 +119,18 @@
                 <div class="col-sm-7">
                     <div class="col-sm-6" style="padding:0">
                         <div class="radio radio-success">
-					        <input type="radio" name="resumeApply" ng-value="dt_true" id="rad1" 
-                                   ng-model="entity.ques_hint.ishintEnable">
-					        <label for="rad1">
+					        <input type="radio" name="quesNavigation" ng-value="dt_true" id="idradQuesNavi1" 
+                                   ng-model="entity.ques_navi" >
+					        <label for="idradQuesNavi1">
 						        <span>${get_res('Allow going back')}</span>
 					        </label>
 				        </div>
                         </div>
                     <div class="col-sm-6" style="padding:0">
                         <div class="radio radio-success" >
-					        <input type="radio" name="resumeApply" ng-value="dt_false" id="rad2" 
-                                   ng-model="entity.ques_hint.ishintEnable">
-					        <label for="rad2">
+					        <input type="radio" name="quesNavigation" ng-value="dt_false" id="idradQuesNavi2" 
+                                   ng-model="entity.ques_navi" >
+					        <label for="idradQuesNavi2">
 						        <span>${get_res('Don’t allow to go back')}</span> 
 					        </label>
 				        </div>
@@ -140,18 +145,18 @@
                 <div class="col-sm-7">
                     <div class="col-sm-6" style="padding:0">
                         <div class="radio radio-success">
-					        <input type="radio" name="resumeApply" ng-value="dt_true" id="rad1" 
-                                   ng-model="entity.ques_hint.ishintEnable">
-					        <label for="rad1">
+					        <input type="radio" name="Candidate" ng-value="dt_true" id="idradCandidate1" 
+                                   ng-model="entity.allow_candidates" >
+					        <label for="idradCandidate1">
 						        <span>${get_res('ques_enable','Enable')}</span>
 					        </label>
 				        </div>
                       </div>
                     <div class="col-sm-6" style="padding:0">
                         <div class="radio radio-success" >
-					        <input type="radio" name="resumeApply" ng-value="dt_false" id="rad2" 
-                                   ng-model="entity.ques_hint.ishintEnable">
-					        <label for="rad2">
+					        <input type="radio" name="Candidate" ng-value="dt_false" id="idradCandidate2" 
+                                   ng-model="entity.allow_candidates" >
+					        <label for="idradCandidate2">
 						        <span>${get_res('ques_disable','Disable')}</span> 
 					        </label>
 				        </div>
@@ -162,22 +167,22 @@
             <div class="col-md-{{col}}" >
             <div class="form-group zb-form-group">
                 <!--Tên Khóa học-->
-                <label for="inputEmp_Train_Mode_Name" class="col-sm-5 zb-form-label">${get_res('preview time','Add preview time to answer time')}</label>
+                <label for="inputEmp_Train_Mode_Name" class="col-sm-5 zb-form-label">${get_res('preview_time','Add preview time to answer time')}</label>
                 <div class="col-sm-7">
                     <div class="col-sm-6" style="padding:0">
                         <div class="radio radio-success">
-					        <input type="radio" name="resumeApply" ng-value="dt_true" id="rad1" 
-                                   ng-model="entity.ques_hint.ishintEnable">
-					        <label for="rad1">
+					        <input type="radio" name="previewTime" ng-value="dt_true" id="idradPreview1" 
+                                   ng-model="entity.preview_time">
+					        <label for="idradPreview1">
 						        <span>${get_res('yes','Yes')}</span>
 					        </label>
 				        </div>
                         </div>
                     <div class="col-sm-6" style="padding:0">
                         <div class="radio radio-success" >
-					        <input type="radio" name="resumeApply" ng-value="dt_false" id="rad2" 
-                                   ng-model="entity.ques_hint.ishintEnable">
-					        <label for="rad2">
+					        <input type="radio" name="previewTime" ng-value="dt_false" id="idradPreview2" 
+                                   ng-model="entity.preview_time" >
+					        <label for="idradPreview2">
 						        <span>${get_res('no','No')}</span> 
 					        </label>
 				        </div>
@@ -192,18 +197,18 @@
                 <div class="col-sm-7">
                     <div class="col-sm-6" style="padding:0">
                         <div class="radio radio-success">
-					        <input type="radio" name="resumeApply" ng-value="dt_true" id="rad1" 
-                                   ng-model="entity.ques_hint.ishintEnable">
-					        <label for="rad1">
+					        <input type="radio" name="textHight" ng-value="dt_true" id="idradTextHigh1" 
+                                   ng-model="entity.text_high" >
+					        <label for="idradTextHigh1">
 						        <span>${get_res('ques_enable','Enable')}</span>
 					        </label>
 				        </div>
                         </div>
                     <div class="col-sm-6" style="padding:0">
                         <div class="radio radio-success" >
-					        <input type="radio" name="resumeApply" ng-value="dt_false" id="rad2" 
-                                   ng-model="entity.ques_hint.ishintEnable">
-					        <label for="rad2">
+					        <input type="radio" name="textHight" ng-value="dt_false" id="idradTextHigh2" 
+                                   ng-model="entity.text_high" >
+					        <label for="idradTextHigh2">
 						        <span>${get_res('ques_disable','Disable')}</span> 
 					        </label>
 				        </div>
@@ -218,18 +223,18 @@
                 <div class="col-sm-7">
                     <div class="col-sm-6" style="padding:0">
                         <div class="radio radio-success">
-					        <input type="radio" name="resumeApply" ng-value="dt_true" id="rad1" 
-                                   ng-model="entity.ques_hint.ishintEnable">
-					        <label for="rad1">
+					        <input type="radio" name="quesDisplay" ng-value="dt_true" id="idradQuesDisplay1" 
+                                   ng-model="entity.ques_dis">
+					        <label for="idradQuesDisplay1">
 						        <span>${get_res('One question per paper')}</span>
 					        </label>
 				        </div>
                     </div>
                     <div class="col-sm-6" style="padding:0">
                         <div class="radio radio-success" >
-					        <input type="radio" name="resumeApply" ng-value="dt_false" id="rad2" 
-                                   ng-model="entity.ques_hint.ishintEnable">
-					        <label for="rad2">
+					        <input type="radio" name="quesDisplay" ng-value="dt_false" id="idradQuesDisplay2" 
+                                   ng-model="entity.ques_dis">
+					        <label for="idradQuesDisplay2">
 						        <span>${get_res('All questions on same page')}</span> 
 					        </label>
 				        </div>
@@ -244,18 +249,18 @@
                 <div class="col-sm-7">
                     <div class="col-sm-6" style="padding:0">
                         <div class="radio radio-success">
-					        <input type="radio" name="resumeApply" ng-value="dt_true" id="rad1" 
-                                   ng-model="entity.ques_hint.ishintEnable">
-					        <label for="rad1">
+					        <input type="radio" name="resumeApply" ng-value="dt_true" id="idradResultSMS1" 
+                                   ng-model="entity.result_SMS" >
+					        <label for="idradResultSMS1">
 						        <span>${get_res('yes','Yes')}</span>
 					        </label>
 				        </div>
                         </div>
                     <div class="col-sm-6" style="padding:0">
                         <div class="radio radio-success" >
-					        <input type="radio" name="resumeApply" ng-value="dt_false" id="rad2" 
-                                   ng-model="entity.ques_hint.ishintEnable">
-					        <label for="rad2">
+					        <input type="radio" name="resumeApply" ng-value="dt_false" id="idradResultSMS12" 
+                                   ng-model="entity.result_SMS">
+					        <label for="idradResultSMS12">
 						        <span>${get_res('no','No')}</span> 
 					        </label>
 				        </div>
@@ -271,18 +276,18 @@
                     
                     <div class="col-sm-6" style="padding:0">
                         <div class="radio radio-success">
-					        <input type="radio" name="resumeApply" ng-value="dt_true" id="rad1" 
-                                   ng-model="entity.ques_hint.ishintEnable">
-					        <label for="rad1">
+					        <input type="radio" name="resultEmail" ng-value="dt_true" id="idradResultEmail1" 
+                                   ng-model="entity.result_email" >
+					        <label for="idradResultEmail1">
 						        <span>${get_res('yes','Yes')}</span>
 					        </label>
 				        </div>
                         </div>
                     <div class="col-sm-6" style="padding:0">
                         <div class="radio radio-success" >
-					        <input type="radio" name="resumeApply" ng-value="dt_false" id="rad2" 
-                                   ng-model="entity.ques_hint.ishintEnable">
-					        <label for="rad2">
+					        <input type="radio" name="resultEmail" ng-value="dt_false" id="idradResultEmail2" 
+                                   ng-model="entity.result_email" >
+					        <label for="idradResultEmail2">
 						        <span>${get_res('no','No')}</span> 
 					        </label>
 				        </div>
@@ -297,18 +302,18 @@
                 <div class="col-sm-7">                    
                     <div class="col-sm-6" style="padding:0">
                         <div class="radio radio-success">
-					        <input type="radio" name="resumeApply" ng-value="dt_true" id="rad1" 
-                                   ng-model="entity.ques_hint.ishintEnable">
-					        <label for="rad1">
+					        <input type="radio" name="pauseResume" ng-value="dt_true" id="idradPauseResume1" 
+                                   ng-model="entity.pause_resume" >
+					        <label for="idradPauseResume1">
 						        <span>${get_res('ques_enable','Enable')}</span>
 					        </label>
 				        </div>
                         </div>
                     <div class="col-sm-6" style="padding:0">
                         <div class="radio radio-success" >
-					        <input type="radio" name="resumeApply" ng-value="dt_false" id="rad2" 
-                                   ng-model="entity.ques_hint.ishintEnable">
-					        <label for="rad2">
+					        <input type="radio" name="pauseResume" ng-value="dt_false" id="idradPauseResume2" 
+                                   ng-model="entity.pause_resume" >
+					        <label for="idradPauseResume2">
 						        <span>${get_res('ques_disable','Disable')}</span> 
 					        </label>
 				        </div>
@@ -323,18 +328,18 @@
                 <div class="col-sm-7">
                     <div class="col-sm-6" style="padding:0">
                         <div class="radio radio-success">
-					        <input type="radio" name="resumeApply" ng-value="dt_true" id="rad1" 
-                                   ng-model="entity.ques_hint.ishintEnable">
-					        <label for="rad1">
+					        <input type="radio" name="checkPlagiarism" ng-value="dt_true" id="idradCheckPlagiarism1" 
+                                   ng-model="entity.check_plagi" >
+					        <label for="idradCheckPlagiarism1">
 						        <span>${get_res('yes','Yes')}</span>
 					        </label>
 				        </div>
                         </div>
                     <div class="col-sm-6" style="padding:0">
                         <div class="radio radio-success" >
-					        <input type="radio" name="resumeApply" ng-value="dt_false" id="rad2" 
-                                   ng-model="entity.ques_hint.ishintEnable">
-					        <label for="rad2">
+					        <input type="radio" name="checkPlagiarism" ng-value="dt_false" id="idradCheckPlagiarism2" 
+                                   ng-model="entity.check_plagi" >
+					        <label for="idradCheckPlagiarism2">
 						        <span>${get_res('no','No')}</span> 
 					        </label>
 				        </div>
@@ -349,6 +354,24 @@
 </div>
 <script>
     (function (scope) {
+         scope.addFeedBack = false;
+        scope.DecimalPlace = false
+        scope.onAddFeedBack = function () {
+            scope.addFeedBack = !scope.addFeedBack;
+        }
+        scope.onShowDecimalPlace = function () {
+            debugger
+            if (scope.entity.show_result == "1" || scope.entity.show_result == "3") {
+                scope.DecimalPlace = true;
+            }
+            else {
+                scope.DecimalPlace = false
+
+            }
+            
+
+        }
+      
         
     });
 </script>

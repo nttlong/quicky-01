@@ -56,7 +56,7 @@ class auth(object):
             return app,None,"Schema '{0}' is existing in app '{a}'"
         else:
             with qmongo.except_mode("return"):
-                ret,ex,msg = self.models.apps.where("name=={0}",name).push(schemas=schema).commit()
+                ret,ex,msg = self.models.apps.where("name=={0} and schemas!={1}",name,schema).push(schemas=schema).commit()
                 if ex!=None:
                     return app,ex,msg
                 else:
@@ -73,7 +73,7 @@ class auth(object):
                 return app, None, "View '{0}' is existing in app '{1}' is successful ".format(viewpath, name)
 
             with qmongo.except_mode("return"):
-                ret, ex, msg = self.models.apps.where("name=={0}", name).push(views=dict(
+                ret, ex, msg = self.models.apps.where("name=={0} and views.path!={1}", name,viewpath).push(views=dict(
                     path=viewpath,
                     name=viewpath,
                     is_public=False,

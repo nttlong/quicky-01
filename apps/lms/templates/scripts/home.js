@@ -51,7 +51,6 @@
         }
 
         this.redirectPage = (child) => {
-            
             if (child.url.trim()) {
                 scope.$root.currentModule = _.filter(scope.$root.$functions, function (d) {
                     return d["function_id"] == child.parent_id;

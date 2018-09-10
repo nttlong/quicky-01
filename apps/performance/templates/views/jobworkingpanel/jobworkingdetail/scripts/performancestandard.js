@@ -4,9 +4,10 @@
             { "data": "kpi_name", "title": "${get_res('performance_name','Tên chỉ tiêu')}" },
             { "data": "unit", "title": "${get_res('dvt','ĐVT')}" },
             { "data": "cycle", "title": "${get_res('cycle','Chu kì')}" },
+            { "data": "description", "title": "${get_res('description_table_header','Mô tả')}" },
             { "data": "weight", "title": "${get_res('weight_table_header','Trọng số')}" },
-            { "data": "weight", "title": "${get_res('calculation','Cách tính')}" },
-            { "data": "weight", "title": "${get_res('diem_chuan','Điểm chuẩn')}" }
+            { "data": "score_from", "title": "${get_res('score_from_table_header','Cho điểm từ')}" },
+            { "data": "score_to", "title": "${get_res('score_to_table_header','đến')}" }
         ],
         $$tableConfig: {},
         tableSource: _loadDataServerSide,

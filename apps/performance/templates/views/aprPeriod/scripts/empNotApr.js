@@ -1,13 +1,13 @@
 ﻿(function (scope) {
-    
+
     scope.__tableSource = [];
     scope.tableFields = [
         { "data": "employee_code", "title": "${get_res('employee_code_header','Mã nhân viên')}" },
         { "data": "employee_name", "title": "${get_res('employee_nametable_header','Họ tên')}" },
-        { "data": "department_code", "title": "${get_res('department_code_table_header','Bộ phận')}"},
-        { "data": "job_w_code", "title": "${get_res('job_w_code_table_header','Chức danh')}"},
-        { "data": "reason", "title": "${get_res('reason_table_header','Lý do')}"},
-        { "data": "note", "title": "${get_res('note_header','Ghi chú')}"}
+        { "data": "department_code", "title": "${get_res('department_code_table_header','Bộ phận')}" },
+        { "data": "job_w_code", "title": "${get_res('job_w_code_table_header','Chức danh')}" },
+        { "data": "reason", "title": "${get_res('reason_table_header','Lý do')}" },
+        { "data": "note", "title": "${get_res('note_header','Ghi chú')}" }
     ];
     scope.$$tableConfig = {};
     scope._tableData = _tableData;
@@ -67,8 +67,8 @@
         });
         sort[orderBy[0].columns] =
             services.api("${get_api_key('app_main.api.TMPER_AprPeriodEmpOut/get_list_with_searchtext')}")
-            .data({
-                    "apr_period":  scope.$parent.Re_Map_Period(scope.$parent.currentItem.apr_period),
+                .data({
+                    "apr_period": scope.$parent.Re_Map_Period(scope.$parent.currentItem.apr_period),
                     "apr_year": scope.$parent.currentItem.apr_year,
                     "pageIndex": iPage - 1,
                     "pageSize": iPageLength,
@@ -76,7 +76,7 @@
                     "sort": sort
                 })
                 .done()
-            .then(function (res) {
+                .then(function (res) {
                     var data = {
                         recordsTotal: res.total_items,
                         recordsFiltered: res.total_items,
@@ -93,11 +93,41 @@
         scope.$apr_period = scope.$parent.currentItem.apr_period;
         scope.$apr_year = scope.$parent.currentItem.apr_year;
         openDialog("${get_res('generate_data','Phát sinh Danh sách nhân viên không đánh giá')}", 'aprPeriod/form/genEmpNotApr', function () { });
+        
     };
 
     function onAdd() {
-        scope.mode = 1;
-        openDialog("${get_res('Rating_Level_Detail','Chi tiết Nhân viên không đánh giá')}", 'aprPeriod/form/addEmpNotApr', function () { });
+        debugger
+
+        scope.entity = {};
+        scope.entity.list_nv = [];
+        var frm = lv.FormSearch(scope, "$$$perf_cbb_employees");
+        frm.EmployeeFilter(scope.entity, "list_nv", "${get_res('job_w_change','CDCV có thể thuyên chuyển')}", true);
+        frm.openDialog;
+        frm.accept(function () {
+            console.log("@@@@", scope.entity.list_nv);
+            // call server to get multi nv by emp_code and insert data to TMPER_AprPeriodEmpOut
+                // => generate department_code and job_w_code, apr_year, apr_period
+            services.api("${get_api_key('app_main.api.TMPER_AprPeriodEmpOut/get_insert_multi_empNotApr')}")
+                .data({
+                    apr_period : scope.$parent.$parent.$parent.Re_Map_Period(scope.$parent.$parent.$parent.entity.apr_period),
+                    apr_year: scope.$parent.$parent.$parent.entity.apr_year,
+                    list_emp: scope.entity.list_nv 
+                })
+                .done()
+                .then(function (res) {
+                    if (res.error == null) {
+                        _tableData(scope.$$tableConfig.iPage, scope.$$tableConfig.iPageLength, scope.$$tableConfig.orderBy, scope.$$tableConfig.SearchText, scope.$$tableConfig.fnReloadData);
+                        $msg.alert("${get_global_res('Handle_Success','Thao tác thành công')}", $type_alert.INFO);
+                        scope.$applyAsync();
+
+                        scope.currentItem = null;
+                        scope.selectedItems = [];
+                    }
+                })
+        });
+        frm.cancel(function () {
+        });
     };
 
     function onDelete() {
@@ -151,7 +181,9 @@
 
     };
     function onRefresh() {
-
+        _tableData(scope.$$tableConfig.iPage, scope.$$tableConfig.iPageLength,
+            scope.$$tableConfig.orderBy, scope.$$tableConfig.SearchText,
+            scope.$$tableConfig.fnReloadData);
     };
 
 
@@ -176,6 +208,14 @@
         }
     }
 
-
-
+    (function _getDataInitCombobox() {
+        scope.$root.$getInitComboboxData(scope,
+            [{
+                "key": "${encryptor.get_key('perf_cbb_employees')}",
+                "code": null,
+                "alias": "$$$perf_cbb_employees"
+            }
+            ]
+        );
+    })();
 });

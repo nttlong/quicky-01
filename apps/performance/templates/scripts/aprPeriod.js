@@ -1,27 +1,27 @@
 ﻿(function (scope) {
 	scope.mode = 0;
 	scope.showDetail = false;
-	scope.filterFunctionModel = ''
+    scope.filterFunctionModel = '';
 	scope.currentFunction = '';
-	scope.selectFunc = function (event, f) {
-		scope.selectedFunction = f;
-    }
+    scope.selectFunc = function (event, f) {
+        scope.selectedFunction = f;
+    };
 
     scope.$display = {
         showDetail: false,
         mapName: [],
         selectedFunction: "",
         selectFunc: function (event, f) {
-            scope.$display.selectedFunction = f;
-        },
+        scope.$display.selectedFunction = f;
+        }
     };
 
     scope.selectFunc = function (event, f) {
         scope.selectedFunction = f;
-    }
+    };
 
     scope.entity = {};
-   
+
 	/* Table */
 	//Cấu hình tên field và caption hiển thị trên UI
     scope.tableFields = [
@@ -50,7 +50,7 @@
             $(window).trigger('resize');
         }, 500);
     };
-    scope.Map_Period = Map_Period; 
+    scope.Map_Period = Map_Period;
     function Map_Period(periodNum) {
         var strPeriod = "";
         for (var i = 0; i < 12; i++) {
@@ -135,7 +135,7 @@
         debugger
         $('.hcs-profile-list').fadeToggle();
         scope.$root.$commons = {
-            $current_employee_code: null,
+            //$current_employee_code: null,
             $active: true
         };
         scope.mode = 1;
@@ -147,9 +147,10 @@
                 $(window).trigger('resize');
             }, 500);
         }
-		
+
 
     function editAprPeriod() {
+        debugger
         if (scope.currentItem == null && scope.selectedItems.length === 0) {
             $msg.message("${get_global_res('Notification','Thông báo')}", "${get_global_res('No_Row_Selected','Không có dòng được chọn')}", function () { });
         }

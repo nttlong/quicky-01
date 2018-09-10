@@ -1,21 +1,40 @@
-﻿<div class="tab-pane" style="padding-right:unset; height: 100%; background-color:#fff;">
+﻿<style>
+    .tabbable-line{
+        display: table;
+        height: 100%;
+        width: 100%;
+    }
+    .hcs-tab-info{
+        display: table-row;
+    }
+    .tab-content {
+        display: table-row;
+    }
+</style>
+<div class="tab-pane" style="padding-right:unset; height: 100%; background-color:#fff;">
     <!--<nav-tabs min-height="82vh" max-height="82vh">
     </nav-tabs>-->
 	<div class="tabbable-panel" style="height: 100%;">
 		<div class="tabbable-line" style="height: 100%;">
-			<ul class="nav nav-tabs ">
-				<li class="active">
-					<a href="#tab_default_1" data-toggle="tab"  ng-click="indexTabChange(1)">
-					${get_res('emp_working','Bổ nhiệm - điều chuyển')} </a>
-				</li>
-				<li>
-					<a href="#tab_default_2" data-toggle="tab"  ng-click="indexTabChange(2)">
-					${get_res('emp_experience','Kinh nghiệm trước đây')} </a>
-				</li>
-			</ul>
-			<div class="tab-content" style="height: calc(100% - 59px);">
-		        <div class="tab-pane active" id="tab_default_1" style="height: 100%;">
-		            <collapse-box class="zb-datatable" title="${get_res('emp_working','Bổ nhiệm - điều chuyển')}">
+            <div class="hcs-tab-info">
+                <div class="col-md-12 competency no-padding">
+                    <div class="hcs-tab-info-box active" href="#tab_default_1" data-toggle="tab" ng-click="changeActive($event, 1)">
+                        <img src="${get_static('assets/images/General.png')}"/>
+                        <label>
+                            ${get_res('emp_working','Bổ nhiệm - điều chuyển')}
+                        </label>
+                    </div>
+                    <div class="hcs-tab-info-box" href="#tab_default_2" data-toggle="tab" ng-click="changeActive($event, 2)">
+                        <img src="${get_static('assets/images/Level.png')}"/>
+                        <label style="padding-left:5px;">
+                            ${get_res('emp_experience','Kinh nghiệm trước đây')}
+                        </label>
+                    </div>
+                </div>
+            </div>
+			<div class="tab-content" style="height: 100%">
+		        <div class="tab-pane active col-md-12" id="tab_default_1" style="height: calc(100% - 8px);">
+		                <collapse-box class="zb-form-common" ng-if="tabIdx == 1" title="${get_res('emp_working','Bổ nhiệm - điều chuyển')}">
                         <toolbar class="eeeeee">
                             <input-text-icon icon="bowtie-icon bowtie-search"
                                                 on-click="onSearch"></input-text-icon>
@@ -49,8 +68,8 @@
                         </div>
                     </collapse-box>
 		        </div>
-		        <div class="tab-pane" id="tab_default_2" style="height: 100%;">
-	                <collapse-box class="zb-datatable"  title="${get_res('emp_experience','Kinh nghiệm trước đây')}">
+		        <div class="tab-pane col-md-12" id="tab_default_2" ng-if="tabIdx == 2" style="height: calc(100% - 8px);">
+	                    <collapse-box class="zb-form-common"  title="${get_res('emp_experience','Kinh nghiệm trước đây')}">
                         <toolbar class="eeeeee">
                             <input-text-icon icon="bowtie-icon bowtie-search" style="width:200px;float:left;margin: 0 2.5px;"
                                                 on-click="onSearchExperience"></input-text-icon>

@@ -107,8 +107,9 @@
             tableFields: [
                 { "data": "kpi_code", "title": "${get_global_res('code','Mã')}", "className": "text-left" },
                 { "data": "kpi_name", "title": "${get_global_res('name','Tên')}", "className": "text-left" },
-                { "data": "benchmark", "title": "${get_global_res('benchmark','Điểm chuẩn')}", "className": "text-left" },
-                { "data": "is_apply_all", "title": "${get_global_res('is_apply_all','Toàn CTY')}", "format":"checkbox", "className": "text-center" }
+                { "data": "weight", "title": "${get_global_res('weight','Trọng số')}", "className": "text-left" },
+                { "data": "score_from", "title": "${get_global_res('for_score_from','Cho điểm từ')}", "className": "text-left" },
+                { "data": "score_to", "title": "${get_global_res('score_to','Cho điểm đến')}", "className": "text-left" }
             ],
             $$tableConfig: {},
             tableSource: _loadDataServerSide,
@@ -233,12 +234,11 @@
             _loadTreeDataSource();
         })();
 
-        $scope.$watch("$$tree.treeCurrentNode", function (val) {
-            if (val && val['kpi_group_code']) {
-            _tableData($scope.$$table.$$tableConfig.iPage, $scope.$$table.$$tableConfig.iPageLength,
-                $scope.$$table.$$tableConfig.orderBy, $scope.$$table.$$tableConfig.searchText,
-                $scope.$$table.$$tableConfig.fnReloadData);
-                }
+        $scope.$watch("$$tree.treeCurrentNode", function (old, newVal) {
+            if(newVal && old != newVal)
+                _tableData($scope.$$table.$$tableConfig.iPage, $scope.$$table.$$tableConfig.iPageLength,
+                    $scope.$$table.$$tableConfig.orderBy, $scope.$$table.$$tableConfig.searchText,
+                    $scope.$$table.$$tableConfig.fnReloadData);
         });
 
         $scope.$watch("$$table.selectedItems", function (val) {

@@ -707,6 +707,7 @@ input[disabled] {
     width: 100%;
     border: 1px solid @border_color;
     overflow: auto;
+    margin-bottom: unset;
 }
 
 .zb-list-view > a.list-group-item {
@@ -718,10 +719,19 @@ input[disabled] {
     border-top-right-radius: unset;
 }
 
+.zb-list-view > a.list-group-item:last-child {
+    border-bottom-left-radius: unset;
+    border-bottom-right-radius: unset;
+}
+
 .zb-list-view > .active {
     background: @background_color;
     border-color: @border_color;
     color: @value_color;
+}
+
+.zb-list-view > a.list-group-item:hover {
+    cursor: pointer;
 }
 
 .zb-list-view > .active:hover {
@@ -770,4 +780,39 @@ input[disabled] {
 
 .zb-form-date-picker .zb-hour-picker:focus {
     outline: none;
+}
+
+
+.zb-multi-select {
+    .form-control {
+        border: unset;
+        border-bottom: 1px solid @border_color !important;
+        border-radius: unset !important;
+    }
+
+    .caret {
+        display: inline-block;
+        position: absolute;
+        top: 12px;
+        font-style: normal;
+        font-weight: 400;
+        font-variant: normal;
+        font-size: .875rem;
+        text-transform: none;
+        text-rendering: auto;
+        line-height: 1;
+        opacity: .6;
+        -webkit-font-smoothing: antialiased;
+        width: 14px !important;
+        height: 14px !important;
+        margin-left: 2px;
+        right: 20px !important;
+        border: none !important;
+        font-family: Ionicons;
+        speak: none;
+    }
+
+    .caret:after {
+        content: "\f123";
+    }
 }

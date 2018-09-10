@@ -23,8 +23,13 @@ def get_list_with_searchtext(args):
     
     if(searchText != None):
         ret.match("contains(tr_supplier_name, @name) or " + \
-            "contains(tr_supplier_code, @name) or " + \
-            "contains(note, @name) or " + \
+                  "contains(tr_supplier_code, @name) or " + \
+                  "contains(tr_supplier_name2, @name) or " + \
+                  "contains(address, @name) or " + \
+                  "contains(tel, @name) or " + \
+                  "contains(supplier_map, @name) or " + \
+                  "contains(kind, @name) or " + \
+                  "contains(note, @name) or " + \
             "contains(ordinal, @name)",name=searchText.strip())
 
     if(sort != None):
@@ -98,10 +103,14 @@ def set_dict_insert_data(args):
     ret_dict.update(
         tr_supplier_code    = (lambda x: x['tr_supplier_code']   if x.has_key('tr_supplier_code')    else None)(args['data']),
         tr_supplier_name    = (lambda x: x['tr_supplier_name']   if x.has_key('tr_supplier_name')    else None)(args['data']),
+        tr_supplier_name2   = (lambda x: x['tr_supplier_name2']   if x.has_key('tr_supplier_name2')    else None)(args['data']),
+        address             = (lambda x: x['address']             if x.has_key('address')    else None)(args['data']),
+        tel                 = (lambda x: x['tel']                 if x.has_key('tel')    else None)(args['data']),
+        supplier_map        = (lambda x: x['supplier_map']        if x.has_key('supplier_map')    else None)(args['data']),
+        kind                = (lambda x: x['kind']                if x.has_key('kind')    else None)(args['data']),
         ordinal             = (lambda x: x['ordinal']            if x.has_key('ordinal')             else None)(args['data']),
         note                = (lambda x: x['note']               if x.has_key('note')                else None)(args['data']),
         lock                = (lambda x: x['lock']               if x.has_key('lock')                else None)(args['data']),
-        tr_supplier_name2   = (lambda x: x['tr_supplier_name2']  if x.has_key('tr_supplier_name2')   else None)(args['data'])
     )
 
     return ret_dict

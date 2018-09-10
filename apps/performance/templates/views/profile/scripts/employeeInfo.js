@@ -1,12 +1,17 @@
 ﻿(function (scope) {
     scope.__mode = 0;
     scope.entity = {};
-    scope.$active = (scope.$root.$commons) ? scope.$root.$commons.$active : true
+    //scope.$active = (scope.$root.$commons) ? scope.$root.$commons.$active : true
     console.log("dô nè active", scope.$active)
     scope.$parent.$parent.$parent.onSave = (scope.$active) ? onSave : "";
     scope.$parent.$parent.$parent.onAttach = onAttach;
     scope.$parent.$parent.$parent.onPrint = onPrint;
     scope.$parent.$parent.$parent.onRefresh = onRefresh;
+
+    scope.changeActive = function(event){
+        $('.hcs-tab-info').find('.active').removeClass('active');
+        $(event.target).closest('div').addClass('active');
+    }
 
     scope.set_job_w_code = function () {
         var frm = lv.FormSearch(scope, "$$$job_working");
@@ -21,11 +26,10 @@
 
     function onSave() {
         if (scope.entity != null) {
-            debugger
-            if (scope.entity.active == null || scope.entity.active == undefined) {
-                scope.entity.active = true;
-            }
-            scope.entity.active = (scope.entity.active) ? false : true;
+            //if (scope.entity.active == null || scope.entity.active == undefined) {
+            //    scope.entity.active = true;
+            //}
+            //scope.entity.active = (scope.entity.active) ? false : true;
             var rsCheck = checkError();//Kết quả check input
             if (rsCheck.result) {
                 $msg.message("${get_global_res('Input_Error','Nhập liệu sai')}", rsCheck.errorMsg, function () { });
@@ -151,7 +155,7 @@
                 })
                 .done()
                 .then(function (res) {
-                    res.active = (res.active) ? false : true;
+                    //res.active = (res.active) ? false : true;
                     scope.entity = res;
                     _getDataInitCombobox();
                     scope.$applyAsync();
@@ -196,9 +200,9 @@
 
     scope.$parent.$parent.$parent.$watchGroup(['mode', 'currentItem'], function (val) {
         if (val[0] != 0) {
-            scope.$active = (val[1].active != undefined) ? val[1].active : true;
-            scope.$root.$commons.$active = scope.$active;
-            scope.$parent.$parent.$parent.onSave = (scope.$active) ? onSave : "";
+            //scope.$active = (val[1].active != undefined) ? val[1].active : true;
+            //scope.$root.$commons.$active = scope.$active;
+            scope.$parent.$parent.$parent.onSave = onSave;
             _init_();
             
             if (val[0] == 2) {

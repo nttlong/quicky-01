@@ -109,7 +109,7 @@
     scope.tableSource = _loadDataServerSide;
     scope.onSelectTableRow = function ($row) {
         scope.mode = 2;
-        scope.$root.edit();
+        scope.$root.editTemplate();
     };
     //Danh sách các dòng đc chọn (nếu là table MultiSelect)
     scope.selectedItems = [];
@@ -320,9 +320,7 @@
                     "pageIndex": iPage - 1,
                     "pageSize": iPageLength,
                     "search": searchText,
-                    "where": {
-
-                    },
+                    
                     "sort": sort,
                 })
                 .done()

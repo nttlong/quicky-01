@@ -34,6 +34,46 @@
                             </div>
                         </div>
                     </div>
+                     <div class="col-md-{{col}}">
+                        <div class="form-group zb-form-group">
+                            <!--Tên khác-->
+                            <label for="input_Emp_Address" class="col-sm-5 zb-form-label">${get_res('address','Địa chỉ')}</label>
+                            <div class="col-sm-7">
+                                <input-text id="input_Emp_Address" ng-model="entity.address">
+                            </div>
+                        </div>
+                    </div>
+                     <div class="col-md-{{col}}">
+                        <div class="form-group zb-form-group">
+                            <!--Tên khác-->
+                            <label for="inputEmp_Tel" class="col-sm-5 zb-form-label">${get_res('tel','Số điện thoại')}</label>
+                            <div class="col-sm-7">
+                                <input-text id="inputEmp_Tel" ng-model="entity.tel">
+                            </div>
+                        </div>
+                    </div>
+                     <div class="col-md-{{col}}">
+                        <div class="form-group zb-form-group">
+                            <!--Tên khác-->
+                            <label for="inputEmp_Supplier_Map" class="col-sm-5 zb-form-label">${get_res('supplier_map','Sơ đồ phòng')}</label>
+                            <div class="col-sm-7">
+                                <input-text id="inputEmp_Supplier_Map" ng-model="entity.supplier_map">
+                            </div>
+                        </div>
+                    </div>
+                     <div class="col-md-{{col}}">
+                        <div class="form-group zb-form-group">
+                            <!--Tên khác-->
+                            <label for="inputEmp_Kind" class="col-sm-5 zb-form-label">${get_res('kind','Phân loại')}</label>
+                            <div class="col-sm-7">
+                                <input-select data-list="cbbListKind"
+                                              ng-model="entity.kind"
+                                              data-value="value"
+                                              data-caption="caption"
+                                              required/>
+                            </div>
+                        </div>
+                    </div>
                     <div class="col-md-{{col}}">
                         <div class="form-group zb-form-group">
                             <!--Thứ tự-->
@@ -150,6 +190,7 @@
                             scope.$parent.currentItem = scope.entity;
                             scope.$parent.currentItem.modified_on = res.item.modified_on;
                             scope.$parent.currentItem.modified_by = res.item.modified_by;
+                            scope.$parent.$apply();
                             //Refesh datatable
                             scope.$parent.refreshDataRow();
                         }
@@ -178,20 +219,29 @@
         }
 
         function _comboboxData() {
-        services.api("${get_api_key('app_main.api.SYS_ValueList/get_list')}")
-            .data({
-                //parameter at here
-                "name": "LQuitJobType"
-            })
-            .done()
-            .then(function (res) {
-                delete res.language;
-                delete res.list_name;
-                scope.cbbEmployeeType = res.values;
-                console.log(res);
-                scope.$applyAsync();
-            })
+            debugger
+            services.api("${get_api_key('app_main.api.SYS_ValueList/get_list')}")
+                .data({
+                    //parameter at here
+                    "name": [
+                        "LKind",
+                        //"LQuitJobType"
+                    ]
+                })
+                .done()
+                .then(function (res) {
+                    delete res.language;
+                    delete res.list_name;
+                    //scope.cbbEmployeeType = getValue(res.values, "LQuitJobType");
+                    scope.cbbListKind = getValue(res.values, "LKind");
+                    console.log(res);
+                    scope.$applyAsync();
+                    function getValue(response, listName) {
+                        return _.findWhere(response, { "list_name": listName }) ? _.findWhere(response, { "list_name": listName }).values : [];
+                    }
+                })
         }
+
         _comboboxData();
 
         function beforeCallToServer() {

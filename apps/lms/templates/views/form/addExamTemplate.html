@@ -6,320 +6,349 @@
 <%inherit file="../commons/dialog_save_close.html"/>
 
 <%block name="modal_body">
-        
-            <div class="col-md-{{col_group}} col-sm-{{col_group}}">
-                <collapse-box class="zb-form-common" title="${get_res('Create_an_exam_template','Create an Exam Template')}">
-                    <div class="col-md-12" style="font-size:12px;padding-top: 15px;">
-                      <div class="col-md-4" ng-class="{ active: isSet(1) }"  ng-click="setTab(1)" style="cursor:pointer;border-left:2px solid rgb(68,114,196)">
-                          <div class="col-md-2" ><div class="circle-statistics">1</div></div>
-                          <div class="col-md-10" >                          
-                          <p>Enter</p>
-                          <p>Exam Template Information</p>
-                          </div>
 
-                      </div>
-                      <div class="col-md-5" ng-class="{ active: isSet(2) }"  ng-click="setTab(2)" style="cursor:pointer;border-left:2px solid rgb(68,114,196)">
-                          <div class="col-md-2" ><div class="circle-statistics">2</div></div>
-                          <div class="col-md-10" >                          
-                          <p>Specify</p>
-                          <p>Number of questions (From Your Question Bank)</p>
-                          </div>
-                       </div>
-                      <div class="col-md-3" ng-class="{ active: isSet(3) }"  ng-click="setTab(3)" style="cursor:pointer;border-left:2px solid rgb(68,114,196)">
-                          <div class="col-md-3" ><div class="circle-statistics">3</div></div>
-                          <div class="col-md-9" >                          
-                          <p>View</p>
-                          <p>Exam Template Details</p>
-                          </div>
-                       </div>
-  	            </div>
-                <div class="col-md-12">
-  		            <div class="jumbotron">
-       	            <div ng-show="isSet(1)">
-         	             <div>
-                    <div class="col-md-2 col-sm-2">
-                     </div>
-                    <div class="col-md-8 col-sm-8">
-                    <div class="col-md-{{col}}" style="padding-bottom: 20px;">
-                        <div class="form-group zb-form-group">
-                            <!--Mã Tài liệu, ID-->
-                            <label for="inputEmp_Train_Mode_Name" class="col-sm-5 zb-form-label">${get_res('exam_temp_id','ID')}</label>
-                            <div class="col-sm-7"> 
-                                <input-text id="inputEmp_Train_Mode_Name" ng-model="entity.exam_temp_id" required>
-                            </div>
-                        </div>
+<div class="col-md-{{col_group}} col-sm-{{col_group}}">
+   <collapse-box class="zb-form-common" title="${get_res('Create_an_exam_template','Create an Exam Template')}">
+      <!--<div class="col-md-12" style="font-size:12px;padding-top: 15px;">
+         <div class="col-md-4" ng-class="{ active: isSet(1) }"  ng-click="setTab(1)" style="cursor:pointer;border-left:2px solid rgb(68,114,196)">
+            <div class="col-md-2" >
+               <div class="circle-statistics">1</div>
+            </div>
+            <div class="col-md-10" >
+               <p>Enter</p>
+               <p>Exam Template Information</p>
+            </div>
+         </div>
+         <div class="col-md-5" ng-class="{ active: isSet(2) }"  ng-click="setTab(2)" style="cursor:pointer;border-left:2px solid rgb(68,114,196)">
+            <div class="col-md-2" >
+               <div class="circle-statistics">2</div>
+            </div>
+            <div class="col-md-10" >
+               <p>Specify</p>
+               <p>Number of questions (From Your Question Bank)</p>
+            </div>
+         </div>
+         <div class="col-md-3" ng-class="{ active: isSet(3) }"  ng-click="setTab(3)" style="cursor:pointer;border-left:2px solid rgb(68,114,196)">
+            <div class="col-md-3" >
+               <div class="circle-statistics">3</div>
+            </div>
+            <div class="col-md-9" >
+               <p>View</p>
+               <p>Exam Template Details</p>
+            </div>
+         </div>
+      </div>-->
+       <div class="hcs-tab-info">
+            <div class="col-md-12 competency no-padding">
+                <div class="col-md-4 active" href="#tab_default_1" data-toggle="tab"
+                     ng-click="setTab(1, $event)">
+                    <div class="circle-statistics"
+                         style="float: left;
+                                margin-right: 10px;">
+                        1
+
                     </div>
-                       
-                    <div class="col-md-{{col}}"style="padding-bottom: 20px;">
-                        <div class="form-group zb-form-group">
-                            <!--Tên Tài liệu-->
-                            <label for="inputEmp_Train_Mode_Name" class="col-sm-5 zb-form-label">${get_res('exam_temp_category','Exam Category')}</label>
-                            <div class="col-sm-7" > 
-                               <div class="pull-left" >
-                                <span zb-required=""></span>
-                                </div>                          
-                                <combobox load-data="$root.$getComboboxData" 
-                                          ng-model="entity.exam_temp_category"
-										  params="{key:'${encryptor.get_key('lms_cbb_exTemplateCategory')}', value:[{}]}"
-                                          on-search-change="false"
-                                          on-search-press="true"
-                                          placeholder=""
-                                          init-data="$$$category_id.value"
-                                          caption-field="{{$$$category_id.caption_field}}"
-                                          paging="true"
-                                          close-on-select="true"
-                                          template-fields="$$$category_id.display_fields"
-                                          reload="false">
-                                </combobox>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-{{col}}" style="padding-bottom: 20px;">
-                        <div class="form-group zb-form-group">
-                            <!--Tên Tài liệu-->
-                            <label for="inputEmp_Train_Mode_Name" class="col-sm-5 zb-form-label">${get_res('exam_name1','Exam Template Name 1')}</label>
-                            <div class="col-sm-7"> 
-                                <input-text id="inputEmp_Train_Mode_Name" ng-model="entity.exam_temp_name1" required>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-{{col}}" style="padding-bottom: 20px;">
-                        <div class="form-group zb-form-group">
-                            <!--Nguon dinh danh Tài liệu-->
-                            <label for="inputEmp_Train_Mode_Name" class="col-sm-5 zb-form-label">${get_res('exam_name2','Exam Template Name 2')}</label>
-                            <div class="col-sm-7"> 
-                                <input-text id="inputEmp_Train_Mode_Name" ng-model="entity.exam_temp_name2" >
-                            </div>
-                        </div>
-                    </div>   
-                    <div class="col-md-{{col}}" style="padding-bottom: 20px;">
-                        <div class="form-group zb-form-group">
-                            <!--Mô tả tài liệu-->
-                            <label for="inputEmp_Train_Mode_Name" class="col-sm-5 zb-form-label">${get_res('durations','Duration (HH-MM)')}</label>
-                            <div class="col-sm-7">
-                                <!--<input-text ng-model="entity.duration" placeholder="hh:mm" ng-keypress="isNumber(event,this)" />-->
-                                <time-picker ng-model="entity.duration" format="HH:mm"></time-picker>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="col-md-{{col}}" style="padding-bottom: 20px;">
-                        <div class="form-group zb-form-group">
-                            <!--Tên Khóa học-->
-                            <label for="inputEmp_Train_Mode_Name" class="col-sm-5 zb-form-label">${get_res('negative_marks','Negative Marks')}</label>
-                            <div class="col-sm-7"> 
-                                <input-select ng-model="entity.negative_marks" data-list="cbbNegativeMarks" data-value="caption" data-caption="caption" />
-                            </div>
-                        </div>
-                    </div>
-                    </div>
-                   <div class="col-md-2 col-sm-2">
+                    <label style="padding-top: 0px;">
+                        <span style="display: table;">${get_res('enter','Enter')}</span>
+                        <span style="display: table;">${get_res('exam_template_information','Exam Template Information')}</span>
+                    </label>
                 </div>
-               </div>
-        	            </div>
-			            <div ng-show="isSet(2)">
-                      <div class="col-md-{{col}}" style="padding-bottom: 20px;">
-                    <div class="col-md-2 col-sm-2">
+                <div class="col-md-4" ng-class="{disabled: (__mode === 1 && tabIdx < 2)}" href="#tab_default_2" data-toggle="tab"
+                     ng-click="setTab(2, $event)">
+                    <div class="circle-statistics"
+                         style="float: left;
+                                margin-right: 10px;">
+                        2
+                    </div>
+                    <label style="padding-top: 0px;">
+                        <span style="display: table;">${get_res('specify','Specify')}</span>
+                        <span style="display: table;">${get_res('number_of_ques','Number of questions')}</span>
+
+                    </label>
+                </div>
+                <div class="col-md-4" ng-class="{disabled: (__mode === 1 && tabIdx < 3)}" href="#tab_default_3" data-toggle="tab"
+                     ng-click="setTab(3, $event)">
+                    <div class="circle-statistics"
+                         style="float: left;
+                                margin-right: 10px;">
+                        3
+                    </div>
+                    <label style="padding-top: 0px;">
+                        <span style="display: table;">${get_res('view','View')}</span>
+                        <span style="display: table;">${get_res('exam_template_det','Exam Template Details')}</span>
+
+                    </label>
+                </div>
+            </div>
+       </div>
+      <div class="col-md-12">
+            <div ng-show="isSet(1)">
+               <div>
+                  <div class="col-md-2 col-sm-2">
+                  </div>
+                  <div class="col-md-8 col-sm-8">
+                     <div class="form-group zb-form-group">
+                       <!--Mã Tài liệu, ID-->
+                       <label for="inputEmp_Train_Mode_Name" class="col-sm-5 zb-form-label">${get_res('exam_temp_id','ID')}</label>
+                       <div class="col-sm-7">
+                          <input-text id="inputEmp_Train_Mode_Name" ng-model="entity.exam_temp_id" required>
+                       </div>
                      </div>
-                   <div class="col-md-10 col-sm-10">
-                    <div class="col-md-{{col}}" style="padding-bottom: 20px;">
                         <div class="form-group zb-form-group">
-                            <!--Mã Tài liệu, ID-->
-                            <label for="inputEmp_Train_Mode_Name" class="col-sm-4 zb-form-label">${get_res('mode_pick','Question Picking')}</label>
-                            <div class="col-sm-6"> 
-                                 <input-select ng-model="entity.mode_pick" data-list="cbbQuestionPicking" data-value="value" data-caption="caption" required />
-                            </div>
+                           <!--Tên Tài liệu-->
+                           <label for="inputEmp_Train_Mode_Name" class="col-sm-5 zb-form-label">${get_res('exam_temp_category','Exam Category')}</label>
+                           <div class="col-sm-7" >
+                              <div class="pull-left" >
+                                 <span zb-required=""></span>
+                              </div>
+                              <combobox load-data="$root.$getComboboxData"
+                                 ng-model="entity.exam_temp_category"
+                                 params="{key:'${encryptor.get_key('lms_cbb_exTemplateCategory')}', value:[{}]}"
+                                 on-search-change="false"
+                                 on-search-press="true"
+                                 placeholder=""
+                                 init-data="$$$category_id.value"
+                                 caption-field="{{$$$category_id.caption_field}}"
+                                 paging="true"
+                                 close-on-select="true"
+                                 template-fields="$$$category_id.display_fields"
+                                 reload="false">
+                              </combobox>
+                           </div>
                         </div>
-                    </div>
-                <div class="" ng-repeat="elem in entity.question_category track by $index">                      
-                    <div class="col-md-{{col}}"style="padding-bottom: 20px;">
                         <div class="form-group zb-form-group">
-                            <!--Tên Tài liệu-->
-                            <label for="inputEmp_Train_Mode_Name" class="col-sm-4 zb-form-label">${get_res('question_category','Choose Question Category')}</label>
-                            <div class="col-sm-6"> 
+                           <!--Tên Tài liệu-->
+                           <label for="inputEmp_Train_Mode_Name" class="col-sm-5 zb-form-label">${get_res('exam_name1','Exam Template Name 1')}</label>
+                           <div class="col-sm-7">
+                              <input-text id="inputEmp_Train_Mode_Name" ng-model="entity.exam_temp_name1" required>
+                           </div>
+                        </div>
+                        <div class="form-group zb-form-group">
+                           <!--Nguon dinh danh Tài liệu-->
+                           <label for="inputEmp_Train_Mode_Name" class="col-sm-5 zb-form-label">${get_res('exam_name2','Exam Template Name 2')}</label>
+                           <div class="col-sm-7">
+                              <input-text id="inputEmp_Train_Mode_Name" ng-model="entity.exam_temp_name2" >
+                           </div>
+                        </div>
+                        <div class="form-group zb-form-group">
+                           <!--Mô tả tài liệu-->
+                           <label for="inputEmp_Train_Mode_Name" class="col-sm-5 zb-form-label">${get_res('durations','Duration (HH-MM)')}</label>
+                           <div class="col-sm-7">
+                              <!--<input-text ng-model="entity.duration" placeholder="hh:mm" ng-keypress="isNumber(event,this)" />-->
+                              <time-picker ng-model="entity.duration" format="HH:mm"></time-picker>
+                           </div>
+                        </div>
+                        <div class="form-group zb-form-group">
+                           <!--Tên Khóa học-->
+                           <label for="inputEmp_Train_Mode_Name" class="col-sm-5 zb-form-label">${get_res('negative_marks','Negative Marks')}</label>
+                           <div class="col-sm-7">
+                              <input-select ng-model="entity.negative_marks" data-list="cbbNegativeMarks" data-value="caption" data-caption="caption" />
+                           </div>
+                        </div>
+                  </div>
+                  <div class="col-md-2 col-sm-2">
+                  </div>
+               </div>
+            </div>
+            <div ng-show="isSet(2)">
+               <div class="col-md-{{col}}" style="padding-bottom: 20px;">
+                  <div class="col-md-2 col-sm-2">
+                  </div>
+                  <div class="col-md-10 col-sm-10">
+                     <div class="col-md-{{col}}" style="padding-bottom: 20px;">
+                        <div class="form-group zb-form-group">
+                           <!--Mã Tài liệu, ID-->
+                           <label for="inputEmp_Train_Mode_Name" class="col-sm-4 zb-form-label">${get_res('mode_pick','Question Picking')}</label>
+                           <div class="col-sm-6">
+                              <input-select ng-model="entity.mode_pick" data-list="cbbQuestionPicking" data-value="value" data-caption="caption" required />
+                           </div>
+                        </div>
+                     </div>
+                     <div class="" ng-repeat="elem in entity.question_category track by $index">
+                        <div class="col-md-{{col}}"style="padding-bottom: 20px;">
+                           <div class="form-group zb-form-group">
+                              <!--Tên Tài liệu-->
+                              <label for="inputEmp_Train_Mode_Name" class="col-sm-4 zb-form-label">${get_res('question_category','Choose Question Category')}</label>
+                              <div class="col-sm-6">
                                  <div class="pull-left" >
-                                <span zb-required=""></span>
-                                </div>                          
-                                <combobox load-data="$root.$getComboboxData" 
-                                          ng-model="elem.category"
-										  params="{key:'${encryptor.get_key('lms_cbb_exQuestionCategory')}', value:[{}]}"
-                                          on-search-change="false"
-                                          on-search-press="true"
-                                          placeholder=""
-                                          init-data="$$$category_id.value"
-                                          caption-field="{{$$$category_id.caption_field}}"
-                                          paging="true"
-                                          close-on-select="true"
-                                          template-fields="$$$category_id.display_fields"
-                                          reload="false">
-                                </combobox>
-                            </div>
-                            <div class="col-sm-2" ng-if="entity.mode_pick == 2">
-                                    <button type="button" ng-click="addQuestionDlg($index)" class="btn btn-primary" style="padding: 0px 6px;box-shadow: 2px 2px 2px grey;font-size:11px;">ADD</button>
-                                    <button type="button" ng-click="delQuestionDlg($index)" class="btn btn-danger" style="padding: 0px 8px;box-shadow: 2px 2px 2px grey;font-size:11px;">DEL</button>
-                               </div>
+                                    <span zb-required=""></span>
+                                 </div>
+                                 <combobox load-data="$root.$getComboboxData"
+                                    ng-model="elem.category"
+                                    params="{key:'${encryptor.get_key('lms_cbb_exQuestionCategory')}', value:[{}]}"
+                                    on-search-change="false"
+                                    on-search-press="true"
+                                    placeholder=""
+                                    init-data="$$$category_id.value"
+                                    caption-field="{{$$$category_id.caption_field}}"
+                                    paging="true"
+                                    close-on-select="true"
+                                    template-fields="$$$category_id.display_fields"
+                                    reload="false">
+                                 </combobox>
+                              </div>
+                              <div class="col-sm-2" ng-if="entity.mode_pick == 2">
+                                 <button type="button" ng-click="addQuestionDlg($index)" class="btn btn-primary" style="padding: 0px 6px;box-shadow: 2px 2px 2px grey;font-size:11px;">ADD</button>
+                                 <button type="button" ng-click="delQuestionDlg($index)" class="btn btn-danger" style="padding: 0px 8px;box-shadow: 2px 2px 2px grey;font-size:11px;">DEL</button>
+                              </div>
+                           </div>
                         </div>
-                    </div>
-                    <div class="col-md-{{col}}" style="padding-bottom: 20px;"  ng-if="entity.mode_pick == 1"  >
-                        <div class="form-group zb-form-group">
-                            <!--Tên Tài liệu-->
-                            <label for="inputEmp_Train_Mode_Name" class="col-sm-4 zb-form-label">${get_res('assign_questions','Assign numbers of questions')}</label>
-                                <div class="col-sm-6">
-                                <div class="pull-left" style="margin-left: -17px;" >
-                                 <div class="col-md-4" >
-                                     <input-number id="inputEmp_Train_Mode_Name" ng-model="elem.diff_ques"></input-number>
-                                         <p style="font-size:13px;text-align:center;color:rgb(128,96,0);font-style:italic">Difficult</p>
+                        <div class="col-md-{{col}}" style="padding-bottom: 20px;"  ng-if="entity.mode_pick == 1"  >
+                           <div class="form-group zb-form-group">
+                              <!--Tên Tài liệu-->
+                              <label for="inputEmp_Train_Mode_Name" class="col-sm-4 zb-form-label">${get_res('assign_questions','Assign numbers of questions')}</label>
+                              <div class="col-sm-6">
+                                 <div class="pull-left" style="margin-left: -17px;" >
+                                    <div class="col-md-4" >
+                                       <input-number id="inputEmp_Train_Mode_Name" ng-model="elem.diff_ques"></input-number>
+                                       <p style="font-size:13px;text-align:center;color:rgb(128,96,0);font-style:italic">Difficult</p>
                                     </div>
-                                   <div class="col-md-4" >
-                                      <input-number id="inputEmp_Train_Mode_Name" ng-model="elem.med_ques"></input-number>
-                                          <p style="font-size:13px;text-align:center;color:rgb(128,96,0);font-style:italic">Medium</p>
+                                    <div class="col-md-4" >
+                                       <input-number id="inputEmp_Train_Mode_Name" ng-model="elem.med_ques"></input-number>
+                                       <p style="font-size:13px;text-align:center;color:rgb(128,96,0);font-style:italic">Medium</p>
                                     </div>
                                     <div class="col-md-4">
-                                      <input-number id="inputEmp_Train_Mode_Name" ng-model="elem.easy_ques"></input-number>
-                                          <p style="font-size:13px;text-align:center;color:rgb(128,96,0);font-style:italic">Easy</p>
+                                       <input-number id="inputEmp_Train_Mode_Name" ng-model="elem.easy_ques"></input-number>
+                                       <p style="font-size:13px;text-align:center;color:rgb(128,96,0);font-style:italic">Easy</p>
                                     </div>
                                     <br/>
-                                </div>
-                                </div>  
-                                <div class="col-sm-2">
-                                    <button type="button" ng-click="pushQuestion($index)" class="btn btn-primary" style="padding: 0px 6px;box-shadow: 2px 2px 2px grey;font-size:11px;">ADD</button>
-                                    <button type="button" ng-click="popQuestion($index)" class="btn btn-danger" style="padding: 0px 8px;box-shadow: 2px 2px 2px grey;font-size:11px;">DEL</button>
-                               </div>
+                                 </div>
+                              </div>
+                              <div class="col-sm-2">
+                                 <button type="button" ng-click="pushQuestion($index)" class="btn btn-primary" style="padding: 0px 6px;box-shadow: 2px 2px 2px grey;font-size:11px;">ADD</button>
+                                 <button type="button" ng-click="popQuestion($index)" class="btn btn-danger" style="padding: 0px 8px;box-shadow: 2px 2px 2px grey;font-size:11px;">DEL</button>
+                              </div>
+                           </div>
                         </div>
-                    </div>
-                </div>
-                      <div style="text-align:center;margin-right: 110px;">
-                    <div>
-                    <span ng-click="addCategoryQuestion()" 
-                       style="cursor:pointer;text-underline-position:below;font-size:11px" >
-                        <i class="bowtie-icon bowtie-math-plus"></i> Add new Category
-                    </span>
-                    </div>
-                     <div>
-                    <span ng-click="delCategoryQuestion()" 
-                       style="cursor:pointer;text-underline-position:below;font-size:11px" >
-                        <i class="bowtie-icon bowtie-math-multiply"></i> Delete Category
-                    </span>
-                    </div>
-                       </div>
-                    </div>
-
-               </div>
-                     <button class="btn btn-default" ng-click="deleteQuestion()" style="float:right; margin-right: 14px;" >
-                        <span><i class="glyphicon glyphicon-remove"></i></span> Delete
-                    </button>
-                     <div  class="col-md-{{col}}"> 
-                      
-                    <div class="modal-body" style="overflow:unset;">
-                        <div style="height:calc(100% - 40px);border:1px solid rgb(208, 208, 208)" >
-                        <table-data data-source="tableSource" fields="tableFields" type="MultiSelect" 
-                                paging="true" page-length="table_info.page_size" server-side="true" 
-                                press-enter="onSelectTableRow" selected-items="selectedItems" 
-                                current-item="currentItem" search-text="tableSearchText"
-                                refresh-row="refreshDataRow">
-                        </table-data>
-                        </div>
-                    </div>
-
-                    </div>
-
-     	            </div>
-
-                    <div ng-show="isSet(3)">
-                    <div>
-                    <div class="col-md-4 col-sm-">
                      </div>
-                    <div class="col-md-6 col-sm-6">
-                    <div class="form-group zb-form-group">
-                    <!--Danh mục-->
-                    <label for="inputEmp_Train_Mode_Name" class="col-sm-5 detail-content ">${get_res('exam_temp_id','ID')}</label>
-                    <div class="col-md-6 col-lg-6 col-sm-6 detail-content ">
-                        <p class="info-item" style="text-align:center;font-size:14px;">{{entity.exam_temp_id}}</p>
-                    </div>
-                </div>
-                <div class="form-group zb-form-group">
-                    <!--Tên tác giả-->
-                    <label for="inputEmp_Train_Mode_Name" class="col-sm-5 detail-content ">${get_res('exam_temp_category','Exam_Category')}</label>
-                    <div class="col-md-6 col-lg-6 col-sm-6 detail-content ">
-                    <p class="info-item" style="text-align:center;font-size:14px;">{{entity.exam_temp_category}}</p>
-                    </div>
-                </div>
-                <div class="form-group zb-form-group">
-                    <!--Tên tác giả-->
-                    <label for="inputEmp_Train_Mode_Name" class="col-sm-5 detail-content ">${get_res('exam_temp_name1','Exam Template Name 1')}</label>
-                    <div class="col-md-6 col-lg-6 col-sm-6 detail-content ">
-                    <p class="info-item" style="text-align:center;font-size:14px;">{{entity.exam_temp_name1}}</p>
-                    </div>
-                </div>
-                <div class="form-group zb-form-group">
-                    <!--Người tạo-->
-                    <label for="inputEmp_Train_Mode_Name" class="col-sm-5 detail-content ">${get_res('exam_temp_name2','Exam Template Name 2')}</label>
-                    <div class="col-md-6 col-lg-6 col-sm-6 detail-content ">
-                    <p class="info-item" style="text-align:center;font-size:14px;">{{entity.exam_temp_name2}}</p>
-                    </div>
-                </div>
-                <div class="form-group zb-form-group">
-                    <!--Ngày tạo-->
-                    <label for="inputEmp_Train_Mode_Name" class="col-sm-5 detail-content ">${get_res('duration','Duration (HH-MM)')}</label>
-                    <div class="col-md-6 col-lg-6 col-sm-6 detail-content ">
-                    <p class="info-item" style="text-align:center;font-size:14px;">{{entity.duration}}</p>
-                    </div>
-                </div>
-                <div class="form-group zb-form-group">
-                    <!--Dung lượng file-->
-                    <label for="inputEmp_Train_Mode_Name" class="col-sm-5 detail-content ">${get_res('negative_marks','Negative Marks')}</label>
-                    <div class="col-md-6 col-lg-6 col-sm-6 detail-content ">
-                    <p class="info-item" style="text-align:center;font-size:14px;">{{entity.negative_marks}}</p>
-                    </div>  
-                </div>
-                    <div class="form-group zb-form-group">  
-                    <!--Dung lượng file-->
-                    <label for="inputEmp_Train_Mode_Name" class="col-sm-5 detail-content ">${get_res('total_ques','Total Questions')}</label>
-                    <div class="col-md-6 col-lg-6 col-sm-6 detail-content ">
-                    <p class="info-item" style="text-align:center;font-size:14px;">{{entity.total_question}}</p>
-                    </div>
-                </div><div class="form-group zb-form-group">
-                    <!--Dung lượng file-->
-                    <label for="inputEmp_Train_Mode_Name" class="col-sm-5 detail-content ">${get_res('total_marks','Total Marks')}</label>
-                    <div class="col-md-6 col-lg-6 col-sm-6 detail-content ">
-                    <p class="info-item" style="text-align:center;font-size:14px;">{{entity.total_mask}}</p>
-                    </div>
-                </div><div class="form-group zb-form-group">
-                    <!--Dung lượng file-->
-                    <label for="inputEmp_Train_Mode_Name" class="col-sm-5 detail-content ">${get_res('easy_ques','Easy Questions')}</label>
-                    <div class="col-md-6 col-lg-6 col-sm-6 detail-content ">
-                    <p class="info-item" style="text-align:center;font-size:14px;">{{entity.easy_question}}</p>
-                    </div>
-                </div><div class="form-group zb-form-group">
-                    <!--Dung lượng file-->
-                    <label for="inputEmp_Train_Mode_Name" class="col-sm-5 detail-content ">${get_res('med_ques','Medium Questions')}</label>
-                    <div class="col-md-6 col-lg-6 col-sm-6 detail-content ">
-                    <p class="info-item" style="text-align:center;font-size:14px;">{{entity.med_question}}</p>
-                    </div>
-                </div>
-                        <div class="form-group zb-form-group">
-                    <!--Dung lượng file-->
-                    <label for="inputEmp_Train_Mode_Name" class="col-sm-5 detail-content ">${get_res('hard_ques','Hard Questions')}</label>
-                    <div class="col-md-6 col-lg-6 col-sm-6 detail-content ">
-                    <p class="info-item" style="text-align:center;font-size:14px;">{{entity.diff_question}}</p>
-                    </div>
-                </div>
-                    </div>
-                   <div class="col-md-2 col-sm-2">
-                </div>
+                     <div style="text-align:center;margin-right: 110px;">
+                        <div>
+                           <span ng-click="addCategoryQuestion()"
+                              style="cursor:pointer;text-underline-position:below;font-size:11px" >
+                           <i class="bowtie-icon bowtie-math-plus"></i> Add new Category
+                           </span>
+                        </div>
+                        <div>
+                           <span ng-click="delCategoryQuestion()"
+                              style="cursor:pointer;text-underline-position:below;font-size:11px" >
+                           <i class="bowtie-icon bowtie-math-multiply"></i> Delete Category
+                           </span>
+                        </div>
+                     </div>
+                  </div>
                </div>
-     	            </div>
-  	            </div>
-              </div>
-                    
-                </collapse-box>
-                
+               <button class="btn btn-default" ng-click="deleteQuestion()" style="float:right; margin-right: 14px;" >
+               <span><i class="glyphicon glyphicon-remove"></i></span> Delete
+               </button>
+               <div  class="col-md-{{col}}">
+                  <div class="modal-body" style="overflow:unset;">
+                     <div style="height:calc(100% - 40px);border:1px solid rgb(208, 208, 208)" >
+                        <table-data data-source="tableSource" fields="tableFields" type="MultiSelect"
+                           paging="true" page-length="table_info.page_size" server-side="true"
+                           press-enter="onSelectTableRow" selected-items="selectedItems"
+                           current-item="currentItem" search-text="tableSearchText"
+                           refresh-row="refreshDataRow">
+                        </table-data>
+                     </div>
+                  </div>
+               </div>
             </div>
+            <div ng-show="isSet(3)">
+               <div>
+                  <div class="col-md-4 col-sm-">
+                  </div>
+                  <div class="col-md-6 col-sm-6">
+                     <div class="form-group zb-form-group">
+                        <!--Danh mục-->
+                        <label for="inputEmp_Train_Mode_Name" class="col-sm-5 detail-content ">${get_res('exam_temp_id','ID')}</label>
+                        <div class="col-md-6 col-lg-6 col-sm-6 detail-content ">
+                           <p class="info-item" style="text-align:center;font-size:14px;">{{entity.exam_temp_id}}</p>
+                        </div>
+                     </div>
+                     <div class="form-group zb-form-group">
+                        <!--Tên tác giả-->
+                        <label for="inputEmp_Train_Mode_Name" class="col-sm-5 detail-content ">${get_res('exam_temp_category','Exam_Category')}</label>
+                        <div class="col-md-6 col-lg-6 col-sm-6 detail-content ">
+                           <p class="info-item" style="text-align:center;font-size:14px;">{{entity.exam_temp_category}}</p>
+                        </div>
+                     </div>
+                     <div class="form-group zb-form-group">
+                        <!--Tên tác giả-->
+                        <label for="inputEmp_Train_Mode_Name" class="col-sm-5 detail-content ">${get_res('exam_temp_name1','Exam Template Name 1')}</label>
+                        <div class="col-md-6 col-lg-6 col-sm-6 detail-content ">
+                           <p class="info-item" style="text-align:center;font-size:14px;">{{entity.exam_temp_name1}}</p>
+                        </div>
+                     </div>
+                     <div class="form-group zb-form-group">
+                        <!--Người tạo-->
+                        <label for="inputEmp_Train_Mode_Name" class="col-sm-5 detail-content ">${get_res('exam_temp_name2','Exam Template Name 2')}</label>
+                        <div class="col-md-6 col-lg-6 col-sm-6 detail-content ">
+                           <p class="info-item" style="text-align:center;font-size:14px;">{{entity.exam_temp_name2}}</p>
+                        </div>
+                     </div>
+                     <div class="form-group zb-form-group">
+                        <!--Ngày tạo-->
+                        <label for="inputEmp_Train_Mode_Name" class="col-sm-5 detail-content ">${get_res('duration','Duration (HH-MM)')}</label>
+                        <div class="col-md-6 col-lg-6 col-sm-6 detail-content ">
+                           <p class="info-item" style="text-align:center;font-size:14px;">{{entity.duration}}</p>
+                        </div>
+                     </div>
+                     <div class="form-group zb-form-group">
+                        <!--Dung lượng file-->
+                        <label for="inputEmp_Train_Mode_Name" class="col-sm-5 detail-content ">${get_res('negative_marks','Negative Marks')}</label>
+                        <div class="col-md-6 col-lg-6 col-sm-6 detail-content ">
+                           <p class="info-item" style="text-align:center;font-size:14px;">{{entity.negative_marks}}</p>
+                        </div>
+                     </div>
+                     <div class="form-group zb-form-group">
+                        <!--Dung lượng file-->
+                        <label for="inputEmp_Train_Mode_Name" class="col-sm-5 detail-content ">${get_res('total_ques','Total Questions')}</label>
+                        <div class="col-md-6 col-lg-6 col-sm-6 detail-content ">
+                           <p class="info-item" style="text-align:center;font-size:14px;">{{entity.total_question}}</p>
+                        </div>
+                     </div>
+                     <div class="form-group zb-form-group">
+                        <!--Dung lượng file-->
+                        <label for="inputEmp_Train_Mode_Name" class="col-sm-5 detail-content ">${get_res('total_marks','Total Marks')}</label>
+                        <div class="col-md-6 col-lg-6 col-sm-6 detail-content ">
+                           <p class="info-item" style="text-align:center;font-size:14px;">{{entity.total_mask}}</p>
+                        </div>
+                     </div>
+                     <div class="form-group zb-form-group">
+                        <!--Dung lượng file-->
+                        <label for="inputEmp_Train_Mode_Name" class="col-sm-5 detail-content ">${get_res('easy_ques','Easy Questions')}</label>
+                        <div class="col-md-6 col-lg-6 col-sm-6 detail-content ">
+                           <p class="info-item" style="text-align:center;font-size:14px;">{{entity.easy_question}}</p>
+                        </div>
+                     </div>
+                     <div class="form-group zb-form-group">
+                        <!--Dung lượng file-->
+                        <label for="inputEmp_Train_Mode_Name" class="col-sm-5 detail-content ">${get_res('med_ques','Medium Questions')}</label>
+                        <div class="col-md-6 col-lg-6 col-sm-6 detail-content ">
+                           <p class="info-item" style="text-align:center;font-size:14px;">{{entity.med_question}}</p>
+                        </div>
+                     </div>
+                     <div class="form-group zb-form-group">
+                        <!--Dung lượng file-->
+                        <label for="inputEmp_Train_Mode_Name" class="col-sm-5 detail-content ">${get_res('hard_ques','Hard Questions')}</label>
+                        <div class="col-md-6 col-lg-6 col-sm-6 detail-content ">
+                           <p class="info-item" style="text-align:center;font-size:14px;">{{entity.diff_question}}</p>
+                        </div>
+                     </div>
+                  </div>
+                  <div class="col-md-2 col-sm-2">
+                  </div>
+               </div>
+            </div>
+      </div>
+   </collapse-box>
+</div>
+
 <style>
     .circle-statistics {
     color: rgb(68,114,196);
     width: 40px;
-    border: 1px solid rgb(68,114,196);
+    border: 1px solid rgb(68,114,196) !important;
     border-radius: 50%;
     text-align: center;
     font-size: 21px;
@@ -375,10 +404,11 @@
 <%block name="modal_script">
 <script>
     (function (scope) {
-        
-        
 
+        scope.tabNumber = 3;
         scope.__mode = scope.$parent.mode;
+        scope.tabIdx = scope.__mode == 2 ? scope.tabNumber : 1;
+
         scope.onResizeDialog = onResizeDialog;
         scope.col = 12;
         scope.col_group = 12;
@@ -414,14 +444,19 @@
         scope.entity.easy_question = "0%"
         scope.entity.med_question = "0%"
         scope.entity.diff_question = "0%"
-        
+
         scope.entity.creator=scope.$root.__USER__.login_account
         scope.tab = 1;
         scope.setTab = function (newTab) {
             setTimeout(function () {
                 $(document).trigger("resize");
             }, 20);
-          scope.tab = newTab;
+            if(scope.tabIdx >= newTab){
+              scope.tab = newTab;
+              $('.hcs-tab-info').find('.active').removeClass('active');
+              $(event.target).closest('div').addClass('active');
+            }
+
         };
         scope.isSet = function(tabNum){
           return scope.tab === tabNum;
@@ -432,14 +467,14 @@
         { "data": "ques_detail_1", "title": "${get_res('ques_detail_table_header','Question')}" },
         { "data": "ques_category", "title": "${get_res('ques_category_table_header','Category')}" },
         { "data": "ques_type", "title": "${get_res('ques_type_table_header','Question type')}" },
-        { "data": "ques_level", "title": "${get_res('ques_level_table_header','Difficulty Level')}" },  
+        { "data": "ques_level", "title": "${get_res('ques_level_table_header','Difficulty Level')}" },
         { "data": "ques_total_marks", "title": "${get_res('ques_mark_table_header','Mark')}" },
         { "data": "ques_max_answer_time", "title": "${get_res('answer_time_table_header','Answer Time')}" },
          ];
         //Cấu hình tên field và caption hiển thị trên UI
 
         scope.addQuestionDlg = function (index) {
-            
+
             var errMsg;
             var valid = null;
             var rs = {
@@ -492,30 +527,30 @@
                     tableConfig.iPage, tableConfig.iPageLength, tableConfig.orderBy,
                     tableConfig.searchText, tableConfig.fnReloadData);
                     })
- 
-            }           
+
+            }
         }
         scope.popQuestion = function (index) {
-            
+
             scope.entity.question_category[index].diff_ques = null
             scope.entity.question_category[index].med_ques = null
             scope.entity.question_category[index].easy_ques =  null
-            
+
         }
-        
+
         scope.deleteQuestion = function () {
-            
+
             /*var len = scope.selectedItems.length
             var i;*/
-                           
+
             _.each(scope.selectedItems, function (val) { scope.category_list = _.reject(scope.category_list, function (num) { return num.ques_id == val.ques_id; }) })
-            
+
             var tableConfig = scope.$$tableConfig;
 
             scope._tableData(
                 tableConfig.iPage, tableConfig.iPageLength, tableConfig.orderBy,
                 tableConfig.searchText, tableConfig.fnReloadData);
-            
+
          }
       function openDialog(title, path, callback, id = 'myModal') {
 			//check tồn tại của form dialog theo id
@@ -558,14 +593,16 @@
             }
         };
         function _tableData(iPage, iPageLength, orderBy, searchText, callback, objSearchAdvance) {
-            
-           
-            
+            if (scope.$parent.entity.question_list && scope.$parent.entity.question_list.length > 0) {
+                scope.category_list.push(...scope.$parent.entity.question_list)
+            }
+
+
             if (scope.category_list.length != 0 || scope.entity.total_question !=0) {
                 var list_ques_id = [];
                 list_ques_id = _.map(scope.category_list, function (val) { return val.ques_id })
-              
-            
+
+
         //if (scope.treeCurrentNode.hasOwnProperty('folder_id')) {
         var sort = {};
         $.each(orderBy, function (i, v) {
@@ -588,7 +625,7 @@
                   res.items = _.map(res.items, function (val) { val.ques_max_answer_time = val.ques_max_answer_time.toString() + " secs"; return val })
                     scope.entity.total_question = res.items.length
                     scope.entity.total_mask = _.reduce(_.map(res.items, function (val) { return val.ques_total_marks }), function (memo, num) { return memo + num; });
-                    
+
 
                     scope.entity.easy_question = _.filter(res.items, function (num) { return num.ques_level == 3 }).length / scope.entity.total_question * 100;
                     scope.entity.easy_question = scope.entity.easy_question.toString() + '%';
@@ -613,7 +650,7 @@
     }
 
         /**
-         *         
+         *
          * Thay đỗi kích thước form Dialog và các control trên form dialog
          */
 
@@ -635,13 +672,23 @@
                 beforeCallToServer();
                 editData(function (res) {
                     if (res.error == null) {
-                        $dialog.closeDialog();//Đóng form input
+                        if(res.data & typeof(res.data) === 'object'){
+                           scope.insertDataRes = res.data;
+                        }
+                        if(scope.tabIdx < scope.tabNumber){
+
+                            scope.tab =  scope.tab < scope.tabIdx ? scope.tabIdx + 1 : scope.tab + 1;
+                            scope.tabIdx ++;
+                            $('.hcs-tab-info').find('.active').removeClass('active');
+                            $("div[href='#tab_default_" + scope.tabIdx + "']").addClass('active');
+                        }
+                        //$dialog.closeDialog();//Đóng form input
                         $msg.alert("${get_global_res('Handle_Success','Thao tác thành công')}", $type_alert.INFO);//Xuất thông báo thành cônng
                         if (scope.__mode == 1 || scope.__mode == 3) {
-                            
+
                             reloadData();
                         } else if (scope.__mode == 2) {
-                            
+
                             scope.$parent.currentItem = scope.entity;
                            // scope.$parent.currentItem.material_version = scope.entity.material_version
                             scope.$parent.currentItem.modified_on = res.item.modified_on;
@@ -656,6 +703,7 @@
                     }
                 });
             }
+
         }
 
         function saveNNext() {
@@ -698,7 +746,6 @@
                         scope._tableData(
                             tableConfig.iPage, tableConfig.iPageLength, tableConfig.orderBy,
                             tableConfig.searchText, tableConfig.fnReloadData);
-                            s
                     } else {
                         $msg.message("${get_global_res('Notification','Thông báo')}", "${get_global_res('Internal_Server_Error','Có lỗi từ phía máy chủ')}", function () { });
                     }
@@ -750,13 +797,16 @@
 
         function editData(callback) {
             var url = getUrl();
-           
+
             if (scope.__mode == 3) {
 
             }
             if (scope.__mode == 1) {
-
+                if(scope.insertDataRes){
+                    scope.entity['_id'] = scope.insertDataRes['_id'];
+                }
             }
+
             services.api(url)
                 .data(scope.entity)
                 .done()
@@ -770,7 +820,9 @@
         }
 
         function getUrl() {
-            return scope.__mode == 1 || scope.__mode == 3 ? "${get_api_key('app_main.api.LMSLS_ExTemplateList/insert')}" /*Mode 1: Tạo mới*/
+            return scope.__mode == 1 || scope.__mode == 3 ?
+                    (!scope.insertDataRes ? "${get_api_key('app_main.api.LMSLS_ExTemplateList/insert')}" /*Mode 1: Tạo mới*/
+                    :"${get_api_key('app_main.api.LMSLS_ExTemplateList/update')}")
                     : "${get_api_key('app_main.api.LMSLS_ExTemplateList/update')}" /*Mode 2: Cập nhật*/
         }
 
@@ -793,36 +845,39 @@
                 "result": false,
                 "errorMsg": ''
             };
-            
-            valid = lv.Validate(scope.entity.exam_temp_id);
-            rs.result = valid.isNullOrWhiteSpace();
-            rs.errorMsg = rs.result === true ? "${get_res('exam_id_is_not_null','Mã đề thi không được để trống')}" + '\n' : "" ;
-            if(rs.result === true){
-                return rs;
+            if(scope.tabIdx >= 1){
+                valid = lv.Validate(scope.entity.exam_temp_id);
+                rs.result = valid.isNullOrWhiteSpace();
+                rs.errorMsg = rs.result === true ? "${get_res('exam_id_is_not_null','Mã đề thi không được để trống')}" + '\n' : "" ;
+                if(rs.result === true){
+                    return rs;
+                }
+                valid = lv.Validate(scope.entity.exam_temp_category);
+                rs.result = valid.isNullOrWhiteSpace();
+                rs.errorMsg = rs.result === true ? "${get_res('exam_category_not_null','Danh mục thi không được để trống')}" + '\n' : "" ;
+                if(rs.result === true){
+                    return rs;
+                }
+                valid = lv.Validate(scope.entity.exam_temp_name1);
+                rs.result = valid.isNullOrWhiteSpace();
+                rs.errorMsg = rs.result === true ? "${get_res('exam_category_not_null','Tên đề thi không được để trống')}" + '\n' : "" ;
+                if(rs.result === true){
+                    return rs;
+                }
             }
-            valid = lv.Validate(scope.entity.exam_temp_category);
-            rs.result = valid.isNullOrWhiteSpace();
-            rs.errorMsg = rs.result === true ? "${get_res('exam_category_not_null','Danh mục thi không được để trống')}" + '\n' : "" ;
-            if(rs.result === true){
-                return rs;
-            }
-            valid = lv.Validate(scope.entity.exam_temp_name1);
-            rs.result = valid.isNullOrWhiteSpace();
-            rs.errorMsg = rs.result === true ? "${get_res('exam_category_not_null','Tên đề thi không được để trống')}" + '\n' : "" ;
-            if(rs.result === true){
-                return rs;
-            }
-            valid = lv.Validate(scope.entity.mode_pick);
-            rs.result = valid.isNullOrWhiteSpace();
-            rs.errorMsg = rs.result === true ? "${get_res('mode_pick_not_null','Chế độ chọn câu hỏi không được để trống')}" + '\n' : "" ;
-            if(rs.result === true){
-                return rs;
-            }
-                 
-            rs.result = scope.entity.question_list.length ==0;
-            rs.errorMsg = rs.result === true ? "${get_res('data_question_not_null','Đề thi chưa có câu hỏi được chọn')}" + '\n' : "" ;
-            if(rs.result === true){
-                return rs;
+
+            if (scope.tabIdx >= 2){
+                valid = lv.Validate(scope.entity.mode_pick);
+                rs.result = valid.isNullOrWhiteSpace();
+                rs.errorMsg = rs.result === true ? "${get_res('mode_pick_not_null','Chế độ chọn câu hỏi không được để trống')}" + '\n' : "" ;
+                if(rs.result === true){
+                    return rs;
+                }
+                /*rs.result = scope.entity.question_list.length ==0;
+                rs.errorMsg = rs.result === true ? "${get_res('data_question_not_null','Đề thi chưa có câu hỏi được chọn')}" + '\n' : "" ;
+                if(rs.result === true){
+                    return rs;
+                }*/
             }
             return rs;
         }
@@ -848,7 +903,6 @@
         }
 
         function _getDataInitCombobox() {
-			
 			scope.$root.$getInitComboboxData(scope,
 				{
                     "key": "${encryptor.get_key('lms_cbb_exTemplateCategory')}",
@@ -858,21 +912,11 @@
 			);
 		}
         _getDataInitCombobox();
-        function __getDataInitCombobox() {
-			
-			scope.$root.$getInitComboboxData(scope,
-				{
-                    "key": "${encryptor.get_key('lms_cbb_exQuestionCategory')}",
-                    "code": scope.entity && scope.entity.hasOwnProperty('category')? scope.entity.category: null,
-                    "alias": "$$$category_id"
-                }
-			);
-		}
-        __getDataInitCombobox();
+
         scope.addCategoryQuestion = function () {
-                scope.entity.question_category.push({});       
+                scope.entity.question_category.push({});
         }
-        
+
         scope.delCategoryQuestion = function () {
             if (scope.entity.question_category.length > 1) {
                 scope.entity.question_category.splice(-1,1);

@@ -1,19 +1,16 @@
-from qmongo import database, helpers
 from qmongo import qview
 from quicky import tenancy
-import quicky
-app=quicky.applications.get_app_by_file(__file__)
-db_context=database.connect(app.settings.Database)
-# from ..models.HCSEM_Employees import HCSEM_Employees
-# from ..models.HCSEM_Employees import HCSEM_Employees
-# from ..models.HCSSYS_Departments import HCSSYS_Departments
-# from ..models.HCSLS_Position import HCSLS_Position
-# from ..models.HCSLS_JobWorking import HCSLS_JobWorking
-# from ..models.HCSLS_Region import HCSLS_Region
-# from ..models.SYS_ValueList import SYS_ValueList
-import qmongo
-qview.create_mongodb_view(
-    qmongo.models.SYS_ValueList.coll.aggregate().unwind("values").project(
+from ..models.HCSEM_Employees import HCSEM_Employees
+from ..models.HCSEM_Employees import HCSEM_Employees
+from ..models.HCSSYS_Departments import HCSSYS_Departments
+from ..models.HCSLS_Position import HCSLS_Position
+from ..models.HCSLS_JobWorking import HCSLS_JobWorking
+from ..models.HCSLS_Region import HCSLS_Region
+from ..models.SYS_ValueList import SYS_ValueList
+
+def SYS_VW_ValueList():
+    return qview.create_mongodb_view(
+        SYS_ValueList().aggregate().unwind("values").project(
             language = "language",
             list_name = "list_name",
             multi_select = "multi_select",
@@ -28,10 +25,7 @@ qview.create_mongodb_view(
             )
         ,
         "SYS_VW_ValueList"
-)
-
-def SYS_VW_ValueList():
-    return qmongo.models.views.SYS_VW_ValueList.coll.get_collection(db_context)
+        )
 
 def HCSEM_VW_EmployeeCBCC():
     return qview.create_mongodb_view(
@@ -76,6 +70,8 @@ def HCSLS_VW_JobWorkingKPI():
                 cycle = "kpi.cycle",
                 weight = "kpi.weight",
                 standard_mark = "kpi.standard_mark",
+                score_from = "kpi.score_from",
+                score_to = "kpi.score_to",
                 ordinal = "kpi.ordinal",
                 note = "kpi.note",
                 created_on = "kpi.created_on",
@@ -85,6 +81,27 @@ def HCSLS_VW_JobWorkingKPI():
                 )
         ,
         "HCSLS_VW_JobWorkingKPI"
+        )
+
+def HCSLS_VW_JobWorkingCompetency():
+    return qview.create_mongodb_view(
+            HCSLS_JobWorking().aggregate().unwind("competency", False).project(
+                rec_id = "competency.rec_id",
+                job_w_code = "job_w_code",
+                job_w_name = "job_w_name",
+                grade = "competency.grade",
+                com_code = "competency.com_code",
+                com_level_code = "competency.com_level_code",
+                weight = "competency.weight",
+                ordinal = "competency.ordinal",
+                note = "competency.note",
+                created_on = "competency.created_on",
+                created_by = "competency.created_by",
+                modified_on = "competency.modified_on",
+                modified_by = "competency.modified_by"
+                )
+        ,
+        "HCSLS_VW_JobWorkingCompetency"
         )
 
 def HCSEM_VWEmpWorking():

@@ -22,21 +22,22 @@
                 scope.cbbApprovalPeriod = res.values;
                 callback();
                 scope.$applyAsync();
-            })
+            });
     }
-    
+
     function save() {
         debugger
-        if (scope.entity != null) {
+        if (scope.entity !== null) {
             var rsCheck = checkError();//Kết quả check input
-            if (rsCheck.result == false) {
+            if (rsCheck.result === false) {
                 //Nhập sai: break khỏi hàm
                 $msg.message("${get_global_res('Input_Error','Nhập liệu sai')}", rsCheck.errorMsg, function () { });
                 return;
             }
             beforeCallToServer();
             editData(function (res) {
-                if (scope.entity != null) {
+                if (res !== null) {
+                    scope.entity = res;
                     scope.__mode = 2;
                 }
                 var url = getUrl();
@@ -44,28 +45,27 @@
                     .data(scope.entity)
                     .done()
                     .then(function (res) {
-                        if (res.error == null) {
+                        if (res.error === null) {
                             $msg.alert("${get_global_res('Handle_Success','Thao tác thành công')}", $type_alert.INFO);
                             scope.$applyAsync();
                             reloadData();
-                            $('.zb-left-li').css("pointer-events", "all");
+                            //$('.zb-left-li').css("pointer-events", "all");
                         } else {
                             $msg.message("${get_global_res('Notification','Thông báo')}", "${get_global_res('Internal_Server_Error','Có lỗi từ phía máy chủ')}", function () { });
                         }
                         scope.$applyAsync();
-                    })
-            })
-            
-            
+                    });
+            });
+
+
         }
-        
+
     }
-    
+
 
     function onSave() {
         save();
-        
-    };
+    }
 
     function editData(callback) {
     services.api("${get_api_key('app_main.api.TMPER_AprPeriod/get_item_by_period_year')}")
@@ -75,9 +75,8 @@
         })
         .done()
         .then(function (res) {
-            scope.entity = res;
             scope.$applyAsync();
-            callback(res)
+            callback(res);
         });
     }
 
@@ -92,8 +91,8 @@
     }
 
     function getUrl() {
-        return scope.__mode == 1 || scope.__mode == 3 ? "${get_api_key('app_main.api.TMPER_AprPeriod/insert')}" /*Mode 1: Tạo mới*/
-            : "${get_api_key('app_main.api.TMPER_AprPeriod/update')}" /*Mode 2: Cập nhật*/
+        return scope.__mode === 1 || scope.__mode === 3 ? "${get_api_key('app_main.api.TMPER_AprPeriod/insert')}" /*Mode 1: Tạo mới*/
+            : "${get_api_key('app_main.api.TMPER_AprPeriod/update')}";/*Mode 2: Cập nhật*/
     }
 
     function checkError() {
@@ -151,7 +150,7 @@
             rs.result = false;
             rs.errorMsg = "${get_res('approval_final_from_is_not_null','Xét duyệt cuối kỳ từ phải >= ngày NV xét duyệt cuối kỳ đến')}";
         }
-       
+
         return rs;
     }
 
@@ -164,56 +163,35 @@
 
 
     (function __init__() {
-        debugger
-        
-        
-        if (scope.__mode == 2) {
+
+        if (scope.__mode === 2) {
             //scope.$root.$commons.$active = true;
-            
+
             _comboboxData(function () {
+                scope.entity = scope.$parent.entity;
                 scope.entity.apr_period = scope.$parent.Re_Map_Period(scope.$parent.entity.apr_period);
-                scope.entity.apr_year = scope.$parent.entity.apr_year;
                 scope.$applyAsync();
             });
         }
-        else if (scope.__mode == 1 || scope.__mode == 3) {
+        else if (scope.__mode === 1 || scope.__mode === 3) {
             _comboboxData();
-            $('.zb-left-li').css("pointer-events", "none");
+            //$('.zb-left-li').css("pointer-events", "none");
             scope.entity = {
                 apr_period: null,
-                apr_year: undefined,
-            }
+                apr_year: undefined
+            };
             scope.$parent.entity.apr_period = "";
             scope.$parent.entity.apr_year = undefined;
-           
+
             refresh();
             scope.$applyAsync();
         }
-        
-        
+
+
 
 
     })();
-    /////////////////////////////////////////////////////////////////////////////////////////
-    //debugger
-    //scope.$parent.$parent.$parent.$watchGroup(['mode', 'currentItem'], function (val) {
-    //    debugger
-    //    if (val[0] != 0) {
-    //        if (val[1] == 0) {
-    //            val[1] = {};
-    //        }
-    //        scope.$active = (val[1].active != undefined) ? val[1].active : true;
-    //        scope.$root.$commons.$active = scope.$active;
-    //        scope.$parent.$parent.$parent.onSave = (scope.$active) ? onSave : "";
 
-    //         if (val[0] == 1) {
-    //            scope.entity = {};
-    //            _comboboxData();
-    //            $('.zb-left-li').css("pointer-events", "none");
-    //            scope.$applyAsync();
-    //        }
-    //    }
-    //})
     
     function refresh() {
         var tableConfig = scope.$parent.$$tableConfig;

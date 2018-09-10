@@ -889,13 +889,16 @@ def get_expr(fx,*params):
                     }
             else:
                 if fx["right"]["type"]=="params":
+                    _p_=params
+                    if type(params) is tuple and params.__len__()==1:
+                        _p_=params[0]
                     # if params.__len__()<fx["right"]["value"]:
                     #     x=1
-                    # try:
-                    val=params[fx["right"]["value"]]
-                    # except Exception as ex:
-                    #     x = 1
-                    #     val="error"
+                    try:
+                        val=_p_[fx["right"]["value"]]
+                    except Exception as ex:
+                        x = 1
+                        val="error"
 
                     if type(val) in [str,unicode]:
                         if type(fx["left"]) in [str,unicode]:
@@ -1360,8 +1363,8 @@ def parse_expression_to_json_expression(expression,*params,**kwargs):
         if expression[0:5]=="expr(":
             return expr_tree
 
-        if params.__len__()>0:
-            params = params[0]
+        if type(params) is tuple and params.__len__()>0:
+            # params = params[0]
             return get_expr(expr_tree, *params,**kwargs)
         else:
             params = kwargs

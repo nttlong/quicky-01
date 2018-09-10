@@ -62,6 +62,7 @@ def apply(request,template_file,app):
                 render_model.update({k:v})
             except Exception as ex:
                 print v
+        render_model.update({"encryptor":encryptor})
         # mylookup = TemplateLookup(directories=config._default_settings["TEMPLATES_DIRS"])
         if fileName != None:
             ret_res=None

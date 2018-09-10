@@ -1733,6 +1733,7 @@ input[disabled] {
   width: 100%;
   border: 1px solid #cbcbcb;
   overflow: auto;
+  margin-bottom: unset;
 }
 .zb-list-view > a.list-group-item {
   padding: 5px 10px !important;
@@ -1741,10 +1742,17 @@ input[disabled] {
   border-top-left-radius: unset;
   border-top-right-radius: unset;
 }
+.zb-list-view > a.list-group-item:last-child {
+  border-bottom-left-radius: unset;
+  border-bottom-right-radius: unset;
+}
 .zb-list-view > .active {
   background: #ebf9ff;
   border-color: #cbcbcb;
   color: #333;
+}
+.zb-list-view > a.list-group-item:hover {
+  cursor: pointer;
 }
 .zb-list-view > .active:hover {
   background: #ebf9ff;
@@ -1787,6 +1795,35 @@ input[disabled] {
 }
 .zb-form-date-picker .zb-hour-picker:focus {
   outline: none;
+}
+.zb-multi-select .form-control {
+  border: unset;
+  border-bottom: 1px solid #cbcbcb !important;
+  border-radius: unset !important;
+}
+.zb-multi-select .caret {
+  display: inline-block;
+  position: absolute;
+  top: 12px;
+  font-style: normal;
+  font-weight: 400;
+  font-variant: normal;
+  font-size: .875rem;
+  text-transform: none;
+  text-rendering: auto;
+  line-height: 1;
+  opacity: .6;
+  -webkit-font-smoothing: antialiased;
+  width: 14px !important;
+  height: 14px !important;
+  margin-left: 2px;
+  right: 20px !important;
+  border: none !important;
+  font-family: Ionicons;
+  speak: none;
+}
+.zb-multi-select .caret:after {
+  content: "\f123";
 }
 /*BEGIN FORM COMBOBOX MULTI*/
 .zb-form-combobox > div.form-control {
@@ -2736,7 +2773,7 @@ body {
 #hcs-toast-alert.show {
   visibility: visible;
   /* Show the snackbar */
-  /* Add animation: Take 0.5 seconds to fade in and out the snackbar. 
+  /* Add animation: Take 0.5 seconds to fade in and out the snackbar.
 However, delay the fade out process for 2.5 seconds */
   -webkit-animation: fadein 0.5s, fadeout 0.5s 3s;
   animation: fadein 0.5s, fadeout 0.5s 3s;

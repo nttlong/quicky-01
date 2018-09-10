@@ -20,14 +20,15 @@ class filter_expression():
         :param kwargs:
         """
         self._pipe = {}
-        params = get_param_kw(*args,**kwargs)
-        if type(params) is list:
-            if params.__len__() ==1 and type(params[0]) is list:
-                self._pipe = expr.parse_expression_to_json_expression(expression, params[0])
-            else:
-                self._pipe=expr.parse_expression_to_json_expression(expression, params)
-        else:
-            self._pipe=expr.parse_expression_to_json_expression(expression, params)
+        self._pipe = expr.parse_expression_to_json_expression(expression,*args,**kwargs)
+        # params = get_param_kw(*args,**kwargs)
+        # if type(params) is list:
+        #     if params.__len__() ==1 and type(params[0]) is list:
+        #         self._pipe = expr.parse_expression_to_json_expression(expression, params[0])
+        #     else:
+        #         self._pipe=expr.parse_expression_to_json_expression(expression, params)
+        # else:
+        #     self._pipe=expr.parse_expression_to_json_expression(expression, params)
     def And(self,expression,*args,**kwargs):
         params = get_param_kw(*args,**kwargs)
         ret=None

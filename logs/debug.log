@@ -37389,3 +37389,1658 @@ lv.auth_user.find (0.00) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
 lv.auth_user.find (0.00) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
 lv.auth_user.find (0.00) {'username': u'sys'}
 lv.auth_user.find (0.01) {'username': u'sys'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+django_session.save (0.00) {'schema': u'lv', '_id': u'6ryicfc2yan4u9hoy5v8jogbe9evgmxa', 'expire_date': datetime.datetime(2018, 9, 24, 7, 22, 35, 776986, tzinfo=<UTC>), 'session_data': u'OTE2OWEzNjFmMzk3MzVhMTZiNjlmM2EwODhiNTVkOGExNWRjM2JlYzp7fQ=='}
+django_session.save (0.00) {'schema': u'lv', '_id': u'6ryicfc2yan4u9hoy5v8jogbe9evgmxa', 'expire_date': datetime.datetime(2018, 9, 24, 7, 22, 35, 838341, tzinfo=<UTC>), 'session_data': u'OTE2OWEzNjFmMzk3MzVhMTZiNjlmM2EwODhiNTVkOGExNWRjM2JlYzp7fQ=='}
+Not Found: /lv/login
+Not Found: /performance/static/js/plugins/slick.js
+Not Found: /performance/static/js/plugins/slick.js
+Not Found: /performance/static/js/plugins/slick.js
+Not Found: /performance/static/js/plugins/slick.js
+Not Found: /performance/static/js/plugins/slick.js
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+django_session.save (0.00) {'schema': u'lv', '_id': u'zwz8jxre09ayf2015ua8oasfzrwmmbds', 'expire_date': datetime.datetime(2018, 9, 24, 7, 31, 46, 455615, tzinfo=<UTC>), 'session_data': u'OTE2OWEzNjFmMzk3MzVhMTZiNjlmM2EwODhiNTVkOGExNWRjM2JlYzp7fQ=='}
+django_session.remove (0.00) {'_id': {'$in': [u'6ryicfc2yan4u9hoy5v8jogbe9evgmxa']}, 'schema': u'lv'}
+lv.auth_user.save (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8', 'first_name': u'', 'last_name': u'', '_id': ObjectId('5b20925a232037334054b073'), 'is_active': True, 'email': u'', 'is_superuser': False, 'is_staff': False, 'last_login': datetime.datetime(2018, 9, 10, 7, 31, 46, 469075, tzinfo=<UTC>), 'password': u'pbkdf2_sha256$12000$71ZauZ1K0jwS$zKPkNCm0toSn/5CqITaN3BKVM45nnjB0NugiE64XaDQ=', 'date_joined': datetime.datetime(2018, 6, 13, 3, 41, 14, 644000, tzinfo=<UTC>)}
+django_session.save (0.00) {'schema': u'lv', '_id': u'zwz8jxre09ayf2015ua8oasfzrwmmbds', 'expire_date': datetime.datetime(2018, 9, 24, 7, 31, 46, 475778, tzinfo=<UTC>), 'session_data': u'NTU3Y2YzOWFjNmY3ZWM4OTE3ODQ4YWI1YWQ0ZDZhMzBjMTUzZjRmNjp7Imxhbmd1YWdlIjoidmkiLCJfYXV0aF91c2VyX2JhY2tlbmQiOiJwZXJtaXNzaW9uX2JhY2tlbmRfbm9ucmVsLmJhY2tlbmRzLk5vbnJlbFBlcm1pc3Npb25CYWNrZW5kIiwiX2F1dGhfdXNlcl9pZCI6IjViMjA5MjVhMjMyMDM3MzM0MDU0YjA3MyJ9'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+Internal Server Error: /lv
+Traceback (most recent call last):
+  File "/home/hcsadmin/q03/packages/django/django/core/handlers/base.py", line 112, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/hcsadmin/q03/packages/quicky/executor.py", line 130, in exec_request_for_multi
+    return self.exec_request(request,**kwargs)
+  File "/home/hcsadmin/q03/packages/quicky/executor.py", line 105, in exec_request
+    return self.__fn__ (request, **kwargs)
+  File "/home/hcsadmin/q03/apps/performance/views.py", line 31, in index
+    return request.render(model)
+  File "/home/hcsadmin/q03/packages/quicky/extens.py", line 75, in render
+    ret_res=mylookup.get_template(fileName).render(**render_model)
+  File "/usr/local/lib/python2.7/dist-packages/mako/template.py", line 445, in render
+    return runtime._render(self, self.callable_, args, data)
+  File "/usr/local/lib/python2.7/dist-packages/mako/runtime.py", line 829, in _render
+    **_kwargs_for_callable(callable_, data))
+  File "/usr/local/lib/python2.7/dist-packages/mako/runtime.py", line 864, in _render_context
+    _exec_template(inherit, lclcontext, args=args, kwargs=kwargs)
+  File "/usr/local/lib/python2.7/dist-packages/mako/runtime.py", line 890, in _exec_template
+    callable_(context, *args, **kwargs)
+  File "base_html", line 210, in render_body
+  File "index_html", line 36, in render_body
+  File "/usr/local/lib/python2.7/dist-packages/mako/runtime.py", line 752, in _include_file
+    callable_(ctx, **_kwargs_for_include(callable_, context._data, **kwargs))
+  File "_scripts_app_js", line 51, in render_body
+TypeError: 'Undefined' object is not callable
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+Internal Server Error: /lv
+Traceback (most recent call last):
+  File "/home/hcsadmin/q03/packages/django/django/core/handlers/base.py", line 112, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/hcsadmin/q03/packages/quicky/executor.py", line 130, in exec_request_for_multi
+    return self.exec_request(request,**kwargs)
+  File "/home/hcsadmin/q03/packages/quicky/executor.py", line 105, in exec_request
+    return self.__fn__ (request, **kwargs)
+  File "/home/hcsadmin/q03/apps/performance/views.py", line 31, in index
+    return request.render(model)
+  File "/home/hcsadmin/q03/packages/quicky/extens.py", line 75, in render
+    ret_res=mylookup.get_template(fileName).render(**render_model)
+  File "/usr/local/lib/python2.7/dist-packages/mako/template.py", line 445, in render
+    return runtime._render(self, self.callable_, args, data)
+  File "/usr/local/lib/python2.7/dist-packages/mako/runtime.py", line 829, in _render
+    **_kwargs_for_callable(callable_, data))
+  File "/usr/local/lib/python2.7/dist-packages/mako/runtime.py", line 864, in _render_context
+    _exec_template(inherit, lclcontext, args=args, kwargs=kwargs)
+  File "/usr/local/lib/python2.7/dist-packages/mako/runtime.py", line 890, in _exec_template
+    callable_(context, *args, **kwargs)
+  File "base_html", line 210, in render_body
+  File "index_html", line 36, in render_body
+  File "/usr/local/lib/python2.7/dist-packages/mako/runtime.py", line 752, in _include_file
+    callable_(ctx, **_kwargs_for_include(callable_, context._data, **kwargs))
+  File "_scripts_app_js", line 51, in render_body
+TypeError: 'Undefined' object is not callable
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+Internal Server Error: /lv
+Traceback (most recent call last):
+  File "/home/hcsadmin/q03/packages/django/django/core/handlers/base.py", line 112, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/hcsadmin/q03/packages/quicky/executor.py", line 130, in exec_request_for_multi
+    return self.exec_request(request,**kwargs)
+  File "/home/hcsadmin/q03/packages/quicky/executor.py", line 105, in exec_request
+    return self.__fn__ (request, **kwargs)
+  File "/home/hcsadmin/q03/apps/performance/views.py", line 31, in index
+    return request.render(model)
+  File "/home/hcsadmin/q03/packages/quicky/extens.py", line 75, in render
+    ret_res=mylookup.get_template(fileName).render(**render_model)
+  File "/usr/local/lib/python2.7/dist-packages/mako/template.py", line 445, in render
+    return runtime._render(self, self.callable_, args, data)
+  File "/usr/local/lib/python2.7/dist-packages/mako/runtime.py", line 829, in _render
+    **_kwargs_for_callable(callable_, data))
+  File "/usr/local/lib/python2.7/dist-packages/mako/runtime.py", line 864, in _render_context
+    _exec_template(inherit, lclcontext, args=args, kwargs=kwargs)
+  File "/usr/local/lib/python2.7/dist-packages/mako/runtime.py", line 890, in _exec_template
+    callable_(context, *args, **kwargs)
+  File "base_html", line 210, in render_body
+  File "index_html", line 36, in render_body
+  File "/usr/local/lib/python2.7/dist-packages/mako/runtime.py", line 752, in _include_file
+    callable_(ctx, **_kwargs_for_include(callable_, context._data, **kwargs))
+  File "_scripts_app_js", line 51, in render_body
+TypeError: 'Undefined' object is not callable
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+Internal Server Error: /lv
+Traceback (most recent call last):
+  File "/home/hcsadmin/q03/packages/django/django/core/handlers/base.py", line 112, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/hcsadmin/q03/packages/quicky/executor.py", line 130, in exec_request_for_multi
+    return self.exec_request(request,**kwargs)
+  File "/home/hcsadmin/q03/packages/quicky/executor.py", line 105, in exec_request
+    return self.__fn__ (request, **kwargs)
+  File "/home/hcsadmin/q03/apps/performance/views.py", line 31, in index
+    return request.render(model)
+  File "/home/hcsadmin/q03/packages/quicky/extens.py", line 75, in render
+    ret_res=mylookup.get_template(fileName).render(**render_model)
+  File "/usr/local/lib/python2.7/dist-packages/mako/template.py", line 445, in render
+    return runtime._render(self, self.callable_, args, data)
+  File "/usr/local/lib/python2.7/dist-packages/mako/runtime.py", line 829, in _render
+    **_kwargs_for_callable(callable_, data))
+  File "/usr/local/lib/python2.7/dist-packages/mako/runtime.py", line 864, in _render_context
+    _exec_template(inherit, lclcontext, args=args, kwargs=kwargs)
+  File "/usr/local/lib/python2.7/dist-packages/mako/runtime.py", line 890, in _exec_template
+    callable_(context, *args, **kwargs)
+  File "base_html", line 210, in render_body
+  File "index_html", line 36, in render_body
+  File "/usr/local/lib/python2.7/dist-packages/mako/runtime.py", line 752, in _include_file
+    callable_(ctx, **_kwargs_for_include(callable_, context._data, **kwargs))
+  File "_scripts_app_js", line 73, in render_body
+TypeError: 'Undefined' object is not callable
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+Not Found: /{{$root.logo}}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.03) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.01) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.03) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.01) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.01) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.01) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+Not Found: /{{$root.logo}}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.01) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+Internal Server Error: /lv/pages/undefined
+Traceback (most recent call last):
+  File "/home/hcsadmin/q03/packages/django/django/core/handlers/base.py", line 112, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/hcsadmin/q03/packages/quicky/executor.py", line 130, in exec_request_for_multi
+    return self.exec_request(request,**kwargs)
+  File "/home/hcsadmin/q03/packages/quicky/executor.py", line 105, in exec_request
+    return self.__fn__ (request, **kwargs)
+  File "/home/hcsadmin/q03/apps/performance/views.py", line 117, in load_page
+    "path":path.lower()
+  File "/home/hcsadmin/q03/packages/quicky/extens.py", line 75, in render
+    ret_res=mylookup.get_template(fileName).render(**render_model)
+  File "/usr/local/lib/python2.7/dist-packages/mako/template.py", line 445, in render
+    return runtime._render(self, self.callable_, args, data)
+  File "/usr/local/lib/python2.7/dist-packages/mako/runtime.py", line 829, in _render
+    **_kwargs_for_callable(callable_, data))
+  File "/usr/local/lib/python2.7/dist-packages/mako/runtime.py", line 864, in _render_context
+    _exec_template(inherit, lclcontext, args=args, kwargs=kwargs)
+  File "/usr/local/lib/python2.7/dist-packages/mako/runtime.py", line 890, in _exec_template
+    callable_(context, *args, **kwargs)
+  File "dynamic_html", line 21, in render_body
+  File "/usr/local/lib/python2.7/dist-packages/mako/runtime.py", line 748, in _include_file
+    template = _lookup_template(context, uri, calling_uri)
+  File "/usr/local/lib/python2.7/dist-packages/mako/runtime.py", line 795, in _lookup_template
+    raise exceptions.TemplateLookupException(str(compat.exception_as()))
+TemplateLookupException: Cant locate template for uri u'views/undefined.html'
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+Not Found: /{{$root.logo}}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.02) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.01) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.02) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.01) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.01) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.01) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.01) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.01) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+Not Found: /{{$root.logo}}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.01) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.02) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.01) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.01) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.01) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.01) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.01) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.01) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.01) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.01) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.01) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.01) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.01) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+Not Found: /{{$root.logo}}
+lv.auth_user.find (0.03) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.02) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.04) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+Internal Server Error: /lv/pages/undefined
+Traceback (most recent call last):
+  File "/home/hcsadmin/q03/packages/django/django/core/handlers/base.py", line 112, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/hcsadmin/q03/packages/quicky/executor.py", line 130, in exec_request_for_multi
+    return self.exec_request(request,**kwargs)
+  File "/home/hcsadmin/q03/packages/quicky/executor.py", line 105, in exec_request
+    return self.__fn__ (request, **kwargs)
+  File "/home/hcsadmin/q03/apps/performance/views.py", line 117, in load_page
+    "path":path.lower()
+  File "/home/hcsadmin/q03/packages/quicky/extens.py", line 75, in render
+    ret_res=mylookup.get_template(fileName).render(**render_model)
+  File "/usr/local/lib/python2.7/dist-packages/mako/template.py", line 445, in render
+    return runtime._render(self, self.callable_, args, data)
+  File "/usr/local/lib/python2.7/dist-packages/mako/runtime.py", line 829, in _render
+    **_kwargs_for_callable(callable_, data))
+  File "/usr/local/lib/python2.7/dist-packages/mako/runtime.py", line 864, in _render_context
+    _exec_template(inherit, lclcontext, args=args, kwargs=kwargs)
+  File "/usr/local/lib/python2.7/dist-packages/mako/runtime.py", line 890, in _exec_template
+    callable_(context, *args, **kwargs)
+  File "dynamic_html", line 21, in render_body
+  File "/usr/local/lib/python2.7/dist-packages/mako/runtime.py", line 748, in _include_file
+    template = _lookup_template(context, uri, calling_uri)
+  File "/usr/local/lib/python2.7/dist-packages/mako/runtime.py", line 795, in _lookup_template
+    raise exceptions.TemplateLookupException(str(compat.exception_as()))
+TemplateLookupException: Cant locate template for uri u'views/undefined.html'
+lv.auth_user.find (0.02) {'_id': ObjectId('5b20925a232037334054b073')}
+Not Found: /{{$root.logo}}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.03) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.02) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.03) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.01) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+Internal Server Error: /lv/pages/undefined
+Traceback (most recent call last):
+  File "/home/hcsadmin/q03/packages/django/django/core/handlers/base.py", line 112, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/hcsadmin/q03/packages/quicky/executor.py", line 130, in exec_request_for_multi
+    return self.exec_request(request,**kwargs)
+  File "/home/hcsadmin/q03/packages/quicky/executor.py", line 105, in exec_request
+    return self.__fn__ (request, **kwargs)
+  File "/home/hcsadmin/q03/apps/performance/views.py", line 117, in load_page
+    "path":path.lower()
+  File "/home/hcsadmin/q03/packages/quicky/extens.py", line 75, in render
+    ret_res=mylookup.get_template(fileName).render(**render_model)
+  File "/usr/local/lib/python2.7/dist-packages/mako/template.py", line 445, in render
+    return runtime._render(self, self.callable_, args, data)
+  File "/usr/local/lib/python2.7/dist-packages/mako/runtime.py", line 829, in _render
+    **_kwargs_for_callable(callable_, data))
+  File "/usr/local/lib/python2.7/dist-packages/mako/runtime.py", line 864, in _render_context
+    _exec_template(inherit, lclcontext, args=args, kwargs=kwargs)
+  File "/usr/local/lib/python2.7/dist-packages/mako/runtime.py", line 890, in _exec_template
+    callable_(context, *args, **kwargs)
+  File "dynamic_html", line 21, in render_body
+  File "/usr/local/lib/python2.7/dist-packages/mako/runtime.py", line 748, in _include_file
+    template = _lookup_template(context, uri, calling_uri)
+  File "/usr/local/lib/python2.7/dist-packages/mako/runtime.py", line 795, in _lookup_template
+    raise exceptions.TemplateLookupException(str(compat.exception_as()))
+TemplateLookupException: Cant locate template for uri u'views/undefined.html'
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+Not Found: /{{$root.logo}}
+lv.auth_user.find (0.03) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.03) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.02) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.02) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.02) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.01) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+Internal Server Error: /lv/pages/undefined
+Traceback (most recent call last):
+  File "/home/hcsadmin/q03/packages/django/django/core/handlers/base.py", line 112, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/hcsadmin/q03/packages/quicky/executor.py", line 130, in exec_request_for_multi
+    return self.exec_request(request,**kwargs)
+  File "/home/hcsadmin/q03/packages/quicky/executor.py", line 105, in exec_request
+    return self.__fn__ (request, **kwargs)
+  File "/home/hcsadmin/q03/apps/performance/views.py", line 117, in load_page
+    "path":path.lower()
+  File "/home/hcsadmin/q03/packages/quicky/extens.py", line 75, in render
+    ret_res=mylookup.get_template(fileName).render(**render_model)
+  File "/usr/local/lib/python2.7/dist-packages/mako/template.py", line 445, in render
+    return runtime._render(self, self.callable_, args, data)
+  File "/usr/local/lib/python2.7/dist-packages/mako/runtime.py", line 829, in _render
+    **_kwargs_for_callable(callable_, data))
+  File "/usr/local/lib/python2.7/dist-packages/mako/runtime.py", line 864, in _render_context
+    _exec_template(inherit, lclcontext, args=args, kwargs=kwargs)
+  File "/usr/local/lib/python2.7/dist-packages/mako/runtime.py", line 890, in _exec_template
+    callable_(context, *args, **kwargs)
+  File "dynamic_html", line 21, in render_body
+  File "/usr/local/lib/python2.7/dist-packages/mako/runtime.py", line 748, in _include_file
+    template = _lookup_template(context, uri, calling_uri)
+  File "/usr/local/lib/python2.7/dist-packages/mako/runtime.py", line 795, in _lookup_template
+    raise exceptions.TemplateLookupException(str(compat.exception_as()))
+TemplateLookupException: Cant locate template for uri u'views/undefined.html'
+lv.auth_user.find (0.01) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.02) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.02) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.01) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.01) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.01) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+Internal Server Error: /lv/pages/profile/employeeInfo
+Traceback (most recent call last):
+  File "/home/hcsadmin/q03/packages/django/django/core/handlers/base.py", line 112, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/hcsadmin/q03/packages/quicky/executor.py", line 130, in exec_request_for_multi
+    return self.exec_request(request,**kwargs)
+  File "/home/hcsadmin/q03/packages/quicky/executor.py", line 105, in exec_request
+    return self.__fn__ (request, **kwargs)
+  File "/home/hcsadmin/q03/apps/performance/views.py", line 117, in load_page
+    "path":path.lower()
+  File "/home/hcsadmin/q03/packages/quicky/extens.py", line 75, in render
+    ret_res=mylookup.get_template(fileName).render(**render_model)
+  File "/usr/local/lib/python2.7/dist-packages/mako/template.py", line 445, in render
+    return runtime._render(self, self.callable_, args, data)
+  File "/usr/local/lib/python2.7/dist-packages/mako/runtime.py", line 829, in _render
+    **_kwargs_for_callable(callable_, data))
+  File "/usr/local/lib/python2.7/dist-packages/mako/runtime.py", line 864, in _render_context
+    _exec_template(inherit, lclcontext, args=args, kwargs=kwargs)
+  File "/usr/local/lib/python2.7/dist-packages/mako/runtime.py", line 890, in _exec_template
+    callable_(context, *args, **kwargs)
+  File "dynamic_html", line 21, in render_body
+  File "/usr/local/lib/python2.7/dist-packages/mako/runtime.py", line 748, in _include_file
+    template = _lookup_template(context, uri, calling_uri)
+  File "/usr/local/lib/python2.7/dist-packages/mako/runtime.py", line 795, in _lookup_template
+    raise exceptions.TemplateLookupException(str(compat.exception_as()))
+TemplateLookupException: Cant locate template for uri u'views/profile/employeeinfo.html'
+lv.auth_user.find (0.01) {'_id': ObjectId('5b20925a232037334054b073')}
+Internal Server Error: /lv/pages/profile/empWorking
+Traceback (most recent call last):
+  File "/home/hcsadmin/q03/packages/django/django/core/handlers/base.py", line 112, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/hcsadmin/q03/packages/quicky/executor.py", line 130, in exec_request_for_multi
+    return self.exec_request(request,**kwargs)
+  File "/home/hcsadmin/q03/packages/quicky/executor.py", line 105, in exec_request
+    return self.__fn__ (request, **kwargs)
+  File "/home/hcsadmin/q03/apps/performance/views.py", line 117, in load_page
+    "path":path.lower()
+  File "/home/hcsadmin/q03/packages/quicky/extens.py", line 75, in render
+    ret_res=mylookup.get_template(fileName).render(**render_model)
+  File "/usr/local/lib/python2.7/dist-packages/mako/template.py", line 445, in render
+    return runtime._render(self, self.callable_, args, data)
+  File "/usr/local/lib/python2.7/dist-packages/mako/runtime.py", line 829, in _render
+    **_kwargs_for_callable(callable_, data))
+  File "/usr/local/lib/python2.7/dist-packages/mako/runtime.py", line 864, in _render_context
+    _exec_template(inherit, lclcontext, args=args, kwargs=kwargs)
+  File "/usr/local/lib/python2.7/dist-packages/mako/runtime.py", line 890, in _exec_template
+    callable_(context, *args, **kwargs)
+  File "dynamic_html", line 21, in render_body
+  File "/usr/local/lib/python2.7/dist-packages/mako/runtime.py", line 748, in _include_file
+    template = _lookup_template(context, uri, calling_uri)
+  File "/usr/local/lib/python2.7/dist-packages/mako/runtime.py", line 795, in _lookup_template
+    raise exceptions.TemplateLookupException(str(compat.exception_as()))
+TemplateLookupException: Cant locate template for uri u'views/profile/empworking.html'
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+Internal Server Error: /lv/pages/
+Traceback (most recent call last):
+  File "/home/hcsadmin/q03/packages/django/django/core/handlers/base.py", line 112, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/hcsadmin/q03/packages/quicky/executor.py", line 130, in exec_request_for_multi
+    return self.exec_request(request,**kwargs)
+  File "/home/hcsadmin/q03/packages/quicky/executor.py", line 105, in exec_request
+    return self.__fn__ (request, **kwargs)
+  File "/home/hcsadmin/q03/apps/performance/views.py", line 117, in load_page
+    "path":path.lower()
+  File "/home/hcsadmin/q03/packages/quicky/extens.py", line 75, in render
+    ret_res=mylookup.get_template(fileName).render(**render_model)
+  File "/usr/local/lib/python2.7/dist-packages/mako/template.py", line 445, in render
+    return runtime._render(self, self.callable_, args, data)
+  File "/usr/local/lib/python2.7/dist-packages/mako/runtime.py", line 829, in _render
+    **_kwargs_for_callable(callable_, data))
+  File "/usr/local/lib/python2.7/dist-packages/mako/runtime.py", line 864, in _render_context
+    _exec_template(inherit, lclcontext, args=args, kwargs=kwargs)
+  File "/usr/local/lib/python2.7/dist-packages/mako/runtime.py", line 890, in _exec_template
+    callable_(context, *args, **kwargs)
+  File "dynamic_html", line 21, in render_body
+  File "/usr/local/lib/python2.7/dist-packages/mako/runtime.py", line 748, in _include_file
+    template = _lookup_template(context, uri, calling_uri)
+  File "/usr/local/lib/python2.7/dist-packages/mako/runtime.py", line 795, in _lookup_template
+    raise exceptions.TemplateLookupException(str(compat.exception_as()))
+TemplateLookupException: Cant locate template for uri u'views/.html'
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+Internal Server Error: /lv/pages/profile/employeeInfo
+Traceback (most recent call last):
+  File "/home/hcsadmin/q03/packages/django/django/core/handlers/base.py", line 112, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/hcsadmin/q03/packages/quicky/executor.py", line 130, in exec_request_for_multi
+    return self.exec_request(request,**kwargs)
+  File "/home/hcsadmin/q03/packages/quicky/executor.py", line 105, in exec_request
+    return self.__fn__ (request, **kwargs)
+  File "/home/hcsadmin/q03/apps/performance/views.py", line 117, in load_page
+    "path":path.lower()
+  File "/home/hcsadmin/q03/packages/quicky/extens.py", line 75, in render
+    ret_res=mylookup.get_template(fileName).render(**render_model)
+  File "/usr/local/lib/python2.7/dist-packages/mako/template.py", line 445, in render
+    return runtime._render(self, self.callable_, args, data)
+  File "/usr/local/lib/python2.7/dist-packages/mako/runtime.py", line 829, in _render
+    **_kwargs_for_callable(callable_, data))
+  File "/usr/local/lib/python2.7/dist-packages/mako/runtime.py", line 864, in _render_context
+    _exec_template(inherit, lclcontext, args=args, kwargs=kwargs)
+  File "/usr/local/lib/python2.7/dist-packages/mako/runtime.py", line 890, in _exec_template
+    callable_(context, *args, **kwargs)
+  File "dynamic_html", line 21, in render_body
+  File "/usr/local/lib/python2.7/dist-packages/mako/runtime.py", line 748, in _include_file
+    template = _lookup_template(context, uri, calling_uri)
+  File "/usr/local/lib/python2.7/dist-packages/mako/runtime.py", line 795, in _lookup_template
+    raise exceptions.TemplateLookupException(str(compat.exception_as()))
+TemplateLookupException: Cant locate template for uri u'views/profile/employeeinfo.html'
+Not Found: /performance/static/js/angular.min.js.map
+Not Found: /performance/static/js/datatables/pdfmake.min.js.map
+Not Found: /performance/static/css/libs/bootstrap-datepicker/bootstrap-datepicker3.standalone.min.css.map
+Not Found: /performance/static/css/libs/bootstrap-datepicker/bootstrap-datepicker.min.css.map
+Not Found: /performance/static/css/libs/bootstrap-datepicker/bootstrap-datepicker3.css.map
+lv.auth_user.find (0.01) {'_id': ObjectId('5b20925a232037334054b073')}
+Internal Server Error: /lv/pages/profile/empWorking
+Traceback (most recent call last):
+  File "/home/hcsadmin/q03/packages/django/django/core/handlers/base.py", line 112, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/hcsadmin/q03/packages/quicky/executor.py", line 130, in exec_request_for_multi
+    return self.exec_request(request,**kwargs)
+  File "/home/hcsadmin/q03/packages/quicky/executor.py", line 105, in exec_request
+    return self.__fn__ (request, **kwargs)
+  File "/home/hcsadmin/q03/apps/performance/views.py", line 117, in load_page
+    "path":path.lower()
+  File "/home/hcsadmin/q03/packages/quicky/extens.py", line 75, in render
+    ret_res=mylookup.get_template(fileName).render(**render_model)
+  File "/usr/local/lib/python2.7/dist-packages/mako/template.py", line 445, in render
+    return runtime._render(self, self.callable_, args, data)
+  File "/usr/local/lib/python2.7/dist-packages/mako/runtime.py", line 829, in _render
+    **_kwargs_for_callable(callable_, data))
+  File "/usr/local/lib/python2.7/dist-packages/mako/runtime.py", line 864, in _render_context
+    _exec_template(inherit, lclcontext, args=args, kwargs=kwargs)
+  File "/usr/local/lib/python2.7/dist-packages/mako/runtime.py", line 890, in _exec_template
+    callable_(context, *args, **kwargs)
+  File "dynamic_html", line 21, in render_body
+  File "/usr/local/lib/python2.7/dist-packages/mako/runtime.py", line 748, in _include_file
+    template = _lookup_template(context, uri, calling_uri)
+  File "/usr/local/lib/python2.7/dist-packages/mako/runtime.py", line 795, in _lookup_template
+    raise exceptions.TemplateLookupException(str(compat.exception_as()))
+TemplateLookupException: Cant locate template for uri u'views/profile/empworking.html'
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+Internal Server Error: /lv/pages/profile/empWorking
+Traceback (most recent call last):
+  File "/home/hcsadmin/q03/packages/django/django/core/handlers/base.py", line 112, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/hcsadmin/q03/packages/quicky/executor.py", line 130, in exec_request_for_multi
+    return self.exec_request(request,**kwargs)
+  File "/home/hcsadmin/q03/packages/quicky/executor.py", line 105, in exec_request
+    return self.__fn__ (request, **kwargs)
+  File "/home/hcsadmin/q03/apps/performance/views.py", line 117, in load_page
+    "path":path.lower()
+  File "/home/hcsadmin/q03/packages/quicky/extens.py", line 75, in render
+    ret_res=mylookup.get_template(fileName).render(**render_model)
+  File "/usr/local/lib/python2.7/dist-packages/mako/template.py", line 445, in render
+    return runtime._render(self, self.callable_, args, data)
+  File "/usr/local/lib/python2.7/dist-packages/mako/runtime.py", line 829, in _render
+    **_kwargs_for_callable(callable_, data))
+  File "/usr/local/lib/python2.7/dist-packages/mako/runtime.py", line 864, in _render_context
+    _exec_template(inherit, lclcontext, args=args, kwargs=kwargs)
+  File "/usr/local/lib/python2.7/dist-packages/mako/runtime.py", line 890, in _exec_template
+    callable_(context, *args, **kwargs)
+  File "dynamic_html", line 21, in render_body
+  File "/usr/local/lib/python2.7/dist-packages/mako/runtime.py", line 748, in _include_file
+    template = _lookup_template(context, uri, calling_uri)
+  File "/usr/local/lib/python2.7/dist-packages/mako/runtime.py", line 795, in _lookup_template
+    raise exceptions.TemplateLookupException(str(compat.exception_as()))
+TemplateLookupException: Cant locate template for uri u'views/profile/empworking.html'
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b20925a232037334054b073')}
+Internal Server Error: /lv/pages/competencyDictionary
+Traceback (most recent call last):
+  File "/home/hcsadmin/q03/packages/django/django/core/handlers/base.py", line 112, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/hcsadmin/q03/packages/quicky/executor.py", line 130, in exec_request_for_multi
+    return self.exec_request(request,**kwargs)
+  File "/home/hcsadmin/q03/packages/quicky/executor.py", line 105, in exec_request
+    return self.__fn__ (request, **kwargs)
+  File "/home/hcsadmin/q03/apps/performance/views.py", line 117, in load_page
+    "path":path.lower()
+  File "/home/hcsadmin/q03/packages/quicky/extens.py", line 75, in render
+    ret_res=mylookup.get_template(fileName).render(**render_model)
+  File "/usr/local/lib/python2.7/dist-packages/mako/template.py", line 445, in render
+    return runtime._render(self, self.callable_, args, data)
+  File "/usr/local/lib/python2.7/dist-packages/mako/runtime.py", line 829, in _render
+    **_kwargs_for_callable(callable_, data))
+  File "/usr/local/lib/python2.7/dist-packages/mako/runtime.py", line 864, in _render_context
+    _exec_template(inherit, lclcontext, args=args, kwargs=kwargs)
+  File "/usr/local/lib/python2.7/dist-packages/mako/runtime.py", line 890, in _exec_template
+    callable_(context, *args, **kwargs)
+  File "dynamic_html", line 21, in render_body
+  File "/usr/local/lib/python2.7/dist-packages/mako/runtime.py", line 748, in _include_file
+    template = _lookup_template(context, uri, calling_uri)
+  File "/usr/local/lib/python2.7/dist-packages/mako/runtime.py", line 795, in _lookup_template
+    raise exceptions.TemplateLookupException(str(compat.exception_as()))
+TemplateLookupException: Cant locate template for uri u'views/competencydictionary.html'
+Not Found: /performance/static/js/angular.min.js.map
+Not Found: /performance/static/js/datatables/pdfmake.min.js.map
+Not Found: /performance/static/css/libs/bootstrap-datepicker/bootstrap-datepicker.min.css.map
+Not Found: /performance/static/css/libs/bootstrap-datepicker/bootstrap-datepicker3.css.map
+Not Found: /performance/static/css/libs/bootstrap-datepicker/bootstrap-datepicker3.standalone.min.css.map
+lv.auth_user.find (0.01) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.02) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.02) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b20925a232037334054b073')}
+Internal Server Error: /lv/pages/competencyDictionary
+Traceback (most recent call last):
+  File "/home/hcsadmin/q03/packages/django/django/core/handlers/base.py", line 112, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/hcsadmin/q03/packages/quicky/executor.py", line 130, in exec_request_for_multi
+    return self.exec_request(request,**kwargs)
+  File "/home/hcsadmin/q03/packages/quicky/executor.py", line 105, in exec_request
+    return self.__fn__ (request, **kwargs)
+  File "/home/hcsadmin/q03/apps/performance/views.py", line 117, in load_page
+    "path":path.lower()
+  File "/home/hcsadmin/q03/packages/quicky/extens.py", line 75, in render
+    ret_res=mylookup.get_template(fileName).render(**render_model)
+  File "/usr/local/lib/python2.7/dist-packages/mako/template.py", line 445, in render
+    return runtime._render(self, self.callable_, args, data)
+  File "/usr/local/lib/python2.7/dist-packages/mako/runtime.py", line 829, in _render
+    **_kwargs_for_callable(callable_, data))
+  File "/usr/local/lib/python2.7/dist-packages/mako/runtime.py", line 864, in _render_context
+    _exec_template(inherit, lclcontext, args=args, kwargs=kwargs)
+  File "/usr/local/lib/python2.7/dist-packages/mako/runtime.py", line 890, in _exec_template
+    callable_(context, *args, **kwargs)
+  File "dynamic_html", line 21, in render_body
+  File "/usr/local/lib/python2.7/dist-packages/mako/runtime.py", line 748, in _include_file
+    template = _lookup_template(context, uri, calling_uri)
+  File "/usr/local/lib/python2.7/dist-packages/mako/runtime.py", line 795, in _lookup_template
+    raise exceptions.TemplateLookupException(str(compat.exception_as()))
+TemplateLookupException: Cant locate template for uri u'views/competencydictionary.html'
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+Internal Server Error: /lv/pages/competencyDictionary
+Traceback (most recent call last):
+  File "/home/hcsadmin/q03/packages/django/django/core/handlers/base.py", line 112, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/hcsadmin/q03/packages/quicky/executor.py", line 130, in exec_request_for_multi
+    return self.exec_request(request,**kwargs)
+  File "/home/hcsadmin/q03/packages/quicky/executor.py", line 105, in exec_request
+    return self.__fn__ (request, **kwargs)
+  File "/home/hcsadmin/q03/apps/performance/views.py", line 117, in load_page
+    "path":path.lower()
+  File "/home/hcsadmin/q03/packages/quicky/extens.py", line 75, in render
+    ret_res=mylookup.get_template(fileName).render(**render_model)
+  File "/usr/local/lib/python2.7/dist-packages/mako/template.py", line 445, in render
+    return runtime._render(self, self.callable_, args, data)
+  File "/usr/local/lib/python2.7/dist-packages/mako/runtime.py", line 829, in _render
+    **_kwargs_for_callable(callable_, data))
+  File "/usr/local/lib/python2.7/dist-packages/mako/runtime.py", line 864, in _render_context
+    _exec_template(inherit, lclcontext, args=args, kwargs=kwargs)
+  File "/usr/local/lib/python2.7/dist-packages/mako/runtime.py", line 890, in _exec_template
+    callable_(context, *args, **kwargs)
+  File "dynamic_html", line 21, in render_body
+  File "/usr/local/lib/python2.7/dist-packages/mako/runtime.py", line 748, in _include_file
+    template = _lookup_template(context, uri, calling_uri)
+  File "/usr/local/lib/python2.7/dist-packages/mako/runtime.py", line 795, in _lookup_template
+    raise exceptions.TemplateLookupException(str(compat.exception_as()))
+TemplateLookupException: Cant locate template for uri u'views/competencydictionary.html'
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+Internal Server Error: /lv/pages/competencyDictionary
+Traceback (most recent call last):
+  File "/home/hcsadmin/q03/packages/django/django/core/handlers/base.py", line 112, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/hcsadmin/q03/packages/quicky/executor.py", line 130, in exec_request_for_multi
+    return self.exec_request(request,**kwargs)
+  File "/home/hcsadmin/q03/packages/quicky/executor.py", line 105, in exec_request
+    return self.__fn__ (request, **kwargs)
+  File "/home/hcsadmin/q03/apps/performance/views.py", line 117, in load_page
+    "path":path
+  File "/home/hcsadmin/q03/packages/quicky/extens.py", line 75, in render
+    ret_res=mylookup.get_template(fileName).render(**render_model)
+  File "/usr/local/lib/python2.7/dist-packages/mako/template.py", line 445, in render
+    return runtime._render(self, self.callable_, args, data)
+  File "/usr/local/lib/python2.7/dist-packages/mako/runtime.py", line 829, in _render
+    **_kwargs_for_callable(callable_, data))
+  File "/usr/local/lib/python2.7/dist-packages/mako/runtime.py", line 864, in _render_context
+    _exec_template(inherit, lclcontext, args=args, kwargs=kwargs)
+  File "/usr/local/lib/python2.7/dist-packages/mako/runtime.py", line 890, in _exec_template
+    callable_(context, *args, **kwargs)
+  File "dynamic_html", line 21, in render_body
+  File "/usr/local/lib/python2.7/dist-packages/mako/runtime.py", line 748, in _include_file
+    template = _lookup_template(context, uri, calling_uri)
+  File "/usr/local/lib/python2.7/dist-packages/mako/runtime.py", line 795, in _lookup_template
+    raise exceptions.TemplateLookupException(str(compat.exception_as()))
+TemplateLookupException: Cant locate template for uri u'views/competencydictionary.html'
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+Internal Server Error: /lv/pages/competencyDictionary
+Traceback (most recent call last):
+  File "/home/hcsadmin/q03/packages/django/django/core/handlers/base.py", line 112, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/hcsadmin/q03/packages/quicky/executor.py", line 130, in exec_request_for_multi
+    return self.exec_request(request,**kwargs)
+  File "/home/hcsadmin/q03/packages/quicky/executor.py", line 105, in exec_request
+    return self.__fn__ (request, **kwargs)
+  File "/home/hcsadmin/q03/apps/performance/views.py", line 117, in load_page
+    "path":path
+  File "/home/hcsadmin/q03/packages/quicky/extens.py", line 75, in render
+    ret_res=mylookup.get_template(fileName).render(**render_model)
+  File "/usr/local/lib/python2.7/dist-packages/mako/template.py", line 445, in render
+    return runtime._render(self, self.callable_, args, data)
+  File "/usr/local/lib/python2.7/dist-packages/mako/runtime.py", line 829, in _render
+    **_kwargs_for_callable(callable_, data))
+  File "/usr/local/lib/python2.7/dist-packages/mako/runtime.py", line 864, in _render_context
+    _exec_template(inherit, lclcontext, args=args, kwargs=kwargs)
+  File "/usr/local/lib/python2.7/dist-packages/mako/runtime.py", line 890, in _exec_template
+    callable_(context, *args, **kwargs)
+  File "dynamic_html", line 21, in render_body
+  File "/usr/local/lib/python2.7/dist-packages/mako/runtime.py", line 748, in _include_file
+    template = _lookup_template(context, uri, calling_uri)
+  File "/usr/local/lib/python2.7/dist-packages/mako/runtime.py", line 795, in _lookup_template
+    raise exceptions.TemplateLookupException(str(compat.exception_as()))
+TemplateLookupException: Cant locate template for uri u'views/competencydictionary.html'
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+Internal Server Error: /lv/pages/competencyDictionary
+Traceback (most recent call last):
+  File "/home/hcsadmin/q03/packages/django/django/core/handlers/base.py", line 112, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/hcsadmin/q03/packages/quicky/executor.py", line 130, in exec_request_for_multi
+    return self.exec_request(request,**kwargs)
+  File "/home/hcsadmin/q03/packages/quicky/executor.py", line 105, in exec_request
+    return self.__fn__ (request, **kwargs)
+  File "/home/hcsadmin/q03/apps/performance/views.py", line 117, in load_page
+    "path":path
+  File "/home/hcsadmin/q03/packages/quicky/extens.py", line 75, in render
+    ret_res=mylookup.get_template(fileName).render(**render_model)
+  File "/usr/local/lib/python2.7/dist-packages/mako/template.py", line 445, in render
+    return runtime._render(self, self.callable_, args, data)
+  File "/usr/local/lib/python2.7/dist-packages/mako/runtime.py", line 829, in _render
+    **_kwargs_for_callable(callable_, data))
+  File "/usr/local/lib/python2.7/dist-packages/mako/runtime.py", line 864, in _render_context
+    _exec_template(inherit, lclcontext, args=args, kwargs=kwargs)
+  File "/usr/local/lib/python2.7/dist-packages/mako/runtime.py", line 890, in _exec_template
+    callable_(context, *args, **kwargs)
+  File "dynamic_html", line 21, in render_body
+  File "/usr/local/lib/python2.7/dist-packages/mako/runtime.py", line 748, in _include_file
+    template = _lookup_template(context, uri, calling_uri)
+  File "/usr/local/lib/python2.7/dist-packages/mako/runtime.py", line 795, in _lookup_template
+    raise exceptions.TemplateLookupException(str(compat.exception_as()))
+TemplateLookupException: Cant locate template for uri u'views/competencydictionary.html'
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.01) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.01) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.02) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.02) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.05) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.01) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b20925a232037334054b073')}
+Internal Server Error: /lv/pages/competencyDictionary/form/Competency/common
+Traceback (most recent call last):
+  File "/home/hcsadmin/q03/packages/django/django/core/handlers/base.py", line 112, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/hcsadmin/q03/packages/quicky/executor.py", line 130, in exec_request_for_multi
+    return self.exec_request(request,**kwargs)
+  File "/home/hcsadmin/q03/packages/quicky/executor.py", line 105, in exec_request
+    return self.__fn__ (request, **kwargs)
+  File "/home/hcsadmin/q03/apps/performance/views.py", line 117, in load_page
+    "path":path
+  File "/home/hcsadmin/q03/packages/quicky/extens.py", line 75, in render
+    ret_res=mylookup.get_template(fileName).render(**render_model)
+  File "/usr/local/lib/python2.7/dist-packages/mako/template.py", line 445, in render
+    return runtime._render(self, self.callable_, args, data)
+  File "/usr/local/lib/python2.7/dist-packages/mako/runtime.py", line 829, in _render
+    **_kwargs_for_callable(callable_, data))
+  File "/usr/local/lib/python2.7/dist-packages/mako/runtime.py", line 864, in _render_context
+    _exec_template(inherit, lclcontext, args=args, kwargs=kwargs)
+  File "/usr/local/lib/python2.7/dist-packages/mako/runtime.py", line 890, in _exec_template
+    callable_(context, *args, **kwargs)
+  File "dynamic_html", line 21, in render_body
+  File "/usr/local/lib/python2.7/dist-packages/mako/runtime.py", line 752, in _include_file
+    callable_(ctx, **_kwargs_for_include(callable_, context._data, **kwargs))
+  File "views_competencyDictionary_form_Competency_common_html", line 34, in render_body
+AttributeError: 'Undefined' object has no attribute 'get_key'
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.01) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+Internal Server Error: /lv/pages/competencyDictionary/form/Competency/common
+Traceback (most recent call last):
+  File "/home/hcsadmin/q03/packages/django/django/core/handlers/base.py", line 112, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/hcsadmin/q03/packages/quicky/executor.py", line 130, in exec_request_for_multi
+    return self.exec_request(request,**kwargs)
+  File "/home/hcsadmin/q03/packages/quicky/executor.py", line 105, in exec_request
+    return self.__fn__ (request, **kwargs)
+  File "/home/hcsadmin/q03/apps/performance/views.py", line 117, in load_page
+    "path":path
+  File "/home/hcsadmin/q03/packages/quicky/extens.py", line 75, in render
+    ret_res=mylookup.get_template(fileName).render(**render_model)
+  File "/usr/local/lib/python2.7/dist-packages/mako/template.py", line 445, in render
+    return runtime._render(self, self.callable_, args, data)
+  File "/usr/local/lib/python2.7/dist-packages/mako/runtime.py", line 829, in _render
+    **_kwargs_for_callable(callable_, data))
+  File "/usr/local/lib/python2.7/dist-packages/mako/runtime.py", line 864, in _render_context
+    _exec_template(inherit, lclcontext, args=args, kwargs=kwargs)
+  File "/usr/local/lib/python2.7/dist-packages/mako/runtime.py", line 890, in _exec_template
+    callable_(context, *args, **kwargs)
+  File "dynamic_html", line 21, in render_body
+  File "/usr/local/lib/python2.7/dist-packages/mako/runtime.py", line 752, in _include_file
+    callable_(ctx, **_kwargs_for_include(callable_, context._data, **kwargs))
+  File "views_competencyDictionary_form_Competency_common_html", line 34, in render_body
+AttributeError: 'Undefined' object has no attribute 'get_key'
+Not Found: /performance/static/js/angular.min.js.map
+Not Found: /performance/static/js/datatables/pdfmake.min.js.map
+Not Found: /performance/static/css/libs/bootstrap-datepicker/bootstrap-datepicker3.css.map
+Not Found: /performance/static/css/libs/bootstrap-datepicker/bootstrap-datepicker3.standalone.min.css.map
+Not Found: /performance/static/css/libs/bootstrap-datepicker/bootstrap-datepicker.min.css.map
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.01) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+Internal Server Error: /lv/pages/competencyDictionary/form/Competency/common
+Traceback (most recent call last):
+  File "/home/hcsadmin/q03/packages/django/django/core/handlers/base.py", line 112, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/hcsadmin/q03/packages/quicky/executor.py", line 130, in exec_request_for_multi
+    return self.exec_request(request,**kwargs)
+  File "/home/hcsadmin/q03/packages/quicky/executor.py", line 105, in exec_request
+    return self.__fn__ (request, **kwargs)
+  File "/home/hcsadmin/q03/apps/performance/views.py", line 117, in load_page
+    "path":path
+  File "/home/hcsadmin/q03/packages/quicky/extens.py", line 75, in render
+    ret_res=mylookup.get_template(fileName).render(**render_model)
+  File "/usr/local/lib/python2.7/dist-packages/mako/template.py", line 445, in render
+    return runtime._render(self, self.callable_, args, data)
+  File "/usr/local/lib/python2.7/dist-packages/mako/runtime.py", line 829, in _render
+    **_kwargs_for_callable(callable_, data))
+  File "/usr/local/lib/python2.7/dist-packages/mako/runtime.py", line 864, in _render_context
+    _exec_template(inherit, lclcontext, args=args, kwargs=kwargs)
+  File "/usr/local/lib/python2.7/dist-packages/mako/runtime.py", line 890, in _exec_template
+    callable_(context, *args, **kwargs)
+  File "dynamic_html", line 21, in render_body
+  File "/usr/local/lib/python2.7/dist-packages/mako/runtime.py", line 752, in _include_file
+    callable_(ctx, **_kwargs_for_include(callable_, context._data, **kwargs))
+  File "views_competencyDictionary_form_Competency_common_html", line 34, in render_body
+AttributeError: 'Undefined' object has no attribute 'get_key'
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+Internal Server Error: /lv/pages/competencyDictionary/form/Competency/common
+Traceback (most recent call last):
+  File "/home/hcsadmin/q03/packages/django/django/core/handlers/base.py", line 112, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/hcsadmin/q03/packages/quicky/executor.py", line 130, in exec_request_for_multi
+    return self.exec_request(request,**kwargs)
+  File "/home/hcsadmin/q03/packages/quicky/executor.py", line 105, in exec_request
+    return self.__fn__ (request, **kwargs)
+  File "/home/hcsadmin/q03/apps/performance/views.py", line 117, in load_page
+    "path":path
+  File "/home/hcsadmin/q03/packages/quicky/extens.py", line 75, in render
+    ret_res=mylookup.get_template(fileName).render(**render_model)
+  File "/usr/local/lib/python2.7/dist-packages/mako/template.py", line 445, in render
+    return runtime._render(self, self.callable_, args, data)
+  File "/usr/local/lib/python2.7/dist-packages/mako/runtime.py", line 829, in _render
+    **_kwargs_for_callable(callable_, data))
+  File "/usr/local/lib/python2.7/dist-packages/mako/runtime.py", line 864, in _render_context
+    _exec_template(inherit, lclcontext, args=args, kwargs=kwargs)
+  File "/usr/local/lib/python2.7/dist-packages/mako/runtime.py", line 890, in _exec_template
+    callable_(context, *args, **kwargs)
+  File "dynamic_html", line 21, in render_body
+  File "/usr/local/lib/python2.7/dist-packages/mako/runtime.py", line 752, in _include_file
+    callable_(ctx, **_kwargs_for_include(callable_, context._data, **kwargs))
+  File "views_competencyDictionary_form_Competency_common_html", line 34, in render_body
+AttributeError: 'Undefined' object has no attribute 'get_key'
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+Internal Server Error: /lv/pages/competencyDictionary/form/Competency/common
+Traceback (most recent call last):
+  File "/home/hcsadmin/q03/packages/django/django/core/handlers/base.py", line 112, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/hcsadmin/q03/packages/quicky/executor.py", line 130, in exec_request_for_multi
+    return self.exec_request(request,**kwargs)
+  File "/home/hcsadmin/q03/packages/quicky/executor.py", line 105, in exec_request
+    return self.__fn__ (request, **kwargs)
+  File "/home/hcsadmin/q03/apps/performance/views.py", line 117, in load_page
+    "path":path
+  File "/home/hcsadmin/q03/packages/quicky/extens.py", line 76, in render
+    ret_res=mylookup.get_template(fileName).render(**render_model)
+  File "/usr/local/lib/python2.7/dist-packages/mako/template.py", line 445, in render
+    return runtime._render(self, self.callable_, args, data)
+  File "/usr/local/lib/python2.7/dist-packages/mako/runtime.py", line 829, in _render
+    **_kwargs_for_callable(callable_, data))
+  File "/usr/local/lib/python2.7/dist-packages/mako/runtime.py", line 864, in _render_context
+    _exec_template(inherit, lclcontext, args=args, kwargs=kwargs)
+  File "/usr/local/lib/python2.7/dist-packages/mako/runtime.py", line 890, in _exec_template
+    callable_(context, *args, **kwargs)
+  File "dynamic_html", line 21, in render_body
+  File "/usr/local/lib/python2.7/dist-packages/mako/runtime.py", line 752, in _include_file
+    callable_(ctx, **_kwargs_for_include(callable_, context._data, **kwargs))
+  File "views_competencyDictionary_form_Competency_common_html", line 66, in render_body
+  File "/usr/local/lib/python2.7/dist-packages/mako/runtime.py", line 752, in _include_file
+    callable_(ctx, **_kwargs_for_include(callable_, context._data, **kwargs))
+  File "views_competencyDictionary_form_Competency_scripts_common_js", line 43, in render_body
+  File "/home/hcsadmin/q03/packages/quicky/middleware/__init__.py", line 426, in get_res
+    key = key.lower()
+AttributeError: 'NoneType' object has no attribute 'lower'
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+Not Found: /performance/static/js/angular.min.js.map
+Not Found: /performance/static/js/datatables/pdfmake.min.js.map
+Not Found: /performance/static/css/libs/bootstrap-datepicker/bootstrap-datepicker.min.css.map
+Not Found: /performance/static/css/libs/bootstrap-datepicker/bootstrap-datepicker3.css.map
+Not Found: /performance/static/css/libs/bootstrap-datepicker/bootstrap-datepicker3.standalone.min.css.map
+lv.auth_user.find (0.04) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.04) {'_id': ObjectId('5b20925a232037334054b073')}
+Not Found: /{{$root.logo}}
+lv.auth_user.find (0.02) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.02) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+Not Found: /{{$root.logo}}
+lv.auth_user.find (0.04) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.01) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.03) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.02) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.01) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.05) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.01) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.01) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.01) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.02) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.01) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.01) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.01) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.01) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.01) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.02) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.02) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.01) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.02) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.02) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.02) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.02) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.02) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.01) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.01) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.01) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+Not Found: /performance/static/js/datatables/pdfmake.min.js.map
+Not Found: /performance/static/js/angular.min.js.map
+Not Found: /performance/static/css/libs/bootstrap-datepicker/bootstrap-datepicker.min.css.map
+Not Found: /performance/static/css/libs/bootstrap-datepicker/bootstrap-datepicker3.standalone.min.css.map
+Not Found: /performance/static/css/libs/bootstrap-datepicker/bootstrap-datepicker3.css.map
+lv.auth_user.find (0.02) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.01) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.01) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.01) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.02) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.02) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.01) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.01) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.04) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.02) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.02) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.02) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.02) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.01) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.01) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.04) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.02) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.03) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.01) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.01) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.01) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.01) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.01) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.02) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.01) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.01) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+Not Found: /{{$root.logo}}
+lv.auth_user.find (0.02) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.02) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.01) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.01) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.01) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.01) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.02) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.04) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.01) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.01) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.01) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.01) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.01) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.01) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.01) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.01) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.01) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.01) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+Not Found: /performance/static/js/datatables/pdfmake.min.js.map
+Not Found: /performance/static/js/angular.min.js.map
+Not Found: /performance/static/css/libs/bootstrap-datepicker/bootstrap-datepicker3.standalone.min.css.map
+Not Found: /performance/static/css/libs/bootstrap-datepicker/bootstrap-datepicker.min.css.map
+Not Found: /performance/static/css/libs/bootstrap-datepicker/bootstrap-datepicker3.css.map
+lv.auth_user.find (0.01) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.01) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.02) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.01) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.02) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.02) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+Not Found: /performance/static/js/datatables/pdfmake.min.js.map
+Not Found: /performance/static/js/angular.min.js.map
+Not Found: /performance/static/css/libs/bootstrap-datepicker/bootstrap-datepicker.min.css.map
+Not Found: /performance/static/css/libs/bootstrap-datepicker/bootstrap-datepicker3.css.map
+Not Found: /performance/static/css/libs/bootstrap-datepicker/bootstrap-datepicker3.standalone.min.css.map
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.01) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.01) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.01) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.01) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.01) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+Internal Server Error: /lv/api
+Traceback (most recent call last):
+  File "/home/hcsadmin/q03/packages/django/django/core/handlers/base.py", line 112, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/hcsadmin/q03/packages/django/django/views/decorators/http.py", line 41, in inner
+    return func(request, *args, **kwargs)
+  File "/home/hcsadmin/q03/packages/django/django/views/decorators/csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/home/hcsadmin/q03/packages/quicky/executor.py", line 108, in exec_request
+    ret_data = self.__fn__(request, **kwargs)
+  File "/home/hcsadmin/q03/packages/quicky/api.py", line 172, in call
+    raise ex
+ValueError: No JSON object could be decoded
+lv.auth_user.find (0.01) {'_id': ObjectId('5b20925a232037334054b073')}
+Internal Server Error: /lv/api
+Traceback (most recent call last):
+  File "/home/hcsadmin/q03/packages/django/django/core/handlers/base.py", line 112, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/hcsadmin/q03/packages/django/django/views/decorators/http.py", line 41, in inner
+    return func(request, *args, **kwargs)
+  File "/home/hcsadmin/q03/packages/django/django/views/decorators/csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/home/hcsadmin/q03/packages/quicky/executor.py", line 108, in exec_request
+    ret_data = self.__fn__(request, **kwargs)
+  File "/home/hcsadmin/q03/packages/quicky/api.py", line 172, in call
+    raise ex
+ValueError: No JSON object could be decoded
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+Not Found: /{{$root.logo}}
+lv.auth_user.find (0.02) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.03) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.01) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.01) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.02) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.02) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.02) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.07) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.03) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.01) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.01) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.02) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.02) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.03) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+Not Found: /performance/static/js/angular.min.js.map
+Not Found: /performance/static/js/datatables/pdfmake.min.js.map
+Not Found: /performance/static/css/libs/bootstrap-datepicker/bootstrap-datepicker3.css.map
+Not Found: /performance/static/css/libs/bootstrap-datepicker/bootstrap-datepicker3.standalone.min.css.map
+Not Found: /performance/static/css/libs/bootstrap-datepicker/bootstrap-datepicker.min.css.map
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.02) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.01) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.01) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.01) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.01) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.01) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.01) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.01) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.01) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.01) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.01) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.02) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.03) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.01) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.03) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.01) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.02) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.01) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.01) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.01) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.02) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.01) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.01) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.02) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.02) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.02) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.02) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.01) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.01) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.01) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.03) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.01) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.01) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.01) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.02) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.01) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.01) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.01) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.01) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+Not Found: /performance/static/js/datatables/pdfmake.min.js.map
+Not Found: /performance/static/js/angular.min.js.map
+Not Found: /performance/static/css/libs/bootstrap-datepicker/bootstrap-datepicker.min.css.map
+Not Found: /performance/static/css/libs/bootstrap-datepicker/bootstrap-datepicker3.standalone.min.css.map
+Not Found: /performance/static/css/libs/bootstrap-datepicker/bootstrap-datepicker3.css.map
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.01) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.02) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.02) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.01) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.02) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.01) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.01) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+Not Found: /performance/static/js/angular.min.js.map
+Not Found: /performance/static/js/datatables/pdfmake.min.js.map
+Not Found: /performance/static/css/libs/bootstrap-datepicker/bootstrap-datepicker3.css.map
+Not Found: /performance/static/css/libs/bootstrap-datepicker/bootstrap-datepicker.min.css.map
+Not Found: /performance/static/css/libs/bootstrap-datepicker/bootstrap-datepicker3.standalone.min.css.map
+lv.auth_user.find (0.07) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.02) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.03) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.04) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+Not Found: /{{$root.logo}}
+lv.auth_user.find (0.02) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.01) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+Not Found: /{{$root.logo}}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.01) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.02) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.03) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.02) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.01) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.01) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.02) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.01) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.01) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.03) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.02) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+Not Found: /performance/static/js/angular.min.js.map
+Not Found: /performance/static/js/datatables/pdfmake.min.js.map
+Not Found: /performance/static/css/libs/bootstrap-datepicker/bootstrap-datepicker.min.css.map
+Not Found: /performance/static/css/libs/bootstrap-datepicker/bootstrap-datepicker3.css.map
+Not Found: /performance/static/css/libs/bootstrap-datepicker/bootstrap-datepicker3.standalone.min.css.map
+lv.auth_user.find (0.01) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.01) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.01) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.01) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.01) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.01) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.01) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.01) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.01) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.02) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.01) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.03) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.01) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.02) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.01) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.01) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.02) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.01) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.02) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.01) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.02) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.01) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.01) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.02) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.02) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.02) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.03) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.02) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.01) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.02) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.01) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+Not Found: /{{$root.logo}}
+lv.auth_user.find (0.02) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.02) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.02) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.05) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+Internal Server Error: /lv/pages/undefined
+Traceback (most recent call last):
+  File "/home/hcsadmin/q03/packages/django/django/core/handlers/base.py", line 112, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/hcsadmin/q03/packages/quicky/executor.py", line 130, in exec_request_for_multi
+    return self.exec_request(request,**kwargs)
+  File "/home/hcsadmin/q03/packages/quicky/executor.py", line 105, in exec_request
+    return self.__fn__ (request, **kwargs)
+  File "/home/hcsadmin/q03/apps/performance/views.py", line 117, in load_page
+    "path":path
+  File "/home/hcsadmin/q03/packages/quicky/extens.py", line 76, in render
+    ret_res=mylookup.get_template(fileName).render(**render_model)
+  File "/usr/local/lib/python2.7/dist-packages/mako/template.py", line 445, in render
+    return runtime._render(self, self.callable_, args, data)
+  File "/usr/local/lib/python2.7/dist-packages/mako/runtime.py", line 829, in _render
+    **_kwargs_for_callable(callable_, data))
+  File "/usr/local/lib/python2.7/dist-packages/mako/runtime.py", line 864, in _render_context
+    _exec_template(inherit, lclcontext, args=args, kwargs=kwargs)
+  File "/usr/local/lib/python2.7/dist-packages/mako/runtime.py", line 890, in _exec_template
+    callable_(context, *args, **kwargs)
+  File "dynamic_html", line 21, in render_body
+  File "/usr/local/lib/python2.7/dist-packages/mako/runtime.py", line 748, in _include_file
+    template = _lookup_template(context, uri, calling_uri)
+  File "/usr/local/lib/python2.7/dist-packages/mako/runtime.py", line 795, in _lookup_template
+    raise exceptions.TemplateLookupException(str(compat.exception_as()))
+TemplateLookupException: Cant locate template for uri u'views/undefined.html'
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+Not Found: /{{$root.logo}}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.03) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.03) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.04) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+Not Found: /performance/static/js/angular.min.js.map
+Not Found: /performance/static/js/datatables/pdfmake.min.js.map
+Not Found: /performance/static/css/libs/bootstrap-datepicker/bootstrap-datepicker.min.css.map
+Not Found: /performance/static/css/libs/bootstrap-datepicker/bootstrap-datepicker3.css.map
+Not Found: /performance/static/css/libs/bootstrap-datepicker/bootstrap-datepicker3.standalone.min.css.map
+lv.auth_user.find (0.02) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.12) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.06) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.02) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.03) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.01) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+Not Found: /{{$root.logo}}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+Not Found: /performance/static/js/angular.min.js.map
+Not Found: /performance/static/js/datatables/pdfmake.min.js.map
+Not Found: /performance/static/css/libs/bootstrap-datepicker/bootstrap-datepicker.min.css.map
+Not Found: /performance/static/css/libs/bootstrap-datepicker/bootstrap-datepicker3.css.map
+Not Found: /performance/static/css/libs/bootstrap-datepicker/bootstrap-datepicker3.standalone.min.css.map
+lv.auth_user.find (0.05) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.09) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.05) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.03) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.02) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.06) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+Not Found: /{{$root.logo}}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+Not Found: /performance/static/js/angular.min.js.map
+Not Found: /performance/static/css/libs/bootstrap-datepicker/bootstrap-datepicker.min.css.map
+Not Found: /performance/static/js/datatables/pdfmake.min.js.map
+Not Found: /performance/static/css/libs/bootstrap-datepicker/bootstrap-datepicker3.standalone.min.css.map
+Not Found: /performance/static/css/libs/bootstrap-datepicker/bootstrap-datepicker3.css.map
+Not Found: /{{$root.logo}}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.02) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.01) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+Not Found: /{{$root.logo}}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b20925a232037334054b073')}
+Not Found: /performance/static/js/angular.min.js.map
+Not Found: /performance/static/js/datatables/pdfmake.min.js.map
+Not Found: /performance/static/css/libs/bootstrap-datepicker/bootstrap-datepicker.min.css.map
+Not Found: /performance/static/css/libs/bootstrap-datepicker/bootstrap-datepicker3.css.map
+Not Found: /performance/static/css/libs/bootstrap-datepicker/bootstrap-datepicker3.standalone.min.css.map
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.04) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.09) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.01) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.06) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.06) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+Not Found: /{{$root.logo}}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+Not Found: /performance/static/js/angular.min.js.map
+Not Found: /performance/static/js/datatables/pdfmake.min.js.map
+Not Found: /performance/static/css/libs/bootstrap-datepicker/bootstrap-datepicker.min.css.map
+Not Found: /performance/static/css/libs/bootstrap-datepicker/bootstrap-datepicker3.standalone.min.css.map
+Not Found: /performance/static/css/libs/bootstrap-datepicker/bootstrap-datepicker3.css.map
+lv.auth_user.find (0.01) {'_id': ObjectId('5b20925a232037334054b073')}
+Not Found: /{{$root.logo}}
+Not Found: /{{$root.logo}}
+lv.auth_user.find (0.03) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.03) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.01) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.02) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.02) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}

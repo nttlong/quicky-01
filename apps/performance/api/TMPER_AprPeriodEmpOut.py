@@ -184,6 +184,27 @@ def get_genPreAperiodData(args):
         ret = list(collection)
         return ret
 
+def get_EmpDataByPeriodYearAndEmp(period, year, emp_code):
+    ret = {}
+    collection = common.get_collection('TMPER_AprPeriodEmpOut').aggregate([
+    {"$match":{
+        "$and": [ { 'apr_year': year},
+                  { 'apr_period':period  },
+                  { 'employee_code': emp_code}]
+    }},
+    {"$project": {
+        "_id":1,
+        "apr_period":1,
+        "apr_year": 1,
+        "employee_code":1,
+        "department_code": 1,
+        "job_w_code":1,
+    }},
+    #{ "$sort" : SON([("apr_year",-1),("apr_period",-1)]) }
+    ])
+    ret = list(collection)
+    return (lambda x: x[0] if len(x) > 0 else None)(ret)
+
 def get_EmpDataByPeriodAndYear(args):
     if(args['data']!= None):
         ret = {}
@@ -205,9 +226,57 @@ def get_EmpDataByPeriodAndYear(args):
         ret = list(collection)
         return ret
 
+def get_EmpMultiByEmpcode(emp_code):
+    if(emp_code!= ""):
+        ret = {}
+        collection = common.get_collection('HCSEM_Employees').aggregate([
+        {"$match":{'employee_code': emp_code}},
+        {"$project": {
+            "employee_code":1,
+            "department_code": 1,
+            "job_w_code":1,
+        }},
+        ])
+        ret = list(collection)
+        return (lambda x: x[0] if len(x) > 0 else None)(ret)
+
+
+
+def get_insert_multi_empNotApr(args):
+    try:
+        lock.acquire()
+        ret = {}
+        if args['data'].has_key('apr_period') and args['data'].has_key('apr_year'):
+            apr_period = args['data']['apr_period']
+            apr_year = args['data']['apr_year']
+            for emp_code in args['data']['list_emp'] :
+                item = get_EmpMultiByEmpcode(emp_code)
+                item['apr_period'] = apr_period
+                item['apr_year'] = apr_year 
+                # check item to update or insert data => return item contain "_id and info" of emp_not_apr.
+                check_item = get_EmpDataByPeriodYearAndEmp(apr_period,apr_year,emp_code)
+                if (check_item != None):
+                    data =  set_dict_update_data(check_item)
+                    ret  =  models.TMPER_AprPeriodEmpOut().update(
+                        data, 
+                    "_id == {0}", 
+                    ObjectId(check_item['_id']))
+                else:
+                    data =  set_dict_insert_data(item)
+                    ret  =  models.TMPER_AprPeriodEmpOut().insert(data)
+            lock.release()
+            return ret
+        lock.release()
+        return dict(
+            error = "request parameter is not exist"
+            )
+    except Exception as ex:
+        lock.release()
+        raise(ex)
+
+
 def set_dict_insert_data(item):
     ret_dict = dict()
-
     ret_dict.update(
         apr_period         = (lambda x: x['apr_period']        if x.has_key('apr_period')       else None)(item),
         apr_year         = (lambda x: x['apr_year']        if x.has_key('apr_year')       else None)(item),
@@ -223,3 +292,4 @@ def set_dict_insert_data(item):
 def set_dict_update_data(args):
     ret_dict = set_dict_insert_data(args)
     return ret_dict
+

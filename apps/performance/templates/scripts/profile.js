@@ -343,6 +343,14 @@
         scope.$applyAsync();
     })();
 
+    scope.jqSliderLeftMobile = function() {
+        $(".hcs-left-side-department-content").toggle("slide");
+    }
+
+    scope.jqSliderActionMobile = function() {
+        $(".hcs-top-action-large").toggle("slide");
+    }
+
     scope.$watch("$display.selectedFunction", function (function_id) {
         var $his = scope.$root.$history.data();
         if (scope.currentItem) {
@@ -386,4 +394,6 @@
             1, scope.$$tableConfig.iPageLength,
             scope.$$tableConfig.orderBy, scope.$$tableConfig.searchText)
     })
+
+
 });

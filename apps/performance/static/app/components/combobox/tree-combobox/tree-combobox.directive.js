@@ -35,7 +35,8 @@
 
                 initData: "=",
                 params: "=",
-                reload: "="
+                reload: "=",
+                ngDisabled: "="
             },
             //template: function(el, attrs) {
             //  return '<div class="switch-container ' + (attrs.color || '') + '"><input type="checkbox" ng-model="ngModel"></div>';
@@ -54,10 +55,10 @@
                 </div>
                 <div class="zb-combobox-template" ng-transclude style="display:none"></div>
                 <div class="input-group-btn">   
-                  <button class="btn btn-default zb-combo-btn-clear">
+                  <button class="btn btn-default zb-combo-btn-clear" ng-disabled="ngDisabled">
                     <i class="bowtie-icon bowtie-edit-remove"></i>
                   </button>
-                  <button class="btn btn-default zb-open-modal">
+                  <button class="btn btn-default zb-open-modal" ng-disabled="ngDisabled">
                     <i class="bowtie-icon bowtie-navigate-external"></i>
                   </button>
                 </div>
@@ -122,7 +123,7 @@
                 console.log($scope.selectedItem);
                 var dialogTemplate = '' +
                     '<div class="zb-modal-combobox modal fade" role="dialog">' +
-                    '    <div class="modal-dialog">' +
+                    '    <div class="modal-dialog modal-dialog-one-col">' +
                     '        <div class="modal-content">' +
                     '            <div class="modal-header">' +
                     '                <div class="left-content pull-left">' +
@@ -136,7 +137,7 @@
                     '                <div class="zb-combobox-toolbar">' +
                     '                    <button type="button" class="zb-btn" ng-click="$$$treeCollapseAll()"><i class="bowtie-icon bowtie-chevron-up-all"></i></button>' +
                     '                    <button type="button" class="zb-btn" ng-click="$$$treeExpandAll()"><i class="bowtie-icon bowtie-chevron-down-all"></i></button>' +
-                    '                    <input-text-icon icon="bowtie-icon bowtie-search" icon-align="right" placeholder="{{placeholder}}" ng-model="$cbbConfig.treeSearchText" style="float: right; width: 92%"></input-text-icon>' +
+                    '                    <input-text-icon icon="bowtie-icon bowtie-search" icon-align="right" placeholder="{{placeholder}}" ng-model="$cbbConfig.treeSearchText" style="float: right; width: 82%"></input-text-icon>' +
                     '                </div>' +
                     '                <div class="zb-combobox-content">' +
                     '                   <tree-data data-source="$cbbConfig.list" ' +

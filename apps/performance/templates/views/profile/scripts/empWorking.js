@@ -145,7 +145,9 @@
                                 scope.$tableEmpWorking.latestRecordEmpWorking = r;
                                 scope.$applyAsync();
                             }
-
+                            setTimeout(function(){
+                                $(window).trigger('resize');
+                            })
                         })
 
 
@@ -199,6 +201,9 @@
                     };
                     callback(data);
                     scope.$apply();
+                    setTimeout(function(){
+                        $(window).trigger('resize');
+                    })
                 })
     }
 
@@ -348,6 +353,12 @@
     scope.indexTabChange = function (val) {
         setTimeout(function () {
             $(window).trigger('resize');
-        }, 200);
+        });
+    }
+    scope.tabIdx = 1;
+    scope.changeActive = function(event, idx){
+        scope.tabIdx = idx;
+        $('.hcs-tab-info').find('.active').removeClass('active');
+        $(event.target).closest('div').addClass('active');
     }
 });

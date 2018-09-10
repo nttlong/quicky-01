@@ -1,4 +1,4 @@
-﻿
+﻿﻿
 <%!
     #_style="width:200px;"
 %>
@@ -41,7 +41,7 @@
                         <div class="form-group zb-form-group">
                             <!--Tên Tài liệu-->
                             <label for="inputEmp_Train_Mode_Name" class="col-sm-5 zb-form-label">${get_res('file_name','File Name')}</label>
-                            <div class="col-sm-7"> 
+                            <div class="col-sm-7">
                                 <input-text id="inputEmp_Train_Mode_Name" ng-model="entity.material_name" required>
                             </div>
                         </div>
@@ -286,6 +286,7 @@
         scope.customCbb = {};
         var __entity = JSON.parse(JSON.stringify(scope.$parent.currentItem ? scope.$parent.currentItem : {}));
         //Mode 1: tạo mới, Mode 2: chỉnh sửa, Mode 3: sao chép
+        debugger
         scope.entity = scope.__mode == 2 ? __entity : {};
 
         //combobox source
@@ -408,7 +409,8 @@
                         "sort": sort
                     })
                     .done()
-                    .then(function (res) {
+                .then(function (res) {
+                        
                         var data = {
                             recordsTotal: res.total_items,
                             recordsFiltered: res.total_items,
@@ -435,7 +437,7 @@
         }
 
         function saveNClose() {
-            debugger
+            
             if (scope.entity != null) {
                 var rsCheck = checkError();//Kết quả check input
                 if (rsCheck.result) {
@@ -448,8 +450,11 @@
                         $dialog.closeDialog();//Đóng form input
                         $msg.alert("${get_global_res('Handle_Success','Thao tác thành công')}", $type_alert.INFO);//Xuất thông báo thành cônng
                         if (scope.__mode == 1 || scope.__mode == 3) {
-                            
-                            reloadData();
+                            scope.$parent.$apply();
+                            scope.$root.refresh();
+                            //Refesh datatable
+                            scope.$parent.refreshDataRow();
+
                         } else if (scope.__mode == 2) {
                             
                             scope.$parent.currentItem = scope.entity;
@@ -549,40 +554,18 @@
             var url = getUrl();
             scope.entity.link_file = '${get_app_url("")}' + '/download?id=' + scope.entity.material_id;
             if (scope.__mode == 3) {
-
+                
             }
             if (scope.__mode == 1) {
-               /* if (scope.entity.parent_code === 'root') {
-                    scope.entity.parent_id = null;
-                    scope.entity.parent_code = null;
-                    scope.entity.level = 1;
-                    scope.entity.level_code = [
-                        scope.entity.folder_id
-                    ];
-                } else {
-                   var dataLevelCode = scope.entity.customData.filter(function (el) {
-                        return el["level_code"];
-                    })
-                    var level = scope.entity.customData.filter(function (el) {
-                        return el["level"];
-                    })
-                    scope.entity.parent_code = scope.entity.parent_code;
-                    scope.entity.parent_id = null;
-                    scope.entity.level = dataLevelCode[0]["level"] + 1;
-                    dataLevelCode[0]["level_code"].push(scope.entity.folder_id);
-                    scope.entity.level_code = dataLevelCode[0]["level_code"];
-                }
+                scope.entity.status = 1;
             } else if (scope.__mode == 2) {
-                for (var i = 0; i < scope.entity.level_code.length; i++) {
-                    if (scope.entity.level_code[i] == scope.parent_code_old) {
-                        scope.entity.level_code[i] = scope.entity.parent_code;
-                    }
-                }*/
+                
             }
             services.api(url)
                 .data(scope.entity)
                 .done()
                 .then(function (res) {
+                    
                     callback(res);
                 })
         }
@@ -633,12 +616,6 @@
             if(rs.result === true){
                 return rs;
             }
-            //valid = lv.Validate(scope.entity.date_valid_from);
-            //rs.result = valid.isDate();
-            //rs.errorMsg = rs.result === true ? "${get_res('date_valid_from_is_not_null','Ngày tài liệu có hiệu lực không được để trống')}" + '\n' : "" ;
-            //if(rs.result === true){
-            //    return rs; 
-            //}
             valid = lv.Validate(scope.entity.identifier);
             rs.result = valid.isNullOrWhiteSpace();
             rs.errorMsg = rs.result === true ? "${get_res('identifier_is_not_null','Nguồn định danh tài liệu không được để trống')}" + '\n' : "" ;
@@ -806,13 +783,14 @@
                     })
                     .done()
                     .then(function (res) {
-                        debugger
+                        
                         scope.entity.level_code = res.items[0].level_code
                     })
             }
         })
 
         scope.$watch("entity.relations", function (val) {
+            
             //if (val && val.length > 0) {
             //    var relations_valuelist = [];
             //    if (scope.cbbLMSLRelation) {
@@ -825,15 +803,16 @@
             //}
         })
         //scope.$watchCollection("entity.relations", function () {
-        //    debugger
+        //    
         //})
         scope.$watch("entity.relations.ref_relation", function () {
-            //debugger
+            
         })
         scope.$watchCollection("entity.relations.ref_relation", function () {
-            //debugger
+            
         })
         scope.onChangeRelation = function (val) {
+            
             setTimeout(function () {
                 var relations_ref = [];
                 $.each(scope.entity.relations, function (i, v) {

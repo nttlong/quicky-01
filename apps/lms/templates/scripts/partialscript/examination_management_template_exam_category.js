@@ -43,7 +43,6 @@
     }
 
     scope.editTemplate = function () {
-        debugger
         if (scope.currentItem) {
             scope.mode = 2; // set mode chỉnh sửa
             openDialog("${get_res('edit_exam_category','Edit Exam Category')}", 'form/addTemplateCategory', function () {
@@ -194,7 +193,7 @@
     scope.tableSource = _loadDataServerSide;
     scope.onSelectTableRow = function ($row) {
         scope.mode = 2;
-        scope.editQuestionCategory();
+        scope.editTemplate();
     };
     //Danh sách các dòng đc chọn (nếu là table MultiSelect)
     scope.selectedItems = [];

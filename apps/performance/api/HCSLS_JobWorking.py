@@ -349,6 +349,8 @@ def get_list_performance_standanrd_by_job_working_code(job_w_code):
         kpi_name="kpi.kpi_name",
         weight="kpi.weight",
         unit="kpi.unit",
+        scope_from = "kpi.score_from",
+        scope_to = "kpi.scope_to",
         cycle="kpi.cycle",
         ordinal="kpi.ordinal",
         created_by="uc.login_account",
@@ -642,7 +644,10 @@ def get_list_performance_standanrd(args):
             'cycle_type': "$kpi.cycle", 
             'weight': '$kpi.weight', 
             'unit_code': "$kpi.unit", 
-            'standard_mark': '$kpi.standard_mark', 
+            'description': '$kpi.description',
+            #'standard_mark': '$kpi.standard_mark', 
+            'score_from': '$kpi.score_from',
+            'score_to': '$kpi.score_to',
             'note': "$kpi.note",
             'created_by': '$kpi.created_by', 
             'created_on': "$kpi.created_on", 
@@ -732,7 +737,10 @@ def get_list_performance_standanrd(args):
             'weight': '$weight', 
             'unit': { '$ifNull': [ '$unit.unit_name', '' ] }, 
             'unit_code' : '$unit',
-            'standard_mark': "$standard_mark",
+            'description': "$h_kpi.kpi_desc",
+            #'standard_mark': "$standard_mark",
+            'score_from': "$score_from",
+            'score_to': "$score_to",
             'note':'$note',
             'created_by': { '$ifNull': [ '$uc.login_account', '' ] }, 
             'created_on': "$created_on", 
@@ -746,7 +754,10 @@ def get_list_performance_standanrd(args):
                             { "unit_code": { "$regex": search, "$options": 'i' } },
                             { "cycle_type": { "$regex": search, "$options": 'i' } },
                             { "note": { "$regex": search, "$options": 'i' } },
-                            { "standard_mark": { "$regex": search, "$options": 'i' } }]
+                            { "description": { "$regex": search, "$options": 'i' } },
+                            #{ "standard_mark": { "$regex": search, "$options": 'i' } },
+                            { "score_from": { "$regex": search, "$options": 'i' } },
+                            { "score_to": { "$regex": search, "$options": 'i' } }]
                     },{
                         "job_w_code":args['data']['job_w_code']
                     }]
@@ -797,7 +808,9 @@ def insert_performance_standanrd(args):
                 cycle_type = 1,
                 kpi_desc = 1,
                 weight = 1,
-                benchmark = 1
+                benchmark = 1,
+                score_from = 1,
+                score_to = 1
                 ).match("kpi_code == {0}", args['data']['kpi']['kpi_code'][0]).get_item()
             data['description'] = default['kpi_desc']
             data['unit'] = default['unit_code']
@@ -806,7 +819,9 @@ def insert_performance_standanrd(args):
             #default nếu bỏ trống
             data['weight'] = (lambda x, y: x if y == None or y == "" else y)(default['weight'], args['data']['kpi']['weight'])
             #default nếu bỏ trống
-            data['standard_mark'] = (lambda x, y: x if y == None or y == "" else y)(default['benchmark'], args['data']['kpi']['standard_mark'])
+            #data['standard_mark'] = (lambda x, y: x if y == None or y == "" else y)(default['benchmark'], args['data']['kpi']['standard_mark'])
+            data['score_from'] = (lambda x, y: x if y == None or y == "" else y)(default['benchmark'], args['data']['kpi']['score_from'])
+            data['score_to'] = (lambda x, y: x if y == None or y == "" else y)(default['benchmark'], args['data']['kpi']['score_to'])
             collection  =  common.get_collection('HCSLS_JobWorking')
             check_exist = collection.find_one(
                             {
@@ -885,10 +900,21 @@ def insert_performance_standanrd(args):
                     tmp['weight'] = default['weight']
                 else:
                     tmp['weight'] = args['data']['kpi']['weight']
-                if args['data']['kpi']['standard_mark'] == None or args['data']['kpi']['standard_mark'] == "":
-                    tmp['standard_mark'] = default['benchmark']
+
+                #if args['data']['kpi']['standard_mark'] == None or args['data']['kpi']['standard_mark'] == "":
+                #    tmp['standard_mark'] = default['benchmark']
+                #else:
+                #    tmp['standard_mark'] = args['data']['kpi']['standard_mark']
+
+                if args['data']['kpi']['score_from'] == None or args['data']['kpi']['score_from'] == "":
+                    tmp['score_from'] = default['score_from']
                 else:
-                    tmp['standard_mark'] = args['data']['kpi']['standard_mark']
+                    tmp['score_from'] = args['data']['kpi']['score_from']
+
+                if args['data']['kpi']['score_to'] == None or args['data']['kpi']['score_to'] == "":
+                    tmp['score_to'] = default['score_to']
+                else:
+                    tmp['score_to'] = args['data']['kpi']['score_to']
 
                 data.append(tmp)
             try:
@@ -931,7 +957,9 @@ def dict_insert_performance_standanrd(args):
         description =   (lambda x: x['description']     if x.has_key('description')   else None)(args),
         cycle =         (lambda x: x['cycle']           if x.has_key('cycle')         else None)(args),
         weight =        (lambda x: x['weight']          if x.has_key('weight')        else None)(args),
-        standard_mark = (lambda x: x['standard_mark']   if x.has_key('standard_mark') else None)(args),
+        #standard_mark = (lambda x: x['standard_mark']   if x.has_key('standard_mark') else None)(args),
+        score_from =    (lambda x: x['score_from']      if x.has_key('score_from')    else None)(args),
+        score_to =      (lambda x: x['score_to']        if x.has_key('score_to')      else None)(args),
         note =          (lambda x: x['note']            if x.has_key('note')          else None)(args),
         created_on = datetime.datetime.now(),
         created_by = common.get_user_id(),
@@ -952,7 +980,9 @@ def update_performance_standanrd(args):
             cycle_type = 1,
             kpi_desc = 1,
             weight = 1,
-            benchmark = 1
+            benchmark = 1,
+            score_from = 1,
+            score_to = 1
             ).match("kpi_code == {0}", args['data']['kpi']['kpi_code']).get_item()
         data['description'] = default['kpi_desc']
         data['unit'] = default['unit_code']
@@ -961,7 +991,9 @@ def update_performance_standanrd(args):
         #default nếu bỏ trống
         data['weight'] = (lambda x, y: x if y == None or y == "" else y)(default['weight'], args['data']['kpi']['weight'])
         #default nếu bỏ trống
-        data['standard_mark'] = (lambda x, y: x if y == None or y == "" else y)(default['benchmark'], args['data']['kpi']['standard_mark'])
+        #data['standard_mark'] = (lambda x, y: x if y == None or y == "" else y)(default['benchmark'], args['data']['kpi']['standard_mark'])
+        data['score_from'] = (lambda x, y: x if y == None or y == "" else y)(default['score_from'], args['data']['kpi']['score_from'])
+        data['score_to'] = (lambda x, y: x if y == None or y == "" else y)(default['score_to'], args['data']['kpi']['score_to'])
         collection  =  common.get_collection('HCSLS_JobWorking')
         check_exist = collection.find(
                         {
@@ -994,7 +1026,9 @@ def update_performance_standanrd(args):
                             "$set": {
                                 'kpi.$.kpi_code': data['kpi_code'],
                                 'kpi.$.weight': data['weight'],
-                                'kpi.$.standard_mark': data['standard_mark'],
+                                #'kpi.$.standard_mark': data['standard_mark'],
+                                'kpi.$.score_from': data['score_from'],
+                                'kpi.$.score_to': data['score_to'],
                                 'kpi.$.note': data['note'],
                                 'kpi.$.modified_by': common.get_user_id(),
                                 'kpi.$.modified_on': datetime.datetime.now(),

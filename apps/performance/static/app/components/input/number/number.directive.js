@@ -140,6 +140,9 @@
                     if (val) {
                         ele.find("input[type='number']").val(val);
                         ele.find("input[type='text']").val(val.toString());
+                    }else{
+                        ele.find("input[type='number']").val(null);
+                        ele.find("input[type='text']").val("");
                     }
                 })
             }

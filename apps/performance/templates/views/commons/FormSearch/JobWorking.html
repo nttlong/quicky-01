@@ -233,10 +233,11 @@
             _loadTreeDataSource();
         })();
 
-        $scope.$watch("$$tree.treeCurrentNode", function () {
-            _tableData($scope.$$table.$$tableConfig.iPage, $scope.$$table.$$tableConfig.iPageLength,
-                $scope.$$table.$$tableConfig.orderBy, $scope.$$table.$$tableConfig.searchText,
-                $scope.$$table.$$tableConfig.fnReloadData);
+        $scope.$watch("$$tree.treeCurrentNode", function (old, newVal) {
+            if(newVal && old != newVal)
+                _tableData($scope.$$table.$$tableConfig.iPage, $scope.$$table.$$tableConfig.iPageLength,
+                    $scope.$$table.$$tableConfig.orderBy, $scope.$$table.$$tableConfig.searchText,
+                    $scope.$$table.$$tableConfig.fnReloadData);
         });
 
         $scope.$watch("$$table.selectedItems", function (val) {

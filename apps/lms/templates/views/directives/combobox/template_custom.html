@@ -299,8 +299,8 @@
             .then(function (res) {
                 
                     if (scope.$parent.user_list && scope.$parent.user_list.length) {
-                        for (let i = 0; i < res.items.length; i++) {
-                            for (let j = 0; j < scope.$parent.user_list.length; j++) {
+                        for (var i = 0; i < res.items.length; i++) {
+                            for (var j = 0; j < scope.$parent.user_list.length; j++) {
                                 if (res.items[i]._id === scope.$parent.user_list[j]._id) {
                                     res.items.splice(i,1)
                                 }

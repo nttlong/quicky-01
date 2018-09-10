@@ -1,12 +1,105 @@
-﻿<div>
-  
-    <!--
-   <iframe height="500" src="https://vtv.vn/cong-nghe/google-dich-bi-kip-cho-fan-ham-mo-world-cup-tren-dat-nga-20180709195438461.htm" name="iframe_a" scolling="true"></iframe>
-        -->
-   
+
+<style type="text/css">
+
+#upload-button {
+	width: 150px;
+	display: block;
+	margin: 20px auto;
+}
+
+#file-to-upload {
+	display: none;
+}
+
+#pdf-main-container {
+	width: 400px;
+	margin: 20px auto;
+}
+
+#pdf-loader {
+	display: none;
+	text-align: center;
+	color: #999999;
+	font-size: 13px;
+	line-height: 100px;
+	height: 100px;
+}
+
+#pdf-contents {
+	display: none;
+}
+
+#pdf-meta {
+	overflow: hidden;
+	margin: 0 0 20px 0;
+}
+
+#pdf-buttons {
+	float: left;
+}
+
+#page-count-container {
+	float: right;
+}
+
+#pdf-current-page {
+	display: inline;
+}
+
+#pdf-total-pages {
+	display: inline;
+}
+
+#pdf-canvas {
+	border: 1px solid rgba(0,0,0,0.2);
+	box-sizing: border-box;
+}
+
+#page-loader {
+	height: 100px;
+	line-height: 100px;
+	text-align: center;
+	display: none;
+	color: #999999;
+	font-size: 13px;
+}
+
+</style>
+<div>
+
+<div id="pdf-main-container" style=" padding-top: 50px;">
+	<div ng-if="$parent.showImage">
+	<img src={{_currentItem.files.file_data}} alt="user-image" style="width:90%"/>
+	</div>
+	<div ng-if="$parent.showVideo">
+	<video style="width:90%" controls>
+	  <source src={{_currentItem.files.file_data}} type="video/mp4">
+	  Your browser does not support HTML5 video.
+	</video>
+	</div>
+	<div ng-if="$parent.showAudio">
+	<audio controls style="width:90%">
+	  <source src={{_currentItem.files.file_data}} type="audio/mpeg">
+	Your browser does not support the audio element.
+	</audio>
+	</div>
+	<div id="byte_text"></div>
+	<div id="pdf-loader">Loading document ...</div>
+	<div id="pdf-contents">
+		<div id="pdf-meta">
+			<div id="pdf-buttons">
+				<button id="pdf-prev">Previous</button>
+				<button id="pdf-next">Next</button>
+			</div>
+			<div id="page-count-container">Page <div id="pdf-current-page"></div> of <div id="pdf-total-pages"></div></div>
+		</div>
+		`<canvas id="pdf-canvas" width="400"></canvas>
+		<div id="page-loader">Loading page ...</div>
+	</div>
+</div>
 </div>
 <script>
-    (function (scope) {
-        
+    ( function (scope) {
+        scope._currentItem = scope.$parent.currentItem
     });
 </script>

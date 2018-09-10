@@ -26,3 +26,6 @@ from auth_user_info import auth_user_info
 from auth_user import auth_user
 from LMS_SetupProcess import LMS_SetupProcess
 from LMS_SetupProcessApproveLevel import LMS_SetupProcessApproveLevel
+from LMSSYS_Value_List import LMSSYS_Value_List
+from LMSLS_ExExamination import LMSLS_ExExamination
+from LMSLS_ExResultType import LMSLS_ExResultType

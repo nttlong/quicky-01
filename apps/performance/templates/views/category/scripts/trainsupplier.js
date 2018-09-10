@@ -4,6 +4,12 @@
     scope.tableFields = [
         { "data": "tr_supplier_code", "title": "${get_res('tr_supplier_code_table_header','Mã')}", "className": "text-left" },
         { "data": "tr_supplier_name", "title": "${get_res('tr_supplier_name_table_header','Tên')}", "className": "text-left" },
+        { "data": "tr_supplier_name2", "title": "${get_res('train_supplier_name2_table_header','Tên Khác')}", "className": "text-left" },
+        { "data": "address", "title": "${get_res('train_address_table_header','Địa chỉ')}", "className": "text-left" },
+        { "data": "tel", "title": "${get_res('train_tel_table_header','Số điện thoại')}", "className": "text-left" },
+        { "data": "supplier_map", "title": "${get_res('train_supplier_map_table_header','Sơ đồ phòng')}", "className": "text-left" },
+        { "data": "kind", "title": "${get_res('train_kind_table_header','Phân loại')}", "className": "text-left" },
+
         { "data": "note", "title": "${get_res('note_table_header','Ghi chú')}", "className": "text-left" },
         { "data": "ordinal", "title": "${get_res('ordinal_table_header','Thứ tự')}", "className": "text-center" },
         { "data": "created_on", "title": "${get_res('created_on_table_header','Ngày tạo')}", "className": "text-center", "format": "date:" + scope.$root.systemConfig.date_format },
@@ -152,6 +158,7 @@
     }
 
     function _tableData(iPage, iPageLength, orderBy, searchText, callback) {
+    debugger
         var sort = {};
         $.each(orderBy, function (i, v) {
             sort[v.columns] = (v.type === "asc") ? 1 : -1;

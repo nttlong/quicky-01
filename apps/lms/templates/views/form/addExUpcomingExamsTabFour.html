@@ -11,9 +11,9 @@
                                      <div class="col-sm-12" style="margin-left: 15px;"> 
                                          
                                         <div class="radio radio-success" >
-					                    <input type="radio" name="resumeApply" ng-value="dt_true" id="rad1" 
-                                               ng-model="entity.ques_hint.ishintEnable">
-					                    <label for="rad1">
+					                    <input type="radio" name="retakeExam" ng-value="dt_one" id="idRetake1" 
+                                               ng-model="entity.retake_exam" ng-click="checkTimes()">
+					                    <label for="idRetake1">
 						                    <span>Do not allow re-take</span>
 					                    </label>
 				                         </div>
@@ -22,19 +22,19 @@
                                  <div class="col-sm-12">
                                     <div class="col-sm-3">
                                     <div class="radio radio-success">
-					                    <input type="radio" name="resumeApply" ng-value="dt_true" id="rad1" 
-                                               ng-model="entity.ques_hint.ishintEnable">
-					                    <label for="rad1">
-						                    <span>${get_res('alow_all','Allow re-take ')}</span>
+					                    <input type="radio" name="retakeExam" ng-value="dt_two" id="idRetake2" 
+                                               ng-model="entity.retake_exam" ng-click="checkTimes()">
+					                    <label for="idRetake2">
+						                    <span>${get_res('Allow re-take')}</span>
 					                    </label>
 				                    </div>
                                       </div>
                                      <div class="col-sm-3"  style="margin-left:-30px;">                                    
-					                    <input-select name="resumeApply" ng-model="entity.negative_marks" data-list="cbbNegativeMarks" data-value="caption" data-caption="caption" />				                   
+					                    <input-select name="resumeApply" ng-click="checkTimes()" ng-model="entity.retake_all" data-list="cbbTimeRetake" data-value="caption" data-caption="caption" />				                   
                                     </div>
                                     <div class="col-sm-3" >     
                                         <label for="rad1">
-						                    <span>in all conditions.</span>
+						                    <span>${get_res('in all conditions.')}</span>
 					                    </label>	                   
                                     </div>
                                    </div> 					                    
@@ -42,44 +42,44 @@
                                     <div class="col-sm-12" >
                                     <div class="col-sm-3" >
                                         <div class="radio radio-success">
-					                        <input type="radio" name="resumeApply" ng-value="dt_true" id="rad1" 
-                                                   ng-model="entity.ques_hint.ishintEnable">
-					                        <label for="rad1">
-						                        <span>${get_res('alow_all','Allow re-take ')}</span>
+					                        <input type="radio" name="retakeExam" ng-value="dt_three" id="idRetake3" 
+                                                   ng-model="entity.retake_exam" ng-click="checkTimes()">
+					                        <label for="idRetake3">
+						                        <span>${get_res('Allow re-take ')}</span>
 					                        </label>
 				                        </div>
                                       </div>
                                      <div class="col-sm-3" style="margin-left:-30px;">                                    
-					                    <input-select name="resumeApply" ng-model="entity.negative_marks" data-list="cbbNegativeMarks" data-value="caption" data-caption="caption" />				                   
+					                    <input-select name="resumeApply" ng-click="checkTimes()" ng-model="entity.retake_condition" data-list="cbbTimeRetake" data-value="caption" data-caption="caption" />				                   
                                     </div>
                                     <div class="col-sm-3" > 
                                         <label for="rad1">
-						                    <span>in all conditions.</span>
+						                    <span>${get_res('if the result is less than')} </span>
 					                    </label>	                   
                                     </div>
                                     <div class="col-sm-3" > 
-						                     <input-select name="resumeApply" ng-model="entity.negative_marks" data-list="cbbNegativeMarks" data-value="caption" data-caption="caption" />				                                   
+						                <input-select name="resumeApply" ng-model="entity.result_less" data-list="cbbNegativeMarks" data-value="caption" data-caption="caption" />				                                   
                                     </div>
                                     </div>
                             </div>
                         </div>
                     </div>
-                     <div class="col-md-{{col}}" style="padding-bottom: 20px;">
+                     <div class="col-md-{{col}}" style="padding-bottom: 20px;" ng-if="entity.retake_exam ==2  || entity.retake_exam == 3">
                         <div class="form-group zb-form-group">
                             <label for="inputEmp_Train_Mode_Name" class="col-sm-2 zb-form-label">${get_res('re_exam','RE Exam Day')}</label>
                             <div class="col-md-12 col-sm-12">
                                 <div style="display: inline-flex;">
                                     <div class="radio radio-success">
-					                    <input type="radio" name="resumeApply" ng-value="dt_true" id="rad1" 
-                                               ng-model="entity.re_exam.diff_time">
-					                    <label for="rad1">
+					                    <input type="radio" name="retakeTimes" ng-value="dt_true" id="idradDiff" 
+                                               ng-model="entity.retake_time" ng-click="checkTimes()">
+					                    <label for="idradDiff">
 						                    <span>${get_res('diff_time','Different Time')}</span>
 					                    </label>
 				                    </div>
                                     <div class="radio radio-success" style="margin-left: 120px;">
-					                    <input type="radio" name="resumeApply" ng-value="dt_false" id="rad2" 
-                                               ng-model="entity.re_exam.range_time">
-					                    <label for="rad2">
+					                    <input type="radio" name="retakeTimes" ng-value="dt_false" id="idradRange" 
+                                               ng-model="entity.retake_time" ng-click="checkTimes()">
+					                    <label for="idradRange">
 						                    <span>${get_res('range_time','Range Time')}</span> 
 					                    </label>
 				                    </div>
@@ -88,67 +88,70 @@
                         </div>
                     </div>
                     <div class="col-md-{{col}}" style="padding-bottom: 20px;" >
-                        <div class="form-group zb-form-group">
-                            <label for="inputEmp_Train_Mode_Name" class="col-sm-1 zb-form-label">${get_res('first_time','1st Time')}</label>
+                        <div ng-if="entity.retake_time">
+                        <div class="form-group zb-form-group"  ng-repeat="elem in entity.list_time_retake track by $index">
+                            <label for="inputEmp_Train_Mode_Name" class="col-sm-2 zb-form-label">{{elem.name}}</label>
                             <div class="col-md-{{col}}">
                                         <div class="form-group zb-form-group">
                                             <!--Mô tả tài liệu-->
                                             <label for="inputEmp_Train_Mode_Name" class="col-sm-2 zb-form-label">${get_res('start_date','Start Date')}</label>
                                              <div class="col-sm-4"> 
-                                                <date-picker ng-model="entity.exam_avail.start_date" data-format="{{$root.systemConfig.date_format}}" />
+                                                <date-picker ng-model="elem.start_date" data-format="{{$root.systemConfig.date_format}}" />
                                             </div>
                                             <label for="inputEmp_Train_Mode_Name" class="col-sm-2 zb-form-label">${get_res('start_time','Time')}</label>
                                              <div class="col-sm-4"> 
-                                                <time-picker ng-model="entity.exam_avail.start_time" format="HH:mm" />
+                                                <time-picker ng-model="elem.start_time" format="HH:mm" />
                                             </div>
                                         </div>
                                         <div class="form-group zb-form-group">
                                             <!--Mô tả tài liệu-->
                                             <label for="inputEmp_Train_Mode_Name" class="col-sm-2 zb-form-label">${get_res('end_date','End Date')}</label>
                                              <div class="col-sm-4"> 
-                                                <date-picker ng-model="entity.exam_avail.end_date" data-format="{{$root.systemConfig.date_format}}" />
+                                                <date-picker ng-model="elem.end_date" data-format="{{$root.systemConfig.date_format}}" />
                                             </div>
                                             <label for="inputEmp_Train_Mode_Name" class="col-sm-2 zb-form-label">${get_res('end_time','Time')}</label>
                                              <div class="col-sm-4"> 
-                                                <time-picker ng-model="entity.exam_avail.end_time" format="HH:mm" />
+                                                <time-picker ng-model="elem.end_time" format="HH:mm" />
                                         </div>
-                                    </div>
+                                        </div>
                                 </div>
                             </div>
-                        <div class="form-group zb-form-group">
-                            <label for="inputEmp_Train_Mode_Name" class="col-sm-1 zb-form-label">${get_res('second_time','2nd Time')}</label>
+                            </div>
+                        <div class="form-group zb-form-group" ng-if="!entity.retake_time && entity.retake_exam !=1">
+                            <label for="inputEmp_Train_Mode_Name" class="col-sm-2"></label>
                             <div class="col-md-{{col}}">
                                         <div class="form-group zb-form-group">
                                             <!--Mô tả tài liệu-->
                                             <label for="inputEmp_Train_Mode_Name" class="col-sm-2 zb-form-label">${get_res('start_date','Start Date')}</label>
                                              <div class="col-sm-4"> 
-                                                <date-picker ng-model="entity.exam_avail.start_date" data-format="{{$root.systemConfig.date_format}}" />
+                                                <date-picker ng-model="entity.range_time.start_date" data-format="{{$root.systemConfig.date_format}}" />
                                             </div>
                                             <label for="inputEmp_Train_Mode_Name" class="col-sm-2 zb-form-label">${get_res('start_time','Time')}</label>
                                              <div class="col-sm-4"> 
-                                                <time-picker ng-model="entity.exam_avail.start_time" format="HH:mm" />
+                                                <time-picker ng-model="entity.range_time.start_time" format="HH:mm" />
                                             </div>
                                         </div>
                                         <div class="form-group zb-form-group">
                                             <!--Mô tả tài liệu-->
                                             <label for="inputEmp_Train_Mode_Name" class="col-sm-2 zb-form-label">${get_res('end_date','End Date')}</label>
                                              <div class="col-sm-4"> 
-                                                <date-picker ng-model="entity.exam_avail.end_date" data-format="{{$root.systemConfig.date_format}}" />
+                                                <date-picker ng-model="entity.range_time.end_date" data-format="{{$root.systemConfig.date_format}}" />
                                             </div>
                                             <label for="inputEmp_Train_Mode_Name" class="col-sm-2 zb-form-label">${get_res('end_time','Time')}</label>
                                              <div class="col-sm-4"> 
-                                                <time-picker ng-model="entity.exam_avail.end_time" format="HH:mm" />
+                                                <time-picker ng-model="entity.range_time.end_time" format="HH:mm" />
                                         </div>
                                     </div>
                                 </div>
                             </div>
+                        
                          </div>
-                       <div class="col-md-{{col}}" style="padding-bottom: 20px;">
+                       <div class="col-md-{{col}}" style="padding-bottom: 20px;" ng-if="entity.retake_exam ==2 || entity.retake_exam ==3">
                                         <div class="form-group zb-form-group">
                                             <!--Mã Tài liệu, ID-->
                                             <label for="inputEmp_Train_Mode_Name" class="col-sm-4 zb-form-label">${get_res('scoring_method','Scoring Method')}</label>
                                             <div class="col-sm-6"> 
-                                                 <input-select ng-model="entity.scoring_method" data-list="cbbQuestionPicking" data-value="value" data-caption="caption" required />
+                                                 <input-select ng-model="entity.scoring_method" data-list="cbbScoringMethod" data-value="value" data-caption="caption" required />
                                             </div>
                                         </div>
                                     </div>
@@ -158,6 +161,48 @@
 </div>
 <script>
     (function (scope) {
+        
+        scope.entity = scope.entity ? scope.entity : {};
+        scope.entity.list_time_retake = [];
+        const list_time = [{ 'name': '1st time' }, { 'name': '2nd time' }, { 'name': '3rd time' }, { 'name': '4th time' }, { 'name': '5th time' }]
+
+        scope.checkTimes = function () {
+                debugger
+                if (scope.entity.retake_time) {
+                    
+                    var time =[]
+                    var check = '';
+                    if (scope.entity.retake_exam ==2 && scope.entity.retake_all) {
+                           time = JSON.parse(JSON.stringify(list_time));
+                           check = scope.entity.retake_all
+                    }
+                    else if (scope.entity.retake_exam ==3 && scope.entity.retake_condition) {
+                          time = JSON.parse(JSON.stringify(list_time));
+                          check = scope.entity.retake_condition
+
+                    }
+                    else { }
+                    
+                    switch (check) {
+                        case '1 times':
+                            time.splice(1)
+                            break;
+                        case '2 times':
+                            time.splice(2)
+                            break;
+                        case '3 times':
+                            time.splice(3)
+                            break;
+                        case '4 times':
+                            time.splice(4)
+                            break;
+                        default:
+                            null
+                    }
+
+                }
+                scope.entity.list_time_retake = time;
+            }
         
     });
 </script>

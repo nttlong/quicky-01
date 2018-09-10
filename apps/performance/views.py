@@ -55,7 +55,6 @@ def login(request):
         username_request=request._get_post().get("username")
         password_request=request._get_post().get("password")
         try:
-            logout(request)
             from quicky import tenancy
 
             user_login = auth_user_info().aggregate().project(username=1, login_account=1)\
@@ -68,6 +67,8 @@ def login(request):
                 raise(Exception("user backend not correctly"))
 
             form_login(request,ret,schema=tenancy.get_schema())
+            from quicky import language
+            language.set_language(_login.language)
             request.session["language"] = _login.language
             return redirect(request.get_app_url(request._get_post().get("site")))
         except Exception as ex:

@@ -10,8 +10,7 @@
             { "data": "cycle_type", "title": "${get_res('cycle_type_table_header','Chu kỳ')}", "className": "text-left" },
             { "data": "kpi_desc", "title": "${get_res('kpi_desc_table_header','Mô tả')}", "className": "text-left" },
             { "data": "weight", "title": "${get_res('weight_table_header','Trọng số')}", "className": "text-right" },
-            { "data": "benchmark", "title": "${get_res('benchmark_table_header','Điểm chuẩn')}", "className": "text-right" },
-            { "data": "is_apply_all", "title": "${get_res('is_apply_all_table_header','Toàn cty')}", "className": "text-center", "format": "checkbox" }
+            { "data": "lock", "title": "${get_res('lock_table_header','Toàn cty')}", "className": "text-center", "format": "checkbox" }
         ],
         $$tableConfig: {},
         tableSource: _loadDataServerSide,

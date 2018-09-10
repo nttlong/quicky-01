@@ -116,13 +116,19 @@
         }
 
         function save() {
-            
-            scope.$parent.category_list.push(...scope.$table.selectedItems) 
-            
-            scope.$parent.$applyAsync();
+            debugger
+            if (scope.$table.selectedItems && scope.$table.selectedItems.length >0) {
+                scope.$parent.category_list.push(...scope.$table.selectedItems)
 
-            $dialog.closeDialog();
-            reloadData();
+                scope.$parent.$applyAsync();
+
+                $dialog.closeDialog();
+                reloadData();
+            }
+            else {
+                $msg.message("${get_global_res('Input_Error','Nhập liệu sai')}", "${get_res('select_ques_not_null','Mời chọn câu hỏi')}" + '\n' , function () { });
+                return;
+            }
 
         }
 

@@ -43,7 +43,6 @@
     }
 
     scope.editQuestionCategory = function () {
-        debugger
         if (scope.currentItem) {
             scope.mode = 2; // set mode chỉnh sửa
             openDialog("${get_res('edit_question_category','Edit Question Category')}", 'form/addQuestionCategory', function () {

@@ -1,135 +1,93 @@
 ﻿(function (scope) {
-   /* scope.$partialpage = "partialpage/examination_management_template_exam_list";
-
-    scope.createTemplateCategory = function () {
-        scope.$root.createTemplateCategory();
-    }*/
-    scope.$root.extendToolbar = false;
-    scope.filterFunctionModel = ''
-    scope.currentFunction = '';
-    scope.mapName = [];
-    scope.$root.currentItem = [];
-    scope.isDisplayGird = false;
-    scope.isList = true;
-    scope.isGrid = false;
-    scope.objSearch = {};
-    scope.create = function () {
-        scope.$root.create();
-    }
-    scope.edit = function () {
-        scope.$root.edit();
-    }
-    scope.delelete = function () {
-        scope.$root.delelete();
-    }
-    scope.onDisplayListData = function () {
-        scope.isList = true;
-        scope.isGrid = false;
-        scope.$root.onDisplayListData();
-    }
-    scope.onDisplayGridData = function () {
-        scope.isList = false;
-        scope.isGrid = true;
-        scope.$root.onDisplayGridData();
-    }
-    scope.onSearchText = function () {
-
-        scope.searchText = scope.objSearch.$$$modelSearch
-
-    }
-
-
-    function openDialog(title, path, callback, id = 'myModal') {
-
-        //check tồn tại của form dialog theo id
-        if ($('#' + id).length === 0) {
-            scope.headerTitle = title;
-            //Đặt ID cho form dialog
-            dialog(scope).url(path).done(function () {
-                callback();
-                //Set draggable cho form dialog
-                $dialog.draggable();
-            });
+    scope.$partialpage = null;
+    scope.$display = {};
+    scope.tableFields = [
+        { "data": "exam_id", "title": "${get_res('ID','ID')}" },
+        { "data": "exam_name1", "title": "${get_res('exam_name','Exam Name')}" },
+        { "data": "exam_type", "title": "${get_res('exam_type','Exam Type')}" },
+        { "data": "start_date", "title": "${get_res('start_date','Start Date')}" },
+        { "data": "end_date", "title": "${get_res('end_date','End Date')}" },
+        { "data": "result_less_name", "title": "${get_res('retake_condition','Retake Condition')}" },
+        { "data": "retake_condition", "title": "${get_res('retake_times','Retake Times')}" },
+        { "data": "exam_id", "title": "${get_res('no_of_candidates','No.of Candidates')}" },
+    ];
+    scope.tableSource = _loadDataServerSide;
+    function _loadDataServerSide(fnReloadData, iPage, iPageLength, orderBy, searchText) {
+        scope.$$tableConfig = {
+            fnReloadData: fnReloadData,
+            iPage: iPage,
+            iPageLength: iPageLength,
+            orderBy: orderBy,
+            searchText: searchText
+        };
+        //setTimeout(function () {
+        if (fnReloadData) {
+            if (searchText) {
+                _tableData(iPage, iPageLength, orderBy, searchText, function (data) {
+                    fnReloadData(data);
+                });
+            } else {
+                _tableData(iPage, iPageLength, orderBy, null, function (data) {
+                    fnReloadData(data);
+                });
+            }
         }
+        //}, 1000);
+    };
+    function _tableData(iPage, iPageLength, orderBy, searchText, callback) {
+        //if (scope.treeCurrentNode.hasOwnProperty('folder_id')) {
+        var sort = {};
+        $.each(orderBy, function (i, v) {
+            sort[v.columns] = (v.type === "asc") ? 1 : -1;
+        });
+        sort[orderBy[0].columns] =
+            services.api("${get_api_key('app_main.api.LMSLS_ExExamination/get_exam_retake_list')}")
+                .data({
+                    //parameter at here
+                    "pageIndex": iPage - 1,
+                    "pageSize": iPageLength,
+                    "search": searchText,
+                    "sort": sort
+                })
+                .done()
+                .then(function (res) {
+                    for (var i = 0; i < res.items.length; i++) {
+                        if (res.items[i].course_related) {
+                            res.items[i].exam_type = "${get_res('course_related','Course-Related')}";
+                        } else {
+                            res.items[i].exam_type = "${get_res('non_course_related','Non Course-Related')}";
+                        }
+                        if (res.items[i].result_less) {
+                            res.items[i].result_less_name = "> " + res.items[i].result_less;
+                        } else {
+                            res.items[i].result_less_name = "${get_res('result_less_none','None')}";
+                        }
+                    }
+
+                    var data = {
+                        recordsTotal: res.total_items,
+                        recordsFiltered: res.total_items,
+                        data: res.items
+                    };
+                    callback(data);
+                    scope.$apply();
+                })
+        //}
     }
-    /*                                                         */
-    /* ==================== Property Scope - END ==============*/
-    /*                                                         */
 
-    /*                                                         */
-    /* ==================== Initialize - START=================*/
-    /*                                                         */
-    activate();
-    init();
-    /*                                                         */
-    /* ==================== Initialize - END ==================*/
-    /*                                                         */
-
-    /*                                                                                          */
-    /* ===============================  Implementation - START  ================================*/
-    /*                                                                                          */
-
-    /* Object handle data */
-    function handleData() {
-
-        this.collection = {};
-
-        this.mapName = [];
-
-
-
-        this.mapName = _.filter(scope.$root.$function_list, function (f) {
+    /*
+     * * Hàm select row của table
+     */
+    scope.onSelectTableRow = function ($row) {
+        scope.$partialpage = "examination_management_retake_detail";
+        //
+        scope.$display.mapName = _.filter(scope.$root.$function_list, function (f) {
             return f.level_code.includes(scope.$root.currentFunction.function_id)
                 && f.level_code.length == scope.$root.currentFunction.level_code.length + 1
         });
-
-        this.getElementMapNameByIndex = (index) => {
-            return mapName[index];
-        }
+        //
+        scope.$display.selectedFunction = (scope.$display.mapName.length > 0) ? scope.$display.mapName[0].function_id : null;
+        //
+        scope.$applyAsync();
     };
-
-    /* Initialize Data */
-    function activate() {
-
-    }
-
-    function init() {
-        scope.handleData = new handleData();
-        scope.mapName = scope.handleData.mapName;
-        scope.currentFunction = scope.mapName[0];
-    }
-
-    /*                                                                                          */
-    /* ===============================  Implementation - END  ==================================*/
-    /*                                                                                          */
-
-    scope.$watch("selectedFunction", function (function_id) {
-        if (function_id) {
-            var $his = scope.$root.$history.data();
-            window.location.href = "#page=" + $his.page + "&f=" + function_id;
-        }
-    });
-
-    scope.$root.$history.onChange(scope, function (data) {
-        if (scope.mapName.length > 0) {
-            if (data.f) {
-                var func = _.filter(scope.mapName, function (f) {
-                    return f["function_id"] == data.f;
-                });
-                if (func.length > 0) {
-                    scope.$partialpage = func[0].url;
-                    scope.currentFunction = func[0];
-                    scope.selectedFunction = func[0].function_id;
-                } else {
-                    window.location.href = "#";
-                }
-            } else {
-                scope.$partialpage = scope.mapName[0].url;
-            }
-            scope.$apply();
-        } else {
-            window.location.href = "#";
-        }
-    });
-
 });

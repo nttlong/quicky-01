@@ -3,7 +3,7 @@
         <div class="lms-dashboard-header">
             <div class="row">
                 <div class="col-md-3">
-                    <div class="lms-dashboard-header-box">
+                    <div class="lms-dashboard-header-box" ng-click="redirectPage('LMSLS_QLHL_0010_110')">
                         <div class="lms-dashboard-header-box-tx">
                             <div class="lms-dashboard-header-box-tx-info">
                                 <p class="lms-dashboard-count">{{dashBoard.number_material}}</p>
@@ -22,7 +22,7 @@
                     </div>
                 </div>
                 <div class="col-md-3">
-                    <div class="lms-dashboard-header-box">
+                    <div class="lms-dashboard-header-box" ng-click="redirectPage('LMSLS_QLHL_0010_130')">
                         <div class="lms-dashboard-header-box-tx lms-dashboard-categories">
                             <div class="lms-dashboard-header-box-tx-info">
                                 <p class="lms-dashboard-count">{{dashBoard.number_folder}}</p>
@@ -44,7 +44,7 @@
                     <div class="lms-dashboard-header-box">
                         <div class="lms-dashboard-header-box-tx lms-dashboard-peding">
                             <div class="lms-dashboard-header-box-tx-info">
-                                <p class="lms-dashboard-count">50</p>
+                                <p class="lms-dashboard-count">{{dashBoard.number_pending}}</p>
                                 <p class="lms-dashboard-info">Pending Materials</p>
                             </div>
                             <div class="lms-dashboard-header-box-tx-icon">
@@ -60,7 +60,7 @@
                     </div>
                 </div>
                 <div class="col-md-3">
-                    <div class="lms-dashboard-header-box">
+                    <div class="lms-dashboard-header-box" ng-click="redirectPage('LMSLS_QLHL_0010_140')">
                         <div class="lms-dashboard-header-box-tx lms-dashboard-download">
                             <div class="lms-dashboard-header-box-tx-info">
                                 <p class="lms-dashboard-count">{{dashBoard.number_download}}</p>
@@ -126,6 +126,7 @@
 <style>
     .lms-dashboard {
         padding: 30px;
+        background: #fff;
     }
 
     .lms-dashboard-header-box {

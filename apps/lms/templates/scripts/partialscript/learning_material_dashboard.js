@@ -12,20 +12,20 @@
 
     scope.$chartLine = {
         numberView: 10,
-        
+
     };
     scope.dataSetChart = '';
     scope.labelSetChart = scope.labelSetChart;
     scope.labelsPie = [];
     scope.dataPie = [];
-    scope.colorsPie = ['#803690', '#00ADF9', '#DCDCDC', '#46BFBD','#FDB45C']
+    scope.colorsPie = ['#803690', '#00ADF9', '#DCDCDC', '#46BFBD', '#FDB45C']
 
     scope.arrData = function (list) {
-        
+
 
     }
     scope.labelsHorizontalBar = [];
-    
+
     //scope.seriesHorizontalBar = ['Series A', 'Series B'];
 
     scope.dataHorizontalBar = [];
@@ -39,31 +39,37 @@
             .done()
             .then(function (res) {
                 debugger
-                
-                 scope.dashBoard = res;
+                scope.dashBoard = res;
                 var arr_folder = [];
+                //////////////////////////////Top 5 Material Category with View/////////////////////////////
                 var folder_views = _.map(scope.dashBoard.top_five_folder, function (val) {
+
                     if (val.items.length > 0) {
-                        return { folder_id: val.folder_id, number: _.reduce(val.items, function (memo, num) { return memo.views.length + num.views.length; }) }
+                        return {
+                            folder_id: val.folder_id, number: _.reduce(val.items, function (memo, num) {
+                                return memo.views ? memo.views.length : 0 + num.views ? num.views.length : 0;
+                            })
+                        }
                     } else { return { folder_id: val.folder_id, number: 0 } }
                 })
+
                 for (var i = 0; i < 5; i++) {
                     var max = _.max(folder_views, function (val) { return val.number; });
                     if (max.number != 0) {
                         scope.dataPie.push(max.number)
                         scope.labelsPie.push(max.folder_id)
                         folder_views = _.reject(folder_views, function (num) { return num.folder_id == _.max(folder_views, function (val) { return val.number; }).folder_id });
-                    }        
-                    
-                }
+                    }
 
+                }
+            /////////////Top 5 Learning Material with View /////////////////////////
                 for (var i = 0; i < scope.dashBoard.top_five_material.length; i++) {
                     if (scope.dashBoard.top_five_material[i]) {
                         scope.labelsHorizontalBar.push(scope.dashBoard.top_five_material[i].material_name)
                         scope.dataHorizontalBar.push(scope.dashBoard.top_five_material[i].views.length)
                     }
                 }
-
+//////////////////////////dynamic chart /////////////////////////////////
                 var date_now = moment().format('YYYY-MM-DD')
                 for (var j = 0; j < 10; j++) {
                     var download_chart = 0
@@ -157,9 +163,26 @@
                     }
                 ]
                 scope.dataSetChart = dataSetChart;
+
                 scope.$applyAsync();
             })
     }
 
     scope.loadInfoDashBoardPage();
+
+    scope.redirectPage = function (funcId) {
+        window.location.href = updateQueryStringParameter('f', funcId);
+    }
+
+    function updateQueryStringParameter(key, value) {
+        var uri = window.location.href;
+        var re = new RegExp("([?&])" + key + "=.*?(&|$)", "i");
+        var separator = uri.indexOf('?') !== -1 ? "&" : "?";
+        if (uri.match(re)) {
+            return uri.replace(re, '$1' + key + "=" + value + '$2');
+        }
+        else {
+            return uri + separator + key + "=" + value;
+        }
+    }
 });

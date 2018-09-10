@@ -33,9 +33,8 @@ def get_list_with_searchtext(args):
         
     return ret.get_page(pageIndex, pageSize)
 
-def getListRankcode(args):
-    ret=TMLS_Rank.display_list_rank()
-    return ret.get_list()
+
+
 def get_list_details_with_searchtext(args):
 
     if args['data'].has_key('rank_code'):
@@ -367,3 +366,32 @@ def set_dict_detail_update_data(args, rank_code):
     ret_dict['modified_on'] = datetime.datetime.now()
     ret_dict['modified_by'] = common.get_user_id()
     return ret_dict
+
+def getListRankcode(args):
+    ret = {}
+    collection = common.get_collection('TMLS_Rank').aggregate([
+        {"$lookup":{'from':common.get_collection_name_with_schema('TMPER_AprPeriodRank'), 'localField':'rank_code', 'foreignField':'rank_code', 'as': 'rr'}},
+        {"$unwind":{'path':'$rr', "preserveNullAndEmptyArrays":True}},
+        {"$project": {
+            "rank_code": 1,
+            "rank_name": 1,
+            "ordinal": 1,
+            "percent": { "$ifNull": ["$rr.percent", "0"] },
+        }}
+        ])
+        
+    ret = list(collection)
+    return ret
+
+def getListRank(args):
+    ret = {}
+    collection = common.get_collection('TMLS_Rank').aggregate([
+        {"$project": {
+            "rank_code": 1,
+            "rank_name": 1,
+            "ordinal": 1
+        }}
+        ])
+        
+    ret = list(collection)
+    return ret

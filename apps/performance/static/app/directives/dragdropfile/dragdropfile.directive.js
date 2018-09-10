@@ -89,7 +89,7 @@
                 parallelUploads: 2,
                 thumbnailHeight: 32,
                 thumbnailWidth: 32,
-                maxFilesize: 3,
+                maxFilesize: 100,
                 filesizeBase: 1000,
                 thumbnail: function (file, dataUrl) {
                     if (file.previewElement) {

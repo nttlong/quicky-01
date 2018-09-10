@@ -584,6 +584,55 @@ mdl.directive("cHtmlBox", ["$parse", function ($parse) {
         }
     }
 }]);
+mdl.directive("cHtmlEditor", ["$parse", function ($parse) {
+    return {
+        restrict: "ACE",
+        link: function (scope, ele, attr) {
+            var isntance = {
+                insertText: function (txt) {
+                    $(ele[0]).summernote('editor.insertText', txt);
+                }
+            }
+            var changeByBind = false;
+            var changeByManual = false;
+            var disable = attr["ngDisabled"];
+            var $ele = ele.summernote({
+                height: ele.height()
+            }).on("summernote.change", function (e) {   // callback as jquery custom event 
+                if (changeByBind) return;
+                changeByManual = true;
+                var content = $(ele[0]).summernote("code")
+
+                $parse(attr.ngModel).assign(scope, content);
+                changeByManual = false;
+                });
+            console.log('summmer editor',$ele);
+            scope.$watch(attr.ngModel, function (val, oldVal) {
+                if (changeByManual) return;
+                changeByBind = true;
+                if ((!val) || (val == null)) {
+                    $(ele[0]).summernote('code', "");
+
+                }
+                // if (val != oldVal) {
+
+                $(ele[0]).summernote('code', val);
+
+
+                // }
+                changeByBind = false;
+            });
+            if (disable && disable === "true")
+                ele.summernote('disable');
+            else
+                ele.summernote('enable');
+
+            if (attr.ngInstance) {
+                $parse(attr.ngInstance).assign(scope, isntance);
+            }
+        }
+    }
+}]);
 /*
 <div class="input-group">
     <span class="input-group-addon">@</span>

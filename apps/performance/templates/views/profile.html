@@ -121,21 +121,31 @@
             </div>
         </div>
         <div class="hcs-right-side-department-content">
-            <div class="hcs-right-side-department-list-tool-bar">
-                <div class="zb-left-content pull-left" style="width:600px;">
+
+            <div class="hcs-top-action-mobile">
+                <button class="zb-btn zb-btn-o-green ng-scope hcs-menu-mobile" ng-click="jqSliderLeftMobile()">
+                    <i class="bowtie-icon bowtie-menu"></i>
+                </button>
+                <button class="zb-btn zb-btn-o-green ng-scope hcs-action-mobile" ng-click="jqSliderActionMobile()">
+                    <i class="bowtie-icon bowtie-menu"></i>
+                </button>
+            </div>
+
+            <div class="hcs-right-side-department-list-tool-bar hcs-top-action-large">
+                <div class="zb-left-content col-xs-6 pull-left" style="padding-left: 0; padding-right: 0;">
                     <div class="row">
-                        <div class="col-md-6">
+                        <div class="col-xs-6">
                                 <input-select ng-model="objFilterActive.$$$filter_active" 
                                               class="size-lg"
                                               data-list="cbbEmployeeActive" 
                                               data-value="value" data-caption="caption" />
                         </div>
-                        <div class="col-md-6">
+                        <div class="col-xs-6">
                             <input-text-icon id="tableSearchText" on-click="objSearch.onSearch" ng-model="objSearch.$$$modelSearch"></input-text-icon>
                         </div>
                     </div>
                 </div>
-                <div class="zb-right-content pull-right">
+                <div class="zb-right-content col-xs-6 pull-right" style="padding-left: 0; padding-right: 0; text-align: right;">
                     <button class="zb-btn zb-btn-o-green ng-scope" 
                             ng-click="addEmployee()">
                         <i class="bowtie-icon bowtie-math-plus"></i>

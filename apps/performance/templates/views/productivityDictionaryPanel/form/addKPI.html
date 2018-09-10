@@ -94,24 +94,6 @@
             </div>
             <div class="col-md-{{col}}">
                 <div class="form-group zb-form-group">
-                    <!--Trọng số-->
-                    <label class="col-sm-5 zb-form-label">${get_res('weight','Trọng số')}</label>
-                    <div class="col-sm-7">
-                        <input-number ng-model="entity.weight" type="float">
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-{{col}}">
-                <div class="form-group zb-form-group">
-                    <!--Trọng số-->
-                    <label class="col-sm-5 zb-form-label">${get_res('benchmark','Điểm chuẩn')}</label>
-                    <div class="col-sm-7">
-                        <input-number ng-model="entity.benchmark" type="float">
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-{{col}}">
-                <div class="form-group zb-form-group">
                     <label class="col-sm-5 zb-form-label">${get_res('kpi_formula','Công thức tính năng suất')}</label>
                      <div class="col-sm-7" style="display: grid; grid-template-columns:auto 1fr;">
                         <combobox load-data="$root.$getComboboxData" 
@@ -155,15 +137,31 @@
                     </div>
                 </div>
            </div>
-           <div class="col-md-{{col}}">
-             <div class="form-group zb-form-group">
-                   <!--Ngưng sử dụng-->
-                <label class="col-sm-5 zb-form-label">${get_res('is_kpi_not_weight','KPI không xét trọng số')}</label>
-                <div class="col-sm-7">
-                    <input-checkbox ng-model="entity.is_kpi_not_weight">
+            <div class="col-md-{{col}}">
+                <div class="form-group zb-form-group">
+                    <!--Trọng số-->
+                    <label class="col-sm-5 zb-form-label">${get_res('weight','Trọng số')}</label>
+                    <div class="col-sm-7">
+                        <input-number ng-model="entity.weight" type="float">
+                    </div>
                 </div>
-             </div>
-           </div>
+            </div>
+            <div class="col-md-{{col}}">
+                <div class="form-group zb-form-group">
+                     <label class="col-sm-5 zb-form-label">${get_res('score_from','Cho điểm từ')}</label>
+                     <div class="col-sm-7" style="display:grid; grid-auto-columns:auto auto auto">
+                         <div style="grid-area: 1 / 1 / 2 / 2;">
+                            <input-number ng-model="entity.score_from" type="float">
+                         </div>
+                         <div style="grid-area: 1 / 2 / 2 / 3;">
+                             <label class="zb-form-label" style="margin:0 5px;">${get_res('to','Đến')}</label>
+                         </div>
+                         <div style="grid-area: 1 / 3 / 2 / 4;">
+                             <input-number ng-model="entity.score_to" type="float">
+                         </div>
+                     </div>
+                 </div>
+            </div>
            <div class="col-md-{{col}}">
              <div class="form-group zb-form-group">
                    <!--Ngưng sử dụng-->
@@ -212,7 +210,7 @@
             <!--Ghi chú-->
             <div class="form-group zb-form-group">
                 <div class="col-sm-12 no-padding">
-                    <input-textarea rows="5" ng-model="entity.kpi_desc"></input-textarea>
+                    <input-textarea rows="4" ng-model="entity.kpi_desc"></input-textarea>
                 </div>
             </div>
         </div>
@@ -224,7 +222,7 @@
             <!--Ghi chú-->
             <div class="form-group zb-form-group">
                 <div class="col-sm-12 no-padding">
-                    <input-textarea rows="5" ng-model="entity.note"></input-textarea>
+                    <input-textarea rows="3" ng-model="entity.note"></input-textarea>
                 </div>
             </div>
         </div>
@@ -254,13 +252,13 @@
             kpi_desc: null,
             kpi_ref: null,
             weight: null,
-            benchmark: null,
+            score_from: null,
+            score_to: null,
             kpi_formula: null,
             value_cal_type: null,
             input_type: 1,
             is_apply_all: null,
             kpi_years: null,
-            is_kpi_not_weight: null,
             job_working: [],
             note: null,
             lock: null,

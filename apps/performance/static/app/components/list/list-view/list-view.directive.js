@@ -19,9 +19,9 @@
             scope: {
                 captionField: "@",
                 valueField: "@",
-                source: "=data",
+                source: "=",
                 ngModel: "=",
-                ngChange: "&",
+                ngChange: "=",
                 multi: "="
             }
         };
@@ -38,6 +38,8 @@
                 } else {
                     scope.ngModel = JSON.parse(angular.toJson(item))
                 }
+                if (scope.ngChange)
+                    scope.ngChange()(scope.ngModel);
             }
 
             scope._contains = function (source, value) {
@@ -53,10 +55,10 @@
     function template() {
         return `
               <div class ="list-group zb-list-view" ng-if="!multi">
-                <a ng-repeat="elm in source track by $index" ng-class="{active:_equal(ngModel, elm)}" class ="list-group-item" ng-click="selectItem($event, elm)">{{captionField}}</a>
+                <a ng-repeat="elm in source track by $index" ng-class="{active:_equal(ngModel, elm)}" class ="list-group-item" ng-click="selectItem($event, elm)">{{elm[captionField]}}</a>
               </div>
               <div class ="list-group zb-list-view" ng-if="multi">
-                <a ng-repeat="elm in source track by $index" ng-class="{active:_contains(ngModel, elm)}" class ="list-group-item" ng-click="selectItem($event, elm)">{{captionField}}</a>
+                <a ng-repeat="elm in source track by $index" ng-class="{active:_contains(ngModel, elm)}" class ="list-group-item" ng-click="selectItem($event, elm)">{{elm[captionField]}}</a>
               </div>
             `;
     }

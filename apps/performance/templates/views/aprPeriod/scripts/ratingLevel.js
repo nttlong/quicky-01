@@ -42,7 +42,7 @@
     //    _departmentGroup(a, b);
     //}
 
-    (function _departmentGroup() {
+    (function _departmentGroup(callback) {
         debugger
         var arrTableTree = {};
         services.api("${get_api_key('app_main.api.TMPER_AprPeriodRank/get_tree')}")
@@ -52,7 +52,6 @@
             })
             .done()
             .then(function (res) {
-                debugger
                 if (res.length > 0) {
                     res.push({
                         level: 1,
@@ -63,52 +62,58 @@
                         ordinal: "DP001"
                     })
                 }
+                //getListRankCode(function (ress) {
+                //    debugger
+                //    if (ress != null) {
+                //        for (var i = 0; res.length; i++) {
 
+                //            ress.forEach(function (el) {
+                //                if (res[i].rank_code == el.data) {
+                //                    var a = res[i].rank_code;
+                //                    var percent = res[i].percent;
+                //                    Object.assign(res[i], { "rank1": percent });
+                //                }
+                //            });
 
-                res_rankField = _.map(res, function (val, index) {
-                    Object.assign(res[index], { rank3: 40 });
-                    return { "data": val.rank_code, "title": "%" + "<" + val.rank_name + ">", width: "50px", className: "text-center" };
+                //        }
+                //    }
+                //});
 
-                })
-                for (var i = 0; i < res_rankField.length - 1; i++) {
-                    scope.$$tableTree.tableFields.push(res_rankField[i]);
-
-                }
-                debugger
-                scope.$$tableTree.tableFields;
-                console.log("@@@@@:", scope.$$tableTree.tableFields)
                 scope.$$tableTree.dataTableTree = res;
                 scope.$applyAsync();
 
-            })
+
+            });
     })();
 
     
     
-    //(function getListRankCode() {
-    //    debugger
-    //    services.api("${get_api_key('app_main.api.TMLS_Rank/getListRankcode')}")
-    //        .data()
-    //        .done()
-    //        .then(function (res) {
-    //            debugger
-    //            res = _.map(res, function (val) {
-    //                return { "data": val.rank_code, "title": "%"+ "<"+ val.rank_name +">", width: "100px", className: "text-center"  };
-    //            })
-    //            for (var i=0; i < res.length; i++) {
-    //                scope.$$tableTree.tableFields.push(res[i]);
-    //            }
-    //            scope.$applyAsync();
-    //        });
-    //})();
+    function getListRankCode(callback) {
+        debugger
+        var out_put = [];
+        services.api("${get_api_key('app_main.api.TMLS_Rank/getListRank')}")
+            .data()
+            .done()
+            .then(function (res) {
+                scope.$rating = res;
+                res = _.map(res, function (val) {
+                    return { "data": val.rank_code, "title": "%"+ "<"+ val.rank_name +">", width: "100px", className: "text-center"  };
+                })
+                for (var i=0; i < res.length; i++) {
+                    scope.$$tableTree.tableFields.push(res[i]);
+                }
+                scope.$applyAsync();
+                callback(res);
+            });
+    }
     
    
     function onAdd() {
         scope.mode = 1;
         openDialog("${get_res('Rating_Level_Detail','Chi tiết định mức xếp loại')}", 'aprPeriod/form/addRatingLevel', function () { });
-    };
-
-
+    }
+    
+        
     function onDelete() {
         if (!scope.$$tableTree.treeSelectedNodes[0]) {
             $msg.message("${get_global_res('Notification','Thông báo')}", "${get_global_res('No_Row_Selected','Không có dòng được chọn')}", function () { });

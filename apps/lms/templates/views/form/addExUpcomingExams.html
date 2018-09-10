@@ -223,145 +223,233 @@ input[type=checkbox] .styled:checked+label::after,input[type=radio] .styled:chec
         border: 1px solid #ccc;
     }
 </style>        
-            <div class="col-md-{{col_group}} col-sm-{{col_group}}">
-                <collapse-box class="zb-form-common" title="${get_res('Create_an_exam_template','Create an Exam Template')}">
-                    <div class="col-md-12" style="font-size:12px;padding-top: 15px;">
-                      <div class="col-md-3" ng-class="{ active: isSet(1) }"  ng-click="setTab(1)" style="cursor:pointer;border-left:2px solid rgb(68,114,196)">
-                          <div class="col-md-2" ><div class="circle-statistics">1</div></div>
-                          <div class="col-md-10" >                          
-                          <p>${get_res('enter','Enter')}</p>
-                          <p>${get_res('exam_temp_infor','Exam Template Information')}</p>
-                          </div>
-
-                      </div>
-                      <div class="col-md-3" ng-class="{ active: isSet(2) }"  ng-click="setTab(2)" style="cursor:pointer;border-left:2px solid rgb(68,114,196)">
-                          <div class="col-md-2" ><div class="circle-statistics">2</div></div>
-                          <div class="col-md-10" >                          
-                          <p>${get_res('specify','Specify')}</p>
-                          <p>${get_res('who_can_take_this_exam','Who can take this exam')}</p>
-                          </div>
-                       </div>
-                      <div class="col-md-2" ng-class="{ active: isSet(3) }"  ng-click="setTab(3)" style="cursor:pointer;border-left:2px solid rgb(68,114,196)">
-                          <div class="col-md-3" ><div class="circle-statistics">3</div></div>
-                          <div class="col-md-9" >                          
-                          <p>${get_res('specify','Specify')}</p>
-                          <p>${get_res('num_of_ques','Number of Questions')}</p>
-                          </div>
-                       </div>
-                    <div class="col-md-2" ng-class="{ active: isSet(4) }"  ng-click="setTab(4)" style="cursor:pointer;border-left:2px solid rgb(68,114,196)">
-                          <div class="col-md-3" ><div class="circle-statistics">4</div></div>
-                          <div class="col-md-9" >                          
-                          <p>${get_res('allow','Allow')}</p>
-                          <p>${get_res('retaking_examination','Retaking Examination')}</p>
-                          </div>
-                       </div>
-                        <div class="col-md-2" ng-class="{ active: isSet(5) }"  ng-click="setTab(5)" style="cursor:pointer;border-left:2px solid rgb(68,114,196)">
-                          <div class="col-md-3" ><div class="circle-statistics">5</div></div>
-                          <div class="col-md-9" >                          
-                          <p>${get_res('add','Add')}</p>
-                          <p>${get_res('advanced_settings','Advanced Settings')}</p>
-                          </div>
-                       </div>
-  	            </div>
-                <div class="col-md-12">
-  		            <div class="jumbotron">
-       	               <div ng-show="isSet(1)">
-                              <%include file = "addExUpcomingExamsTabOne.html" />
-                       </div>
-			           <div ng-show="isSet(2)">
-                               <%include file = "addExUpcomingExamsTabTwo.html" />       
-                       </div>
-                       <div ng-show="isSet(3)">
-                              <%include file = "addExUpcomingExamsTabThree.html" />  
-     	               </div>
-                        <div ng-show="isSet(4)">
-                              <%include file = "addExUpcomingExamsTabFour.html" /> 
-                       </div>
-                       <div ng-show="isSet(5)">
-         	               <%include file = "addExUpcomingExamsTabFive.html" />   
-        	           </div>
-  	            </div>
-              </div>
-                    
-                </collapse-box>
-                
+<div class="col-md-{{col_group}} col-sm-{{col_group}}">
+      <!--<div class="col-md-12" style="font-size:12px;padding-top: 15px;">
+         <div class="col-md-3" ng-class="{ active: isSet(1) }"  ng-click="setTab(1)" style="cursor:pointer;border-left:2px solid rgb(68,114,196)">
+            <div class="col-md-2" >
+               <div class="circle-statistics">1</div>
             </div>
+            <div class="col-md-10" >
+               <p>${get_res('enter','Enter')}</p>
+               <p>${get_res('exam_temp_infor','Exam Template Information')}</p>
+            </div>
+         </div>
+         <div class="col-md-3" ng-class="{ active: isSet(2) }"  ng-click="setTab(2)" style="cursor:pointer;border-left:2px solid rgb(68,114,196)">
+            <div class="col-md-2" >
+               <div class="circle-statistics">2</div>
+            </div>
+            <div class="col-md-10" >
+               <p>${get_res('specify','Specify')}</p>
+               <p>${get_res('who_can_take_this_exam','Who can take this exam')}</p>
+            </div>
+         </div>
+         <div class="col-md-2" ng-class="{ active: isSet(3) }"  ng-click="setTab(3)" style="cursor:pointer;border-left:2px solid rgb(68,114,196)">
+            <div class="col-md-3" >
+               <div class="circle-statistics">3</div>
+            </div>
+            <div class="col-md-9" >
+               <p>${get_res('specify','Specify')}</p>
+               <p>${get_res('num_of_ques','Number of Questions')}</p>
+            </div>
+         </div>
+         <div class="col-md-2" ng-class="{ active: isSet(4) }"  ng-click="setTab(4)" style="cursor:pointer;border-left:2px solid rgb(68,114,196)">
+            <div class="col-md-3" >
+               <div class="circle-statistics">4</div>
+            </div>
+            <div class="col-md-9" >
+               <p>${get_res('allow','Allow')}</p>
+               <p>${get_res('retaking_examination','Retaking Examination')}</p>
+            </div>
+         </div>
+         <div class="col-md-2" ng-class="{ active: isSet(5) }"  ng-click="setTab(5)" style="cursor:pointer;border-left:2px solid rgb(68,114,196)">
+            <div class="col-md-3" >
+               <div class="circle-statistics">5</div>
+            </div>
+            <div class="col-md-9" >
+               <p>${get_res('add','Add')}</p>
+               <p>${get_res('advanced_settings','Advanced Settings')}</p>
+            </div>
+         </div>
+      </div>-->
+       <div class="hcs-tab-info">
+            <div class="col-md-12 competency no-padding">
+                <div class="col-md-4 hcs-tab-column-5 active" href="#tab_default_1" data-toggle="tab"
+                     ng-click="setTab(1, $event)">
+                    <div class="hcs-tab-column-5-number">
+                        1
+                    </div>
+                    <div class="hcs-tab-column-5-label">
+                        <label style="padding-top: 0px;">
+                            <span class="text-small">${get_res('enter','Enter')}</span>
+                            <span class="text-small">${get_res('exam_template_information','Exam Template Information')}</span>
+                        </label>
+                    </div>
+                </div>
+                <div class="col-md-4 hcs-tab-column-5" ng-class="{disabled: (__mode === 1 && tabIdx < 2)}"
+                     href="#tab_default_2" data-toggle="tab"
+                     ng-click="setTab(2, $event)">
+                    <div class="hcs-tab-column-5-number">
+                        2
+                    </div>
+                    <div class="hcs-tab-column-5-label">
+                        <label style="padding-top: 0px;">
+                            <span class="text-small">${get_res('specify','Specify')}</span>
+                            <span class="text-small">${get_res('who_can_take_this_exam','Who can take this exam')}</span>
+                        </label>
+                    </div>
+                </div>
+                <div class="col-md-4 hcs-tab-column-5" ng-class="{disabled: (__mode === 1 && tabIdx < 3)}"
+                     href="#tab_default_3" data-toggle="tab"
+                     ng-click="setTab(3, $event)">
+                    <div class="hcs-tab-column-5-number">
+                        3
+                    </div>
+                    <div class="hcs-tab-column-5-label">
+                        <label style="padding-top: 0px;">
+                            <span class="text-small">${get_res('specify','Specify')}</span>
+                            <span class="text-small">${get_res('number_of_ques','Number of questions')}</span>
+                        </label>
+                    </div>
+                </div>
+                <div class="col-md-4 hcs-tab-column-5" ng-class="{disabled: (__mode === 1 && tabIdx < 4)}"
+                     href="#tab_default_4" data-toggle="tab"
+                     ng-click="setTab(4, $event)">
+                    <div class="hcs-tab-column-5-number">
+                        4
+                    </div>
+                    <div class="hcs-tab-column-5-label">
+                        <label style="padding-top: 0px;">
+                            <span class="text-small">${get_res('allow','Allow')}</span>
+                            <span class="text-small">${get_res('retaking_examination','Retaking Examination')}</span>
+                        </label>
+                    </div>
+                </div>
+                <div class="col-md-4 hcs-tab-column-5" ng-class="{disabled: (__mode === 1 && tabIdx < 5)}"
+                     href="#tab_default_5" data-toggle="tab"
+                     ng-click="setTab(5, $event)">
+                    <div class="hcs-tab-column-5-number">
+                        5
+                    </div>
+                    <div class="hcs-tab-column-5-label">
+                        <label style="padding-top: 0px;">
+                            <span class="text-small">${get_res('add','Add')}</span>
+                            <span class="text-small">${get_res('advanced_settings','Advanced Settings')}</span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+       </div>
+      <div class="col-md-12">
+        <div ng-show="isSet(1)">
+           <%include file = "addExUpcomingExamsTabOne.html" />
+        </div>
+        <div ng-show="isSet(2)">
+           <%include file = "addExUpcomingExamsTabTwo.html" />
+        </div>
+        <div ng-show="isSet(3)">
+           <%include file = "addExUpcomingExamsTabThree.html" />
+        </div>
+        <div ng-show="isSet(4)">
+           <%include file = "addExUpcomingExamsTabFour.html" />
+        </div>
+        <div ng-show="isSet(5)">
+           <%include file = "addExUpcomingExamsTabFive.html" />
+        </div>
+      </div>
+</div>
 <style>
-    .circle-statistics {
+    .hcs-tab-column-5 {
+        width: 20%;
+        height: auto;
+        font-size: 12px;
+    }
+
+    .hcs-tab-column-5-number {
         color: rgb(68,114,196);
-    width: 24px;
-    border: 1px solid rgb(68,114,196);
-    border-radius: 50%;
-    text-align: center;
-    font-size: 11px;
-    padding-top: 3px;
-    height: 24px;
-    font-weight: bold;
+        width: 15%!important;
+        border: 1px solid rgb(68,114,196) !important;
+        border-radius: 50%;
+        text-align: center;
+        font-size: 11px;
+        padding-top: 3px;
+        height: 24px !important;
+        font-weight: bold;
+        margin-right: 5px;
+        white-space: nowrap;
+        float: left;
     }
-    .active {
-    font-weight:bold;
+
+    .hcs-tab-column-5-label label{
+        padding-top: 0px;
+        float: left;
+        width: 80%;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
     }
-    .detail-content {
-     font-weight: normal;
-    height: 27px;
-    color: rgb(102, 102, 102);
-    white-space: nowrap;
-    text-overflow: ellipsis;
-    font-size: 0.875rem !important;
-    margin-top: 0px !important;
-    margin-bottom: 0px !important;
-    line-height: 13px !important;
-    text-align: left !important;
-    padding: 0px 0px 0px 5px;
-    overflow: hidden;
+
+    .hcs-tab-column-5-label label span:first-child{
+        display: table;
     }
-    .detail-content::after{
-    content: ":";
-    float: right;
-    display: block;
-    }
-    .info-item {
-    font-weight: normal;
-    height: 27px;
-    color: rgb(102, 102, 102);
-    white-space: nowrap;
-    text-overflow: ellipsis;
-    font-size: 0.875rem !important;
-    margin-top: 0px !important;
-    margin-bottom: 0px !important;
-    line-height: 13px !important;
-    text-align: left !important;
-    padding: 0px 0px 0px 5px;
-    overflow: hidden;
-    }
-    .lms-font-size {
-        font-size: 0.875rem !important;
-    }
-    .body-detail-view {
-        height: 100%;
-    }
+
 </style>
 </%block>
 
 <%block name="modal_script">
 <script>
     (function (scope) {
-        
-        
-
+        var __entity = JSON.parse(JSON.stringify(scope.$parent.currentItem ? scope.$parent.currentItem : {}));
+        scope.entity = scope.__mode == 2 ? __entity : {};
+        scope.tabNumber = 5;
         scope.__mode = scope.$parent.mode;
+        scope.tabIdx = scope.__mode == 2 ? scope.tabNumber : 1;
+
+        if(scope.__mode == 2) {
+        debugger
+            services.api("${get_api_key('app_main.api.LMSLS_ExExamination/get_data_examination_by_id')}")
+                .data({
+                    "exam_id": __entity.exam_id
+                })
+                .done()
+            .then(function (res) {
+                scope.entity = res;
+                scope.$applyAsync();
+            })
+        }
+
+        scope.dt_true = true;
+        scope.dt_false = false;
+        scope.dt_one = 1;
+        scope.dt_two = 2;
+        scope.dt_three = 3;
+
         scope.onResizeDialog = onResizeDialog;
         scope.col = 12;
         scope.col_group = 12;
         scope.col_conf_sal = 12;
         scope.title = scope.$parent.headerTitle;
         scope.customCbb = {};
-        var __entity = JSON.parse(JSON.stringify(scope.$parent.currentItem ? scope.$parent.currentItem : {}));
         //Mode 1: tạo mới, Mode 2: chỉnh sửa, Mode 3: sao chép
-        scope.entity = scope.__mode == 2 ? __entity : {};
+
         scope.durrr = "00:00:00"
         scope.entity.duration = scope.durrr;
-        scope.entity.question_category =  [{}];
+        scope.entity.question_category = [{}];
+        scope.entity.course_related = true;
+        scope.entity.exam_avail = false;
+        scope.entity.exam_mode = true;
+        scope.entity.exam_form = true;
+        scope.entity.choose_from = true;
+        scope.entity.retake_exam = 3;
+        scope.entity.retake_time = false;
+        scope.entity.ques_navi = true;
+        scope.entity.allow_candidates = true;
+        scope.entity.preview_time = true;
+        scope.entity.text_high = true;
+        scope.entity.ques_dis = true;
+        scope.entity.result_SMS = true;
+        scope.entity.result_email = true;
+        scope.entity.pause_resume = true;
+        scope.entity.check_plagi = true;
         //combobox source
         scope.cbbTrainCof = scope.$parent.LAcadameRange;
         scope.cbbCoeff = scope.$parent.LAcadameCoEff;
@@ -378,21 +466,25 @@ input[type=checkbox] .styled:checked+label::after,input[type=radio] .styled:chec
         //Nút sửa chi tiết
         scope.editDetail = editDetail;
 
-        scope.category_list = []
+        
 
         scope.entity.total_question = 0
         scope.entity.total_mask = 0
         scope.entity.easy_question = "0%"
         scope.entity.med_question = "0%"
         scope.entity.diff_question = "0%"
-        
+        scope.entity.duration = "00:00:00" 
         scope.entity.creator=scope.$root.__USER__.login_account
         scope.tab = 1;
-        scope.setTab = function (newTab) {
+        scope.setTab = function (newTab, event) {
             setTimeout(function () {
                 $(document).trigger("resize");
             }, 20);
-          scope.tab = newTab;
+            if(scope.tabIdx >= newTab){
+              scope.tab = newTab;
+              $('.hcs-tab-info').find('.active').removeClass('active');
+              $(event.target).closest('div').addClass('active');
+            }
         };
         scope.isSet = function(tabNum){
           return scope.tab === tabNum;
@@ -417,6 +509,7 @@ input[type=checkbox] .styled:checked+label::after,input[type=radio] .styled:chec
         scope.SearchText = '';
         //Refesh table
         scope.entity.question_list = [];
+        scope.category_list = []
         scope.tableSource = _loadDataServerSide;
         scope._tableData = _tableData;
         function _loadDataServerSide(fnReloadData, iPage, iPageLength, orderBy, searchText) {
@@ -443,10 +536,11 @@ input[type=checkbox] .styled:checked+label::after,input[type=radio] .styled:chec
             
            
             
-            if (scope.category_list.length != 0 || scope.entity.total_question !=0) {
+            if (scope.category_list.length != 0 || scope.entity.total_question != 0) {
+               
                 var list_ques_id = [];
                 list_ques_id = _.map(scope.category_list, function (val) { return val.ques_id })
-              
+                
             
         //if (scope.treeCurrentNode.hasOwnProperty('folder_id')) {
         var sort = {};
@@ -517,7 +611,17 @@ input[type=checkbox] .styled:checked+label::after,input[type=radio] .styled:chec
                 beforeCallToServer();
                 editData(function (res) {
                     if (res.error == null) {
-                        $dialog.closeDialog();//Đóng form input
+                        if(res.data && typeof(res.data) === 'object'){
+                           scope.insertDataRes = res.data;
+                        }
+                        if(scope.tabIdx < scope.tabNumber){
+
+                            scope.tab =  scope.tab < scope.tabIdx ? scope.tabIdx + 1 : scope.tab + 1;
+                            scope.tabIdx ++;
+                            $('.hcs-tab-info').find('.active').removeClass('active');
+                            $("div[href='#tab_default_" + scope.tabIdx + "']").addClass('active');
+                        }
+                        //$dialog.closeDialog();//Đóng form input
                         $msg.alert("${get_global_res('Handle_Success','Thao tác thành công')}", $type_alert.INFO);//Xuất thông báo thành cônng
                         if (scope.__mode == 1 || scope.__mode == 3) {
                             
@@ -637,7 +741,9 @@ input[type=checkbox] .styled:checked+label::after,input[type=radio] .styled:chec
 
             }
             if (scope.__mode == 1) {
-
+                if(scope.insertDataRes){
+                    scope.entity['_id'] = scope.insertDataRes['_id'];
+                }
             }
             services.api(url)
                 .data(scope.entity)
@@ -652,8 +758,10 @@ input[type=checkbox] .styled:checked+label::after,input[type=radio] .styled:chec
         }
 
         function getUrl() {
-            return scope.__mode == 1 || scope.__mode == 3 ? "${get_api_key('app_main.api.LMSLS_ExTemplateList/insert')}" /*Mode 1: Tạo mới*/
-                    : "${get_api_key('app_main.api.LMSLS_ExTemplateList/update')}" /*Mode 2: Cập nhật*/
+            return scope.__mode == 1 || scope.__mode == 3 ?
+                    (!scope.insertDataRes ? "${get_api_key('app_main.api.LMSLS_ExExamination/insert')}" /*Mode 1: Tạo mới*/
+                    :"${get_api_key('app_main.api.LMSLS_ExExamination/update')}")
+                    : "${get_api_key('app_main.api.LMSLS_ExExamination/update')}" /*Mode 2: Cập nhật*/
         }
 
         function reloadData() {
@@ -675,37 +783,27 @@ input[type=checkbox] .styled:checked+label::after,input[type=radio] .styled:chec
                 "result": false,
                 "errorMsg": ''
             };
-            
-            valid = lv.Validate(scope.entity.exam_id);
-            rs.result = valid.isNullOrWhiteSpace();
-            rs.errorMsg = rs.result === true ? "${get_res('exam_id_is_not_null','Mã đề thi không được để trống')}" + '\n' : "" ;
-            if(rs.result === true){
-                return rs;
-            }
-            valid = lv.Validate(scope.entity.exam_category);
-            rs.result = valid.isNullOrWhiteSpace();
-            rs.errorMsg = rs.result === true ? "${get_res('exam_category_not_null','Danh mục thi không được để trống')}" + '\n' : "" ;
-            if(rs.result === true){
-                return rs;
-            }
-            valid = lv.Validate(scope.entity.exam_name1);
-            rs.result = valid.isNullOrWhiteSpace();
-            rs.errorMsg = rs.result === true ? "${get_res('exam_category_not_null','Tên đề thi không được để trống')}" + '\n' : "" ;
-            if(rs.result === true){
-                return rs;
-            }
-            valid = lv.Validate(scope.entity.ques_pick);
-            rs.result = valid.isNullOrWhiteSpace();
-            rs.errorMsg = rs.result === true ? "${get_res('ques_pick_not_null','Chế độ chọn câu hỏi không được để trống')}" + '\n' : "" ;
-            if(rs.result === true){
-                return rs;
+
+            if(scope.tabIdx >= 1){
+                valid = lv.Validate(scope.entity.exam_id);
+                rs.result = valid.isNullOrWhiteSpace();
+                rs.errorMsg = rs.result === true ? "${get_res('exam_id_is_not_null','Mã đề thi không được để trống')}" + '\n' : "" ;
+                if(rs.result === true){
+                    return rs;
+                }
+                valid = lv.Validate(scope.entity.exam_name1);
+                rs.result = valid.isNullOrWhiteSpace();
+                rs.errorMsg = rs.result === true ? "${get_res('exam_name_not_null','Tên đề thi không được để trống')}" + '\n' : "" ;
+                if(rs.result === true){
+                    return rs;
+                }
             }
                  
-            rs.result = scope.entity.question_list.length ==0;
+            /*rs.result = scope.entity.question_list.length ==0;
             rs.errorMsg = rs.result === true ? "${get_res('data_question_not_null','Đề thi chưa có câu hỏi được chọn')}" + '\n' : "" ;
             if(rs.result === true){
                 return rs;
-            }
+            }*/
             return rs;
         }
 
@@ -716,12 +814,28 @@ input[type=checkbox] .styled:checked+label::after,input[type=radio] .styled:chec
                 "name": [
                     "LMS_Ex_Temp_negative_marks",
                     "LMS_Ex_Temp_ques_pick",
+                    "LMS_Ex_Retake",
+                    "LMS_Ex_Scoring_Method",
+                    "LMS_Show_result",
+                    "LMS_Ex_customize_decimal",
+                    "LMS_Ex_certificate",
+                    "LMS_Ex_display_result",
+                    "LMS_Ex_question_order",
+                    "LMS_Result_Type"
                 ]
             })
             .done()
             .then(function (res) {
                 scope.cbbNegativeMarks = getValue(res.values, "LMS_Ex_Temp_negative_marks");
                 scope.cbbQuestionPicking = getValue(res.values, "LMS_Ex_Temp_ques_pick");
+                scope.cbbTimeRetake = getValue(res.values, "LMS_Ex_Retake");
+                scope.cbbScoringMethod = getValue(res.values, "LMS_Ex_Scoring_Method");
+                scope.cbbShowResult = getValue(res.values, "LMS_Show_result");
+                scope.cbbCustomizeDecimal = getValue(res.values, "LMS_Ex_customize_decimal");
+                scope.cbbCertificate = getValue(res.values, "LMS_Ex_certificate");
+                scope.cbbDisplayResult = getValue(res.values, "LMS_Ex_display_result");
+                scope.cbbQuestionOrder = getValue(res.values, "LMS_Ex_question_order");
+                scope.cbbResultType = getValue(res.values, "LMS_Result_Type");
                 scope.$applyAsync();
                 function getValue(response, listName) {
                     return _.findWhere(response, { "list_name": listName }) ? _.findWhere(response, { "list_name": listName }).values : [];
@@ -729,28 +843,23 @@ input[type=checkbox] .styled:checked+label::after,input[type=radio] .styled:chec
             })
         }
 
-        function _getDataInitCombobox() {
-			
-			scope.$root.$getInitComboboxData(scope,
-				{
-                    "key": "${encryptor.get_key('lms_cbb_exTemplateCategory')}",
-                    "code": scope.entity && scope.entity.hasOwnProperty('category')? scope.entity.category: null,
-                    "alias": "$$$category_id"
+        _loadValueListResultType();
+        function _loadValueListResultType() {
+            services.api("${get_api_key('app_main.api.LMSLS_ExResultType/get_list')}")
+            .data()
+            .done()
+                .then(function (res) {
+                debugger
+                    scope.cbbResultType = res;
+
+                scope.$applyAsync();
+                function getValue(response, listName) {
+                    return _.findWhere(response, { "list_name": listName }) ? _.findWhere(response, { "list_name": listName }).values : [];
                 }
-			);
-		}
-        _getDataInitCombobox();
-        function __getDataInitCombobox() {
-			
-			scope.$root.$getInitComboboxData(scope,
-				{
-                    "key": "${encryptor.get_key('lms_cbb_exQuestionCategory')}",
-                    "code": scope.entity && scope.entity.hasOwnProperty('category')? scope.entity.category: null,
-                    "alias": "$$$category_id"
-                }
-			);
-		}
-        __getDataInitCombobox();
+            })
+        }
+
+
 
     });
 </script>

@@ -2,6 +2,7 @@
     <div class="modal-content">
         <div class="modal-header">
             <div class="left-content pull-left">
+                <span class="bowtie-icon bowtie-menu hcs-toggle-slider" ng-click="onClickSliderToggle($event)"></span>
                 <span class="modal-title">{{title}}</span>
             </div>
             <div class="right-content pull-right">
@@ -237,10 +238,11 @@
             _loadTreeDataSource();
         })();
 
-        $scope.$watch("$$tree.treeCurrentNode", function () {
-            _tableData($scope.$$table.$$tableConfig.iPage, $scope.$$table.$$tableConfig.iPageLength,
-                $scope.$$table.$$tableConfig.orderBy, $scope.$$table.$$tableConfig.searchText,
-                $scope.$$table.$$tableConfig.fnReloadData);
+        $scope.$watch("$$tree.treeCurrentNode", function (old, newVal) {
+            if(newVal && old != newVal)
+                _tableData($scope.$$table.$$tableConfig.iPage, $scope.$$table.$$tableConfig.iPageLength,
+                    $scope.$$table.$$tableConfig.orderBy, $scope.$$table.$$tableConfig.searchText,
+                    $scope.$$table.$$tableConfig.fnReloadData);
         });
 
         $scope.$watch("$$table.selectedItems", function (val) {
@@ -266,5 +268,9 @@
                 }
             }
         }, true)
+
+        $scope.onClickSliderToggle= function(event){
+            $(".hcs-left-side-department-content").toggle("slide");
+        }
     });
 </script>

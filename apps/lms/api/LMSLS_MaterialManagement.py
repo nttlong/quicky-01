@@ -217,7 +217,7 @@ def get_list_with_searchtext(args):
             language=1,
             coverage=1,
             rights=1,
-            #relations=1,
+            relations=1,
             files=1,
             version=1,
             #comments=1,
@@ -1136,42 +1136,54 @@ def get_data_permission(args):
 
 def get_data_dash_board_page(args):
         
-    ret=models.LMSLS_MaterialManagement().aggregate()
-    len_ret =len(ret.get_list())
-    ret_fold=models.LMSLS_MaterialFolder().aggregate()
-    len_ret_fold =len(ret_fold.get_list())
+    ret=models.LMSLS_MaterialManagement().aggregate().project(
+        material_id =1,
+        downloads =1,
+        sharing_info =1,
+        sharing_social=1,
+        views =1,
+        material_name=1
+    )
+    ret_list = ret.get_list()
+    len_ret =len(ret_list)
+    ret_fold=models.LMSLS_MaterialFolder().aggregate().project(
+        folder_id =1,
+
+    )
+    ret_folder = ret_fold.get_list()
+    len_ret_fold =len(ret_folder)
+
     list_folder = []
-    
-    for j in range(len_ret_fold): 
-        folder_id= ret_fold.get_list()[j]['folder_id']
+
+    for j in ret_folder:
+        folder_id= j['folder_id']
         item_folder=get_list_with_select_node(folder_id)
         list_folder.insert(len(list_folder),item_folder)
 
                     
     len_download = 0
     len_share    = 0
-    for x in ret.get_list():
-        if x.has_key('downloads'):
+    for x in ret_list:
+        if x['downloads'] is not None:
             len_download+=len(x['downloads'])
-    for x in ret.get_list():
-        if x.has_key('sharing_info'):
+        if x['sharing_info'] is not None:
             len_share+=len(x['sharing_info'])
-    for x in ret.get_list():
-        if x.has_key('sharing_social'):
+        if x['sharing_social'] is not None:
             len_share+=len(x['sharing_social'])
-    list_element = ret.get_list()
+
     arr =[]
+    index = None;
     for i in range(5):
         max=0
-        for x in list_element:
-            if x.has_key('views'):
+        for x in ret_list:
+            if x['views'] is not None:
                 if len(x['views']) > max:
                     max=len(x['views'])
+                    index = x
+        arr.insert(len(arr), {'views': index['views'], 'material_name': index['material_name']})
+        ret_list.remove(index)
+    down_share_view = get_list_down_share_view()
 
-                    arr.insert(len(arr),{'views':x['views'],'material_name':x['material_name']})
-                    list_element.remove(x)
-    down_share_view = get_list_down_share_view()    
-    
     
     return dict(
         number_material= len_ret,
@@ -1181,6 +1193,7 @@ def get_data_dash_board_page(args):
         top_five_material = arr,
         top_five_folder = list_folder,
         dynamic_chart =down_share_view,
+        number_pending = get_number_master_pending()
         )
 def get_list_with_select_node(args):
 
@@ -1345,3 +1358,13 @@ def get_material_relation(args):
             relations=1, 
         )
     return ret.get_item()
+
+def get_number_master_pending():
+    ret=models.LMSLS_MaterialManagement().aggregate()
+    ret.match("(status==@status)",status=1)
+    ret.project(
+            status=1, 
+        )
+    if ret != None:
+        return len(ret.get_list())
+    return 0

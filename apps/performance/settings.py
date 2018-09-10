@@ -1,10 +1,11 @@
-
+"""
+Tien comment
+"""
 import datetime
 def authenticate(request):
-    from quicky import tenancy
-
     if request._get_request().has_key("token"):
         token=request._get_request()["token"]
+
         from quicky import backends
         return backends.sigin_by_login_token(request, token, "/")
     import SystemConfig

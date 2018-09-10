@@ -116,6 +116,7 @@ def LMSLS_MaterialManagement():
                 login_account=helpers.create_field("text"),
                 date_created=helpers.create_field("date"),
             )),
+            status=helpers.create_field("numeric"),
         )
         def on_before_insert(data):
             pass

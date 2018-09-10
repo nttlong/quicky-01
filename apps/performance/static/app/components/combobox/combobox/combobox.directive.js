@@ -120,7 +120,7 @@
 
                 var dialogTemplate = '' +
                     '<div class="zb-modal-combobox modal fade" role="dialog" tabindex="-1">' +
-                    '    <div class="modal-dialog">' +
+                    '    <div class="modal-dialog modal-dialog-one-col">' +
                     '        <div class="modal-content">' +
                     '            <div class="modal-header">' +
                     '                <div class="left-content pull-left">' +
@@ -307,6 +307,13 @@
                     _control.setCaption();
                     $scope.$applyAsync();
                 });
+
+                $scope.$watch("ngModel", function(val){
+                    if(!val){
+                        $scope.initData = null;
+                        _control.applyCaption(null);
+                    }
+                })
             }
         };
     }

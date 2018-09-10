@@ -40,7 +40,7 @@
         });
     }
 
-    scope.edit = function () {
+    scope.$root.edit = function () {
         if (scope.currentItem) {
             scope.mode = 2; // set mode chỉnh sửa
             openDialog("${get_res('edit_question_category','Edit Question Category')}", 'form/addExUpcomingExams', function () {
@@ -54,17 +54,19 @@
         }
     }
 
-    scope.delete = function () {
+    scope.$root.delete = function () {
+        
         var arrayId = scope.selectedItems.filter(function (el) {
             return el && el._id
         })
         //
         if (scope.selectedItems.length > 0) {
             $msg.confirm("${get_global_res('Notification','Thông báo')}", "${get_global_res('Do_You_Want_Delete','Bạn có muốn xóa không?')}", function () {
-                services.api("${get_api_key('app_main.api.LMSLS_ExQuestionCategory/delete')}")
+                services.api("${get_api_key('app_main.api.LMSLS_ExExamination/delete')}")
                     .data(arrayId)
                     .done()
                     .then(function (res) {
+                        
                         if (res.deleted > 0) {
                             scope.currentItem = [];
                             scope.$root.refresh();
@@ -76,7 +78,19 @@
         }
     }
 
+    scope.$root.viewExamSummary = function () {
+        
+        if (scope.currentItem && !_.isEmpty(scope.currentItem)) {
+            openDialog("${get_res('view_exam_summary','View Exam Summary')}", 'form/viewExamSummary', function () {
+                setTimeout(function () {
+                    $(window).trigger('resize');
+                }, 200);
+            });
 
+        } else {
+            $msg.message("${get_global_res('Notification','Thông báo')}", "${get_app_res('No_Row_Selected','Không có dòng được chọn')}", function () { });
+        }
+    }
 
 
 
@@ -177,20 +191,29 @@
 
     //Cấu hình tên field và caption hiển thị trên UI
     scope.tableFields = [
-        { "data": "category_id", "title": "${get_res('category_id_table_header','ID')}" },
-        { "data": "category_name", "title": "${get_res('category_name_table_header','Question Category Name')}" },
-        { "data": "number_ques", "title": "${get_res('number_ques_header','Number of Questions')}" },
-        { "data": "created_on", "title": "${get_res('created_at_table_header','Created at')}", "format": "date:" + 'dd/MM/yyyy h:mm:ss a' },
+        { "data": "exam_id", "title": "${get_res('exam_id_table_header','ID')}" },
+        { "data": "exam_name1", "title": "${get_res('exam_name_table_header','Exam Name')}" },
+        { "data": "exam_category", "title": "${get_res('exam_category_ques_header','Exam Category')}" },
+        { "data": "exam_type", "title": "${get_res('exam_type_table_header','Exam Type')}" },
+        { "data": "total_question", "title": "${get_res('total_question_table_header','Total Questions')}" },
+        { "data": "start_date", "title": "${get_res('start_date_table_header','Start Date')}", "format": "date:" + 'dd/MM/yyyy' },
+        { "data": "end_date", "title": "${get_res('end_date_header','End Date')}", "format": "date:" + 'dd/MM/yyyy' },
+        { "data": "duration", "title": "${get_res('duration_table_header','Duration')}" },
+        { "data": "exam_mode", "title": "${get_res('exam_mode_table_header','Exam Mode')}" },
+        { "data": "status", "title": "${get_res('status_table_header','Status')}" },
+        
     ];
+
     scope.$$tableConfig = {};
     scope.$root.$$tableConfig = {};
     scope.$root._tableData = _tableData;
-    scope.$root._departments = _departments;
+
     //Dữ liệu cho table
     scope.tableSource = _loadDataServerSide;
     scope.onSelectTableRow = function ($row) {
         scope.mode = 2;
-        scope.editQuestionCategory();
+        scope.$root.edit();
+        console.log("vvvv")
     };
     //Danh sách các dòng đc chọn (nếu là table MultiSelect)
     scope.selectedItems = [];
@@ -199,8 +222,7 @@
     scope.tableSearchText = '';
     scope.SearchText = '';
     //Refesh table
-    scope.refreshDataRow = refresh;
-    scope.$root.refresh = refresh;
+
 
     scope.treeCurrentNode = {};
     scope.treeSelectedNodes = [];
@@ -213,15 +235,7 @@
     var _treeDepartmentsDataSource = null;
     scope.treeDepartmentsDataSource = null;
 
-    //selectbox datasource
-    scope.cbbGender = [];
-    scope.cbbEmployeeActive = [];
-    scope.cbbCulture = [];
-    scope.cbbRetrain = [];
-    scope.cbbTrainLevel = [];
-    scope.cbbLabourType = [];
-    scope.cbbLevelManagement = [];
-    scope.cbbWorkingType = [];
+
 
     //navigation button
     scope.firstRow = firstRow;
@@ -231,7 +245,7 @@
 
     //function button
     scope.addEmployee = addEmployee;
-    scope.refresh = refresh;
+
 
     //Navigation: quay trở về UI list
     scope.backPage = backPage;
@@ -256,13 +270,6 @@
         }, 500);
     }
 
-    function refresh() {
-        var tableConfig = scope.$$tableConfig;
-        _tableData(tableConfig.iPage,
-            tableConfig.iPageLength, tableConfig.orderBy,
-            tableConfig.searchText, tableConfig.fnReloadData);
-        _departments();
-    }
 
     function firstRow() {
         if (scope.__tableSource.length > 0) {
@@ -292,14 +299,7 @@
         }
     }
 
-    function tableFields() {
-        return [
-            { "data": "category_id", "title": "${get_res('category_id_table_header','ID')}" },
-            { "data": "category_name", "title": "${get_res('category_name_table_header','Question Category Name')}" },
-            { "data": "number_ques", "title": "${get_res('number_ques_header','Number of Questions')}" },
-            { "data": "created_on", "title": "${get_res('created_at_table_header','Created at')}" },
-        ];
-    }
+
 
 
     function handleData() {
@@ -351,14 +351,14 @@
 
     scope._tableData = _tableData;
     function _tableData(iPage, iPageLength, orderBy, searchText, callback, objSearchAdvance) {
-
+        
         //if (scope.treeCurrentNode.hasOwnProperty('folder_id')) {
         var sort = {};
         $.each(orderBy, function (i, v) {
             sort[v.columns] = (v.type === "asc") ? 1 : -1;
         });
         sort[orderBy[0].columns] =
-            services.api("${get_api_key('app_main.api.LMSLS_ExQuestionCategory/get_list_category_question')}")
+            services.api("${get_api_key('app_main.api.LMSLS_ExExamination/get_list_with_searchtext')}")
                 .data({
                     //parameter at here
                     "train_level_code": scope.entity ? scope.entity.train_level_code : " ",
@@ -369,8 +369,24 @@
                 })
                 .done()
                 .then(function (res) {
-
-                    _.map(res.items, function (val) { val.number_ques = 10; return val })
+                    res.items = _.map(res.items, function (val) {
+                        if (val.course_related)
+                        { val.exam_type = "Course-Related" }
+                        else { val.exam_type = "Non Course-Related" };
+                        if (val.exam_mode) { val.exam_mode = "Practice" }
+                        else { val.exam_mode = "Official" };
+                        val.total_question = val.question_list ? val.question_list.length : 0;
+                        if (val.specific_avail) {
+                            val.start_date = val.specific_avail.start_date;
+                            val.end_date = val.specific_avail.end_date;
+                        }
+                        else {
+                            val.start_date = '';
+                            val.end_date = '';
+                        }
+                        return val;
+                    })
+                    
                     var data = {
                         recordsTotal: res.total_items,
                         recordsFiltered: res.total_items,
@@ -385,17 +401,7 @@
     }
 
 
-    function _departments() {
-        services.api("${get_api_key('app_main.api.LMSLS_ExQuestionCategory/get_list')}")
-            .data()
-            .done()
-            .then(function (res) {
-                _treeDepartmentsDataSource = res;
-                scope.treeDepartmentsDataSource = _treeDepartmentsDataSource;
-                scope.treeCurrentNode = res[0];
-                scope.$applyAsync();
-            })
-    }
+
 
     function onSearch(val) {
         scope.tableSearchText = val;

@@ -10,75 +10,56 @@
 
 <%block name="modal_body">
         
-            <div class="col-md-{{col_group}} col-sm-{{col_group}}">
-                
-                <collapse-box class="zb-form-common" title="${get_res('add_new_material','Add a Question Category')}">
-                    <div class="col-md-2 col-sm-2">
-                     </div>
-                    <div class="col-md-8 col-sm-8">
-                    <div class="col-md-{{col}}" style="padding-bottom: 20px;">
-                        <div class="form-group zb-form-group">
-                            <!--Mã Tài liệu, ID-->
-                            <label for="inputEmp_Train_Mode_Name" class="col-sm-5 zb-form-label">${get_res('category_id','Category ID')}</label>
-                            <div class="col-sm-7"> 
-                                <input-text id="inputEmp_Train_Mode_Name" ng-model="entity.category_id" required>
-                            </div>
-                        </div>
-                    </div>
-                       
-                    <div class="col-md-{{col}}"style="padding-bottom: 20px;">
-                        <div class="form-group zb-form-group">
-                            <!--Tên Tài liệu-->
-                            <label for="inputEmp_Train_Mode_Name" class="col-sm-5 zb-form-label">${get_res('category_name','Category Name 1')}</label>
-                            <div class="col-sm-7"> 
-                                <input-text id="inputEmp_Train_Mode_Name" ng-model="entity.category_name" required>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-{{col}}" style="padding-bottom: 20px;">
-                        <div class="form-group zb-form-group">
-                            <!--Tên Tài liệu-->
-                            <label for="inputEmp_Train_Mode_Name" class="col-sm-5 zb-form-label">${get_res('category_name2','Category Name 2')}</label>
-                            <div class="col-sm-7"> 
-                                <input-text id="inputEmp_Train_Mode_Name" ng-model="entity.category_name2" >
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-{{col}}" style="padding-bottom: 20px;">
-                        <div class="form-group zb-form-group">
-                            <!--Nguon dinh danh Tài liệu-->
-                            <label for="inputEmp_Train_Mode_Name" class="col-sm-5 zb-form-label">${get_res('order','Order')}</label>
-                            <div class="col-sm-7"> 
-                                <input-number id="inputEmp_Train_Mode_Name" ng-model="entity.order" >
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-{{col}}" style="padding-bottom: 20px;">
-                        <div class="form-group zb-form-group">
-                            <!--Mô tả tài liệu-->
-                            <label for="inputEmp_Train_Mode_Name" class="col-sm-5 zb-form-label">${get_res('note','Note')}</label>
-                            <div class="col-sm-7">
-                                <div class="clearblock" style="display:inline-block"></div>
-                                <input-textarea rows="4" ng-model="entity.note" ></input-textarea>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="col-md-{{col}}" style="padding-bottom: 20px;">
-                        <div class="form-group zb-form-group">
-                            <!--Tên Khóa học-->
-                            <label for="inputEmp_Train_Mode_Name" class="col-sm-5 zb-form-label">${get_res('is_active','Is Active')}</label>
-                            <div class="col-sm-7"> 
-                              <input-checkbox ng-model="entity.active"/>
-                            </div>
-                        </div>
-                    </div>
-                    </div>
-                   <div class="col-md-2 col-sm-2">
+<div class="col-md-{{col_group}} col-sm-{{col_group}}">
+    <collapse-box class="zb-form-common" title="${get_res('add_new_material','Add a Question Category')}">
+        <div class="col-md-6 col-sm-6">
+            <div class="form-group zb-form-group">
+                <!--Mã Tài liệu, ID-->
+                <label for="inputEmp_Train_Mode_Name" class="col-sm-5 zb-form-label">${get_res('category_id','Category ID')}</label>
+                <div class="col-sm-7"> 
+                    <input-text id="inputEmp_Train_Mode_Name" ng-model="entity.category_id" required>
                 </div>
-                </collapse-box>
-                
             </div>
+            <div class="form-group zb-form-group">
+                <!--Tên Tài liệu-->
+                <label for="inputEmp_Train_Mode_Name" class="col-sm-5 zb-form-label">${get_res('category_name','Category Name 1')}</label>
+                <div class="col-sm-7"> 
+                    <input-text id="inputEmp_Train_Mode_Name" ng-model="entity.category_name" required>
+                </div>
+            </div>
+            <div class="form-group zb-form-group">
+                <!--Tên Tài liệu-->
+                <label for="inputEmp_Train_Mode_Name" class="col-sm-5 zb-form-label">${get_res('category_name2','Category Name 2')}</label>
+                <div class="col-sm-7"> 
+                    <input-text id="inputEmp_Train_Mode_Name" ng-model="entity.category_name2" >
+                </div>
+            </div>
+            <div class="form-group zb-form-group">
+                <!--Nguon dinh danh Tài liệu-->
+                <label for="inputEmp_Train_Mode_Name" class="col-sm-5 zb-form-label">${get_res('order','Order')}</label>
+                <div class="col-sm-7"> 
+                    <input-number id="inputEmp_Train_Mode_Name" ng-model="entity.order" >
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 col-sm-6">
+            <div class="form-group zb-form-group">
+                <!--Mô tả tài liệu-->
+                <label for="inputEmp_Train_Mode_Name" class="col-sm-3 zb-form-label">${get_res('note','Note')}</label>
+                <div class="col-sm-9" style="padding: 0;">
+                    <input-textarea rows="4" ng-model="entity.note" ></input-textarea>
+                </div>
+            </div>
+            <div class="form-group zb-form-group">
+                <!--Tên Khóa học-->
+                <label for="inputEmp_Train_Mode_Name" class="col-sm-3 zb-form-label">${get_res('is_active','Is Active')}</label>
+                <div class="col-sm-9" style="padding: 0;"> 
+                    <input-checkbox ng-model="entity.active"/>
+                </div>
+            </div>
+        </div>
+    </collapse-box>
+</div>
 
 </%block>
 

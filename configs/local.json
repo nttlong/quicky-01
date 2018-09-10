@@ -5,7 +5,7 @@
     "/packages/django",
     "/uvenv04/lib/python2.7/site-packages"
   ],
-  "HOST_DIR":"lms",
+  "HOST_DIR_":"lms",
   "AUTHORIZATION_ENGINE":"quicky.authorize",
   "HOST_DIR_":"test",
   "SECRET_KEY":"12jds*3210d)9",

@@ -101,3 +101,20 @@ def update_details(args, details):
                 }
         })
     return ret
+
+def getListRankCode(args):
+    ret = {}
+    collection = common.get_collection('TMLS_Rank').aggregate([
+        {"$lookup":{'from':common.get_collection_name_with_schema('TMPER_AprPeriodEmpOut'), 'localField':'rank_code', 'foreignField':'rank_code', 'as': 'rr'}},
+        {"$unwind":{'path':'$rr', "preserveNullAndEmptyArrays":True}},
+        
+        {"$project": {
+            "rank_code": 1,
+            "rank_name": 1,
+            "ordinal": 1,
+            "percent": "$rr.percent"
+            
+        }}
+        ])
+        
+    ret = list(collection)

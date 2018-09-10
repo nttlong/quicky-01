@@ -7,32 +7,39 @@
 <%block name="modal_body">
  <div class="col-md-12">
     <collapse-box class="zb-form-common" title="${get_global_res('data_generate_source','Nguồn phát sinh dữ liệu')}">        
-  
-	 <div class="col-md-12">
-			   <div class="form-group zb-form-group">
-                            <input type="radio" name="optradio" checked/>
-                             <label class="col-sm-4 zb-form-label">${get_res('get_by_setup_aprPeriod','Lấy theo thiết lập của kỳ đánh giá')}</label>
-                             <div class="col-sm-8">
-                                 <input-select data-list="cbbApprovalPeriod" ng-model="entity.apr_now_result_period" data-value="value" data-caption="caption" />
+  <div class="col-md-12 col-sm-12 col-12">
+			 <div class="form-group zb-form-group">
+				 <div class="col-md-5 col-sm-5 col-5 zb-form-label">
+                      <label class="radio ">${get_res('get_by_setup_aprPeriod','Lấy theo thiết lập của kỳ đánh giá')}
+                           <input type="radio" name="optradio" checked/>
+                          <span class="checkround"></span>
+                      </label>
+					 </div>
+					 <div class="col-md-7 col-sm-7 col-7">
+                                <input-select data-list="cbbApprovalPeriod" ng-model="entity.apr_now_result_period" data-value="value" data-caption="caption" />
                              </div>
-                         </div>
-			  </div>
-		 <div class="col-md-12">
-			   <div class="form-group zb-form-group">
-                            <input type="radio" name="optradio"/>
-                             <label class="col-sm-4 zb-form-label">${get_res('get_by_result_aprPeriod','Lấy theo kết quả của kỳ đánh giá')}</label>
-                             <div class="col-sm-8">
-                                 <input-select data-list="cbbApprovalPeriod" ng-model="entity.apr_now_result_period" data-value="value" data-caption="caption"/>
+            </div>
+              </div>
+		<div class="col-md-12 col-sm-12 col-12">
+			 <div class="form-group zb-form-group">
+				 <div class="col-md-5 col-sm-5 col-5 zb-form-label">
+                      <label class="radio ">${get_res('get_by_result_aprPeriod','Lấy theo kết quả của kỳ đánh giá')}
+                          <input type="radio" name="optradio"/>
+                          <span class="checkround"></span>
+                      </label>
+					 </div>
+					 <div class="col-md-7 col-sm-7 col-7">
+                                <input-select data-list="cbbApprovalPeriod" ng-model="entity.apr_now_result_period" data-value="value" data-caption="caption"/>
                              </div>
-                         </div>
-			  </div>
+            </div>
+              </div>
 		<br />
-		<div class="col-md-12" style="margin-top:40px;">
-			   <div class="form-group zb-form-group">
+		 <div class="col-md-12 col-sm-12 col-12" style="margin-top:30px;">
+               <div class="form-group zb-form-group"  style="margin-left:6px;">
                             <input type="checkbox" ng-model="entity.chk_exchangeData"/>
-                             <label class="col-sm-4 zb-form-label">${get_res('exchange_list_present','Thay thế danh sách hiện có')}</label>
+                                <label class="col-sm-4 zb-form-label" style="margin-left: 8px;">${get_res('exchange_list_present','Thay thế danh sách hiện có')}</label>
                          </div>
-			  </div>
+              </div>
 		</collapse-box>
 		  </div>
 	</%block>
@@ -55,7 +62,7 @@
 			scope.col_group = scope.col_group == 6 ? 8 : 6;
 		}
 
-		  (function _init_() {
+		(function _init_() {
 			_loadCombobox(function (res) {
 				debugger
 				var period_now = scope.$parent.$parent.Re_Map_Period(scope.$parent.$parent.currentItem.apr_period);
@@ -79,6 +86,11 @@
         scope.$watch('entity.apr_now_result_period', function (val) {
             console.log(val);
 		})
+
+		scope.cancelBtn = cancelBtn;
+		function cancelBtn() {
+			$dialog.closeDialog();
+		}
 
 		function _loadCombobox(callback) {
 			debugger

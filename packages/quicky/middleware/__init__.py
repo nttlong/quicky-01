@@ -88,6 +88,20 @@ class extension(object):
         __apps_cache__.update({request.path: app})
     def init_customer_code(self,request):
         from django.conf import settings
+        _path_ =__remove_last__('/', __remove_first__('/',request.path))
+        if _path_ == "":
+            if not request.__app__.is_persistent_schema():
+                __customer__code__.update({
+                    request.path: settings.MULTI_TENANCY_DEFAULT_SCHEMA
+                })
+                return
+            else:
+                __customer__code__.update({
+                    request.path: None
+                })
+                return
+
+
         if __customer__code__.has_key(request.path) and __customer__code__.has_key(request.path) !="":
             return
         if request.__app__.is_persistent_schema():
@@ -406,7 +420,7 @@ class extension(object):
                         setattr(request, "__view_path", ret)
                         return ret
         #------------------------------------------------------------------
-        def get_res(value,key=None):
+        def get_res(key, value=None):
             if value == None:
                 value = key
             key = key.lower()
@@ -454,6 +468,10 @@ class extension(object):
         def get_login_url():
             return request.__app__.get_login_url(request.get_customer_code())
         #-----------------------------------------------------------
+        def register_view():
+            return request.get_view_path()
+        def get_user():
+            return request.user
         extends_functions =[
             get_language,
             set_language,
@@ -474,7 +492,9 @@ class extension(object):
             get_api_key,
             get_api_path,
             get_csrftoken,
-            get_login_url
+            get_login_url,
+            register_view,
+            get_user
         ]
         setattr(request,"__fn__",{})
         _fn_=getattr(request,"__fn__")

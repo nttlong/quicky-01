@@ -78,7 +78,9 @@ def get_list_with_searchtext(args):
         'weight': '$weight', 
         'unit_code': { '$ifNull': [ '$unit.unit_name', '' ] }, 
         'lock': '$lock', 
-        'benchmark': { '$ifNull': [ '$benchmark', '' ] }
+        'benchmark': { '$ifNull': [ '$benchmark', '' ] },
+        'score_from': { '$ifNull': [ '$score_from', '' ] },
+        'score_to': { '$ifNull': [ '$score_to', '' ] }
         }
     }, 
     {'$match': {'lock': common.aggregate_filter_lock(args['data']['lock']), 'level_code':{'$eq':args['data']['kpi_group_code']}}}, 
@@ -122,12 +124,13 @@ def get_by_kpi_code(args):
             kpi_ref = "kpi_ref",
             weight = "weight",
             benchmark = "benchmark",
+            score_from = "score_from",
+            score_to = "score_to",
             kpi_formula = "kpi_formula",
             value_cal_type = "value_cal_type",
             input_type = "input_type",
             is_apply_all = "is_apply_all",
             kpi_years = "kpi_years",
-            is_kpi_not_weight = "is_kpi_not_weight",
             note = "note",
             lock = "lock",
             created_by="uc.login_account",
@@ -211,7 +214,9 @@ def get_kpi_by_kpi_code(args):
             'weight': '$weight', 
             'unit_code': { '$ifNull': [ '$unit.unit_name', '' ] }, 
             'lock': '$lock', 
-            'benchmark': { '$ifNull': [ '$benchmark', '' ] }
+            'benchmark': { '$ifNull': [ '$benchmark', '' ] },
+            'score_from': { '$ifNull': [ '$score_from', '' ] },
+            'score_to': { '$ifNull': [ '$score_to', '' ] }
             }
         }, 
         {'$match': {'lock': {'$ne': True}, 'kpi_code':{'$eq':args['data']['kpi_code']}}}])
@@ -372,12 +377,13 @@ def set_dict_insert_data(args):
         kpi_ref           = (lambda x: x['kpi_ref']            if x.has_key('kpi_ref')           else None)(args['data']),
         weight            = (lambda x: x['weight']             if x.has_key('weight')            else None)(args['data']),
         benchmark         = (lambda x: x['benchmark']          if x.has_key('benchmark')         else None)(args['data']),
+        score_from        = (lambda x: x['score_from']         if x.has_key('score_from')        else None)(args['data']),
+        score_to          = (lambda x: x['score_to']           if x.has_key('score_to')          else None)(args['data']),
         kpi_formula       = (lambda x: x['kpi_formula']        if x.has_key('kpi_formula')       else None)(args['data']),
         value_cal_type    = (lambda x: x['value_cal_type']     if x.has_key('value_cal_type')    else None)(args['data']),
         input_type        = (lambda x: x['input_type']         if x.has_key('input_type')        else None)(args['data']),
         is_apply_all      = (lambda x: x['is_apply_all']       if x.has_key('is_apply_all')      else None)(args['data']),
         kpi_years         = (lambda x: x['kpi_years']          if x.has_key('kpi_years')         else None)(args['data']),
-        is_kpi_not_weight = (lambda x: x['is_kpi_not_weight']  if x.has_key('is_kpi_not_weight') else None)(args['data']),
         note              = (lambda x: x['note']               if x.has_key('note')              else None)(args['data']),
         lock              = (lambda x: x['lock']               if x.has_key('lock')              else None)(args['data'])
     )

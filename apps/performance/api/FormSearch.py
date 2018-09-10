@@ -116,7 +116,9 @@ def get_list_kpi(args):
         'weight': '$weight', 
         'unit_code': { '$ifNull': [ '$unit.unit_name', '' ] }, 
         'lock': '$lock', 
-        'benchmark': { '$ifNull': [ '$benchmark', '' ] }
+        'benchmark': { '$ifNull': [ '$benchmark', '' ] },
+        'score_from': { '$ifNull': [ '$score_from', '' ] },
+        'score_to': { '$ifNull': [ '$score_to', '' ] }
         }
     }, 
     {'$match': {'lock': {'$ne': True}, 'level_code':{'$eq':args['data']['kpi_group_code']}}}, 

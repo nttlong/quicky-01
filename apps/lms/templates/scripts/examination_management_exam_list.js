@@ -4,7 +4,6 @@
     scope.createTemplateCategory = function () {
         scope.$root.createTemplateCategory();
     }*/
-    debugger
     scope.$root.extendToolbar = false;
     scope.filterFunctionModel = ''
     scope.currentFunction = '';
@@ -20,8 +19,8 @@
     scope.edit = function () {
         scope.$root.edit();
     }
-    scope.delelete = function () {
-        scope.$root.delelete();
+    scope.delete = function () {    
+        scope.$root.delete();
     }
     scope.onDisplayListData = function () {
         scope.isList = true;
@@ -37,6 +36,10 @@
 
         scope.searchText = scope.objSearch.$$$modelSearch
 
+    }
+
+    scope.viewExamSummary = function () {
+        scope.$root.viewExamSummary();
     }
 
 
