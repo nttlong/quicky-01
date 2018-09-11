@@ -1,0 +1,459 @@
+﻿
+<%!
+    #_style="width:200px;"
+%>
+
+<%inherit file="../commons/dialog_accepted.html"/>
+
+<%block name="modal_body">
+<style>
+    .lms-icon-bf-label {
+        font-size: .875rem !important;
+        line-height: 30px !important;
+        color: green !important;
+    }
+    label {
+        line-height: 30px !important;
+        font-size: .875rem !important;
+    }
+</style>
+<div class="col-md-12">
+    <collapse-box class="zb-form-common" title="${get_res('exam_summary','Exam Summary')}">
+        <div class="">
+            <span style="font-size: 0.875em; padding: 10px 15px; font-style: italic;">
+                This page shows you the basic details of the exam.
+            </span>
+            <div>
+                <div class="tabbable-line">
+			        <ul class="nav nav-tabs ">
+				        <li class="active">
+					        <a href="#tab_default_1" data-toggle="tab" ng-click="fnClickOnTab(1)">
+					        ${get_res('exam_overview','Overview')} </a>
+				        </li>
+				        <li>
+					        <a href="#tab_default_2" data-toggle="tab" ng-click="fnClickOnTab(2)">
+					            ${get_res('exam_questions','Questions')} 
+                            </a>
+				        </li>
+				        <li>
+					        <a href="#tab_default_3" data-toggle="tab" ng-click="fnClickOnTab(3)">
+					        ${get_res('exam_history','History')} </a>
+				        </li>
+			        </ul>
+			        <div class="tab-content">
+                        <!--Tab 1-->
+                        <div class="tab-pane active" id="tab_default_1">
+		                    <div class="col-md-12">
+                                <div class="form-group zb-form-group">
+                                    <span class="lms-icon-bf-label bowtie-icon bowtie-navigate-forward-disc"></span>
+                                    <label class="col-sm-4 zb-form-label">${get_res('exam_name','Exam Name')}</label>
+                                    <div class="col-sm-8">
+                                        <label>{{exam_summary.exam_name1}}</label>
+                                    </div>
+                                </div>
+                                <div class="form-group zb-form-group">
+                                    <span class="lms-icon-bf-label bowtie-icon bowtie-navigate-forward-disc"></span>
+                                    <label class="col-sm-4 zb-form-label">${get_res('exam_mode','Exam Mode')}</label>
+                                    <div class="col-sm-8">
+                                        <label>{{exam_summary.exam_mode? "Practice": "Official"}}</label>
+                                    </div>
+                                </div>
+                                <div class="form-group zb-form-group">
+                                    <span class="lms-icon-bf-label bowtie-icon bowtie-navigate-forward-disc"></span>
+                                    <label class="col-sm-4 zb-form-label">${get_res('exam_form','Exam Form')}</label>
+                                    <div class="col-sm-8">
+                                        <label>{{exam_summary.exam_form? "Online Exam": "Offline Exam"}}</label>
+                                    </div>
+                                </div>
+                                <div class="form-group zb-form-group">
+                                    <span class="lms-icon-bf-label bowtie-icon bowtie-navigate-forward-disc"></span>
+                                    <label class="col-sm-4 zb-form-label">${get_res('exam_type','Exam Type')}</label>
+                                    <div class="col-sm-8">
+                                        <label>{{exam_summary.exam_form? "Course-Related": "Non Course-Related"}}</label>
+                                    </div>
+                                </div>
+                                <div class="form-group zb-form-group">
+                                    <span class="lms-icon-bf-label bowtie-icon bowtie-navigate-forward-disc"></span>
+                                    <label class="col-sm-4 zb-form-label">${get_res('exam_course','Course')}</label>
+                                    <div class="col-sm-8">
+                                        <label>{{exam_summary.course_info.course_name}}</label>
+                                    </div>
+                                </div>
+                                <div class="form-group zb-form-group">
+                                    <span class="lms-icon-bf-label bowtie-icon bowtie-navigate-forward-disc"></span>
+                                    <label class="col-sm-4 zb-form-label">${get_res('exam_duration','Duration')}</label>
+                                    <div class="col-sm-8">
+                                        <label>{{exam_summary.duration}}</label>
+                                    </div>
+                                </div>
+                                <div class="form-group zb-form-group">
+                                    <span class="lms-icon-bf-label bowtie-icon bowtie-navigate-forward-disc"></span>
+                                    <label class="col-sm-4 zb-form-label">${get_res('exam_total_ques','Total Questions')}</label>
+                                    <div class="col-sm-8">
+                                        <label>{{exam_summary.exam_total_ques}}</label>
+                                    </div>
+                                </div>
+                                <div class="form-group zb-form-group">
+                                    <span class="lms-icon-bf-label bowtie-icon bowtie-navigate-forward-disc"></span>
+                                    <label class="col-sm-4 zb-form-label">${get_res('exam_show_result','Show Result In')}</label>
+                                    <div class="col-sm-8">
+                                        <label>{{exam_summary.show_result}}</label>
+                                    </div>
+                                </div>
+                                <div class="form-group zb-form-group">
+                                    <span class="lms-icon-bf-label bowtie-icon bowtie-navigate-forward-disc"></span>
+                                    <label class="col-sm-4 zb-form-label">${get_res('exam_exam_availa:','Exam Availability')}</label>
+                                    <div class="col-sm-8">
+                                        <label>{{exam_avail? "Always Available": "Available on specific time"}}</label>
+                                    </div>
+                                </div>
+                                <div class="form-group zb-form-group">
+                                    <span class="lms-icon-bf-label bowtie-icon bowtie-navigate-forward-disc"></span>
+                                    <label class="col-sm-4 zb-form-label">${get_res('exam_display_result','Display Results')}</label>
+                                    <div class="col-sm-8">
+                                        <label>{{exam_summary.display_result}}</label>
+                                    </div>
+                                </div>
+                                <div class="form-group zb-form-group">
+                                    <span class="lms-icon-bf-label bowtie-icon bowtie-navigate-forward-disc"></span>
+                                    <label class="col-sm-4 zb-form-label">${get_res('exam_negative_mark','Negative Mark')}</label>
+                                    <div class="col-sm-8">
+                                        <label>Apply 10% negative marks for this exam</label>
+                                    </div>
+                                </div>
+                                <div class="form-group zb-form-group">
+                                    <span class="lms-icon-bf-label bowtie-icon bowtie-navigate-forward-disc"></span>
+                                    <label class="col-sm-4 zb-form-label">${get_res('exam_minimum_passing_score','Minimum Passing Score')}</label>
+                                    <div class="col-sm-8">
+                                        <label>{{exam_summary.minimum_score}}</label>
+                                    </div>
+                                </div>
+                                <div class="form-group zb-form-group">
+                                    <span class="lms-icon-bf-label bowtie-icon bowtie-navigate-forward-disc"></span>
+                                    <label class="col-sm-4 zb-form-label">${get_res('exam_result_type','Result Type')}</label>
+                                    <div class="col-sm-8">
+                                        <label>{{exam_summary.result_type}}</label>
+                                    </div>
+                                </div>
+                                <div class="form-group zb-form-group">
+                                    <span class="lms-icon-bf-label bowtie-icon bowtie-navigate-forward-disc"></span>
+                                    <label class="col-sm-4 zb-form-label">${get_res('exam_question_picking','Question Picking')}</label>
+                                    <div class="col-sm-8">
+                                        <label>{{exam_summary.mode_pick}}</label>
+                                    </div>
+                                </div>
+                                <div class="form-group zb-form-group">
+                                    <span class="lms-icon-bf-label bowtie-icon bowtie-navigate-forward-disc"></span>
+                                    <label class="col-sm-4 zb-form-label">${get_res('exam_question_order','Question Order')}</label>
+                                    <div class="col-sm-8">
+                                        <label>{{exam_summary.ques_order}}</label>
+                                    </div>
+                                </div>
+                                <div class="form-group zb-form-group">
+                                    <span class="lms-icon-bf-label bowtie-icon bowtie-navigate-forward-disc"></span>
+                                    <label class="col-sm-4 zb-form-label">${get_res('exam_text_highlighter','Text Highlighter')}</label>
+                                    <div class="col-sm-8">
+                                        <label>{{exam_summary.text_high? "Enable": "Disable"}}</label>
+                                    </div>
+                                </div>
+                                <div class="form-group zb-form-group">
+                                    <span class="lms-icon-bf-label bowtie-icon bowtie-navigate-forward-disc"></span>
+                                    <label class="col-sm-4 zb-form-label">${get_res('exam_question_display','Question Display')}</label>
+                                    <div class="col-sm-8">
+                                        <label>{{exam_summary.ques_dis? "One question per paper": "All questions on same page"}}</label>
+                                    </div>
+                                </div>
+                                <div class="form-group zb-form-group">
+                                    <span class="lms-icon-bf-label bowtie-icon bowtie-navigate-forward-disc"></span>
+                                    <label class="col-sm-4 zb-form-label">${get_res('exam_question_navigation','Question Navigation')}</label>
+                                    <div class="col-sm-8">
+                                        <label>{{exam_summary.ques_navi? "Allow going back": "Don’t allow to go back"}}</label>
+                                    </div>
+                                </div>
+                                <div class="form-group zb-form-group">
+                                    <span class="lms-icon-bf-label bowtie-icon bowtie-navigate-forward-disc"></span>
+                                    <label class="col-sm-4 zb-form-label">${get_res('exam_certificate','Certificate')}</label>
+                                    <div class="col-sm-8">
+                                        <label>{{scope.exam_summary.certificate}}</label>
+                                    </div>
+                                </div>
+                                <div class="form-group zb-form-group">
+                                    <span class="lms-icon-bf-label bowtie-icon bowtie-navigate-forward-disc"></span>
+                                    <label class="col-sm-4 zb-form-label">${get_res('exam_retake','Retake')}</label>
+                                    <div class="col-sm-8">
+                                        <label>{{scope.exam_summary.retake_exam}}</label>
+                                    </div>
+                                </div>
+                                <div class="form-group zb-form-group">
+                                    <span class="lms-icon-bf-label bowtie-icon bowtie-navigate-forward-disc"></span>
+                                    <label class="col-sm-4 zb-form-label">${get_res('exam_allow_candidate','Allow candidates to preview this exam')}</label>
+                                    <div class="col-sm-8">
+                                        <label>{{exam_summary.allow_candidates? "Enable": "Disable"}}</label>
+                                    </div>
+                                </div>
+                                <div class="form-group zb-form-group">
+                                    <span class="lms-icon-bf-label bowtie-icon bowtie-navigate-forward-disc"></span>
+                                    <label class="col-sm-4 zb-form-label">${get_res('exam_show_hints','Show hints')}</label>
+                                    <div class="col-sm-8">
+                                        <label>{{exam_summary.show_hint? "Yes": "No"}}</label>
+                                    </div>
+                                </div>
+                                <div class="form-group zb-form-group">
+                                    <span class="lms-icon-bf-label bowtie-icon bowtie-navigate-forward-disc"></span>
+                                    <label class="col-sm-4 zb-form-label">${get_res('exam_send_result_via_email','Send result to test taker via email')}</label>
+                                    <div class="col-sm-8">
+                                        <label>{{exam_summary.result_email? "Yes": "No"}}</label>
+                                    </div>
+                                </div>
+                                <div class="form-group zb-form-group">
+                                    <span class="lms-icon-bf-label bowtie-icon bowtie-navigate-forward-disc"></span>
+                                    <label class="col-sm-4 zb-form-label">${get_res('exam_send_result_via_sms','Send result to test taker via SMS')}</label>
+                                    <div class="col-sm-8">
+                                        <label>{{exam_summary.result_SMS? "Yes": "No"}}</label>
+                                    </div>
+                                </div>
+                                <div class="form-group zb-form-group">
+                                    <span class="lms-icon-bf-label bowtie-icon bowtie-navigate-forward-disc"></span>
+                                    <label class="col-sm-4 zb-form-label">${get_res('exam_allow_pause_resume','Allow Pause & Resume')}</label>
+                                    <div class="col-sm-8">
+                                        <label>{{exam_summary.pause_resume? "Enable": "Disable"}}</label>
+                                    </div>
+                                </div>
+                                <div class="form-group zb-form-group">
+                                    <span class="lms-icon-bf-label bowtie-icon bowtie-navigate-forward-disc"></span>
+                                    <label class="col-sm-4 zb-form-label">${get_res('exam_check_plagiarism','Check Plagiarism')}</label>
+                                    <div class="col-sm-8">
+                                        <label>{{exam_summary.show_hint? "Yes": "No"}}</label>
+                                    </div>
+                                </div>
+                            </div>
+			            </div>
+                        <!--Tab 2-->
+                        <div class="tab-pane" id="tab_default_2">
+		                    <div class="col-md-12" ng-if="idxTab == 2">
+                                <table-data data-source="tableSource" 
+                                            fields="tableFields" 
+                                            type="MultiSelect" 
+                                            paging="true" 
+                                            page-length="100" 
+                                            server-side="true" 
+                                            press-enter="onSelectTableRow" 
+                                            selected-items="selectedItems" 
+                                            current-item="currentItem" 
+                                            search-text="tableSearchText" 
+                                            refresh-row="refreshDataRow">
+                                </table-data>
+                            </div>
+			            </div>
+                        <!--Tab 3-->
+                        <div class="tab-pane" id="tab_default_3">
+		                    <div class="col-md-12">
+                                <div class="form-group zb-form-group">
+                                    <label class="col-sm-4 zb-form-label">${get_res('exam_name','Exam Name')}</label>
+                                    <div class="col-sm-8">
+                                        <label class="col-sm-12 zb-form-label">${get_res('exam_name','Exam Name')}</label>
+                                    </div>
+                                </div>
+                            </div>
+			            </div>
+		            </div>
+	            </div>
+            </div>
+        </div>
+    </collapse-box>
+</div>
+
+</%block>
+
+<%block name="modal_script">
+<script>
+    (function (scope) {
+        scope.currentItem = scope.$parent.currentItem;
+
+        (function _init_() {
+            
+            if (scope.currentItem) {
+                /*
+                 * Get info Tab 1*
+                 */
+                services.api("${get_api_key('app_main.api.LMSLS_ExExamination/get_data_examination_by_id')}")
+                    .data({
+                        //parameter at here
+                        exam_id: scope.currentItem['exam_id']
+                    })
+                    .done()
+                    .then(function (res) {
+                        debugger
+                        scope.exam_summary = res
+                        if (scope.exam_summary.show_result) {
+
+                            scope.exam_summary.show_result = parseInt(scope.exam_summary.show_result);
+                            if (scope.exam_summary.show_result == 1) {
+                                scope.exam_summary.show_result ="Percentage"
+                            }
+                            else if (scope.exam_summary.show_result == 2) {
+                                scope.exam_summary.show_result ="Points"
+                            }
+                            else {
+                                scope.exam_summary.show_result ="Points & Percentage"
+                            }
+
+
+                        }
+                        if (scope.exam_summary.display_result) {
+
+                            scope.exam_summary.display_result = parseInt(scope.exam_summary.show_result);
+                            if (scope.exam_summary.display_result == 1) {
+                                scope.exam_summary.display_result ="Do not show"
+                            }
+                            else if (scope.exam_summary.display_result == 2) {
+                                scope.exam_summary.display_result ="Show score only"
+                            }
+                            else {
+                                scope.exam_summary.display_result ="Show detailed report"
+                            }
+
+
+                        }
+                        if (scope.exam_summary.ques_order) {
+                            scope.exam_summary.ques_order = parseInt(scope.exam_summary.ques_order);
+                            if (scope.exam_summary.ques_order == 1) {
+                                scope.exam_summary.ques_order ="Shuffle Questions Only"
+                            }
+                            else if (scope.exam_summary.ques_order == 2) {
+                                scope.exam_summary.ques_order ="Shuffle Questions & Answers"
+                            }
+                            else {
+                                scope.exam_summary.ques_order ="Do not shuffle"
+                            }
+                        }
+                        if (scope.exam_summary.mode_pick) {
+                            scope.exam_summary.mode_pick = parseInt(scope.exam_summary.mode_pick);
+                            if (scope.exam_summary.mode_pick == 1) {
+                                scope.exam_summary.mode_pick ="Auto Pick"
+                            }
+                            else {
+                                scope.exam_summary.mode_pick ="Manual Pick"
+                            }
+                        }
+                        if (scope.exam_summary.certificate) {
+                            scope.exam_summary.certificate = parseInt(scope.exam_summary.certificate);
+                            if (scope.exam_summary.certificate == 1) {
+                                scope.exam_summary.certificate ="Do not assign"
+                            }
+                            else {
+                                scope.exam_summary.certificate ="Assign Certificate"
+                            }
+                        }
+                        if (scope.exam_summary.certificate) {
+                            scope.exam_summary.certificate = parseInt(scope.exam_summary.certificate);
+                            if (scope.exam_summary.certificate == 1) {
+                                scope.exam_summary.certificate ="Do not assign"
+                            }
+                            else {
+                                scope.exam_summary.certificate ="Assign Certificate"
+                            }
+                        }
+                        if (scope.exam_summary.retake_exam) {
+
+                            scope.exam_summary.retake_exam = parseInt(scope.exam_summary.retake_exam);
+                            if (scope.exam_summary.retake_exam == 1) {
+                                scope.exam_summary.retake_exam ="Do not allow re-take"
+                            }
+                            else if (scope.exam_summary.retake_exam == 2) {
+                                scope.exam_summary.retake_exam ="Allow re-take " + scope.exam_summary.retake_all +" in all conditions."
+                            }
+                            else {
+                                scope.exam_summary.retake_exam ="Allow re-take " + scope.exam_summary.retake_condition +" if the result is less than " +scope.exam_summary.result_less
+                            }
+
+
+                        }
+                        scope.$applyAsync();
+                        //if (res.form) {res }
+                    })
+            }
+            else {
+                 $msg.message("${get_global_res('Notification','Thông báo')}", "${get_app_res('No_Row_Selected','Không có dòng được chọn')}", function () { });
+            }
+        })();
+
+        /*
+         * Hàm click tab *
+         */
+        function _loadDataServerSide(fnReloadData, iPage, iPageLength, orderBy, searchText) {
+            scope.$$tableConfig = {
+                fnReloadData: fnReloadData,
+                iPage: iPage,
+                iPageLength: iPageLength,
+                orderBy: orderBy,
+                searchText: searchText
+            };
+            //setTimeout(function () {
+            if (fnReloadData) {
+                if (searchText) {
+                    _tableData(iPage, iPageLength, orderBy, searchText, function (data) {
+                        fnReloadData(data);
+                    });
+                } else {
+                    _tableData(iPage, iPageLength, orderBy, null, function (data) {
+                        fnReloadData(data);
+                    });
+                }
+            }
+            //}, 1000);
+        };
+        scope.tableFields = [
+            { "data": "stt", "title": "${get_res('stt','No')}" },
+            { "data": "ques_detail_1", "title": "${get_res('ques_detail_1','Question')}" },
+            { "data": "category.category_name", "title": "${get_res('category_name','Category')}" },
+            { "data": "ques_type_name", "title": "${get_res('ques_type','Question Type')}" },
+            { "data": "ques_level_name", "title": "${get_res('ques_level','Difficulty Level')}" },
+            { "data": "ques_total_marks", "title": "${get_res('ques_total_marks','Mark')}" },
+        ];
+        scope._tableData = _tableData;
+        scope.tableSource = _loadDataServerSide;
+        function _tableData(iPage, iPageLength, orderBy, searchText, callback, objSearchAdvance) {
+
+            //if (scope.treeCurrentNode.hasOwnProperty('folder_id')) {
+            var sort = {};
+            $.each(orderBy, function (i, v) {
+                sort[v.columns] = (v.type === "asc") ? 1 : -1;
+            });
+            sort[orderBy[0].columns] = 
+                services.api("${get_api_key('app_main.api.LMSLS_ExExamination/get_data_table_examination_by_id')}")
+                    .data({
+                        //parameter at here
+                        exam_id: scope.currentItem['exam_id'],
+                        "pageIndex": iPage - 1,
+                        "pageSize": iPageLength,
+                        "search": searchText,
+                        "sort": sort
+                    })
+                    .done()
+                    .then(function (res) {
+                        var data = {
+                            recordsTotal: res.total_items,
+                            recordsFiltered: res.total_items,
+                            data: res.items
+                        };
+                        callback(data);
+                        // scope.$$table.currentItem = null;
+                        scope.$apply();
+                    })
+                        
+
+        }
+        scope.fnClickOnTab = function (idx) {
+            scope.idxTab = idx;
+
+            if (idx == 2) {
+            } else if (idx == 3) {
+
+            }
+        }
+
+    });
+</script>
+
+</%block>

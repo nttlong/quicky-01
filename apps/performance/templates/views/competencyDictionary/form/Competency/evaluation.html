@@ -1,0 +1,95 @@
+﻿<style>
+    .zb-collapse-box.zb-form-common {
+        display:flow-root !important;
+    }
+</style>
+<div class="col-md-12">
+    <collapse-box class="zb-form-common" title="${get_res('list_competency_factor','Danh sách yếu tố đánh giá')}">
+        <toolbar>
+            <input-text-icon icon="bowtie-icon bowtie-search"
+                                                on-click="onSearch"></input-text-icon>
+            <button ng-click="event.add()" class="zb-btn zb-btn-o-green">
+                <i class="bowtie-icon bowtie-math-plus"></i>
+            </button>
+            <button ng-click="event.delete()" class="zb-btn zb-btn-o-red">
+                <i class="bowtie-icon bowtie-trash"></i>
+            </button>
+            <button ng-click="event.refresh()" class="zb-btn">
+                <i class="bowtie-icon bowtie-navigate-refresh"></i>
+            </button>
+        </toolbar>
+        <div class="col-md-12 no-padding" style="height:200px;">
+            <table-data data-source="$$table.tableSource" 
+                fields="$$table.tableFields" 
+                type="MultiSelect" 
+                paging="true" 
+                page-length="100" 
+                server-side="true" 
+                press-enter="$$table.onSelectTableRow" 
+                selected-items="$$table.selectedItems" 
+                current-item="$$table.currentItem" 
+                search-text="$$table.tableSearchText"
+                refresh-row="$$table.refreshDataRow">
+            </table-data>
+        </div>
+    </collapse-box>
+    <div style="margin-top:40px;">
+    <collapse-box class="zb-form-common" title="${get_res('competency_factor_detail','Chi tiết yếu tố đánh giá')}">
+        <toolbar>
+            <button ng-click="event.save()" title="${get_global_res('save','Lưu')}" class="zb-btn">
+                <i class="bowtie-icon bowtie-save"></i>
+            </button>
+        </toolbar>
+        <div class="col-md-6">
+            <div class="form-group zb-form-group">
+                <label class="col-sm-3 zb-form-label">${get_res('evaluation_factor','Yếu tố đánh giá')}</label>
+                <div class="col-sm-9">
+                    <input-textarea rows="5" ng-model="entity.factor" required></input-textarea>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="form-group zb-form-group">
+                <label class="col-sm-3 zb-form-label">${get_res('weight','Trọng số')}</label>
+                <div class="col-sm-9">
+                    <input-number ng-model="entity.weight" type="float"></input-number>
+                </div>
+            </div>
+            <div class="form-group zb-form-group">
+                <label class="col-sm-3 zb-form-label">${get_res('com_level_code','Dành cho cấp độ')}</label>
+                <div class="col-sm-9">
+                    <combobox load-data="$root.$getComboboxData" 
+                                  ng-model="entity.com_level_code"
+                                  params="{key:'${encryptor.get_key('cbb_com_level_group_by_com_code')}', value:[{ '@com_code': $parent.$com_code }]}"
+                                  on-search-change="false"
+                                  on-search-press="true"
+                                  placeholder=""
+                                  init-data="$$$cbb_com_level_group_by_com_code.value"
+                                  key-field="{{$$$cbb_com_level_group_by_com_code.value_field}}"
+                                  caption-field="{{$$$cbb_com_level_group_by_com_code.caption_field}}"
+                                  paging="true"
+                                  close-on-select="true"
+                                  template-fields="$$$cbb_com_level_group_by_com_code.display_fields"
+                                  reload="false">
+                        </combobox>
+                </div>
+            </div>
+            <div class="form-group zb-form-group">
+                <label class="col-sm-3 zb-form-label">${get_res('ordinal','Thứ tự')}</label>
+                <div class="col-sm-9">
+                    <input-number ng-model="entity.ordinal"></input-number>
+                </div>
+            </div>
+            <div class="form-group zb-form-group">
+                <label for="DisplayInfo" class="col-sm-3 zb-form-label">${get_global_res('create_and_modify','Tạo | Sửa')}</label>
+                <div class="col-sm-9">
+                    <input-text value="{{ entity.created_on | date: $root.systemConfig.date_format}} {{entity.created_by}} | {{ entity.modified_on | date: $root.systemConfig.date_format}} {{entity.modified_by}}" ng-disabled="true">
+                </div>
+            </div>
+        </div>
+    </collapse-box>
+    </div>
+</div>
+<script>
+    <%include file="scripts/evaluation.js"/>
+</script>

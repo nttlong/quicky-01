@@ -2,115 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="876e7e9a-d28e-4048-9413-cbdf554a4d5a" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/configs/dev.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/configs/server172_16_7_67.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/packages/jdcal.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/lms/api/LMSLS_ExTemplateList.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/lms/api/LMSLS_ExTemplateList.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/lms/api/LMSLS_MaterialManagement.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/lms/api/LMSLS_MaterialManagement.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/lms/api/models/LMSLS_MaterialManagement.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/lms/api/models/LMSLS_MaterialManagement.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/lms/api/models/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/lms/api/models/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/lms/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/lms/settings.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/lms/templates/scripts/examination_management_exam_list.js" beforeDir="false" afterPath="$PROJECT_DIR$/apps/lms/templates/scripts/examination_management_exam_list.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/lms/templates/scripts/examination_management_retake_list.js" beforeDir="false" afterPath="$PROJECT_DIR$/apps/lms/templates/scripts/examination_management_retake_list.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/lms/templates/scripts/home.js" beforeDir="false" afterPath="$PROJECT_DIR$/apps/lms/templates/scripts/home.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/lms/templates/scripts/partialscript/examination_management_question_category.js" beforeDir="false" afterPath="$PROJECT_DIR$/apps/lms/templates/scripts/partialscript/examination_management_question_category.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/lms/templates/scripts/partialscript/examination_management_template_exam_category.js" beforeDir="false" afterPath="$PROJECT_DIR$/apps/lms/templates/scripts/partialscript/examination_management_template_exam_category.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/lms/templates/scripts/partialscript/examination_management_template_exam_list.js" beforeDir="false" afterPath="$PROJECT_DIR$/apps/lms/templates/scripts/partialscript/examination_management_template_exam_list.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/lms/templates/scripts/partialscript/examination_management_upcoming_exams.js" beforeDir="false" afterPath="$PROJECT_DIR$/apps/lms/templates/scripts/partialscript/examination_management_upcoming_exams.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/lms/templates/scripts/partialscript/learning_material_dashboard.js" beforeDir="false" afterPath="$PROJECT_DIR$/apps/lms/templates/scripts/partialscript/learning_material_dashboard.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/lms/templates/scripts/partialscript/learning_material_masterial.js" beforeDir="false" afterPath="$PROJECT_DIR$/apps/lms/templates/scripts/partialscript/learning_material_masterial.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/lms/templates/views/directives/combobox/template_add_exam_template.html" beforeDir="false" afterPath="$PROJECT_DIR$/apps/lms/templates/views/directives/combobox/template_add_exam_template.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/lms/templates/views/directives/combobox/template_custom.html" beforeDir="false" afterPath="$PROJECT_DIR$/apps/lms/templates/views/directives/combobox/template_custom.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/lms/templates/views/examination_management_exam_list.html" beforeDir="false" afterPath="$PROJECT_DIR$/apps/lms/templates/views/examination_management_exam_list.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/lms/templates/views/examination_management_retake_list.html" beforeDir="false" afterPath="$PROJECT_DIR$/apps/lms/templates/views/examination_management_retake_list.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/lms/templates/views/form/addExUpcomingExams.html" beforeDir="false" afterPath="$PROJECT_DIR$/apps/lms/templates/views/form/addExUpcomingExams.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/lms/templates/views/form/addExUpcomingExamsTabFive.html" beforeDir="false" afterPath="$PROJECT_DIR$/apps/lms/templates/views/form/addExUpcomingExamsTabFive.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/lms/templates/views/form/addExUpcomingExamsTabFour.html" beforeDir="false" afterPath="$PROJECT_DIR$/apps/lms/templates/views/form/addExUpcomingExamsTabFour.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/lms/templates/views/form/addExUpcomingExamsTabOne.html" beforeDir="false" afterPath="$PROJECT_DIR$/apps/lms/templates/views/form/addExUpcomingExamsTabOne.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/lms/templates/views/form/addExUpcomingExamsTabThree.html" beforeDir="false" afterPath="$PROJECT_DIR$/apps/lms/templates/views/form/addExUpcomingExamsTabThree.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/lms/templates/views/form/addExUpcomingExamsTabTwo.html" beforeDir="false" afterPath="$PROJECT_DIR$/apps/lms/templates/views/form/addExUpcomingExamsTabTwo.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/lms/templates/views/form/addExamTemplate.html" beforeDir="false" afterPath="$PROJECT_DIR$/apps/lms/templates/views/form/addExamTemplate.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/lms/templates/views/form/addLearningMaterialManagement.html" beforeDir="false" afterPath="$PROJECT_DIR$/apps/lms/templates/views/form/addLearningMaterialManagement.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/lms/templates/views/form/addQuestionCategory.html" beforeDir="false" afterPath="$PROJECT_DIR$/apps/lms/templates/views/form/addQuestionCategory.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/lms/templates/views/form/addTemplateCategory.html" beforeDir="false" afterPath="$PROJECT_DIR$/apps/lms/templates/views/form/addTemplateCategory.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/lms/templates/views/form/fileDetailsLearningMaterialManagement.html" beforeDir="false" afterPath="$PROJECT_DIR$/apps/lms/templates/views/form/fileDetailsLearningMaterialManagement.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/lms/templates/views/partialpage/examination_management_upcoming_exams.html" beforeDir="false" afterPath="$PROJECT_DIR$/apps/lms/templates/views/partialpage/examination_management_upcoming_exams.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/lms/templates/views/partialpage/learning_material_dashboard.html" beforeDir="false" afterPath="$PROJECT_DIR$/apps/lms/templates/views/partialpage/learning_material_dashboard.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/performance/api/FormSearch.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/performance/api/FormSearch.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/performance/api/HCSLS_JobWorking.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/performance/api/HCSLS_JobWorking.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/performance/api/HCSLS_TrainSupplier.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/performance/api/HCSLS_TrainSupplier.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/performance/api/Query/AprPeriod.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/performance/api/Query/AprPeriod.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/performance/api/Query/KPI.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/performance/api/Query/KPI.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/performance/api/Query/TMLS_Rank.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/performance/api/Query/TMLS_Rank.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/performance/api/Query/TrainSupplier.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/performance/api/Query/TrainSupplier.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/performance/api/TMLS_KPI.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/performance/api/TMLS_KPI.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/performance/api/TMLS_Rank.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/performance/api/TMLS_Rank.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/performance/api/TMPER_AprPeriodEmpOut.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/performance/api/TMPER_AprPeriodEmpOut.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/performance/api/TMPER_AprPeriodRank.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/performance/api/TMPER_AprPeriodRank.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/performance/api/models/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/performance/api/models/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/performance/api/views/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/performance/api/views/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/performance/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/performance/settings.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/performance/static/app/components/combobox/combobox/combobox.directive.js" beforeDir="false" afterPath="$PROJECT_DIR$/apps/performance/static/app/components/combobox/combobox/combobox.directive.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/performance/static/app/components/combobox/multi-combobox/multi-combobox.directive.js" beforeDir="false" afterPath="$PROJECT_DIR$/apps/performance/static/app/components/combobox/multi-combobox/multi-combobox.directive.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/performance/static/app/components/combobox/tree-combobox/tree-combobox.directive.js" beforeDir="false" afterPath="$PROJECT_DIR$/apps/performance/static/app/components/combobox/tree-combobox/tree-combobox.directive.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/performance/static/app/components/input/number/number.directive.js" beforeDir="false" afterPath="$PROJECT_DIR$/apps/performance/static/app/components/input/number/number.directive.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/performance/static/app/components/list/list-view/list-view.directive.js" beforeDir="false" afterPath="$PROJECT_DIR$/apps/performance/static/app/components/list/list-view/list-view.directive.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/performance/static/app/directives/dragdropfile/dragdropfile.directive.js" beforeDir="false" afterPath="$PROJECT_DIR$/apps/performance/static/app/directives/dragdropfile/dragdropfile.directive.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/performance/static/css/libs/jquery.dataTables.min.css" beforeDir="false" afterPath="$PROJECT_DIR$/apps/performance/static/css/libs/jquery.dataTables.min.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/performance/static/css/libs/select.dataTables.min.css" beforeDir="false" afterPath="$PROJECT_DIR$/apps/performance/static/css/libs/select.dataTables.min.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/performance/static/css/site.css" beforeDir="false" afterPath="$PROJECT_DIR$/apps/performance/static/css/site.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/performance/static/css/site.min.css" beforeDir="false" afterPath="$PROJECT_DIR$/apps/performance/static/css/site.min.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/performance/static/css/site_less/zb_app_component.less" beforeDir="false" afterPath="$PROJECT_DIR$/apps/performance/static/css/site_less/zb_app_component.less" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/performance/static/lv/ngDirectives.js" beforeDir="false" afterPath="$PROJECT_DIR$/apps/performance/static/lv/ngDirectives.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/performance/templates/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/apps/performance/templates/base.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/performance/templates/scripts/aprPeriod.js" beforeDir="false" afterPath="$PROJECT_DIR$/apps/performance/templates/scripts/aprPeriod.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/performance/templates/scripts/profile.js" beforeDir="false" afterPath="$PROJECT_DIR$/apps/performance/templates/scripts/profile.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/performance/templates/views/aprPeriod/empNotApr.html" beforeDir="false" afterPath="$PROJECT_DIR$/apps/performance/templates/views/aprPeriod/empNotApr.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/performance/templates/views/aprPeriod/form/addRatingLevel.html" beforeDir="false" afterPath="$PROJECT_DIR$/apps/performance/templates/views/aprPeriod/form/addRatingLevel.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/performance/templates/views/aprPeriod/form/genEmpNotApr.html" beforeDir="false" afterPath="$PROJECT_DIR$/apps/performance/templates/views/aprPeriod/form/genEmpNotApr.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/performance/templates/views/aprPeriod/form/genRatingLevel.html" beforeDir="false" afterPath="$PROJECT_DIR$/apps/performance/templates/views/aprPeriod/form/genRatingLevel.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/performance/templates/views/aprPeriod/ratingLevel.html" beforeDir="false" afterPath="$PROJECT_DIR$/apps/performance/templates/views/aprPeriod/ratingLevel.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/performance/templates/views/aprPeriod/scripts/aprPeriodInfo.js" beforeDir="false" afterPath="$PROJECT_DIR$/apps/performance/templates/views/aprPeriod/scripts/aprPeriodInfo.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/performance/templates/views/aprPeriod/scripts/empNotApr.js" beforeDir="false" afterPath="$PROJECT_DIR$/apps/performance/templates/views/aprPeriod/scripts/empNotApr.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/performance/templates/views/aprPeriod/scripts/ratingLevel.js" beforeDir="false" afterPath="$PROJECT_DIR$/apps/performance/templates/views/aprPeriod/scripts/ratingLevel.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/performance/templates/views/category.html" beforeDir="false" afterPath="$PROJECT_DIR$/apps/performance/templates/views/category.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/performance/templates/views/category/form/addTrainSupplier.html" beforeDir="false" afterPath="$PROJECT_DIR$/apps/performance/templates/views/category/form/addTrainSupplier.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/performance/templates/views/category/scripts/trainsupplier.js" beforeDir="false" afterPath="$PROJECT_DIR$/apps/performance/templates/views/category/scripts/trainsupplier.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/performance/templates/views/commons/FormSearch/Department.html" beforeDir="false" afterPath="$PROJECT_DIR$/apps/performance/templates/views/commons/FormSearch/Department.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/performance/templates/views/commons/FormSearch/FactorAppraisal.html" beforeDir="false" afterPath="$PROJECT_DIR$/apps/performance/templates/views/commons/FormSearch/FactorAppraisal.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/performance/templates/views/commons/FormSearch/JobWorking.html" beforeDir="false" afterPath="$PROJECT_DIR$/apps/performance/templates/views/commons/FormSearch/JobWorking.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/performance/templates/views/commons/FormSearch/KPI.html" beforeDir="false" afterPath="$PROJECT_DIR$/apps/performance/templates/views/commons/FormSearch/KPI.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/performance/templates/views/departments.html" beforeDir="false" afterPath="$PROJECT_DIR$/apps/performance/templates/views/departments.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/performance/templates/views/factorappraisalpanel.html" beforeDir="false" afterPath="$PROJECT_DIR$/apps/performance/templates/views/factorappraisalpanel.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/performance/templates/views/factorappraisalpanel/form/addFactorAppraisal.html" beforeDir="false" afterPath="$PROJECT_DIR$/apps/performance/templates/views/factorappraisalpanel/form/addFactorAppraisal.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/performance/templates/views/factorappraisalpanel/form/addFactorAppraisalGroup.html" beforeDir="false" afterPath="$PROJECT_DIR$/apps/performance/templates/views/factorappraisalpanel/form/addFactorAppraisalGroup.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/performance/templates/views/jobworkingpanel.html" beforeDir="false" afterPath="$PROJECT_DIR$/apps/performance/templates/views/jobworkingpanel.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/performance/templates/views/jobworkingpanel/jobworkingdetail/form/addPerformanceStandard.html" beforeDir="false" afterPath="$PROJECT_DIR$/apps/performance/templates/views/jobworkingpanel/jobworkingdetail/form/addPerformanceStandard.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/performance/templates/views/jobworkingpanel/jobworkingdetail/scripts/performancestandard.js" beforeDir="false" afterPath="$PROJECT_DIR$/apps/performance/templates/views/jobworkingpanel/jobworkingdetail/scripts/performancestandard.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/performance/templates/views/permission.html" beforeDir="false" afterPath="$PROJECT_DIR$/apps/performance/templates/views/permission.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/performance/templates/views/productivityDictionaryPanel.html" beforeDir="false" afterPath="$PROJECT_DIR$/apps/performance/templates/views/productivityDictionaryPanel.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/performance/templates/views/productivityDictionaryPanel/form/addKPI.html" beforeDir="false" afterPath="$PROJECT_DIR$/apps/performance/templates/views/productivityDictionaryPanel/form/addKPI.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/performance/templates/views/productivityDictionaryPanel/scripts/KPI.js" beforeDir="false" afterPath="$PROJECT_DIR$/apps/performance/templates/views/productivityDictionaryPanel/scripts/KPI.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/performance/templates/views/profile.html" beforeDir="false" afterPath="$PROJECT_DIR$/apps/performance/templates/views/profile.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/performance/templates/views/profile/empWorking.html" beforeDir="false" afterPath="$PROJECT_DIR$/apps/performance/templates/views/profile/empWorking.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/performance/templates/views/profile/employeeInfo.html" beforeDir="false" afterPath="$PROJECT_DIR$/apps/performance/templates/views/profile/employeeInfo.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/performance/templates/views/profile/scripts/empWorking.js" beforeDir="false" afterPath="$PROJECT_DIR$/apps/performance/templates/views/profile/scripts/empWorking.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/performance/templates/views/profile/scripts/employeeInfo.js" beforeDir="false" afterPath="$PROJECT_DIR$/apps/performance/templates/views/profile/scripts/employeeInfo.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/performance/templates/views/rankcategory/form/addPersonal.html" beforeDir="false" afterPath="$PROJECT_DIR$/apps/performance/templates/views/rankcategory/form/addPersonal.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/performance/templates/views/systemconfig.html" beforeDir="false" afterPath="$PROJECT_DIR$/apps/performance/templates/views/systemconfig.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/performance/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/performance/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/performance/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/performance/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/video/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/video/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/video/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/video/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/configs/local.json" beforeDir="false" afterPath="$PROJECT_DIR$/configs/local.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/logs/debug.log" beforeDir="false" afterPath="$PROJECT_DIR$/logs/debug.log" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/packages/qauth/authorization.py" beforeDir="false" afterPath="$PROJECT_DIR$/packages/qauth/authorization.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/qauth/authorize.py" beforeDir="false" afterPath="$PROJECT_DIR$/packages/qauth/authorize.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/qmongo/helpers/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/packages/qmongo/helpers/__init__.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/packages/qmongo/helpers/expr.py" beforeDir="false" afterPath="$PROJECT_DIR$/packages/qmongo/helpers/expr.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/qmongo/helpers/filter_expression.py" beforeDir="false" afterPath="$PROJECT_DIR$/packages/qmongo/helpers/filter_expression.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/quicky/extens.py" beforeDir="false" afterPath="$PROJECT_DIR$/packages/quicky/extens.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/quicky/middleware/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/packages/quicky/middleware/__init__.py" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/lv-packages/uvenv02/" />
     <ignored path="$PROJECT_DIR$/uvenv02/" />
@@ -133,12 +29,13 @@
     <session id="1557673364">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="1" />
+          <entry key="project.closed" value="2" />
           <entry key="project.open.time.0" value="1" />
-          <entry key="project.open.time.3" value="1" />
+          <entry key="project.open.time.3" value="2" />
           <entry key="project.open.time.4" value="2" />
+          <entry key="project.open.time.5" value="1" />
           <entry key="project.open.time.8" value="1" />
-          <entry key="project.opened" value="5" />
+          <entry key="project.opened" value="7" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
@@ -147,7 +44,7 @@
           <entry key="html" value="2" />
           <entry key="js" value="1" />
           <entry key="json" value="5" />
-          <entry key="py" value="95" />
+          <entry key="py" value="109" />
           <entry key="rst" value="1" />
         </counts>
       </usages-collector>
@@ -157,17 +54,17 @@
           <entry key="HTML" value="2" />
           <entry key="JSON" value="5" />
           <entry key="JavaScript" value="1" />
-          <entry key="Python" value="95" />
+          <entry key="Python" value="109" />
           <entry key="ReST" value="1" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="Python Console" value="2723" />
+          <entry key="Python Console" value="2982" />
           <entry key="gitignore" value="1" />
           <entry key="js" value="3" />
           <entry key="json" value="16" />
-          <entry key="py" value="3751" />
+          <entry key="py" value="3761" />
           <entry key="txt" value="50" />
         </counts>
       </usages-collector>
@@ -177,7 +74,7 @@
           <entry key="JSON" value="16" />
           <entry key="JavaScript" value="3" />
           <entry key="PLAIN_TEXT" value="50" />
-          <entry key="Python" value="6474" />
+          <entry key="Python" value="6743" />
         </counts>
       </usages-collector>
     </session>
@@ -240,20 +137,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/packages/qmongo/database.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="412">
-              <caret line="1497" selection-start-line="1497" selection-end-line="1497" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/packages/qmongo/helpers/expr.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="144">
-              <caret line="897" column="31" selection-start-line="897" selection-start-column="31" selection-end-line="897" selection-end-column="31" />
-              <folding>
-                <marker date="1536577908652" expanded="true" signature="8706:8877" ph="..." />
-              </folding>
+            <state relative-caret-position="139">
+              <caret line="482" selection-start-line="482" selection-end-line="482" />
             </state>
           </provider>
         </entry>
@@ -261,8 +146,41 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/packages/qmongo/helpers/__init__.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="171">
+            <state relative-caret-position="139">
               <caret line="107" selection-start-line="107" selection-end-line="107" />
+              <folding>
+                <element signature="e#4068#6858#0" />
+                <element signature="e#6913#8463#0" />
+                <element signature="e#8527#9969#0" />
+                <element signature="e#10004#10111#0" />
+                <element signature="e#10137#10991#0" />
+                <element signature="e#11061#11481#0" />
+                <element signature="e#11510#12380#0" />
+                <element signature="e#12403#12770#0" />
+                <element signature="e#12814#12945#0" />
+                <element signature="e#12971#13293#0" />
+                <element signature="e#13337#13582#0" />
+                <element signature="e#13627#13918#0" />
+                <element signature="e#13949#14569#0" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/apps/performance/api/TMLS_Competency.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="139">
+              <caret line="282" selection-start-line="282" selection-end-line="282" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/apps/performance/views.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="247">
+              <caret line="59" selection-start-line="59" selection-end-line="59" />
             </state>
           </provider>
         </entry>
@@ -270,8 +188,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/packages/qtracking/__init__.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="450">
-              <caret line="106" selection-start-line="106" selection-end-line="106" />
+            <state relative-caret-position="1530">
+              <caret line="89" column="19" selection-start-line="89" selection-start-column="19" selection-end-line="89" selection-end-column="19" />
               <folding>
                 <element signature="e#0#9#0" expanded="true" />
               </folding>
@@ -282,17 +200,21 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/packages/qmongo/helpers/filter_expression.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="203">
+            <state relative-caret-position="378">
               <caret line="22" selection-start-line="22" selection-end-line="22" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file:///usr/lib/python2.7/threading.py">
+        <entry file="file://$PROJECT_DIR$/packages/quicky/executor.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="189">
-              <caret line="753" selection-start-line="753" selection-end-line="753" />
+            <state relative-caret-position="1656">
+              <caret line="107" selection-start-line="107" selection-end-line="107" />
+              <folding>
+                <element signature="e#0#17#0" expanded="true" />
+                <element signature="e#194#807#0" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -300,38 +222,26 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/packages/quicky/api.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="154">
-              <caret line="267" selection-start-line="267" selection-end-line="267" />
+            <state relative-caret-position="2304">
+              <caret line="145" selection-start-line="145" selection-end-line="145" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/apps/performance/api/TMLS_Competency.py">
+        <entry file="file://$PROJECT_DIR$/apps/performance/api/auth_user.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-81">
-              <caret line="206" column="64" selection-start-line="206" selection-start-column="62" selection-end-line="206" selection-end-column="64" />
+            <state relative-caret-position="4716">
+              <caret line="269" selection-start-line="269" selection-end-line="269" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/apps/performance/api/common.py">
+        <entry file="file://$PROJECT_DIR$/apps/performance/api/models/auth_user_info.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="139">
-              <caret line="307" column="46" selection-start-line="307" selection-start-column="46" selection-end-line="307" selection-end-column="46" />
-              <folding>
-                <element signature="e#12549#18976#0" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file:///usr/lib/python2.7/encodings/utf_8.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="95">
-              <caret line="15" selection-start-line="15" selection-end-line="15" />
+            <state relative-caret-position="540">
+              <caret line="31" selection-start-line="31" selection-end-line="31" />
             </state>
           </provider>
         </entry>
@@ -403,7 +313,6 @@
         <option value="$PROJECT_DIR$/packages/qmongo/exec_mode.py" />
         <option value="$PROJECT_DIR$/packages/qmongo/__init__.py" />
         <option value="$PROJECT_DIR$/packages/qmongo/db_context.py" />
-        <option value="$PROJECT_DIR$/packages/qmongo/helpers/__init__.py" />
         <option value="$PROJECT_DIR$/packages/quicky/executor.py" />
         <option value="$PROJECT_DIR$/configs/local.json" />
         <option value="$PROJECT_DIR$/packages/jdcal/jdcal.py" />
@@ -413,12 +322,13 @@
         <option value="$PROJECT_DIR$/apps/performance/templates/scripts/app.js" />
         <option value="$PROJECT_DIR$/packages/qmongo/database.py" />
         <option value="$PROJECT_DIR$/packages/qauth/authorize.py" />
-        <option value="$PROJECT_DIR$/packages/qauth/authorization.py" />
         <option value="$PROJECT_DIR$/apps/performance/views.py" />
         <option value="$PROJECT_DIR$/packages/quicky/extens.py" />
         <option value="$PROJECT_DIR$/packages/quicky/middleware/__init__.py" />
         <option value="$PROJECT_DIR$/packages/qmongo/helpers/filter_expression.py" />
+        <option value="$PROJECT_DIR$/packages/qauth/authorization.py" />
         <option value="$PROJECT_DIR$/packages/qmongo/helpers/expr.py" />
+        <option value="$PROJECT_DIR$/packages/qmongo/helpers/__init__.py" />
       </list>
     </option>
   </component>
@@ -449,32 +359,20 @@
             <path>
               <item name="q03" type="b2602c69:ProjectViewProjectNode" />
               <item name="q03" type="462c0819:PsiDirectoryNode" />
-              <item name="apps" type="462c0819:PsiDirectoryNode" />
-              <item name="performance" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="q03" type="b2602c69:ProjectViewProjectNode" />
-              <item name="q03" type="462c0819:PsiDirectoryNode" />
-              <item name="apps" type="462c0819:PsiDirectoryNode" />
-              <item name="performance" type="462c0819:PsiDirectoryNode" />
-              <item name="api" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="q03" type="b2602c69:ProjectViewProjectNode" />
-              <item name="q03" type="462c0819:PsiDirectoryNode" />
               <item name="packages" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="q03" type="b2602c69:ProjectViewProjectNode" />
               <item name="q03" type="462c0819:PsiDirectoryNode" />
               <item name="packages" type="462c0819:PsiDirectoryNode" />
-              <item name="qtracking" type="462c0819:PsiDirectoryNode" />
+              <item name="qmongo" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="q03" type="b2602c69:ProjectViewProjectNode" />
               <item name="q03" type="462c0819:PsiDirectoryNode" />
               <item name="packages" type="462c0819:PsiDirectoryNode" />
-              <item name="quicky" type="462c0819:PsiDirectoryNode" />
+              <item name="qmongo" type="462c0819:PsiDirectoryNode" />
+              <item name="helpers" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -549,6 +447,7 @@
     </configuration>
     <list>
       <item itemvalue="Python.manage" />
+      <item itemvalue="R.xx" />
     </list>
   </component>
   <component name="SvnConfiguration">
@@ -674,21 +573,21 @@
     <frame x="67" y="25" width="1853" height="1055" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.17431694" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.160487" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
       <window_info anchor="bottom" id="Run" order="2" />
-      <window_info active="true" anchor="bottom" id="Debug" order="3" sideWeight="0.49878544" visible="true" weight="0.6637838" />
+      <window_info active="true" anchor="bottom" id="Debug" order="3" sideWeight="0.7144438" visible="true" weight="0.48864865" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Code comment" order="7" />
       <window_info anchor="bottom" id="Version Control" order="8" sideWeight="0.49878544" weight="0.4013267" />
-      <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.50121456" side_tool="true" weight="0.69320065" />
-      <window_info anchor="bottom" id="Terminal" order="10" sideWeight="0.69068825" weight="0.24324325" />
-      <window_info anchor="bottom" id="Python Console" order="11" sideWeight="0.49959514" weight="0.43027028" />
+      <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.5013835" side_tool="true" weight="0.43027028" />
+      <window_info anchor="bottom" id="Terminal" order="10" sideWeight="0.69009405" weight="0.39675677" />
+      <window_info anchor="bottom" id="Python Console" order="11" sideWeight="0.4986165" weight="0.38486487" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -715,7 +614,7 @@
       <breakpoints>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/packages/qmongo/helpers/expr.py</url>
-          <line>1070</line>
+          <line>1065</line>
           <option name="timeStamp" value="4" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
@@ -754,26 +653,6 @@
           <option name="timeStamp" value="108" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/apps/performance/api/TMLS_Competency.py</url>
-          <line>179</line>
-          <option name="timeStamp" value="132" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/packages/qmongo/database.py</url>
-          <line>482</line>
-          <option name="timeStamp" value="133" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/apps/performance/api/TMLS_Competency.py</url>
-          <line>236</line>
-          <option name="timeStamp" value="136" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/apps/performance/api/TMLS_Competency.py</url>
-          <line>282</line>
-          <option name="timeStamp" value="137" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/apps/performance/api/common.py</url>
           <line>414</line>
           <option name="timeStamp" value="139" />
@@ -790,28 +669,23 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/packages/qmongo/helpers/expr.py</url>
-          <line>1366</line>
+          <line>1361</line>
           <option name="timeStamp" value="176" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/packages/qmongo/helpers/expr.py</url>
-          <line>1369</line>
+          <line>1364</line>
           <option name="timeStamp" value="177" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/packages/qmongo/helpers/expr.py</url>
-          <line>893</line>
-          <option name="timeStamp" value="181" />
+          <line>740</line>
+          <option name="timeStamp" value="191" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/packages/qmongo/helpers/expr.py</url>
-          <line>897</line>
-          <option name="timeStamp" value="182" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/packages/qmongo/helpers/expr.py</url>
-          <line>899</line>
-          <option name="timeStamp" value="183" />
+          <url>file://$PROJECT_DIR$/apps/performance/views.py</url>
+          <line>44</line>
+          <option name="timeStamp" value="192" />
         </line-breakpoint>
       </breakpoints>
       <breakpoints-dialog>
@@ -820,28 +694,10 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/apps/hrm/static/js/directives/dr-ag-grid.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="160">
-          <caret line="8" column="32" lean-forward="true" selection-start-line="8" selection-start-column="32" selection-end-line="8" selection-end-column="32" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/apps/hrm/static/js/directives/hh.html" />
-    <entry file="file://$PROJECT_DIR$/apps/hrm/templates/category.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="100">
-          <caret line="59" column="21" lean-forward="true" selection-start-line="59" selection-start-column="21" selection-end-line="59" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/packages/quicky/url.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="306">
           <caret line="125" selection-start-line="125" selection-end-line="125" />
-          <folding>
-            <element signature="e#0#9#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -869,23 +725,8 @@
     <entry file="file://$PROJECT_DIR$/packages/auth/models/__init__.py">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/packages/qauth/application/__init__.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="540">
-          <caret line="33" column="19" lean-forward="true" selection-start-line="33" selection-start-column="19" selection-end-line="33" selection-end-column="19" />
-          <folding>
-            <element signature="e#0#32#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/packages/qauth/app.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="54">
-          <caret line="3" column="4" selection-start-line="3" selection-start-column="4" selection-end-line="3" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/packages/qauth/application/__init__.py" />
+    <entry file="file://$PROJECT_DIR$/packages/qauth/app.py" />
     <entry file="file://$PROJECT_DIR$/packages/auth/models/roles.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="180">
@@ -971,9 +812,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="252">
           <caret line="417" selection-start-line="417" selection-end-line="417" />
-          <folding>
-            <element signature="e#1702#1733#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -988,9 +826,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="162">
           <caret line="9" selection-start-line="9" selection-end-line="9" />
-          <folding>
-            <element signature="e#0#19#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1047,25 +882,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="504">
           <caret line="56" selection-start-line="56" selection-end-line="56" />
-          <folding>
-            <element signature="e#0#30#0" expanded="true" />
-            <element signature="e#186#237#0" />
-            <element signature="e#319#1154#0" />
-            <marker date="1536547719191" expanded="true" signature="1879:1881" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/packages/qauth/authorize.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1170">
-          <caret line="65" selection-start-line="65" selection-end-line="65" />
-          <folding>
-            <element signature="e#0#13#0" expanded="true" />
-            <marker date="1536570554711" expanded="true" signature="69:807" ph="..." />
-            <marker date="1536570554711" expanded="true" signature="172:486" ph="..." />
-            <marker date="1536570554711" expanded="true" signature="826:831" ph="..." />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1073,26 +889,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="184">
           <caret line="18" column="7" selection-start-line="18" selection-start-column="7" selection-end-line="18" selection-end-column="7" />
-          <folding>
-            <element signature="e#0#32#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/packages/qauth/authorization.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="15" column="18" selection-start-line="15" selection-start-column="18" selection-end-line="15" selection-end-column="18" />
-          <folding>
-            <marker date="1536570995078" expanded="true" signature="283:300" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/apps/performance/views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="141">
-          <caret line="101" column="42" selection-start-line="101" selection-start-column="42" selection-end-line="101" selection-end-column="42" />
         </state>
       </provider>
     </entry>
@@ -1105,20 +901,13 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/packages/quicky/view.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-243">
-          <folding>
-            <element signature="e#0#20#0" expanded="true" />
-          </folding>
-        </state>
+        <state relative-caret-position="-243" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/packages/quicky/extens.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="467">
           <caret line="64" column="50" selection-start-line="64" selection-start-column="50" selection-end-line="64" selection-end-column="50" />
-          <folding>
-            <element signature="e#55#65#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1129,14 +918,27 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/packages/quicky/executor.py">
+    <entry file="file:///usr/lib/python2.7/threading.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="143">
-          <caret line="107" selection-start-line="107" selection-end-line="107" />
+        <state relative-caret-position="13554">
+          <caret line="753" selection-start-line="753" selection-end-line="753" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/apps/performance/api/common.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="5310">
+          <caret line="307" column="46" selection-start-line="307" selection-start-column="46" selection-end-line="307" selection-end-column="46" />
           <folding>
-            <element signature="e#0#17#0" expanded="true" />
-            <element signature="e#194#807#0" />
+            <element signature="e#12549#18976#0" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///usr/lib/python2.7/encodings/utf_8.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="270">
+          <caret line="15" selection-start-line="15" selection-end-line="15" />
         </state>
       </provider>
     </entry>
@@ -1146,88 +948,131 @@
           <caret line="426" selection-start-line="426" selection-end-line="426" />
           <folding>
             <element signature="e#0#25#0" expanded="true" />
-            <element signature="e#545#1025#0" />
             <marker date="1536571768750" expanded="true" signature="19483:19524" ph="..." />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file:///usr/lib/python2.7/threading.py">
+    <entry file="file://$PROJECT_DIR$/packages/qauth/authorize.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="189">
-          <caret line="753" selection-start-line="753" selection-end-line="753" />
+        <state relative-caret-position="26">
+          <caret line="65" selection-start-line="65" selection-end-line="65" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/packages/qmongo/database.py">
+    <entry file="file://$PROJECT_DIR$/packages/qauth/authorization.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="412">
-          <caret line="1497" selection-start-line="1497" selection-end-line="1497" />
+        <state relative-caret-position="252">
+          <caret line="14" column="23" selection-start-line="3" selection-start-column="10" selection-end-line="14" selection-end-column="23" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/packages/quicky/api.py">
+    <entry file="file://$PROJECT_DIR$/packages/qmongo/helpers/expr.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="154">
-          <caret line="267" selection-start-line="267" selection-end-line="267" />
+        <state relative-caret-position="13212">
+          <caret line="737" column="7" selection-start-line="737" selection-start-column="7" selection-end-line="737" selection-end-column="7" />
+          <folding>
+            <marker date="1536630597277" expanded="true" signature="8706:8877" ph="..." />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file:///usr/lib/python2.7/encodings/utf_8.py">
+    <entry file="file://$PROJECT_DIR$/apps/performance/api/functionlist.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="95">
-          <caret line="15" selection-start-line="15" selection-end-line="15" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/apps/performance/api/TMLS_Competency.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-81">
-          <caret line="206" column="64" selection-start-line="206" selection-start-column="62" selection-end-line="206" selection-end-column="64" />
+        <state relative-caret-position="450">
+          <caret line="26" selection-start-line="26" selection-end-line="26" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/packages/qtracking/__init__.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="450">
-          <caret line="106" selection-start-line="106" selection-end-line="106" />
+        <state relative-caret-position="1530">
+          <caret line="89" column="19" selection-start-line="89" selection-start-column="19" selection-end-line="89" selection-end-column="19" />
           <folding>
             <element signature="e#0#9#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/packages/qmongo/helpers/__init__.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="171">
-          <caret line="107" selection-start-line="107" selection-end-line="107" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/packages/qmongo/helpers/filter_expression.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="203">
+        <state relative-caret-position="378">
           <caret line="22" selection-start-line="22" selection-end-line="22" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/apps/performance/api/common.py">
+    <entry file="file://$PROJECT_DIR$/packages/quicky/executor.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="139">
-          <caret line="307" column="46" selection-start-line="307" selection-start-column="46" selection-end-line="307" selection-end-column="46" />
+        <state relative-caret-position="1656">
+          <caret line="107" selection-start-line="107" selection-end-line="107" />
           <folding>
-            <element signature="e#12549#18976#0" />
+            <element signature="e#0#17#0" expanded="true" />
+            <element signature="e#194#807#0" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/packages/qmongo/helpers/expr.py">
+    <entry file="file://$PROJECT_DIR$/packages/quicky/api.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="144">
-          <caret line="897" column="31" selection-start-line="897" selection-start-column="31" selection-end-line="897" selection-end-column="31" />
+        <state relative-caret-position="2304">
+          <caret line="145" selection-start-line="145" selection-end-line="145" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/apps/performance/api/auth_user.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="4716">
+          <caret line="269" selection-start-line="269" selection-end-line="269" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/apps/performance/api/models/auth_user_info.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="540">
+          <caret line="31" selection-start-line="31" selection-end-line="31" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/apps/performance/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="247">
+          <caret line="59" selection-start-line="59" selection-end-line="59" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/packages/qmongo/helpers/__init__.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="139">
+          <caret line="107" selection-start-line="107" selection-end-line="107" />
           <folding>
-            <marker date="1536577908652" expanded="true" signature="8706:8877" ph="..." />
+            <element signature="e#4068#6858#0" />
+            <element signature="e#6913#8463#0" />
+            <element signature="e#8527#9969#0" />
+            <element signature="e#10004#10111#0" />
+            <element signature="e#10137#10991#0" />
+            <element signature="e#11061#11481#0" />
+            <element signature="e#11510#12380#0" />
+            <element signature="e#12403#12770#0" />
+            <element signature="e#12814#12945#0" />
+            <element signature="e#12971#13293#0" />
+            <element signature="e#13337#13582#0" />
+            <element signature="e#13627#13918#0" />
+            <element signature="e#13949#14569#0" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/packages/qmongo/database.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="139">
+          <caret line="482" selection-start-line="482" selection-end-line="482" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/apps/performance/api/TMLS_Competency.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="139">
+          <caret line="282" selection-start-line="282" selection-end-line="282" />
         </state>
       </provider>
     </entry>

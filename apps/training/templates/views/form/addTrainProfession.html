@@ -1,0 +1,268 @@
+﻿
+<%!
+    #_style="width:200px;"
+%>
+
+<%inherit file="../commons/dialog_save_close.html"/>
+
+<%block name="modal_body">
+        
+<div class="col-md-{{col}} col-sm-{{col}}">
+    <div class="col-md-{{col_group}} col-sm-{{col_group}}" style="padding-bottom:20px;">
+        <collapse-box class="zb-form-common" title="${get_global_res('Common_Information','Thông tin chung')}">
+            <div class="col-md-{{col}}">
+                <div class="form-group zb-form-group">
+                    <!--Mã Quốc gia-->
+                    <label for="inputEmp_Nation_Code" class="col-sm-5 zb-form-label">${get_res('profession_code','Mã Nghề ')}</label>
+                    <div class="col-sm-7">
+                        <input-text id="inputEmp_Nation_Code" ng-model="entity.profession_code" ng-disabled="{{ __mode === 2 ? 'true' : 'false' }}" required>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-{{col}}">
+                <div class="form-group zb-form-group">
+                    <!--Mã quy định-->
+                    <label for="inputEmp_Org_Nation_Code" class="col-sm-5 zb-form-label">${get_res('profession_name','Tên Nghề')}</label>
+                    <div class="col-sm-7">
+                        <input-text id="inputEmp_Org_Nation_Code" ng-model="entity.profession_name" required>
+                    </div>
+                </div>
+            </div>
+             <div class="col-md-{{col}}">
+                <div class="form-group zb-form-group">
+                    <!--Tên quốc gia-->
+                    <label for="inputEmp_Nation_Name" class="col-sm-5 zb-form-label">${get_res('profession_name2','Tên Nghề Khác')}</label>
+                    <div class="col-sm-7">
+                        <input-text id="inputEmp_Nation_Name" ng-model="entity.profession_name2">
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-{{col}}">
+                <div class="form-group zb-form-group">
+                    <!--Tên quốc gia-->
+                    <label for="inputEmp_Nation_Name" class="col-sm-5 zb-form-label">${get_res('field_code','Lĩnh Vực')}</label>
+                    <div class="col-sm-7">
+                        <div class="pull-left" >
+                            <span zb-required=""></span>
+                        </div>
+                        <combobox load-data="$root.$getComboboxData"
+                            ng-model="entity.field_code"
+                            params="{key:'${encryptor.get_key('cbb_train_field')}', value:[{ '@lock': true }]}"
+                            on-search-change="false"
+                            on-search-press="true"
+                            placeholder=""
+                            init-data="$$$cbb_train_field.value"
+                            caption-field="{{$$$cbb_train_field.caption_field}}"
+                            paging="true"
+                            close-on-select="true"
+                            template-fields="$$$cbb_train_field.display_fields"
+                            reload="false">
+                        </combobox>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-{{col}}">
+                <div class="form-group zb-form-group">
+                    <!--Thứ tự-->
+                    <label for="inputOrdinal" class="col-sm-5 zb-form-label">${get_res('ordinal','Thứ tự')}</label>
+                    <div class="col-sm-7">
+                        <input-number id="inputOrdinal" ng-model="entity.ordinal">
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-{{col}}">
+                <div class="form-group zb-form-group">
+                    <!--Ngưng sử dụng-->
+                    <label for="inputLock" class="col-sm-5 zb-form-label">${get_res('lock','Ngưng sử dụng')}</label>
+                    <div class="col-sm-7">
+                        <input-checkbox id="inputLock" ng-model="entity.lock">
+                    </div>
+                </div>
+            </div>
+        </collapse-box>
+    </div>
+    <div class="col-md-{{ 12 - col_group}} col-sm-{{ 12 - col_group}}" style="padding-bottom:20px;">
+        <collapse-box class="zb-form-common" title="${get_global_res('Note','Ghi chú')}">
+            <div class="row">
+                <!--Ghi chú-->
+                <div class="col-sm-12">
+                    <input-textarea rows="9" ng-model="entity.note"></input-textarea>
+                </div>
+            </div>
+            <div class="col-md-12" style="padding-top: 16px;">
+                <div class="form-group zb-form-group">
+                    <label for="DisplayInfo" class="col-sm-3 zb-form-label">${get_global_res('create_and_modify','Tạo | Sửa')}</label>
+                    <div class="col-sm-9">
+                        <input-text 
+                                    value="{{ entity.created_on | date: $root.systemConfig.date_format}} {{entity.created_by}} | {{ entity.modified_on | date: $root.systemConfig.date_format}} {{entity.modified_by}}" ng-disabled="true">
+                    </div>
+                </div>
+            </div>
+        </collapse-box>
+    </div>        
+</div>
+
+</%block>
+
+<%block name="modal_script">
+<script>
+    (function (scope) {
+        scope.col = 12;
+        scope.col_group = 6;
+        scope.__mode = scope.$parent.mode;
+        scope.title = scope.$parent.headerTitle;
+        //
+        var __entity = JSON.parse(JSON.stringify(scope.$parent.currentItem));
+
+        //Mode 1: tạo mới, Mode 2: chỉnh sửa, Mode 3: sao chép
+        scope.entity = scope.__mode == 2 ? __entity : null;
+
+        //Nút lưu và thêm
+        scope.saveNNext = saveNNext;
+
+        //Nút lưu
+        //scope.saveNClose = saveNClose;
+
+        function saveNNext() {
+            if (scope.entity != null) {
+                var rsCheck = checkError();//Kết quả check input
+                if (rsCheck.result) {
+                    //Nhập sai: break khỏi hàm
+                    $msg.message("${get_global_res('Input_Error','Nhập liệu sai')}", rsCheck.errorMsg, function () { });
+                    return;
+                }
+                beforeCallToServer();
+                editData(function (res) {
+                    if (res.error == null) {
+                        if (scope.__mode == 1 || scope.__mode == 3)
+                            reloadData();
+                        else {
+                            scope.$parent.currentItem = scope.entity;
+                            scope.$parent.currentItem.modified_on = res.item.modified_on;
+                            scope.$parent.currentItem.modified_by = res.item.modified_by;
+                            scope.$parent.$apply();
+                            //Refesh datatable
+                            scope.$parent.refreshDataRow();
+                        }
+                        $msg.alert("${get_global_res('Handle_Success','Thao tác thành công')}", $type_alert.INFO);
+                        scope.entity = null;
+                        scope.__mode = 1;
+                        scope.$parent.$apply();
+                    } else {
+                        $msg.message("${get_global_res('Notification','Thông báo')}", "${get_global_res('Internal_Server_Error','Có lỗi từ phía máy chủ')}", function () { });
+                    }
+                })
+            }
+        }
+        //Nút lưu
+        scope.saveNClose = saveNClose;
+
+        function saveNClose() {
+            if (scope.entity != null) {
+                var rsCheck = checkError();//Kết quả check input
+                if (rsCheck.result) {
+                    $msg.message("${get_global_res('Input_Error','Nhập liệu sai')}", rsCheck.errorMsg, function () { });
+                    return;
+                }
+                beforeCallToServer();
+                editData(function (res) {
+                    if (res.error == null) {
+                        $dialog.closeDialog();//Đóng form input
+                        $msg.alert("${get_global_res('Handle_Success','Thao tác thành công')}", $type_alert.INFO);//Xuất thông báo thành cônng
+                        if (scope.__mode == 1 || scope.__mode == 3) {
+                            //Reload table data
+                            reloadData();
+                        } else if (scope.__mode == 2) {
+                            scope.$parent.currentItem = scope.entity;
+                            scope.$parent.currentItem.modified_on = res.item.modified_on;
+                            scope.$parent.currentItem.modified_by = res.item.modified_by;
+                            scope.$parent.$apply();
+                            //Refesh datatable
+                            scope.$parent.refreshDataRow();
+                        }
+                    } else {
+                        $msg.message("${get_global_res('Internal_Server_Error','Có lỗi từ phía máy chủ')}", "${get_global_res('Please_Try_Again','Xin thử vui lòng thử lại')}", function () { });
+                    }
+                });
+            }
+        }
+
+        function beforeCallToServer() {
+
+        }
+
+        function getUrl() {
+            return scope.__mode == 1 || scope.__mode == 3 ? "${get_api_key('app_main.api.HCSLS_TrainProfession/insert')}" /*Mode 1: Tạo mới*/
+                : "${get_api_key('app_main.api.HCSLS_TrainProfession/update')}" /*Mode 2: Cập nhật*/
+        }
+
+        function editData(callback) {
+            var url = getUrl();
+            if (scope.__mode == 3) {
+
+            }
+            services.api(url)
+                .data(scope.entity)
+                .done()
+                .then(function (res) {
+                    callback(res);
+                })
+        }
+
+        /**
+         * Function check input
+         */
+        function checkError() {
+            var errMsg;
+            var valid = null;
+            var rs = {
+                "result": false,
+                "errorMsg": ''
+            };
+            valid = lv.Validate(scope.entity.profession_code);
+            rs.result = valid.isNullOrWhiteSpace();
+            rs.errorMsg = rs.result === true ? "${get_res('profession_code_is_not_null','Mã nghề không được để trống')}" + '\n' : "";
+            if (rs.result === true) {
+                return rs;
+            }
+            valid = lv.Validate(scope.entity.profession_name);
+            rs.result = valid.isNullOrWhiteSpace();
+            rs.errorMsg = rs.result === true ? "${get_res('profession_name_is_not_null','Tên nghề không được để trống')}" + '\n' : "";
+            if (rs.result === true) {
+                return rs;
+            }
+            valid = lv.Validate(scope.entity.field_code);
+            rs.result = valid.isNullOrWhiteSpace();
+            rs.errorMsg = rs.result === true ? "${get_res('field_code_is_not_null','Lĩnh Vực không được để trống')}" + '\n' : "";
+            if (rs.result === true) {
+                return rs;
+            }
+            return rs;
+        }
+
+        function reloadData() {
+            var tableConfig = scope.$parent.$$tableConfig;
+            scope.$parent._tableData(tableConfig.iPage,
+                tableConfig.iPageLength, tableConfig.orderBy,
+                tableConfig.searchText, tableConfig.fnReloadData);
+        }
+        _getDataInitCombobox();
+        function _getDataInitCombobox() {
+        debugger
+            scope.$root.$getInitComboboxData(scope,
+                [
+                    {
+                        "key": "${encryptor.get_key('cbb_train_field')}",
+                        "code": scope.entity
+                            && scope.entity.hasOwnProperty('field_code')
+                            ? scope.entity.field_code
+                            : null,
+                        "alias": "$$$cbb_train_field"
+                    }
+                ]
+            );
+        }
+    });
+</script>
+
+</%block>

@@ -1,0 +1,24 @@
+<div class="form-group ">
+    <div class="input-group">
+        <ui-select multiple 
+                   ng-model="selectpickerVm.withDeleteItem.selected" 
+                   ng-disabled="false"
+                   search-enabled="true"
+                   append-to-body="true"
+                   class="form-control form-control">
+            <ui-select-match placeholder="Select With Clear Button">
+                {{$item.label}}
+            </ui-select-match>
+            <ui-select-choices repeat="withDeleteItem in selectpickerVm.withDeleteSelectItems | filter: $select.search">
+                {{withDeleteItem.label}}
+            </ui-select-choices>
+        </ui-select>
+        <span class="input-group-btn">
+        <button type="button" 
+                ng-click="selectpickerVm.withDeleteItem.selected = undefined"
+               class="btn btn-danger">
+          <span class="glyphicon glyphicon-trash"></span>
+        </button>
+        </span>
+    </div>
+</div>

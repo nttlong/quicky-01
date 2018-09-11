@@ -736,14 +736,14 @@ def get_expr(fx,*params):
     :param params:
     :return:
     """
-    if type(params) is tuple and params.__len__() == 1:
-        params = params[0]
-    while type(params) is tuple and params.__len__()>0 and type(params[0]) is tuple:
-        params=params[0]
-    while type(params) is tuple and params.__len__()>0 and type(params[0]) is dict:
-        params = params[0]
-    if type(params) is dict:
-        params=[params[key] for key in params.keys()]
+    # if type(params) is tuple and params.__len__() == 1:
+    #     params = params[0]
+    # while type(params) is tuple and params.__len__()>0 and type(params[0]) is tuple:
+    #     params=params[0]
+    # while type(params) is tuple and params.__len__()>0 and type(params[0]) is dict:
+    #     params = params[0]
+    # if type(params) is dict:
+    #     params=[params[key] for key in params.keys()]
 
     if(type(fx) in [str,unicode]):
         return fx
@@ -892,16 +892,8 @@ def get_expr(fx,*params):
                     }
             else:
                 if fx["right"]["type"]=="params":
-                    _p_=params
-                    if type(params) is tuple and params.__len__()==1:
-                        _p_=params[0]
-                    # if params.__len__()<fx["right"]["value"]:
-                    #     x=1
-                    try:
-                        val=_p_[fx["right"]["value"]]
-                    except Exception as ex:
-                        x = 1
-                        val="error"
+                    val=params[fx["right"]["value"]]
+
 
                     if type(val) in [str,unicode]:
                         if type(fx["left"]) in [str,unicode]:

@@ -1,0 +1,204 @@
+﻿<div class="modal-dialog">
+    <div class="modal-content">
+        <div class="modal-header">
+            <div class="left-content pull-left">
+                <!--<img src="{{$root.logo}}">-->
+                <span class="modal-title">{{title}}</span>
+            </div>
+            <div class="right-content pull-right">
+                <button type="button" class="close" data-dismiss="modal"><i class="bowtie-icon bowtie-navigate-close"></i></button>
+                <button type="button" class="close" ng-click="onResizeDialog()"><i class="bowtie-icon bowtie-view-full-screen"></i></button>
+            </div>
+        </div>
+        <div class="modal-body" style="overflow:unset;">
+            <div class="col-md-12" style="margin-top: 10px;">
+    <nav-tabs min-height="72vh" max-height="72vh" style="overflow:unset;" >
+        <tab-content name="tab1"  title="${get_res('list_ques','Câu hỏi')}" select="onSelectTabOne">
+            <div class="col-md-12" style="height: 66vh;padding:0px 6px;" select="onSelectTab">
+               
+                <!--Table user-->
+          <input-text-icon on-click="change" style="padding:5px;">
+            </input-text-icon>
+            <div style="height:calc(100% - 40px)">
+            <table-data data-source="tableSource" fields="tableFields" type="MultiSelect" 
+                    paging="true" page-length="table_info.page_size" server-side="true" 
+                    press-enter="$table.onSelectTableRow" selected-items="$table.selectedItems" 
+                    current-item="$table.currentItem" search-text="$table.tableSearchText"
+                    refresh-row="$table.refreshDataRow" >
+            </table-data>
+            </div>
+            </div>
+        </tab-content>
+
+    </nav-tabs>
+</div>
+           
+            
+        </div>
+        <div class="modal-footer">
+            <div class="right-content pull-right">
+                <button ng-click="save($event)"><i class="la la-check"></i></button>
+                <button ng-click="close($event)"><i class="la la-close"></i></button>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    (function (scope) {
+
+    scope.title = scope.$parent.headerTitle;
+    scope.currentTempCategory =scope.$parent.currentTempCategory
+    scope.tableFields = [
+        { "data": "exam_temp_id", "title": "${get_res('exam_temp_id_table_header','ID')}" },
+        { "data": "exam_temp_name1", "title": "${get_res('exam_temp_name1_header','Exam Template')}" },
+        { "data": "total_question", "title": "${get_res('total_question_table_header','Questions')}" },
+        { "data": "total_mask", "title": "${get_res('total_mask_table_header','Total Marks')}" },
+        { "data": "negative_marks", "title": "${get_res('negative_marks_table_header','Required Score')}" },
+        { "data": "diff_question", "title": "${get_res('diff_question_header','Difficult Questions')}" },
+        { "data": "med_question", "title": "${get_res('med_question_header','Medium Questions')}" },
+        { "data": "easy_question", "title": "${get_res('easy_question_table_header','Easy Questions')}" },
+        { "data": "creator", "title": "${get_res('created_by_table_header','Created by')}" },
+        { "data": "created_on", "title": "${get_res('created_on_table_header','Created on')}", "format": "date:" + 'dd/MM/yyyy h:mm:ss a'  },
+    ];
+        
+        scope.tableSource = _loadDataServerSide;
+        function _loadDataServerSide(fnReloadData, iPage, iPageLength, orderBy, searchText) {
+            scope.$$tableConfig = {
+                fnReloadData: fnReloadData,
+                iPage: iPage,
+                iPageLength: iPageLength,
+                orderBy: orderBy,
+                searchText: searchText
+            };
+            //setTimeout(function () {
+            if (fnReloadData) {
+                if (searchText) {
+                    _tableData(iPage, iPageLength, orderBy, searchText, function (data) {
+                        fnReloadData(data);
+                    });
+                } else {
+                    _tableData(iPage, iPageLength, orderBy, null, function (data) {
+                        fnReloadData(data);
+                    });
+                }
+            }
+            //}, 1000);
+        };
+        scope.onSelectTableRow = pressEnter;
+        //Danh sách các dòng đc chọn (nếu là table MultiSelect)
+        scope.$table = {
+            selectedItems:[]
+        };
+        
+        //Dòng hiện tại đang được focus (nếu table là SingleSelect hoặc MultiSelect)
+        scope.currentItem = null;
+        scope.tableSearchText = '';
+        scope.SearchText = '';
+        //Refesh table
+        scope.refreshDataRow = function () { /*Do nothing*/ };
+
+        scope.onResizeDialog = onResizeDialog;
+        scope.save = save;
+        scope.close = close;
+        
+        function pressEnter($row) {
+            
+        }
+
+        scope.change = function (val) {
+            scope.tableSearchText = val;
+            var config = scope.$$tableConfig;
+            _tableData(config.iPage, config.iPageLength, config.orderBy, config.searchText, config.fnReloadData);
+        }
+
+        function onResizeDialog() {
+            $dialog.fullScreen();
+            setTimeout(function () {
+                $(window).trigger('resize');
+            }, 100);
+        }
+
+        function save() {
+            
+            if (scope.$table.currentItem.exam_temp_id) {  
+                scope.$parent.category_list.push(...scope.$table.currentItem.question_list)
+                scope.$parent.entity.duration = scope.$table.currentItem.duration
+                scope.$parent.entity.exam_temp_name1 = scope.$table.currentItem.exam_temp_name1
+                scope.$parent.$applyAsync();
+
+                $dialog.closeDialog();
+                reloadData();
+            }
+             else {
+                $msg.message("${get_global_res('Input_Error','Nhập liệu sai')}", "${get_res('select_exam_template_not_null','Mời chọn mẫu đề thi')}" + '\n' , function () { });
+                return;
+            }
+
+        }
+
+        function close() {
+            $dialog.closeDialog();
+        }
+
+        function reloadData() {
+            
+            var tableConfig = scope.$parent.$$tableConfig;
+
+            scope.$parent._tableData(
+                tableConfig.iPage, tableConfig.iPageLength, tableConfig.orderBy,
+                tableConfig.searchText, tableConfig.fnReloadData);
+        }
+        
+        function _tableData(iPage, iPageLength, orderBy, searchText, callback) {
+            debugger
+            var sort = {};
+            $.each(orderBy, function (i, v) {
+                sort[v.columns] = (v.type === "asc") ? 1 : -1;
+            });
+            sort[orderBy[0].columns] =
+                services.api("${get_api_key('app_main.api.LMSLS_ExTemplateList/get_list_with_searchtext')}")
+                .data({
+                    //parameter at here
+                        "pageIndex": iPage - 1,
+                        "pageSize": iPageLength,
+                        "search": searchText,
+                        "where": {
+                                'exam_temp_category': scope.currentTempCategory?scope.currentTempCategory :null,
+                        },
+                        "sort": sort
+                    })
+                    .done()
+                .then(function (res) {
+                    var dataRes = res.items;
+
+
+                        var data = {
+                            recordsTotal: res.total_items,
+                            recordsFiltered: res.total_items,
+                            data: res.items
+                        };
+                        callback(data);
+                        scope.currentItem = null;
+                        scope.$apply();
+                    })
+        }
+        ////////////////////////////////////////////////////////////////////////
+
+        scope.$$tableConfig = {};
+        //Dữ liệu cho table
+
+    scope._onSelectTableRow = pressEnter;
+
+    
+
+    scope._currentItem = null;
+    scope._tableSearchText = '';
+    scope.SearchText = '';
+    scope.$table_group = {
+            _selectedItems:[]
+        };
+
+    scope.$applyAsync();
+     
+});
+</script>

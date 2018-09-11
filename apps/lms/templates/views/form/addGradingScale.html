@@ -1,0 +1,491 @@
+﻿
+<%!
+    #_style="width:200px;"
+%>
+
+
+
+
+<%inherit file="../commons/dialog_save_close.html"/>
+
+<%block name="modal_body">
+        
+            <div class="col-md-{{col_group}} col-sm-{{col_group}}">
+                
+                <collapse-box class="zb-form-common" title="${get_res('add_new_grading_scale','Create a Grading Scale')}">
+                    <div class="col-md-1 col-sm-1">
+                     </div>
+                    <div class="col-md-11 col-sm-11">
+                    <div class="col-md-{{col}}" style="padding-bottom: 20px;">
+                        <div class="form-group zb-form-group">
+                            <!--Mã Tài liệu, ID-->
+                            <label for="inputEmp_Train_Mode_Name" class="col-sm-2 zb-form-label">${get_res('id','ID')}</label>
+                            <div class="col-sm-4"> 
+                                <input-text id="inputEmp_Train_Mode_Name" ng-model="entity.result_type_id" required>
+                            </div>
+                        </div>
+                    </div>
+                       
+                    <div class="col-md-{{col}}"style="padding-bottom: 20px;">
+                        <div class="form-group zb-form-group">
+                            <!--Tên Tài liệu-->
+                            <label for="inputEmp_Train_Mode_Name" class="col-sm-2 zb-form-label">${get_res('result_type1','Result Type 1')}</label>
+                            <div class="col-sm-4"> 
+                                <input-text id="inputEmp_Train_Mode_Name" ng-model="entity.result_type1" required>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-{{col}}" style="padding-bottom: 20px;">
+                        <div class="form-group zb-form-group">
+                            <!--Tên Tài liệu-->
+                            <label for="inputEmp_Train_Mode_Name" class="col-sm-2 zb-form-label">${get_res('result_type2','Result Type 2')}</label>
+                            <div class="col-sm-4"> 
+                                <input-text id="inputEmp_Train_Mode_Name" ng-model="entity.result_type2" >
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-{{col}}" style="padding-bottom: 20px;">
+                        <div class="form-group zb-form-group">
+                            <!--Nguon dinh danh Tài liệu-->
+                            <label for="inputEmp_Train_Mode_Name" class="col-sm-2 zb-form-label">${get_res('grading_scale','Grading Scale')}</label>
+                            <div class="col-sm-10"> 
+                                <div class="col-sm-12" style="padding:0px;" ng-repeat="elem in entity.grading_scale track by $index">
+                                    <div class="col-sm-5" style="padding:0px;padding-right: 27px;">
+                                        <input-text id="inputEmp_Train_Mode_Name" ng-model="elem.grade" >
+                                        </div>
+                                    <div class="col-sm-1"  >
+                                    <p style="margin-top: 10px; margin-left: -14px;">from</p>
+                                        </div>
+                                    
+                                    <div class="col-sm-1" style="padding:0px" >
+                                    <input-select ng-model="elem.from" data-list="cbbNegativeMarks" data-value="value" data-caption="caption"></input-select>
+                                        </div>
+                                    <div class="col-sm-1">
+                                        <p style="text-align:center;margin-top: 10px;">to</p>
+                                        </div>
+                                    <div class="col-sm-1" style="padding:0px">
+                                    <input-select ng-model="elem.to" data-list="cbbNegativeMarks" data-value="value" data-caption="caption"></input-select>
+                                        </div>
+                                    <div class="col-sm-3" style=" padding-top: 10px;">
+                                     <a style="text-align:center;font-size:12px;cursor:pointer" ng-click="onAddFeedBack($index)">Add feedback</a>
+                                        <span class="bowtie-icon bowtie-status-failure-outline" ng-click="delScale($index)" ng-if="$index >0" style="cursor: pointer;" >
+                                        </span>
+                                        </div>
+                                    <div class="col-md-{{col}}"  ng-if="elem.addFeedBack" style="padding:0px;padding-bottom: 20px;">
+                                           <div class="clearblock" style="display:inline-block"></div>
+                                            <c-html-box style="height: 100px;" data-rows="6" ng-model="elem.add_feedback"></c-html-box>
+                                    </div>
+                                 </div>
+                                <div class="col-sm-12">
+                                     <a ng-click="addScale()" style="cursor:pointer;text-underline-position:below;font-size:11px" >+Add New Scale</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                        <div class="col-md-{{col}}" style="padding-bottom: 20px;">
+                        <div class="form-group zb-form-group">
+                            <!--Mô tả tài liệu-->
+                            <label for="inputEmp_Train_Mode_Name" class="col-sm-2 zb-form-label">${get_res('order','Order')}</label>
+                            <div class="col-sm-4">
+                                <input-number id="inputEmp_Train_Mode_Name" ng-model="entity.order" >
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-{{col}}" style="padding-bottom: 20px;">
+                        <div class="form-group zb-form-group">
+                            <!--Mô tả tài liệu-->
+                            <label for="inputEmp_Train_Mode_Name" class="col-sm-2 zb-form-label">${get_res('note','Note')}</label>
+                            <div class="col-sm-7">
+                                <div class="clearblock" style="display:inline-block"></div>
+                                <input-textarea rows="4" ng-model="entity.note" ></input-textarea>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-{{col}}" style="padding-bottom: 20px;">
+                        <div class="form-group zb-form-group">
+                            <!--Tên Khóa học-->
+                            <label for="inputEmp_Train_Mode_Name" class="col-sm-2 zb-form-label">${get_res('is_active','Is Active')}</label>
+                            <div class="col-sm-4"> 
+                              <input-checkbox ng-model="entity.active"/>
+                            </div>
+                        </div>
+                    </div>
+                    </div>
+
+                </collapse-box>
+                
+            </div>
+
+</%block>
+
+<%block name="modal_script">
+<script>
+    (function (scope) {
+
+         
+        
+    
+        scope.__mode = scope.$parent.mode;
+        scope.onResizeDialog = onResizeDialog;
+        scope.col = 12;
+        scope.col_group = 12;
+        scope.col_conf_sal = 12;
+        scope.title = scope.$parent.headerTitle;
+        scope.customCbb = {};
+        var __entity = JSON.parse(JSON.stringify(scope.$parent.currentItem ? scope.$parent.currentItem : {}));
+        //Mode 1: tạo mới, Mode 2: chỉnh sửa, Mode 3: sao chép
+        scope.entity = scope.__mode == 2 ? __entity : {};
+
+        //combobox source
+        scope.cbbTrainCof = scope.$parent.LAcadameRange;
+        scope.cbbCoeff = scope.$parent.LAcadameCoEff;
+        scope.cbbBeginDateCal = scope.$parent.LBeginDateCal;
+
+        //Nút lưu và thêm
+        scope.saveNNext = saveNNext;
+        //Nút lưu
+        scope.saveNClose = saveNClose;
+        //Nút thêm chi tiết
+        scope.addDetail = addDetail;
+        //Nút xóa chi tiết
+        scope.deleteDetail = deleteDetail;
+        //Nút sửa chi tiết
+        scope.editDetail = editDetail;
+
+
+        scope.entity.submit_date = new Date();
+        
+        
+        scope.entity.folder_id = null;
+        scope.entity.grading_scale = [{}]
+        scope.entity.creator =scope.$root.__USER__.login_account
+        
+        scope.onAddFeedBack = function (index) {
+            scope.entity.grading_scale[index].addFeedBack = true;
+            scope.addFeedBack = !scope.addFeedBack;
+        }
+        //Cấu hình tên field và caption hiển thị trên UI
+
+        scope.$$cbbList = {
+            cbbParent: [{}],
+            cbbModerator: [{}],
+            cbbApprover: [{}]
+        }
+        scope.SearchText = '';
+        //Refesh table
+        scope._tableData = _tableData;
+        function _loadDataServerSide(fnReloadData, iPage, iPageLength, orderBy, searchText) {
+            scope.$$tableConfig = {
+                fnReloadData: fnReloadData,
+                iPage: iPage,
+                iPageLength: iPageLength,
+                orderBy: orderBy,
+                searchText: searchText
+            };
+            if (fnReloadData) {
+                if (searchText) {
+                    _tableData(iPage, iPageLength, orderBy, searchText, function (data) {
+                        fnReloadData(data);
+                    });
+                } else {
+                    _tableData(iPage, iPageLength, orderBy, null, function (data) {
+                        fnReloadData(data);
+                    });
+                }
+            }
+        };
+        function _tableData(iPage, iPageLength, orderBy, searchText, callback) {
+            var dataItem = [{
+                role: "System Admin",
+                full_control: true,
+                list_folder: false,
+                modify: false,
+                view: false,
+                download: false,
+            }, {
+                role: "Instructor",
+                full_control: false,
+                list_folder: true,
+                modify: false,
+                view: true,
+                download: true,
+            }, {
+                role: "Student",
+                full_control: false,
+                list_folder: true,
+                modify: false,
+                view: true,
+                download: true,
+            }];
+            var data = {
+                recordsTotal: dataItem.length,
+                recordsFiltered: dataItem.length,
+                data: dataItem
+            };
+            callback(data);
+            scope.$$table.currentItem = null;
+            scope.$apply();
+            return
+            var sort = {};
+            $.each(orderBy, function (i, v) {
+                sort[v.columns] = (v.type === "asc") ? 1 : -1;
+            });
+            sort[orderBy[0].columns] =
+                services.api("${get_api_key('app_main.api.LMSLS_ExQuestionCategory/get_list_with_searchtext')}")
+                    .data({
+                        //parameter at here
+                        "train_level_code": scope.entity ? scope.entity.train_level_code : " ",
+                        "pageIndex": iPage - 1,
+                        "pageSize": iPageLength,
+                        "search": searchText,
+                        "sort": sort
+                    })
+                    .done()
+                .then(function (res) {
+                        
+                        var data = {
+                            recordsTotal: res.total_items,
+                            recordsFiltered: res.total_items,
+                            data: res.items
+                        };
+                        callback(data);
+                        scope.$$table.currentItem = null;
+                        scope.$apply();
+                        
+                    })
+        }
+
+        /**
+         *         
+         * Thay đỗi kích thước form Dialog và các control trên form dialog
+         */
+        function onResizeDialog() {
+            $dialog.fullScreen();
+            scope.col = scope.col == 12 ? 6 : 12;
+            scope.col_group = scope.col_group == 6 ? 8 : 6;
+            scope.col_conf_sal = scope.col_conf_sal == 6 ? 4 : 6;
+        }
+
+        function saveNClose() {
+            debugger
+            if (scope.entity != null) {
+                
+                var rsCheck = checkError();//Kết quả check input
+                if (rsCheck.result) {
+                    $msg.message("${get_global_res('Input_Error','Nhập liệu sai')}", rsCheck.errorMsg, function () { });
+                    return;
+                }
+                beforeCallToServer();
+                editData(function (res) {
+                    if (res.error == null) {
+                        $dialog.closeDialog();//Đóng form input
+                        $msg.alert("${get_global_res('Handle_Success','Thao tác thành công')}", $type_alert.INFO);//Xuất thông báo thành cônng
+                        if (scope.__mode == 1 || scope.__mode == 3) {
+                            
+                            reloadData();
+                        } else if (scope.__mode == 2) {
+                            
+                            scope.$parent.currentItem = scope.entity;
+                           // scope.$parent.currentItem.material_version = scope.entity.material_version
+                            scope.$parent.currentItem.modified_on = res.item.modified_on;
+                            scope.$parent.currentItem.modified_by = res.item.modified_by;
+                            scope.$parent.$apply();
+                            scope.$root.refresh();
+                            //Refesh datatable
+                            scope.$parent.refreshDataRow();
+                            reloadData();
+                        }
+                    } else {
+                        $msg.message("${get_global_res('Internal_Server_Error','Có lỗi từ phía máy chủ')}", "${get_global_res('Please_Try_Again','Xin thử vui lòng thử lại')}", function () { });
+                    }
+                });
+            }
+        }
+
+        function saveNNext() {
+            
+            if (scope.entity != null) {
+                var rsCheck = checkError();//Kết quả check input
+                if (rsCheck.result) {
+                    //Nhập sai: break khỏi hàm
+                    $msg.message("${get_global_res('Input_Error','Nhập liệu sai')}", rsCheck.errorMsg, function () { });
+                    return;
+                }
+                beforeCallToServer();
+                editData(function (res) {
+                    if (res.error == null) {
+                        if (scope.__mode == 1 || scope.__mode == 3)
+                            reloadData();
+                        else {
+                            scope.$parent.currentItem = scope.entity;
+                            scope.$parent.currentItem.modified_on = res.item.modified_on;
+                            scope.$parent.currentItem.modified_by = res.item.modified_by;
+                            scope.$parent.$apply();
+                            scope.$root.refresh();
+                            //Refesh datatable
+                            scope.$parent.refreshDataRow();
+                        }
+                        $msg.alert("${get_global_res('Handle_Success','Thao tác thành công')}", $type_alert.INFO);
+                        scope.entity = {};
+                        scope.entity.submit_date = new Date();
+                        scope.__mode = 1;
+                        scope.$apply();
+                    } else {
+                        $msg.message("${get_global_res('Notification','Thông báo')}", "${get_global_res('Internal_Server_Error','Có lỗi từ phía máy chủ')}", function () { });
+                    }
+                })
+            } else {
+                $msg.message("${get_global_res('Input_Error','Nhập liệu sai')}", rsCheck.errorMsg, function () { });
+            }
+        }
+
+        function addDetail() {
+            scope.__detailMode = 1;
+            openDialog("${get_res('config_detail_acadame','Thiết lập chi tiết trình độ học vấn')}", 'category/form/dialog/addAcadameDetail', function () { }, "dialogInputAcadameDetail");
+        }
+
+        function editDetail() {
+            if (scope.$$table.currentItem) {
+                scope.__detailMode = 2; // set mode chỉnh sửa
+                openDialog("${get_res('config_detail_acadame','Thiết lập chi tiết trình độ học vấn')}", 'category/form/dialog/addAcadameDetail', function () { }, "dialogInputAcadameDetail");
+            } else {
+                $msg.message("${get_global_res('Notification','Thông báo')}", "${get_app_res('No_Row_Selected','Không có dòng được chọn')}", function () { });
+            }
+        }
+
+        function deleteDetail() {
+            if (!scope.$$table.selectedItems || scope.$$table.selectedItems.length === 0) {
+            $msg.message("${get_global_res('Notification','Thông báo')}", "${get_global_res('No_Row_Selected','Không có dòng được chọn')}", function () { });
+            } else {
+                $msg.confirm("${get_global_res('Notification','Thông báo')}", "${get_global_res('Do_You_Want_Delete','Bạn có muốn xóa không?')}", function () {
+                    services.api("${get_api_key('app_main.api.HCSLS_Acadame/delete_detail')}")
+                        .data({
+                            "train_level_code":scope.entity.train_level_code,
+                            "rec_id": _.pluck(scope.$$table.selectedItems, 'rec_id')
+                        })
+                        .done()
+                        .then(function (res) {
+                            if (res.updatedExisting == true) {
+                                _tableData(scope.$$table.$$tableConfig.iPage, scope.$$table.$$tableConfig.iPageLength, scope.$$table.$$tableConfig.orderBy, scope.$$table.$$tableConfig.SearchText, scope.$$table.$$tableConfig.fnReloadData);
+                                $msg.alert("${get_global_res('Handle_Success','Thao tác thành công')}", $type_alert.INFO);
+                                scope.$$table.currentItem = null;
+                                scope.$$table.selectedItems = [];
+                            }
+                            if (res.error != null || res.updatedExisting == false) {
+                                $msg.alert("${get_global_res('Handle_Failed','Thao tác thất bại')}", $type_alert.DANGER);
+                            }
+                        })
+                });
+            }
+        }
+
+        function editData(callback) {
+            var url = getUrl();
+           
+            if (scope.__mode == 3) {
+
+            }
+            if (scope.__mode == 1) {
+
+            }
+            services.api(url)
+                .data(scope.entity)
+                .done()
+                .then(function (res) {
+                    callback(res);
+                })
+        }
+
+        function beforeCallToServer() {
+
+        }
+
+        function getUrl() {
+            return scope.__mode == 1 || scope.__mode == 3 ? "${get_api_key('app_main.api.LMSLS_ExResultType/insert')}" /*Mode 1: Tạo mới*/
+                    : "${get_api_key('app_main.api.LMSLS_ExResultType/update')}" /*Mode 2: Cập nhật*/
+        }
+
+        function reloadData() {
+            
+            var tableConfig = scope.$parent.$$tableConfig;
+            scope.$parent._tableData(tableConfig.iPage,
+            tableConfig.iPageLength, tableConfig.orderBy,
+                tableConfig.searchText, tableConfig.fnReloadData);
+            //
+            scope.$root._departments();
+        }
+
+        /**
+         * Function check input
+         */
+        function checkError() {
+            var errMsg;
+            var valid = null;
+            var rs = {
+                "result": false,
+                "errorMsg": ''
+            };
+            valid = lv.Validate(scope.entity.result_type_id);
+            rs.result = valid.isNullOrWhiteSpace();
+            rs.errorMsg = rs.result === true ? "${get_res('result_type_id_is_not_null','Mã thang điểm không được để trống')}" + '\n' : "" ;
+            if(rs.result === true){
+                return rs;
+            }
+            valid = lv.Validate(scope.entity.result_type1);
+            rs.result = valid.isNullOrWhiteSpace();
+            rs.errorMsg = rs.result === true ? "${get_res('result_type1_not_null','Tên thang điểm không được để trống')}" + '\n' : "" ;
+            if(rs.result === true){
+                return rs;
+            }
+            return rs;
+        }
+
+        
+
+        function _getDataInitCombobox() {
+			
+			scope.$root.$getInitComboboxData(scope,
+				{
+                    "key": "${encryptor.get_key('cbb_lmsls_materialfolder')}",
+                    "code": scope.entity && scope.entity.hasOwnProperty('category')? scope.entity.category: null,
+                    "alias": "$$$folder_id"
+                }
+			);
+		}
+        _getDataInitCombobox();
+        loadValueList();
+        function loadValueList() {
+            services.api("${get_api_key('app_main.api.SYS_ValueList/get_list')}")
+            .data({
+                "name": [
+                    "LMS_Ex_Temp_negative_marks",
+
+                ]
+            })
+            .done()
+            .then(function (res) {
+                scope.cbbNegativeMarks = getValue(res.values, "LMS_Ex_Temp_negative_marks");
+
+                scope.$applyAsync();
+                function getValue(response, listName) {
+                    return _.findWhere(response, { "list_name": listName }) ? _.findWhere(response, { "list_name": listName }).values : [];
+                }
+            })
+        }
+
+        scope.addScale = function () {
+            
+                scope.entity.grading_scale.push({});
+            
+        }
+        scope.delScale = function (index) {
+            if(scope.entity.grading_scale.length>1)
+                scope.entity.grading_scale.splice(index, 1);
+        }
+
+    });
+
+</script>
+
+</%block>

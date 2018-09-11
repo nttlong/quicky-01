@@ -1,0 +1,121 @@
+﻿<style>
+    .hcs-navigation-panel-button {
+        list-style-type:none;
+        display:inline-flex;
+    }
+
+    .hcs-navigation-panel-button li {
+        float:left;
+    }
+
+    .zb-content {
+        background-color:transparent !important;
+    }
+
+    .app-content {
+        overflow: unset !important;
+    }
+</style>
+<div class="hcs-container">
+    <div class="row hcs-profile-list">
+        <div class="hcs-left-side-department-content">
+            <div class="hcs-left-side-department-tree-tool-bar">
+                <div class="pull-left" style="padding-left:10px;">
+                    <div class="hcs-left-side-department-tree-tool-bar-div-search">
+                       <input class="hcs-left-side-department-tree-tool-bar-input-search" 
+                              placeholder="Filter" ng-model="searchText">
+                       <div class="hcs-left-side-department-tree-tool-bar-input-search-bot"></div>
+                       <div class="hcs-left-side-department-tree-tool-bar-input-search-bot-icon">
+                           <i class="glyphicon glyphicon-search"></i>
+                       </div>
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+            <div class="hcs-left-side-department-tree" style="overflow: auto;">
+                <div class="hcs-search-function-list" ng-repeat="ele in valueListModule track by $index">
+                    <p>
+                        {{ele.caption}}
+                    </p>
+                    <div class ="zb-list-view">
+                        <a ng-repeat="child in dataSource track by $index" ng-class="{active: _equal(currentRow, child)}" ng-click="selectRow($event, child)" class ="list-group-item">
+                            {{child.email_template_code}}</br>
+                            {{child.email_template_name}}
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="hcs-right-side-department-content">
+            <div class="hcs-right-side-department-list-tool-bar">
+                <div class="zb-left-content pull-left" style="width: calc(100% - 200px);">
+                    <div class="row">
+                        <div class="col-md-12 text-center">
+                          Định nghĩa Template Email hệ thống
+                        </div>
+                    </div>
+                </div>
+                <div class="zb-right-content pull-right">
+                    <button class="zb-btn zb-btn-o-green ng-scope" 
+                            ng-click="event.add()">
+                        <i class="bowtie-icon bowtie-math-plus"></i>
+                    </button>
+                    <button class="zb-btn" ng-click="event.save()">
+                        <i class="bowtie-icon bowtie-save"></i>
+                    </button>
+                    <button class="zb-btn zb-btn-o-red" ng-click="event.delete()">
+                        <i class="bowtie-icon bowtie-edit-remove"></i>
+                    </button>
+                    <button class="zb-btn" ng-click="event.attach()">
+                        <i class="bowtie-icon bowtie-attach"></i>
+                    </button>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+            <div class="hcs-right-side-department-list" style="height:calc(100% - 37px);">
+                <div class="col-md-10 col-md-offset-1">
+                    <div class="form-group zb-form-group">
+                        <label class="col-sm-3 zb-form-label">${get_res('email_template_code','Mã mẫu email')}</label>
+                        <div class="col-sm-9">
+                            <input-text ng-model="entity.email_template_code" ng-disabled="mode == 2 ? true : false" required>
+                        </div>
+                    </div>
+                    <div class="form-group zb-form-group">
+                        <label class="col-sm-3 zb-form-label">${get_res('email_template_name','Tên mẫu email')}</label>
+                        <div class="col-sm-9">
+                            <input-text ng-model="entity.email_template_name" required>
+                        </div>
+                    </div>
+                    <div class="form-group zb-form-group">
+                        <label class="col-sm-3 zb-form-label">${get_global_res('description','Mô tả')}</label>
+                        <div class="col-sm-9">
+                            <input-text ng-model="entity.description">
+                        </div>
+                    </div>
+                    <div class="form-group zb-form-group">
+                        <label class="col-sm-3 zb-form-label">${get_res('module_name','Thuộc phân hệ')}</label>
+                        <div class="col-sm-9">
+                            <input-select data-list="valueListModule" data-value="value" data-caption="caption" ng-model="entity.module_name" required>
+                        </div>
+                    </div>
+                    <div class="form-group zb-form-group" style="margin-bottom:25px;">
+                        <label class="col-sm-3 zb-form-label">${get_res('subject','Tiêu đề')}</label>
+                        <div class="col-sm-9">
+                            <input-text ng-model="entity.subject" required>
+                        </div>
+                    </div>
+                    <div class="col-md-12" style="padding: 0px 15px 0px 7px;">
+                        <div data-c-html-editor 
+                              ng-model="entity.body"
+                              style="height:350px;">
+                         </div>
+                     </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="clearfix"></div>
+<script>
+    <%include file="../scripts/emailTemplateSystem.js"/>
+</script>

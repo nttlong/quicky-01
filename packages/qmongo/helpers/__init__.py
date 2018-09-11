@@ -130,7 +130,7 @@ def filter(expression,*args,**kwargs):
         params = _params
     if expression.count("@")>0:
         _expr = vert_expr(_expr, *params)
-        ret = filter_expression(_expr, params)
+        ret = filter_expression(_expr, *params)
         return ret
     else:
         _expr = vert_expr(_expr, *params,**kwargs)

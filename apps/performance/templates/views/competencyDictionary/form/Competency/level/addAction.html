@@ -1,0 +1,154 @@
+﻿
+<%!
+    #_style="width:500px;"
+    #_height="300px"
+    _maximize="false"
+%>
+<%inherit file="../../../../commons/dialog_save_close.html"/>
+
+<%block name="modal_body">
+<div class="col-md-6 col-sm-6">
+    <collapse-box class="zb-form-common" title="${get_global_res('Common_Information','Thông tin chung')}">
+        <div class="col-md-12 col-sm-12">
+            <div class="form-group zb-form-group">
+                 <label class="col-sm-4 zb-form-label">${get_global_res('level','Cấp độ')}</label>
+                 <div class="col-sm-8">
+                     <output-label value="$parent.$$table[0].currentItem['com_level_code'] + ' - ' + $parent.$$table[0].currentItem['com_level_name']"></output-label>
+                 </div>
+             </div>
+            <div class="form-group zb-form-group">
+                 <label class="col-sm-4 zb-form-label">${get_global_res('weight','Trọng số')}</label>
+                 <div class="col-sm-8">
+                     <input-number ng-model="entity.weight">
+                 </div>
+             </div>
+            <div class="form-group zb-form-group">
+                 <label class="col-sm-4 zb-form-label">${get_global_res('ordinal','Thứ tự')}</label>
+                 <div class="col-sm-8">
+                     <input-number ng-model="entity.ordinal">
+                 </div>
+             </div>
+        </div>
+    </collapse-box>
+</div>
+<div class="col-md-6 col-sm-6">
+    <collapse-box class="zb-form-common" title="${get_res('standard_behavior','Hành vi chuẩn')}">
+        <div class="col-md-12 col-sm-12">
+            <div class="form-group zb-form-group">
+                <input-textarea rows="3" ng-model="entity.action"></input-textarea>
+            </div>
+            <div class="form-group zb-form-group">
+                <label for="DisplayInfo" class="col-sm-4 zb-form-label">${get_global_res('create_and_modify','Tạo | Sửa')}</label>
+                <div class="col-sm-8">
+                    <input-text value="{{ entity.created_on | date: $root.systemConfig.date_format}} {{entity.created_by}} | {{ entity.modified_on | date: $root.systemConfig.date_format}} {{entity.modified_by}}" ng-disabled="true">
+                </div>
+            </div>
+        </div>
+    </collapse-box>
+</div>
+</%block>
+
+<%block name="modal_script">
+<script>
+    (function (scope) {
+        var _default = {
+            _id: null,
+            com_code : scope.$parent.$parent.$com_code,
+            com_level_code:null,
+            action:"",
+            weight:null,
+            ordinal:null
+        }
+        scope.title = scope.$parent.headerTitle;
+        scope.mode = scope.$parent.mode[1];
+        scope.entity = scope.mode === 2 ? scope.$parent.$$table[1].currentItem : _default;
+        scope.saveNClose = saveNClose;
+        scope.saveNNext = saveNNext;
+
+        function saveNClose() {
+        if (scope.entity != null) {
+            var rsCheck = checkError();
+            if (rsCheck.result) {
+                $msg.message("${get_global_res('Input_Error','Nhập liệu sai')}", rsCheck.errorMsg, function () { });
+                return;
+            }
+            beforeCallToServer();
+            editData(function (res) {
+                if (res.error == null) {
+                    $dialog.closeDialog();
+                    $msg.alert("${get_global_res('Handle_Success','Thao tác thành công')}", $type_alert.INFO);
+                    reloadData();
+                } else if(res.error.code == "missing"){
+                    $msg.message("${get_global_res('Input_Error','Nhập liệu sai')}", "${get_res('action_is_not_null','Hành vi chuẩn không được để trống')}", function () { });
+                }else {
+                    $msg.message("${get_global_res('Internal_Server_Error','Có lỗi từ phía máy chủ')}", "${get_global_res('Please_Try_Again','Xin thử vui lòng thử lại')}", function () { });
+                }
+            });
+        }
+    }
+
+    function saveNNext() {
+        if (scope.entity != null) {
+            var rsCheck = checkError();
+            if (rsCheck.result) {
+                $msg.message("${get_global_res('Input_Error','Nhập liệu sai')}", rsCheck.errorMsg, function () { });
+                return;
+            }
+            beforeCallToServer();
+            editData(function (res) {
+                if (res.error == null) {
+                    reloadData();
+                    $msg.alert("${get_global_res('Handle_Success','Thao tác thành công')}", $type_alert.INFO);
+                    scope.entity = null;
+                    scope.mode = 1;
+                    scope.$parent.$apply();
+                } else {
+                    $msg.message("${get_global_res('Notification','Thông báo')}", "${get_global_res('Internal_Server_Error','Có lỗi từ phía máy chủ')}", function () { });
+                }
+            })
+        }
+    }
+
+    function editData(callback) {
+        var url = getUrl();
+        var param = _.mapObject(_default, function(val, key) { return val = scope.entity[key] ? scope.entity[key] : null });
+        param['com_level_code'] = scope.$parent.$$table[0].currentItem['com_level_code'];
+        param['com_code'] = scope.$parent.$parent.$com_code;
+        param['_id'] = scope.mode == 2 ? scope.$parent.$$table[1].currentItem['_id'] : null;
+        services.api(url)
+            .data(param)
+            .done()
+            .then(function (res) {
+                callback(res);
+            })
+    }
+
+    function beforeCallToServer() {
+
+    }
+
+    function getUrl() {
+        return scope.mode == 1 || scope.mode == 3 ? "${get_api_key('app_main.api.TMLS_CompetencyAction/insert')}"
+            : "${get_api_key('app_main.api.TMLS_CompetencyAction/update')}"
+    }
+
+    function reloadData() {
+        var tableConfig = scope.$parent.$$table[1].$$tableConfig;
+        scope.$parent._loadAction(tableConfig.iPage,
+            tableConfig.iPageLength, tableConfig.orderBy,
+            tableConfig.searchText, tableConfig.fnReloadData);
+    }
+
+    function checkError() {
+        var errMsg;
+        var valid = null;
+        var rs = {
+            "result": false,
+            "errorMsg": ''
+        };
+        return rs;
+    }
+    });
+</script>
+
+</%block>

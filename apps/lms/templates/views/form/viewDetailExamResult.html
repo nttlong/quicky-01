@@ -1,0 +1,268 @@
+﻿
+<%!
+    #_style="width:200px;"
+%>
+
+<%inherit file="../commons/dialog_accepted.html"/>
+
+<%block name="modal_body">
+<style>
+    .lms-icon-bf-label {
+        font-size: .875rem !important;
+        line-height: 30px !important;
+        color: green !important;
+    }
+    label {
+        line-height: 30px !important;
+        font-size: .875rem !important;
+    }
+    .result {
+        font-weight:bold;
+        color:rgb(0,112,192);
+        padding: 12px;
+    }
+</style>
+<div class="col-md-12">
+    <collapse-box class="zb-form-common" title="${get_res('exam_summary','Exam Summary')}">
+        <div class="">
+            <div>
+                <div class="tabbable-line">
+			        <ul class="nav nav-tabs ">
+				        <li class="active">
+					        <a href="#tab_default_1" data-toggle="tab" ng-click="fnClickOnTab(1)">
+					        ${get_res('exam_overview','SCORE CARD')} </a>
+				        </li>
+				        <li>
+					        <a href="#tab_default_2" data-toggle="tab" ng-click="fnClickOnTab(2)">
+					            ${get_res('exam_questions','QUESTION REPORT')} 
+                            </a>
+				        </li>
+				        <li>
+					        <a href="#tab_default_3" data-toggle="tab" ng-click="fnClickOnTab(3)">
+					        ${get_res('exam_history','SOLUTION')} </a>
+				        </li>
+			        </ul>
+			        <div class="tab-content">
+                        <!--Tab 1-->
+                        <div class="tab-pane active" id="tab_default_1">
+                            <div class="col-md-12" style="padding-bottom:100px">
+		                    <collapse-box class="zb-form-common" title="${get_res('score_card_template','Score Card for Midterm Exam')}">
+                                    <table style="width: 100%;font-size: 13px">
+                                      <tr style="border-bottom: 1px solid #dddddd">
+                                        <td >Total Students</td><td class="result">50</td>
+                                        <td>My Marks</td><td class="result">10.0</td>
+                                        <td>Correct Questions</td class="result"><td class="result">5</td>
+                                        <td>Incorrect Question</td class="result"><td class="result">4</td>
+                                      </tr>
+                                      <tr style="border-bottom: 1px solid #dddddd">
+                                        <td>Total Marks</td><td class="result">20.0</td>
+                                        <td>Percentage</td><td class="result">50%</td>
+                                        <td>Right Marks</td><td class="result">10.0</td>
+                                        <td>Negative Marks</td ><td class="result">0</td>
+                                      </tr>
+                                      <tr style="border-bottom: 1px solid #dddddd">
+                                        <td>Total Questions</td><td class="result">10</td>
+                                        <td>Total Answered Questions</td><td class="result">9</td>
+                                        <td>Left Questions</td><td class="result">1</td>
+                                        <td>Left Question Marks</td><td class="result">2.0</td>
+                                      </tr>
+                                      <tr style="border-bottom: 1px solid #dddddd">
+                                       <td>Duration</td><td class="result">00:45</td>
+                                        <td>My Time</td><td class="result">00:30</td>
+                                        <td>Grading Scale</td><td class="result">B</td>
+                                        <td>Result</td><td><span class="label label-default" style="font-weight:bold;color:white;background-color:#77b300">Passed</span></td>
+                                      </tr>
+                                    </table>
+                                </collapse-box>
+                                </div>
+                            <div class="col-md-12" style="padding-bottom:100px">
+                                <div class="col-md-6">
+                                     <collapse-box class="zb-form-common" title="${get_res('Performance Report for Midterm Exam')}">
+                                         <div class="lms-dashboard-chart"><br/>
+                                        <canvas id="bar" class="chart chart-bar"
+                                                chart-data="data" chart-labels="labels"> chart-series="series"
+                                            </canvas>
+                                         </div> 
+                                         </collapse-box>
+                                    
+                                </div>
+                                <div class="col-md-6">
+                                            <collapse-box class="zb-form-common" title="${get_res('Questions & Marks Wise Report for Midterm Exam')}">
+                                            <div class="col-md-12" style="padding-top: 0px;">           
+                                                <div class="lms-dashboard-chart"><br/>
+                                                <canvas id="pie" class="chart chart-pie"
+                                                  chart-data="dataPie" chart-labels="labelsPie"  chart-colors="colorsPie" chart-options="options" >
+                                                </canvas> 
+                                            </div>
+                                            </div>
+                                            <div class="col-md-12" style="padding-top: 0px;">                       
+                                                        <table >
+                                                            <tr ng-repeat="elem in labelsPie track by $index" style="margin-bottom:3px">
+                                                                <td style="background-color: {{colorsPie[$index]}}; width:50px;border:4px solid white" ></td>
+                                                                <td style="padding-left: 10px;">{{elem}}</td>
+                                                            </tr>
+                                                    </table>
+                                            </div>
+                                             </collapse-box>
+                                     
+                                </div>
+                                </div>
+			            </div>
+                        <!--Tab 2-->
+                        <div class="tab-pane" id="tab_default_2">
+		                    <div class="col-md-12" ng-if="idxTab == 2">
+                                <table-data data-source="tableSource" 
+                                            fields="tableFields" 
+                                            type="MultiSelect" 
+                                            paging="true" 
+                                            page-length="100" 
+                                            server-side="true" 
+                                            press-enter="onSelectTableRow" 
+                                            selected-items="selectedItems" 
+                                            current-item="currentItem" 
+                                            search-text="tableSearchText" 
+                                            refresh-row="refreshDataRow">
+                                </table-data>
+                            </div>
+			            </div>
+                        <!--Tab 3-->
+                        <div class="tab-pane" id="tab_default_3">
+		                    <div class="col-md-12" style="padding-bottom:100px">
+		                    <collapse-box class="zb-form-common" title="${get_res('Solution for Midterm Exam')}">
+                                   <div class="col-md-7" style="padding-top: 0px;">                       
+                                        <div style="height:200px;width:300px;border: 1px solid #e5e5e5";overflow:auto;">
+	                                        <div class="col-md-12" style="border: 1px solid #e5e5e5">Total Questions:</div>
+                                            <div class="col-md-12"> </div>
+                                         </div>                
+                                    </div>
+                                <div class="col-md-5" style="padding-top: 0px;">                       
+                                                        
+                                    </div>
+                                </collapse-box>
+                                </div>
+			            </div>
+		            </div>
+	            </div>
+            </div>
+        </div>
+    </collapse-box>
+</div>
+
+</%block>
+
+<%block name="modal_script">
+<script>
+    (function (scope) {
+            scope.currentItem = scope.$parent.currentItem;
+              scope.labels = ['2006', '2007', '2008', '2009', '2010', '2011', '2012'];
+              scope.series = ['Series A'];
+
+              scope.data = [
+                65, 59, 80, 81, 56, 55, 40
+              ];
+            scope.labelsPie = ["Download Sales", "In-Store Sales", "Mail-Order Sales", "Mail Sales","Order Sales"];;
+            scope.dataPie = [300, 500, 100,200,100];
+        scope.colorsPie = ['#803690', '#00ADF9', '#DCDCDC', '#46BFBD', '#FDB45C'];
+        (function _init_() {
+            
+            if (scope.currentItem) {
+                /*
+                 * Get info Tab 1*
+                 */
+                services.api("${get_api_key('app_main.api.LMSLS_ExExamination/get_data_examination_by_id')}")
+                    .data({
+                        //parameter at here
+                        exam_id: scope.currentItem['exam_id']
+                    })
+                    .done()
+                    .then(function (res) {
+                        debugger
+                        
+                        scope.$applyAsync();
+                        //if (res.form) {res }
+                    })
+            }
+            else {
+                 $msg.message("${get_global_res('Notification','Thông báo')}", "${get_app_res('No_Row_Selected','Không có dòng được chọn')}", function () { });
+            }
+        })();
+
+        /*
+         * Hàm click tab *
+         */
+        function _loadDataServerSide(fnReloadData, iPage, iPageLength, orderBy, searchText) {
+            scope.$$tableConfig = {
+                fnReloadData: fnReloadData,
+                iPage: iPage,
+                iPageLength: iPageLength,
+                orderBy: orderBy,
+                searchText: searchText
+            };
+            //setTimeout(function () {
+            if (fnReloadData) {
+                if (searchText) {
+                    _tableData(iPage, iPageLength, orderBy, searchText, function (data) {
+                        fnReloadData(data);
+                    });
+                } else {
+                    _tableData(iPage, iPageLength, orderBy, null, function (data) {
+                        fnReloadData(data);
+                    });
+                }
+            }
+            //}, 1000);
+        };
+        scope.tableFields = [
+            { "data": "stt", "title": "${get_res('stt','No')}" },
+            { "data": "ques_detail_1", "title": "${get_res('ques_detail_1','Question')}" },
+            { "data": "category.category_name", "title": "${get_res('category_name','Category')}" },
+            { "data": "ques_type_name", "title": "${get_res('ques_type','Question Type')}" },
+            { "data": "ques_level_name", "title": "${get_res('ques_level','Difficulty Level')}" },
+            { "data": "ques_total_marks", "title": "${get_res('ques_total_marks','Mark')}" },
+        ];
+        scope._tableData = _tableData;
+        scope.tableSource = _loadDataServerSide;
+        function _tableData(iPage, iPageLength, orderBy, searchText, callback, objSearchAdvance) {
+
+            //if (scope.treeCurrentNode.hasOwnProperty('folder_id')) {
+            var sort = {};
+            $.each(orderBy, function (i, v) {
+                sort[v.columns] = (v.type === "asc") ? 1 : -1;
+            });
+            sort[orderBy[0].columns] = 
+                services.api("${get_api_key('app_main.api.LMSLS_ExExamination/get_data_table_examination_by_id')}")
+                    .data({
+                        //parameter at here
+                        exam_id: scope.currentItem['exam_id'],
+                        "pageIndex": iPage - 1,
+                        "pageSize": iPageLength,
+                        "search": searchText,
+                        "sort": sort
+                    })
+                    .done()
+                    .then(function (res) {
+                        var data = {
+                            recordsTotal: res.total_items,
+                            recordsFiltered: res.total_items,
+                            data: res.items
+                        };
+                        callback(data);
+                        // scope.$$table.currentItem = null;
+                        scope.$apply();
+                    })
+                        
+
+        }
+        scope.fnClickOnTab = function (idx) {
+            scope.idxTab = idx;
+
+            if (idx == 2) {
+            } else if (idx == 3) {
+
+            }
+        }
+
+    });
+</script>
+
+</%block>

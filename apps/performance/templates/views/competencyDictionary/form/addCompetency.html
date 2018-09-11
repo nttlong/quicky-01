@@ -1,0 +1,69 @@
+﻿
+<%!
+    #_style="width:300px;"
+%>
+<%inherit file="../../commons/dialog_save.html"/>
+
+<%block name="modal_body">
+
+<div class="hcs-tab-info">
+    <div class="col-md-12 competency no-padding">
+        <div class="col-md-3 active" ng-click="openTab($event, 0)">
+            <img src="${get_static('assets/images/General.png')}"/>
+            <label>
+                ${get_global_res('common_information','Thông tin chung')}
+            </label>
+        </div>
+        <div class="col-md-3" ng-class="{disabled: mode === 1}" ng-click="openTab($event, 1)">
+            <img src="${get_static('assets/images/Level.png')}"/>
+            <label style="padding-left:5px;">
+                ${get_global_res('level','Cấp độ')}
+            </label>
+        </div>
+        <div class="col-md-3" ng-class="{disabled: mode === 1}" ng-click="openTab($event, 2)" ng-disabled="mode != 1">
+            <img src="${get_static('assets/images/Factor1.png')}"/>
+            <label>
+                ${get_global_res('evaluation_factor','Yếu tố đánh giá')}
+            </label>
+        </div>
+    </div>
+    <div c-template url="${get_app_url('')}/pages/{{$partialpage}}" class="col-md-12 no-padding" style="height:calc(100% - 70px)">
+
+    </div>
+</div>
+</%block>
+
+<%block name="modal_script">
+<script>
+    (function (scope) {
+        scope.mode = scope.$parent.mode;
+        scope.$com_code = scope.mode == 2 ? scope.$parent.$$table.currentItem.com_code : null;
+        const $partial = [
+            "competencyDictionary/form/Competency/common",
+            "competencyDictionary/form/Competency/level",
+            "competencyDictionary/form/Competency/evaluation"
+        ];
+        scope.$partialpage = $partial[0];
+        scope.mode = scope.$parent.mode;
+        scope.title = scope.$parent.headerTitle;
+        scope.openTab = function (event, num) {
+            if (scope.mode != 1) { 
+                $(event.currentTarget.parentElement.children).removeClass("active");
+                $(event.currentTarget).addClass('active');
+                scope.$partialpage = $partial[num];
+                if (num != 0) {
+                    $('.modal-footer .right-content').css('display', "none");
+                } else {
+                    $('.modal-footer .right-content').css('display', "unset");
+                }
+            }
+        }
+        scope.onResizeDialog = function() {
+            $dialog.fullScreen();
+        };
+        scope.saveNNext = null
+        scope.saveNClose = null
+    });
+</script>
+
+</%block>
