@@ -113,6 +113,7 @@ def change_language(request):
     is_public=True
 )
 def load_page(request,path):
+    request.set_file_template("views/"+path+".html")
     return  request.render({
         "path":path
     })

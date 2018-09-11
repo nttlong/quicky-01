@@ -2,9 +2,12 @@ import  threading
 import sys
 from . import extens
 import tenancy
+import logging
+import urllib
 __schema_cache__ = {}
 __customer__code__ ={}
 __apps_cache__ = {}
+__log__ = logging.getLogger(__name__)
 class executor(object):
     def __init__(self,fn,path):
         if type(path) is dict:
@@ -23,7 +26,15 @@ class executor(object):
             if hasattr(self.__app__.settings, "DEFAULT_DB_SCHEMA") and not has_set_schema:
                 tenancy.set_schema(self.__app__.settings.DEFAULT_DB_SCHEMA)
     def exec_request(self, request, **kwargs):
-        import urllib
+        try:
+            return self.run_request(request,**kwargs)
+        except Exception as ex:
+            __log__.debug(ex.message,ex)
+            raise ex
+
+
+    def run_request(self, request, **kwargs):
+
         schema =request.get_schema()
         tenancy.set_schema(schema)
         # from . import language

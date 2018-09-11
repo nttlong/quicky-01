@@ -84,7 +84,7 @@ def sign_out(request):
 )
 def load_page(request,path):
     return  request.render({
-        "path":path.lower()
+        "path":path
     })
 
 @quicky.view.template(is_public=True)

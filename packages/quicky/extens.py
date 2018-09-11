@@ -73,6 +73,8 @@ def apply(request,template_file,app):
                                       encoding_errors='replace',
 
                                       )
+            if render_model["request"].get_file_template()==None :
+                render_model["request"].set_file_template(fileName)
             ret_res=mylookup.get_template(fileName).render(**render_model)
             return HttpResponse(ret_res)
         else:

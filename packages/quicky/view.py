@@ -23,31 +23,15 @@ def template_uri(fn):
     return layer
 @template_uri
 def template(fn,*args,**kwargs):
-
     path = None
     if type(args) is tuple and args.__len__() == 0:
         path = kwargs.get("file","unknown.html")
         is_public = kwargs.get("is_public",False)
     else:
         path =args[0]
-
-
     instance = executor.executor(fn,path)
     return instance.execute_request(True)
 
-    # if is_multi_tenancy:
-    #     if app == None:
-    #         return exec_request
-    #     elif hasattr(app.settings, "DEFAULT_DB_SCHEMA"):
-    #         if app.host_dir == "":
-    #             return exec_request
-    #         else:
-    #             return exec_request
-    #     else:
-    #         return exec_request_for_mul
-    #
-    # else:
-    #     return exec_request
 
 
 

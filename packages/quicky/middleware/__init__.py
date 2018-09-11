@@ -1,7 +1,9 @@
 from .. import dict_utils
 from .. import language as lang_manager
 from .. import api
+from . import view_register
 from django.core.context_processors import csrf
+import logging
 import threading
 global __apps_cache__
 global __schema_cache__
@@ -11,6 +13,7 @@ global _abs_urls
 global _language_cache
 global lock
 global __app_host__
+
 _language_cache = {}
 _abs_urls = {}
 __apps_cache__ = {}
@@ -19,6 +22,8 @@ __customer__code__ = {}
 __view_path__ = {}
 lock=threading.Lock()
 __app_host__ = {}
+__log__ = logging.getLogger(__file__)
+
 def __remove_first__(x,y):
     if y== None or y == "":
         return y
@@ -47,6 +52,32 @@ def get_language_item(schema,language,app_name,view,key,value):
             raise ex
     return _language_cache[hash_key]
 class extension(object):
+    def __init__(self):
+        self.__coll__ = None
+
+
+
+
+    @property
+    def coll(self):
+        if self.__coll__ != None:
+            return self.__coll__
+        try:
+            from django.conf import settings
+            import pymongo
+            dbconfig = settings.DATABASES["default"]
+            cnn = pymongo.MongoClient(host=dbconfig["HOST"], port=dbconfig["PORT"])
+            db = cnn.get_database(dbconfig["NAME"])
+            if not db.authenticate(dbconfig["USER"],dbconfig["PASSWORD"]):
+                raise (Exception("Authenticate on '{0}' at '{1}' is fail".format(dbconfig["HOST"],dbconfig["PORT"])))
+            if not hasattr(settings,"SYS_VIEWS"):
+                raise (Exception("It looks like you forget put 'SYS_VIEWS' in 'setting.py'"))
+            self.__coll__ = db.get_collection(settings.SYS_VIEWS)
+            return self.__coll__
+        except Exception as ex:
+            __log__.debug(ex.message,ex)
+            raise ex
+
     def __str_trim__(self,_str_):
         if _str_ == "":
             return ""
@@ -137,7 +168,7 @@ class extension(object):
                 path = path[1:path.__len__()]
             if hasattr(settings,"HOST_DIR") and settings.HOST_DIR != "":
                 path = path[settings.HOST_DIR.__len__():path.__len__()]
-            path = path[0:path.__len__() -self.__app__.host_dir.__len__()]
+            path = path[0:path.__len__() -request.__app__.host_dir.__len__()]
             if path[0] == '/':
                 path = path[1:path.__len__()]
             items = path.split('/')
@@ -424,7 +455,7 @@ class extension(object):
             if value == None:
                 value = key
             key = key.lower()
-            return get_language_item(request.get_schema(), get_language(), request.get_app().name, get_view_path(), key, value)
+            return get_language_item(request.get_schema(), get_language(), request.get_app().name, request.get_file_template(), key, value)
         #------------------------------------------------------------------
         def get_app_res(key, value=None):
             if value == None:
@@ -468,8 +499,27 @@ class extension(object):
         def get_login_url():
             return request.__app__.get_login_url(request.get_customer_code())
         #-----------------------------------------------------------
-        def register_view():
-            return request.get_view_path()
+        def set_file_template(file):
+            setattr(request,"__file_template__",file)
+        #-----------------------------------------------------------
+        def get_file_template():
+            if hasattr(request,"__file_template__"):
+                return  request.__file_template__
+            else:
+                return None
+
+        def register_view(page_caption=None,parent=None,is_public=False,privileges=None):
+            if page_caption == None:
+                page_caption = request.get_file_template()
+            return view_register.get_view_id(
+                self.coll,
+                request.get_app().name,
+                request.get_view_path(),
+                request.get_file_template(),
+                page_caption,
+                parent,
+                is_public,
+                privileges)
         def get_user():
             return request.user
         extends_functions =[
@@ -494,7 +544,9 @@ class extension(object):
             get_csrftoken,
             get_login_url,
             register_view,
-            get_user
+            get_user,
+            set_file_template,
+            get_file_template
         ]
         setattr(request,"__fn__",{})
         _fn_=getattr(request,"__fn__")

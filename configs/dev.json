@@ -69,6 +69,7 @@
     }
 
   },
+  "SYS_VIEWS":"sys.views",
   "LANGUAGE_CODE": "en",
   "TIME_ZONE": "UTC",
   "USE_I18N": true,
@@ -118,7 +119,7 @@
     "user": "sys",
     "password": "123456",
     "name": "lms",
-    "collection": "sys.languages"
+    "collection": "languages"
   },
   "DB_ENCRYPTOR_CACHE": {
     "host": "172.16.7.67",
