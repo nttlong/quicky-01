@@ -5,6 +5,7 @@
     "/packages/django",
     "/uvenv04/lib/python2.7/site-packages"
   ],
+  "SYS_VIEWS":"sys.views",
   "HOST_DIR_":"lms",
   "AUTHORIZATION_ENGINE":"quicky.authorize",
   "HOST_DIR_":"test",
@@ -111,7 +112,7 @@
     "name":"hrm",
     "collection":"sys.api_cache"
   },
-  "DB_AUTH":{
+  "DB_AUTH_":{
     "host":"localhost",
     "port":27017,
     "user":"root",
@@ -125,7 +126,7 @@
     "user":"root",
     "password":"123456",
     "name":"hrm",
-    "collection":"sys.languages"
+    "collection":"sys_languages"
   },
   "DB_ENCRYPTOR_CACHE":{
     "host":"localhost",

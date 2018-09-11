@@ -30,6 +30,8 @@ def __remove_first__(x,y):
     else:
         while y!="" and y[0]==x:
             y=y[1:y.__len__()]
+        while y.count("//")>0:
+            y=y.replace("//","/")
         return y
 def __remove_last__(x,y):
     if y== None or y == "":
@@ -37,6 +39,8 @@ def __remove_last__(x,y):
     else:
         while y!="" and y[y.__len__()-1]==x:
             y=y[0:y.__len__()-1]
+        while y.count("//")>0:
+            y=y.replace("//","/")
         return y
 def get_language_item(schema,language,app_name,view,key,value):
 
@@ -480,11 +484,13 @@ class extension(object):
             return request.get_app().name
         #---------------------------------------------------------
         def get_api_key(path):
+            view_register.add_api_path_to_view(self.coll, path, request.get_app().name, request.get_file_template())
             items = path.split('.')
             if items.__len__() > 2:
                 path = path[items[0].__len__():path.__len__()]
             else:
                 path = "." + path
+
             return api.get_api_key(request.get_app().mdl.__name__ + path)
         #-----------------------------------------------------------
         def get_api_path(id):

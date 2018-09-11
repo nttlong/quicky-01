@@ -54,17 +54,6 @@ def load_category(request,path):
     # })
 @quicky.view.template("dynamic.html")
 def load_page(request,path):
-
-    authorize.register_view(
-        app=request.get_app().name,
-        view=request.get_view_path()
-    )
-    privileges=authorize.get_privileges_of_user(
-        username=request.user.username,
-        app=request.get_app().name,
-        view=request.get_view_path(),
-        schema=tenancy.get_schema()
-    )
     import os
     dir=os.path.dirname(application.mdl.__file__)
     html_file=dir+os.sep+"templates"+os.sep+"views"+os.sep+path+".html"
@@ -73,8 +62,9 @@ def load_page(request,path):
         f = open(html_file, 'w')
         f.write("<%inherit file=\"base.html\"/>\r<div>\r</div>")
         f.close()
+    request.set_file_template("views/"+path+".html")
     return request.render({
-        "path": path.lower()
+        "path": path
     })
 @quicky.view.template("dynamic.html")
 def load_dialog(request,path):

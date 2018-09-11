@@ -1500,3 +1500,284 @@ lv.auth_user.find (0.03) {'_id': ObjectId('5b20925a232037334054b073')}
 lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
 lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
 lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+django_session.save (0.00) {'schema': u'lv', '_id': u'zd9y04rwlq0t4whod2kjgpn5pjc0ac0f', 'expire_date': datetime.datetime(2018, 9, 25, 7, 46, 51, 386627, tzinfo=<UTC>), 'session_data': u'OTE2OWEzNjFmMzk3MzVhMTZiNjlmM2EwODhiNTVkOGExNWRjM2JlYzp7fQ=='}
+django_session.save (0.00) {'schema': u'lv', '_id': u'zd9y04rwlq0t4whod2kjgpn5pjc0ac0f', 'expire_date': datetime.datetime(2018, 9, 25, 7, 46, 51, 420690, tzinfo=<UTC>), 'session_data': u'OTE2OWEzNjFmMzk3MzVhMTZiNjlmM2EwODhiNTVkOGExNWRjM2JlYzp7fQ=='}
+lv.auth_user.find (0.00) {'username': 'sys'}
+lv.auth_user.save (0.01) {'username': u'sys', 'first_name': u'', 'last_name': u'', '_id': ObjectId('5b85fbd485740f2b3d7067a4'), 'is_active': True, 'email': u'sys@beatles.com', 'is_superuser': True, 'is_staff': True, 'last_login': datetime.datetime(2018, 9, 10, 6, 8, 41, 885000, tzinfo=<UTC>), 'password': u'pbkdf2_sha256$12000$RthRkhWv7lFO$owgegdATSToj2jfm/sqULHHJMlvEUgJaZuLHXazFA9E=', 'date_joined': datetime.datetime(2018, 8, 29, 1, 50, 11, 947000, tzinfo=<UTC>)}
+django_session.save (0.00) {'schema': u'lv', '_id': 'zd9y04rwlq0t4whod2kjgpn5pjc0ac0f', 'expire_date': datetime.datetime(2018, 9, 25, 7, 46, 51, 690651, tzinfo=<UTC>), 'session_data': u'YTIwMDM1ZDE4Mzg1ZWU5ZTUxNjkzNTM0NWMyMDc3YjYwMjFiODVjYzp7Imxhbmd1YWdlIjoiZW4ifQ=='}
+lv.auth_user.find (0.00) {'username': 'sys'}
+lv.auth_user.save (0.00) {'username': u'sys', 'first_name': u'', 'last_name': u'', '_id': ObjectId('5b85fbd485740f2b3d7067a4'), 'is_active': True, 'email': u'sys@beatles.com', 'is_superuser': True, 'is_staff': True, 'last_login': datetime.datetime(2018, 9, 10, 6, 8, 41, 885000, tzinfo=<UTC>), 'password': u'pbkdf2_sha256$12000$RthRkhWv7lFO$owgegdATSToj2jfm/sqULHHJMlvEUgJaZuLHXazFA9E=', 'date_joined': datetime.datetime(2018, 8, 29, 1, 50, 11, 947000, tzinfo=<UTC>)}
+lv.auth_user.find (0.00) {'username': u'sys'}
+django_session.save (0.00) {'schema': u'lv', '_id': u'ko3hzikp3s7hz8e53pezql5yd8zrvyge', 'expire_date': datetime.datetime(2018, 9, 25, 7, 46, 55, 400950, tzinfo=<UTC>), 'session_data': u'YTIwMDM1ZDE4Mzg1ZWU5ZTUxNjkzNTM0NWMyMDc3YjYwMjFiODVjYzp7Imxhbmd1YWdlIjoiZW4ifQ=='}
+django_session.remove (0.00) {'_id': {'$in': [u'zd9y04rwlq0t4whod2kjgpn5pjc0ac0f']}, 'schema': u'lv'}
+lv.auth_user.save (0.00) {'username': u'sys', 'first_name': u'', 'last_name': u'', '_id': ObjectId('5b85fbd485740f2b3d7067a4'), 'is_active': True, 'email': u'sys@beatles.com', 'is_superuser': True, 'is_staff': True, 'last_login': datetime.datetime(2018, 9, 11, 7, 46, 55, 405529, tzinfo=<UTC>), 'password': u'pbkdf2_sha256$12000$RthRkhWv7lFO$owgegdATSToj2jfm/sqULHHJMlvEUgJaZuLHXazFA9E=', 'date_joined': datetime.datetime(2018, 8, 29, 1, 50, 11, 947000, tzinfo=<UTC>)}
+django_session.save (0.00) {'schema': u'lv', '_id': u'ko3hzikp3s7hz8e53pezql5yd8zrvyge', 'expire_date': datetime.datetime(2018, 9, 25, 7, 46, 55, 407479, tzinfo=<UTC>), 'session_data': u'YmIzYjMyZGE2ZjdkYzZjM2YzZDg5ZGZiMWFhMTUxYTNkYzVlMjNjZDp7Il9hdXRoX3VzZXJfYmFja2VuZCI6InBlcm1pc3Npb25fYmFja2VuZF9ub25yZWwuYmFja2VuZHMuTm9ucmVsUGVybWlzc2lvbkJhY2tlbmQiLCJfYXV0aF91c2VyX2lkIjoiNWI4NWZiZDQ4NTc0MGYyYjNkNzA2N2E0IiwibGFuZ3VhZ2UiOiJlbiJ9'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+Not Found: /lv/
+lv.auth_user.find (0.00) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'username': u'sys'}
+Internal Server Error: /lv/pages/list/provinces
+Traceback (most recent call last):
+  File "/home/hcsadmin/q03/packages/django/django/core/handlers/base.py", line 112, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/hcsadmin/q03/packages/quicky/executor.py", line 141, in exec_request_for_multi
+    return self.exec_request(request,**kwargs)
+  File "/home/hcsadmin/q03/packages/quicky/executor.py", line 33, in exec_request
+    raise ex
+Exception: It looks like you forget put 'SYS_VIEWS' in 'setting.py'
+lv.auth_user.find (0.00) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'username': u'sys'}
+Internal Server Error: /lv/pages/list/districts
+Traceback (most recent call last):
+  File "/home/hcsadmin/q03/packages/django/django/core/handlers/base.py", line 112, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/hcsadmin/q03/packages/quicky/executor.py", line 141, in exec_request_for_multi
+    return self.exec_request(request,**kwargs)
+  File "/home/hcsadmin/q03/packages/quicky/executor.py", line 33, in exec_request
+    raise ex
+Exception: It looks like you forget put 'SYS_VIEWS' in 'setting.py'
+Not Found: /hrm/static/js/angular.min.js.map
+Not Found: /polyfills/promise-6.1.0.js.map
+lv.auth_user.find (0.00) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'username': u'sys'}
+Internal Server Error: /lv/pages/list/provinces
+Traceback (most recent call last):
+  File "/home/hcsadmin/q03/packages/django/django/core/handlers/base.py", line 112, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/hcsadmin/q03/packages/quicky/executor.py", line 141, in exec_request_for_multi
+    return self.exec_request(request,**kwargs)
+  File "/home/hcsadmin/q03/packages/quicky/executor.py", line 33, in exec_request
+    raise ex
+Exception: It looks like you forget put 'SYS_VIEWS' in 'setting.py'
+lv.auth_user.find (0.00) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'username': u'sys'}
+Internal Server Error: /lv/pages/list/provinces
+Traceback (most recent call last):
+  File "/home/hcsadmin/q03/packages/django/django/core/handlers/base.py", line 112, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/hcsadmin/q03/packages/quicky/executor.py", line 141, in exec_request_for_multi
+    return self.exec_request(request,**kwargs)
+  File "/home/hcsadmin/q03/packages/quicky/executor.py", line 33, in exec_request
+    raise ex
+Exception: It looks like you forget put 'SYS_VIEWS' in 'setting.py'
+lv.auth_user.find (0.00) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'username': u'sys'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+Not Found: /hrm/static/js/angular.min.js.map
+Not Found: /polyfills/promise-6.1.0.js.map
+lv.auth_user.find (0.00) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'username': u'sys'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'username': u'sys'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+Internal Server Error: /lv/download/excel/e0339787-ef44-4879-9a8d-d59c8eaadb16
+Traceback (most recent call last):
+  File "/home/hcsadmin/q03/packages/django/django/core/handlers/base.py", line 112, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/hcsadmin/q03/packages/quicky/executor.py", line 141, in exec_request_for_multi
+    return self.exec_request(request,**kwargs)
+  File "/home/hcsadmin/q03/packages/quicky/executor.py", line 33, in exec_request
+    raise ex
+IndexError: list index out of range
+lv.auth_user.find (0.01) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'username': u'sys'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'username': u'sys'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'username': u'sys'}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'username': u'sys'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'username': u'sys'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.02) {'username': u'sys'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'username': u'sys'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'username': u'sys'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'username': u'sys'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'username': u'sys'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+Internal Server Error: /
+Traceback (most recent call last):
+  File "/home/hcsadmin/q03/packages/django/django/core/handlers/base.py", line 112, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/hcsadmin/q03/packages/quicky/url.py", line 278, in exec_request
+    **kwargs)
+  File "/home/hcsadmin/q03/packages/quicky/executor.py", line 141, in exec_request_for_multi
+    return self.exec_request(request,**kwargs)
+  File "/home/hcsadmin/q03/packages/quicky/executor.py", line 33, in exec_request
+    raise ex
+AttributeError: 'NoneType' object has no attribute 'get_collection'
+lv.auth_user.find (0.00) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+Internal Server Error: /
+Traceback (most recent call last):
+  File "/home/hcsadmin/q03/packages/django/django/core/handlers/base.py", line 112, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/hcsadmin/q03/packages/quicky/url.py", line 278, in exec_request
+    **kwargs)
+  File "/home/hcsadmin/q03/packages/quicky/executor.py", line 141, in exec_request_for_multi
+    return self.exec_request(request,**kwargs)
+  File "/home/hcsadmin/q03/packages/quicky/executor.py", line 33, in exec_request
+    raise ex
+AttributeError: 'NoneType' object has no attribute 'get_collection'
+lv.auth_user.find (0.00) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'username': u'sys'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'username': u'sys'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'username': u'sys'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'username': u'sys'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'username': u'sys'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'username': u'sys'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'username': u'sys'}
+Internal Server Error: /lv/api
+Traceback (most recent call last):
+  File "/home/hcsadmin/q03/packages/django/django/core/handlers/base.py", line 112, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/hcsadmin/q03/packages/django/django/views/decorators/http.py", line 41, in inner
+    return func(request, *args, **kwargs)
+  File "/home/hcsadmin/q03/packages/django/django/views/decorators/csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/home/hcsadmin/q03/packages/quicky/executor.py", line 33, in exec_request
+    raise ex
+Exception: Call  'get_list' in 'hrm.api.categories' encountered ''module' object has no attribute 'employees''
+lv.auth_user.find (0.00) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+Not Found: /hrm/static/js/angular.min.js.map
+Not Found: /polyfills/promise-6.1.0.js.map
+lv.auth_user.find (0.01) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'username': u'sys'}
+lv.auth_user.find (0.01) {'username': u'sys'}
+lv.auth_user.find (0.00) {'username': u'sys'}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'username': u'sys'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'username': u'sys'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'username': u'sys'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'username': u'sys'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'username': u'sys'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+Internal Server Error: /lv/pages/list/departments
+Traceback (most recent call last):
+  File "/home/hcsadmin/q03/packages/django/django/core/handlers/base.py", line 112, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/hcsadmin/q03/packages/quicky/executor.py", line 141, in exec_request_for_multi
+    return self.exec_request(request,**kwargs)
+  File "/home/hcsadmin/q03/packages/quicky/executor.py", line 33, in exec_request
+    raise ex
+UnboundLocalError: local variable 'parent_key' referenced before assignment
+lv.auth_user.find (0.00) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'username': u'sys'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'username': u'sys'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+Internal Server Error: /lv/pages/list/departments
+Traceback (most recent call last):
+  File "/home/hcsadmin/q03/packages/django/django/core/handlers/base.py", line 112, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/hcsadmin/q03/packages/quicky/executor.py", line 141, in exec_request_for_multi
+    return self.exec_request(request,**kwargs)
+  File "/home/hcsadmin/q03/packages/quicky/executor.py", line 33, in exec_request
+    raise ex
+UnboundLocalError: local variable 'parent_key' referenced before assignment
+Not Found: /polyfills/promise-6.1.0.js.map
+Not Found: /hrm/static/js/angular.min.js.map
+lv.auth_user.find (0.00) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+Internal Server Error: /lv/pages/list/districts
+Traceback (most recent call last):
+  File "/home/hcsadmin/q03/packages/django/django/core/handlers/base.py", line 112, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/hcsadmin/q03/packages/quicky/executor.py", line 141, in exec_request_for_multi
+    return self.exec_request(request,**kwargs)
+  File "/home/hcsadmin/q03/packages/quicky/executor.py", line 33, in exec_request
+    raise ex
+UnboundLocalError: local variable 'parent_key' referenced before assignment
+lv.auth_user.find (0.00) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+Not Found: /hrm/static/js/angular.min.js.map
+Not Found: /polyfills/promise-6.1.0.js.map
+lv.auth_user.find (0.01) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'username': u'sys'}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+Internal Server Error: /lv/pages/list/position
+Traceback (most recent call last):
+  File "/home/hcsadmin/q03/packages/django/django/core/handlers/base.py", line 112, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/hcsadmin/q03/packages/quicky/executor.py", line 141, in exec_request_for_multi
+    return self.exec_request(request,**kwargs)
+  File "/home/hcsadmin/q03/packages/quicky/executor.py", line 33, in exec_request
+    raise ex
+UnboundLocalError: local variable 'parent_key' referenced before assignment
+lv.auth_user.find (0.00) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+Not Found: /hrm/static/js/angular.min.js.map
+Not Found: /polyfills/promise-6.1.0.js.map
+lv.auth_user.find (0.00) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+Internal Server Error: /lv/pages/list/position
+Traceback (most recent call last):
+  File "/home/hcsadmin/q03/packages/django/django/core/handlers/base.py", line 112, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/hcsadmin/q03/packages/quicky/executor.py", line 141, in exec_request_for_multi
+    return self.exec_request(request,**kwargs)
+  File "/home/hcsadmin/q03/packages/quicky/executor.py", line 33, in exec_request
+    raise ex
+UnboundLocalError: local variable '_paths_' referenced before assignment
+lv.auth_user.find (0.00) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+Not Found: /hrm/static/js/angular.min.js.map
+Not Found: /polyfills/promise-6.1.0.js.map
+lv.auth_user.find (0.01) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'username': u'sys'}

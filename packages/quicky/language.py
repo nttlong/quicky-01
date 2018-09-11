@@ -4,14 +4,14 @@ from pymongo import MongoClient
 import datetime
 import threading
 import applications
-
-_coll=None
-_db=None
-_collection_name=None
+_coll = None
+_db = None
+_collection_name = None
 def set_config(*args,**kwargs):
     global _coll
     global _db
     global _collection_name
+
     if type(args) is tuple and args.__len__()>0:
         args=args[0]
     else:
@@ -49,9 +49,17 @@ def set_config(*args,**kwargs):
             _collection_name=args["collection"]
 
 def get_language_item(schema,lan,app,view,key,value):
-    global _coll
-    global lock
+
     coll=_coll
+    if _collection_name == None:
+        from django.conf import settings
+        if not hasattr(settings,"LANGUAGE_COLLECTION"):
+            raise (Exception("It looks like you forgot put 'LANGUAGE_COLLECTION' point to storage of language resoucre"))
+        dbconfig = settings.DATABASES["default"]
+
+
+
+
     if schema!=None:
         coll=_db.get_collection(schema+"."+_collection_name)
     item=coll.find_one({

@@ -3,13 +3,18 @@ from bson import ObjectId
 import re
 global __apps_views_cache__
 global __revert_apps_views_cache__
+global __api_path_cache__
 global __lock__
 __lock__ = threading.Lock()
 __apps_views_cache__ = {}
 __revert_apps_views_cache__ ={}
+__api_path_cache__ ={}
 def get_view_id(coll,appname,viewpath,file,page_caption=None,parent_view_path=None,is_public=False,privileges=None):
     viewpath =viewpath.lower()
     appname = appname.lower()
+    file = file.lower()
+    parent_key = None
+    _paths_ = None
 
     key ="app={0};view={1}".format(appname,viewpath).lower()
     if __apps_views_cache__.has_key(key):
@@ -66,10 +71,18 @@ def get_view_id(coll,appname,viewpath,file,page_caption=None,parent_view_path=No
                     key:ret.inserted_id.__str__()
                 })
                 __revert_apps_views_cache__.update({
-                    ret.inserted_id.__str__():dict(
-                        app=appname,
-                        view = viewpath
-                    )
+                    ret.inserted_id.__str__():{
+                        "app":appname,
+                        "view":viewpath,
+                        "privileges":default_privileges,
+                        "is_public":is_public,
+                        "full_path":key,
+                        "parent":parent_key,
+                        "caption":page_caption,
+                        "paths":_paths_,
+                        "file":file
+
+                    }
                 })
             else:
                 __apps_views_cache__.update({
@@ -123,12 +136,7 @@ def get_view_id(coll,appname,viewpath,file,page_caption=None,parent_view_path=No
 
 
 
-                __revert_apps_views_cache__.update({
-                    item["_id"].__str__().__str__(): dict(
-                        app=appname,
-                        view=viewpath
-                    )
-                })
+                __revert_apps_views_cache__.update(item)
             __lock__.release()
             return __apps_views_cache__[key]
         except Exception as ex:
@@ -162,3 +170,31 @@ def get_view_info_from_id(coll,id):
         except Exception as ex:
             __lock__.release()
             raise ex
+def add_api_path_to_view(coll,path,appname,template_file):
+    key = "app={0};view={1};api={2}".format(appname,template_file,path).lower()
+    if not __api_path_cache__.has_key(key):
+        __lock__.acquire()
+        try:
+            appname = appname.lower()
+            path = path.lower()
+            coll.update_one({
+                "app":{
+                    "$regex":re.compile("^"+appname+"$",re.IGNORECASE)
+                },
+                "file":{
+                    "$regex": re.compile("^" + template_file + "$", re.IGNORECASE)
+                }
+            },{
+                "$push":{
+                    "api":path
+                }
+            })
+            __api_path_cache__.update({
+                key:path
+            })
+            __lock__.release()
+        except Exception as ex:
+            __lock__.release()
+            raise ex
+
+
