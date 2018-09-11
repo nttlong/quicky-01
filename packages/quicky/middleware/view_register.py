@@ -183,8 +183,9 @@ def add_api_path_to_view(coll,path,appname,template_file):
                 },
                 "file":{
                     "$regex": re.compile("^" + template_file + "$", re.IGNORECASE)
-                }
-            },{
+                },
+                "api":{"$ne": { "$elemMatch": path }
+                }},{
                 "$push":{
                     "api":path
                 }

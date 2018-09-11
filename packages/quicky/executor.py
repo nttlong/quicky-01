@@ -8,6 +8,8 @@ __schema_cache__ = {}
 __customer__code__ ={}
 __apps_cache__ = {}
 __log__ = logging.getLogger(__name__)
+
+__mdl__ = None
 class executor(object):
     def __init__(self,fn,path):
         if type(path) is dict:
@@ -34,6 +36,12 @@ class executor(object):
 
 
     def run_request(self, request, **kwargs):
+        global  __mdl__
+        if __mdl__ == None:
+            from . import middleware
+            __mdl__ =  middleware.extension()
+
+        __mdl__.process_request(request)
 
         schema =request.get_schema()
         tenancy.set_schema(schema)
@@ -123,6 +131,12 @@ class executor(object):
         #     logger.debug(ex)
         #     raise (ex)
     def exec_request_for_multi(self,request,tenancy_code, **kwargs):
+        global __mdl__
+        if __mdl__ == None:
+            from . import middleware
+            __mdl__ = middleware.extension()
+
+        __mdl__.process_request(request)
         from . import get_tenancy_schema
         code=request.get_schema()
         if code==None:

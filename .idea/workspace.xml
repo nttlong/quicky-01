@@ -2,12 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="876e7e9a-d28e-4048-9413-cbdf554a4d5a" name="Default Changelist" comment="fix get_view_path">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/hrm/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/hrm/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/configs/local.json" beforeDir="false" afterPath="$PROJECT_DIR$/configs/local.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/configs/dev.json" beforeDir="false" afterPath="$PROJECT_DIR$/configs/dev.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/logs/debug.log" beforeDir="false" afterPath="$PROJECT_DIR$/logs/debug.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/quicky/language.py" beforeDir="false" afterPath="$PROJECT_DIR$/packages/quicky/language.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/quicky/middleware/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/packages/quicky/middleware/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/quicky/executor.py" beforeDir="false" afterPath="$PROJECT_DIR$/packages/quicky/executor.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/packages/quicky/middleware/view_register.py" beforeDir="false" afterPath="$PROJECT_DIR$/packages/quicky/middleware/view_register.py" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/lv-packages/uvenv02/" />
@@ -45,9 +42,9 @@
           <entry key="gitignore" value="1" />
           <entry key="html" value="15" />
           <entry key="js" value="1" />
-          <entry key="json" value="8" />
+          <entry key="json" value="9" />
           <entry key="log" value="3" />
-          <entry key="py" value="129" />
+          <entry key="py" value="131" />
           <entry key="rst" value="1" />
         </counts>
       </usages-collector>
@@ -56,9 +53,9 @@
           <entry key="ANSI Aware" value="3" />
           <entry key="Git file" value="1" />
           <entry key="HTML" value="15" />
-          <entry key="JSON" value="8" />
+          <entry key="JSON" value="9" />
           <entry key="JavaScript" value="1" />
-          <entry key="Python" value="129" />
+          <entry key="Python" value="131" />
           <entry key="ReST" value="1" />
         </counts>
       </usages-collector>
@@ -68,8 +65,8 @@
           <entry key="gitignore" value="1" />
           <entry key="html" value="330" />
           <entry key="js" value="3" />
-          <entry key="json" value="52" />
-          <entry key="py" value="7123" />
+          <entry key="json" value="53" />
+          <entry key="py" value="7183" />
           <entry key="txt" value="50" />
         </counts>
       </usages-collector>
@@ -77,10 +74,10 @@
         <counts>
           <entry key="Git file" value="1" />
           <entry key="HTML" value="330" />
-          <entry key="JSON" value="52" />
+          <entry key="JSON" value="53" />
           <entry key="JavaScript" value="3" />
           <entry key="PLAIN_TEXT" value="50" />
-          <entry key="Python" value="10459" />
+          <entry key="Python" value="10519" />
         </counts>
       </usages-collector>
     </session>
@@ -143,14 +140,29 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/packages/quicky/middleware/view_register.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="124">
-              <caret line="16" column="18" selection-start-line="16" selection-start-column="18" selection-end-line="16" selection-end-column="18" />
+            <state relative-caret-position="492">
+              <caret line="193" column="24" lean-forward="true" selection-start-line="193" selection-start-column="24" selection-end-line="193" selection-end-column="24" />
               <folding>
                 <element signature="e#0#16#0" expanded="true" />
-                <marker date="1536658006732" expanded="false" signature="510:515" ph="..." />
-                <marker date="1536658006732" expanded="true" signature="5518:5523" ph="..." />
-                <marker date="1536658006732" expanded="true" signature="6484:6489" ph="..." />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/configs/dev.json">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="185">
+              <caret line="115" column="18" lean-forward="true" selection-start-line="115" selection-start-column="18" selection-end-line="115" selection-end-column="18" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/packages/quicky/view.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="432">
+              <caret line="33" selection-start-line="33" selection-end-line="33" />
             </state>
           </provider>
         </entry>
@@ -174,24 +186,6 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/logs/debug.log">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="566">
-              <caret line="1583" lean-forward="true" selection-start-line="1583" selection-end-line="1583" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/apps/hrm/views.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="188">
-              <caret line="79" column="28" lean-forward="true" selection-start-line="79" selection-start-column="28" selection-end-line="79" selection-end-column="28" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/packages/quicky/middleware/__init__.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="124">
@@ -205,6 +199,19 @@
                 <element signature="e#12961#13196#0" />
                 <marker date="1536657577595" expanded="true" signature="1654:1663" ph="..." />
                 <marker date="1536657577595" expanded="true" signature="20959:21048" ph="..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/packages/quicky/executor.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="128">
+              <caret line="45" selection-start-line="45" selection-end-line="45" />
+              <folding>
+                <element signature="e#0#17#0" expanded="true" />
+                <marker date="1536660542204" expanded="false" signature="937:1105" ph="..." />
               </folding>
             </state>
           </provider>
@@ -235,17 +242,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/manage.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="234">
-              <caret line="14" column="22" lean-forward="true" selection-start-line="14" selection-start-column="22" selection-end-line="14" selection-end-column="22" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/packages/quicky/dict_utils.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="54">
-              <caret line="3" selection-start-line="3" selection-end-line="3" />
+            <state relative-caret-position="257">
+              <caret line="72" selection-start-line="72" selection-end-line="72" />
             </state>
           </provider>
         </entry>
@@ -262,8 +260,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>role_create</find>
-      <find>successfull</find>
       <find>get_tenancy_schema</find>
       <find>get_abs_url</find>
       <find>get_app_url</find>
@@ -290,8 +286,10 @@
       <find>get_static</find>
       <find>in</find>
       <find>sys_languages</find>
-      <find>_coll</find>
       <find>__file__</find>
+      <find>parent_key</find>
+      <find>DB_LANGUAGE</find>
+      <find>_coll</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -328,7 +326,6 @@
         <option value="$PROJECT_DIR$/packages/qauth/authorization.py" />
         <option value="$PROJECT_DIR$/apps/lms/views.py" />
         <option value="$PROJECT_DIR$/packages/quicky/view.py" />
-        <option value="$PROJECT_DIR$/packages/quicky/executor.py" />
         <option value="$PROJECT_DIR$/apps/performance/api/models/__init__.py" />
         <option value="$PROJECT_DIR$/apps/performance/api/models/config.py" />
         <option value="$PROJECT_DIR$/apps/performance/lv_core/db.py" />
@@ -342,7 +339,6 @@
         <option value="$PROJECT_DIR$/apps/performance/templates/views/competencyDictionary.html" />
         <option value="$PROJECT_DIR$/apps/performance/templates/views/competencyDictionary/CompetencyGroup.html" />
         <option value="$PROJECT_DIR$/apps/hrm/templates/views/list/base.html" />
-        <option value="$PROJECT_DIR$/configs/dev.json" />
         <option value="$PROJECT_DIR$/packages/quicky/extens.py" />
         <option value="$PROJECT_DIR$/apps/performance/views.py" />
         <option value="$PROJECT_DIR$/apps/hrm/views.py" />
@@ -350,6 +346,8 @@
         <option value="$PROJECT_DIR$/packages/quicky/language.py" />
         <option value="$PROJECT_DIR$/packages/quicky/api.py" />
         <option value="$PROJECT_DIR$/packages/quicky/middleware/__init__.py" />
+        <option value="$PROJECT_DIR$/configs/dev.json" />
+        <option value="$PROJECT_DIR$/packages/quicky/executor.py" />
         <option value="$PROJECT_DIR$/packages/quicky/middleware/view_register.py" />
       </list>
     </option>
@@ -376,6 +374,11 @@
             <path>
               <item name="q03" type="b2602c69:ProjectViewProjectNode" />
               <item name="q03" type="462c0819:PsiDirectoryNode" />
+              <item name="apps" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="q03" type="b2602c69:ProjectViewProjectNode" />
+              <item name="q03" type="462c0819:PsiDirectoryNode" />
               <item name="packages" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -383,13 +386,6 @@
               <item name="q03" type="462c0819:PsiDirectoryNode" />
               <item name="packages" type="462c0819:PsiDirectoryNode" />
               <item name="quicky" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="q03" type="b2602c69:ProjectViewProjectNode" />
-              <item name="q03" type="462c0819:PsiDirectoryNode" />
-              <item name="packages" type="462c0819:PsiDirectoryNode" />
-              <item name="quicky" type="462c0819:PsiDirectoryNode" />
-              <item name="middleware" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -444,7 +440,7 @@
       <option name="ADD_CONTENT_ROOTS" value="false" />
       <option name="ADD_SOURCE_ROOTS" value="false" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/manage.py" />
-      <option name="PARAMETERS" value="runserver --config=local" />
+      <option name="PARAMETERS" value="runserver --config=dev" />
       <option name="SHOW_COMMAND_LINE" value="true" />
       <option name="EMULATE_TERMINAL" value="false" />
       <option name="MODULE_MODE" value="false" />
@@ -587,20 +583,20 @@
     <frame x="67" y="25" width="1853" height="1055" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.26397344" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.2086331" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
       <window_info anchor="bottom" id="Run" order="2" />
-      <window_info active="true" anchor="bottom" id="Debug" order="3" sideWeight="0.58716106" visible="true" weight="0.27351353" />
+      <window_info active="true" anchor="bottom" id="Debug" order="3" sideWeight="0.58716106" visible="true" weight="0.21405405" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Code comment" order="7" />
       <window_info anchor="bottom" id="Version Control" order="8" sideWeight="0.49878544" weight="0.4013267" />
       <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.41283897" side_tool="true" weight="0.58486485" />
-      <window_info anchor="bottom" id="Terminal" order="10" sideWeight="0.69009405" weight="0.29297298" />
+      <window_info anchor="bottom" id="Terminal" order="10" sideWeight="0.69009405" weight="0.14486487" />
       <window_info anchor="bottom" id="Python Console" order="11" sideWeight="0.4986165" weight="0.31567568" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -692,9 +688,9 @@
           <option name="timeStamp" value="191" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/packages/quicky/middleware/view_register.py</url>
-          <line>114</line>
-          <option name="timeStamp" value="208" />
+          <url>file://$PROJECT_DIR$/packages/quicky/executor.py</url>
+          <line>169</line>
+          <option name="timeStamp" value="232" />
         </line-breakpoint>
       </breakpoints>
       <breakpoints-dialog>
@@ -869,19 +865,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/packages/quicky/executor.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="216">
-          <caret line="27" column="46" selection-start-line="27" selection-start-column="46" selection-end-line="27" selection-end-column="46" />
-          <folding>
-            <element signature="e#0#17#0" expanded="true" />
-            <element signature="e#194#807#0" />
-            <marker date="1536637700769" expanded="true" signature="921:1089" ph="..." />
-            <marker date="1536637700769" expanded="true" signature="1130:1131" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/packages/authorization/__init__.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="414">
@@ -986,20 +969,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/packages/quicky/view.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="425">
-          <caret line="33" selection-start-line="33" selection-end-line="33" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/configs/dev.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="117" column="18" lean-forward="true" selection-start-line="117" selection-start-column="18" selection-end-line="117" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/packages/quicky/extens.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="386">
@@ -1025,13 +994,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="54">
           <caret line="3" selection-start-line="3" selection-end-line="3" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/manage.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="234">
-          <caret line="14" column="22" lean-forward="true" selection-start-line="14" selection-start-column="22" selection-end-line="14" selection-end-column="22" />
         </state>
       </provider>
     </entry>
@@ -1084,15 +1046,44 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/packages/quicky/view.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="432">
+          <caret line="33" selection-start-line="33" selection-end-line="33" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/configs/dev.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="185">
+          <caret line="115" column="18" lean-forward="true" selection-start-line="115" selection-start-column="18" selection-end-line="115" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/manage.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="257">
+          <caret line="72" selection-start-line="72" selection-end-line="72" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/packages/quicky/executor.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="128">
+          <caret line="45" selection-start-line="45" selection-end-line="45" />
+          <folding>
+            <element signature="e#0#17#0" expanded="true" />
+            <marker date="1536660542204" expanded="false" signature="937:1105" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/packages/quicky/middleware/view_register.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="124">
-          <caret line="16" column="18" selection-start-line="16" selection-start-column="18" selection-end-line="16" selection-end-column="18" />
+        <state relative-caret-position="492">
+          <caret line="193" column="24" lean-forward="true" selection-start-line="193" selection-start-column="24" selection-end-line="193" selection-end-column="24" />
           <folding>
             <element signature="e#0#16#0" expanded="true" />
-            <marker date="1536658006732" expanded="false" signature="510:515" ph="..." />
-            <marker date="1536658006732" expanded="true" signature="5518:5523" ph="..." />
-            <marker date="1536658006732" expanded="true" signature="6484:6489" ph="..." />
           </folding>
         </state>
       </provider>
