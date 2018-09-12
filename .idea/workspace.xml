@@ -1,15 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="876e7e9a-d28e-4048-9413-cbdf554a4d5a" name="Default Changelist" comment="fix get_view_path">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/hrm/static/js/directives/dr-ag-grid.js" beforeDir="false" afterPath="$PROJECT_DIR$/apps/hrm/static/js/directives/dr-ag-grid.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/hrm/templates/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/apps/hrm/templates/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/hrm/templates/views/dialogs/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/apps/hrm/templates/views/dialogs/base.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/hrm/templates/views/list/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/apps/hrm/templates/views/list/base.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/configs/local.json" beforeDir="false" afterPath="$PROJECT_DIR$/configs/local.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/logs/debug.log" beforeDir="false" afterPath="$PROJECT_DIR$/logs/debug.log" afterDir="false" />
-    </list>
+    <list default="true" id="876e7e9a-d28e-4048-9413-cbdf554a4d5a" name="Default Changelist" comment="fix get_view_path" />
     <ignored path="$PROJECT_DIR$/lv-packages/uvenv02/" />
     <ignored path="$PROJECT_DIR$/uvenv02/" />
     <ignored path="$PROJECT_DIR$/uvenv03/" />
@@ -495,7 +487,6 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="67" y="25" width="1853" height="1055" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.2108467" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -503,14 +494,14 @@
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
       <window_info anchor="bottom" id="Run" order="2" />
-      <window_info active="true" anchor="bottom" id="Debug" order="3" sideWeight="0.58716106" visible="true" weight="0.23351352" />
+      <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.58716106" weight="0.58054054" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Code comment" order="7" />
       <window_info anchor="bottom" id="Version Control" order="8" sideWeight="0.49878544" weight="0.4013267" />
       <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.41283897" side_tool="true" weight="0.58486485" />
-      <window_info anchor="bottom" id="Terminal" order="10" sideWeight="0.69009405" weight="0.14378378" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="10" sideWeight="0.69009405" visible="true" weight="0.23675676" />
       <window_info anchor="bottom" id="Python Console" order="11" sideWeight="0.4986165" weight="0.31567568" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />

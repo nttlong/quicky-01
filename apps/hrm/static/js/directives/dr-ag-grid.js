@@ -209,6 +209,7 @@ var ag_grid_msg_delete_dialog ='<div class="modal" tabindex="-1" role="dialog">'
                     return;
                 } 
                 if(event.keyCode==13){
+                    if(attr.allowEdit=="true") return;
                     if(cmp.currentSelectedRowIndex ==null) return;
                         if(cmp.api ==null) return;
                     
@@ -221,6 +222,7 @@ var ag_grid_msg_delete_dialog ='<div class="modal" tabindex="-1" role="dialog">'
                     fireOnRowEdit(row[0]);
                 }
                 if(event.keyCode==46){
+                    if(attr.allowEdit=="true") return;
                     cmp.currentCell =cmp.api.getFocusedCell();
                     cmp.currentSelectedEle=event.target;
                     if(cmp.currentSelectedRowIndex ==null) return;
@@ -235,6 +237,7 @@ var ag_grid_msg_delete_dialog ='<div class="modal" tabindex="-1" role="dialog">'
                         fireOnRowDelete(row[0]);
                 }
                 if(event.keyCode==45){
+                    if(attr.allowEdit=="true") return;
                     fireOnAddNewRow();
 
                 }
@@ -388,6 +391,7 @@ var ag_grid_msg_delete_dialog ='<div class="modal" tabindex="-1" role="dialog">'
                     }
                 },
                 onCellDoubleClicked:function(event){
+                    if(attr.allowEdit=="true") return;
                     fireOnRowEdit(event.data);
                 }
             };
