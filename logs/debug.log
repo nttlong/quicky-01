@@ -1854,3 +1854,2556 @@ lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
 lv.auth_user.find (0.01) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
 lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
 lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.01) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+Internal Server Error: /lv/pages/
+Traceback (most recent call last):
+  File "/home/hcsadmin/q03/packages/django/django/core/handlers/base.py", line 112, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/hcsadmin/q03/packages/quicky/executor.py", line 155, in exec_request_for_multi
+    return self.exec_request(request,**kwargs)
+  File "/home/hcsadmin/q03/packages/quicky/executor.py", line 35, in exec_request
+    raise ex
+TemplateLookupException: Cant locate template for uri u'views/.html'
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.01) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.01) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+Internal Server Error: /lv/pages/
+Traceback (most recent call last):
+  File "/home/hcsadmin/q03/packages/django/django/core/handlers/base.py", line 112, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/hcsadmin/q03/packages/quicky/executor.py", line 155, in exec_request_for_multi
+    return self.exec_request(request,**kwargs)
+  File "/home/hcsadmin/q03/packages/quicky/executor.py", line 35, in exec_request
+    raise ex
+TemplateLookupException: Cant locate template for uri u'views/.html'
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+Internal Server Error: /lv/pages/
+Traceback (most recent call last):
+  File "/home/hcsadmin/q03/packages/django/django/core/handlers/base.py", line 112, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/hcsadmin/q03/packages/quicky/executor.py", line 155, in exec_request_for_multi
+    return self.exec_request(request,**kwargs)
+  File "/home/hcsadmin/q03/packages/quicky/executor.py", line 35, in exec_request
+    raise ex
+TemplateLookupException: Cant locate template for uri u'views/.html'
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+Internal Server Error: /lv/pages/
+Traceback (most recent call last):
+  File "/home/hcsadmin/q03/packages/django/django/core/handlers/base.py", line 112, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/hcsadmin/q03/packages/quicky/executor.py", line 155, in exec_request_for_multi
+    return self.exec_request(request,**kwargs)
+  File "/home/hcsadmin/q03/packages/quicky/executor.py", line 35, in exec_request
+    raise ex
+TemplateLookupException: Cant locate template for uri u'views/.html'
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.01) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.01) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.01) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.02) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.01) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.02) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.01) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.01) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.03) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.01) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.01) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.01) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.01) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.01) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.01) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.01) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.02) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.03) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.01) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.01) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.01) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.01) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.01) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.01) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b20925a232037334054b073')}
+Not Found: /{{$root.logo}}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.02) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.01) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.01) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.01) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.01) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.01) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.01) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.01) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.01) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.01) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.01) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.01) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.01) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.01) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.01) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+Internal Server Error: /lv/api
+Traceback (most recent call last):
+  File "/home/hcsadmin/q03/packages/django/django/core/handlers/base.py", line 112, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/hcsadmin/q03/packages/django/django/views/decorators/http.py", line 41, in inner
+    return func(request, *args, **kwargs)
+  File "/home/hcsadmin/q03/packages/django/django/views/decorators/csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/home/hcsadmin/q03/packages/quicky/executor.py", line 35, in exec_request
+    raise ex
+Exception: Call  'call' in 'performance.excel.import' encountered 'global name 'error' is not defined'
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.01) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.01) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.01) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.01) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.01) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.01) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.01) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.01) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.01) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.01) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.01) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.02) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.01) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.01) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+Internal Server Error: /lv/pages/HRListConfiguration
+Traceback (most recent call last):
+  File "/home/hcsadmin/q03/packages/django/django/core/handlers/base.py", line 112, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/hcsadmin/q03/packages/quicky/executor.py", line 155, in exec_request_for_multi
+    return self.exec_request(request,**kwargs)
+  File "/home/hcsadmin/q03/packages/quicky/executor.py", line 35, in exec_request
+    raise ex
+TemplateLookupException: Cant locate template for uri u'views/HRListConfiguration.html'
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+Internal Server Error: /lv/pages/setup_process
+Traceback (most recent call last):
+  File "/home/hcsadmin/q03/packages/django/django/core/handlers/base.py", line 112, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/hcsadmin/q03/packages/quicky/executor.py", line 155, in exec_request_for_multi
+    return self.exec_request(request,**kwargs)
+  File "/home/hcsadmin/q03/packages/quicky/executor.py", line 35, in exec_request
+    raise ex
+TemplateLookupException: Cant locate template for uri u'views/setup_process.html'
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.01) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.01) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b20925a232037334054b073')}
+Not Found: /{{$root.logo}}
+lv.auth_user.find (0.02) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.01) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.03) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.01) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.01) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.01) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.01) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.01) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.01) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.01) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.01) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.01) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.01) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.01) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.01) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.01) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.01) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.01) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+Internal Server Error: /lv/pages/
+Traceback (most recent call last):
+  File "/home/hcsadmin/q03/packages/django/django/core/handlers/base.py", line 112, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/hcsadmin/q03/packages/quicky/executor.py", line 155, in exec_request_for_multi
+    return self.exec_request(request,**kwargs)
+  File "/home/hcsadmin/q03/packages/quicky/executor.py", line 35, in exec_request
+    raise ex
+TemplateLookupException: Cant locate template for uri u'views/.html'
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.01) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.01) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+django_session.save (0.07) {'schema': u'lv', '_id': u'ixa5k37yioxtzw973f2c3vsxi4fmlp8w', 'expire_date': datetime.datetime(2018, 9, 26, 1, 36, 32, 125114, tzinfo=<UTC>), 'session_data': u'OTE2OWEzNjFmMzk3MzVhMTZiNjlmM2EwODhiNTVkOGExNWRjM2JlYzp7fQ=='}
+django_session.save (0.01) {'schema': u'lv', '_id': u'ixa5k37yioxtzw973f2c3vsxi4fmlp8w', 'expire_date': datetime.datetime(2018, 9, 26, 1, 36, 32, 245576, tzinfo=<UTC>), 'session_data': u'OTE2OWEzNjFmMzk3MzVhMTZiNjlmM2EwODhiNTVkOGExNWRjM2JlYzp7fQ=='}
+lv.auth_user.find (0.01) {'username': 'sys'}
+lv.auth_user.save (0.00) {'username': u'sys', 'first_name': u'', 'last_name': u'', '_id': ObjectId('5b85fbd485740f2b3d7067a4'), 'is_active': True, 'email': u'sys@beatles.com', 'is_superuser': True, 'is_staff': True, 'last_login': datetime.datetime(2018, 9, 11, 7, 46, 55, 405000, tzinfo=<UTC>), 'password': u'pbkdf2_sha256$12000$RthRkhWv7lFO$owgegdATSToj2jfm/sqULHHJMlvEUgJaZuLHXazFA9E=', 'date_joined': datetime.datetime(2018, 8, 29, 1, 50, 11, 947000, tzinfo=<UTC>)}
+django_session.save (0.00) {'schema': u'lv', '_id': 'ixa5k37yioxtzw973f2c3vsxi4fmlp8w', 'expire_date': datetime.datetime(2018, 9, 26, 1, 36, 32, 425267, tzinfo=<UTC>), 'session_data': u'YTIwMDM1ZDE4Mzg1ZWU5ZTUxNjkzNTM0NWMyMDc3YjYwMjFiODVjYzp7Imxhbmd1YWdlIjoiZW4ifQ=='}
+Not Found: /favicon.ico
+lv.auth_user.find (0.00) {'username': 'sys'}
+lv.auth_user.save (0.00) {'username': u'sys', 'first_name': u'', 'last_name': u'', '_id': ObjectId('5b85fbd485740f2b3d7067a4'), 'is_active': True, 'email': u'sys@beatles.com', 'is_superuser': True, 'is_staff': True, 'last_login': datetime.datetime(2018, 9, 11, 7, 46, 55, 405000, tzinfo=<UTC>), 'password': u'pbkdf2_sha256$12000$RthRkhWv7lFO$owgegdATSToj2jfm/sqULHHJMlvEUgJaZuLHXazFA9E=', 'date_joined': datetime.datetime(2018, 8, 29, 1, 50, 11, 947000, tzinfo=<UTC>)}
+lv.auth_user.find (0.00) {'username': u'sys'}
+django_session.save (0.00) {'schema': u'lv', '_id': u'4z67sjuz1xve0x33kp8oxd80tny053rx', 'expire_date': datetime.datetime(2018, 9, 26, 1, 36, 34, 313224, tzinfo=<UTC>), 'session_data': u'YTIwMDM1ZDE4Mzg1ZWU5ZTUxNjkzNTM0NWMyMDc3YjYwMjFiODVjYzp7Imxhbmd1YWdlIjoiZW4ifQ=='}
+django_session.remove (0.00) {'_id': {'$in': [u'ixa5k37yioxtzw973f2c3vsxi4fmlp8w']}, 'schema': u'lv'}
+lv.auth_user.save (0.00) {'username': u'sys', 'first_name': u'', 'last_name': u'', '_id': ObjectId('5b85fbd485740f2b3d7067a4'), 'is_active': True, 'email': u'sys@beatles.com', 'is_superuser': True, 'is_staff': True, 'last_login': datetime.datetime(2018, 9, 12, 1, 36, 34, 322806, tzinfo=<UTC>), 'password': u'pbkdf2_sha256$12000$RthRkhWv7lFO$owgegdATSToj2jfm/sqULHHJMlvEUgJaZuLHXazFA9E=', 'date_joined': datetime.datetime(2018, 8, 29, 1, 50, 11, 947000, tzinfo=<UTC>)}
+django_session.save (0.00) {'schema': u'lv', '_id': u'4z67sjuz1xve0x33kp8oxd80tny053rx', 'expire_date': datetime.datetime(2018, 9, 26, 1, 36, 34, 326366, tzinfo=<UTC>), 'session_data': u'YmIzYjMyZGE2ZjdkYzZjM2YzZDg5ZGZiMWFhMTUxYTNkYzVlMjNjZDp7Il9hdXRoX3VzZXJfYmFja2VuZCI6InBlcm1pc3Npb25fYmFja2VuZF9ub25yZWwuYmFja2VuZHMuTm9ucmVsUGVybWlzc2lvbkJhY2tlbmQiLCJfYXV0aF91c2VyX2lkIjoiNWI4NWZiZDQ4NTc0MGYyYjNkNzA2N2E0IiwibGFuZ3VhZ2UiOiJlbiJ9'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+Not Found: /lv/
+lv.auth_user.find (0.01) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'username': u'sys'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'username': u'sys'}
+Internal Server Error: /lv/api
+Traceback (most recent call last):
+  File "/home/hcsadmin/q03/packages/django/django/core/handlers/base.py", line 112, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/hcsadmin/q03/packages/django/django/views/decorators/http.py", line 41, in inner
+    return func(request, *args, **kwargs)
+  File "/home/hcsadmin/q03/packages/django/django/views/decorators/csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/home/hcsadmin/q03/packages/quicky/executor.py", line 35, in exec_request
+    raise ex
+Exception: Call  'get_list' in 'hrm.api.categories' encountered ''module' object has no attribute 'employees''
+lv.auth_user.find (0.00) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'username': u'sys'}
+Internal Server Error: /lv/api
+Traceback (most recent call last):
+  File "/home/hcsadmin/q03/packages/django/django/core/handlers/base.py", line 112, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/hcsadmin/q03/packages/django/django/views/decorators/http.py", line 41, in inner
+    return func(request, *args, **kwargs)
+  File "/home/hcsadmin/q03/packages/django/django/views/decorators/csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/home/hcsadmin/q03/packages/quicky/executor.py", line 35, in exec_request
+    raise ex
+Exception: Call  'get_list' in 'hrm.api.categories' encountered ''module' object has no attribute 'employees''
+lv.auth_user.find (0.00) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'username': u'sys'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'username': u'sys'}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+Not Found: /favicon.ico
+lv.auth_user.find (0.00) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.01) {'username': u'sys'}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'username': u'sys'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'username': u'sys'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.01) {'username': u'sys'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'username': u'sys'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'username': u'sys'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'username': u'sys'}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'username': u'sys'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'username': u'sys'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'username': u'sys'}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+Not Found: /favicon.ico
+lv.auth_user.find (0.00) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'username': u'sys'}
+Not Found: /hrm/static/js/angular.min.js.map
+lv.auth_user.find (0.01) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+Not Found: /hrm/static/js/angular.min.js.map
+Not Found: /polyfills/promise-6.1.0.js.map
+lv.auth_user.find (0.01) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'username': u'sys'}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.01) {'username': u'sys'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.01) {'username': u'sys'}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.01) {'username': u'sys'}
+Not Found: /polyfills/promise-6.1.0.js.map
+Not Found: /hrm/static/js/angular.min.js.map
+lv.auth_user.find (0.01) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+Not Found: /hrm/static/js/angular.min.js.map
+Not Found: /polyfills/promise-6.1.0.js.map
+lv.auth_user.find (0.01) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'username': u'sys'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+Not Found: /hrm/static/js/angular.min.js.map
+Not Found: /polyfills/promise-6.1.0.js.map
+lv.auth_user.find (0.00) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'username': u'sys'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+Not Found: /hrm/static/js/angular.min.js.map
+Not Found: /polyfills/promise-6.1.0.js.map
+lv.auth_user.find (0.00) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'username': u'sys'}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+Not Found: /hrm/static/js/angular.min.js.map
+Not Found: /polyfills/promise-6.1.0.js.map
+lv.auth_user.find (0.01) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'username': u'sys'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+Not Found: /hrm/static/js/angular.min.js.map
+Not Found: /polyfills/promise-6.1.0.js.map
+lv.auth_user.find (0.01) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'username': u'sys'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+Not Found: /hrm/static/js/angular.min.js.map
+Not Found: /polyfills/promise-6.1.0.js.map
+lv.auth_user.find (0.00) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'username': u'sys'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+Not Found: /hrm/static/js/angular.min.js.map
+Not Found: /polyfills/promise-6.1.0.js.map
+lv.auth_user.find (0.00) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.01) {'username': u'sys'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+Not Found: /hrm/static/js/angular.min.js.map
+Not Found: /polyfills/promise-6.1.0.js.map
+lv.auth_user.find (0.00) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.01) {'username': u'sys'}
+lv.auth_user.find (0.01) {'username': u'sys'}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'username': u'sys'}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'username': u'sys'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'username': u'sys'}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'username': u'sys'}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'username': u'sys'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'username': u'sys'}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'username': u'sys'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'username': u'sys'}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'username': u'sys'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'username': u'sys'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'username': u'sys'}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'username': u'sys'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'username': u'sys'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'username': u'sys'}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'username': u'sys'}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.01) {'username': u'sys'}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'username': u'sys'}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'username': u'sys'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'username': u'sys'}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.01) {'username': u'sys'}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.01) {'username': u'sys'}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'username': u'sys'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'username': u'sys'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'username': u'sys'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'username': u'sys'}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'username': u'sys'}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.01) {'username': u'sys'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'username': u'sys'}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'username': u'sys'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'username': u'sys'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'username': u'sys'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'username': u'sys'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'username': u'sys'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'username': u'sys'}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'username': u'sys'}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'username': u'sys'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'username': u'sys'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'username': u'sys'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'username': u'sys'}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'username': u'sys'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'username': u'sys'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'username': u'sys'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'username': u'sys'}
+lv.auth_user.find (0.01) {'username': u'sys'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'username': u'sys'}
+lv.auth_user.find (0.00) {'username': u'sys'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.02) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'username': u'sys'}
+lv.auth_user.find (0.00) {'username': u'sys'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'username': u'sys'}
+lv.auth_user.find (0.00) {'username': u'sys'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.01) {'username': u'sys'}
+lv.auth_user.find (0.00) {'username': u'sys'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.01) {'username': u'sys'}
+lv.auth_user.find (0.00) {'username': u'sys'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.02) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.01) {'username': u'sys'}
+lv.auth_user.find (0.01) {'username': u'sys'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'username': u'sys'}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'username': u'sys'}
+lv.auth_user.find (0.02) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'username': u'sys'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'username': u'sys'}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'username': u'sys'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'username': u'sys'}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'username': u'sys'}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'username': u'sys'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'username': u'sys'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'username': u'sys'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'username': u'sys'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'username': u'sys'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'username': u'sys'}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'username': u'sys'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'username': u'sys'}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'username': u'sys'}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'username': u'sys'}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'username': u'sys'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.01) {'username': u'sys'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'username': u'sys'}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'username': u'sys'}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'username': u'sys'}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'username': u'sys'}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'username': u'sys'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'username': u'sys'}
+Not Found: /hrm/static/js/angular.min.js.map
+Not Found: /polyfills/promise-6.1.0.js.map
+lv.auth_user.find (0.01) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'username': u'sys'}
+lv.auth_user.find (0.02) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+Not Found: /hrm/static/js/angular.min.js.map
+Not Found: /polyfills/promise-6.1.0.js.map
+lv.auth_user.find (0.00) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'username': u'sys'}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'username': u'sys'}
+lv.auth_user.find (0.02) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'username': u'sys'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'username': u'sys'}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'username': u'sys'}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'username': u'sys'}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'username': u'sys'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'username': u'sys'}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'username': u'sys'}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'username': u'sys'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+Not Found: /favicon.ico
+lv.auth_user.find (0.01) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'username': u'sys'}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+Not Found: /hrm/static/js/angular.min.js.map
+Not Found: /polyfills/promise-6.1.0.js.map
+lv.auth_user.find (0.00) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'username': u'sys'}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'username': u'sys'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+Not Found: /favicon.ico
+lv.auth_user.find (0.01) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'username': u'sys'}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'username': u'sys'}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'username': u'sys'}
+Not Found: /hrm/static/js/angular.min.js.map
+Not Found: /polyfills/promise-6.1.0.js.map
+lv.auth_user.find (0.01) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+Not Found: /hrm/static/js/angular.min.js.map
+Not Found: /polyfills/promise-6.1.0.js.map
+lv.auth_user.find (0.00) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.01) {'username': u'sys'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'username': u'sys'}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'username': u'sys'}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'username': u'sys'}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'username': u'sys'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+Not Found: /favicon.ico
+lv.auth_user.find (0.01) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'username': u'sys'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+Not Found: /hrm/static/js/angular.min.js.map
+Not Found: /polyfills/promise-6.1.0.js.map
+lv.auth_user.find (0.00) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'username': u'sys'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+Not Found: /hrm/static/js/angular.min.js.map
+Not Found: /polyfills/promise-6.1.0.js.map
+lv.auth_user.find (0.00) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'username': u'sys'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+Not Found: /hrm/static/js/angular.min.js.map
+Not Found: /polyfills/promise-6.1.0.js.map
+lv.auth_user.find (0.00) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'username': u'sys'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+Not Found: /hrm/static/js/angular.min.js.map
+Not Found: /polyfills/promise-6.1.0.js.map
+lv.auth_user.find (0.01) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'username': u'sys'}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'username': u'sys'}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'username': u'sys'}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'username': u'sys'}
+lv.auth_user.find (0.02) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'username': u'sys'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'username': u'sys'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'username': u'sys'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'username': u'sys'}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'username': u'sys'}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'username': u'sys'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'username': u'sys'}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'username': u'sys'}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.01) {'username': u'sys'}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'username': u'sys'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'username': u'sys'}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'username': u'sys'}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.01) {'username': u'sys'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'username': u'sys'}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.01) {'username': u'sys'}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'username': u'sys'}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'username': u'sys'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'username': u'sys'}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'username': u'sys'}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'username': u'sys'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'username': u'sys'}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'username': u'sys'}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'username': u'sys'}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'username': u'sys'}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'username': u'sys'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'username': u'sys'}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'username': u'sys'}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'username': u'sys'}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'username': u'sys'}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'username': u'sys'}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'username': u'sys'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.01) {'username': u'sys'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'username': u'sys'}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'username': u'sys'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'username': u'sys'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'username': u'sys'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'username': u'sys'}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.01) {'username': u'sys'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'username': u'sys'}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'username': u'sys'}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'username': u'sys'}
+lv.auth_user.find (0.07) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'username': u'sys'}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.01) {'username': u'sys'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.01) {'username': u'sys'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'username': u'sys'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.01) {'username': u'sys'}
+lv.auth_user.find (0.02) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'username': u'sys'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'username': u'sys'}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'username': u'sys'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'username': u'sys'}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'username': u'sys'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'username': u'sys'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'username': u'sys'}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'username': u'sys'}
+lv.auth_user.find (0.02) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'username': u'sys'}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'username': u'sys'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'username': u'sys'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'username': u'sys'}
+lv.auth_user.find (0.02) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'username': u'sys'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'username': u'sys'}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'username': u'sys'}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'username': u'sys'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.01) {'username': u'sys'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'username': u'sys'}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'username': u'sys'}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'username': u'sys'}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'username': u'sys'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+Not Found: /polyfills/promise-6.1.0.js.map
+Not Found: /hrm/static/js/angular.min.js.map
+lv.auth_user.find (0.00) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+Not Found: /hrm/static/js/angular.min.js.map
+Not Found: /polyfills/promise-6.1.0.js.map
+lv.auth_user.find (0.00) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'username': u'sys'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+Not Found: /hrm/static/js/angular.min.js.map
+Not Found: /polyfills/promise-6.1.0.js.map
+lv.auth_user.find (0.00) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'username': u'sys'}
+Not Found: /hrm/static/js/angular.min.js.map
+Not Found: /polyfills/promise-6.1.0.js.map
+lv.auth_user.find (0.01) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+Not Found: /hrm/static/js/angular.min.js.map
+Not Found: /polyfills/promise-6.1.0.js.map
+lv.auth_user.find (0.00) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'username': u'sys'}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+Not Found: /hrm/static/js/angular.min.js.map
+Not Found: /polyfills/promise-6.1.0.js.map
+lv.auth_user.find (0.01) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'username': u'sys'}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'username': u'sys'}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'username': u'sys'}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'username': u'sys'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'username': u'sys'}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'username': u'sys'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'username': u'sys'}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'username': u'sys'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'username': u'sys'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'username': u'sys'}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'username': u'sys'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'username': u'sys'}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'username': u'sys'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.01) {'username': u'sys'}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'username': u'sys'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'username': u'sys'}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'username': u'sys'}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'username': u'sys'}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'username': u'sys'}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'username': u'sys'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'username': u'sys'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'username': u'sys'}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'username': u'sys'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'username': u'sys'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'username': u'sys'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'username': u'sys'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'username': u'sys'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'username': u'sys'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'username': u'sys'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'username': u'sys'}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'username': u'sys'}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.01) {'username': u'sys'}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'username': u'sys'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'username': u'sys'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'username': u'sys'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'username': u'sys'}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'username': u'sys'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'username': u'sys'}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'username': u'sys'}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'username': u'sys'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'username': u'sys'}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.01) {'username': u'sys'}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'username': u'sys'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'username': u'sys'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'username': u'sys'}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'username': u'sys'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'username': u'sys'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'username': u'sys'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'username': u'sys'}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'username': u'sys'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'username': u'sys'}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'username': u'sys'}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'username': u'sys'}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'username': u'sys'}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.01) {'username': u'sys'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'username': u'sys'}
+Not Found: /hrm/static/js/angular.min.js.map
+Not Found: /polyfills/promise-6.1.0.js.map
+lv.auth_user.find (0.01) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'username': u'sys'}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'username': u'sys'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b85fbd485740f2b3d7067a4')}
+lv.auth_user.find (0.00) {'username': u'sys'}
+django_session.save (0.00) {'schema': u'hrm', '_id': u'l8x5j20cth3cunelauh8zqxrx91lt33l', 'expire_date': datetime.datetime(2018, 9, 26, 3, 25, 13, 934180, tzinfo=<UTC>), 'session_data': u'OTE2OWEzNjFmMzk3MzVhMTZiNjlmM2EwODhiNTVkOGExNWRjM2JlYzp7fQ=='}
+django_session.save (0.03) {'schema': u'hrm', '_id': u'l8x5j20cth3cunelauh8zqxrx91lt33l', 'expire_date': datetime.datetime(2018, 9, 26, 3, 25, 13, 948562, tzinfo=<UTC>), 'session_data': u'OTE2OWEzNjFmMzk3MzVhMTZiNjlmM2EwODhiNTVkOGExNWRjM2JlYzp7fQ=='}
+hrm.auth_user.find (0.00) {'username': 'sys'}
+hrm.auth_user.save (0.01) {'username': u'sys', 'first_name': u'', 'last_name': u'', '_id': ObjectId('5b73cb5685740f43b1a9dcdf'), 'is_active': True, 'email': u'sys@beatles.com', 'is_superuser': True, 'is_staff': True, 'last_login': datetime.datetime(2018, 8, 31, 7, 13, 6, 479000, tzinfo=<UTC>), 'password': u'pbkdf2_sha256$12000$BcInrzuaaz7N$85rWrCTUh0vFY2pow3DL88d8vG1qAfRPwj8cADyyOl8=', 'date_joined': datetime.datetime(2018, 8, 15, 6, 42, 30, 417000, tzinfo=<UTC>)}
+django_session.save (0.00) {'schema': u'hrm', '_id': 'l8x5j20cth3cunelauh8zqxrx91lt33l', 'expire_date': datetime.datetime(2018, 9, 26, 3, 25, 14, 194866, tzinfo=<UTC>), 'session_data': u'YTIwMDM1ZDE4Mzg1ZWU5ZTUxNjkzNTM0NWMyMDc3YjYwMjFiODVjYzp7Imxhbmd1YWdlIjoiZW4ifQ=='}
+Not Found: /hrm/static/js/angular.min.js.map
+Not Found: /polyfills/promise-6.1.0.js.map
+hrm.auth_user.find (0.01) {'username': 'sys'}
+hrm.auth_user.save (0.00) {'username': u'sys', 'first_name': u'', 'last_name': u'', '_id': ObjectId('5b73cb5685740f43b1a9dcdf'), 'is_active': True, 'email': u'sys@beatles.com', 'is_superuser': True, 'is_staff': True, 'last_login': datetime.datetime(2018, 8, 31, 7, 13, 6, 479000, tzinfo=<UTC>), 'password': u'pbkdf2_sha256$12000$BcInrzuaaz7N$85rWrCTUh0vFY2pow3DL88d8vG1qAfRPwj8cADyyOl8=', 'date_joined': datetime.datetime(2018, 8, 15, 6, 42, 30, 417000, tzinfo=<UTC>)}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+django_session.save (0.00) {'schema': u'hrm', '_id': u'2jjnsbh7m0hbf0l2auifx561c8ni2d4t', 'expire_date': datetime.datetime(2018, 9, 26, 3, 25, 18, 224906, tzinfo=<UTC>), 'session_data': u'YTIwMDM1ZDE4Mzg1ZWU5ZTUxNjkzNTM0NWMyMDc3YjYwMjFiODVjYzp7Imxhbmd1YWdlIjoiZW4ifQ=='}
+django_session.remove (0.00) {'_id': {'$in': [u'l8x5j20cth3cunelauh8zqxrx91lt33l']}, 'schema': u'hrm'}
+hrm.auth_user.save (0.00) {'username': u'sys', 'first_name': u'', 'last_name': u'', '_id': ObjectId('5b73cb5685740f43b1a9dcdf'), 'is_active': True, 'email': u'sys@beatles.com', 'is_superuser': True, 'is_staff': True, 'last_login': datetime.datetime(2018, 9, 12, 3, 25, 18, 230310, tzinfo=<UTC>), 'password': u'pbkdf2_sha256$12000$BcInrzuaaz7N$85rWrCTUh0vFY2pow3DL88d8vG1qAfRPwj8cADyyOl8=', 'date_joined': datetime.datetime(2018, 8, 15, 6, 42, 30, 417000, tzinfo=<UTC>)}
+django_session.save (0.00) {'schema': u'hrm', '_id': u'2jjnsbh7m0hbf0l2auifx561c8ni2d4t', 'expire_date': datetime.datetime(2018, 9, 26, 3, 25, 18, 233121, tzinfo=<UTC>), 'session_data': u'MWFkZjRjMzU4ZmE4NDZmM2UyN2I1ZGNlYWYwNWQ4M2Y4ZjIzNWNkNjp7Il9hdXRoX3VzZXJfYmFja2VuZCI6InBlcm1pc3Npb25fYmFja2VuZF9ub25yZWwuYmFja2VuZHMuTm9ucmVsUGVybWlzc2lvbkJhY2tlbmQiLCJfYXV0aF91c2VyX2lkIjoiNWI3M2NiNTY4NTc0MGY0M2IxYTlkY2RmIiwibGFuZ3VhZ2UiOiJlbiJ9'}
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.01) {'username': u'sys'}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+hrm.auth_user.find (0.02) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.01) {'username': u'sys'}
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.01) {'username': u'sys'}
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.01) {'username': u'sys'}
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.01) {'username': u'sys'}
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.01) {'username': u'sys'}
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.01) {'username': u'sys'}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.01) {'username': u'sys'}
+hrm.auth_user.find (0.02) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.01) {'username': u'sys'}
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+hrm.auth_user.find (0.02) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.01) {'username': u'sys'}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.01) {'username': u'sys'}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.02) {'username': u'sys'}
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.01) {'username': u'sys'}
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.01) {'username': u'sys'}
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+Not Found: /favicon.ico
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.02) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.01) {'username': u'sys'}
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+hrm.auth_user.find (0.02) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+Not Found: /hrm/static/js/angular.min.js.map
+Not Found: /polyfills/promise-6.1.0.js.map
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+Not Found: /hrm/static/js/angular.min.js.map
+Not Found: /polyfills/promise-6.1.0.js.map
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+Not Found: /hrm/static/js/angular.min.js.map
+Not Found: /polyfills/promise-6.1.0.js.map
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+Not Found: /hrm/static/js/angular.min.js.map
+Not Found: /polyfills/promise-6.1.0.js.map
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+Not Found: /hrm/static/js/angular.min.js.map
+Not Found: /polyfills/promise-6.1.0.js.map
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+Not Found: /polyfills/promise-6.1.0.js.map
+Not Found: /hrm/static/js/angular.min.js.map
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+Not Found: /hrm/static/js/angular.min.js.map
+Not Found: /polyfills/promise-6.1.0.js.map
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+Not Found: /polyfills/promise-6.1.0.js.map
+Not Found: /hrm/static/js/angular.min.js.map
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+Not Found: /hrm/static/js/angular.min.js.map
+Not Found: /polyfills/promise-6.1.0.js.map
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.01) {'username': u'sys'}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+hrm.auth_user.find (0.02) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.01) {'username': u'sys'}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+Not Found: /polyfills/promise-6.1.0.js.map
+Not Found: /hrm/static/js/angular.min.js.map
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+Not Found: /hrm/static/js/angular.min.js.map
+Not Found: /polyfills/promise-6.1.0.js.map
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+Not Found: /hrm/static/js/angular.min.js.map
+Not Found: /polyfills/promise-6.1.0.js.map
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.02) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+Not Found: /hrm/static/js/angular.min.js.map
+Not Found: /polyfills/promise-6.1.0.js.map
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.02) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.01) {'username': u'sys'}
+hrm.auth_user.find (0.02) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+Not Found: /hrm/static/js/angular.min.js.map
+Not Found: /polyfills/promise-6.1.0.js.map
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.01) {'username': u'sys'}
+hrm.auth_user.find (0.02) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+Not Found: /hrm/static/js/angular.min.js.map
+Not Found: /polyfills/promise-6.1.0.js.map
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.02) {'username': u'sys'}
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+Not Found: /hrm/static/js/angular.min.js.map
+Not Found: /polyfills/promise-6.1.0.js.map
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.01) {'username': u'sys'}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+Not Found: /hrm/static/js/angular.min.js.map
+Not Found: /polyfills/promise-6.1.0.js.map
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.01) {'username': u'sys'}
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.01) {'username': u'sys'}
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+Not Found: /favicon.ico
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.01) {'username': u'sys'}
+Not Found: /hrm/static/js/angular.min.js.map
+Not Found: /polyfills/promise-6.1.0.js.map
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+Not Found: /hrm/static/js/angular.min.js.map
+Not Found: /polyfills/promise-6.1.0.js.map
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+Not Found: /hrm/static/js/angular.min.js.map
+Not Found: /polyfills/promise-6.1.0.js.map
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+Not Found: /hrm/static/js/angular.min.js.map
+Not Found: /polyfills/promise-6.1.0.js.map
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+Not Found: /polyfills/promise-6.1.0.js.map
+Not Found: /hrm/static/js/angular.min.js.map
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+Not Found: /hrm/static/js/angular.min.js.map
+Not Found: /polyfills/promise-6.1.0.js.map
+Not Found: /hrm/static/js/angular.min.js.map
+Not Found: /polyfills/promise-6.1.0.js.map
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+Not Found: /hrm/static/js/angular.min.js.map
+Not Found: /polyfills/promise-6.1.0.js.map
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+Not Found: /hrm/static/js/angular.min.js.map
+Not Found: /polyfills/promise-6.1.0.js.map
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+Not Found: /polyfills/promise-6.1.0.js.map
+Not Found: /hrm/static/js/angular.min.js.map
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+hrm.auth_user.find (0.02) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+hrm.auth_user.find (0.02) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.01) {'username': u'sys'}
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.01) {'username': u'sys'}
+Not Found: /polyfills/promise-6.1.0.js.map
+Not Found: /hrm/static/js/angular.min.js.map
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+Not Found: /hrm/static/js/angular.min.js.map
+Not Found: /polyfills/promise-6.1.0.js.map
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+Not Found: /polyfills/promise-6.1.0.js.map
+Not Found: /hrm/static/js/angular.min.js.map
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+Not Found: /hrm/static/js/angular.min.js.map
+Not Found: /polyfills/promise-6.1.0.js.map
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+Internal Server Error: /api
+Traceback (most recent call last):
+  File "/home/hcsadmin/q03/packages/django/django/core/handlers/base.py", line 112, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/hcsadmin/q03/packages/django/django/views/decorators/http.py", line 41, in inner
+    return func(request, *args, **kwargs)
+  File "/home/hcsadmin/q03/packages/django/django/views/decorators/csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/home/hcsadmin/q03/packages/quicky/executor.py", line 35, in exec_request
+    raise ex
+Exception: Call  'get_list' in 'hrm.api.categories' encountered ''module' object has no attribute 'employees''
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.02) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+Not Found: /polyfills/promise-6.1.0.js.map
+Not Found: /hrm/static/js/angular.min.js.map
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+Internal Server Error: /api
+Traceback (most recent call last):
+  File "/home/hcsadmin/q03/packages/django/django/core/handlers/base.py", line 112, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/hcsadmin/q03/packages/django/django/views/decorators/http.py", line 41, in inner
+    return func(request, *args, **kwargs)
+  File "/home/hcsadmin/q03/packages/django/django/views/decorators/csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/home/hcsadmin/q03/packages/quicky/executor.py", line 35, in exec_request
+    raise ex
+Exception: Call  'get_list' in 'hrm.api.categories' encountered ''module' object has no attribute 'employees''
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.01) {'username': u'sys'}
+hrm.auth_user.find (0.02) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+Internal Server Error: /api
+Traceback (most recent call last):
+  File "/home/hcsadmin/q03/packages/django/django/core/handlers/base.py", line 112, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/hcsadmin/q03/packages/django/django/views/decorators/http.py", line 41, in inner
+    return func(request, *args, **kwargs)
+  File "/home/hcsadmin/q03/packages/django/django/views/decorators/csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/home/hcsadmin/q03/packages/quicky/executor.py", line 35, in exec_request
+    raise ex
+Exception: Call  'get_list' in 'hrm.api.categories' encountered ''module' object has no attribute 'employees''
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+Internal Server Error: /api
+Traceback (most recent call last):
+  File "/home/hcsadmin/q03/packages/django/django/core/handlers/base.py", line 112, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/hcsadmin/q03/packages/django/django/views/decorators/http.py", line 41, in inner
+    return func(request, *args, **kwargs)
+  File "/home/hcsadmin/q03/packages/django/django/views/decorators/csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/home/hcsadmin/q03/packages/quicky/executor.py", line 35, in exec_request
+    raise ex
+Exception: Call  'get_list' in 'hrm.api.categories' encountered ''module' object has no attribute 'employees''
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.01) {'username': u'sys'}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.01) {'username': u'sys'}
+Internal Server Error: /api
+Traceback (most recent call last):
+  File "/home/hcsadmin/q03/packages/django/django/core/handlers/base.py", line 112, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/hcsadmin/q03/packages/django/django/views/decorators/http.py", line 41, in inner
+    return func(request, *args, **kwargs)
+  File "/home/hcsadmin/q03/packages/django/django/views/decorators/csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/home/hcsadmin/q03/packages/quicky/executor.py", line 35, in exec_request
+    raise ex
+Exception: Call  'get_list' in 'hrm.api.categories' encountered ''module' object has no attribute 'employees''
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+Internal Server Error: /api
+Traceback (most recent call last):
+  File "/home/hcsadmin/q03/packages/django/django/core/handlers/base.py", line 112, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/hcsadmin/q03/packages/django/django/views/decorators/http.py", line 41, in inner
+    return func(request, *args, **kwargs)
+  File "/home/hcsadmin/q03/packages/django/django/views/decorators/csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/home/hcsadmin/q03/packages/quicky/executor.py", line 35, in exec_request
+    raise ex
+Exception: Call  'get_list' in 'hrm.api.categories' encountered ''module' object has no attribute 'employees''
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+Internal Server Error: /api
+Traceback (most recent call last):
+  File "/home/hcsadmin/q03/packages/django/django/core/handlers/base.py", line 112, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/hcsadmin/q03/packages/django/django/views/decorators/http.py", line 41, in inner
+    return func(request, *args, **kwargs)
+  File "/home/hcsadmin/q03/packages/django/django/views/decorators/csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/home/hcsadmin/q03/packages/quicky/executor.py", line 35, in exec_request
+    raise ex
+Exception: Call  'get_list' in 'hrm.api.categories' encountered ''module' object has no attribute 'employees''
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+Not Found: /polyfills/promise-6.1.0.js.map
+Not Found: /hrm/static/js/angular.min.js.map
+hrm.auth_user.find (0.02) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+Not Found: /hrm/static/js/angular.min.js.map
+Not Found: /polyfills/promise-6.1.0.js.map
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.03) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+Not Found: /polyfills/promise-6.1.0.js.map
+Not Found: /hrm/static/js/angular.min.js.map
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+Not Found: /hrm/static/js/angular.min.js.map
+Not Found: /polyfills/promise-6.1.0.js.map
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+Not Found: /hrm/static/js/angular.min.js.map
+Not Found: /polyfills/promise-6.1.0.js.map
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.01) {'username': u'sys'}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+Not Found: /hrm/static/js/angular.min.js.map
+Not Found: /polyfills/promise-6.1.0.js.map
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.02) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.01) {'username': u'sys'}
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+Not Found: /hrm/static/js/angular.min.js.map
+Not Found: /polyfills/promise-6.1.0.js.map
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+Not Found: /polyfills/promise-6.1.0.js.map
+Not Found: /hrm/static/js/angular.min.js.map
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.01) {'username': u'sys'}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.01) {'username': u'sys'}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+Not Found: /hrm/static/js/angular.min.js.map
+Not Found: /polyfills/promise-6.1.0.js.map
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+Not Found: /hrm/static/js/angular.min.js.map
+Not Found: /polyfills/promise-6.1.0.js.map
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+Not Found: /hrm/static/js/angular.min.js.map
+Not Found: /polyfills/promise-6.1.0.js.map
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+Not Found: /hrm/static/js/angular.min.js.map
+Not Found: /polyfills/promise-6.1.0.js.map
+hrm.auth_user.find (0.02) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+Not Found: /hrm/static/js/angular.min.js.map
+Not Found: /polyfills/promise-6.1.0.js.map
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+Not Found: /hrm/static/js/angular.min.js.map
+Not Found: /polyfills/promise-6.1.0.js.map
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+Not Found: /hrm/static/js/angular.min.js.map
+Not Found: /polyfills/promise-6.1.0.js.map
+hrm.auth_user.find (0.02) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+Not Found: /hrm/static/js/angular.min.js.map
+Not Found: /polyfills/promise-6.1.0.js.map
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.01) {'username': u'sys'}
+Not Found: /polyfills/promise-6.1.0.js.map
+Not Found: /hrm/static/js/angular.min.js.map
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+Not Found: /hrm/static/js/angular.min.js.map
+Not Found: /polyfills/promise-6.1.0.js.map
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.01) {'username': u'sys'}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+Not Found: /hrm/static/js/angular.min.js.map
+Not Found: /polyfills/promise-6.1.0.js.map
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.02) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+Not Found: /hrm/static/js/angular.min.js.map
+Not Found: /polyfills/promise-6.1.0.js.map
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.02) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.02) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.02) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.01) {'username': u'sys'}
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.02) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.01) {'username': u'sys'}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+Not Found: /polyfills/promise-6.1.0.js.map
+Not Found: /hrm/static/js/angular.min.js.map
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+Not Found: /hrm/static/js/angular.min.js.map
+Not Found: /polyfills/promise-6.1.0.js.map
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+Not Found: /hrm/static/js/angular.min.js.map
+Not Found: /polyfills/promise-6.1.0.js.map
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+Not Found: /hrm/static/js/angular.min.js.map
+Not Found: /polyfills/promise-6.1.0.js.map
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+Not Found: /hrm/static/js/angular.min.js.map
+Not Found: /polyfills/promise-6.1.0.js.map
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+Not Found: /hrm/static/js/angular.min.js.map
+Not Found: /polyfills/promise-6.1.0.js.map
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.01) {'username': u'sys'}
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+Internal Server Error: /api
+Traceback (most recent call last):
+  File "/home/hcsadmin/q03/packages/django/django/core/handlers/base.py", line 112, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/hcsadmin/q03/packages/django/django/views/decorators/http.py", line 41, in inner
+    return func(request, *args, **kwargs)
+  File "/home/hcsadmin/q03/packages/django/django/views/decorators/csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/home/hcsadmin/q03/packages/quicky/executor.py", line 35, in exec_request
+    raise ex
+Exception: Call  'get_list' in 'hrm.api.categories' encountered ''module' object has no attribute 'employees''
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.01) {'username': u'sys'}
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.01) {'username': u'sys'}
+Not Found: /hrm/static/js/angular.min.js.map
+Not Found: /polyfills/promise-6.1.0.js.map
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+Not Found: /hrm/static/js/angular.min.js.map
+Not Found: /polyfills/promise-6.1.0.js.map
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+Not Found: /hrm/static/js/angular.min.js.map
+Not Found: /polyfills/promise-6.1.0.js.map
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+Not Found: /polyfills/promise-6.1.0.js.map
+Not Found: /hrm/static/js/angular.min.js.map
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+Not Found: /hrm/static/js/angular.min.js.map
+Not Found: /polyfills/promise-6.1.0.js.map
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.01) {'username': u'sys'}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.02) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+Not Found: /polyfills/promise-6.1.0.js.map
+Not Found: /hrm/static/js/angular.min.js.map
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+Not Found: /polyfills/promise-6.1.0.js.map
+Not Found: /hrm/static/js/angular.min.js.map
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+hrm.auth_user.find (0.02) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+hrm.auth_user.find (0.02) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.01) {'username': u'sys'}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+hrm.auth_user.find (0.04) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.03) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.02) {'username': u'sys'}
+hrm.auth_user.find (0.04) {'username': u'sys'}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.01) {'username': u'sys'}
+hrm.auth_user.find (0.02) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.01) {'username': u'sys'}
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.01) {'username': u'sys'}
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.01) {'username': u'sys'}
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+hrm.auth_user.find (0.02) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.01) {'username': u'sys'}
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.01) {'username': u'sys'}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.01) {'username': u'sys'}
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.01) {'username': u'sys'}
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.01) {'username': u'sys'}
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.02) {'username': u'sys'}
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+Not Found: /hrm/static/js/angular.min.js.map
+Not Found: /polyfills/promise-6.1.0.js.map
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+Not Found: /polyfills/promise-6.1.0.js.map
+Not Found: /hrm/static/js/angular.min.js.map
+hrm.auth_user.find (0.07) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.01) {'username': u'sys'}
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+hrm.auth_user.find (0.02) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.01) {'username': u'sys'}
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+hrm.auth_user.find (0.03) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.02) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.01) {'username': u'sys'}
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.02) {'username': u'sys'}
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.01) {'username': u'sys'}
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.01) {'username': u'sys'}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.01) {'username': u'sys'}
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.00) {'username': u'sys'}

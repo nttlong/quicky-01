@@ -19,7 +19,10 @@
 agGrid.initialiseAgGridWithAngular1(angular);
 var app=angular.module("app",["c-ui","ui","agGrid"])
 app.controller("app",["$compile","$dialog","$filter","$scope",function($compile,$dialog,$filter,scope){
-    $dialog(scope.$root)
+    scope.$root.$settings= {
+        defaultDateFormat:"dd/MM/yyyy"
+    };
+    $dialog(scope.$root);
     scope.$root.url=$url;
     scope.$root.$compile=$compile;
     scope.$root.$filter=$filter;
