@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="876e7e9a-d28e-4048-9413-cbdf554a4d5a" name="Default Changelist" comment="fix get_view_path" />
+    <list default="true" id="876e7e9a-d28e-4048-9413-cbdf554a4d5a" name="Default Changelist" comment="fix get_view_path">
+      <change beforePath="$PROJECT_DIR$/apps/hrm/static/js/directives/dr-ag-grid.js" beforeDir="false" afterPath="$PROJECT_DIR$/apps/hrm/static/js/directives/dr-ag-grid.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/hrm/templates/views/list/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/apps/hrm/templates/views/list/base.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/logs/debug.log" beforeDir="false" afterPath="$PROJECT_DIR$/logs/debug.log" afterDir="false" />
+    </list>
     <ignored path="$PROJECT_DIR$/lv-packages/uvenv02/" />
     <ignored path="$PROJECT_DIR$/uvenv02/" />
     <ignored path="$PROJECT_DIR$/uvenv03/" />
@@ -135,8 +139,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/apps/hrm/api/categories.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="22">
-              <caret line="34" selection-start-line="34" selection-end-line="34" />
+            <state relative-caret-position="400">
+              <caret line="82" column="56" selection-start-line="82" selection-start-column="56" selection-end-line="82" selection-end-column="56" />
               <folding>
                 <element signature="e#0#13#0" expanded="true" />
               </folding>
@@ -283,6 +287,24 @@
             <path>
               <item name="q03" type="b2602c69:ProjectViewProjectNode" />
               <item name="q03" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="q03" type="b2602c69:ProjectViewProjectNode" />
+              <item name="q03" type="462c0819:PsiDirectoryNode" />
+              <item name="apps" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="q03" type="b2602c69:ProjectViewProjectNode" />
+              <item name="q03" type="462c0819:PsiDirectoryNode" />
+              <item name="apps" type="462c0819:PsiDirectoryNode" />
+              <item name="hrm" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="q03" type="b2602c69:ProjectViewProjectNode" />
+              <item name="q03" type="462c0819:PsiDirectoryNode" />
+              <item name="apps" type="462c0819:PsiDirectoryNode" />
+              <item name="hrm" type="462c0819:PsiDirectoryNode" />
+              <item name="api" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="q03" type="b2602c69:ProjectViewProjectNode" />
@@ -487,8 +509,9 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="67" y="25" width="1853" height="1055" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.2108467" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.2108467" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -501,7 +524,7 @@
       <window_info anchor="bottom" id="Code comment" order="7" />
       <window_info anchor="bottom" id="Version Control" order="8" sideWeight="0.49878544" weight="0.4013267" />
       <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.41283897" side_tool="true" weight="0.58486485" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="10" sideWeight="0.69009405" visible="true" weight="0.23675676" />
+      <window_info anchor="bottom" id="Terminal" order="10" sideWeight="0.69009405" visible="true" weight="0.23675676" />
       <window_info anchor="bottom" id="Python Console" order="11" sideWeight="0.4986165" weight="0.31567568" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -581,6 +604,21 @@
           <url>file://$PROJECT_DIR$/packages/quicky/executor.py</url>
           <line>169</line>
           <option name="timeStamp" value="232" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/apps/hrm/api/categories.py</url>
+          <line>70</line>
+          <option name="timeStamp" value="235" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/apps/hrm/api/categories.py</url>
+          <line>69</line>
+          <option name="timeStamp" value="236" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/apps/hrm/api/categories.py</url>
+          <line>68</line>
+          <option name="timeStamp" value="237" />
         </line-breakpoint>
       </breakpoints>
       <breakpoints-dialog>
@@ -948,8 +986,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/apps/hrm/api/categories.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="22">
-          <caret line="34" selection-start-line="34" selection-end-line="34" />
+        <state relative-caret-position="400">
+          <caret line="82" column="56" selection-start-line="82" selection-start-column="56" selection-end-line="82" selection-end-column="56" />
           <folding>
             <element signature="e#0#13#0" expanded="true" />
           </folding>

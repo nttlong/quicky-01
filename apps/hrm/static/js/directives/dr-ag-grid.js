@@ -362,8 +362,10 @@ var ag_grid_msg_delete_dialog ='<div class="modal" tabindex="-1" role="dialog">'
                     
                 },
                 onCellEditingStarted: function(event) {
-                    if(attr.selectedRow){
-                        $parse(attr.selectedRow).assign(scope,event.data);
+                    var row=event.api.getSelectedRows()[0];
+                    cmp.row=row;
+                    if(attr.row){
+                        $parse(attr.row).assign(scope,row);
                         scope.$applyAsync();
                     }
                     if (attr.onBeforeEdit){
@@ -383,14 +385,21 @@ var ag_grid_msg_delete_dialog ='<div class="modal" tabindex="-1" role="dialog">'
                     }
                 },
                 onSelectionChanged: function(event){
-                    var row=event.api.getSelectedRows();
-                    cmp.row=row[0];
-                    if(attr.selectedRow){
+                    var row=event.api.getSelectedRows()[0];
+                    cmp.row=row;
+                    if(attr.row){
                         $parse(attr.selectedRow).assign(scope,row);
                         scope.$applyAsync();
                     }
                 },
                 onCellDoubleClicked:function(event){
+                    var row=event.api.getSelectedRows()[0];
+                    cmp.row=row;
+                    if(attr.row){
+                        $parse(attr.row).assign(scope,row);
+                        scope.$applyAsync();
+                    }
+
                     if(attr.allowEdit=="true") return;
                     fireOnRowEdit(event.data);
                 }
@@ -464,6 +473,12 @@ var ag_grid_msg_delete_dialog ='<div class="modal" tabindex="-1" role="dialog">'
                     else {
                         autoWidthCols.push(col)
                     }
+                    if($(e).attr("data-lock")=="true"){
+                        col.lockPosition=true;
+                    }
+                    if($(e).attr("data-pinned")){
+                        col.pinned=$(e).attr("data-pinned");
+                    }
                     if($(e).attr('data-type')=='date'){
                         col.cellRenderer=function(params){
                             if($(e).attr('data-format')){
@@ -525,7 +540,7 @@ var ag_grid_msg_delete_dialog ='<div class="modal" tabindex="-1" role="dialog">'
                 var gEle=$("<div  class=\"ag-theme-fresh\"></div>").appendTo(ele.find("#grid")[0]);
                 gEle.css({
                     height:$(ele.height())
-                })
+                });
                 cmp.grid =new agGrid.Grid(gEle[0], gridOptions);
                 if(attr.id){
                     $parse(attr.id).assign(scope,cmp);

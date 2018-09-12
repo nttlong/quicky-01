@@ -77,12 +77,13 @@ ${self.body()}
         data-on-edit="$root.$dialog($id).params({source:source,item:rowEdit}).url(url_editor_dialog).done()"
         data-on-delete="doDeleteData()"
         data-on-insert="$root.$dialog($id).params({source:source}).url(url_editor_dialog).done()"
+        data-on-after-edit="doUpdate(rowEdit)"
         >
         <columns>
             
             <column data-field='code' data-width='200' title="${get_app_res('Code')}"></column>
-            <column data-field='name' title="${get_app_res('Name')}"></column>
-            <column data-field='description' title="${get_app_res('Description')}"></column>
+            <column data-field='name' title="${get_app_res('Name')}" data-pinned="left"></column>
+            <column data-field='description' title="${get_app_res('Description')}" data-pinned="left"></column>
             <column data-field='created_on' title="${get_app_res('Created on')}" data-width="100" data-type='date'></column>
             <column data-field='created_by' title="${get_app_res('Created by')}" data-width="200"></column>
         </columns>
@@ -124,6 +125,7 @@ ${self.body()}
             });
         };
         s.doUpdate=function(item){
+            debugger;
             s.$ws.api('${get_api_key("api.categories/update_item")}')
             .data({
                 source:s.source,
