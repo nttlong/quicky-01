@@ -1,4 +1,4 @@
-var libs_directives;
+var libs_directives=window.libs_directives;
 /*
     <div b-ag-grid  
         id="agGrid" 
@@ -20,7 +20,7 @@ var libs_directives;
         >
         <columns>
             
-            <column data-field='code' data-width='200' title="${get_app_res('Code')}"></column>
+            <column data-field='code' data-width='200' title="${get_app_res('Code')}" data-pinned="left"></column>
             <column data-field='name' title="${get_app_res('Name')}"></column>
             <column data-field='description' title="${get_app_res('Description')}"></column>
             <column data-field='created_on' title="${get_app_res('Created on')}" data-width="100" data-type='date'></column>
@@ -199,7 +199,7 @@ var ag_grid_msg_delete_dialog ='<div class="modal" tabindex="-1" role="dialog">'
                 cmp.datasource.getRows(cmp.postParams);
             }
             function hookKeyDown(event){
-                var isInGrid=$.contains(ele.find(".ag-body-container")[0],event.target);
+                var isInGrid=$.contains(ele.find(".ag-body")[0],event.target);
                 if(!isInGrid) return;
                 if(event.keyCode!=13 &&
                    event.keyCode !=45 &&

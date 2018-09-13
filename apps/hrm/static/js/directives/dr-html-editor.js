@@ -1,5 +1,5 @@
 //link http://summernote.org/bower_components/summernote/dist/summernote.js
-var libs_directives;
+var libs_directives=window.libs_directives;
 /*
     how to use:
         <div b-html-editor></div>
