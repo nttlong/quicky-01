@@ -1,4 +1,4 @@
-var libs_directives=window.libs_directives;
+var libs_directives;
 /*
     <div b-ag-grid  
         id="agGrid" 
@@ -15,7 +15,7 @@ var libs_directives=window.libs_directives;
         data-dialog-ok-caption="OK"
         data-dialog-cancel-caption="Cancel"
         data-dialog-message-content ="Do you want to delete"
-        data-dialog-caption="Comfirm message"
+        data-dialog-caption="Confirm message"
 
         >
         <columns>

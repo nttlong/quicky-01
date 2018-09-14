@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="876e7e9a-d28e-4048-9413-cbdf554a4d5a" name="Default Changelist" comment="fix get_view_path">
+      <change beforePath="$PROJECT_DIR$/.vscode/launch.json" beforeDir="false" afterPath="$PROJECT_DIR$/.vscode/launch.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/apps/hrm/templates/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/apps/hrm/templates/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/apps/hrm/templates/index1.html" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/logs/debug.log" beforeDir="false" afterPath="$PROJECT_DIR$/logs/debug.log" afterDir="false" />
@@ -507,14 +508,14 @@
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
       <window_info anchor="bottom" id="Run" order="2" />
-      <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.58716106" weight="0.34594595" />
+      <window_info active="true" anchor="bottom" id="Debug" order="3" sideWeight="0.58716106" visible="true" weight="0.34594595" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Code comment" order="7" />
       <window_info anchor="bottom" id="Version Control" order="8" sideWeight="0.49878544" weight="0.4013267" />
       <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.41283897" side_tool="true" weight="0.58486485" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="10" sideWeight="0.69009405" visible="true" weight="0.23567568" />
+      <window_info anchor="bottom" id="Terminal" order="10" sideWeight="0.69009405" weight="0.23567568" />
       <window_info anchor="bottom" id="Python Console" order="11" sideWeight="0.4986165" weight="0.31567568" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />

@@ -13,3 +13,5 @@
 /venv/
 /venv02/
 /wvenv/
+.idea/workspace.xml
+logs/debug.log
