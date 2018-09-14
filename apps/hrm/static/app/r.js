@@ -2421,7 +2421,11 @@ var requirejs, require, define, xpcUtil;
 
         xhr.onreadystatechange = function () {
             if (xhr.readyState === 4) {
-                exec(xhr.responseText);
+				// exec(xhr.responseText);
+				if(url.indexOf("ag")>-1){
+					console.log(xhr.responseText);
+				}
+				eval(xhr.responseText)
 
                 //Support anonymous modules.
                 context.completeLoad(moduleName);

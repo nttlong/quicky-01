@@ -5353,3 +5353,66 @@ hrm.auth_user.find (0.01) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
 Not Found: /angular.min.js.map
 hrm.auth_user.find (0.00) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
 Not Found: /angular.min.js.map
+django_session.save (0.00) {'schema': u'hrm', '_id': u'c718hs0yikkh6b746yzvwwjzohljlnnx', 'expire_date': datetime.datetime(2018, 9, 28, 2, 1, 53, 877053, tzinfo=<UTC>), 'session_data': u'OTE2OWEzNjFmMzk3MzVhMTZiNjlmM2EwODhiNTVkOGExNWRjM2JlYzp7fQ=='}
+django_session.save (0.00) {'schema': u'hrm', '_id': u'c718hs0yikkh6b746yzvwwjzohljlnnx', 'expire_date': datetime.datetime(2018, 9, 28, 2, 1, 53, 894530, tzinfo=<UTC>), 'session_data': u'OTE2OWEzNjFmMzk3MzVhMTZiNjlmM2EwODhiNTVkOGExNWRjM2JlYzp7fQ=='}
+hrm.auth_user.find (0.02) {'username': 'sys'}
+hrm.auth_user.save (0.00) {'username': u'sys', 'first_name': u'', 'last_name': u'', '_id': ObjectId('5b73cb5685740f43b1a9dcdf'), 'is_active': True, 'email': u'sys@beatles.com', 'is_superuser': True, 'is_staff': True, 'last_login': datetime.datetime(2018, 9, 12, 3, 25, 18, 230000, tzinfo=<UTC>), 'password': u'pbkdf2_sha256$12000$BcInrzuaaz7N$85rWrCTUh0vFY2pow3DL88d8vG1qAfRPwj8cADyyOl8=', 'date_joined': datetime.datetime(2018, 8, 15, 6, 42, 30, 417000, tzinfo=<UTC>)}
+django_session.save (0.00) {'schema': u'hrm', '_id': 'c718hs0yikkh6b746yzvwwjzohljlnnx', 'expire_date': datetime.datetime(2018, 9, 28, 2, 1, 54, 192012, tzinfo=<UTC>), 'session_data': u'YTIwMDM1ZDE4Mzg1ZWU5ZTUxNjkzNTM0NWMyMDc3YjYwMjFiODVjYzp7Imxhbmd1YWdlIjoiZW4ifQ=='}
+hrm.auth_user.find (0.01) {'username': 'sys'}
+hrm.auth_user.save (0.01) {'username': u'sys', 'first_name': u'', 'last_name': u'', '_id': ObjectId('5b73cb5685740f43b1a9dcdf'), 'is_active': True, 'email': u'sys@beatles.com', 'is_superuser': True, 'is_staff': True, 'last_login': datetime.datetime(2018, 9, 12, 3, 25, 18, 230000, tzinfo=<UTC>), 'password': u'pbkdf2_sha256$12000$BcInrzuaaz7N$85rWrCTUh0vFY2pow3DL88d8vG1qAfRPwj8cADyyOl8=', 'date_joined': datetime.datetime(2018, 8, 15, 6, 42, 30, 417000, tzinfo=<UTC>)}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+django_session.save (0.00) {'schema': u'hrm', '_id': u'ahw3abkjraw44xjunxmn8z4nra7dg5vy', 'expire_date': datetime.datetime(2018, 9, 28, 2, 2, 20, 520964, tzinfo=<UTC>), 'session_data': u'YTIwMDM1ZDE4Mzg1ZWU5ZTUxNjkzNTM0NWMyMDc3YjYwMjFiODVjYzp7Imxhbmd1YWdlIjoiZW4ifQ=='}
+django_session.remove (0.00) {'_id': {'$in': [u'c718hs0yikkh6b746yzvwwjzohljlnnx']}, 'schema': u'hrm'}
+hrm.auth_user.save (0.00) {'username': u'sys', 'first_name': u'', 'last_name': u'', '_id': ObjectId('5b73cb5685740f43b1a9dcdf'), 'is_active': True, 'email': u'sys@beatles.com', 'is_superuser': True, 'is_staff': True, 'last_login': datetime.datetime(2018, 9, 14, 2, 2, 20, 525883, tzinfo=<UTC>), 'password': u'pbkdf2_sha256$12000$BcInrzuaaz7N$85rWrCTUh0vFY2pow3DL88d8vG1qAfRPwj8cADyyOl8=', 'date_joined': datetime.datetime(2018, 8, 15, 6, 42, 30, 417000, tzinfo=<UTC>)}
+django_session.save (0.00) {'schema': u'hrm', '_id': u'ahw3abkjraw44xjunxmn8z4nra7dg5vy', 'expire_date': datetime.datetime(2018, 9, 28, 2, 2, 20, 528187, tzinfo=<UTC>), 'session_data': u'MWFkZjRjMzU4ZmE4NDZmM2UyN2I1ZGNlYWYwNWQ4M2Y4ZjIzNWNkNjp7Il9hdXRoX3VzZXJfYmFja2VuZCI6InBlcm1pc3Npb25fYmFja2VuZF9ub25yZWwuYmFja2VuZHMuTm9ucmVsUGVybWlzc2lvbkJhY2tlbmQiLCJfYXV0aF91c2VyX2lkIjoiNWI3M2NiNTY4NTc0MGY0M2IxYTlkY2RmIiwibGFuZ3VhZ2UiOiJlbiJ9'}
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+Not Found: /angular.min.js.map
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+Not Found: /angular.min.js.map
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+Not Found: /angular.min.js.map
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+Not Found: /angular.min.js.map
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+Not Found: /angular.min.js.map
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+Not Found: /angular.min.js.map
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+Not Found: /angular.min.js.map
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+Not Found: /angular.min.js.map
+Not Found: /index1
+django_session.save (0.00) {'schema': u'lv', '_id': u'jivvmc5ya1cui8cljigzll10aawqpvja', 'expire_date': datetime.datetime(2018, 9, 28, 2, 37, 48, 657923, tzinfo=<UTC>), 'session_data': u'OTE2OWEzNjFmMzk3MzVhMTZiNjlmM2EwODhiNTVkOGExNWRjM2JlYzp7fQ=='}
+django_session.save (0.00) {'schema': u'lv', '_id': u'jivvmc5ya1cui8cljigzll10aawqpvja', 'expire_date': datetime.datetime(2018, 9, 28, 2, 37, 48, 713228, tzinfo=<UTC>), 'session_data': u'OTE2OWEzNjFmMzk3MzVhMTZiNjlmM2EwODhiNTVkOGExNWRjM2JlYzp7fQ=='}
+Not Found: /performance/static/js/plugins/slick.js
+Not Found: /performance/static/js/plugins/slick.js
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+django_session.save (0.00) {'schema': u'lv', '_id': u'dy1yjhfohzmv3a6252vkxj65g5ysa5r4', 'expire_date': datetime.datetime(2018, 9, 28, 2, 37, 51, 878022, tzinfo=<UTC>), 'session_data': u'OTE2OWEzNjFmMzk3MzVhMTZiNjlmM2EwODhiNTVkOGExNWRjM2JlYzp7fQ=='}
+django_session.remove (0.00) {'_id': {'$in': [u'jivvmc5ya1cui8cljigzll10aawqpvja']}, 'schema': u'lv'}
+lv.auth_user.save (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8', 'first_name': u'', 'last_name': u'', '_id': ObjectId('5b20925a232037334054b073'), 'is_active': True, 'email': u'', 'is_superuser': False, 'is_staff': False, 'last_login': datetime.datetime(2018, 9, 14, 2, 37, 51, 889759, tzinfo=<UTC>), 'password': u'pbkdf2_sha256$12000$71ZauZ1K0jwS$zKPkNCm0toSn/5CqITaN3BKVM45nnjB0NugiE64XaDQ=', 'date_joined': datetime.datetime(2018, 6, 13, 3, 41, 14, 644000, tzinfo=<UTC>)}
+django_session.save (0.00) {'schema': u'lv', '_id': u'dy1yjhfohzmv3a6252vkxj65g5ysa5r4', 'expire_date': datetime.datetime(2018, 9, 28, 2, 37, 51, 896536, tzinfo=<UTC>), 'session_data': u'NTU3Y2YzOWFjNmY3ZWM4OTE3ODQ4YWI1YWQ0ZDZhMzBjMTUzZjRmNjp7Imxhbmd1YWdlIjoidmkiLCJfYXV0aF91c2VyX2JhY2tlbmQiOiJwZXJtaXNzaW9uX2JhY2tlbmRfbm9ucmVsLmJhY2tlbmRzLk5vbnJlbFBlcm1pc3Npb25CYWNrZW5kIiwiX2F1dGhfdXNlcl9pZCI6IjViMjA5MjVhMjMyMDM3MzM0MDU0YjA3MyJ9'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+Not Found: /{{$root.logo}}
+Not Found: /performance/static/css/images/HCS_Background_per.png
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.01) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+django_session.save (0.00) {'schema': u'hrm', '_id': u'ct2pdzmkvgmospe0qpcske23s2umj8s4', 'expire_date': datetime.datetime(2018, 9, 28, 2, 40, 29, 316465, tzinfo=<UTC>), 'session_data': u'OTE2OWEzNjFmMzk3MzVhMTZiNjlmM2EwODhiNTVkOGExNWRjM2JlYzp7fQ=='}
+django_session.save (0.01) {'schema': u'hrm', '_id': u'ct2pdzmkvgmospe0qpcske23s2umj8s4', 'expire_date': datetime.datetime(2018, 9, 28, 2, 40, 29, 338574, tzinfo=<UTC>), 'session_data': u'OTE2OWEzNjFmMzk3MzVhMTZiNjlmM2EwODhiNTVkOGExNWRjM2JlYzp7fQ=='}
+hrm.auth_user.find (0.00) {'username': 'sys'}
+hrm.auth_user.save (0.00) {'username': u'sys', 'first_name': u'', 'last_name': u'', '_id': ObjectId('5b73cb5685740f43b1a9dcdf'), 'is_active': True, 'email': u'sys@beatles.com', 'is_superuser': True, 'is_staff': True, 'last_login': datetime.datetime(2018, 9, 14, 2, 2, 20, 525000, tzinfo=<UTC>), 'password': u'pbkdf2_sha256$12000$BcInrzuaaz7N$85rWrCTUh0vFY2pow3DL88d8vG1qAfRPwj8cADyyOl8=', 'date_joined': datetime.datetime(2018, 8, 15, 6, 42, 30, 417000, tzinfo=<UTC>)}
+django_session.save (0.00) {'schema': u'hrm', '_id': 'ct2pdzmkvgmospe0qpcske23s2umj8s4', 'expire_date': datetime.datetime(2018, 9, 28, 2, 40, 29, 599059, tzinfo=<UTC>), 'session_data': u'YTIwMDM1ZDE4Mzg1ZWU5ZTUxNjkzNTM0NWMyMDc3YjYwMjFiODVjYzp7Imxhbmd1YWdlIjoiZW4ifQ=='}
+hrm.auth_user.find (0.00) {'username': 'sys'}
+hrm.auth_user.save (0.00) {'username': u'sys', 'first_name': u'', 'last_name': u'', '_id': ObjectId('5b73cb5685740f43b1a9dcdf'), 'is_active': True, 'email': u'sys@beatles.com', 'is_superuser': True, 'is_staff': True, 'last_login': datetime.datetime(2018, 9, 14, 2, 2, 20, 525000, tzinfo=<UTC>), 'password': u'pbkdf2_sha256$12000$BcInrzuaaz7N$85rWrCTUh0vFY2pow3DL88d8vG1qAfRPwj8cADyyOl8=', 'date_joined': datetime.datetime(2018, 8, 15, 6, 42, 30, 417000, tzinfo=<UTC>)}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+django_session.save (0.00) {'schema': u'hrm', '_id': u'7n34mahs3jkmrj2bjtrupqvnyng7ebni', 'expire_date': datetime.datetime(2018, 9, 28, 2, 40, 31, 457823, tzinfo=<UTC>), 'session_data': u'YTIwMDM1ZDE4Mzg1ZWU5ZTUxNjkzNTM0NWMyMDc3YjYwMjFiODVjYzp7Imxhbmd1YWdlIjoiZW4ifQ=='}
+django_session.remove (0.00) {'_id': {'$in': [u'ct2pdzmkvgmospe0qpcske23s2umj8s4']}, 'schema': u'hrm'}
+hrm.auth_user.save (0.00) {'username': u'sys', 'first_name': u'', 'last_name': u'', '_id': ObjectId('5b73cb5685740f43b1a9dcdf'), 'is_active': True, 'email': u'sys@beatles.com', 'is_superuser': True, 'is_staff': True, 'last_login': datetime.datetime(2018, 9, 14, 2, 40, 31, 465082, tzinfo=<UTC>), 'password': u'pbkdf2_sha256$12000$BcInrzuaaz7N$85rWrCTUh0vFY2pow3DL88d8vG1qAfRPwj8cADyyOl8=', 'date_joined': datetime.datetime(2018, 8, 15, 6, 42, 30, 417000, tzinfo=<UTC>)}
+django_session.save (0.00) {'schema': u'hrm', '_id': u'7n34mahs3jkmrj2bjtrupqvnyng7ebni', 'expire_date': datetime.datetime(2018, 9, 28, 2, 40, 31, 467380, tzinfo=<UTC>), 'session_data': u'MWFkZjRjMzU4ZmE4NDZmM2UyN2I1ZGNlYWYwNWQ4M2Y4ZjIzNWNkNjp7Il9hdXRoX3VzZXJfYmFja2VuZCI6InBlcm1pc3Npb25fYmFja2VuZF9ub25yZWwuYmFja2VuZHMuTm9ucmVsUGVybWlzc2lvbkJhY2tlbmQiLCJfYXV0aF91c2VyX2lkIjoiNWI3M2NiNTY4NTc0MGY0M2IxYTlkY2RmIiwibGFuZ3VhZ2UiOiJlbiJ9'}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
