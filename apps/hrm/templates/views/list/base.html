@@ -83,10 +83,16 @@ ${self.body()}
             
             <column data-field='code' data-width='200' title="${get_app_res('Code')}"></column>
             <column data-field='name' title="${get_app_res('Name')}" ></column>
-            <column data-field='description' title="${get_app_res('Description')}" ></column>
+            <column data-field='description' title="${get_app_res('Description')}" data-component="lookup" ></column>
             <column data-field='created_on' title="${get_app_res('Created on')}" data-width="100" data-type='date'></column>
             <column data-field='created_by' title="${get_app_res('Created by')}" data-width="200"></column>
         </columns>
+        <components>
+        <component id='lookup'>
+            <div b-lookup-box></div>
+        </component>
+        </components>
+        
     </div>
 
 </div>

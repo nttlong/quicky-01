@@ -7,9 +7,9 @@ var libs_directives=window.libs_directives;
             return {
                 restrict: "CEA",
                 replace: true,
-                template:"<div class=\"input-group\">"+
+                template:"<div class=\"input-group input-group-sm\">"+
                          "<input type=\"text\" class=\"form-control\">"+
-                         "<span class=\"input-group-addon\" id=\"basic-addon2\">@example.com</span>"+
+                         "<span class=\"input-group-addon\" id=\"basic-addon2\">..</span>"+
                          "</div>",
                 link: function (scope, ele, attr) {
 

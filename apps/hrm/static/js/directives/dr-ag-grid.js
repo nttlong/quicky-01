@@ -74,13 +74,8 @@ var ag_grid_msg_delete_dialog ='<div class="modal" tabindex="-1" role="dialog">'
                     else {
                         me.api.setFocusedCell(0, gridOptions.colDef[0].field);
                     }
-                    
                 }
             }
-            
-            
-            
-            
             function fireOnRowEdit(data){
                 if(attr.row){
                     $parse(attr.row).assign(scope,data);
@@ -260,7 +255,6 @@ var ag_grid_msg_delete_dialog ='<div class="modal" tabindex="-1" role="dialog">'
                 }
                 
             }
-            
             function hookGridKeyDownWatcher(){
                 if($.contains($("body")[0],ele[0])){
                     $(window).bind("keydown",hookKeyDown);
@@ -271,10 +265,6 @@ var ag_grid_msg_delete_dialog ='<div class="modal" tabindex="-1" role="dialog">'
                 }
                 
             }
-            
-
-           
-            
             var gEle=undefined;
             if(attr.id){
                 $parse(attr.id).assign(scope,cmp);
@@ -301,7 +291,6 @@ var ag_grid_msg_delete_dialog ='<div class="modal" tabindex="-1" role="dialog">'
                             fn(sender)
                         }
                     }
-    
                 }
             };
             cmp.datasource=dataSource;
@@ -338,7 +327,6 @@ var ag_grid_msg_delete_dialog ='<div class="modal" tabindex="-1" role="dialog">'
                         }
                         setTimeout(watchHeight,100);
                     }
-                    
                     function fixHeight(r){
                         gEle.css({
                             height:r
@@ -358,8 +346,6 @@ var ag_grid_msg_delete_dialog ='<div class="modal" tabindex="-1" role="dialog">'
                     if(event.rowIndex==null) return;
                     cmp.currentCell =event.api.getFocusedCell();
                     cmp.currentSelectedRowIndex =event.rowIndex;
-                    
-                    
                 },
                 onCellEditingStarted: function(event) {
                     var row=event.api.getSelectedRows()[0];
@@ -374,7 +360,6 @@ var ag_grid_msg_delete_dialog ='<div class="modal" tabindex="-1" role="dialog">'
                             fn(event.data,event.column.colDef.field);
                         }
                     }
-                    
                 },
                 onCellEditingStopped: function(event) {
                     if (attr.onAfterEdit){
@@ -407,11 +392,41 @@ var ag_grid_msg_delete_dialog ='<div class="modal" tabindex="-1" role="dialog">'
             function cleanGrid(){
                 $(ele.find("#grid")[0]).empty();
             }
+            function agBComponentEditor(){
+            }
+            agBComponentEditor.prototype.init=function(params){
+                if(params.column.colDef.$$$component){
+                    this.eInput= params.column.colDef.$$$component;
+                    return;
+                }
+                var componentId=params.column.colDef.$$data_component;
+                this.eInput=ele.find("components").find("#"+componentId).children()[0];
+                this.componentId=componentId;
+                params.column.colDef.$$$component=this.eInput;
+                
+            }
+            agBComponentEditor.prototype.getGui=function(){
+                return this.eInput;
+            }
+            agBComponentEditor.prototype.getValue=function(){
+                return"XXX";
+            }
+            agBComponentEditor.prototype.isPopup = function () {
+                // and we could leave this method out also, false is the default
+                return true;
+            };
+            agBComponentEditor.prototype.afterGuiAttached = function () {
+                $(this.eInput).find("input")[0].focus();
+            };
+            agBComponentEditor.destroy = function () {
+                $(this.eInput).appendTo(ele.find("components").find("#"+componentId)[0]);
+                // but this example is simple, no cleanup, we could  even leave this method out as it's optional
+            };
+            /** create columns */
             function createColumnsFromColsEles(elem){
                 var ret =[];
                 var autoWidthCols =[];
                 var totalWidth =0;
-                
                 if(attr.showSelectedColumn){
                     col={
                         displayName:"<input type=\"checkbox\">",
@@ -434,19 +449,29 @@ var ag_grid_msg_delete_dialog ='<div class="modal" tabindex="-1" role="dialog">'
                     ret.push(col);
                 }
                 elem.children().each(function(idx,e){
-                    
                     var col= {
                         headerName:$(e).attr('title'),
                         field:$(e).attr('data-field'),
-                        
                     }
                     col.editable=false;
+                    if($(e).attr("data-component")){
+                        col.$$data_component=$(e).attr("data-component");
+                        col.cellRenderer=function(params){
+                            return params.value;
+
+                        }
+                        col.cellEditor='componentEditor';
+                        
+                        if(!gridOptions.components){
+                            gridOptions.components={
+                                componentEditor:agBComponentEditor
+                            }
+                        }
+                    }
                     if(attr.allowEdit=="true"){
                        if( $(ele).attr('data-editable') !='true'){
                             col.editable=true;
                         }
-                        
-                        
                     }
                     if($(e).attr('data-width')){
                         col.width =$(e).attr('data-width')*1
@@ -454,7 +479,6 @@ var ag_grid_msg_delete_dialog ='<div class="modal" tabindex="-1" role="dialog">'
                         //col.maxWidth =$(e).attr('data-width')*1
                     }
                     else if ($(e).attr("data-cell-type")=='checkbox'){
-                        
                         col.width=40;
                         col.minWidth=40;
                         col.maxWidth=40;
@@ -505,12 +529,9 @@ var ag_grid_msg_delete_dialog ='<div class="modal" tabindex="-1" role="dialog">'
                             autoWidthCols[i].width=nWidth;
                         }
                     }
-                    
                 }
-                
                 return ret;
             }
-            
             attr.$observe("columns",function(val){
                 debugger;
                 var cols =scope.$eval(val);
