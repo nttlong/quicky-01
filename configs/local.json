@@ -162,7 +162,7 @@
       "name":"hrm",
       "path":"apps/hrm",
       "login_url":"/login",
-      "schema_":"hrm"
+      "schema":"hrm"
 
     },{
       "host":"",

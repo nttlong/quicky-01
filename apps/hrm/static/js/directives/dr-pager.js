@@ -1,4 +1,4 @@
-var libs_directives;
+var libs_directives=window.libs_directives;
 /*--how to use:
     <div b-pager page-size=.. total-items=.. page-index=.. on-change=.. ng-model=../>
 */

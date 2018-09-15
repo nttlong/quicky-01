@@ -1,4 +1,4 @@
-var libs_directives;
+var libs_directives=window.libs_directives;
 (function (libs_directives) {
     libs_directives._module.directive("bTextbox", ["$parse", function ($parse) {
             return {

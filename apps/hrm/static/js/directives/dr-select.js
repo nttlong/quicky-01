@@ -1,7 +1,7 @@
 /*--how to use:
     <div b-select source="<dropdown datasource>" field-text="<Dispaly Field>" field-value="return value field when user select"  on-change=.. ng-model=../>
 */
-var libs_directives;
+var libs_directives=window.libs_directives;
 (function (libs_directives) {
     libs_directives._module.directive("bSelect", ["$parse", function ($parse) {
             return {
