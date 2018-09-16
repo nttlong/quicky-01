@@ -116,8 +116,6 @@ def load_config(file_name,none_params=False):
             execute_from_command_line(args)
         except Exception as ex:
             log.debug(ex)
-
-
 def start_app(name):
     if BASE_DIR == None:
         raise (Exception("It looks like you forgot call 'config_loader.set_base_dir' set root directory of app"))
