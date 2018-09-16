@@ -1,6 +1,7 @@
 import os
 import sys
 BASE_DIR = None
+import logging
 def set_base_dir(value):
     global BASE_DIR
     BASE_DIR =value
@@ -109,8 +110,13 @@ def load_config(file_name):
     quicky.url.build_urls(settings.ROOT_URLCONF, [x for x in config_from_file["APPS"] if not x.get("disable", False)])
     from django.core.management import execute_from_command_line
     args = [x for x in sys.argv if x[0:2] != "--"]
+    log = logging.getLogger(__file__)
+    try:
+        execute_from_command_line(args)
+    except Exception as ex:
+        log.debug(ex)
+        
 
-    execute_from_command_line(args)
 def start_app(name):
     if BASE_DIR == None:
         raise (Exception("It looks like you forgot call 'config_loader.set_base_dir' set root directory of app"))
