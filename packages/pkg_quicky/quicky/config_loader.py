@@ -13,7 +13,7 @@ def get_params(name):
     else:
         return extra_params[0].split('=')[1]
 
-def load_config(file_name):
+def load_config(file_name,none_params=False):
     global settings, x
     import imp
     settings = imp.new_module(file_name + ".settings")
@@ -111,11 +111,12 @@ def load_config(file_name):
     from django.core.management import execute_from_command_line
     args = [x for x in sys.argv if x[0:2] != "--"]
     log = logging.getLogger(__file__)
-    try:
-        execute_from_command_line(args)
-    except Exception as ex:
-        log.debug(ex)
-        
+    if not none_params:
+        try:
+            execute_from_command_line(args)
+        except Exception as ex:
+            log.debug(ex)
+
 
 def start_app(name):
     if BASE_DIR == None:
