@@ -8,9 +8,15 @@
 .idea/code-comments.xml
 .idea/libraries/
 .idea/snapshots/
-
+/.idea
 /uvenv/
 /venv/
 /venv02/
 /wvenv/
 /.vscode/
+.idea/modules.xml
+.idea/quicky-01.iml
+.idea/vcs.xml
+apps/hrm/models/xml/
+apps/hrm/xml/
+apps/sys_admin/templates/pages/
