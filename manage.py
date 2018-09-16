@@ -8,6 +8,7 @@ sys.path.append(REPO_PATH +os.sep+"apps")
 sys.path.append(REPO_PATH+os.sep+"packages")
 sys.path.append(REPO_PATH+os.sep+"packages/pkg_quicky")
 sys.path.append(REPO_PATH+os.sep+"packages/pkg_qmongo")
+sys.path.append(REPO_PATH+os.sep+"packages/pkg_qtracking")
 sys.path.append(REPO_PATH+os.sep+"packages/pkg_qobjects")
 sys.path.append(REPO_PATH+os.sep+"packages/django")
 if __name__ == "__main__":
