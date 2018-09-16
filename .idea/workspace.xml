@@ -2,41 +2,46 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="876e7e9a-d28e-4048-9413-cbdf554a4d5a" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/packages/pkg_quicky/quicky/config_loader.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/packages/pkg_qmongo/setup.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/packages/pkg_quicky/setup.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/logs/debug.log" beforeDir="false" afterPath="$PROJECT_DIR$/logs/debug.log" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/manage.py" beforeDir="false" afterPath="$PROJECT_DIR$/manage.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/quicky/JSON/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/quicky/JSON/test.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/quicky/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/quicky/api.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/quicky/app_info.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/quicky/applications.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/quicky/authorize.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/quicky/backends/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/quicky/caller.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/quicky/db/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/quicky/db/database.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/quicky/db/expr.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/quicky/db/test.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/quicky/db/test_hrm.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/quicky/dic_has_key.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/quicky/dict_utils.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/quicky/dobject.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/quicky/encryptor.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/quicky/executor.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/quicky/extens.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/quicky/help/middelware.rst" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/quicky/help/xx.R" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/quicky/language.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/quicky/layout_view.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/quicky/middleware/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/quicky/middleware/view_register.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/quicky/qvideo_stream/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/quicky/serilize.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/quicky/sql_db.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/quicky/tenancy.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/quicky/url.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/quicky/view.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/authorization_delete/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/authorization_delete/auth.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/authorization_delete/models.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/qmongo/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/qmongo/auto_load_models.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/qmongo/connection.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/qmongo/database.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/qmongo/db_context.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/qmongo/dict_utils.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/qmongo/dynamic_object.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/qmongo/exec_mode.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/qmongo/expr.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/qmongo/fx_model.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/qmongo/help/expressiion_compiler_services.rst" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/qmongo/help/queryable.rst" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/qmongo/help/readme.rst" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/qmongo/help/setup.rst" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/qmongo/help/view_declare.rst" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/qmongo/helpers/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/qmongo/helpers/aggregate_expression.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/qmongo/helpers/aggregate_validators.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/qmongo/helpers/expr.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/qmongo/helpers/filter_expression.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/qmongo/helpers/model_events.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/qmongo/helpers/validators.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/qmongo/json_file.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/qmongo/json_parser.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/qmongo/models.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/qmongo/qcollections.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/qmongo/qview.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/qmongo/test_models.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/qmongo/test_pipe.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/qmongo/test_transaction.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/qmongo/transaction.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/qobjects/__init__.py" beforeDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/lv-packages/uvenv02/" />
     <ignored path="$PROJECT_DIR$/uvenv02/" />
@@ -117,22 +122,23 @@
     <session id="155619019">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="2" />
+          <entry key="project.closed" value="3" />
+          <entry key="project.open.time.0" value="1" />
           <entry key="project.open.time.24" value="1" />
           <entry key="project.open.time.3" value="1" />
-          <entry key="project.opened" value="2" />
+          <entry key="project.opened" value="3" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="Python Console" value="1374" />
+          <entry key="Python Console" value="1395" />
           <entry key="R" value="9" />
           <entry key="gitignore" value="1" />
           <entry key="js" value="10" />
           <entry key="json" value="122" />
-          <entry key="py" value="4839" />
+          <entry key="py" value="4897" />
           <entry key="rst" value="161" />
-          <entry key="txt" value="115" />
+          <entry key="txt" value="133" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
@@ -140,8 +146,8 @@
           <entry key="Git file" value="1" />
           <entry key="JSON" value="122" />
           <entry key="JavaScript" value="10" />
-          <entry key="PLAIN_TEXT" value="115" />
-          <entry key="Python" value="6213" />
+          <entry key="PLAIN_TEXT" value="133" />
+          <entry key="Python" value="6292" />
           <entry key="R" value="9" />
           <entry key="ReST" value="161" />
         </counts>
@@ -153,7 +159,7 @@
           <entry key="html" value="5" />
           <entry key="js" value="2" />
           <entry key="json" value="5" />
-          <entry key="py" value="31" />
+          <entry key="py" value="37" />
           <entry key="rst" value="1" />
         </counts>
       </usages-collector>
@@ -163,7 +169,7 @@
           <entry key="HTML" value="5" />
           <entry key="JSON" value="5" />
           <entry key="JavaScript" value="2" />
-          <entry key="Python" value="31" />
+          <entry key="Python" value="37" />
           <entry key="R" value="2" />
           <entry key="ReST" value="1" />
         </counts>
@@ -174,13 +180,54 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/packages/django/django/__init__.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="120">
+              <caret line="6" column="4" selection-start-line="6" selection-start-column="4" selection-end-line="6" selection-end-column="4" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/packages/pkg_quicky/quicky/__init__.py">
+          <provider selected="true" editor-type-id="text-editor" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/packages/pkg_quicky/setup.py">
+          <provider selected="true" editor-type-id="text-editor" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/packages/pkg_qobjects/qobjects/__init__.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="120">
+              <caret line="6" column="37" lean-forward="true" selection-start-line="6" selection-start-column="37" selection-end-line="6" selection-end-column="37" />
+              <folding>
+                <element signature="e#125#2659#0" />
+                <element signature="e#2703#4831#0" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/manage.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="100">
-              <caret line="5" lean-forward="true" selection-start-line="5" selection-end-line="5" />
+            <state relative-caret-position="269">
+              <caret line="15" column="37" lean-forward="true" selection-start-line="15" selection-start-column="37" selection-end-line="15" selection-end-column="37" />
               <folding>
                 <element signature="e#22#31#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/packages/pkg_quicky/quicky/app_info.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="171">
+              <caret line="137" column="43" selection-start-line="137" selection-start-column="43" selection-end-line="137" selection-end-column="43" />
             </state>
           </provider>
         </entry>
@@ -197,8 +244,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/packages/pkg_quicky/quicky/config_loader.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="271">
-              <caret line="15" column="22" lean-forward="true" selection-start-line="15" selection-start-column="22" selection-end-line="15" selection-end-column="22" />
+            <state relative-caret-position="300">
+              <caret line="15" column="22" selection-start-line="15" selection-start-column="22" selection-end-line="15" selection-end-column="22" />
               <folding>
                 <element signature="e#0#9#0" expanded="true" />
                 <marker date="1537073480039" expanded="true" signature="4644:4649" ph="..." />
@@ -207,23 +254,20 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/packages/pkg_quicky/quicky/api.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="99">
-              <caret line="19" column="7" selection-start-line="19" selection-start-column="7" selection-end-line="19" selection-end-column="7" />
+            <state relative-caret-position="300">
+              <caret line="15" column="10" selection-start-line="15" selection-start-column="10" selection-end-line="15" selection-end-column="10" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/packages/pkg_config_reader/test.py">
+        <entry file="file://$PROJECT_DIR$/packages/pkg_quicky/quicky/url.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="80">
-              <caret line="4" column="16" selection-start-line="4" selection-start-column="16" selection-end-line="4" selection-end-column="16" />
-              <folding>
-                <element signature="e#0#10#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="1840">
+              <caret line="102" selection-start-line="102" selection-end-line="102" />
             </state>
           </provider>
         </entry>
@@ -279,8 +323,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/packages/qauth/models/apps.py" />
-        <option value="$PROJECT_DIR$/packages/qauth/models/roles.py" />
         <option value="$PROJECT_DIR$/packages/qauth/application/__init__.py" />
         <option value="$PROJECT_DIR$/packages/qauth/app.py" />
         <option value="$PROJECT_DIR$/packages/qauth/__init__.py" />
@@ -327,9 +369,11 @@
         <option value="$PROJECT_DIR$/packages/pkg_qparamloader/test.py" />
         <option value="$PROJECT_DIR$/packages/pkg_qparamloader/qparamloader/__init__.py" />
         <option value="$PROJECT_DIR$/packages/pkg_config_reader/test.py" />
-        <option value="$PROJECT_DIR$/manage.py" />
         <option value="$PROJECT_DIR$/packages/pkg_quicky/quicky/config_loader.py" />
         <option value="$PROJECT_DIR$/packages/pkg_quicky/quicky/api.py" />
+        <option value="$PROJECT_DIR$/manage.py" />
+        <option value="$PROJECT_DIR$/packages/pkg_quicky/quicky/app_info.py" />
+        <option value="$PROJECT_DIR$/packages/pkg_qobjects/qobjects/__init__.py" />
       </list>
     </option>
   </component>
@@ -352,6 +396,11 @@
               <item name="quicky-01" type="b2602c69:ProjectViewProjectNode" />
               <item name="quicky-01" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="quicky-01" type="b2602c69:ProjectViewProjectNode" />
+              <item name="quicky-01" type="462c0819:PsiDirectoryNode" />
+              <item name="packages" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
@@ -362,7 +411,7 @@
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="add_unversioned_files" value="$PROJECT_DIR$/.gitignore" />
     <property name="eu.ydp.idea.ts.spec.generator.settings.spec.template" value="import {$ClassName$} from '$TestsRelativePath$../src/$classRelativePath$/$ClassName$';&#10;&#10;describe('$ClassName$', () =&gt; {&#10;  let $ObjName$:$ClassName$;&#10;&#10;  beforeEach(() =&gt; {&#10;    $ObjName$ = new $ClassName$();&#10;  });&#10;&#10;  describe('', () =&gt; {&#10;    it('', () =&gt; {&#10;      // given&#10;&#10;      // when&#10;&#10;      // then&#10;    });&#10;  });&#10;});&#10;" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/packages/mdjango" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/packages/pkg_qobjects" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="PyConsoleOptionsProvider">
@@ -580,20 +629,27 @@
       <option name="project" value="LOCAL" />
       <updated>1537070897806</updated>
     </task>
-    <option name="localTasksCounter" value="17" />
+    <task id="LOCAL-00017" summary="restucture project">
+      <created>1537073510738</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1537073510738</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1295" height="735" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.32550606" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.23157895" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
       <window_info anchor="bottom" id="Run" order="2" />
-      <window_info active="true" anchor="bottom" id="Debug" order="3" sideWeight="0.58716106" visible="true" weight="0.45771143" />
+      <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.58716106" visible="true" weight="0.2039801" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
@@ -621,7 +677,8 @@
     <MESSAGE value="fix match with params" />
     <MESSAGE value="create ag grid directive" />
     <MESSAGE value="fix get_view_path" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix get_view_path" />
+    <MESSAGE value="restucture project" />
+    <option name="LAST_COMMIT_MESSAGE" value="restucture project" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -681,6 +738,11 @@
           <line>169</line>
           <option name="timeStamp" value="232" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/packages/pkg_quicky/quicky/app_info.py</url>
+          <line>138</line>
+          <option name="timeStamp" value="234" />
+        </line-breakpoint>
       </breakpoints>
       <breakpoints-dialog>
         <breakpoints-dialog />
@@ -688,42 +750,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/apps/performance/api/models/auth_user_info.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="540">
-          <caret line="31" selection-start-line="31" selection-end-line="31" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/apps/performance/api/TMLS_Competency.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="139">
-          <caret line="282" selection-start-line="282" selection-end-line="282" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/packages/qauth/authorization.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="15" column="20" selection-start-line="15" selection-start-column="20" selection-end-line="15" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/apps/lms/views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="431">
-          <caret line="86" column="19" selection-start-line="86" selection-start-column="19" selection-end-line="86" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/packages/authorization/__init__.py" />
-    <entry file="file://$PROJECT_DIR$/apps/performance/api/models/__init__.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="54">
-          <caret line="3" selection-start-line="3" selection-end-line="3" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/apps/performance/api/models/config.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="54">
@@ -808,13 +834,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/packages/quicky/extens.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="386">
-          <caret line="76" column="57" selection-start-line="76" selection-start-column="40" selection-end-line="76" selection-end-column="57" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/packages/quicky/extens.py" />
     <entry file="file://$PROJECT_DIR$/logs/debug.log">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="566">
@@ -829,20 +849,8 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/packages/quicky/dict_utils.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="54">
-          <caret line="3" selection-start-line="3" selection-end-line="3" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/packages/quicky/middleware/view_register.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="168">
-          <caret line="192" column="39" lean-forward="true" selection-start-line="192" selection-start-column="39" selection-end-line="192" selection-end-column="39" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/packages/quicky/dict_utils.py" />
+    <entry file="file://$PROJECT_DIR$/packages/quicky/middleware/view_register.py" />
     <entry file="file://$PROJECT_DIR$/configs/dev.json">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2070">
@@ -850,13 +858,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/packages/quicky/view.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="432">
-          <caret line="33" selection-start-line="33" selection-end-line="33" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/packages/quicky/view.py" />
     <entry file="file://$PROJECT_DIR$/apps/performance/views.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1458">
@@ -864,40 +866,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/packages/quicky/middleware/__init__.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="8658">
-          <caret line="487" selection-start-line="487" selection-end-line="487" />
-          <folding>
-            <element signature="e#0#25#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/packages/quicky/executor.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="666">
-          <caret line="45" selection-start-line="45" selection-end-line="45" />
-          <folding>
-            <element signature="e#0#17#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/packages/quicky/language.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="162">
-          <caret line="14" selection-start-line="14" selection-end-line="14" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/packages/quicky/api.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3240">
-          <caret line="197" column="20" selection-start-line="197" selection-start-column="20" selection-end-line="197" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/packages/quicky/middleware/__init__.py" />
+    <entry file="file://$PROJECT_DIR$/packages/quicky/executor.py" />
+    <entry file="file://$PROJECT_DIR$/packages/quicky/language.py" />
+    <entry file="file://$PROJECT_DIR$/packages/quicky/api.py" />
     <entry file="file://$PROJECT_DIR$/apps/performance/api/common.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="126">
@@ -920,13 +892,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/setup.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-11560">
-          <caret line="3" column="19" lean-forward="true" selection-start-line="3" selection-start-column="19" selection-end-line="3" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/setup.py" />
     <entry file="file://$PROJECT_DIR$/apps/hrm/templates/base.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="220">
@@ -937,12 +903,8 @@
     <entry file="file://$PROJECT_DIR$/apps/hrm/templates/category.html">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/packages/mdjango/django/django/__init__.py">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/packages/mdjango/django/__init__.py">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
+    <entry file="file://$PROJECT_DIR$/packages/mdjango/django/django/__init__.py" />
+    <entry file="file://$PROJECT_DIR$/packages/mdjango/django/__init__.py" />
     <entry file="file://$PROJECT_DIR$/configs/local.json">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="40">
@@ -955,26 +917,8 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/packages/pkg_qparamloader/test.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="80">
-          <caret line="4" column="25" selection-start-line="4" selection-start-column="25" selection-end-line="4" selection-end-column="25" />
-          <folding>
-            <element signature="e#0#10#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/packages/pkg_qparamloader/qparamloader/__init__.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="179">
-          <caret line="22" column="54" lean-forward="true" selection-start-line="22" selection-start-column="54" selection-end-line="22" selection-end-column="54" />
-          <folding>
-            <element signature="e#0#9#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/packages/pkg_qparamloader/test.py" />
+    <entry file="file://$PROJECT_DIR$/packages/pkg_qparamloader/qparamloader/__init__.py" />
     <entry file="file://$PROJECT_DIR$/apps/hrm/templates/views/emps/base.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="58">
@@ -988,28 +932,8 @@
     <entry file="file://$PROJECT_DIR$/apps/hrm/templates/views/emps/employees.html">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/packages/pkg_config_reader/q_config_reader/__init__.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="389">
-          <caret line="30" lean-forward="true" selection-start-line="30" selection-end-line="30" />
-          <folding>
-            <element signature="e#0#9#0" expanded="true" />
-            <element signature="e#109#207#0" />
-            <element signature="e#237#272#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/packages/pkg_config_reader/test.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="80">
-          <caret line="4" column="16" selection-start-line="4" selection-start-column="16" selection-end-line="4" selection-end-column="16" />
-          <folding>
-            <element signature="e#0#10#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/packages/pkg_config_reader/q_config_reader/__init__.py" />
+    <entry file="file://$PROJECT_DIR$/packages/pkg_config_reader/test.py" />
     <entry file="file://$PROJECT_DIR$/packages/pkg_quicky/quicky/encryptor.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="120">
@@ -1017,20 +941,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/manage.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="100">
-          <caret line="5" lean-forward="true" selection-start-line="5" selection-end-line="5" />
-          <folding>
-            <element signature="e#22#31#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/packages/pkg_quicky/quicky/config_loader.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="271">
-          <caret line="15" column="22" lean-forward="true" selection-start-line="15" selection-start-column="22" selection-end-line="15" selection-end-column="22" />
+        <state relative-caret-position="300">
+          <caret line="15" column="22" selection-start-line="15" selection-start-column="22" selection-end-line="15" selection-end-column="22" />
           <folding>
             <element signature="e#0#9#0" expanded="true" />
             <marker date="1537073480039" expanded="true" signature="4644:4649" ph="..." />
@@ -1040,8 +954,56 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/packages/pkg_quicky/quicky/api.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="99">
-          <caret line="19" column="7" selection-start-line="19" selection-start-column="7" selection-end-line="19" selection-end-column="7" />
+        <state relative-caret-position="300">
+          <caret line="15" column="10" selection-start-line="15" selection-start-column="10" selection-end-line="15" selection-end-column="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/packages/pkg_quicky/quicky/url.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1840">
+          <caret line="102" selection-start-line="102" selection-end-line="102" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/manage.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="269">
+          <caret line="15" column="37" lean-forward="true" selection-start-line="15" selection-start-column="37" selection-end-line="15" selection-end-column="37" />
+          <folding>
+            <element signature="e#22#31#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/packages/pkg_quicky/quicky/app_info.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="171">
+          <caret line="137" column="43" selection-start-line="137" selection-start-column="43" selection-end-line="137" selection-end-column="43" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/packages/django/django/__init__.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="6" column="4" selection-start-line="6" selection-start-column="4" selection-end-line="6" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/packages/pkg_quicky/quicky/__init__.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/packages/pkg_quicky/setup.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/packages/pkg_qobjects/qobjects/__init__.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="6" column="37" lean-forward="true" selection-start-line="6" selection-start-column="37" selection-end-line="6" selection-end-column="37" />
+          <folding>
+            <element signature="e#125#2659#0" />
+            <element signature="e#2703#4831#0" />
+          </folding>
         </state>
       </provider>
     </entry>
