@@ -340,9 +340,12 @@ var ag_grid_msg_delete_dialog ='<div class="modal" tabindex="-1" role="dialog">'
                     }
                     
                     function fixHeight(r){
-                        gEle.css({
+                     if(gEle){
+                       gEle.css({
                             height:r
                         })
+                     }
+
 
                         // params.api.sizeColumnsToFit();
                     }

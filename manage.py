@@ -113,7 +113,7 @@ def start_app(file_name):
 
 
 if __name__ == "__main__":
-    import django
+    # import django
 
     # django.setup()
 
