@@ -15,6 +15,7 @@
 /venv02/
 /wvenv/
 /.vscode/
+
 .idea/modules.xml
 .idea/quicky-01.iml
 
@@ -22,3 +23,4 @@ apps/hrm/models/xml/
 apps/hrm/xml/
 apps/sys_admin/templates/pages/
 .gitignore
+/logs/

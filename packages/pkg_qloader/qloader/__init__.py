@@ -1,3 +1,10 @@
+VERSION = [1,0,0,"final",0]
+def get_version():
+    return VERSION[0].__str__()+\
+           "."+VERSION[1].__str__()+\
+           "."+VERSION[2].__str__()+\
+           "."+VERSION[3].__str__()+\
+           "."+VERSION[4].__str__()
 class __collections__(object):
     pass
 def auto_load(name,file):
