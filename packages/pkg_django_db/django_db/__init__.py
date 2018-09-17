@@ -16,5 +16,6 @@ def getdb(key = "default"):
         if not db.authenticate(config["USER"],config["PASSWORD"]):
             raise (Exception("Can not connect to database, auth is fail"))
         __db__ = db
+        return __db__
     else:
         return __db__
