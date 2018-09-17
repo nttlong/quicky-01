@@ -61,9 +61,9 @@ def get_db_context():
 
 
 class dbcontext():
-    def __init__(self,schema=None,*args,**kwargs):
+    def __init__(self,*args,**kwargs):
         self.cnn =None
-        self.schema=schema
+
         if type(args) is tuple and args.__len__() > 0:
             if isinstance(args[0], QR):
                 self.cnn = args[0]
@@ -94,7 +94,11 @@ class dbcontext():
                 )
                 if schema != None:
                     set_schema(schema)
+        if self.cnn == None:
             self.cnn = connect(*args, **kwargs)
+        if kwargs!={} and kwargs.has_key("schema"):
+            self.schema = kwargs["schema"]
+
     def __enter__(self):
         db = get_db_context()
         if db != None:
