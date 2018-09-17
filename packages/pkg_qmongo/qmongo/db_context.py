@@ -1,3 +1,5 @@
+global __cnns__
+__cnns__ = []
 from . database import connect
 from . database import QR
 def set_db_context(*args,**kwargs):
@@ -55,4 +57,48 @@ def get_db_context():
     else:
         return None
 
+
+class dbcontext():
+    def __init__(self,*args,**kwargs):
+        self.cnn =None
+        if type(args) is tuple and args.__len__() > 0:
+            if isinstance(args[0], QR):
+                self.cnn = args[0]
+        if type(args[0]) in [unicode, str] and args[0][0:10] == "mongodb://":
+            x = args[0]
+            x = x[10:x.__len__()]
+            if x.count("@") > 0:
+                items = x.split("@")
+                user_info = items[0].split(':')
+                db_info = items[1].split('/')
+
+                user = user_info[0]
+                password = user_info[1]
+                host_info = db_info[0].split(':')
+                host = host_info[0]
+                port = int(host_info[1])
+                db_name = db_info[1]
+                schema = None
+                if db_info[1].count(':') > 0:
+                    db_name = db_info[1].split(':')[0]
+                    schema = db_info[1].split(':')[1]
+                    self.cnn = connect(
+                    host=host,
+                    port=port,
+                    user=user,
+                    password=password,
+                    name=db_name
+                )
+                if schema != None:
+                    set_schema(schema)
+        self.cnn = connect(*args, **kwargs)
+    def __enter__(self):
+        db = get_db_context()
+        if db != None:
+            __cnns__.append(db)
+        set_db_context(self.cnn)
+    def __exit__(self, exc_type, exc_val, exc_tb):
+        if __cnns__.__len__()>0:
+            cnn = __cnns__.pop()
+            set_db_context(cnn)
 
