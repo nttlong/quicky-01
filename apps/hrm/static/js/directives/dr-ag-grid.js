@@ -403,7 +403,6 @@ var ag_grid_msg_delete_dialog ='<div class="modal" tabindex="-1" role="dialog">'
                 this.eInput=ele.find("components").find("#"+componentId).children()[0];
                 this.componentId=componentId;
                 params.column.colDef.$$$component=this.eInput;
-                
             }
             agBComponentEditor.prototype.getGui=function(){
                 return this.eInput;
