@@ -64,42 +64,50 @@ class dbcontext():
     def __init__(self,*args,**kwargs):
         self.cnn =None
         self.schema = None
-        if kwargs.has_key("schema"):
-            self.schema = kwargs["schema"]
-        if kwargs.has_key("db"):
-            self.cnn = kwargs["db"]
-        if type(args) is tuple and args.__len__() > 0:
-            if isinstance(args[0], QR):
-                self.cnn = args[0]
-        if type(args[0]) in [unicode, str] and args[0][0:10] == "mongodb://":
-            x = args[0]
-            x = x[10:x.__len__()]
-            if x.count("@") > 0:
-                items = x.split("@")
-                user_info = items[0].split(':')
-                db_info = items[1].split('/')
+        if args.__len__() == 0:
+            import pymongo
+            from . import database
+            if kwargs.has_key("schema"):
+                self.schema = kwargs["schema"]
+            if kwargs.has_key("db"):
+                if isinstance(kwargs["db"], QR):
+                    self.cnn = args[0]
+                elif type(kwargs['db']) is pymongo.database.Database:
+                    self.cnn = database.QR()
+                    self.cnn.db = kwargs["db"]
+        else:
+            if type(args) is tuple and args.__len__() > 0:
+                if isinstance(args[0], QR):
+                    self.cnn = args[0]
+            if type(args[0]) in [unicode, str] and args[0][0:10] == "mongodb://":
+                x = args[0]
+                x = x[10:x.__len__()]
+                if x.count("@") > 0:
+                    items = x.split("@")
+                    user_info = items[0].split(':')
+                    db_info = items[1].split('/')
 
-                user = user_info[0]
-                password = user_info[1]
-                host_info = db_info[0].split(':')
-                host = host_info[0]
-                port = int(host_info[1])
-                db_name = db_info[1]
-                schema = None
-                if db_info[1].count(':') > 0:
-                    db_name = db_info[1].split(':')[0]
-                    schema = db_info[1].split(':')[1]
-                    self.cnn = connect(
-                    host=host,
-                    port=port,
-                    user=user,
-                    password=password,
-                    name=db_name
-                )
-                if schema != None:
-                    set_schema(schema)
-        if self.cnn == None:
-            self.cnn = connect(*args, **kwargs)
+                    user = user_info[0]
+                    password = user_info[1]
+                    host_info = db_info[0].split(':')
+                    host = host_info[0]
+                    port = int(host_info[1])
+                    db_name = db_info[1]
+                    schema = None
+                    if db_info[1].count(':') > 0:
+                        db_name = db_info[1].split(':')[0]
+                        schema = db_info[1].split(':')[1]
+                        self.cnn = connect(
+                        host=host,
+                        port=port,
+                        user=user,
+                        password=password,
+                        name=db_name
+                    )
+                    if schema != None:
+                        set_schema(schema)
+            if self.cnn == None:
+                self.cnn = connect(*args, **kwargs)
 
 
     def __enter__(self):
