@@ -6,7 +6,26 @@ def get_version():
            "."+VERSION[3].__str__()+\
            "."+VERSION[4].__str__()
 class __collections__(object):
-    pass
+    def __init__(self):
+        self.__cnn__ = None
+        self.__schema__=None
+    def set_cnn(self,cnn):
+        self.__cnn__ =cnn
+    def set_schema(self,schema):
+        self.__schema__ =schema
+    def get_cnn(self):
+        return self.__cnn__
+    def get_schema(self):
+        return self.__schema__
+    def __getattr__(self, item):
+        if self.__cnn__!=None:
+            if hasattr(item,'coll'):
+                coll = getattr(item,'coll')
+                if hasattr(coll,'qr'):
+                    qr=getattr(coll,'qr')
+                    setattr(qr,'db',self.__cnn__)
+                if hasattr(coll,'set_schema'):
+                    coll.set_schema(self.__schema__)
 def auto_load(name,file):
     import importlib
     import imp
