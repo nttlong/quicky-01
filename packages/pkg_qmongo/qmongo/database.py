@@ -799,7 +799,7 @@ class COLL():
         return self._none_schema_name
 
     def get_collection_name(self):
-        if not self._never_use_schema:
+        if not self._never_use_schema or self.schema !=None or self.schema == "":
             return self.schema+"."+self._none_schema_name
         else:
             return self._none_schema_name
@@ -839,7 +839,7 @@ class COLL():
         if _cache_create_key_for_collection==None:
             _cache_create_key_for_collection={}
         ret_coll=None
-        if self._never_use_schema:
+        if self._never_use_schema or self.schema == None or self.schema == "":
             ret_coll = self.qr.db.get_collection(self._none_schema_name).with_options(codec_options=self.qr._codec_options)
         else:
             ret_coll=self.qr.db.get_collection(self.schema+"."+ self._none_schema_name).with_options(codec_options=self.qr._codec_options)
