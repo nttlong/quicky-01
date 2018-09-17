@@ -1,4 +1,4 @@
-VERSION = [1,0,0,"final",0]
+VERSION = [1,0,0,"beta",1]
 def get_version():
     return VERSION[0].__str__()+\
            "."+VERSION[1].__str__()+\
@@ -9,10 +9,12 @@ class __collections__(object):
     def __init__(self):
         self.__cnn__ = None
         self.__schema__=None
-    def set_cnn(self,cnn):
+    def set_db(self,cnn):
         self.__cnn__ =cnn
+        return self
     def set_schema(self,schema):
         self.__schema__ =schema
+        return self
     def get_cnn(self):
         return self.__cnn__
     def get_schema(self):
