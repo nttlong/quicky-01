@@ -44,7 +44,7 @@ class __collections__(object):
             super(__collections__, self).__setattr__(key, value)
 
     def __iter__(self):
-        return self.__my_dict__.items()
+        return self.__dict__.items()
 
         # setattr(item,"__entities__",self)
 
@@ -55,6 +55,12 @@ def auto_load(name, file):
     import sys
     import os
     mdl = sys.modules[name]
+    def set_db(db):
+        mdl.entities.set_db(db)
+    def set_schema(schema):
+        mdl.entities.set_schema(schema)
+    setattr(mdl,"set_db",set_db)
+    setattr(mdl, "set_schema", set_db)
     models = importlib.import_module("qmongo.helpers").models
     for x in os.walk(os.path.dirname(file)).next():
         if type(x) is list:
