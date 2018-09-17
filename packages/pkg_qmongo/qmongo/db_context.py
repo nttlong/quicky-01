@@ -91,7 +91,7 @@ class dbcontext():
                 )
                 if schema != None:
                     set_schema(schema)
-        self.cnn = connect(*args, **kwargs)
+            self.cnn = connect(*args, **kwargs)
     def __enter__(self):
         db = get_db_context()
         if db != None:
