@@ -1,5 +1,7 @@
 global __cnns__
+global __schemas__
 __cnns__ = []
+__schemas__=[]
 from . database import connect
 from . database import QR
 def set_db_context(*args,**kwargs):
@@ -59,8 +61,9 @@ def get_db_context():
 
 
 class dbcontext():
-    def __init__(self,*args,**kwargs):
+    def __init__(self,schema=None,*args,**kwargs):
         self.cnn =None
+        self.schema=schema
         if type(args) is tuple and args.__len__() > 0:
             if isinstance(args[0], QR):
                 self.cnn = args[0]
@@ -96,9 +99,16 @@ class dbcontext():
         db = get_db_context()
         if db != None:
             __cnns__.append(db)
+        schema = get_schema()
+        if schema!=None:
+            __schemas__.append(schema)
         set_db_context(self.cnn)
+        set_schema(self.schema)
     def __exit__(self, exc_type, exc_val, exc_tb):
         if __cnns__.__len__()>0:
             cnn = __cnns__.pop()
             set_db_context(cnn)
+        if __schemas__.__len__()>0:
+            schema = __schemas__.pop()
+            set_schema(schema)
 
