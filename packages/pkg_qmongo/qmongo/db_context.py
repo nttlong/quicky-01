@@ -71,7 +71,7 @@ class dbcontext():
                 self.schema = kwargs["schema"]
             if kwargs.has_key("db"):
                 if isinstance(kwargs["db"], QR):
-                    self.cnn = args[0]
+                    self.cnn = kwargs["db"]
                 elif type(kwargs['db']) is pymongo.database.Database:
                     self.cnn = database.QR()
                     self.cnn.db = kwargs["db"]
