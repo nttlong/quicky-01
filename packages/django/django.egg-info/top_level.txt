@@ -1,0 +1,7 @@
+autoload
+dbindexer
+django
+django_mongodb_engine
+djangoappengine
+djangotoolbox
+permission_backend_nonrel
