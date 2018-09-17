@@ -210,12 +210,21 @@ class __obj_model__(object):
         return ret
     @property
     def coll(self,context = None):
+        import pymongo
         from . import database
 
         ret = database.QR()
         # ret.db = context.db
 
-        return ret.collection(self.__name__)
+        ret_item = ret.collection(self.__name__)
+        if hasattr(self,"__db__"):
+            if type(self.__db__) is pymongo.database.Database:
+                setattr(ret_item.qr,"db",self.__db__)
+            else:
+                setattr(ret_item.qr, "db", self.__db__.db)
+        if hasattr(self,"__schema__"):
+            ret_item.set_schema(self.__schema__)
+        return ret_item
     def where(self,expression,*args,**kwargs):
         return self.coll.where(expression,*args,**kwargs)
     def objects(self,filter = None,*args,**kwargs):
