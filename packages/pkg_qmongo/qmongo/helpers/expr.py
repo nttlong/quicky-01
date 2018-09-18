@@ -466,7 +466,7 @@ def get_tree(expr,*params,**kwargs):
             }
 
         elif cmp.value.func.id == "exists":
-            fx= get_left(cmp.value)
+            fx= get_left(cmp.value,*params)
             return {
                 "left":__trim_first_charator("$",fx['params'][0]),
                 "operator":"$exists",
@@ -474,7 +474,7 @@ def get_tree(expr,*params,**kwargs):
             }
 
         elif cmp.value.func.id == "notExists":
-            fx = get_left(cmp.value)
+            fx = get_left(cmp.value,*params)
             return {
                 "left": __trim_first_charator("$",fx['params'][0]),
                 "operator": "$exists",
@@ -581,7 +581,7 @@ def get_tree(expr,*params,**kwargs):
 
         else:
             support_funcs="contains(field name,text value)\n" \
-                          "notContains(field name,text value)" \
+                          "notContains(field name,text value)\n" \
                           "start(field name,text value)\n" \
                           "end(field name,text value)\n" \
                           "exists(field name)\n" \
@@ -589,12 +589,13 @@ def get_tree(expr,*params,**kwargs):
                           "_in(field name, array)\n" \
                           "not_in(field name, array)," \
                           "_all(field name, array)\n" \
-                          "elemMatch(conditional)\n" \
+                          "elemMatch(array field,conditional with field in array)\n" \
+                          "\t\tex:elemMatch(users,username=='admin')\n" \
                           "_and(logical expr 1,..,logical expr n)\n" \
                           "_or(logical expr 1,..,logical expr n)\n" \
                           "isType(field name,the text describe mongodb type)\n" \
                           "expr(logic expression)\n" \
-                          "search(text search value)" \
+                          "search(text search value)\n" \
                           "nor(logical expr 1,..,logical expr n)\n ------------  '\_(^|^)_/`------------"
 
 
@@ -690,7 +691,7 @@ def get_elem_match(cmp, *params):
         return {
             "left": _left,
             "operator": "$elemMatch",
-            "right": [get_left(x) for x in args if args.index(x) > 0]
+            "right": [get_left(x,params) for x in args if args.index(x) > 0]
 
         }
     else:
@@ -746,7 +747,10 @@ def get_expr(fx,*params):
     #     params=[params[key] for key in params.keys()]
 
     if(type(fx) in [str,unicode]):
-        return fx
+        if fx[0]=='$':
+            return fx[1:fx.__len__()]
+        else:
+            return fx
     ret={}
     if fx.has_key('operator'):
         if fx['operator'] in ['nor',"_and","_or"]:
@@ -756,9 +760,8 @@ def get_expr(fx,*params):
             }
         if fx["operator"] =="$elemMatch":
             if type(fx['right']) is list:
-                _right = {}
                 for x in fx['right']:
-                    _x =get_expr(x)
+                    _x =get_expr(x,*params)
                     _right.update(_x[_x.keys()[0]])
                 return {
                     fx['left']: {
@@ -777,7 +780,7 @@ def get_expr(fx,*params):
             else:
                 return {
                     fx['left']: {
-                        '$elemMatch': get_expr(fx['right'])
+                        '$elemMatch': get_expr(fx['right'],*params)
                     }
                 }
 
@@ -850,7 +853,7 @@ def get_expr(fx,*params):
             return fx["id"]
         if fx["operator"] == "isType":
             return {
-                fx['left']:{
+                get_expr(fx['left']):{
                     '$type':fx['right']
                 }
 
@@ -1048,6 +1051,8 @@ def get_expr(fx,*params):
                 #         get_expr(x,*params) for x in fx["expr"]
                 #     ]
                 # }
+    elif fx['id']=='get_params':
+        return params[fx['value']]
     elif fx.has_key("type"):
         if fx["type"]=="function":
             return {
@@ -1343,6 +1348,33 @@ def verify_match(fx):
             .format(fx["left"]["value"])
     else:
         return verify_match(fx["left"])
+def __fix_index__(obj_dict):
+    """
+    This method fix the expression with index for mongodb
+    :param obj_dict:
+    :return:
+    """
+    ret = {}
+    for k,v in obj_dict.items():
+        if type(v) is dict:
+            ret.update({
+                k.replace("[",".").replace("].","."):__fix_index__(v)
+            })
+        elif type(v) is list:
+            items  = []
+            for x in v:
+                if type(x) is dict:
+                    items.append(__fix_index__(x))
+                else:
+                    items.append(x)
+            ret.update({
+                k.replace("[", ".").replace("].", "."): items
+            })
+        else:
+            ret.update({
+                k.replace("[", ".").replace("].", "."):v
+            })
+    return ret
 def parse_expression_to_json_expression(expression,*params,**kwargs):
     import sys, traceback
 
@@ -1360,11 +1392,11 @@ def parse_expression_to_json_expression(expression,*params,**kwargs):
 
         if type(params) is tuple and params.__len__()>0:
             # params = params[0]
-            return get_expr(expr_tree, *params,**kwargs)
+            return __fix_index__(get_expr(expr_tree, *params,**kwargs))
         else:
             params = kwargs
             items = [v for k, v in params.items()]
-            return get_expr(expr_tree,*items)
+            return __fix_index__(get_expr(expr_tree,*items))
     except Exception as ex:
         print traceback.format_exc()
         raise Exception("Below expression is invalid:\n"

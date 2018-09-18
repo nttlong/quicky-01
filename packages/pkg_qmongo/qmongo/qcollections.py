@@ -324,7 +324,7 @@ class queryable(object):
             "$replaceRoot": {"newRoot": (lambda x: "$" + x if x[0] != "$" else x)(field)}
         })
         return self
-    def unwind(self,field,field_name,preserve_null_and_empty_arrays=True):
+    def unwind(self,field,preserve_null_and_empty_arrays=True):
         self.__pipe_line__.append({
             "$unwind": {"path":(lambda x: "$" + x if x[0] != "$" else x)(field),
                         "preserveNullAndEmptyArrays":preserve_null_and_empty_arrays
@@ -341,33 +341,25 @@ class queryable(object):
             }
         })
         return self
+    def group(self,_id,selectors,*args,**kwargs):
+        from helpers import expr
+        __id ={}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+        if type(_id) is dict:
+            for key,value in _id.items():
+                __id.update({
+                    key:expr.get_calc_expr(value,*args,**kwargs)
+                })
+        else:
+            __id = "$" + _id
+        _group = {
+            "$group": {
+                "_id": __id
+            }
+        }
+        for key,value in selectors.items():
+            _group["$group"].update({
+                key:expr.get_calc_expr(value,*args,**kwargs)
+            })
+        self.__pipe_line__.append(_group)
+        return self

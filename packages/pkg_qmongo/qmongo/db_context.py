@@ -6,10 +6,17 @@ from . database import connect
 from . database import QR
 def set_db_context(*args,**kwargs):
     import threading
+    import pymongo
     cnn = None
     if type(args) is tuple and args.__len__()>0:
         if isinstance(args[0],QR):
             cnn= args[0]
+        elif type(args[0]) is pymongo.database.Database:
+            cnn = QR(args[0])
+            setattr(threading.currentThread(), "__qmongo_db_context_current_db", cnn)
+            return cnn
+
+
     if type(args[0]) in [unicode,str] and args[0][0:10] == "mongodb://":
         x= args[0]
         x = x[10:x.__len__()]
