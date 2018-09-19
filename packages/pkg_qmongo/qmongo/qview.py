@@ -41,15 +41,12 @@ def create_mongodb_view(aggregate,name):
                                      "qmongo.set_db_context(\"mongodb://{username}:{password}@{host}:{port}/{database name}[:{schema}]\")"))
                 else:
                     self.qr.db = context.db
-            if self.schema == None:
+            if self.schema == None or self.schema == "":
                 from .db_context import get_schema
                 self.schema = get_schema()
-                if self.schema == None:
-                    raise (Exception("Please use:\n"
-                                     "import qmongo\n"
-                                     "qmongo.set_schema(schema_name)"))
-
-            view_name = "{0}.{1}".format(self.schema, self._none_schema_name)
+            view_name = self._none_schema_name
+            if self.schema != None and self.schema !="":
+                view_name = "{0}.{1}".format(self.schema, self._none_schema_name)
 
             command_object = (
                 view_name,
