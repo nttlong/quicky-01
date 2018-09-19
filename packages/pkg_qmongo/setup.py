@@ -2,7 +2,7 @@ from setuptools import setup
 
 setup(
     name='qmongo',
-    version='1.0.beta.4',
+    version='1.0.beta.5',
     packages=['qmongo', 'qmongo.helpers'],
     url='',
     license='',

@@ -90,9 +90,9 @@ def create_mongodb_view(aggregate,name):
             setattr(ret, "__initial_pipe__", [x.copy() for x in aggregate._pipe])
         _cach_view[name] = ret
         import qmongo
-        if not hasattr(qmongo.models,"views"):
-            setattr(qmongo.models,"views",__views__())
-        _views = getattr(qmongo.models,"views")
+        if not hasattr(qmongo,"views"):
+            setattr(qmongo,"views",__views__())
+        _views = getattr(qmongo,"views")
         if hasattr(qmongo.models, name):
             view_entity = getattr(qmongo.models, name)
             setattr(_views,name,view_entity)
