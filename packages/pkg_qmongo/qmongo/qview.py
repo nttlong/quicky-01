@@ -6,8 +6,9 @@ class listofviews(dict):
 
         ret = super(listofviews, self).__getitem__(item)
         schema = ret.get_collection_name().split('.')[0]
-        ret.__create_mongodb_view__(ret,"{0}.{1}".format(schema,ret.__source_name__))
-
+        def __create_as_view__(schema):
+            ret.__create_mongodb_view__(ret,"{0}.{1}".format(schema,ret.__source_name__))
+        setattr(ret, "__create_as_view__", __create_as_view__)
         return ret
 global _cach_view
 _cach_view=listofviews()

@@ -836,6 +836,9 @@ class COLL():
         #     delattr(self,"__create_mongodb_view__")
 
         global _cache_create_key_for_collection
+        from . import qview
+        if qview._cach_view.has_key(self._none_schema_name):
+            qview._cach_view[self._none_schema_name].__create_as_view__(self.schema)
         if _cache_create_key_for_collection==None:
             _cache_create_key_for_collection={}
         ret_coll=None
@@ -1816,6 +1819,28 @@ def connect(*args,**kwargs):
     """
     try:
         global _db
+        if args.__len__()==1 and  type(args[0]) is pymongo.database.Database:
+            db = args[0]
+            host = db.client.address[0]
+            port = db.client.address[1]
+            name = db.name
+            key = "host={0};port={1};name={2}".format(
+                host,
+                port,
+                name
+            )
+            if not _db.has_key(key):
+                version = db.eval("return db.version()")
+
+                _db[key] = {
+                    "database": db,
+                    "codec_options": codec_options,
+                    "version": version,
+                    "versions": version.split('.')
+                }
+            return QR(_db[key])
+
+
         if args.__len__()==0:
             args=kwargs
         else:
@@ -1831,14 +1856,10 @@ def connect(*args,**kwargs):
             if not dict_utils.has_key(args,"password") or args.get("password", "") == "":
                 raise (Exception("This look like you forgot set 'user' and 'password' params.\n How is your mongodb authorization?"))
 
-        key="host={0};port={1};user={2};pass={3};name={4}".format(
+        key="host={0};port={1};name={2}".format(
             args["host"],
             args["port"],
-            args.get("user","none"),
-            args.get("password","none"),
-            args["name"],
-            args.get("tz_aware",False),
-            args.get("timezone",None)
+            args["name"]
         )
         if not dict_utils.has_key(_db,key):
             cnn=MongoClient(
@@ -1965,17 +1986,3 @@ class GRIDFS(object):
                     raise ex
                 elif exec_mode.get_mode() == "return":
                     return None, ex
-
-
-
-
-
-
-
-
-
-
-
-
-
-
