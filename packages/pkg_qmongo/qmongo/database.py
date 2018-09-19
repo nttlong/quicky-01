@@ -1796,6 +1796,13 @@ class AGGREGATE():
             "$replaceRoot":{"newRoot":(lambda x : "$"+x if x[0] != "$" else x)(field)}
         })
         return self
+    def as_view(self,viewname):
+        from . import qview
+        ret = qview.create_mongodb_view(
+            self,
+            viewname
+        )
+        return ret
 def connect(*args,**kwargs):
     """
     Create db instance <br/>
