@@ -220,7 +220,7 @@ class __obj_model__(object):
         if hasattr(self,"__db__"):
             if type(self.__db__) is pymongo.database.Database:
                 setattr(ret_item.qr,"db",self.__db__)
-            else:
+            elif hasattr(self.__db__,"db"):
                 setattr(ret_item.qr, "db", self.__db__.db)
         if hasattr(self,"__schema__"):
             ret_item.set_schema(self.__schema__)

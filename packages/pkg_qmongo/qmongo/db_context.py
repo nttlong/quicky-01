@@ -5,14 +5,31 @@ __schemas__=[]
 from . database import connect
 from . database import QR
 def set_db_context(*args,**kwargs):
+    if args == () and kwargs == {}:
+        raise (Exception("It lools like you forgot set arguments for 'set_db_context'\n"
+                         "\tHow to use 'qmongo.db_context.set_db_context'?:\n"
+                         "\t\t 1- qmongo.db_context.set_db_context('mongodb://<user>:<password>@<host>:<port>/<database>[:<schemma>]')\n"
+                         "\t\t 2- qmongo.db_context.set_db_context(pymongo.database.Database instance)\n"
+                         "\t\t 3- qmongo.db_context.set_db_context(db=pymongo.database.Database instance,schema='<schema name>')"))
     import threading
     import pymongo
     cnn = None
+
+    if args == () and kwargs != {}:
+        if kwargs.has_key("db") and type(kwargs["db"]) is pymongo.database.Database:
+            cnn = QR()
+            cnn.db = kwargs["db"]
+            setattr(threading.currentThread(), "__qmongo_db_context_current_db", cnn)
+        if kwargs.has_key("schema") and type("schema") in [str,unicode]:
+            set_schema(kwargs["schema"])
+        return cnn
+
     if type(args) is tuple and args.__len__()>0:
         if isinstance(args[0],QR):
             cnn= args[0]
         elif type(args[0]) is pymongo.database.Database:
-            cnn = QR(args[0])
+            cnn = QR()
+            cnn.db =args[0]
             setattr(threading.currentThread(), "__qmongo_db_context_current_db", cnn)
             return cnn
 
@@ -45,6 +62,7 @@ def set_db_context(*args,**kwargs):
             if schema != None:
                 set_schema(schema)
 
+
     if cnn == None:
         cnn = connect(*args, **kwargs)
     setattr(threading.currentThread(),"__qmongo_db_context_current_db",cnn)
@@ -69,6 +87,12 @@ def get_db_context():
 
 class dbcontext():
     def __init__(self,*args,**kwargs):
+        if args == () and kwargs == {}:
+            raise (Exception("It lools like you forgot set arguments for 'set_db_context'\n"
+                             "\tHow to use 'qmongo.db_context.set_db_context'?:\n"
+                             "\t\t 1- qmongo.db_context.set_db_context('mongodb://<user>:<password>@<host>:<port>/<database>[:<schemma>]')\n"
+                             "\t\t 2- qmongo.db_context.set_db_context(pymongo.database.Database instance)\n"
+                             "\t\t 3- qmongo.db_context.set_db_context(db=pymongo.database.Database instance,schema='<schema name>')"))
         self.cnn =None
         self.schema = None
         if args.__len__() == 0:
