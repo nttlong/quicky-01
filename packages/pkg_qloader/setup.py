@@ -1,7 +1,7 @@
 from setuptools import setup
 setup(
     name='qloader',
-    version='1.0.0.1',
+    version='1.0.0.2',
     packages=['qloader'],
     url='',
     license='',

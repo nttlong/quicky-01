@@ -809,8 +809,6 @@ class COLL():
         get mongodb collection, before get this method will run create unique key script according to 'key' in model
         :return:
         """
-
-
         context = self.qr.db
         if context == None:
             from . import db_context

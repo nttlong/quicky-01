@@ -1,4 +1,4 @@
-VERSION = [1, 0, 0, "beta", 1]
+VERSION = [1, 0, 0, "beta", 2]
 
 
 def get_version():
@@ -79,3 +79,19 @@ def auto_load(name, file):
                                 setattr(mdl, "entities", __collections__())
                             colls = getattr(mdl, "entities")
                             setattr(colls, module_name, m)
+    import sys
+    sys.path.append(os.path.dirname(file)+os.sep+"views")
+    for x in os.walk(os.path.dirname(file)+os.sep+"views").next():
+        if type(x) is list:
+            for f in x:
+                if f[f.__len__() - 3:f.__len__()] == ".py":
+                    items = f.split(os.sep)
+                    file_name = items[items.__len__() - 1]
+                    module_name = file_name.split('.')[0]
+                    if module_name != "__init__":
+                        print "auto load import view from file {0}".format(f)
+                        _mdl = importlib.import_module(name + ".views." + module_name)
+                        if not hasattr(mdl, "views"):
+                            setattr(mdl, "views", __collections__())
+                        colls = getattr(mdl, "views")
+                        setattr(colls, module_name, m)
