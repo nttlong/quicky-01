@@ -274,9 +274,13 @@ class ENTITY():
         self._action="delete"
         return self
     def get_duplicate_error(self,ex):
-        start = ex.message.find(" index:") + " index:".__len__()
-        end = ex.message.find(" dup key:", start)
-        key = ex.message[start:end]
+        msg =ex.message
+        return self.__get_duplicate_error_by_msg__(msg)
+
+    def __get_duplicate_error_by_msg__(self, msg):
+        start = msg.find(" index:") + " index:".__len__()
+        end = msg.find(" dup key:", start)
+        key = msg[start:end]
         key = key.replace(" ", "")
         __schema__ = self._coll.schema
         if __schema__ == None:
@@ -292,23 +296,27 @@ class ENTITY():
                 code="duplicate"
             )
         )
+
     def commit(self,session = None):
         """
         Commit actio. Example; insert_many then commit, update or delete require filter before
         :return:
         """
+
+
         _id=None
         if session != None and not isinstance(session,ClientSession):
             raise (Exception("Session must be 'pymongo.client_session.ClientSession'"))
-        if self._data.has_key("$set"):
-            _id=self._data["$set"].get("_id",None)
-            for key in self._data["$set"].keys():
-                if (key[0:1]=="$" or key == "_id") and (key not in ["$push","$pull"]):
-                    self._data["$set"].pop(key)
-        else:
-            for key in self._data.keys():
-                if (key[0:1]=="$" or key == "_id") and (key not in ["$push","$pull"]):
-                    self._data.pop(key)
+        if type(self._data) is dict:
+            if self._data.has_key("$set"):
+                _id=self._data["$set"].get("_id",None)
+                for key in self._data["$set"].keys():
+                    if (key[0:1]=="$" or key == "_id") and (key not in ["$push","$pull"]):
+                        self._data["$set"].pop(key)
+            else:
+                for key in self._data.keys():
+                    if (key[0:1]=="$" or key == "_id") and (key not in ["$push","$pull"]):
+                        self._data.pop(key)
 
 
 
@@ -388,14 +396,54 @@ class ENTITY():
 
 
         elif self._action=="insert_many":
+
             if model_events:
                 for item in self._data:
                     for fn in model_events._on_before_insert:
                         fn(item)
-            ret = _coll.insert_many(self._data)
-            self._action = None
-            self._data = {}
-            return ret
+            try:
+                ret = _coll.insert_many(self._data)
+                self._action = None
+                ret_data=list(self._data)
+                for x in ret_data:
+                    x["_id"]=ret.inserted_ids[ret_data.index(x)]
+                self._data = {}
+                if exec_mode.get_mode()=="off":
+                    return dict(
+                        data=ret_data,
+                        error=None
+                    )
+                if exec_mode.get_mode()=="on":
+                    return ret_data
+                if exec_mode.get_mode()=="return":
+                    return ret_data,None,"Insert many is successful"
+            except pymongo.errors.BulkWriteError as ex:
+                error=dict(
+                    code="system",
+                    error=dict(
+                        message=ex.message
+                    )
+                )
+                _ex=ex
+                _msg=None
+                if hasattr(ex,'details') and ex.details.has_key('writeErrors') and ex.details['writeErrors'].__len__()>0:
+                    if ex.details['writeErrors'][0].get('code',None)==11000:
+                        error = self.__get_duplicate_error_by_msg__(ex.details['writeErrors'][0]['errmsg'])
+                        _ex = Exception("Duplicate data")
+                        setattr(_ex,"fields",error['error']['fields'])
+                        _msg="insert many duplicate data"
+                if exec_mode.get_mode() == "on":
+                    raise _ex
+                if exec_mode.get_mode() == "off":
+                    return error
+                if exec_mode.get_mode()=="return":
+                    from . import fx_model
+                    return self._data,fx_model.s_obj(error),_msg
+
+            except Exception as ex:
+                raise ex
+
+
         else:
             if self._expr==None:
                 raise Exception("Can not modified data without using filter")
@@ -1031,8 +1079,10 @@ class COLL():
         :param kwargs:
         :return: dict including data has been inserted and error
         """
-
-        ac=self.entity().insert_one(*args,**kwargs)
+        if args.__len__()==1 and type(args[0]) is list:
+            ac = self.entity().insert_many(args[0])
+        else:
+            ac=self.entity().insert_one(*args,**kwargs)
         ret=ac.commit(self.session)
         return ret
     def insert_one(self,*args,**kwargs):

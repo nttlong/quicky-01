@@ -1,8 +1,8 @@
 from setuptools import setup
-
+import qmongo
 setup(
     name='qmongo',
-    version='1.0.beta.5',
+    version=qmongo.get_version(),
     packages=['qmongo', 'qmongo.helpers'],
     url='',
     license='',
