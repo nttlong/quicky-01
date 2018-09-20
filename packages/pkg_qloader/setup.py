@@ -1,11 +1,12 @@
 from setuptools import setup
+import qloader
 setup(
     name='qloader',
-    version='1.0.0.2',
+    version=qloader.get_version(),
     packages=['qloader'],
     url='',
     license='',
     author='nttlong',
-    author_email='zugeliang2000@gmail.com',
+    author_email='nttlong@lacviet.com.vn',
     description=''
 )

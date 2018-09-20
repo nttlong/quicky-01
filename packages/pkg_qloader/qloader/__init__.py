@@ -1,4 +1,4 @@
-VERSION = [1, 0, 0, "beta", 2]
+VERSION = [1, 0, 0, "beta", 1]
 
 
 def get_version():
@@ -73,12 +73,16 @@ def auto_load(name, file):
                         print "auto load import file {0}".format(f)
 
                         _mdl = importlib.import_module(name + "." + module_name)
-                        if hasattr(models, module_name):
-                            m = getattr(models, module_name)
+                        model_name = module_name
+                        if hasattr(_mdl,"NAME"):
+                            model_name = _mdl.NAME
+                        if hasattr(models, model_name):
+                            m = getattr(models, model_name)
                             if not hasattr(mdl, "entities"):
                                 setattr(mdl, "entities", __collections__())
                             colls = getattr(mdl, "entities")
-                            setattr(colls, module_name, m)
+                            setattr(m,"__source_file__",f)
+                            setattr(colls, model_name, m)
     import sys
     sys.path.append(os.path.dirname(file)+os.sep+"views")
     for x in os.walk(os.path.dirname(file)+os.sep+"views").next():
@@ -93,5 +97,11 @@ def auto_load(name, file):
                         _mdl = importlib.import_module(name + ".views." + module_name)
                         if not hasattr(mdl, "views"):
                             setattr(mdl, "views", __collections__())
+                        view_name = module_name
                         colls = getattr(mdl, "views")
-                        setattr(colls, module_name, m)
+                        if hasattr(mdl,"NAME"):
+                            view_name = mdl.NAME
+                        import qmongo
+                        if qmongo.qview._cach_view.has_key(view_name):
+                            setattr(qmongo.qview._cach_view[view_name],"__source_file__",f)
+                            setattr(colls, view_name, qmongo.qview._cach_view[view_name])
