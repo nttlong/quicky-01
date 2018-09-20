@@ -146,9 +146,12 @@ class config(object):
                     ret=ret.get(col.depth_fields[i],{})
                     if ret == None:
                         ret = {}
-                if type(ret) is list:
+                type_of_ret = type(ret)
+                if type_of_ret is list:
                     val = "[..]"
                     ret_list.append(val)
+                elif not type_of_ret is dict:
+                    val = ret
                 else:
                     val = ret.get(col.depth_fields[col.depth_count-1],None)
                     if val != None and hasattr(val,"_ObjectId__id"):
