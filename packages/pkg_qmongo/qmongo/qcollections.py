@@ -62,10 +62,6 @@ class __aggregate__():
         else:
             cursor = self.__coll__.aggregate(self.__pipeline, self.__session__)
         return self.__fetch__(cursor)
-
-
-
-
 class queryable(object):
     def __init__(self,*args,**kwargs):
         if args ==() and kwargs == {}:
@@ -362,4 +358,27 @@ class queryable(object):
                 key:expr.get_calc_expr(value,*args,**kwargs)
             })
         self.__pipe_line__.append(_group)
+        return self
+    def sort(self,*args,**kwargs):
+        import pymongo
+        _sort_ = None
+
+        if args.__len__()>0:
+            _sort_ =args[0]
+        else:
+            _sort_ = kwargs
+
+        _ret_sort= {}
+        for k,v in _sort_.items():
+            if v==1:
+                _ret_sort.update({
+                    k:pymongo.ASCENDING
+                })
+            else:
+                _ret_sort.update({
+                    k: pymongo.ASCENDING
+                })
+        self.__pipe_line__.append({
+            "$sort": _ret_sort
+        })
         return self
