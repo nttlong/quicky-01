@@ -1,4 +1,4 @@
-VERSION = [1, 0, 0, "beta", 1]
+VERSION = [1, 0, 0, "beta", 2]
 
 
 def get_version():
@@ -62,46 +62,58 @@ def auto_load(name, file):
     setattr(mdl,"set_db",set_db)
     setattr(mdl, "set_schema", set_db)
     models = importlib.import_module("qmongo.helpers").models
-    for x in os.walk(os.path.dirname(file)).next():
-        if type(x) is list:
-            for f in x:
-                if f[f.__len__() - 3:f.__len__()] == ".py":
-                    items = f.split(os.sep)
-                    file_name = items[items.__len__() - 1]
-                    module_name = file_name.split('.')[0]
-                    if module_name != "__init__":
-                        print "auto load import file {0}".format(f)
+    try:
+        for x in os.walk(os.path.dirname(file)).next():
+            if type(x) is list:
+                for f in x:
+                    if f[f.__len__() - 3:f.__len__()] == ".py":
+                        items = f.split(os.sep)
+                        file_name = items[items.__len__() - 1]
+                        module_name = file_name.split('.')[0]
+                        if module_name != "__init__":
+                            print "auto load import file {0}".format(f)
 
-                        _mdl = importlib.import_module(name + "." + module_name)
-                        model_name = module_name
-                        if hasattr(_mdl,"NAME"):
-                            model_name = _mdl.NAME
-                        if hasattr(models, model_name):
-                            m = getattr(models, model_name)
-                            if not hasattr(mdl, "entities"):
-                                setattr(mdl, "entities", __collections__())
-                            colls = getattr(mdl, "entities")
-                            setattr(m,"__source_file__",f)
-                            setattr(colls, model_name, m)
+                            _mdl = importlib.import_module(name + "." + module_name)
+                            model_name = module_name
+                            if hasattr(_mdl,"NAME"):
+                                model_name = _mdl.NAME
+                            if hasattr(models, model_name):
+                                m = getattr(models, model_name)
+                                if not hasattr(mdl, "entities"):
+                                    setattr(mdl, "entities", __collections__())
+                                colls = getattr(mdl, "entities")
+                                setattr(m,"__source_file__",f)
+                                setattr(colls, model_name, m)
+    except StopIteration as ex:
+        pass
+    except Exception as ex:
+        raise ex
+
     import sys
     sys.path.append(os.path.dirname(file)+os.sep+"views")
-    for x in os.walk(os.path.dirname(file)+os.sep+"views").next():
-        if type(x) is list:
-            for f in x:
-                if f[f.__len__() - 3:f.__len__()] == ".py":
-                    items = f.split(os.sep)
-                    file_name = items[items.__len__() - 1]
-                    module_name = file_name.split('.')[0]
-                    if module_name != "__init__":
-                        print "auto load import view from file {0}".format(f)
-                        _mdl = importlib.import_module(name + ".views." + module_name)
-                        if not hasattr(mdl, "views"):
-                            setattr(mdl, "views", __collections__())
-                        view_name = module_name
-                        colls = getattr(mdl, "views")
-                        if hasattr(mdl,"NAME"):
-                            view_name = mdl.NAME
-                        import qmongo
-                        if qmongo.qview._cach_view.has_key(view_name):
-                            setattr(qmongo.qview._cach_view[view_name],"__source_file__",f)
-                            setattr(colls, view_name, qmongo.qview._cach_view[view_name])
+    try:
+
+        for x in os.walk(os.path.dirname(file)+os.sep+"views").next():
+            if type(x) is list:
+                for f in x:
+                    if f[f.__len__() - 3:f.__len__()] == ".py":
+                        items = f.split(os.sep)
+                        file_name = items[items.__len__() - 1]
+                        module_name = file_name.split('.')[0]
+                        if module_name != "__init__":
+                            print "auto load import view from file {0}".format(f)
+                            _mdl = importlib.import_module(name + ".views." + module_name)
+                            if not hasattr(mdl, "views"):
+                                setattr(mdl, "views", __collections__())
+                            view_name = module_name
+                            colls = getattr(mdl, "views")
+                            if hasattr(mdl,"NAME"):
+                                view_name = mdl.NAME
+                            import qmongo
+                            if qmongo.qview._cach_view.has_key(view_name):
+                                setattr(qmongo.qview._cach_view[view_name],"__source_file__",f)
+                                setattr(colls, view_name, qmongo.qview._cach_view[view_name])
+    except StopIteration as ex:
+        pass
+    except Exception as ex:
+        raise ex
