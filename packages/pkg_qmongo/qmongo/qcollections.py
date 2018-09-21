@@ -62,6 +62,10 @@ class __aggregate__():
         else:
             cursor = self.__coll__.aggregate(self.__pipeline, self.__session__)
         return self.__fetch__(cursor)
+
+
+
+
 class queryable(object):
     def __init__(self,*args,**kwargs):
         if args ==() and kwargs == {}:
@@ -343,9 +347,14 @@ class queryable(object):
 
         if type(_id) is dict:
             for key,value in _id.items():
-                __id.update({
-                    key:expr.get_calc_expr(value,*args,**kwargs)
-                })
+                if type(value) is dict:
+                    __id.update({
+                        key: value
+                    })
+                else:
+                    __id.update({
+                        key:expr.get_calc_expr(value,*args,**kwargs)
+                    })
         else:
             __id = "$" + _id
         _group = {
@@ -354,9 +363,14 @@ class queryable(object):
             }
         }
         for key,value in selectors.items():
-            _group["$group"].update({
-                key:expr.get_calc_expr(value,*args,**kwargs)
-            })
+            if type(value) is dict:
+                _group["$group"].update({
+                    key: value
+                })
+            else:
+                _group["$group"].update({
+                    key:expr.get_calc_expr(value)
+                })
         self.__pipe_line__.append(_group)
         return self
     def sort(self,*args,**kwargs):
