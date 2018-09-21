@@ -1,8 +1,8 @@
 from setuptools import setup
-
+import quicky
 setup(
     name='quicky',
-    version='1.0.0.0',
+    version=quicky.get_version(),
     packages=['quicky', 'quicky.db', 'quicky.JSON', 'quicky.backends', 'quicky.middleware', 'quicky.qvideo_stream'],
     url='',
     license='MIT',

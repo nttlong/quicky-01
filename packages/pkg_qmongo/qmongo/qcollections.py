@@ -51,9 +51,9 @@ class __aggregate__():
     @property
     def items(self):
         if self.__session__ == None:
-            cursor = self.__coll__.aggregate(self.__pipeline__)
+            cursor = self.__coll__.aggregate(self.__pipeline__,allowDiskUse=True)
         else:
-            cursor = self.__coll__.aggregate(self.__pipeline__,self.__session__)
+            cursor = self.__coll__.aggregate(self.__pipeline__,self.__session__,allowDiskUse=True)
         return list(cursor)
     @property
     def objects(self):

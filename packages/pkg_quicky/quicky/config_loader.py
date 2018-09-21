@@ -38,28 +38,33 @@ def load_config(file_name,none_params=False):
                 elif key == "DB_BACK_END":
                     pass
                 elif key == "DB_API_CACHE":
-                    pass
+                    setattr(settings, key, config_from_file[key])
                 elif key == "AUTHORIZATION_ENGINE":
-                    pass
+                    setattr(settings, key, config_from_file[key])
                 elif key == "DB_AUTH":
                     import quicky
 
                     quicky.authorize.set_config(config_from_file[key])
+                    setattr(settings, key, config_from_file[key])
                 elif key == "DB_LANGUAGE":
                     import quicky
 
                     quicky.language.set_config(config_from_file[key])
+                    setattr(settings, key, config_from_file[key])
                 elif key == "DB_ENCRYPTOR_CACHE":
                     from . import encryptor
 
                     encryptor.set_config(config_from_file[key])
+                    setattr(settings, key, config_from_file[key])
                 elif key == "DB_EXCEL_EXPORT_CONFIG":
                     from . import language
 
                     language.set_config(config_from_file[key])
+                    setattr(settings, key, config_from_file[key])
                 elif key == "DB_TRACKING":
                     import qtracking
                     qtracking.set_config(config_from_file[key])
+                    setattr(settings,key,config_from_file[key])
                 elif key == "APPS":
                     pass
                 else:

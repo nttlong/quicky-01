@@ -1724,7 +1724,7 @@ class AGGREGATE():
         #     return list(self.qr.db.get_collection(self.name).aggregate(self._pipe))
         # coll=self.qr.db.get_collection(self.name).with_options(codec_options=self.qr._codec_options)
         coll = self._coll.get_collection()
-        coll_ret = coll.aggregate(self._pipe, self.session)
+        coll_ret = coll.aggregate(self._pipe, self.session,allowDiskUse=True)
         return coll_ret
     def get_objects(self):
         from . import fx_model
