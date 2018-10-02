@@ -6,7 +6,7 @@
         { "data": "equipment_name2", "title": "${get_res('equipment_name2','Tên khác')}"},
         { "data": "note", "title": "${get_res('note','Note')}" },
         { "data": "ordinal", "title": "${get_res('ordinal','Thứ tự')}" },
-        { "data": "lock", "title": "${get_res('lock','Ngưng SD')}", "format": "checkbox"}
+        { "data": "lock", "title": "${get_res('lock','Ngưng SD')}", "format": "checkbox",width: "100px", className: "text-center"}
     ];
     scope.onSelectTableRow = pressEnter;
     scope.tableSource = _loadDataServerSide;

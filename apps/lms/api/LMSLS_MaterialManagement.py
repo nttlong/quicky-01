@@ -193,7 +193,48 @@ def get_list_with_searchtext(args):
             material_id=1,
             material_name=1,
             material_name2=1,
-            #material_version=1,
+            approve_user_id=1,
+            creator=1,
+            version=1,
+            file_thumbnail="files.file_thumbnail",
+            file_extends="files.file_extends",
+            files=1,
+            created_by="uc.login_account",
+            created_on="created_on",
+            modified_on="switch(case(modified_on!='',modified_on),'')",
+            modified_by="switch(case(modified_by!='',um.login_account),'')",
+        )
+    if(isWhereAdvance == True):
+        #search star form - star to
+            if(where["searchAdvance"].has_key('star_rating_from') and where["searchAdvance"]["star_rating_from"] != None and
+               where["searchAdvance"].has_key('star_rating_to') and where["searchAdvance"]["star_rating_to"] != None):
+                ret.match("(total_rating <= @star_rating_to) and (total_rating >= @star_rating_from)"
+                          ,star_rating_to=where["searchAdvance"]['star_rating_to']
+                          ,star_rating_from=where["searchAdvance"]['star_rating_from'])
+    data_items = ret.get_page(pageIndex, pageSize)
+    arrItems = []
+     # search theo file format
+    if(isWhereAdvance == True):
+        if(where["searchAdvance"].has_key('file_format') and where["searchAdvance"]["file_format"] != None):
+            if(isinstance(where["searchAdvance"]['file_format'], list) == True):
+                if(data_items["items"]!=None and len(data_items["items"]) > 0):
+                    for x in data_items["items"]:
+                        if (x['files']['file_extends'] in where["searchAdvance"]['file_format']):
+                            arrItems.append(x)
+                    data_items["items"] = arrItems
+
+    return data_items
+
+def get_data_with_edit(args):
+    if args['data']!= None:
+        where = args['data'].get('where')
+        ret = models.LMSLS_MaterialManagement().aggregate()
+        if (where != None):
+            ret.match("(_id==@id)", id=ObjectId(where['id']))
+        ret.project(
+            material_id=1,
+            material_name=1,
+            material_name2=1,
             submit_user_id=1,
             submit_date=1,
             approve_user_id=1,
@@ -220,41 +261,18 @@ def get_list_with_searchtext(args):
             relations=1,
             files=1,
             version=1,
-            #comments=1,
-            identifier=1,           
-            material_type=1,           
-            source=1,    
-            #views=1,
+            identifier=1,
+            material_type=1,
+            material_version=1,
+            source=1,
             material_format=1,
             total_rating="avg(comments.rating)",
             comments="comments.content",
-            created_by="uc.login_account",
             created_on="created_on",
-            modified_on="switch(case(modified_on!='',modified_on),'')",
-            modified_by="switch(case(modified_by!='',um.login_account),'')",
+
         )
-    if(isWhereAdvance == True):
-        #search star form - star to
-            if(where["searchAdvance"].has_key('star_rating_from') and where["searchAdvance"]["star_rating_from"] != None and
-               where["searchAdvance"].has_key('star_rating_to') and where["searchAdvance"]["star_rating_to"] != None):
-                ret.match("(total_rating <= @star_rating_to) and (total_rating >= @star_rating_from)"
-                          ,star_rating_to=where["searchAdvance"]['star_rating_to']
-                          ,star_rating_from=where["searchAdvance"]['star_rating_from'])
-    data_items = ret.get_page(pageIndex, pageSize)
-    arrItems = []
-     # search theo file format
-    if(isWhereAdvance == True):
-        if(where["searchAdvance"].has_key('file_format') and where["searchAdvance"]["file_format"] != None): 
-            if(isinstance(where["searchAdvance"]['file_format'], list) == True):
-                if(data_items["items"]!=None and len(data_items["items"]) > 0):
-                    for x in data_items["items"]:
-                        if (x['files']['file_extends'] in where["searchAdvance"]['file_format']):
-                            arrItems.append(x)
-                    data_items["items"] = arrItems
-    
-    return data_items
 
-
+    return ret.get_item()
 def get_data_info_details(args):
     where = args['data'].get('where')
 
@@ -314,7 +332,7 @@ def get_data_info_comment(args):
 
     ret=models.LMSLS_MaterialManagement().aggregate()
     data_rating=models.LMSLS_MaterialManagement().aggregate()
-    data_total_rating=count_star_on_comment(args)
+    data_total_rating=sum_star_on_comment(args)
     if(where != None):
         ret.match("(_id==@id)",id=ObjectId(where['id']))
         data_rating.match("(_id==@id)",id=ObjectId(where['id']))
@@ -328,10 +346,11 @@ def get_data_info_comment(args):
             login_account= "comments.login_account",
             total_vote="avg(comments.votes.number)",
             user_votes= "comments.votes.id_user",
-            reply= "comments.reply"
+            reply= "comments.reply",
         )
     data_rating.project(
-            total_rating="avg(comments.rating)"
+            total_rating="avg(comments.rating)",
+            total="sum(comments.rating)",
         )
     return dict(
             comments=check_user_ratinged(ret.get_list(), where),
@@ -647,6 +666,23 @@ def delete(args):
         lock.release()
         raise(ex)
 
+def delete_one(id):
+    try:
+        lock.acquire()
+        ret = {}
+        if id['data'] != '':
+            ret  =  models.LMSLS_MaterialManagement().delete("_id == {0}", ObjectId(id['data']))
+            lock.release()
+            return ret
+
+        lock.release()
+        return dict(
+            error = "request parameter is not exist"
+        )
+    except Exception as ex:
+        lock.release()
+        raise(ex)
+
 def set_dict_insert_data(args):
     ret_dict = dict()
 
@@ -881,26 +917,27 @@ def check_user_ratinged(args, where):
                 args[x]["reply"] = get_reply_by_id_comment(where["id"], args[x]['id_comment'])
     return args
 
+#for x in range(0, 6):
 
-def count_star_on_comment(args):
+def sum_star_on_comment(args):
     arr = []
-    for x in range(0, 6):
+    for x in range(5, 0, -1):
         obj = {}
         where = args['data'].get('where')
         ret=models.LMSLS_MaterialManagement().aggregate()
         if(where != None):
-            ret.match("(_id==@id)",id=ObjectId(where['id']))
+            ret.match("(_id==@id)", id=ObjectId(where['id']))
         ret.unwind("comments", True)
         ret.match("(comments.rating==@rating)", rating=x)
         ret.project(
-            total_rating="avg(comments.rating)",
+            rating="comments.rating",
         )
         data = ret.get_list()
         s = "rating"
         if(data != None):
-            obj[s]=len(data)
+            obj[s] = len(data) * x
         else:
-            obj[s]=0
+            obj[s] = 0
         arr.append(obj)
     return arr
 
@@ -1148,7 +1185,6 @@ def get_data_dash_board_page(args):
     len_ret =len(ret_list)
     ret_fold=models.LMSLS_MaterialFolder().aggregate().project(
         folder_id =1,
-
     )
     ret_folder = ret_fold.get_list()
     len_ret_fold =len(ret_folder)
@@ -1278,13 +1314,14 @@ def get_list_download_history(args):
                    
                     {
                         "$project": {
-                        "num_downloads":{"$toString":{"$size":{"$ifNull": ["$downloads", []]}}},
-                        "last_downloads":{"$ifNull": [{ "$arrayElemAt": [ "$downloads.date_created", -1 ] }, ""]},
-                        "size_files":"$files.file_size",
-                        "creator":1,
-                        "material_id":1,
-                        "material_type":1,
-                        "material_name":1
+                            "num_downloads":{"$toString":{"$size":{"$ifNull": ["$downloads", []]}}},
+                            "last_downloads":{"$ifNull": [{ "$arrayElemAt": [ "$downloads.date_created", -1 ] }, ""]},
+                            "size_files":"$files.file_size",
+                            "creator":1,
+                            "material_id":1,
+                            "material_type":1,
+                            "material_name":1,
+                            "files": "$files.file_thumbnail"
                         }
                     },
                     {

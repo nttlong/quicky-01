@@ -18,16 +18,15 @@
                 ngModel: "=",
                 rows: "@"
             },
-            template: `
-                <div class="input-group input-file">
-    		        <input type="text" class="form-control hcs-input-choose-file" placeholder='Choose a file...' />			
-                    <span class="input-group-btn">
-        		        <button class="btn btn-default btn-choose hcs-button-choose-file" type="button">
-                            <i class="bowtie-icon bowtie-transfer-upload"></i>
-                        </button>
-    		        </span>
-		        </div>
-            `
+            template: ''
+                + '<div class="input-group input-file">'
+    		    + '    <input type="text" class="form-control hcs-input-choose-file" placeholder="' + 'Choose a file...' + '" />'
+                + '    <span class="input-group-btn">'
+        		+ '        <button class="btn btn-default btn-choose hcs-button-choose-file" type="button">'
+                + '            <i class="bowtie-icon bowtie-transfer-upload"></i>'
+                + '        </button>'
+    		    + '    </span>'
+		        + '</div>'
         };
         return directive;
 

@@ -1,0 +1,30 @@
+﻿<style>
+    .zb-content {
+        background:#F9F9F9 !important;
+    }
+</style>
+<div class="tab-pane" style="padding-right:unset; height: 100%;">
+    <div class="" style="height: 100%; display: grid; width: 100%; grid-auto-rows: auto 1fr;">
+        <div class="hcs-tab-info">
+            <div class="col-md-12 competency no-padding">
+                <div class="hcs-tab-info-box active" href="#tab_default_1" data-toggle="tab" ng-click="changeActive($event, 'employee')">
+                    <img src="${get_static('assets/images/General.png')}"/>
+                    <label>
+                        ${get_res('by_employee','Theo nhân viên')}
+                    </label>
+                </div>
+                <div class="hcs-tab-info-box" href="#tab_default_2" data-toggle="tab" ng-click="changeActive($event, 'department')">
+                    <img src="${get_static('assets/images/Level.png')}"/>
+                    <label style="padding-left:5px;">
+                        ${get_res('by_department','Theo bộ phận')}
+                    </label>
+                </div>
+            </div>
+        </div>
+        <div c-template url="{{$partialpage}}"
+                 class="row"></div>
+    </div>
+</div>
+<script>
+    <%include file="scripts/setup_process_approve_emp.js"/>
+</script>

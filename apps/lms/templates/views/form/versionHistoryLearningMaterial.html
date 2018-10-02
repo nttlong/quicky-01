@@ -7,7 +7,7 @@
                 <!--Mã nhóm-->
                 <label class="col-sm-3 zb-form-label">File Name</label>
                 <div class="col-sm-9">
-                    <input-text ng-model="_currentItem.material_name"></input-text>
+                    <input-text ng-model="fileName" ng-disabled="{{ __mode === 2 ? 'true' : 'false' }}"></input-text>
                 </div>
             </div>
         </div>
@@ -20,7 +20,7 @@
         <div class="lms-table-history-custom-body" style="text-align: center;">
             <div ng-repeat="item in currentItem track by $index">
               <div class="lms-table-history-custom-group" item-group-share="{{$index}}">
-                    <div style="color: #008ccb">
+                    <div style="color: 1F4E78;font-style: italic;">
                         {{item.caption}} ({{item.items.length}})
                     </div>
                     <div style="border-bottom: 1px solid #008ccb"></div>
@@ -33,13 +33,14 @@
                     <div><img ng-src="{{$root.url_static}}{{data.data_version.files.file_thumbnail}}"
                               width="30"/> {{data.data_version.material_name}}</div>
                     <div>
-                         {{data.version}}
+                         {{data.version}}<i class="bowtie-icon bowtie-security-unlock-fill"></i>
                     </div>
                     <div>
                          {{data.data_version.status}}
                     </div>
                     <div>
-                        {{data.data_version.creator? data.data_version.creator : noData }}
+                        <img ng-src="{{$root.url_static + 'css/icon/approver.png' }}"
+                              width="20"/> {{data.data_version.creator? data.data_version.creator : noData }}
                     </div>
                     <div>
                         {{data.data_version.submit_date|date:'MM/dd/yyyy h:mma'}}
@@ -55,6 +56,7 @@
 
 <script>
     (function (scope) {
+
         scope.currentHeader = [
             //{  value: "", width: "30px" },
             {  value: "${get_global_res('lms_version_history_name','Name')}", width: "1fr" },
@@ -66,7 +68,7 @@
         ];
         scope.currentItem = [
             {
-                caption: "To day",
+                caption: "Today",
                 items: [
 
                 ]
@@ -124,6 +126,7 @@
     });
 </script>
 <script type="text/javascript">
+
     var onClickIcon = function (me) {
         var icon = $(me);
         var parent = icon.parent().parent();

@@ -66,23 +66,23 @@
         }
 
         function template() {
-            return `
-            <div class="ng-cloak zb-multi-select" ng-controller="SelectpickerMultiPanelCtrl">
-                <div class="form-group ">
-                        <ui-select multiple ng-change="setValue()" ng-model="withDeleteSelectItems.selected" ng-disabled="false" search-enabled="true" append-to-body="false" class="form-control form-control">
-                            <ui-select-match placeholder="{{placeholder}}">
-                                {{$item[fieldCaption]}}
-                            </ui-select-match>
-                            <ui-select-choices repeat="withDeleteItem in withDeleteSelectItems | filter: $select.search">
-                                {{withDeleteItem[fieldCaption]}}
-                            </ui-select-choices>
-                        </ui-select>
-                        <span>
-                        </span>
-                </div>
-                <i class="caret pull-right" ng-show="withDeleteSelectItems.selected.length == 0"></i>
-            </div>
-            `;
+            return ''
+            + '<div class="ng-cloak zb-multi-select" ng-controller="SelectpickerMultiPanelCtrl" ng-disabled="ngDisabled">'
+            + '    <div class="form-group ">'
+            + '            <ui-select multiple ng-change="setValue()" ng-model="withDeleteSelectItems.selected" ng-disabled="ngDisabled" search-enabled="true" append-to-body="false" class="form-control form-control">'
+            + '                <ui-select-match placeholder="{{placeholder}}">'
+            + '                    {{$item[fieldCaption]}}'
+            + '                </ui-select-match>'
+            + '                <ui-select-choices repeat="withDeleteItem in withDeleteSelectItems | filter: $select.search">'
+            + '                    {{withDeleteItem[fieldCaption]}}'
+            + '                </ui-select-choices>'
+            + '            </ui-select>'
+            + '            <span>'
+            + '            </span>'
+            + '    </div>'
+            + '    <i class="caret pull-right" ng-show="withDeleteSelectItems.selected.length == 0"></i>'
+            + '</div>'
+            ;
         }
     }
 

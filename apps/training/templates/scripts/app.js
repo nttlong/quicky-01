@@ -257,10 +257,16 @@ function extension() {
                 scope.keyField = res.value_field;
                 scope.title = res.display_name;
                 scope.templateFields = res.display_fields;
-                var data = {
-                    recordsTotal: res.data.total_items,
-                    data: res.data.items
-                };
+                var data = {};
+                if (res.hasOwnProperty('parent_field') && res['parent_field']) {
+                    data = res.data.items;
+                }
+                else {
+                    data = {
+                        recordsTotal: res.data.total_items,
+                        data: res.data.items
+                    };
+                }
                 cbSetData(data);
             });
     }

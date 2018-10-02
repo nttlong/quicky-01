@@ -1,0 +1,21 @@
+<div class="zb-form-combobox input-group">
+    <div class="form-control">
+        <span class="placeholder" ng-if="$selectedItemDisplay.length<=0">{{placeholder}}</span>
+        <!--<div class="display-value" ng-if="$selectedItemDisplay.length>0">
+          <span class="multi-value" ng-repeat="v in $selectedItemDisplay track by $index">
+              {{v[captionField]}}
+              <i class="bowtie-icon bowtie-math-multiply-light" ng-click="$deleteSelectedItem(v)"></i>
+          </span>
+    </div>-->
+        <input type="text" style="height: 29px;
+              border: unset;
+              width: 100%;
+              outline: none;" value="{{getValueString()}}" ng-if="ngModel" ng-readonly="true" ng-disabled="ngDisabled" />
+    </div>
+    <div class="zb-combobox-template" ng-transclude style="display:none"></div>
+    <div class="input-group-btn">
+        <button class="btn btn-default zb-open-modal" ng-disabled="ngDisabled">
+            <i class="bowtie-icon bowtie-navigate-external"></i>
+        </button>
+    </div>
+</div>

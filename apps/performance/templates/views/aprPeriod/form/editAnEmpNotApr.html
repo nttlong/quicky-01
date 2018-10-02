@@ -82,33 +82,19 @@
 			scope.col_group = scope.col_group == 6 ? 8 : 6;
 		}
 		scope.selectBtn = selectBtn;
-		//scope.cancelBtn = cancelBtn; 
-		 
+		scope.cancelBtn = cancelBtn;
+		function cancelBtn() {
+			$dialog.closeDialog();
+		}
 
-		(function _getDataInitCombobox() {
-			debugger
-            scope.$root.$getInitComboboxData(scope,
-                {
-                    "key": "${encryptor.get_key('cbb_departments')}",
-                    "code": scope.entity
-                        && scope.entity.hasOwnProperty('department_code')
-                        ? scope.entity.department_code
-                        : null,
-                    "alias": "$$$cbb_departments"
-                }
-            );
-		})();
-
-		scope.listRatingLevel = [];
+		(function Init(){
 		debugger
-		(function getListRankCode() {
-        services.api("${get_api_key('app_main.api.TMLS_Rank/getListRankcode')}")
-            .data()
-            .done()
-            .then(function (res) {
-				scope.listRatingLevel = res;
-                scope.$applyAsync();
-            });
+            if(scope.$parent.selectedItems.length == 1 && scope.$parent.currentItem != null){
+                scope.entity = scope.$parent.selectedItems[0];
+			}
+			else{
+			    scope.entity = scope.$parent.currentItem;
+			}
 		})();
 
 		function selectBtn() {
@@ -125,6 +111,7 @@
 							
 						} else if (scope.$parent.mode == 2) {
 							debugger
+
                             //scope.$parent.currentItem = scope.entity;
        //                     scope.$parent.currentItem.modified_on = res.item.modified_on;
 							//scope.$parent.currentItem.modified_by = res.item.modified_by;

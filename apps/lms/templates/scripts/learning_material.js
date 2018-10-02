@@ -2,6 +2,7 @@
     /*                                                         */
     /* ==================== Property Scope - START=============*/
     /*                                                         */
+
     scope.$root.extendToolbar = false;
     scope.filterFunctionModel = ''
     scope.currentFunction = '';
@@ -41,6 +42,10 @@
 
     scope.delLearningMaterial = function () {
         scope.$root.delete();
+    }
+
+    scope.delOneLearningMaterial = function () {
+        scope.$root.deleteOne();
     }
 
     scope.viewDetailsLearningMaterial = function () {

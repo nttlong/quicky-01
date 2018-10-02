@@ -51,7 +51,7 @@
                 <!--Mã nhóm-->
                 <label class="col-sm-3 zb-form-label">File Name</label>
                 <div class="col-sm-9">
-                    <input-text ng-model="_currentItem.material_name"></input-text>
+                    <input-text ng-model="fileName" ng-disabled="{{ __mode === 2 ? 'true' : 'false' }}"></input-text>
                 </div>
             </div>
         </div>
@@ -75,10 +75,12 @@
                 <div class="lms-table-history-custom" item-group-child-share="{{$parent.$index}}" ng-repeat="data in item.items">
                     <div>{{data.date_created|date:'MM/dd/yyyy h:mma'}}</div>
                     <div>
-                        {{data.login_account? data.login_account:noData }} 
+                         <img ng-src="{{$root.url_static + 'css/icon/approver.png' }}"
+                              width="20"/> {{data.login_account? data.login_account:noData }}
                     </div>
                     <div>
-                        <i class="fa {{data.social}}"></i>
+                        <img ng-src="{{$root.url_static}}css/icon/{{data.social}}" style="width:16px;height:16px">
+                        <!--<i class="fa {{data.social}}"></i>-->
                     </div>
                 </div>
             </div>
@@ -96,7 +98,7 @@
 
         scope.currentItemShare = [
             {
-                caption: "To day",
+                caption: "Today",
                 items: [
                 ]
             }, {
@@ -110,9 +112,8 @@
             }
         ]
 
-        
+        scope._currentItem = scope.$parent.currentItem;
 
-          scope._currentItem = scope.$parent.currentItem;
         scope.loadDataSharingSocial = function () {
                 
             services.api("${get_api_key('app_main.api.LMSLS_MaterialManagement/get_data_info_history_share_social')}")

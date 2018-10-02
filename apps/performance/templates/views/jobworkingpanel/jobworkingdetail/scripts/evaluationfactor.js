@@ -57,9 +57,10 @@
             });
         }
     };
-    function onRefresh() {
-
-    };
+    function onRefresh(argument) {
+        var config = scope.$$table.$$tableConfig;
+        _tableData(config.iPage, config.iPageLength, config.orderBy, config.searchText, config.fnReloadData);
+    }
 
     /**
      * Hàm mở dialog

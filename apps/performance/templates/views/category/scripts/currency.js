@@ -6,7 +6,7 @@
         { "data": "currency_name", "title": "${get_res('currency_name_table_header','Tên')}", "className": "text-left" },
 		{ "data": "currency_name2", "title": "${get_res('currency_name2_table_header','Tên khác')}", "className": "text-left" },
 		{ "data": "temp_rate", "title": "${get_res('temp_rate_table_header','Tỷ lệ mẫu')}", "className": "text-right" },
-		{ "data": "multiply", "title": "${get_res('multiply_table_header','Nhân hệ số')}", "className": "text-center" },
+		{ "data": "multiply", "title": "${get_res('multiply_table_header','Nhân hệ số')}", "className": "text-center", "format": "checkbox" },
 		{ "data": "cons_code", "title": "${get_res('cons_code_table_header','Mã tổng hợp')}", "className": "text-left" },
 		{ "data": "dec_place", "title": "${get_res('dec_place_table_header','Số lẻ làm tròn')}", "className": "text-center" },
 		{ "data": "note", "title": "${get_res('note_table_header','Ghi chú')}", "className": "text-left" },
@@ -64,9 +64,13 @@
     scope.$parent.$parent.$parent.onSearch = onSearch;
     scope.$parent.$parent.$parent.onExport = onExport;
     scope.$parent.$parent.$parent.onImport = onImport;
+    scope.$parent.$parent.$parent.onRefresh = reloadData;
     scope._tableData = _tableData;
     scope.cbbCurrency = [];
-    //scope.getDisplayNameAccessMode = getDisplayNameAccessMode;
+    
+    function reloadData (){
+        _tableData(scope.$$tableConfig.iPage, scope.$$tableConfig.iPageLength, scope.$$tableConfig.orderBy, scope.$$tableConfig.SearchText, scope.$$tableConfig.fnReloadData);
+    }
 
     /**
      * Hàm mở form chỉnh sửa

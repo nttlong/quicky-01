@@ -1,0 +1,33 @@
+﻿<div class="col-xs-12 col-md-12"  style="height: 100%;">
+    <multi-combobox style="display: none;" id="filterEmployee" load-data="$root.$getComboboxData"
+                                            ng-model="list_emp"
+                                            on-accept="addEmail"
+                                            params="{key:'${encryptor.get_key('perf_cbb_employees_display_name_code_email')}', value:[{ '@lock': true }]}"
+                                            on-search-change="false"
+                                            on-search-press="true"
+                                            placeholder=""
+                                            init-data="$$$list_emp.value"
+                                            caption-field="{{$$$list_emp.caption_field}}"
+                                            paging="true"
+                                            close-on-select="true"
+                                            template-fields="$$$list_emp.display_fields"
+                                            reload="false">
+                                    </multi-combobox>
+    <div class="col-xs-12 col-md-12 no-padding" style="height: 100%;">
+        <table-data data-source="$$table.tableSource"
+                    fields="$$table.tableFields"
+                    type="MultiSelect"
+                    paging="true"
+                    page-length="100"
+                    server-side="true"
+                    press-enter="$$table.onSelectTableRow"
+                    selected-items="$$table.selectedItems"
+                    current-item="$$table.currentItem"
+                    search-text="$$table.tableSearchText"
+                    refresh-row="$$table.refreshDataRow">
+        </table-data>
+    </div>
+</div>
+<script>
+    <%include file="scripts/company.js"/>
+</script>

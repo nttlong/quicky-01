@@ -40,8 +40,11 @@ def get_list_with_searchtext(args):
             modified_by="switch(case(modified_by!='',um.login_account),'')",
             )
 
-    if(searchText != None):
-        items.match("contains(equipment_name, @name)",name=searchText)
+    # if(searchText != None):
+    #     items.match("contains(equipment_name, @name)",name=searchText)
+    if (searchText != None):
+        items.match("contains(equipment_code, @name) or contains(equipment_name, @name)" + \
+                  " or contains(equipment_name2, @name) or contains(note, @name)", name=searchText.strip())
 
     if(sort != None):
         items.sort(sort)

@@ -1,3 +1,4 @@
+﻿<%page cached="True"/>
 ﻿<!DOCTYPE html>
 <html lang="en" ng-app="admin">
     <head>
@@ -59,9 +60,6 @@
         <link href="${get_static('css/libs/bootstrap-datetimepicker/bootstrap-datetimepicker.css')}" rel="stylesheet" />
     </head>
     <body class="app zb-body" ng-controller="admin" style="margin: 0;">
-        
-
-        
         <!--<script src="${get_static('assets/vendors/base/vendors.bundle.js')}" type="text/javascript"></script>
         <script src="${get_static('assets/demo/default/base/scripts.bundle.js')}" type="text/javascript"></script>
         <script src="${get_static('assets/vendors/custom/fullcalendar/fullcalendar.bundle.js')}" type="text/javascript"></script>
@@ -103,6 +101,7 @@
         <script type="text/javascript" src="${get_static('app/libs/ui-bootstrap-tpls-2.5.0.min.js')}"></script>
         <script type="text/javascript" src="${get_static('app/components/combobox/combobox.module.js')}"></script>
         <script type="text/javascript" src="${get_static('app/components/combobox/combobox/combobox.directive.js')}"></script>
+        <script type="text/javascript" src="${get_static('app/components/input/multi-select/multi-select.directive.js')}"></script>
         <script type="text/javascript" src="${get_static('app/components/combobox/multi-combobox/multi-combobox.directive.js')}"></script>
         <script type="text/javascript" src="${get_static('app/components/list/lists.module.js')}"></script>
         <script type="text/javascript" src="${get_static('app/components/list/list-view/list-view.directive.js')}"></script>
@@ -124,7 +123,6 @@
         <script type="text/javascript" src="${get_static('app/directives/rating/rating.directive.js')}"></script>
         <script type="text/javascript" src="${get_static('app/directives/chart/chart.directive.js')}"></script>
         <script src="${get_static('js/bootstrap-datetimepicker/bootstrap-datetimepicker.min.js')}"></script>
-        <%include file="script.html"/>
         ${self.body()}
     </body>
 </html>

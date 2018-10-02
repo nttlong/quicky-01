@@ -1,2 +1,4 @@
-from qloader import auto_load
-auto_load(__name__,__file__)
+from . auth_user import auth_user
+from . sys_customers import sys_customers
+from . sys_multi_tenancy import sys_multi_tenancy
+

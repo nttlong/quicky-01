@@ -22,7 +22,7 @@ helpers.extent_model(
                 )),
             ques_total_marks=("object"),
             ques_attach_file=("bool"),
-            ques_max_answer_time=("numeric"),
+            ques_max_answer_time=("text"),
             ques_explanation=("text"),
             ques_answer_options=("numeric"),
             ques_randomization=("numeric"),

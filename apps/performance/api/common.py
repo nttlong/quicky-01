@@ -456,10 +456,24 @@ def create_data_combobox(args):
                 page_index = args['data']['pageIndex']
 
             if parent_field == None or parent_field == "":
-                data = ret.get_page(page_index, page_size)
-            else:
+                #delete pagination
+                #data = ret.get_page(page_index, page_size)
+                result = ret.get_list()
                 data = {
-                    "items":ret.get_list()
+                    "items": result,
+                    "total_items": len(result),
+                    "page_index": page_index,
+                    "page_size": page_size,
+                    "note": "current version not support pagination"
+                }
+            else:
+                result = ret.get_list()
+                data = {
+                    "items":result,
+                    "total_items": len(result),
+                    "page_index": 0,
+                    "page_size": 100,
+                    "note": "tree combobox not using pagination"
                     }
 
             if data != {}:

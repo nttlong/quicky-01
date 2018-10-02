@@ -2,7 +2,7 @@
 from bson import ObjectId
 import models
 import common
-from Query import AprPeriod
+from Query import AprPeriod, AprPeriodEmpOut, AprPeriodRank
 import logging
 import threading
 logger = logging.getLogger(__name__)
@@ -55,45 +55,25 @@ def get_item_by_period_year(args):
         apr_year =1,
     ))
 
-    return ret
+    return ret.get_item()
 
 
-def get_item_by_period_year(args):
-    if(args['data']!= None):
-        ret = {}
-        collection = common.get_collection('TMPER_AprPeriod').aggregate([
-        {"$match":{
-            "$and": [ { 'apr_year': args['data']['apr_year'] }, { 'apr_period': args['data']['apr_period']} ]
-        }},
-        {"$project": {
-            "_id":1,
-            "apr_period":1,
-            "apr_year": 1,
-            "give_target_from":1,
-            "give_target_to":1,
-            "review_mid_from":1,
-            "review_mid_to":1,
-            "approval_mid_from":1,
-            "approval_mid_to":1,
-            "emp_final_from":1,
-            "emp_final_to":1,
-            "approval_final_from":1,
-            "approval_final_to":1,
-            "note":1
-        }},
-        #{ "$sort" : SON([("apr_year",-1),("apr_period",-1)]) }
-        ])
-        ret = list(collection)
-        return (lambda x: x[0] if len(x) > 0 else None)(ret)
 
-
-def insert(args):
+def save(args):
     try:
         lock.acquire()
         ret = {}
         if args['data'] != None:
-            data =  set_dict_insert_data(args)
-            ret  =  models.TMPER_AprPeriod().insert(data)
+            item = get_item_by_period_year(args)
+            if item!= None:
+                data = set_dict_update_data(args)
+                ret = models.TMPER_AprPeriod().update(
+                    data,
+                    "_id == {0}",
+                    ObjectId(item['_id']))
+            else:
+                data =  set_dict_insert_data(args)
+                ret  =  models.TMPER_AprPeriod().insert(data)
             lock.release()
             return ret
 
@@ -107,33 +87,21 @@ def insert(args):
 
     
 
-def update(args):
-    try:
-        lock.acquire()
-        ret = {}
-        if args['data'] != None:
-            data =  set_dict_update_data(args)
-            ret  =  models.TMPER_AprPeriod().update(
-                data, 
-                "_id == {0}", 
-                ObjectId(args['data']['_id']))
-            lock.release()
-            return ret
-
-        lock.release()
-        return dict(
-            error = "request parameter is not exist"
-        )
-    except Exception as ex:
-        lock.release()
-        raise(ex)
-
 def delete(args):
     try:
         lock.acquire()
         ret = {}
         if args['data'] != None:
-            ret  =  models.TMPER_AprPeriod().delete("_id in {0}",[ObjectId(x["_id"])for x in args['data']])
+            for item in args['data']:
+                list_emp_out = AprPeriodEmpOut.get_apr_emp_out_by_apr_period_year(item['apr_period'], item['apr_year'])
+                list_rank = AprPeriodRank.get_apr_rank_by_apr_period_year(item['apr_period'], item['apr_year'])
+                if(len(list_emp_out) > 0):
+                    models.TMPER_AprPeriodEmpOut().delete("_id in {0}",
+                                            [ObjectId(item_emp_out["_id"]) for item_emp_out in list_emp_out])
+                if(len(list_rank) > 0):
+                    models.TMPER_AprPeriodRank().delete("_id in {0}",
+                                                      [ObjectId(item_rank["_id"]) for item_rank in list_rank])
+                ret = models.TMPER_AprPeriod().delete("_id in {0}", [ObjectId(item["_id"])])
             lock.release()
             return ret
 
@@ -169,3 +137,4 @@ def set_dict_update_data(args):
     ret_dict = set_dict_insert_data(args)
     #del ret_dict['_id']
     return ret_dict
+

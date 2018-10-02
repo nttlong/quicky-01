@@ -1,4 +1,4 @@
-﻿(function (scope) {
+﻿﻿(function (scope) {
 
     scope.__tableSource = [];
     scope.tableFields = [
@@ -38,6 +38,7 @@
 
 
     function _loadDataServerSide(fnReloadData, iPage, iPageLength, orderBy, searchText) {
+    debugger
         scope.$$tableConfig = {
             fnReloadData: fnReloadData,
             iPage: iPage,
@@ -61,6 +62,7 @@
     };
 
     function _tableData(iPage, iPageLength, orderBy, searchText, callback) {
+    debugger
         var sort = {};
         $.each(orderBy, function (i, v) {
             sort[v.columns] = (v.type === "asc") ? 1 : -1;
@@ -68,8 +70,8 @@
         sort[orderBy[0].columns] =
             services.api("${get_api_key('app_main.api.TMPER_AprPeriodEmpOut/get_list_with_searchtext')}")
                 .data({
-                    "apr_period": scope.$parent.Re_Map_Period(scope.$parent.currentItem.apr_period),
-                    "apr_year": scope.$parent.currentItem.apr_year,
+                    "apr_period": scope.$parent.mode == 1 ? scope.$parent.apr_period_now : scope.$parent.Re_Map_Period(scope.$parent.entity.apr_period),
+                    "apr_year": scope.$parent.mode == 1 ? scope.$parent.apr_year_now : scope.$parent.entity.apr_year,
                     "pageIndex": iPage - 1,
                     "pageSize": iPageLength,
                     "search": searchText,
@@ -90,8 +92,8 @@
 
     function addDataGeneration() {
         scope.mode = 4;// set mode tạo mới
-        scope.$apr_period = scope.$parent.currentItem.apr_period;
-        scope.$apr_year = scope.$parent.currentItem.apr_year;
+        scope.$apr_period = scope.$parent.mode == 1 ? scope.$parent.apr_period_now : scope.$parent.entity.apr_period;
+        scope.$apr_year = scope.$parent.mode == 1 ? scope.$parent.apr_year_now : scope.$parent.apr_year_now;
         openDialog("${get_res('generate_data','Phát sinh Danh sách nhân viên không đánh giá')}", 'aprPeriod/form/genEmpNotApr', function () { });
         
     };
@@ -104,7 +106,9 @@
         var frm = lv.FormSearch(scope, "$$$perf_cbb_employees");
         frm.EmployeeFilter(scope.entity, "list_nv", "${get_res('job_w_change','CDCV có thể thuyên chuyển')}", true);
         frm.openDialog;
+        debugger
         frm.accept(function () {
+        debugger
             console.log("@@@@", scope.entity.list_nv);
             // call server to get multi nv by emp_code and insert data to TMPER_AprPeriodEmpOut
                 // => generate department_code and job_w_code, apr_year, apr_period
@@ -140,6 +144,7 @@
                     .done()
                     .then(function (res) {
                         if (res.deleted > 0) {
+                        debugger
                             _tableData(scope.$$tableConfig.iPage, scope.$$tableConfig.iPageLength, scope.$$tableConfig.orderBy, scope.$$tableConfig.SearchText, scope.$$tableConfig.fnReloadData);
                             $msg.alert("${get_global_res('Handle_Success','Thao tác thành công')}", $type_alert.INFO);
                             scope.$applyAsync();
@@ -153,7 +158,8 @@
     };
 
     function onEdit() {
-        if (scope.currentItem && Object.keys(scope.currentItem).length > 0) {
+    debugger
+        if (scope.currentItem || scope.selectedItems.length > 0) {
             scope.mode = 2;
             (scope.selectedItems.length == 1 || scope.selectedItems.length == 0) ?
                 openDialog("${get_res('An_Employee_Not_Aproval_Detail','Chi tiết Nhân viên không đánh giá')}", 'aprPeriod/form/editAnEmpNotApr', function () { }) :

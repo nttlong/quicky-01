@@ -6,16 +6,17 @@
                   on-save="$parent.onSave" 
                   on-import="$parent.onImport" 
                   on-export="$parent.onExport"
+                  on-refresh="onRefresh"
                   on-search-press="$parent.onSearch"
                   source="$parent.mapName" 
-                  key-field="function_id" 
+                  key-field="function_id"
                   display-field="default_name" 
                   icon-field="icon" 
                   selected-key="$parent.selectedFunction"
                   reload-on-change="false"
                   advanced-search="$parent.advancedSearch">
         <site-map>
-            <a><span>{{$root.currentFunction.default_name}}</span></a>
+            <span>{{$root.currentFunction.default_name}}</span>
             <span><i class="bowtie-icon bowtie-chevron-right"></i></span>
             <span>{{currentFunction.default_name}}</span>
             <a href="#dropdownFunction" style="color:#333" data-toggle="collapse"><i class="bowtie-icon bowtie-chevron-down"></i></a>
@@ -26,6 +27,16 @@
                 <div class="dropdown">
                     <p ng-repeat="f in mapName | filter : search" ng-class="{focus : selectedFunction === f.function_id}" ng-click="selectFunc($event, f.function_id)">{{f.custom_name ? f.default_name : f.custom_name}}</p>
                 </div>
+            </div>
+            <div class="hcs-resp-action-zb-left-content" style="float: right;">
+                <button ng-if="isChangeFunc" class="zb-btn zb-btn-o-green ng-scope hcs-menu-mobile"
+                        ng-click="$root.doToggle('.hcs-left-side-department-content')">
+                    <i class="bowtie-icon bowtie-menu"></i>
+                </button>
+                <button class="zb-btn zb-btn-o-green ng-scope"
+                        ng-click="$root.doToggle('.zb-right-content')">
+                    <i class="bowtie-icon bowtie-set-actions"></i>
+                </button>
             </div>
         </site-map>
         <advanced-search>
@@ -42,13 +53,14 @@
         </content>
     </page-sidebar>
 </div>
-<div class="hcs-container" style="height: 100%" ng-if="display.detail">
+<div class="hcs-container hcs-custom-zb-left-content" style="height: 100%" ng-if="display.detail">
     <page-sidebar on-add="$parent.detail.onAdd" 
                   on-edit="$parent.detail.onEdit" 
                   on-delete="$parent.detail.onDelete" 
                   on-save="$parent.detail.onSave" 
                   on-import="$parent.detail.onImport" 
                   on-export="$parent.detail.onExport"
+                  on-refresh="$parent.detail.onRefresh"
                   on-search-press="$parent.detail.onSearch"
                   source="$parent.detail.mapName" 
                   key-field="function_id" 
@@ -57,22 +69,29 @@
                   selected-key="$parent.detail.selectedFunction"
                   reload-on-change="true"
                   advanced-search="$parent.detail.advancedSearch">
-        <site-map>
-            <a ng-click="masterPage()"><span>{{$root.currentFunction.default_name}}</span></a>
-            <span><i class="bowtie-icon bowtie-chevron-right"></i></span>
-            <span>(${get_global_res('group', 'Nhóm')} {{detail.$gjw_name}}</span>
-            <span><i class="bowtie-icon bowtie-chevron-right"></i></span>
-            <span>${get_res('job_w_name', 'Tên chức danh')} {{detail.$job_w_name}})</span>
-            <span><i class="bowtie-icon bowtie-chevron-right"></i></span>
-            <span>{{detail.currentFunction.default_name}}</span>
-            <a data-target="#dropdownFunction" style="color:#333" data-toggle="collapse"><i class="bowtie-icon bowtie-chevron-down"></i></a>
-            <div id="dropdownFunction" class="dropdown-content">
-                <div class="filter">
-                    <input-text-icon ng-model="$parent.$parent.detail.search" style="padding:3px;">
+        <site-map class="hcs-res-site-map-mobile">
+            <div class="hcs-res-site-map-mobile-left">
+                <a ng-click="masterPage()"><span>{{$root.currentFunction.default_name}}</span></a>
+                <span><i class="bowtie-icon bowtie-chevron-right"></i></span>
+                <span>(${get_global_res('group', 'Nhóm')} {{detail.$gjw_name}}</span>
+                <span><i class="bowtie-icon bowtie-chevron-right"></i></span>
+                <span>${get_res('job_w_name', 'Tên chức danh')} {{detail.$job_w_name}})</span>
+                <span><i class="bowtie-icon bowtie-chevron-right"></i></span>
+                <span>{{detail.currentFunction.default_name}}</span>
+                <a data-target="#dropdownFunction" style="color:#333" data-toggle="collapse"><i class="bowtie-icon bowtie-chevron-down"></i></a>
+                <div id="dropdownFunction" class="dropdown-content">
+                    <div class="filter">
+                        <input-text-icon ng-model="$parent.$parent.detail.search" style="padding:3px;">
+                    </div>
+                    <div class="dropdown">
+                        <p ng-repeat="f in $parent.$parent.detail.mapName | filter : $parent.$parent.detail.search" ng-class="{focus : $parent.detail.selectedFunction === f.function_id}" ng-click="$parent.detail.selectFunc($event, f.function_id)">{{f.custom_name ? f.default_name : f.custom_name}}</p>
+                    </div>
                 </div>
-                <div class="dropdown">
-                    <p ng-repeat="f in $parent.$parent.detail.mapName | filter : $parent.$parent.detail.search" ng-class="{focus : $parent.detail.selectedFunction === f.function_id}" ng-click="$parent.detail.selectFunc($event, f.function_id)">{{f.custom_name ? f.default_name : f.custom_name}}</p>
-                </div>
+            </div>
+            <div class="hcs-resp-action-zb-left-content hcs-res-site-map-mobile-right" style="float: right; position: absolute; right: 3px;">
+                <button class="zb-btn zb-btn-o-green ng-scope" ng-click="$root.doToggle('.zb-top .zb-right-content')">
+                    <i class="bowtie-icon bowtie-menu"></i>
+                </button>
             </div>
         </site-map>
         <!--on-search-change="onSearch"-->

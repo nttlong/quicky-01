@@ -122,6 +122,7 @@ function _Dialog() {
                 closeDialog();
                 if (me._deny) {
                     me._deny();
+                    me._deny = null;
                 }
             })
 
@@ -131,6 +132,7 @@ function _Dialog() {
                 closeDialog();
                 if (me._cancel) {
                     me._cancel();
+                    me._cancel = null;
                 }
             })
 

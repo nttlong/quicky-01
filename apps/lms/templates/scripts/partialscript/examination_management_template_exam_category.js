@@ -182,7 +182,13 @@
         { "data": "category_id", "title": "${get_res('category_id_table_header','ID')}" },
         { "data": "category_name", "title": "${get_res('category_name_table_header','Exam Category Name')}" },
         { "data": "number_ques", "title": "${get_res('number_ques_header','Number of Exam Template')}" },
-        { "data": "moderator", "title": "${get_res('moderator_header','Moderator')}" },
+        { "data": "moderator", "title": "${get_res('moderator_header','Moderator')}","expr":function(row, data, func){
+            func(function(){
+                return "<img class='hcs-small-img'  src='" + scope.$root.url_static + "css/icon/approver.png" + "'/>"+ " "+row.moderator ;
+
+            });
+            return true;
+        } },
         { "data": "created_on", "title": "${get_res('created_at_table_header','Created at')}", "format": "date:" + 'dd/MM/yyyy h:mm:ss a' },  
     ];
     scope.$$tableConfig = {};
@@ -295,14 +301,7 @@
         }
     }
 
-    function tableFields() {
-        return [
-            { "data": "category_id", "title": "${get_res('category_id_table_header','ID')}" },
-            { "data": "category_name", "title": "${get_res('exam_name_table_header','Exam Category Name')}" },
-            { "data": "number_ques", "title": "${get_res('number_ques_header','Number of Exam Template')}" },
-            { "data": "created_on", "title": "${get_res('created_at_table_header','Created at')}" },
-        ];
-    }
+
 
 
     function handleData() {
@@ -361,7 +360,7 @@
             sort[v.columns] = (v.type === "asc") ? 1 : -1;
         });
         sort[orderBy[0].columns] =
-            services.api("${get_api_key('app_main.api.LMSLS_ExTemplateCategory/get_list_category_question')}")
+            services.api("${get_api_key('app_main.api.LMSLS_ExTemplateCategory/get_list_category_template')}")
                 .data({
                     //parameter at here
                     "train_level_code": scope.entity ? scope.entity.train_level_code : " ",
@@ -372,12 +371,12 @@
                 })
                 .done()
             .then(function (res) {
-                
-                _.map(res.items, function (val) { val.number_ques = 10;  return val})
+                debugger
+                _.map(res, function (val) { val.number_ques = val.ques.length; val.moderator ='';  return val})
                     var data = {
                         recordsTotal: res.total_items,
                         recordsFiltered: res.total_items,
-                        data: res.items
+                        data: res
                     };
                     callback(data);
                    // scope.$$table.currentItem = null;

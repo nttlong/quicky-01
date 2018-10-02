@@ -65,9 +65,21 @@ from TMLS_CompetencyAction import TMLS_CompetencyAction
 from TMLS_CompetencyFactor import TMLS_CompetencyFactor
 from TMLS_CompetencyGroup import TMLS_CompetencyGroup
 from TMLS_CompetencyLevel import TMLS_CompetencyLevel
-from HCSSYS_EmailTemplate import HCSSYS_EmailTemplate
+from TM_EmailTemplate import TM_EmailTemplate
 from HCSSYS_AttachmentFile import HCSSYS_AttachmentFile
+from TM_SetupProcessApproverEmp import TM_SetupProcessApproverEmp
+from TM_SetupProcessApproverDept import TM_SetupProcessApproverDept
 
+# Long meagere code
+from TM_SetupProcess import TM_SetupProcess
+from TM_SetupProcessApproveLevel import TM_SetupProcessApproveLevel
+from TM_SetupProcessApproverSubstitute import TM_SetupProcessApproverSubstitute
+from TM_EmailHR import TM_EmailHR
+
+# Long meagere code end
+#Tien sua code
+
+# Long test
 from ..views import *
 import pymongo
 from pymongo.read_concern import ReadConcern

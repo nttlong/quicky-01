@@ -2,11 +2,11 @@
     'use strict';
 
     angular.module('ZebraApp.components.inputs')
-        .directive('inputSelect', ["$parse", "$filter", "$sce", inputSelect])
+        .directive('inputSelect', ["$parse", "$filter", "$sce", "templateService", inputSelect])
         .controller('SelectpickerPanelCtrl', SelectpickerPanelCtrl);
 
     /** @ngInject */
-    function inputSelect($parse, $filter, $sce) {
+    function inputSelect($parse, $filter, $sce, templateService) {
         return {
             restrict: 'E',
             //replace: true,
@@ -18,14 +18,15 @@
                 fieldCaption: "@caption",
                 ngChange: "=",
                 except: "=",
-                exceptField: "@"
+                exceptField: "@",
+                ngDisabled: "="
             },
             //transclude: true,
             //template: function(el, attrs) {
             //  return '<div class="switch-container ' + (attrs.color || '') + '"><input type="checkbox" ng-model="ngModel"></div>';
             //}
             //template: '<input type="text" class="form-control zb-form-input"/>',
-            templateUrl: "app/components/input/select/select.html",
+            templateUrl: templateService.getPathComponent("input/select/select.html"),
             //controller: function($scope, $element, $attrs) {
             //    $scope.math = Math.random();
             //    console.log("++++++++++++++++++++++++++++++++++++++++++++");
@@ -80,7 +81,7 @@
                         }
                         if (!existsWatchModel) {
                             $scope.$watch("ngModel", function (v) {
-                                if ($scope.ngModel) {
+                                if ($scope.ngModel || $scope.ngModel === 0) {
                                     var $selectedItem = $filter('filter')($scope.selectWithSearchItems, function (f) {
                                         return f[$scope.fieldValue] == $scope.ngModel;
                                     });
@@ -89,6 +90,8 @@
                                             selected: $selectedItem[0]
                                         };
                                     }
+                                }else{
+                                    $scope.selectedItem = {};
                                 }
                             });
                         }
@@ -101,7 +104,7 @@
                         }
                         if (!existsWatch) {
                             $scope.$watch("selectedItem.selected", function (val, old) {
-                                var retval = (val && val[$scope.fieldValue]) ? val[$scope.fieldValue] : null;
+                                var retval = (val && val[$scope.fieldValue]) || (val && val[$scope.fieldValue] == 0) ? val[$scope.fieldValue] : null;
                                 $scope.ngModel = retval;
                                 if (angular.isFunction($scope.ngChange)) {
                                     ($scope.ngChange)(retval);

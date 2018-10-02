@@ -3,7 +3,7 @@
         height: auto;
 	    padding: 0;
         display: grid;
-        grid-template-columns: 1fr 1fr; /* fraction*/
+        grid-template-columns: 1fr 1fr/* fraction*/
         padding-bottom: 3px;
         background: #008ccb;
         color: white;
@@ -51,19 +51,19 @@
                 <!--Mã nhóm-->
                 <label class="col-sm-3 zb-form-label">File Name</label>
                 <div class="col-sm-9">
-                    <input-text ng-model="_currentItem.material_name"></input-text>
+                    <input-text ng-model="fileName" ng-disabled="{{ __mode === 2 ? 'true' : 'false' }}"></input-text>
                 </div>
             </div>
         </div>
     </div>  
     <br />
     <div class="">
-        <div class="lms-table-history-custom-header" style="text-align: center">
+        <div class="lms-table-history-custom-header" style="text-align: center;grid-template-columns:1fr 1fr!important;">
 		    <div ng-repeat="item in currentHeaderData">{{item.value}}</div>
 	    </div>
-        <div class="lms-table-history-custom-body" style="text-align: center">
+        <div class="lms-table-history-custom-body" style="text-align: center;">
             <div ng-repeat="item in currentItemData track by $index">
-                <div class="lms-table-history-custom-group" item-group-download="{{$index}}">
+                <div class="lms-table-history-custom-group" item-group-download="{{$index}}" >
                     <div style="color: #008ccb">
                         {{item.caption}} ({{item.items.length}})
                     </div>
@@ -72,10 +72,11 @@
                         <i class="bowtie-icon bowtie-chevron-left-light lms-icon-up" style="color: #008ccb" onclick="onClickIconDonwload(this)"></i>
                     </div>
                 </div>
-                <div class="lms-table-history-custom" item-group-child-download="{{$parent.$index}}" ng-repeat="data in item.items">
+                <div class="lms-table-history-custom" item-group-child-download="{{$parent.$index}}" ng-repeat="data in item.items" style="grid-template-columns:1fr 1fr!important;">
                     <div>{{data.date_created|date:'MM/dd/yyyy h:mma' }}</div>
                     <div>
-                        {{data.login_account ?data.login_account:noData}}
+                         <img ng-src="{{$root.url_static + 'css/icon/approver.png' }}"
+                              width="20"/>{{data.login_account ? data.login_account:noData}}
                     </div>
                 </div>
             </div>
@@ -92,7 +93,7 @@
         ];
         scope.currentItemData = [
             {
-                caption: "To day",
+                caption: "Today",
                 items: [
 
                 ]

@@ -32,24 +32,24 @@
                 extendToolbar: "="
             },
             //templateUrl: "app/widgets/page-sidebar/page-sidebar.html",
-            template: `
-            <div class="zb-page-sidebar hcs-page-sidebar-custom">
-                <div class="zb-right hcs-right-custom">
-                    <div class="zb-top">
-                        <div class="zb-left-content">
-                            <button ng-click="toggleCollapseMenu()" class="zb-btn zb-btn-blue zb-btn-collapse"
-                                style="background: transparent; color: #8c8c8c; border: 0;">
-                                <i class="bowtie-icon bowtie-view-grid"></i>
-                            </button>
-                            <div ng-transclude="siteMap" class="zb-sitemap"></div>
-                        </div>
-                        <div class="zb-right-content" ng-transclude="extendToolbar">
-                            
-                        </div>
-                    </div>
-                </div>
-            </div>
-            `,
+            template: ''
+            + '<div class="zb-page-sidebar hcs-page-sidebar-custom">'
+            + '    <div class="zb-right hcs-right-custom">'
+            + '        <div class="zb-top">'
+            + '            <div class="zb-left-content">'
+            + '                <button ng-click="toggleCollapseMenu()" class="zb-btn zb-btn-blue zb-btn-collapse"'
+            + '                    style="background: transparent; color: #8c8c8c; border: 0;">'
+            + '                    <i class="bowtie-icon bowtie-view-grid"></i>'
+            + '                </button>'
+            + '                <div ng-transclude="siteMap" class="zb-sitemap"></div>'
+            + '            </div>'
+            + '            <div class="zb-right-content" ng-transclude="extendToolbar">'
+            + '                '
+            + '            </div>'
+            + '        </div>'
+            + '    </div>'
+            + '</div>'
+            ,
             link: function ($scope, elem, attr, ctrls, $transclude) {
                 var left = $(elem).find(".zb-left");
                 var right = $(elem).find(".zb-right");

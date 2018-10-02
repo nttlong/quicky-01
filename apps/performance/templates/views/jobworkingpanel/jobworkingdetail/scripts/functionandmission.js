@@ -16,6 +16,7 @@
     scope.$parent.$parent.$parent.$parent.detail.onAdd = onAdd;
     scope.$parent.$parent.$parent.$parent.detail.onEdit = onEdit;
     scope.$parent.$parent.$parent.$parent.detail.onDelete = onDelete;
+    scope.$parent.$parent.$parent.$parent.detail.onSave = null;
     scope.$parent.$parent.$parent.$parent.detail.onRefresh = onRefresh;
     scope.$job_w_code = scope.$parent.$parent.$parent.$parent.detail.$job_w_code;
     scope._tableData = _tableData;
@@ -57,9 +58,10 @@
             });
         }
     };
-    function onRefresh() {
-
-    };
+    function onRefresh(argument) {
+        var config = scope.$$table.$$tableConfig;
+        _tableData(config.iPage, config.iPageLength, config.orderBy, config.searchText, config.fnReloadData);
+    }
 
     /**
      * Hàm mở dialog

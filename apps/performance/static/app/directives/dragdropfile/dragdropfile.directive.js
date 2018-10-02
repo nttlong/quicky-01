@@ -157,7 +157,6 @@
             }
 
             function getExtension(ext, type) {
-                debugger
                 var url = '';
                 switch (ext.toLowerCase()) {
                     case 'docx':

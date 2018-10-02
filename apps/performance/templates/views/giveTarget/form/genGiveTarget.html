@@ -1,0 +1,120 @@
+﻿
+<%!
+    #_style="width:300px;"
+%>
+<%inherit file="../../commons/dialog_resize_save_close.html"/>
+
+<%block name="modal_body">
+<div class="col-md-12 col-xs-12">
+    <collapse-box class="zb-form-common" title="${get_res('current_information','Thông tin hiện hành')}">
+        <div class="col-md-6 col-xs-6">
+            <div class="form-group zb-form-group">
+                <label class="col-sm-5 zb-form-label">${get_res('approve_period','Kỳ đánh giá')}</label>
+                <div class="col-sm-7">
+                    <input-text>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 col-xs-6">
+            <div class="form-group zb-form-group">
+                <label class="col-sm-5 zb-form-label">${get_res('employee','Nhân viên')}</label>
+                <div class="col-sm-7">
+                    <input-text>
+                </div>
+            </div>
+        </div>
+    </collapse-box>
+</div>
+<div class="col-md-12 col-xs-12">
+    <collapse-box class="zb-form-common" title="${get_res('data_generate_option','Tùy chọn phát sinh dữ liệu')}">
+        <div class="col-md-6 col-xs-6">
+            <div class="form-group zb-form-group" style="display: block;">
+                <label class="radio">Sao chép dữ liệu theo Kỳ cũ của chính Nhân viên hiện hành
+                    <input type="radio" ng-value="true">
+                    <span class="checkround"></span>
+                 </label>
+                 <label class="radio">Sao chép dữ liệu theo Kỳ cũ của Nhân viên khác
+                    <input type="radio" ng-value="true">
+                    <span class="checkround"></span>
+                 </label>
+                 <label class="radio">Sao chép dữ liệu Kỳ hiện hành cho Nhân viên khác
+                    <input type="radio" ng-value="true">
+                    <span class="checkround"></span>
+                 </label>
+                 <label class="radio">Sao chép tất cả dữ liệu theo Kỳ cũ cho toàn bộ Nhân viên tham gia
+                    <input type="radio" ng-value="true">
+                    <span class="checkround"></span>
+                 </label>
+            </div>
+        </div>
+        <div class="col-md-6 col-xs-6">
+            <div class="form-group zb-form-group">
+                <label class="col-sm-5 zb-form-label">${get_res('select_approve_period','Chọn kỳ đánh giá')}</label>
+                <div class="col-sm-7">
+                    <combobox/>
+                </div>
+            </div>
+            <div class="form-group zb-form-group">
+                <div class="col-sm-7">
+                    <input-checkbox caption="${get_res('copy_weight','Sao chép trọng số')}"/>
+                </div>
+            </div>
+            <div class="form-group zb-form-group">
+                <div class="col-sm-7">
+                    <input-checkbox caption="${get_res('copy_target','Sao chép chỉ tiêu')}"/>
+                </div>
+            </div>
+            <div class="form-group zb-form-group">
+                <div class="col-sm-7">
+                    <input-checkbox caption="${get_res('replace_current_data','Thay thế dữ liệu hiện có')}"/>
+                </div>
+            </div>
+        </div>
+    </collapse-box>
+</div>
+<div class="col-md-6 col-xs-6">
+    <collapse-box class="zb-form-common" title="${get_res('select_employee','Chọn nhân viên')}">
+        <toolbar>
+           <input-text-icon icon="bowtie-icon bowtie-search" on-click="onSearch"></input-text-icon>
+        </toolbar>
+        <div class="col-sm-12">
+            <!--Ghi chú-->
+            <div class="form-group zb-form-group">
+                <div class="col-sm-12 no-padding">
+                    <input-textarea rows="4" ng-model="entity.kpi_desc"></input-textarea>
+                </div>
+            </div>
+        </div>
+    </collapse-box>
+</div>
+<div class="col-md-6 col-xs-6">
+    <collapse-box class="zb-form-common" title="${get_res('Note','Chọn nhân viên')}">
+        <toolbar>
+           <input-text-icon icon="bowtie-icon bowtie-search" on-click="onSearch"></input-text-icon>
+        </toolbar>
+        <div class="col-sm-12">
+            <!--Ghi chú-->
+            <div class="form-group zb-form-group">
+                <div class="col-sm-12 no-padding">
+                    <input-textarea rows="4" ng-model="entity.note"></input-textarea>
+                </div>
+            </div>
+        </div>
+    </collapse-box>
+</div>
+</%block>
+
+<%block name="modal_script">
+<script>
+    (function (scope) {
+        scope.__mode = scope.$parent.mode;
+        scope.title = scope.$parent.headerTitle;
+        scope.onResizeDialog = onResizeDialog;
+
+        function onResizeDialog() {
+            $dialog.fullScreen();
+        }
+    });
+</script>
+
+</%block>

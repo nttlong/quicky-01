@@ -187,7 +187,6 @@
                 var $dialog = $(dialogTemplate);
 
                 $(elem).find(".zb-open-modal").bind("click", function () {
-                    debugger
                     $dialog.appendTo("body");
                     $dialog.modal({ backdrop: 'static', keyboard: false });
 

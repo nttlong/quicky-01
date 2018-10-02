@@ -212,7 +212,13 @@
     scope.tableFields = [
         { "data": "result_type_id", "title": "${get_res('result_type_ID_name_table_header','ID')}" },
         { "data": "result_type1", "title": "${get_res('result_type_table_header','Result Type')}" },
-        { "data": "creator", "title": "${get_res('created_by_table_header','Created by')}" },
+        { "data": "creator", "title": "${get_res('created_by_table_header','Created by')}","expr":function(row, data, func){
+            func(function(){
+                return "<img class='hcs-small-img'  src='" + scope.$root.url_static + "css/icon/approver.png" + "'/>"+ " "+row.creator ;
+
+            });
+            return true;
+        } },
         { "data": "created_on", "title": "${get_res('created_at_table_header','Created at')}", "format": "date:" + 'dd/MM/yyyy h:mm:ss a' },
     ];
 

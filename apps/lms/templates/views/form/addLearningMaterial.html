@@ -4,6 +4,175 @@
 %>
 <%inherit file="../commons/dialog_save_close.html"/>
 
+<style>
+    .zb-form-combobox .form-control {
+        display: block!important;
+    }
+
+    .checkbox+.checkbox, .radio+.radio {
+        margin-top: 4px;
+    }
+
+    .radio {
+    padding-left: 20px;
+    margin-top: 4px;
+    margin-bottom: 8px;
+}
+
+.radio label {
+    display: inline-block;
+    vertical-align: middle;
+    position: relative;
+    padding-left: 5px;
+}
+
+.radio label .relative {
+    color: #00b9f2;
+}
+
+.radio label a:hover {
+    text-decoration: none;
+}
+
+.radio label::before {
+    content: "";
+    display: inline-block;
+    position: absolute;
+    width: 17px;
+    height: 17px;
+    left: 0;
+    top:3px;
+    margin-left: -20px;
+    border: 1px solid #A9A9A9;
+    border-radius: 50%;
+    background-color: #fff;
+    -webkit-transition: border .3s ease-in-out;
+    transition: border .3s ease-in-out;
+}
+
+.radio label::after {
+    display: inline-block;
+    position: absolute;
+    content: " ";
+    width: 11px;
+    height: 11px;
+    left: 3px;
+    top: 6px;
+    margin-left: -20px;
+    border-radius: 50%;
+    background-color: #777;
+    -webkit-transform: scale(0,0);
+    -ms-transform: scale(0,0);
+    transform: scale(0,0);
+    -webkit-transition: -webkit-transform .3s cubic-bezier(.8,-.33,.2,1.33);
+    -moz-transition: -moz-transform .3s cubic-bezier(.8,-.33,.2,1.33);
+    -o-transition: -o-transform .3s cubic-bezier(.8,-.33,.2,1.33);
+    transition: transform .3s cubic-bezier(.8,-.33,.2,1.33);
+}
+
+.radio input[type=radio] {
+    opacity: 0;
+    z-index: 1;
+}
+
+.radio input[type=radio]:checked+label::after {
+    -webkit-transform: scale(1,1);
+    -ms-transform: scale(1,1);
+    transform: scale(1,1);
+}
+
+.radio input[type=radio]:disabled+label {
+    opacity: .65;
+}
+
+.radio input[type=radio]:disabled+label::before {
+    cursor: not-allowed;
+}
+
+.radio.radio-inline {
+    margin-top: 0;
+}
+
+.radio-primary input[type=radio]+label::after {
+    background-color: #f7941d;
+}
+
+.radio-primary input[type=radio]:checked+label::before {
+    border-color: #f7941d;
+}
+
+.radio-primary input[type=radio]:checked+label::after {
+    background-color: #f7941d;
+}
+
+.radio-danger input[type=radio]+label::after {
+    background-color: #ef474f;
+}
+
+.radio-danger input[type=radio]:checked+label::before {
+    border-color: #ef474f;
+}
+
+.radio-danger input[type=radio]:checked+label::after {
+    background-color: #ef474f;
+}
+
+.radio-info input[type=radio]+label::after {
+    background-color: #00b9f2;
+}
+
+.radio-info input[type=radio]:checked+label::before {
+    border-color: #00b9f2;
+}
+
+.radio-info input[type=radio]:checked+label::after {
+    background-color: #00b9f2;
+}
+
+.radio-warning input[type=radio]+label::after {
+    background-color: #f0ad4e;
+}
+
+.radio-warning input[type=radio]:checked+label::before {
+    border-color: #f0ad4e;
+}
+
+.radio-warning input[type=radio]:checked+label::after {
+    background-color: #f0ad4e;
+}
+
+.radio-success input[type=radio]+label::after {
+    background-color: #5cb85c;
+}
+
+.radio-success input[type=radio]:checked+label::before {
+    border-color: #5cb85c;
+}
+
+.radio-success input[type=radio]:checked+label::after {
+    background-color: #5cb85c;
+}
+
+.radio-success input[type=file] {
+    display: inline;
+    width: 0;
+    opacity: 0;
+}
+
+input[type=checkbox].styled:checked+label:after,input[type=radio].styled:checked+label:after {
+    font-family: FontAwesome;
+    content: "";
+}
+
+input[type=checkbox] .styled:checked+label::before,input[type=radio] .styled:checked+label::before {
+    color: #fff;
+}
+
+input[type=checkbox] .styled:checked+label::after,input[type=radio] .styled:checked+label::after {
+    color: #fff;
+}
+</style>
+
 <%block name="modal_body">
             <div class="col-md-{{col_group}} col-sm-{{col_group}}">
                 <collapse-box class="zb-form-common" title="${get_res('create_new_folder','Create a new folder')}">
@@ -22,8 +191,8 @@
                                     current-item-other="currentItemOther" required /> -->
                                 
                                 <combobox load-data="$root.$getComboboxData" 
-                                          ng-model="entity.category_id" 
-                                          params="{key:'${encryptor.get_key('cbb_lmsls_materialfolder')}', value:[{ '@lock': true }]}" 
+                                          ng-model="entity.parent_code"
+                                          params="{key:'${encryptor.get_key('cbb_lmsls_materialfolder')}', value:[{ '@lock': true }]}"
                                           on-search-change="false" on-search-press="true" placeholder="" 
                                           init-data="cbb_lmsls_materialfolder.value" paging="true" 
                                           close-on-select="true" template-fields="cbb_lmsls_materialfolder.display_fields" 
@@ -60,7 +229,7 @@
                                     current-item="entity.moderator_id" required /> -->
                                 <combobox load-data="$root.$getComboboxData" 
                                           ng-model="entity.moderator_id" 
-                                          params="{key:'${encryptor.get_key('lms_cbb_employees')}', value:[{ '@is_cbcc': true }]}" 
+                                          params="{key:'${encryptor.get_key('lms_cbb_emp')}', value:[{ '@lock': true }]}"
                                           on-search-change="false" on-search-press="true" placeholder="" 
                                           init-data="cbb_employees.value" paging="true" 
                                           close-on-select="true" template-fields="cbb_employees.display_fields" 
@@ -81,22 +250,22 @@
                         <div class="form-group zb-form-group">
                             <!--Tên khác-->
                             <label for="inputEmp_Train_Mode_Name2" class="col-sm-5 zb-form-label">${get_res('approver','Approver(s)')}</label>
-                            <div class="col-sm-7">
-                                <!--<input-combobox 
-                                    list-code="${encryptor.get_key('cbb_employees_cbcc')}"
-                                    list-value="[{ '@is_cbcc': false }]"
-                                    current-item="entity.approver_id" required />-->
-                                <combobox load-data="$root.$getComboboxData" 
-                                          ng-model="entity.approver_id" 
-                                          params="{key:'${encryptor.get_key('lms_cbb_employees')}', value:[{ '@is_cbcc': false }]}" 
-                                          on-search-change="false" on-search-press="true" placeholder="" 
-                                          init-data="$cbb_employees.value" paging="true" 
-                                          close-on-select="true" template-fields="$cbb_employees.display_fields" 
-                                          reload="false">
-                                </combobox>
-                                <div>
-                                    <p class="zb-form-label" style="cursor: pointer; font-size: 11px !important;">Add new appover</p>
-                                </div>
+                            <div class="col-sm-7" style="display: block;">
+                                  <multi-combobox id="filterEmployee" load-data="$root.$getComboboxData"
+                                            ng-model="entity.approver_id"
+                                            on-accept="addEmail"
+                                            params="{key:'${encryptor.get_key('lms_cbb_emp')}', value:[]}"
+                                            on-search-change="false"
+                                            on-search-press="true"
+                                            placeholder=""
+                                            init-data="$$$list_emp.value"
+                                            caption-field="{{$$$list_emp.caption_field}}"
+                                            value-field="{{$$$list_emp.value_field}}"
+                                            paging="true"
+                                            close-on-select="true"
+                                            template-fields="$$$list_emp.display_fields"
+                                            reload="false">
+                                    </multi-combobox>
                             </div>
                         </div>
                     </div>
@@ -104,14 +273,24 @@
                         <div class="form-group zb-form-group">
                             <!--Thứ tự-->
                             <label for="inputOrdinal" class="col-sm-5 zb-form-label">${get_res('publish','Publish')}</label>
-                            <div class="col-sm-7 "> 
-                                <label class="radio-inline control-label">
-                                    <input style="top: 2px;" type="radio" ng-model="entity.active" ng-value="true"> <span style="font-size: 13px;">Yes</span>
-                                </label>
-                                <label class="radio-inline control-label">
-                                    <input style="top: 2px;" type="radio" ng-model="entity.active" ng-value="false"> <span style="font-size: 13px;">No</span>
-                                </label>
+                            <div class="col-xs-7 col-sm-7">
+                            <div style="display: inline-flex;">
+                               <div class="radio radio-success">
+                                  <input type="radio" name="radCourse"  ng-value="true" id="idradCourse1"
+                                     ng-model="entity.active">
+                                  <label for="idradCourse1">
+                                  <span>${get_res('yes_related','Yes')}</span>
+                                  </label>
+                               </div>
+                               <div class="radio radio-success" style="margin-left: 70px;">
+                                  <input type="radio" name="radCourse" ng-value="false" id="idradCourse2"
+                                     ng-model="entity.active">
+                                  <label for="idradCourse2">
+                                  <span>${get_res('no_related','No')}</span>
+                                  </label>
+                               </div>
                             </div>
+                        </div>
                         </div>
                     </div>
                     <div class="col-md-{{col}}">
@@ -174,7 +353,10 @@
                             </thead>
                             <tbody>
                               <tr ng-repeat="item in entity.permisions track by $index">
-                                <td>{{item.role}}</td>
+                                  <td><img class="hcs-small-img" ng-src='{{item.role == "System Admin" ? (urls + "css/icon/admin.png"):
+                                                  item.role == "Instructor" ?( urls + "css/icon/moderator.png"):
+                                                  item.role == "Student" ? ( urls + "css/icon/student.png"):
+                                                  item.role == "Guest"? ( urls + "css/icon/guest.png" ): ""}}'/> {{item.role}}</td>
                                 <td style="text-align: center">
                                   <input-checkbox ng-model="item.allow_full_control">
                                 </td>
@@ -201,6 +383,8 @@
 <%block name="modal_script">
 <script>
     (function (scope) {
+
+        scope.urls = scope.$root.url_static ;
         scope.__mode = scope.$parent.mode;
         scope.currentItemOther = scope.__mode == 1 ? '' : 'root';
         scope.onResizeDialog = onResizeDialog;
@@ -540,22 +724,21 @@
             }
         }
 
-        function _getDataInitCombobox() {
+        (function _getDataInitCombobox() {
             scope.$root.$getInitComboboxData(scope, [{
                 "key": "${encryptor.get_key('cbb_lmsls_materialfolder')}",
                 "code": scope.entity.parent_code ? scope.entity.parent_code : null,
                 "alias": "cbb_lmsls_materialfolder"
             }, {
-                "key": "${encryptor.get_key('lms_cbb_employees')}",
+                "key": "${encryptor.get_key('lms_cbb_emp')}",
                 "code": scope.entity.moderator_id ? scope.entity.moderator_id : null,
                 "alias": "cbb_employees"
             }, {
-                "key": "${encryptor.get_key('lms_cbb_employees')}",
-                "code": scope.entity.approver_id ? scope.entity.approver_id : null,
-                "alias": "$cbb_employees"
-            }]);
-        }
-        _getDataInitCombobox();
+                    "key": "${encryptor.get_key('lms_cbb_emp')}",
+                    "code": scope.entity.approver_id ? scope.entity.approver_id : null,
+                    "alias": "$$$list_emp"
+                }]);
+        })();
     });
 </script>
 </%block>

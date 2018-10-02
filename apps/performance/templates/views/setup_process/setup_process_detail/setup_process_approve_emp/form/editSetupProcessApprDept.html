@@ -1,0 +1,383 @@
+<%!
+    #_style="width:300px;"
+%>
+    <%inherit file="../../../../commons/dialog_save.html"/>
+
+<%block name="modal_body">
+<div class="col-md-{{col_group}} col-xs-{{col_group}}">
+    <collapse-box class="zb-form-common" title="${get_res('employee','Nhân viên')}">
+        <div class="col-md-12 col-xs-12">
+            <div class="hcs-left-side-department-content">
+                <div class="hcs-left-side-department-tree-tool-bar" style="display: grid; grid-auto-columns: 1fr auto auto">
+                    <div style="grid-area: 1/1/1/1;">
+                        <div class="hcs-left-side-department-tree-tool-bar-div-search" style="width: 100%;">
+                           <input class="hcs-left-side-department-tree-tool-bar-input-search"
+                                  placeholder="Filter" ng-model="treeSearchText">
+                           <div class="hcs-left-side-department-tree-tool-bar-input-search-bot"></div>
+                           <div class="hcs-left-side-department-tree-tool-bar-input-search-bot-icon">
+                               <i class="glyphicon glyphicon-search"></i>
+                           </div>
+                        </div>
+                    </div>
+                    <div style="padding-left:5px;grid-area: 1/2/1/2;">
+                        <button class="zb-btn hcs-left-side-department-tree-tool-bar-btn-custom-icon" ng-click="$treeCollapseAll()" style="text-align: center;
+                                                   border: none;
+                                                   background-color: transparent;
+                                                   cursor: pointer;
+                                                   border-radius: 0;
+                                                   height: 26px;">
+                            <span>
+                            <i class="bowtie-icon bowtie-chevron-up-all" style="font-size: 25px;"></i>
+                            </span>
+                        </button>
+                    </div>
+                    <div style="padding-left:5px;grid-area: 1/3/1/3;">
+                        <button class="zb-btn hcs-left-side-department-tree-tool-bar-btn-custom-icon" ng-click="$treeExpandAll()"  style="text-align: center;
+                                                  border: none;
+                                                  background-color: transparent;
+                                                  cursor: pointer;
+                                                  border-radius: 0;
+                                                  height: 26px;">
+                            <span>
+                            <i class="bowtie-icon bowtie-chevron-down-all" style="font-size: 25px;"></i>
+                            </span>
+                        </button>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="hcs-left-side-department-tree" style="height: 400px; overflow: auto;border: 1px solid #d9d9d9;">
+                    <tree-data data-source="treeDepartmentsDataSource"
+                               display-field="department_name"
+                               parent-field="parent_code"
+                               key-field="department_code"
+                               multi-select="treeMultiSelect"
+                               select-mode="treeMode"
+                               on-select="selectTreeNode"
+                               current-node="treeCurrentNode"
+                               selected-nodes="treeSelectedNodes"
+                               selected-root-nodes="treeSelectedRootNodes"
+                               search-text="treeSearchText"
+                               check-all="treeCheckAll"
+                               checked-field="is_selected"
+                               disabled="false"
+                               expand-all="$treeExpandAll"
+                               collapse-all="$treeCollapseAll"
+                               expr="renderFormatTree"/>
+                </div>
+            </div>
+        </div>
+    </collapse-box>
+</div>
+<div class="col-md-{{ 12 - col_group}} col-xs-{{ 12 - col_group}}">
+    <collapse-box class="zb-form-common" title="${get_res('config_approver', 'Thiết lập người duyệt')}">
+        <div class="col-md-12 col-xs-12"  ng-repeat="elm in configApprover track by $index">
+            <div class="form-group zb-form-group">
+                <!--Tên khác-->
+                <div class="col-md-5 col-xs-5">
+                    <input-checkbox class="col-sm-5" ng-model="elm.checked" ng-if="__mode != 1" caption=""></input-checkbox>
+                    <label class="col-xs-5 col-sm-5 zb-form-label">${get_res('level', 'Cấp độ')} {{$index + 1}}</label>
+                </div>
+                <div class="col-md-7 col-xs-7">
+                    <combobox load-data="$root.$getComboboxData"
+                            ng-model="elm.appover_code"
+                            params="{key:'${encryptor.get_key('cbb_employees_cbcc')}', value:[]}"
+                            on-search-change="false"
+                            on-search-press="true"
+                            placeholder=""
+                            init-data="elm.$$$manager_code.value"
+                            caption-field="{{elm.$$$manager_code.caption_field}}"
+                            key-field="{{elm.$$$manager_code.value_field}}"
+                            paging="true"
+                            close-on-select="true"
+                            template-fields="elm.$$$manager_code.display_fields"
+                            reload="false"
+                            ng-required="{{$index === 0 ? true : false}}">
+                    </combobox>
+                </div>
+            </div>
+        </div>
+    </collapse-box>
+</div>
+</%block>
+
+<%block name="modal_script">
+<script>
+    (function (scope) {
+        scope.__mode = scope.$parent.mode;
+        scope.title = scope.$parent.headerTitle;
+        scope.col = 12;
+        scope.col_group = 6;
+        scope.onResizeDialog = onResizeDialog;
+        /* Tree */
+        scope.treeCurrentNode = {};
+        scope.treeSelectedNodes = [];
+        scope.treeSelectedRootNodes = [];
+        scope.treeCheckAll = false;
+        scope.treeSearchText = '';
+        scope.treeDisable = false;
+        scope.treeMultiSelect = true;
+        scope.treeMode = 2; // Value in (1, 3) combobox toàn quyền set 1 ngược lại set 3
+        scope.treeDepartmentsDataSource = [];
+        scope.renderFormatTree = function(row, config){
+            if(row.department_code == scope.$parent.$$table.currentItem.department_code){
+                scope.treeCurrentNode = row;
+                scope.treeCurrentNode.is_selected = true;
+            }
+            config({
+                format: scope.$parent.listDepartmentUsed.includes(row.department_code) ? 
+                "<span style='font-weight:bold;'>" + row.department_name + "<span>" :
+                row.department_name,
+                disabled: function(){
+                    if(scope.__mode == 1){
+                        if(!scope.$parent.listDepartmentUsed.includes(row.department_code))
+                            return false;
+                        return true;
+                    }else{
+                        if(scope.$parent.listDepartmentUsed.includes(row.department_code))
+                            return false;
+                        return true;
+                    }
+                }()
+            });
+            return true;
+        }
+
+        scope.configApprover = [];
+
+        function _departments() {
+            services.api("${get_api_key('app_main.api.HCSSYS_Departments/get_list')}")
+                .data()
+                .done()
+                .then(function (res) {
+                    debugger
+                    var treeSource = JSON.parse(JSON.stringify(res));
+                    if(scope.__mode == 2){
+                        scope.treeDepartmentsDataSource = _.each(treeSource, function(val){
+                            if(val.department_code == scope.$parent.$$table.currentItem.department_code)
+                            {
+                                val.is_selected = true;
+                            }else{
+                                val.is_selected = false;
+                            }
+                        });
+                    }else{
+                        scope.treeDepartmentsDataSource = res;
+                    }
+                    scope.$applyAsync();
+                })
+        }
+
+        scope.saveNNext = function(){
+            debugger
+            if(scope.__mode == 1){
+                if(!scope.configApprover[0].appover_code){
+                    $msg.message("${get_global_res('Notification','Thông báo')}", "${get_res('level_1_not_null','Cấp độ 1 không được để trống')}", function () { });
+                    return;
+                }
+                var level = [];
+                _.each(new Array(20), function(val, index){
+                    if(index < scope.configApprover.length)
+                        level.push(scope.configApprover[index].appover_code);
+                    else
+                        level.push(null);
+                });
+                editData({
+                    process_id: scope.$parent.$parent.$$process_id,
+                    level: scope.$parent.$parent.$$curr_max_approve_level,
+                    appover_code: level,
+                    department_code: _.pluck(scope.treeSelectedNodes, "department_code")
+                }, function(res){
+                    if (res.error == null) {
+                        $dialog.closeDialog();
+                        reloadData();
+                    } else {
+                        $msg.message("${get_global_res('Notification','Thông báo')}", "${get_global_res('Internal_Server_Error','Có lỗi từ phía máy chủ')}", function () { });
+                    }
+                })
+            }else{
+                if(!scope.configApprover[0].appover_code){
+                    $msg.message("${get_global_res('Notification','Thông báo')}", "${get_res('level_1_not_null','Cấp độ 1 không được để trống')}", function () { });
+                    return;
+                }
+                var level = [];
+                _.each(new Array(20), function(val, index){
+                    if(index < scope.configApprover.length)
+                        level.push(scope.configApprover[index]);
+                    else
+                        level.push({
+                            checked : false,
+                            appover_code : null
+                        });
+                });
+                editData({
+                    process_id: scope.$parent.$parent.$$process_id,
+                    level: scope.$parent.$parent.$$curr_max_approve_level,
+                    appover_code: level,
+                    department_code: _.pluck(scope.treeSelectedNodes, "department_code")
+                }, function(res){
+                    if (res.error == null) {
+                        $dialog.closeDialog();
+                        reloadData();
+                    } else {
+                        $msg.message("${get_global_res('Notification','Thông báo')}", "${get_global_res('Internal_Server_Error','Có lỗi từ phía máy chủ')}", function () { });
+                    }
+                })
+            }
+        }
+
+        function reloadData(){
+            scope.$parent.reloadData();
+            scope.$parent.reloadDepartmentUsed();
+        }
+
+        function onResizeDialog() {
+            $dialog.fullScreen();
+            scope.col = scope.col == 12 ? 6 : 12;
+            scope.col_group = scope.col_group == 6 ? 8 : 6;
+        }
+
+        function editData(parameter, callback){
+            var url = scope.__mode == 1 ? "${get_api_key('app_main.api.TM_SetupProcessApproverDept/insert_by_dept')}"
+            : "${get_api_key('app_main.api.TM_SetupProcessApproverDept/update_by_dept')}";
+            services.api(url)
+                        .data(parameter)
+                        .done()
+                        .then(function (res) {
+                            callback(res);
+                        })
+        }
+
+        (function _getDataInitCombobox() {
+            var parameter = [{
+                    "key": "${encryptor.get_key('perf_cbb_employees')}",
+                    "code": null,
+                    "alias": "$$$perf_cbb_employees"
+                },
+                {
+                    "key": "${encryptor.get_key('cbb_employees_cbcc')}",
+                    "code": scope.__mode == 1 ? null : scope.$parent.$$table.currentItem.approve_level_1,
+                    "alias": "$$$manager_code1"
+                },
+                {
+                    "key": "${encryptor.get_key('cbb_employees_cbcc')}",
+                    "code": scope.__mode == 1 ? null : scope.$parent.$$table.currentItem.approve_level_2,
+                    "alias": "$$$manager_code2"
+                },
+                {
+                    "key": "${encryptor.get_key('cbb_employees_cbcc')}",
+                    "code": scope.__mode == 1 ? null : scope.$parent.$$table.currentItem.approve_level_3,
+                    "alias": "$$$manager_code3"
+                },
+                {
+                    "key": "${encryptor.get_key('cbb_employees_cbcc')}",
+                    "code": scope.__mode == 1 ? null : scope.$parent.$$table.currentItem.approve_level_4,
+                    "alias": "$$$manager_code4"
+                },
+                {
+                    "key": "${encryptor.get_key('cbb_employees_cbcc')}",
+                    "code": scope.__mode == 1 ? null : scope.$parent.$$table.currentItem.approve_level_5,
+                    "alias": "$$$manager_code5"
+                },
+                {
+                    "key": "${encryptor.get_key('cbb_employees_cbcc')}",
+                    "code": scope.__mode == 1 ? null : scope.$parent.$$table.currentItem.approve_level_6,
+                    "alias": "$$$manager_code6"
+                },
+                {
+                    "key": "${encryptor.get_key('cbb_employees_cbcc')}",
+                    "code": scope.__mode == 1 ? null : scope.$parent.$$table.currentItem.approve_level_7,
+                    "alias": "$$$manager_code7"
+                },
+                {
+                    "key": "${encryptor.get_key('cbb_employees_cbcc')}",
+                    "code": scope.__mode == 1 ? null : scope.$parent.$$table.currentItem.approve_level_8,
+                    "alias": "$$$manager_code8"
+                },
+                {
+                    "key": "${encryptor.get_key('cbb_employees_cbcc')}",
+                    "code": scope.__mode == 1 ? null : scope.$parent.$$table.currentItem.approve_level_9,
+                    "alias": "$$$manager_code9"
+                },
+                {
+                    "key": "${encryptor.get_key('cbb_employees_cbcc')}",
+                    "code": scope.__mode == 1 ? null : scope.$parent.$$table.currentItem.approve_level_10,
+                    "alias": "$$$manager_code10"
+                },
+                {
+                    "key": "${encryptor.get_key('cbb_employees_cbcc')}",
+                    "code": scope.__mode == 1 ? null : scope.$parent.$$table.currentItem.approve_level_11,
+                    "alias": "$$$manager_code11"
+                },
+                {
+                    "key": "${encryptor.get_key('cbb_employees_cbcc')}",
+                    "code": scope.__mode == 1 ? null : scope.$parent.$$table.currentItem.approve_level_12,
+                    "alias": "$$$manager_code12"
+                },
+                {
+                    "key": "${encryptor.get_key('cbb_employees_cbcc')}",
+                    "code": scope.__mode == 1 ? null : scope.$parent.$$table.currentItem.approve_level_13,
+                    "alias": "$$$manager_code13"
+                },
+                {
+                    "key": "${encryptor.get_key('cbb_employees_cbcc')}",
+                    "code": scope.__mode == 1 ? null : scope.$parent.$$table.currentItem.approve_level_14,
+                    "alias": "$$$manager_code14"
+                },
+                {
+                    "key": "${encryptor.get_key('cbb_employees_cbcc')}",
+                    "code": scope.__mode == 1 ? null : scope.$parent.$$table.currentItem.approve_level_15,
+                    "alias": "$$$manager_code15"
+                },
+                {
+                    "key": "${encryptor.get_key('cbb_employees_cbcc')}",
+                    "code": scope.__mode == 1 ? null : scope.$parent.$$table.currentItem.approve_level_16,
+                    "alias": "$$$manager_code16"
+                },
+                {
+                    "key": "${encryptor.get_key('cbb_employees_cbcc')}",
+                    "code": scope.__mode == 1 ? null : scope.$parent.$$table.currentItem.approve_level_17,
+                    "alias": "$$$manager_code17"
+                },
+                {
+                    "key": "${encryptor.get_key('cbb_employees_cbcc')}",
+                    "code": scope.__mode == 1 ? null : scope.$parent.$$table.currentItem.approve_level_18,
+                    "alias": "$$$manager_code18"
+                },
+                {
+                    "key": "${encryptor.get_key('cbb_employees_cbcc')}",
+                    "code": scope.__mode == 1 ? null : scope.$parent.$$table.currentItem.approve_level_19,
+                    "alias": "$$$manager_code19"
+                },
+                {
+                    "key": "${encryptor.get_key('cbb_employees_cbcc')}",
+                    "code": scope.__mode == 1 ? null : scope.$parent.$$table.currentItem.approve_level_20,
+                    "alias": "$$$manager_code20"
+                }];
+            scope.$root.$getInitComboboxData(scope,
+                parameter.slice(0, scope.$parent.$parent.$$curr_max_approve_level + 1), function(){
+                     _.each(new Array(scope.$parent.$parent.$$curr_max_approve_level), function(val, index){
+                        if(scope.__mode == 1){
+                            scope.configApprover.push({
+                                checked: false,
+                                appover_code: null,
+                                ['$$$manager_code'] : scope['$$$manager_code' + (index + 1).toString()]
+                            });
+                        }else{
+                            scope.configApprover.push({
+                                checked: false,
+                                appover_code: scope.$parent.$$table.currentItem['approve_level_' + (index + 1).toString()],
+                                ['$$$manager_code'] : scope['$$$manager_code' + (index + 1).toString()]
+                            });
+                        }
+                    });
+                }
+            );
+        })();
+
+        (function __init__(){
+            _departments();
+        })();
+    });
+</script>
+
+</%block>

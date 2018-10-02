@@ -1,4 +1,4 @@
-﻿(function (scope) {
+﻿﻿(function (scope) {
     /*                                                         */
     /* ==================== Property Scope - START=============*/
     /*                                                         */
@@ -41,7 +41,8 @@
     }
 
     scope.$root.edit = function () {
-        if (scope.currentItem) {
+        debugger
+        if (scope.currentItem&& !_.isEmpty(scope.currentItem)) {
             scope.mode = 2; // set mode chỉnh sửa
             openDialog("${get_res('edit_question_category','Edit Question Category')}", 'form/addExUpcomingExams', function () {
                 setTimeout(function () {
@@ -66,7 +67,7 @@
                     .data(arrayId)
                     .done()
                     .then(function (res) {
-                        
+                        debugger
                         if (res.deleted > 0) {
                             scope.currentItem = [];
                             scope.$root.refresh();
@@ -171,6 +172,8 @@
         }
     });
     /////////////////////////////////////////////////////////////
+
+
     scope.$root.isDisplay = true;
     scope.__tableSource = [];
     scope.mode = 0;
@@ -194,12 +197,33 @@
         { "data": "exam_id", "title": "${get_res('exam_id_table_header','ID')}" },
         { "data": "exam_name1", "title": "${get_res('exam_name_table_header','Exam Name')}" },
         { "data": "exam_category", "title": "${get_res('exam_category_ques_header','Exam Category')}" },
-        { "data": "exam_type", "title": "${get_res('exam_type_table_header','Exam Type')}" },
+        { "data": "exam_type", "title": "${get_res('exam_type_table_header','Exam Type')}","expr":function(row, data, func){
+            func(function(){
+                return "<p style='color:rgb(91,155,213)'>" + row.exam_type + "</p>" ;
+
+            });
+            return true;
+        } },
         { "data": "total_question", "title": "${get_res('total_question_table_header','Total Questions')}" },
-        { "data": "start_date", "title": "${get_res('start_date_table_header','Start Date')}", "format": "date:" + 'dd/MM/yyyy' },
-        { "data": "end_date", "title": "${get_res('end_date_header','End Date')}", "format": "date:" + 'dd/MM/yyyy' },
+        { "data": "start_date", "title": "${get_res('start_date_table_header','Start Date')}", "format": "date:" + 'dd/MM/yyyy' ,"expr":function(row, data, func){
+            func(function(){
+                return "<i style='color:#FF0040' class='bowtie-icon bowtie-calendar'></i>" +" " + data;
+            });
+            return true;
+        }},
+        { "data": "end_date", "title": "${get_res('end_date_header','End Date')}", "format": "date:" + 'dd/MM/yyyy',"expr":function(row, data, func){
+            func(function(){
+                return "<i style='color:#FF0040' class='bowtie-icon bowtie-calendar'></i>" +" " + data;
+            });
+            return true;
+        } },
         { "data": "duration", "title": "${get_res('duration_table_header','Duration')}" },
-        { "data": "exam_mode", "title": "${get_res('exam_mode_table_header','Exam Mode')}" },
+        { "data": "exam_mode", "title": "${get_res('exam_mode_table_header','Exam Mode')}" ,"expr":function(row, data, func){
+            func(function(){
+                return "<p style='font-weight:bold;color:" + row.color + "'>"  + row.exam_mode +"</p>";
+            });
+            return true;
+        }},
         { "data": "status", "title": "${get_res('status_table_header','Status')}" },
         
     ];
@@ -249,7 +273,14 @@
 
     //Navigation: quay trở về UI list
     scope.backPage = backPage;
+     scope.$root.refresh = refresh;
+    function refresh() {
+        var tableConfig = scope.$$tableConfig;
+        _tableData(tableConfig.iPage,
+            tableConfig.iPageLength, tableConfig.orderBy,
+            tableConfig.searchText, tableConfig.fnReloadData);
 
+    }
     function backPage() {
         $('.hcs-profile-list').fadeToggle();
         setTimeout(function () {
@@ -373,8 +404,8 @@
                         if (val.course_related)
                         { val.exam_type = "Course-Related" }
                         else { val.exam_type = "Non Course-Related" };
-                        if (val.exam_mode) { val.exam_mode = "Practice" }
-                        else { val.exam_mode = "Official" };
+                        if (val.exam_mode) { val.exam_mode = "Practice" ; val.color = "rgb(68,114,196)"}
+                        else { val.exam_mode = "Official"; val.color = "rgb(237,125,49)" };
                         val.total_question = val.question_list ? val.question_list.length : 0;
                         if (val.specific_avail) {
                             val.start_date = val.specific_avail.start_date;
@@ -384,6 +415,7 @@
                             val.start_date = '';
                             val.end_date = '';
                         }
+                        val.status ='';
                         return val;
                     })
                     

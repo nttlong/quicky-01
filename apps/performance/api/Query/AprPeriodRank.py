@@ -1,4 +1,5 @@
-from .. import models
+from .. import models, common
+
 def display_list_apr_period():
     ret=models.TMPER_AprPeriod().aggregate()
     ret.left_join(models.auth_user_info(), "created_by", "username", "uc")
@@ -50,4 +51,18 @@ def get_period_by_apr_period(apr_period):
         apr_year = 1
     ))
 
+    return ret
+
+
+def get_apr_rank_by_apr_period_year(apr_period, apr_year):
+    ret = {}
+    collection = common.get_collection('TMPER_AprPeriodRank').aggregate([
+        {"$match": {
+            "$and": [ { 'apr_year': apr_year }, { 'apr_period': apr_period } ]
+        }},
+        {"$project": {
+            "_id": 1,
+        }},
+    ])
+    ret = list(collection)
     return ret

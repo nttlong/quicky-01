@@ -1,10 +1,10 @@
-﻿(function (scope) {
+﻿﻿(function (scope) {
     scope.__tableSource = [];
     scope.mode = 0;
     //scope.showDetail = false;
     scope.filterFunctionModel = ''
     scope.currentFunction = '';
-    //scope.mapName = [];    
+    //scope.mapName = [];
     scope.$display = {
         showDetail: false,
         mapName: [],
@@ -39,8 +39,12 @@
     scope.onSelectTableRow = function ($row) {
         scope.$root.$commons = {
             $current_employee_code: $row.employee_code,
-            $active: $row.active
+            $active: $row.active,
+            $info_employee: {}
         };
+        _getEmployee(scope.$root.$commons.$current_employee_code, function(res){
+            scope.$root.$commons.$info_employee = res;
+        })
         $('.hcs-profile-list').fadeToggle();
         setTimeout(function () {
             scope.$display.showDetail = scope.$display.showDetail === false ? true : false;
@@ -95,8 +99,33 @@
     //Navigation: quay trở về UI list
     scope.backPage = backPage;
 
+    //event nhấn vào tên nhân viên trên breabcumb
+    scope.openFilterEmployee = function(){
+        var frm = lv.FormSearch(scope, "$$$perf_cbb_employees");
+        frm.EmployeeFilter(scope.$root.$commons, "$current_employee_code", "${get_res('job_w_change','CDCV có thể thuyên chuyển')}", false);
+        frm.openDialog;
+        frm.accept(function () {
+            _getEmployee(scope.$root.$commons.$current_employee_code, function(res){
+                scope.$root.$commons.$info_employee = res;
+            })
+        });
+        frm.cancel(function () {
+        });
+    };
+
     scope.objFilterActive = {
         $$$filter_active: "2"
+    }
+
+    function _getEmployee(empCode, callback) {
+        services.api("${get_api_key('app_main.api.HCSEM_Employees/get_employee_by_emp_code')}")
+            .data({
+                "employee_code": empCode
+            })
+            .done()
+            .then(function (res) {
+                callback(res);
+            })
     }
 
     function backPage() {
@@ -122,7 +151,7 @@
             scope.mode = 1;
             scope.currentItem = {};
             scope.$partialpage = scope.$display.mapName[0].url;
-            
+
             $(window).trigger('resize');
         }, 500);
     }
@@ -333,23 +362,27 @@
             })
     }
 
+    function _getDataInitCombobox() {
+        scope.$root.$getInitComboboxData(scope,
+            [{
+                "key": "${encryptor.get_key('perf_cbb_employees')}",
+                "code": null,
+                "alias": "$$$perf_cbb_employees"
+            }
+            ]
+        );
+    };
+
     (function _init_() {
         _departments();
         _selectBoxData();
+        _getDataInitCombobox();
         scope.handleData = new handleData();
         scope.$display.mapName = scope.handleData.$display.mapName;
         scope.currentFunction = scope.$display.mapName[0];
         scope.$display.selectedFunction = (scope.$display.mapName.length > 0) ? scope.$display.mapName[0].function_id : null;
         scope.$applyAsync();
     })();
-
-    scope.jqSliderLeftMobile = function() {
-        $(".hcs-left-side-department-content").toggle("slide");
-    }
-
-    scope.jqSliderActionMobile = function() {
-        $(".hcs-top-action-large").toggle("slide");
-    }
 
     scope.$watch("$display.selectedFunction", function (function_id) {
         var $his = scope.$root.$history.data();

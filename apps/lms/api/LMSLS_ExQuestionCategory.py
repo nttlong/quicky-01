@@ -250,14 +250,30 @@ def get_level_code_by_folder_id(args):
     return ret.get_page(0, 100)
 
 def get_list_category_question(args):
-    items = models.LMSLS_ExQuestionCategory().aggregate().project(
-        category_id = 1,
-        category_name = 1,
-        category_name2=1,
-        created_on = 1,
-        active=1,
-        note=1,
-        order=1
-        )
-    
-    return items.get_page(0, 100)
+    try:
+            collection  =  common.get_collection('LMSLS_ExQuestionCategory')
+            ret = collection.aggregate([
+                    {
+                        "$lookup": {
+                           "from": "lv.LMSLS_ExQuestionBank",
+                           "localField": "category_id",
+                           "foreignField": "ques_category",
+                           "as": "ques",
+                         }
+                    },{
+                        "$project":
+                          {
+                              "category_id": 1,
+                              "category_name": 1,
+                              "category_name2": 1,
+                              "created_on": 1,
+                              "active": 1,
+                              "note": 1,
+                              "order": 1,
+                              "ques":1,
+                          }
+                    }
+                ])
+            return list(ret)
+    except Exception as ex:
+        raise(ex)

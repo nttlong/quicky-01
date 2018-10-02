@@ -1,56 +1,57 @@
-﻿
+﻿﻿
 <%!
     #_style="width:300px;"
 %>
-<%inherit file="../../commons/dialog_selected_cancel.html"/>
+<%inherit file="../../commons/dialog_resize_selected_cancel.html"/>
 
 <%block name="modal_body">
-      <div class="col-md-6">
+      <div class="col-xs-12 col-md-6">
            <collapse-box class="zb-form-common" title="${get_global_res('rating_level','Định mức xếp loại')}">
-               <div class=" col-md-12 col-sm-12">
+               <div class="col-xs-12 col-md-12 col-sm-12">
                    <div class="form-group zb-form-group">
-                             <label class="col-sm-5 zb-form-label">${get_res('department','Bộ phận')}</label>
-                             <div class="col-sm-7">
+                             <label class="col-xs-5 col-sm-5 zb-form-label">${get_res('department','Bộ phận')}</label>
+                             <div class="col-xs-7 col-sm-7">
                                  <tree-combobox
-                                    load-data="$root.$getComboboxData" 
+                                    load-data="$root.$getComboboxData"
                                     ng-model="entity.department_code"
                                     placeholder=""
-                                    init-data="$$$cbb_departments.value"
-                                    caption-field="{{$$$cbb_departments.caption_field}}"
-                                    key-field="{{$$$cbb_departments.value_field}}"
-                                    parent-field="{{$$$cbb_departments.parent_field}}"
-                                    multi-select="$$$cbb_departments.multi_select"
+                                    init-data="$$$cbb_departments_multi_select.value"
+                                    caption-field="{{$$$cbb_departments_multi_select.caption_field}}"
+                                    key-field="{{$$$cbb_departments_multi_select.value_field}}"
+                                    parent-field="{{$$$cbb_departments_multi_select.parent_field}}"
+                                    multi-select="$$$cbb_departments_multi_select.multi_select"
                                     on-accept=""
-                                    params="{key:'${encryptor.get_key('cbb_departments')}', value:[{ '@lock': true }]}"
+                                    params="{key:'${encryptor.get_key('cbb_departments_multi_select')}', value:[{ '@lock': true }]}"
+                                    ng-disabled="__mode == 2 ? true : false"
                                     required>
                                 </tree-combobox>
                              </div>
                          </div>
                </div>
-               <div class="col-sm-12" ng-repeat="item in listRatingLevel">
+               <div class="col-xs-12 col-sm-12" ng-repeat="item in listRatingLevel">
                    <div class="form-group zb-form-group">
-                             <label class="col-sm-5 zb-form-label"><span>%<</span>${get_res('{{item.rank_code}}','{{item.rank_name}}')}<span>></span></label>
-                             <div class="col-sm-7">
+                             <label class="col-xs-5 col-sm-5 zb-form-label"><span>%<</span>${get_res('{{item.rank_code}}','{{item.rank_name}}')}<span>></span></label>
+                             <div class="col-xs-7 col-sm-7">
                                  <input-number  ng-model="item.percent"  min="0" max="100" />
                              </div>
                          </div>
                </div>
                </collapse-box>
               </div>
-         
-    <div class="col-md-6">
-           <div class="col-md-12 col-sm-12">
+
+    <div class="col-xs-12 col-md-6">
+           <div class="col-xs-12 col-md-12 col-sm-12">
                 <collapse-box class="zb-form-common" title="${get_global_res('Note','Ghi chú')}">
                     <div class="row">
                         <!--Ghi chú-->
-                        <div class="col-sm-12">
+                        <div class="col-xs-12 col-sm-12">
                             <input-textarea rows="10" ng-model="entity.note"></input-textarea>
                         </div>
                     </div>
-                    <div class="col-md-12" style="padding-top: 16px;">
+                    <div class="col-xs-12 col-md-12" style="padding-top: 16px;">
                         <div class="form-group zb-form-group">
-                            <label for="DisplayInfo" class="col-sm-3 zb-form-label">${get_global_res('create_and_modify','Tạo | Sửa')}</label>
-                            <div class="col-sm-9">
+                            <label for="DisplayInfo" class="col-xs-3 col-sm-3 zb-form-label">${get_global_res('create_and_modify','Tạo | Sửa')}</label>
+                            <div class="col-xs-9 col-sm-9">
                                 <input-text value="{{ entity.created_on | date: $root.systemConfig.date_format}} {{entity.created_by}} | {{ entity.modified_on | date: $root.systemConfig.date_format}} {{entity.modified_by}}" ng-disabled="true">
                             </div>
                         </div>
@@ -73,22 +74,25 @@
             scope.col = scope.col == 12 ? 6 : 12;
             scope.col_group = scope.col_group == 6 ? 8 : 6;
         }
-        scope.entity = {};
-        (function _getDataInitCombobox() {
-            debugger
+        scope.entity = {
+        };
+        scope.departmentCB = _getDataInitCombobox;
+        function _getDataInitCombobox() {
+
             scope.$root.$getInitComboboxData(scope,
                 {
-                    "key": "${encryptor.get_key('cbb_departments')}",
-                    "code":  scope.entity.hasOwnProperty('department_code')
+                    "key": "${encryptor.get_key('cbb_departments_multi_select')}",
+                    "code": scope.entity
+                        && scope.entity.hasOwnProperty('department_code')
                         ? scope.entity.department_code
                         : null,
-                    "alias": "$$$cbb_departments"
+                    "alias": "$$$cbb_departments_multi_select"
                 }
             );
-        })();
+        }
 
 		scope.listRatingLevel = [];
-		scope.cancelBtn = cancelBtn; 
+		scope.cancelBtn = cancelBtn;
 		function cancelBtn() {
 			$dialog.closeDialog();
 		}
@@ -103,15 +107,12 @@
 						$dialog.closeDialog();//Đóng form input
 						$msg.alert("${get_global_res('Handle_Success','Thao tác thành công')}", $type_alert.INFO);//Xuất thông báo thành cônng
 						if (scope.__mode == 1 || scope.__mode == 3) {
-							
-							reloadData();
+                            scope.$$tableTree = scope.$parent.$$tableTree;
+							_departmentGroup();
 						} else if (scope.__mode == 2) {
 							scope.$parent.currentItem = scope.entity;
-							scope.$parent.currentItem.modified_on = res.item.modified_on;
-							scope.$parent.currentItem.modified_by = res.item.modified_by;
-							scope.$parent.$apply();
-							//Refesh datatable
-							scope.$parent.refreshDataRow();
+							scope.$$tableTree = scope.$parent.$$tableTree;
+							_departmentGroup();
 						}
 					} else {
 						$msg.message("${get_global_res('Internal_Server_Error','Có lỗi từ phía máy chủ')}", "${get_global_res('Please_Try_Again','Xin thử vui lòng thử lại')}", function () { });
@@ -119,16 +120,48 @@
 				});
 			}
 		}
-        
 
+
+    function _departmentGroup() {
+        services.api("${get_api_key('app_main.api.TMPER_AprPeriodRank/get_tree')}")
+            .data({
+                 apr_period: scope.$parent.$parent.mode == 1 ? scope.$parent.$parent.apr_period_now : scope.$parent.$parent.Re_Map_Period(scope.$parent.$parent.entity.apr_period),
+                apr_year: scope.$parent.$parent.mode == 1 ? scope.$parent.$parent.apr_year_now : scope.$parent.$parent.entity.apr_year
+            })
+            .done()
+            .then(function (res) {
+                if (res.length <= 0) {
+                    res = null;
+                }
+                else {
+                    services.api("${get_api_key('app_main.api.HCSSYS_Departments/getRootDepartment')}")
+                    .data(res)
+                    .done()
+                    .then(function(res1){
+                        res1.forEach(function(el){
+                            el._id = null;
+                            debugger
+                            for (var i=0; i<res.length; i++){
+                                if(res[i].level_code.includes(el.department_code)){
+                                    res.push(el);
+                                    break;
+                                }
+                            }
+
+                        });
+                    });
+                }
+                   scope.$$tableTree.dataTableTree = res;
+                    scope.$applyAsync();
+            });
+    }
 
 		function editData(callback) {
-			
-			debugger
 		var url = getUrl();
             if (scope.__mode == 3) {
 
             }
+            debugger
 			services.api(url)
 				.data({
 					apr_period: scope.$parent.$parent.Re_Map_Period(scope.$parent.$parent.entity.apr_period),
@@ -163,16 +196,25 @@
 				for (var i = 0; i < list_rating.length; i++) {
 					list_rating[i].percent = "0";
 				}
+                _getDataInitCombobox();
 				scope.listRatingLevel = list_rating;
+				scope.$apply();
 			}
 			else if (scope.__mode == 2) {
-				services.api("${get_api_key('app_main.api.TMLS_Rank/getListRankcode')}")
-					.data()
+                debugger
+				services.api("${get_api_key('app_main.api.TMPER_AprPeriodRank/getListRankcodeWithData')}")
+					.data(scope.$parent.$$tableTree.treeCurrentNode)
 					.done()
 					.then(function (res) {
-						scope.listRatingLevel = res;
+					scope.entity = res;
+                    scope.entity.department_code = [scope.$parent.$$tableTree.treeCurrentNode.department_code];
+
+					_getDataInitCombobox();
+						scope.listRatingLevel = res['rank_level'];
+						scope.$apply();
 					});
 			}
+
 		})();
     });
 </script>

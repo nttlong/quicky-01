@@ -222,6 +222,23 @@ def delete(args):
         lock.release()
         raise(ex)
 
+def delete_one(id):
+    try:
+        lock.acquire()
+        ret = {}
+        if id['data'] != '':
+            ret = models.LMSLS_MaterialFolder().delete("_id == {0}", ObjectId(id['data']))
+            lock.release()
+            return ret
+
+        lock.release()
+        return dict(
+            error="request parameter is not exist"
+        )
+    except Exception as ex:
+        lock.release()
+        raise (ex)
+
 def set_dict_insert_data(args):
     ret_dict = dict()
 
@@ -249,6 +266,7 @@ def set_dict_update_data(args):
     ret_dict = set_dict_insert_data(args)
     del ret_dict['folder_id']
     return ret_dict
+
 def get_level_code_by_folder_id(args):
     where = args['data'].get('where')
     ret=models.LMSLS_MaterialFolder().aggregate()

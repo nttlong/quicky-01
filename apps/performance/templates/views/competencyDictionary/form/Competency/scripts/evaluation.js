@@ -1,4 +1,4 @@
-﻿(function (scope) {
+﻿﻿(function (scope) {
     var _default = {
         _id : null,
         com_code:scope.$parent.$com_code,

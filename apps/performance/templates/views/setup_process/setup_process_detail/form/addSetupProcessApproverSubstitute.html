@@ -1,0 +1,242 @@
+﻿
+<%!
+    #_style="width:500px;"
+    #_height="180px"
+    _maximize="false"
+%>
+<%inherit file="../../../commons/dialog_save_close.html"/>
+
+<%block name="modal_body"><div class="tab-pane" style="padding-right:unset; height: 100%;">
+   <div class="col-md-12 col-sm-12 col-xs-12">
+        <div class="col-md-6 col-sm-6 col-xs-12">
+        <collapse-box class="zb-form-common" title="${get_global_res('Common_Information_1','Ủy quyền')}">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="form-group zb-form-group">
+                    <!--Người duyệt-->
+                    <label class="col-sm-5 zb-form-label">${get_res('approver_code','Người duyệt')}</label>
+                    <div class="col-sm-7">
+                        <div class="pull-left" >
+                                <span zb-required=""></span>
+                        </div>
+                        <!--<input-text ng-model="entity.job_pos_code">-->
+                        <combobox load-data="$root.$getComboboxData"
+                                  ng-model="entity.process_code"
+                                  params="{key:'${encryptor.get_key('cbb_employees_cbcc')}', value:[{ '@lock': true }]}"
+                                  on-search-change="false"
+                                  on-search-press="true"
+                                  placeholder=""
+                                  init-data="$$$approver_code.value"
+                                  caption-field="{{$$$approver_code.caption_field}}"
+                                  paging="true"
+                                  close-on-select="true"
+                                  template-fields="$$$approver_code.display_fields"
+                                  reload="false">
+                        </combobox>
+                </div>
+                </div>
+                <div class="form-group zb-form-group">
+                    <!--Người thay thế-->
+                    <label class="col-sm-5 zb-form-label">${get_res('substitute_code','Người thay thế')}</label>
+                    <div class="col-sm-7">
+                        <div class="pull-left" >
+                            <span zb-required=""></span>
+                        </div>
+                        <!--<input-text ng-model="entity.job_pos_code">-->
+                        <combobox load-data="$root.$getComboboxData"
+                                  ng-model="entity.substitute_code"
+                                  params="{key:'${encryptor.get_key('cbb_employees_cbcc')}', value:[{ '@lock': true }]}"
+                                  on-search-change="false"
+                                  on-search-press="true"
+                                  placeholder=""
+                                  init-data="$$$substitute_code.value"
+                                  caption-field="{{$$$substitute_code.caption_field}}"
+                                  paging="true"
+                                  close-on-select="true"
+                                  template-fields="$$$substitute_code.display_fields"
+                                  reload="false">
+                        </combobox>
+                </div>
+                </div>
+                 <div class="form-group zb-form-group">
+                    <!--Ngày hiệu lực-->
+                    <label class="col-sm-5 zb-form-label">${get_res('from_date','Hiệu lực từ ngày')}</label>
+                    <div class="col-sm-7">
+                        <date-picker ng-model="entity.from_date" data-format="{{$root.systemConfig.date_format}}" />
+                    </div>
+                </div>
+                 <div class="form-group zb-form-group">
+                    <!--Ngày hiệu lực-->
+                    <label class="col-sm-5 zb-form-label">${get_res('to_date','Hiệu lực đến ngày')}</label>
+                    <div class="col-sm-7">
+                        <date-picker ng-model="entity.to_date" data-format="{{$root.systemConfig.date_format}}" />
+                    </div>
+                </div>
+            </div>
+        </collapse-box>
+        </div>
+        <div class="col-md-6 col-sm-6 col-xs-12">
+            <collapse-box class="zb-form-common" title="${get_global_res('note','Ghi chú')}">
+                <div class="form-group zb-form-group">
+                      <div class="col-md-12 col-sm-12 col-xs-12 no-padding">
+                            <input-textarea rows="3" ng-model="entity.note" style="padding-bottom:31px;"></input-textarea>
+                      </div>
+                </div>
+                <div class="form-group zb-form-group">
+                    <label for="DisplayInfo" class="col-sm-3 zb-form-label">${get_global_res('create_and_modify','Tạo | Sửa')}</label>
+                    <div class="col-sm-9">
+                        <input-text
+                                    value="{{ entity.created_on | date: $root.systemConfig.date_format}} {{entity.created_by}} | {{ entity.modified_on | date: $root.systemConfig.date_format}} {{entity.modified_by}}" ng-disabled="true">
+                    </div>
+                </div>
+            </collapse-box>
+        </div>
+    </div>
+</div>
+</%block>
+
+<%block name="modal_script">
+<script>
+    (function (scope) {
+        scope.title = scope.$parent.headerTitle;
+        scope.saveNClose = saveNClose;
+        scope.saveNNext = saveNNext;
+        scope.__mode = scope.$parent.mode;
+        var __entity = JSON.parse(JSON.stringify(scope.$parent.$$table.currentItem));
+        scope.entity = scope.__mode === 2 ? __entity : {};
+        scope.job_w_code = scope.$parent.$job_w_code;
+        scope.frnSearchMode = scope.__mode == 1 ? true : false;
+
+        function saveNClose() {
+            if (scope.entity != null) {
+                var rsCheck = checkError();//Kết quả check input
+                if (rsCheck.result) {
+                    $msg.message("${get_global_res('Input_Error','Nhập liệu sai')}", rsCheck.errorMsg, function () { });
+                    return;
+                }
+                beforeCallToServer();
+                editData(function (res) {
+                    if (res.error == null) {
+                        $dialog.closeDialog();//Đóng form input
+                        $msg.alert("${get_global_res('Handle_Success','Thao tác thành công')}", $type_alert.INFO);//Xuất thông báo thành cônng
+                        reloadData();
+                    } else {
+                        $msg.message("${get_global_res('Internal_Server_Error','Có lỗi từ phía máy chủ')}", "${get_global_res('Please_Try_Again','Xin thử vui lòng thử lại')}", function () { });
+                    }
+                });
+            }
+        }
+
+        function saveNNext() {
+            if (scope.entity != null) {
+                var rsCheck = checkError();//Kết quả check input
+                if (rsCheck.result) {
+                    //Nhập sai: break khỏi hàm
+                    $msg.message("${get_global_res('Input_Error','Nhập liệu sai')}", rsCheck.errorMsg, function () { });
+                    return;
+                }
+                beforeCallToServer();
+                editData(function (res) {
+                    if (res.error == null) {
+                        reloadData();
+                        $msg.alert("${get_global_res('Handle_Success','Thao tác thành công')}", $type_alert.INFO);
+                        scope.entity = null;
+                        scope.__mode = 1;
+                        scope.$parent.$apply();
+                    } else {
+                        $msg.message("${get_global_res('Notification','Thông báo')}", "${get_global_res('Internal_Server_Error','Có lỗi từ phía máy chủ')}", function () { });
+                    }
+                })
+            }
+        }
+
+        function editData(callback) {
+            var url = getUrl();
+            scope.entity.process_id = scope.$parent.$$process_id
+            if (scope.__mode == 3) {
+
+            }
+            services.api(url)
+                .data(scope.entity)
+                .done()
+                .then(function (res) {
+                    callback(res);
+                })
+        }
+
+        function beforeCallToServer() {
+
+        }
+
+        function getUrl() {
+            return scope.__mode == 1 || scope.__mode == 3 ? "${get_api_key('app_main.api.TM_SetupProcessApproverSubstitute/insert')}" /*Mode 1: Tạo mới*/
+                    : "${get_api_key('app_main.api.TM_SetupProcessApproverSubstitute/update')}" /*Mode 2: Cập nhật*/
+        }
+
+        /**
+         * Function check input
+         */
+        function checkError() {
+            var errMsg;
+            var valid = null;
+            var rs = {
+                "result": false,
+                "errorMsg": ''
+            };
+
+            valid = lv.Validate(scope.entity.process_code);
+            rs.result = valid.isNullOrWhiteSpace();
+            rs.errorMsg = rs.result === true ? "${get_res('process_code_is_not_null_1','Người duyệt không được để trống')}" + '\n' : "";
+            if (rs.result === true) {
+                return rs;
+            }
+            valid = lv.Validate(scope.entity.substitute_code);
+            rs.result = valid.isNullOrWhiteSpace();
+            rs.errorMsg = rs.result === true ? "${get_res('substitute_code_is_not_null_1','Người thay thế không được để trống')}" + '\n' : "";
+            if (rs.result === true) {
+                return rs;
+            }
+            if (new Date(scope.entity.to_date) < new Date(scope.entity.from_date)) {
+            rs.result = true;
+            rs.errorMsg = rs.result === true ? "${get_res('give_from_date_is_larger_give_to_date','Ngày hiệu lực lớn hơn hoặc bằng Ngày bắt đầu hiệu lực')}" + '\n' : "";
+                if (rs.result === true) {
+                return rs;
+                }
+            }
+            return rs;
+        }
+
+        function reloadData() {
+             var tableConfig = scope.$parent.$$tableConfig;
+            scope.$parent._tableData(tableConfig.iPage,
+                tableConfig.iPageLength, tableConfig.orderBy,
+                tableConfig.searchText, tableConfig.fnReloadData);
+        }
+
+        (function _getDataInitCombobox() {
+        scope.$root.$getInitComboboxData(scope,
+            [
+            {
+                "key": "${encryptor.get_key('cbb_employees_cbcc')}",
+                "code": scope.entity
+                    && scope.entity.hasOwnProperty('process_code')
+                    ? scope.entity.process_code
+                    : null,
+                "alias": "$$$approver_code"
+            },
+
+            {
+                "key": "${encryptor.get_key('cbb_employees_cbcc')}",
+                "code": scope.entity
+                    && scope.entity.hasOwnProperty('substitute_code')
+                    ? scope.entity.substitute_code
+                    : null,
+                "alias": "$$$substitute_code"
+            }
+            ]
+
+        );
+    })();
+    });
+</script>
+
+</%block>

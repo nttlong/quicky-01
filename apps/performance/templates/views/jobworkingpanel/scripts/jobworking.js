@@ -2,6 +2,7 @@
     /**
      * Table
      */
+    scope.$parent.$parent.$parent.isChangeFunc = true;
     scope.$$table = {
         tableFields: [
             { "data": "job_w_code", "title": "${get_res('job_w_code_table_header','Mã chức danh')}", "className": "text-left" },

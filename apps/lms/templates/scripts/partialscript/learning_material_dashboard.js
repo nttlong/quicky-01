@@ -1,4 +1,4 @@
-﻿(function (scope) {
+﻿﻿(function (scope) {
     scope.$root.extendToolbar = false;
     scope.dashBoard = {}
     scope.labelSetChart = [];
@@ -42,12 +42,14 @@
                 scope.dashBoard = res;
                 var arr_folder = [];
                 //////////////////////////////Top 5 Material Category with View/////////////////////////////
-                var folder_views = _.map(scope.dashBoard.top_five_folder, function (val) {
+                var folder_views = _.map(res.top_five_folder, function (val) {
 
                     if (val.items.length > 0) {
                         return {
-                            folder_id: val.folder_id, number: _.reduce(val.items, function (memo, num) {
-                                return memo.views ? memo.views.length : 0 + num.views ? num.views.length : 0;
+                            folder_id: val.folder_id,
+                            //////////count total views in material////////////
+                            number: _.reduce(_.map(val.items,function(item){if(item.views){return item.views.length} else{return 0} }), function (memo, num) {
+                                return memo + num;
                             })
                         }
                     } else { return { folder_id: val.folder_id, number: 0 } }

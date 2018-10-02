@@ -1,0 +1,205 @@
+﻿<%!
+    #_style="width:300px;"
+%>
+    <%inherit file="../../commons/dialog_resize_save_close.html"/>
+
+<%block name="modal_body">
+<div class="col-md-{{col_group}} col-sm-{{col_group}}">
+    <collapse-box class="zb-form-common" title="${get_res('Information_target','Thông tin mục tiêu')}">
+        <div class="col-md-{{col}}">
+            <div class="form-group zb-form-group">
+                <label class="col-sm-5 zb-form-label">${get_res('target','Mục tiêu')}</label>
+                <div class="col-sm-7">
+                    <combobox required/>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-{{col}}">
+            <div class="form-group zb-form-group">
+                <label class="col-sm-5 zb-form-label">Thuộc mục tiêu bộ phận cha</label>
+                <div class="col-sm-7">
+                    <combobox ng-model=""/>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-{{col}}">
+            <div class="form-group zb-form-group">
+                <label class="col-sm-5 zb-form-label">Phân nhóm (theo BSC)</label>
+                <div class="col-sm-7">
+                    <input-select ng-model="">
+                </div>
+            </div>
+        </div>
+        <div class="col-md-{{col}}">
+            <div class="form-group zb-form-group">
+                <!--Thuộc nhóm-->
+                <label class="col-sm-5 zb-form-label">Đơn vị tính</label>
+                <div class="col-sm-7">
+                     <combobox/>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-{{col}}">
+            <div class="form-group zb-form-group">
+                <label class="col-sm-5 zb-form-label">${get_res('kpi_formula','Công thức tính năng suất')}</label>
+                 <div class="col-sm-7" style="display: grid; grid-template-columns:auto 1fr;">
+                    <combobox load-data="$root.$getComboboxData" 
+                            ng-model="entity.kpi_formula"
+                            params="{key:'${encryptor.get_key('cbb_HCSLS_Unit')}', value:[{ '@lock': true }]}"
+                            on-search-change="false"
+                            on-search-press="true"
+                            placeholder=""
+                            init-data="$$$cbb_HCSLS_Unit.value"
+                            caption-field="{{$$$cbb_HCSLS_Unit.caption_field}}" 
+                            paging="true"
+                            close-on-select="true"
+                            template-fields="$$$cbb_HCSLS_Unit.display_fields"
+                            reload="false">
+                    </combobox>
+                     <button ng-click="addFormula()" class="zb-btn hcs-left-side-department-tree-tool-bar-btn-custom-icon" style="text-align: center;">
+                        <span>
+                        <i class="bowtie-icon bowtie-ellipsis"></i>
+                        </span>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-{{col}}">
+            <div class="form-group zb-form-group">
+                <label class="col-sm-5 zb-form-label">${get_res('value_cal_type_name','Cách tính cột "Thực hiện"')}</label>
+                 <div class="col-sm-7">
+                    <input-select data-list="cbbValueCalType" 
+                               ng-model="entity.value_cal_type" data-value="value" 
+                               data-caption="caption" required/>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-{{col}}">
+            <div class="form-group zb-form-group">
+                <label class="col-sm-5 zb-form-label">Tần suất cập nhật</label>
+                 <div class="col-sm-7">
+                    <input-select data-list="cbbSYS_InputType" 
+                               ng-model="entity.input_type" data-value="value" 
+                               data-caption="caption"/>
+                </div>
+            </div>
+        </div>
+    </collapse-box>
+</div>
+<div class="col-md-{{ 12 - col_group}} col-sm-{{ 12 - col_group}}">
+    <collapse-box class="zb-form-common" title="${get_res('plan','Kế hoạch')}">
+        <div class="col-md-{{col}}">
+            <div class="form-group zb-form-group">
+                <!--Trọng số-->
+                <label class="col-sm-5 zb-form-label">${get_res('weight','Trọng số')}</label>
+                <div class="col-sm-7">
+                    <input-text ng-model="entity.weight">
+                </div>
+            </div>
+        </div>
+        <div class="col-md-{{col}}">
+            <div class="form-group zb-form-group">
+                <!--Trọng số-->
+                <label class="col-sm-5 zb-form-label">Chỉ tiêu</label>
+                <div class="col-sm-7">
+                    <input-text ng-model="entity.weight">
+                </div>
+            </div>
+        </div>
+        <div class="col-md-{{col}}">
+            <div class="form-group zb-form-group">
+                <!--Tên khác-->
+                <label class="col-sm-5 zb-form-label">${get_res('start_date','Ngày bắt đầu')}</label>
+                <div class="col-sm-7">
+                    <date-picker ng-model="entity.kpi_name2">
+                </div>
+            </div>
+        </div>
+        <div class="col-md-{{col}}">
+            <div class="form-group zb-form-group">
+                <!--Thuộc nhóm-->
+                <label class="col-sm-5 zb-form-label">Hạn hoàn thành</label>
+                <div class="col-sm-7">
+                    <date-picker ng-model="entity.kpi_name2">
+                </div>
+            </div>
+        </div>
+        <div class="col-md-{{col}}">
+            <div class="form-group zb-form-group">
+                <!--Trọng số-->
+                <label class="col-sm-5 zb-form-label">Giới hạn</label>
+                <div class="col-sm-7">
+                    <input-text ng-model="entity.weight">
+                </div>
+            </div>
+        </div>
+        <div class="col-md-{{col}}">
+            <div class="form-group zb-form-group">
+                <!--Trọng số-->
+                <label class="col-sm-5 zb-form-label">Tối thiểu</label>
+                <div class="col-sm-7">
+                    <input-text ng-model="entity.weight">
+                </div>
+            </div>
+        </div>
+        <div class="col-md-{{col}}">
+            <div class="form-group zb-form-group">
+                <!--Trọng số-->
+                <label class="col-sm-5 zb-form-label">Tối đa</label>
+                <div class="col-sm-7">
+                    <input-text ng-model="entity.weight">
+                </div>
+            </div>
+        </div>
+    </collapse-box>
+</div>
+<div class="col-md-{{ 12 - col_group}} col-sm-{{ 12 - col_group}}">
+    <collapse-box class="zb-form-common" title="${get_res('target_description','Mô tả mục tiêu')}">
+        <div class="col-sm-12">
+            <!--Ghi chú-->
+            <div class="form-group zb-form-group">
+                <div class="col-sm-12 no-padding">
+                    <input-textarea rows="4" ng-model="entity.kpi_desc"></input-textarea>
+                </div>
+            </div>
+        </div>
+    </collapse-box>
+</div>
+<div class="col-md-{{ 12 - col_group}} col-sm-{{ 12 - col_group}}">
+    <collapse-box class="zb-form-common" title="${get_global_res('Note','Ghi chú')}">
+        <div class="col-sm-12">
+            <!--Ghi chú-->
+            <div class="form-group zb-form-group">
+                <div class="col-sm-12 no-padding">
+                    <input-textarea rows="4" ng-model="entity.kpi_desc"></input-textarea>
+                </div>
+            </div>
+            <div class="form-group zb-form-group">
+                <label for="DisplayInfo" class="col-sm-3 zb-form-label">${get_global_res('create_and_modify','Tạo | Sửa')}</label>
+                <div class="col-sm-9">
+                    <input-text value="{{ entity.created_on | date: $root.systemConfig.date_format}} {{entity.created_by}} | {{ entity.modified_on | date: $root.systemConfig.date_format}} {{entity.modified_by}}" ng-disabled="true">
+                </div>
+            </div>
+        </div>
+    </collapse-box>
+</div>
+</%block>
+
+<%block name="modal_script">
+<script>
+    (function (scope) {
+        scope.__mode = scope.$parent.mode;
+        scope.title = scope.$parent.headerTitle;
+        scope.col = 12;
+        scope.col_group = 6;
+        scope.onResizeDialog = onResizeDialog;
+
+        function onResizeDialog() {
+            $dialog.fullScreen();
+            scope.col = scope.col == 12 ? 6 : 12;
+            scope.col_group = scope.col_group == 6 ? 8 : 6;
+        }
+    });
+</script>
+
+</%block>

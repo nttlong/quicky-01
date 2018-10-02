@@ -12,12 +12,12 @@
             transclude: {
                 "tabContent": "?tabContent"
             },
-            template: `
-            <div class="zb-nav-tabs">
-                <ul class="zb-navbar"></ul>
-                <div class="zb-tab-container" ng-transclude="tabContent"></div>
-            </div>
-            `,
+            template: ''
+            + '<div class="zb-nav-tabs">'
+            + '    <ul class="zb-navbar"></ul>'
+            + '    <div class="zb-tab-container" ng-transclude="tabContent"></div>'
+            + '</div>'
+            ,
             //templateUrl: "app/components/input/text/text.html",
             link: function ($scope, elem, attr, ctrls, $transclude) {
                 var config = {

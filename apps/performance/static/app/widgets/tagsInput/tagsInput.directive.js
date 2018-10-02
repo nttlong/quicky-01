@@ -18,10 +18,9 @@
                 ngModel: "=",
                 label: "@"
             },
-            template: `
-                    <input type="text" tag-input="primary" class="form-control zb-form-input"
-                        data-role="tagsinput">
-            `
+            template: ''
+                    + '<input type="text" tag-input="primary" class="form-control zb-form-input'
+                    + 'data-role="tagsinput">'
         };
         return directive;
 

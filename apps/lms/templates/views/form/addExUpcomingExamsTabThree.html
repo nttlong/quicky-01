@@ -230,7 +230,10 @@
         }
        
         scope.onChoose = function () {
-            
+            if(scope.entity.choose_from ==false)
+            {
+                scope.entity.mode_pick= 1;
+            }
             scope.category_list = [];
  
             scope.$applyAsync();

@@ -1,0 +1,474 @@
+﻿﻿
+<%!
+    #_style="width:300px;"
+%>
+<%inherit file="../commons/dialog_save_close_resize.html"/>
+
+<style>
+    .radio {
+    padding-left: 20px;
+    margin-top: 4px;
+    margin-bottom: 8px;
+}
+
+.radio label {
+    display: inline-block;
+    vertical-align: middle;
+    position: relative;
+    padding-left: 5px;
+}
+
+.radio label .relative {
+    color: #00b9f2;
+}
+
+.radio label a:hover {
+    text-decoration: none;
+}
+
+.radio label::before {
+    content: "";
+    display: inline-block;
+    position: absolute;
+    width: 17px;
+    height: 17px;
+    left: 0;
+    top:3px;
+    margin-left: -20px;
+    border: 1px solid #A9A9A9;
+    border-radius: 50%;
+    background-color: #fff;
+    -webkit-transition: border .3s ease-in-out;
+    transition: border .3s ease-in-out;
+}
+
+.radio label::after {
+    display: inline-block;
+    position: absolute;
+    content: " ";
+    width: 11px;
+    height: 11px;
+    left: 3px;
+    top: 6px;
+    margin-left: -20px;
+    border-radius: 50%;
+    background-color: #777;
+    -webkit-transform: scale(0,0);
+    -ms-transform: scale(0,0);
+    transform: scale(0,0);
+    -webkit-transition: -webkit-transform .3s cubic-bezier(.8,-.33,.2,1.33);
+    -moz-transition: -moz-transform .3s cubic-bezier(.8,-.33,.2,1.33);
+    -o-transition: -o-transform .3s cubic-bezier(.8,-.33,.2,1.33);
+    transition: transform .3s cubic-bezier(.8,-.33,.2,1.33);
+}
+
+.radio input[type=radio] {
+    opacity: 0;
+    z-index: 1;
+}
+
+.radio input[type=radio]:checked+label::after {
+    -webkit-transform: scale(1,1);
+    -ms-transform: scale(1,1);
+    transform: scale(1,1);
+}
+
+.radio input[type=radio]:disabled+label {
+    opacity: .65;
+}
+
+.radio input[type=radio]:disabled+label::before {
+    cursor: not-allowed;
+}
+
+.radio.radio-inline {
+    margin-top: 0;
+}
+
+.radio-primary input[type=radio]+label::after {
+    background-color: #f7941d;
+}
+
+.radio-primary input[type=radio]:checked+label::before {
+    border-color: #f7941d;
+}
+
+.radio-primary input[type=radio]:checked+label::after {
+    background-color: #f7941d;
+}
+
+.radio-danger input[type=radio]+label::after {
+    background-color: #ef474f;
+}
+
+.radio-danger input[type=radio]:checked+label::before {
+    border-color: #ef474f;
+}
+
+.radio-danger input[type=radio]:checked+label::after {
+    background-color: #ef474f;
+}
+
+.radio-info input[type=radio]+label::after {
+    background-color: #00b9f2;
+}
+
+.radio-info input[type=radio]:checked+label::before {
+    border-color: #00b9f2;
+}
+
+.radio-info input[type=radio]:checked+label::after {
+    background-color: #00b9f2;
+}
+
+.radio-warning input[type=radio]+label::after {
+    background-color: #f0ad4e;
+}
+
+.radio-warning input[type=radio]:checked+label::before {
+    border-color: #f0ad4e;
+}
+
+.radio-warning input[type=radio]:checked+label::after {
+    background-color: #f0ad4e;
+}
+
+.radio-success input[type=radio]+label::after {
+    background-color: #5cb85c;
+}
+
+.radio-success input[type=radio]:checked+label::before {
+    border-color: #5cb85c;
+}
+
+.radio-success input[type=radio]:checked+label::after {
+    background-color: #5cb85c;
+}
+
+.radio-success input[type=file] {
+    display: inline;
+    width: 0;
+    opacity: 0;
+}
+
+input[type=checkbox].styled:checked+label:after,input[type=radio].styled:checked+label:after {
+    font-family: FontAwesome;
+    content: "";
+}
+
+input[type=checkbox] .styled:checked+label::before,input[type=radio] .styled:checked+label::before {
+    color: #fff;
+}
+
+input[type=checkbox] .styled:checked+label::after,input[type=radio] .styled:checked+label::after {
+    color: #fff;
+}
+
+
+
+    .hcs-input-choose-file {
+        color: #333;
+        border: none;
+        border-radius: 0;
+        border-bottom: 1px solid #cbcbcb !important;
+        background: transparent;
+        font-size: .875rem;
+        padding-bottom: 0;
+        box-shadow: none !important;
+        padding: 0 5px 0 1px;
+        vertical-align: bottom;
+    }
+
+    .hcs-button-choose-file {
+        padding: 10px 3px 3px 0 !important;
+        color: #333;
+        border: none;
+        border-radius: 0;
+        border-bottom: 1px solid #cbcbcb !important;
+        background: transparent;
+        font-size: .875rem;
+        padding-bottom: 0;
+        box-shadow: none !important;
+        vertical-align: bottom;
+    }
+
+    .btn-default.btn-choose.hcs-button-choose-file:hover,
+    .btn-default.btn-choose.hcs-button-choose-file:active,
+    .btn-default.btn-choose.hcs-button-choose-file:focus{
+        color: #333;
+        background-color: #fff !important;
+        border-color: #ccc !important;
+    }
+
+    button.btn.btn-default.btn-choose.hcs-button-choose-file {
+        outline: unset;
+    }
+
+    .radio + .radio {
+        margin-top: 4px;
+        margin-bottom: 8px;
+    }
+
+    .bootstrap-tagsinput {
+        color: #333;
+        border: none;
+        border-radius: 0;
+        border-bottom: 1px solid #cbcbcb !important;
+        background: transparent;
+        font-size: .875rem;
+        width: 100%;
+    }
+
+    .bootstrap-tagsinput span {
+        background: #ccc;
+        border: 1px solid #ccc;
+    }
+</style>
+
+<%block name="modal_body">
+<div class="col-xs-12 col-md-{{col_group}} col-sm-{{col_group}}">
+    <collapse-box class="zb-form-common" title="${get_global_res('Common_Information','Thông tin chung')}">
+        <div class="col-xs-{{col}} col-md-{{col}}">
+            <div class="form-group zb-form-group">
+                <label class="col-xs-5 col-sm-5 zb-form-label">${get_res('date_created','Date Created')}</label>
+                <div class="col-xs-7 col-sm-7">
+                    <input-text ng-model="entity.created_on  | date : format : timezone" ng-disabled="{{ __mode === 2 ? 'true' : 'false' }}">
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-{{col}} col-md-{{col}}">
+            <div class="form-group zb-form-group">
+                <label class="col-xs-5 col-sm-5 zb-form-label">${get_res('topic_author','Author')}</label>
+                <div class="col-xs-7 col-sm-7">
+                    <input-text ng-model="entity.created_by" ng-disabled="{{ __mode === 2 ? 'true' : 'false' }}">
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-{{col}} col-md-{{col}}">
+            <div class="form-group zb-form-group">
+                <label class="col-xs-5 col-sm-5 zb-form-label">${get_res('topic_name','Topic Name')}</label>
+                <div class="col-xs-7 col-sm-7">
+                    <input-text ng-model="entity.topic_name" ng-disabled="{{ __mode === 2 ? 'true' : 'false' }}">
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-{{col}} col-md-{{col}}">
+            <div class="form-group zb-form-group">
+                <label class="col-xs-5 col-sm-5 zb-form-label">${get_res('topic_description','Topic Description')}</label>
+                <div class="col-xs-7 col-sm-7">
+                    <input-text ng-model="entity.topic_description" ng-disabled="{{ __mode === 2 ? 'true' : 'false' }}">
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-{{col}} col-md-{{col}}">
+            <div class="form-group zb-form-group">
+       <!--Nguon dinh danh Tài liệu-->
+       <label for="inputEmp_Train_Mode_Name" class="col-xs-5 col-sm-5 zb-form-label">${get_res('set_status','Set Status')}</label>
+       <div class="col-xs-7 col-sm-7">
+          <div style="display: inline-flex;">
+             <div class="radio radio-success">
+                <input type="radio" name="radCourse2" ng-value="dt_true" id="idradCourse4"
+                   ng-model="entity.topic_approved">
+                <label for="idradCourse4">
+                    <span>${get_res('publish','Publish')}</span>
+                </label>
+             </div>
+             <div class="radio radio-success" style="margin-left: 60px;">
+                <input type="radio" name="radCourse2" ng-value="dt_false" id="idradCourse5"
+                   ng-model="entity.topic_approved">
+                <label for="idradCourse5">
+                    <span>${get_res('return','Return')}</span>
+                </label>
+             </div>
+          </div>
+       </div>
+    </div>
+        </div>
+    </collapse-box>
+</div>
+<div class="col-xs-12 col-md-{{ 12 - col_group}} col-sm-{{ 12 - col_group}}">
+    <collapse-box class="zb-form-common" title="${get_global_res('Provide Feedback','Phản Hồi')}">
+        <div class="row">
+            <div class="col-xs-12 col-sm-12">
+                <input-textarea rows="6" ng-model="entity.feedback"></input-textarea>
+            </div>
+        </div>
+        <div class="col-md-12" style="padding-top: 16px;">
+            <div class="form-group zb-form-group">
+                <label for="DisplayInfo" class="col-xs-3 col-sm-3 zb-form-label">${get_global_res('create_and_modify','Tạo | Sửa')}</label>
+                <div class="col-xs-9 col-sm-9">
+                    <input-text value="{{ entity.created_on | date: $root.systemConfig.date_format}} {{entity.created_by}} | {{ entity.modified_on | date: $root.systemConfig.date_format}} {{entity.modified_by}}" ng-disabled="true">
+                </div>
+            </div>
+        </div>
+    </collapse-box>
+</div>
+</%block>
+
+<%block name="modal_script">
+<script>
+    (function (scope) {
+
+        var _default = {
+
+        };
+        scope.title = scope.$parent.headerTitle;
+        scope.__mode = scope.$parent.mode;
+        scope.col = 12;
+        scope.col_group = 6;
+        scope.dt_true = true;
+        scope.dt_false = false;
+
+        scope.onResizeDialog = onResizeDialog;
+
+        scope.__mode = scope.$parent.mode;
+        scope.title = scope.$parent.headerTitle;
+        //
+        var __entity = JSON.parse(JSON.stringify(scope.$parent.currentItem ? scope.$parent.currentItem: {}));
+
+        //Mode 1: tạo mới, Mode 2: chỉnh sửa, Mode 3: sao chép
+        scope.entity = scope.__mode == 2 ? __entity : _default;
+
+
+        if(scope.$parent.topic_approved)
+        {
+            scope.entity.topic_approved = true;
+        }
+
+        //Nút lưu và thêm
+        scope.saveNNext = saveNNext;
+        //Nút lưu
+        scope.saveNClose = saveNClose;
+
+        function onResizeDialog() {
+            $dialog.fullScreen();
+            scope.col = scope.col == 12 ? 6 : 12;
+            scope.col_group = scope.col_group == 6 ? 8 : 6;
+        }
+
+        function saveNClose() {
+            if (scope.entity != null) {
+                var rsCheck = checkError();//Kết quả check input
+                if (rsCheck.result) {
+                    $msg.message("${get_global_res('Input_Error','Nhập liệu sai')}", rsCheck.errorMsg, function () { });
+                    return;
+                }
+                beforeCallToServer();
+                editData(function (res) {
+                    if (res.error == null) {
+                        $dialog.closeDialog();//Đóng form input
+                        $msg.alert("${get_global_res('Handle_Success','Thao tác thành công')}", $type_alert.INFO);//Xuất thông báo thành cônng
+                        if (scope.__mode == 1 || scope.__mode == 3) {
+                            //Reload table data
+                            reloadData();
+                        } else if (scope.__mode == 2) {
+                            reloadData();
+                        }
+                    } else {
+                        $msg.message("${get_global_res('Internal_Server_Error','Có lỗi từ phía máy chủ')}", "${get_global_res('Please_Try_Again','Xin thử vui lòng thử lại')}", function () { });
+                    }
+                });
+            }
+        }
+
+        function saveNNext() {
+            if (scope.entity != null) {
+                var rsCheck = checkError();//Kết quả check input
+                if (rsCheck.result) {
+                    //Nhập sai: break khỏi hàm
+                    $msg.message("${get_global_res('Input_Error','Nhập liệu sai')}", rsCheck.errorMsg, function () { });
+                    return;
+                }
+                beforeCallToServer();
+                editData(function (res) {
+                    if (res.error == null) {
+                        if (scope.__mode == 1 || scope.__mode == 3)
+                            reloadData();
+                        else {
+                            reloadData();
+                        }
+                        $msg.alert("${get_global_res('Handle_Success','Thao tác thành công')}", $type_alert.INFO);
+                        scope.entity = null;
+                        scope.__mode = 1;
+                        scope.$parent.$apply();
+                    } else {
+                        $msg.message("${get_global_res('Notification','Thông báo')}", "${get_global_res('Internal_Server_Error','Có lỗi từ phía máy chủ')}", function () { });
+                    }
+                })
+            }
+        }
+
+        function editData(callback) {
+            var url = getUrl();
+            if (scope.__mode == 3) {
+
+            }
+            services.api(url)
+                .data(scope.entity)
+                .done()
+                .then(function (res) {
+                    callback(res);
+                })
+        }
+
+        function beforeCallToServer() {
+
+        }
+
+        function getUrl() {
+            return scope.__mode == 1 || scope.__mode == 3 ? "${get_api_key('app_main.api.LMSLS_Topic/insert')}" /*Mode 1: Tạo mới*/
+                : "${get_api_key('app_main.api.LMSLS_Topic/update')}" /*Mode 2: Cập nhật*/
+        }
+
+        function reloadData() {
+            var tableConfig = scope.$parent.$$tableConfig;
+            scope.$parent._tableData(tableConfig.iPage,
+            tableConfig.iPageLength, tableConfig.orderBy,
+            tableConfig.searchText, tableConfig.fnReloadData);
+        }
+
+        /**
+         * Function check input
+         */
+        function checkError() {
+            var errMsg;
+            var valid = null;
+            var rs = {
+                "result": false,
+                "errorMsg": ''
+            };
+            valid = lv.Validate(scope.entity.topic_id);
+            rs.result = valid.isNullOrWhiteSpace();
+            rs.errorMsg = rs.result === true ? "${get_res('topic_id_is_not_null','Mã nhóm không được để trống')}" + '\n' : "";
+            if (rs.result === true) {
+                return rs;
+            }
+            valid = lv.Validate(scope.entity.topic_name);
+            rs.result = valid.isNullOrWhiteSpace();
+            rs.errorMsg = rs.result === true ? "${get_res('topic_name_is_not_null','Tên nhóm không được để trống')}" + '\n' : "";
+            if (rs.result === true) {
+                return rs;
+            }
+            valid = lv.Validate(scope.entity.forum_id);
+            rs.result = valid.isNullOrWhiteSpace();
+            rs.errorMsg = rs.result === true ? "${get_res('forum_list_is_not_null','Forum không được chọn')}" + '\n' : "";
+            if (rs.result === true) {
+                return rs;
+            }
+            return rs;
+        }
+        (function _getDataInitCombobox() {
+            scope.$root.$getInitComboboxData(scope,
+                [
+                {
+                    "key": "${encryptor.get_key('cbb_lmsls_forum')}",
+                    "code": scope.entity && scope.entity.hasOwnProperty('forum_id')? scope.entity.forum_id: null,
+                    "alias": "$$$forum_admin_id"
+                }
+                ]
+            );
+        })();
+    });
+</script>
+
+</%block>

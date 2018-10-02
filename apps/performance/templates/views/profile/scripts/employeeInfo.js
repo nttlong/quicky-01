@@ -45,6 +45,7 @@
                         //unlock menuItem
                         $('.zb-left-li').css("pointer-events", "all");
                     }
+
                     else if (scope.__mode == 2) {
                         scope.$parent.$parent.$parent.currentItem.full_name = res.entity.last_name + " " + res.entity.first_name;
                         scope.$parent.$parent.$parent.currentItem.gender = _.findWhere(scope.$parent.$parent.$parent.cbbGender, { "value": res.entity.gender })['caption'];
@@ -217,6 +218,14 @@
             }
         }
     })
+
+    scope.$root.$watch('$commons.$current_employee_code', function(val){
+        if(val){
+            _getEmployee(val);
+            $('.zb-left-li').css("pointer-events", "all");
+            scope.$applyAsync();
+        }
+    });
 
     function _getDataInitCombobox() {
         scope.$root.$getInitComboboxData(scope,

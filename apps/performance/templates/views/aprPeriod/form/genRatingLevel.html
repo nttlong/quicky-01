@@ -2,11 +2,11 @@
 <%!
     #_style="width:200px;"
 %>
-<%inherit file="../../commons/dialog_selected_cancel.html"/>
+<%inherit file="../../commons/dialog_resize_selected_cancel.html"/>
 
 <%block name="modal_body">
  <div class="col-md-12">
-    <collapse-box class="zb-form-common" title="${get_global_res('data_generate_source','Nguồn phát sinh dữ liệu')}">        
+    <collapse-box class="zb-form-common" title="${get_global_res('data_generate_source','Nguồn phát sinh dữ liệu')}">
   <div class="col-md-12 col-sm-12 col-12">
 			 <div class="form-group zb-form-group">
 				 <div class="col-md-5 col-sm-5 col-5 zb-form-label">
@@ -35,10 +35,19 @@
               </div>
 		<br />
 		 <div class="col-md-12 col-sm-12 col-12" style="margin-top:30px;">
-               <div class="form-group zb-form-group"  style="margin-left:6px;">
+             <div class="form-group zb-form-group">
+                <!--Ngưng sử dụng-->
+                <label for="inputLock" class="col-sm-5 zb-form-label">${get_res('exchange_list_present','Thay thế danh sách hiện có')}</label>
+                <div class="col-sm-7">
+                    <input-checkbox id="inputLock" ng-model="entity.chk_exchangeData">
+                </div>
+            </div>
+               <!--<div class="form-group zb-form-group"  style="margin-left:6px;">
                             <input type="checkbox" ng-model="entity.chk_exchangeData"/>
-                                <label class="col-sm-4 zb-form-label" style="margin-left: 8px;">${get_res('exchange_list_present','Thay thế danh sách hiện có')}</label>
-                         </div>
+                                <label class="col-sm-4 zb-form-label" style="margin-left: 8px;">
+                                    ${get_res('exchange_list_present','Thay thế danh sách hiện có')}</label>
+
+                         </div>-->
               </div>
 		</collapse-box>
 		  </div>
@@ -53,6 +62,7 @@
 </style>
 <script>
 	(function (scope) {
+	debugger
 		scope.title = "Phát sinh định mức xếp loại";
 		scope.onResizeDialog = onResizeDialog;
 		scope.cbbApprovalPeriod = [];
@@ -61,12 +71,16 @@
 			scope.col = scope.col == 12 ? 6 : 12;
 			scope.col_group = scope.col_group == 6 ? 8 : 6;
 		}
-
+        scope.entity = {
+            apr_now_result_period: null,
+			chk_exchangeData: 0
+		};
 		(function _init_() {
+		debugger
 			_loadCombobox(function (res) {
-				debugger
-				var period_now = scope.$parent.$parent.Re_Map_Period(scope.$parent.$parent.currentItem.apr_period);
-				var year_now = scope.$parent.$parent.currentItem.apr_year;
+				var period_now = scope.$parent.$parent.mode == 1 ? scope.$parent.$parent.apr_period_now : scope.$parent.$parent.Re_Map_Period(scope.$parent.$parent.entity.apr_period);
+				var year_now = scope.$parent.$parent.mode == 1 ? scope.$parent.$parent.apr_year_now : scope.$parent.$parent.entity.apr_year;
+
 				var j;
 				for (var i = 0; i < res.length; i++) {
 					if (res[i].apr_period == period_now && res[i].apr_year == year_now) {
@@ -93,34 +107,33 @@
 		}
 
 		function _loadCombobox(callback) {
-			debugger
-                services.api("${get_api_key('app_main.api.TMPER_AprPeriodEmpOut/get_list_distinct_approval_year_and_period')}")
-                    .data({})
+                services.api("${get_api_key('app_main.api.TMPER_AprPeriodRank/get_list_distinct_approval_year_and_period')}")
+                    .data({
+                        apr_period: scope.$parent.$parent.mode == 1 ? scope.$parent.$parent.apr_period_now : scope.$parent.$parent.Re_Map_Period(scope.$parent.$parent.entity.apr_period),
+                        apr_year: scope.$parent.$parent.mode == 1 ? scope.$parent.$parent.apr_year_now : scope.$parent.$parent.entity.apr_year,
+                    })
                     .done()
 					.then(function (res) {
-						debugger
                         callback(res)
                     })
 		}
 		scope.selectBtn = selectBtn;
 		function selectBtn() {
-		debugger
 		var tmp = scope.entity.apr_now_result_period;
 		services.api("${get_api_key('app_main.api.TMPER_AprPeriodRank/get_genPreAperiodData')}")
 			.data({
 				"apr_period": tmp.split("__")[1],
 				"apr_year": tmp.split("__")[0]
-				
+
 			})
 			.done()
 			.then(function (res) {
-				debugger
 				services.api("${get_api_key('app_main.api.TMPER_AprPeriodRank/generate')}")
 					.data({
 						res,
-						"now_apr_period": scope.$parent.$parent.Re_Map_Period(scope.$parent.$parent.currentItem.apr_period),
-						"now_apr_year": scope.$parent.$parent.currentItem.apr_year,
-						"chk_exchangeData": scope.entity.chk_genExchangeData
+						"now_apr_period": scope.$parent.$parent.mode == 1 ? scope.$parent.$parent.apr_period_now : scope.$parent.$parent.Re_Map_Period(scope.$parent.$parent.entity.apr_period),
+                        "now_apr_year": scope.$parent.$parent.mode == 1 ? scope.$parent.$parent.apr_year_now : scope.$parent.$parent.entity.apr_year,
+						"chk_exchangeData": scope.entity.chk_exchangeData
 					})
 					.done()
 					.then(function (res1) {
@@ -128,7 +141,8 @@
 							$dialog.closeDialog();//Đóng form input
 							$msg.alert("${get_global_res('Handle_Gen_Data_Success','Dữ liệu đã được phát sinh.')}", $type_alert.INFO);//Xuất thông báo thành cônng
 							scope.$applyAsync();
-							scope.$parent._departmentGroup;
+							scope.$$tableTree = scope.$parent.$$tableTree;
+							_departmentGroup();
 						}
 						else {
 							$msg.message("${get_global_res('Internal_Server_Error','Có lỗi từ phía máy chủ')}", "${get_global_res('Please_Try_Again','Xin thử vui lòng thử lại')}", function () { });
@@ -136,6 +150,42 @@
 					});
 			});
 		}
+
+
+     function _departmentGroup() {
+        services.api("${get_api_key('app_main.api.TMPER_AprPeriodRank/get_tree')}")
+            .data({
+                apr_period: scope.$parent.$parent.mode == 1 ? scope.$parent.$parent.apr_period_now : scope.$parent.$parent.Re_Map_Period(scope.$parent.$parent.entity.apr_period),
+                apr_year: scope.$parent.$parent.mode == 1 ? scope.$parent.$parent.apr_year_now : scope.$parent.$parent.entity.apr_year
+            })
+            .done()
+            .then(function (res) {
+                if (res.length <= 0) {
+                    res = null;
+                }
+                else {
+                    services.api("${get_api_key('app_main.api.HCSSYS_Departments/getRootDepartment')}")
+                    .data(res)
+                    .done()
+                    .then(function(res1){
+                        res1.forEach(function(el){
+                            el._id = null;
+                            el.apr_period = scope.$parent.$parent.mode == 1 ? scope.$parent.$parent.apr_period_now : scope.$parent.$parent.Re_Map_Period(scope.$parent.$parent.entity.apr_period),
+                            el.apr_year = scope.$parent.$parent.mode == 1 ? scope.$parent.$parent.apr_year_now : scope.$parent.$parent.entity.apr_year
+                            for (var i=0; i<res.length; i++){
+                                if(res[i].level_code.includes(el.department_code)){
+                                    res.push(el);
+                                    break;
+                                }
+                            }
+
+                        });
+                    });
+                }
+                   scope.$$tableTree.dataTableTree = res;
+                    scope.$applyAsync();
+            });
+    }
     });
 </script>
 

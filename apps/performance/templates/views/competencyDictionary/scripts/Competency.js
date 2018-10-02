@@ -2,6 +2,7 @@
     /**
      * Table
      */
+    scope.$parent.$parent.$parent.isChangeFunc =  true;
     scope.$$table = {
         tableFields: [
             { "data": "com_code", "title": "${get_global_res('code','Mã')}", "className": "text-left" },

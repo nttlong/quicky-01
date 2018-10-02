@@ -2,6 +2,8 @@
     <div class="modal-content">
         <div class="modal-header">
             <div class="left-content pull-left">
+                <span class="bowtie-icon bowtie-menu hcs-toggle-slider"
+                      ng-click="$root.doToggle('.hcs-left-side-department-content')"></span>
                 <span class="modal-title">{{title}}</span>
             </div>
             <div class="right-content pull-right">
@@ -59,7 +61,10 @@
                         </div>
                     </div>
                     <div class="hcs-right-side-department-content">
-                        <div class="hcs-right-side-department-list" style="height:100%;">
+                        <div class="col-md-12 col-xs-12" style="padding: 2px;">
+                            <input-text-icon icon="bowtie-icon bowtie-search" on-click="onSearch"></input-text-icon>
+                        </div>
+                        <div class="hcs-right-side-department-list" style="height:calc(100% - 34px);">
                             <table-data data-source="$$table.tableSource" 
                                         fields="$$table.tableFields" 
                                         type="{{checkMode}}" 
@@ -71,6 +76,7 @@
                                         current-item="$$table.currentItem" 
                                         search-text="$$table.tableSearchText"
                                         refresh-row="$$table.refreshDataRow"
+                                        de-selected-item="$$table.deSelectedItem"
                                         selected-field="row_checked">
                             </table-data>
                         </div>
@@ -101,6 +107,10 @@
         $scope.checkMode = $scope.$parent.$frmSearch[$scope.$parent.$frmSearch.alias].multi === true ? 'MultiSelect' : 'SingleSelect';
         $scope.save = save;
         $scope.onClose = onClose;
+        $scope.onSearch = function(val){
+            $scope.$$table.tableSearchText = val;
+            $scope.$applyAsync();
+        }
         var __url_get_data_table = "${get_api_key('app_main.api.FormSearch/get_list_kpi')}";
         var __url_get_data_tree = "${get_api_key('app_main.api.FormSearch/get_tree_kpi')}";
         $scope.$$table = {
@@ -116,6 +126,7 @@
             onSelectTableRow: function ($row) { onEdit(); },
             selectedItems: [],
             currentItem: {},
+            deSelectedItem: {},
             tableSearchText: "",
             refreshDataRow: function () { /*Do nothing*/ }
         };
@@ -199,7 +210,8 @@
                     .done()
                     .then(function (res) {
                         if ($scope.checkMode === 'MultiSelect') {
-                            var checked = $scope.$parent.$frmSearch[$scope.$parent.$frmSearch.alias].selected;
+                            //var checked = $scope.$parent.$frmSearch[$scope.$parent.$frmSearch.alias].selected;
+                            var checked = _.pluck($selected, $scope.$parent[$scope.$parent.$frmSearch.alias].value_field);
                             _.each(res.items, function (val) {
                                 if (_.contains(checked, val[$scope.$parent[$scope.$parent.$frmSearch.alias].value_field])) {
                                     val['row_checked'] = true;
@@ -216,6 +228,7 @@
                             data: res.items
                         };
                         callback(data);
+                        $(window).trigger('resize');
                         $scope.$apply();
                     })
         }
@@ -239,10 +252,11 @@
                 _tableData($scope.$$table.$$tableConfig.iPage, $scope.$$table.$$tableConfig.iPageLength,
                     $scope.$$table.$$tableConfig.orderBy, $scope.$$table.$$tableConfig.searchText,
                     $scope.$$table.$$tableConfig.fnReloadData);
+            $scope.$$table.deSelectedItem = {};
         });
 
         $scope.$watch("$$table.selectedItems", function (val) {
-            if (val && val.length > 0) {
+           //if (val && val.length > 0) {
                 if ($selected.length === 0) {
                     _.each(val, function (val, idx) {
                         var _obj = {};
@@ -261,8 +275,15 @@
                         }
                     })
                     $selected = _.uniq(_.union($selected, _arr), false, _.property($scope.$parent[$scope.$parent.$frmSearch.alias].value_field));
+                    if($scope.$$table.deSelectedItem && Object.keys($scope.$$table.deSelectedItem).length > 0)
+                    {
+                        $selected = _.reject($selected, {
+                            [$scope.$parent[$scope.$parent.$frmSearch.alias].value_field]: $scope.$$table.deSelectedItem[$scope.$parent[$scope.$parent.$frmSearch.alias].value_field],
+                            [$scope.$parent[$scope.$parent.$frmSearch.alias].caption_field]: $scope.$$table.deSelectedItem[$scope.$parent[$scope.$parent.$frmSearch.alias].caption_field]
+                        })
+                    }
                 }
-            }
+            //}
         }, true)
     });
 </script>

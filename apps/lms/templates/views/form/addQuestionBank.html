@@ -1,4 +1,4 @@
-﻿
+﻿﻿
 <%!
     #_style="width:200px;"
 %>
@@ -705,7 +705,7 @@ input[type=checkbox] .styled:checked+label::after,input[type=radio] .styled:chec
 
         function beforeCallToServer() { }
         scope.saveNClose = function (event) {
-            
+
             if (scope.entity != null) {
                 var rsCheck = checkError();//Kết quả check input
                 if (rsCheck.result) {
@@ -714,6 +714,7 @@ input[type=checkbox] .styled:checked+label::after,input[type=radio] .styled:chec
                 }
                 beforeCallToServer();
                 editData(function (res) {
+                    debugger
                     if (res.error == null) {
                         $dialog.closeDialog();//Đóng form input
                         $msg.alert("${get_global_res('Handle_Success','Thao tác thành công')}", $type_alert.INFO);//Xuất thông báo thành cônng
@@ -818,7 +819,7 @@ input[type=checkbox] .styled:checked+label::after,input[type=radio] .styled:chec
         }
 
         function editData(callback) {
-            debugger
+
             var url = getUrl();
             if (scope.__mode == 3) {
 

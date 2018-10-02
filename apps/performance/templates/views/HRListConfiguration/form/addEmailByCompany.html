@@ -1,0 +1,133 @@
+
+<%!
+    #_style="width:500px;"
+    #_height="300px"
+    _maximize="false"
+%>
+<%inherit file="../../commons/dialog_save_close.html"/>
+
+<%block name="modal_body">
+<div class="col-md-6 col-sm-6">
+    <collapse-box class="zb-form-common" title="${get_global_res('employee','Nhân viên')}">
+        <div class="col-md-12 col-sm-12">
+            <div class="form-group zb-form-group">
+                 <label class="col-sm-4 zb-form-label">${get_res('full_name','Họ tên')}</label>
+                 <div class="col-sm-8">
+                     <output-label value="entity.full_name"></output-label>
+                 </div>
+             </div>
+            <div class="form-group zb-form-group">
+                 <label class="col-sm-4 zb-form-label">${get_res('email_address','Địa chỉ Email')}</label>
+                 <div class="col-sm-8">
+                     <input-text ng-model="entity.email_address">
+                 </div>
+             </div>
+        </div>
+    </collapse-box>
+</div>
+<div class="col-md-6 col-sm-6">
+    <collapse-box class="zb-form-common" title="${get_global_res('note','Ghi chú')}">
+        <div class="col-md-12 col-sm-12">
+            <div class="form-group zb-form-group">
+                <input-textarea rows="2" ng-model="entity.note"></input-textarea>
+            </div>
+            <div class="form-group zb-form-group">
+                <label for="DisplayInfo" class="col-sm-4 zb-form-label">${get_global_res('create_and_modify','Tạo | Sửa')}</label>
+                <div class="col-sm-8">
+                    <input-text value="{{ entity.created_on | date: $root.systemConfig.date_format}} {{entity.created_by}} | {{ entity.modified_on | date: $root.systemConfig.date_format}} {{entity.modified_by}}" ng-disabled="true">
+                </div>
+            </div>
+        </div>
+    </collapse-box>
+</div>
+</%block>
+
+<%block name="modal_script">
+<script>
+    (function (scope) {
+        scope.title = scope.$parent.headerTitle;
+        var _default = {
+            _id: null,
+            employee_code : scope.$parent.$parent.$com_code,
+            email_address:null,
+            note:null
+        }
+        scope.entity = JSON.parse(JSON.stringify(scope.$parent.$$table.currentItem));
+        scope.saveNClose = saveNClose;
+
+        function saveNClose() {
+        if (scope.entity != null) {
+            var rsCheck = checkError();
+            if (rsCheck.result) {
+                $msg.message("${get_global_res('Input_Error','Nhập liệu sai')}", rsCheck.errorMsg, function () { });
+                return;
+            }
+            editData(function (res) {
+                if (res.error == null) {
+                    $dialog.closeDialog();
+                    $msg.alert("${get_global_res('Handle_Success','Thao tác thành công')}", $type_alert.INFO);
+                    reloadData();
+                } else if(res.error.code == "missing"){
+                    $msg.message("${get_global_res('Input_Error','Nhập liệu sai')}", "${get_res('action_is_not_null','Hành vi chuẩn không được để trống')}", function () { });
+                }else {
+                    $msg.message("${get_global_res('Internal_Server_Error','Có lỗi từ phía máy chủ')}", "${get_global_res('Please_Try_Again','Xin thử vui lòng thử lại')}", function () { });
+                }
+            });
+        }
+    }
+
+    function editData(callback) {
+        var param = _.mapObject(_default, function(val, key) { return val = scope.entity[key] ? scope.entity[key] : null });
+        services.api("${get_api_key('app_main.api.TM_EmailHR/update')}")
+            .data(param)
+            .done()
+            .then(function (res) {
+                callback(res);
+            })
+    }
+
+    function reloadData() {
+        var tableConfig = scope.$parent.$$table.$$tableConfig;
+        scope.$parent._tableData(tableConfig.iPage,
+            tableConfig.iPageLength, tableConfig.orderBy,
+            tableConfig.searchText, tableConfig.fnReloadData);
+    }
+
+    function checkError() {
+        var errMsg;
+        var valid = null;
+        var rs = {
+            "result": false,
+            "errorMsg": ''
+        };
+        if(scope.entity.email_address.indexOf(",") < 0){
+            valid = lv.Validate(scope.entity.email_address);
+            rs.result = valid.isEmail();
+            rs.errorMsg = rs.result === false ? "${get_res('email_address_invalid','Địa chỉ Email không hợp lệ')}" + '\n' : "" ;
+            if(rs.result === false){
+                rs.result = true;
+                return rs;
+            }else{
+                rs.result = false;
+            }
+        }else{
+            var emails = scope.entity.email_address.split(",");
+            _.each(emails, function(val){
+                valid = lv.Validate(val.trim());
+                rs.result = valid.isEmail();
+                console.log(val + " " + valid.isEmail());
+                rs.errorMsg = rs.result === false ? "${get_res('email_address_invalid','Địa chỉ Email không hợp lệ')}" + '\n' : "" ;
+                if(rs.result === false){
+                    rs.result = true;
+                    return;
+                }else{
+                    rs.result = false;
+                }
+            })
+        }
+        return rs;
+    }
+    });
+</script>
+
+</%block>

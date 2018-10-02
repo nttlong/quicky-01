@@ -53,6 +53,24 @@ def get_employee_by_emp_code(args):
     except Exception as ex:
         raise(ex)
 
+def get_employee_by_emp_codes(args):
+    try:
+        ret = {}
+        if args['data'] != None:
+            if args['data'].has_key('employee_codes'):
+                ret = Employee.get_employee_by_employee_codes(args['data']['employee_codes'])
+            else:
+                return dict(
+                    error = "parameter 'employee_codes' is not exist"
+                )
+            return ret
+
+        return dict(
+            error = "request parameter is not exist"
+        )
+    except Exception as ex:
+        raise(ex)
+
 def insert(args):
     try:
         lock.acquire()

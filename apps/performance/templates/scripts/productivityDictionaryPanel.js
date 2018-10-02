@@ -2,6 +2,7 @@
     /*                                                         */
     /* ==================== Property Scope - START=============*/
     /*                                                         */
+    scope.isChangeFunc = false;
     scope.filterFunctionModel = ''
     scope.currentFunction = '';
     scope.mapName = [];
@@ -82,7 +83,6 @@
     
     scope.$watch("selectedFunction", function (function_id) {
         if (function_id) {
-            console.log(function_id);
             var $his = scope.$root.$history.data();
             window.location.href = "#page=" + $his.page + "&f=" + function_id;
         }

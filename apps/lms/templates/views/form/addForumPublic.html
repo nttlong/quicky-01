@@ -1,0 +1,628 @@
+﻿
+<%!
+    #_style="width:200px;"
+%>
+
+<%inherit file="../commons/dialog_save_close.html"/>
+
+<%block name="modal_body">
+
+<style>
+    .radio {
+    padding-left: 20px;
+    margin-top: 4px;
+}
+
+.radio label {
+    display: inline-block;
+    vertical-align: middle;
+    position: relative;
+    padding-left: 5px;
+}
+
+.radio label .relative {
+    color: #00b9f2;
+}
+
+.radio label a:hover {
+    text-decoration: none;
+}
+
+.radio label::before {
+    content: "";
+    display: inline-block;
+    position: absolute;
+    width: 17px;
+    height: 17px;
+    left: 0;
+    top:3px;
+    margin-left: -20px;
+    border: 1px solid #A9A9A9;
+    border-radius: 50%;
+    background-color: #fff;
+    -webkit-transition: border .3s ease-in-out;
+    transition: border .3s ease-in-out;
+}
+
+.radio label::after {
+    display: inline-block;
+    position: absolute;
+    content: " ";
+    width: 11px;
+    height: 11px;
+    left: 3px;
+    top: 6px;
+    margin-left: -20px;
+    border-radius: 50%;
+    background-color: #777;
+    -webkit-transform: scale(0,0);
+    -ms-transform: scale(0,0);
+    transform: scale(0,0);
+    -webkit-transition: -webkit-transform .3s cubic-bezier(.8,-.33,.2,1.33);
+    -moz-transition: -moz-transform .3s cubic-bezier(.8,-.33,.2,1.33);
+    -o-transition: -o-transform .3s cubic-bezier(.8,-.33,.2,1.33);
+    transition: transform .3s cubic-bezier(.8,-.33,.2,1.33);
+}
+
+.radio input[type=radio] {
+    opacity: 0;
+    z-index: 1;
+}
+
+.radio input[type=radio]:checked+label::after {
+    -webkit-transform: scale(1,1);
+    -ms-transform: scale(1,1);
+    transform: scale(1,1);
+}
+
+.radio input[type=radio]:disabled+label {
+    opacity: .65;
+}
+
+.radio input[type=radio]:disabled+label::before {
+    cursor: not-allowed;
+}
+
+.radio.radio-inline {
+    margin-top: 0;
+}
+
+.radio-primary input[type=radio]+label::after {
+    background-color: #f7941d;
+}
+
+.radio-primary input[type=radio]:checked+label::before {
+    border-color: #f7941d;
+}
+
+.radio-primary input[type=radio]:checked+label::after {
+    background-color: #f7941d;
+}
+
+.radio-danger input[type=radio]+label::after {
+    background-color: #ef474f;
+}
+
+.radio-danger input[type=radio]:checked+label::before {
+    border-color: #ef474f;
+}
+
+.radio-danger input[type=radio]:checked+label::after {
+    background-color: #ef474f;
+}
+
+.radio-info input[type=radio]+label::after {
+    background-color: #00b9f2;
+}
+
+.radio-info input[type=radio]:checked+label::before {
+    border-color: #00b9f2;
+}
+
+.radio-info input[type=radio]:checked+label::after {
+    background-color: #00b9f2;
+}
+
+.radio-warning input[type=radio]+label::after {
+    background-color: #f0ad4e;
+}
+
+.radio-warning input[type=radio]:checked+label::before {
+    border-color: #f0ad4e;
+}
+
+.radio-warning input[type=radio]:checked+label::after {
+    background-color: #f0ad4e;
+}
+
+.radio-success input[type=radio]+label::after {
+    background-color: #5cb85c;
+}
+
+.radio-success input[type=radio]:checked+label::before {
+    border-color: #5cb85c;
+}
+
+.radio-success input[type=radio]:checked+label::after {
+    background-color: #5cb85c;
+}
+
+.radio-success input[type=file] {
+    display: inline;
+    width: 0;
+    opacity: 0;
+}
+
+input[type=checkbox].styled:checked+label:after,input[type=radio].styled:checked+label:after {
+    font-family: FontAwesome;
+    content: "";
+}
+
+input[type=checkbox] .styled:checked+label::before,input[type=radio] .styled:checked+label::before {
+    color: #fff;
+}
+
+input[type=checkbox] .styled:checked+label::after,input[type=radio] .styled:checked+label::after {
+    color: #fff;
+}
+
+
+
+    .hcs-input-choose-file {
+        color: #333;
+        border: none;
+        border-radius: 0;
+        border-bottom: 1px solid #cbcbcb !important;
+        background: transparent;
+        font-size: .875rem;
+        padding-bottom: 0;
+        box-shadow: none !important;
+        padding: 0 5px 0 1px;
+        vertical-align: bottom;
+    }
+
+    .hcs-button-choose-file {
+        padding: 10px 3px 3px 0 !important;
+        color: #333;
+        border: none;
+        border-radius: 0;
+        border-bottom: 1px solid #cbcbcb !important;
+        background: transparent;
+        font-size: .875rem;
+        padding-bottom: 0;
+        box-shadow: none !important;
+        vertical-align: bottom;
+    }
+
+    .btn-default.btn-choose.hcs-button-choose-file:hover,
+    .btn-default.btn-choose.hcs-button-choose-file:active,
+    .btn-default.btn-choose.hcs-button-choose-file:focus{
+        color: #333;
+        background-color: #fff !important;
+        border-color: #ccc !important;
+    }
+
+    button.btn.btn-default.btn-choose.hcs-button-choose-file {
+        outline: unset;
+    }
+
+    .radio + .radio {
+        margin-top: 4px;
+    }
+
+    .bootstrap-tagsinput {
+        color: #333;
+        border: none;
+        border-radius: 0;
+        border-bottom: 1px solid #cbcbcb !important;
+        background: transparent;
+        font-size: .875rem;
+        width: 100%;
+    }
+
+    .bootstrap-tagsinput span {
+        background: #ccc;
+        border: 1px solid #ccc;
+    }
+</style>
+
+<div class="col-md-{{col_group}} col-sm-{{col_group}}">
+       <div class="hcs-tab-info">
+            <div class="col-md-12 competency no-padding">
+                <div class="col-md-4 active" href="#tab_default_1" data-toggle="tab"
+                     ng-click="setTab(1, $event)">
+                    <div class="circle-statistics"
+                         style="float: left;
+                                margin-right: 10px;">
+                        1
+                    </div>
+                           <label style="padding-top: 10px;">
+                        <span style="display: table;">${get_res('forum_information','Forum Information')}</span>
+                    </label>
+                </div>
+                <div class="col-md-4" ng-class="{disabled: (__mode === 1 && tabIdx < 2)}" href="#tab_default_2" data-toggle="tab"
+                     ng-click="setTab(2, $event)">
+                    <div class="circle-statistics"
+                         style="float: left;
+                                margin-right: 10px;">
+                        2
+                    </div>
+                              <label style="padding-top: 10px;">
+                        <span style="display: table;">${get_res('forum_setting','Forum Setting')}</span>
+                    </label>
+                </div>
+                <div class="col-md-4" ng-class="{disabled: (__mode === 1 && tabIdx < 3)}" href="#tab_default_3" data-toggle="tab"
+                     ng-click="setTab(3, $event)">
+                    <div class="circle-statistics"
+                         style="float: left;
+                                margin-right: 10px;">
+                        3
+                    </div>
+                    <label style="padding-top: 10px;">
+                        <span style="display: table;">${get_res('forum_moderations','Forum Moderation')}</span>
+                    </label>
+                </div>
+            </div>
+       </div>
+      <div class="col-md-12">
+        <div ng-show="isSet(1)">
+           <%include file = "addForumPublicTabOne.html" />
+        </div>
+        <div ng-show="isSet(2)">
+           <%include file = "addForumPublicTabTwo.html" />
+        </div>
+        <div ng-show="isSet(3)">
+           <%include file = "addForumPublicTabThree.html" />
+        </div>
+      </div>
+</div>
+
+<style>
+    .hcs-tab-column-5 {
+        width: 20%;
+        height: auto;
+        font-size: 12px;
+    }
+
+    .hcs-tab-column-5-number {
+        color: rgb(68,114,196);
+        width: 15%!important;
+        border: 1px solid rgb(68,114,196) !important;
+        border-radius: 50%;
+        text-align: center;
+        font-size: 11px;
+        padding-top: 3px;
+        height: 24px !important;
+        font-weight: bold;
+        margin-right: 5px;
+        white-space: nowrap;
+        float: left;
+    }
+
+    .hcs-tab-column-5-label label{
+        padding-top: 0px;
+        float: left;
+        width: 80%;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    .hcs-tab-column-5-label label span:first-child{
+        display: table;
+    }
+
+</style>
+
+</%block>
+
+<%block name="modal_script">
+<script>
+    (function (scope) {
+
+         var _default = {
+            forum_id: null,
+            forum_type: false,
+            forum_avail: false,
+
+            allow_anonymous_posts: false,
+            allow_attachment_files: true,
+            allow_author_delete: true,
+            allow_author_edit: true,
+            allow_post_tagging: true,
+            allow_user_reply: true,
+            allow_subscription:"1",
+            allow_member_thread: true,
+            forum_info:{
+                course_name:"",
+                start_date:null,
+                class_code:""
+            },
+            allow_member_rate: true,
+            force_moderation_post: true,
+            forum_status: 1,
+
+            type_moderation: 1,
+
+
+        };
+
+        scope.col = 12;
+        scope.col_group = 12;
+        scope.dt_true = true;
+        scope.dt_false = false;
+
+        scope.ListModeration = [
+        {
+            value: 1,
+            caption: "All Posts"
+
+        },
+         {
+            value: 2,
+            caption: "Topics"
+
+        },
+        {
+            value: 3,
+            caption: "Replies"
+
+        },
+         {
+            value: 4,
+            caption: "Posts with Attachment Files"
+
+        },
+        {
+            value: 5,
+            caption: "Posts with External Links"
+
+        },
+        {
+            value: 6,
+            caption: "Posts containing these words"
+        }];
+
+        scope.tab = 1;
+        scope.setTab = function (newTab, event) {
+            setTimeout(function () {
+                $(document).trigger("resize");
+            }, 20);
+              scope.tab = newTab;
+              $('.hcs-tab-info').find('.active').removeClass('active');
+              $(event.target).closest('div').addClass('active');
+        };
+        scope.isSet = function(tabNum){
+          return scope.tab === tabNum;
+        };
+
+        scope.__mode = scope.$parent.mode;
+        scope.title = scope.$parent.headerTitle;
+        //
+        var __entity = JSON.parse(JSON.stringify(scope.$parent.currentItem ? scope.$parent.currentItem: {}));
+
+        //Mode 1: tạo mới, Mode 2: chỉnh sửa, Mode 3: sao chép
+        scope.entity = scope.__mode == 2 ? __entity : _default;
+
+        //Nút lưu và thêm
+        scope.saveNNext = saveNNext;
+
+        //Nút lưu
+        //scope.saveNClose = saveNClose;
+
+        console.log(typeof scope.entity.specific_avail.start_time);
+
+
+
+        function saveNNext() {
+
+            if (scope.entity != null) {
+                var rsCheck = checkError();//Kết quả check input
+                if (rsCheck.result) {
+                    //Nhập sai: break khỏi hàm
+                    $msg.message("${get_global_res('Input_Error','Nhập liệu sai')}", rsCheck.errorMsg, function () { });
+                    return;
+                }
+                beforeCallToServer();
+                editData(function (res) {
+                    if (res.error == null) {
+                        if (scope.__mode == 1 || scope.__mode == 3)
+                            reloadData();
+                        else {
+                            scope.$parent.currentItem = scope.entity;
+                            scope.$parent.currentItem.modified_on = res.item.modified_on;
+                            scope.$parent.currentItem.modified_by = res.item.modified_by;
+                            scope.$parent.$apply();
+                            //Refesh datatable
+                            scope.$parent.refreshDataRow();
+                        }
+                        $msg.alert("${get_global_res('Handle_Success','Thao tác thành công')}", $type_alert.INFO);
+                        scope.entity = null;
+                        scope.__mode = 1;
+                        scope.$parent.$apply();
+                    } else {
+                        $msg.message("${get_global_res('Notification','Thông báo')}", "${get_global_res('Internal_Server_Error','Có lỗi từ phía máy chủ')}", function () { });
+                    }
+                })
+            }
+        }
+        //Nút lưu
+        scope.saveNClose = saveNClose;
+
+        function saveNClose() {
+
+            if (scope.entity != null) {
+                var rsCheck = checkError();//Kết quả check input
+                if (rsCheck.result) {
+                    $msg.message("${get_global_res('Input_Error','Nhập liệu sai')}", rsCheck.errorMsg, function () { });
+                    return;
+                }
+                beforeCallToServer();
+                editData(function (res) {
+                    if (res.error == null) {
+                        $dialog.closeDialog();//Đóng form input
+                        $msg.alert("${get_global_res('Handle_Success','Thao tác thành công')}", $type_alert.INFO);//Xuất thông báo thành cônng
+                        if (scope.__mode == 1 || scope.__mode == 3) {
+                            //Reload table data
+                            reloadData();
+                        } else if (scope.__mode == 2) {
+                            scope.$parent.currentItem = scope.entity;
+                            scope.$parent.currentItem.modified_on = res.item.modified_on;
+                            scope.$parent.currentItem.modified_by = res.item.modified_by;
+                            scope.$parent.$apply();
+                            //Refesh datatable
+                            reloadData();
+                        }
+                    } else {
+                        $msg.message("${get_global_res('Internal_Server_Error','Có lỗi từ phía máy chủ')}", "${get_global_res('Please_Try_Again','Xin thử vui lòng thử lại')}", function () { });
+                    }
+                });
+            }
+        }
+
+        function beforeCallToServer() {
+
+        }
+
+        function getUrl() {
+            return scope.__mode == 1 || scope.__mode == 3 ? "${get_api_key('app_main.api.LMSLS_Forum/insert')}" /*Mode 1: Tạo mới*/
+                : "${get_api_key('app_main.api.LMSLS_Forum/update')}" /*Mode 2: Cập nhật*/
+        }
+
+        function editData(callback) {
+
+            var url = getUrl();
+            if (scope.__mode == 3) {
+
+            }
+
+            services.api(url)
+                .data(scope.entity)
+                .done()
+                .then(function (res) {
+                    callback(res);
+                })
+        }
+
+        /**
+         * Function check input
+         */
+        function checkError() {
+
+
+            var errMsg;
+            var valid = null;
+            var rs = {
+                "result": false,
+                "errorMsg": ''
+            };
+
+
+
+            valid = lv.Validate(scope.entity.forum_id);
+            rs.result = valid.isNullOrWhiteSpace();
+            rs.errorMsg = rs.result === true ? "${get_res('id_is_not_null','ID không được để trống')}" + '\n' : "";
+            if (rs.result === true) {
+                return rs;
+            }
+            valid = lv.Validate(scope.entity.forum_name);
+            rs.result = valid.isNullOrWhiteSpace();
+            rs.errorMsg = rs.result === true ? "${get_res('forum_name_is_not_null','Forum Name không được để trống')}" + '\n' : "";
+            if (rs.result === true) {
+                return rs;
+            }
+
+            valid = lv.Validate(scope.entity.description);
+            rs.result = valid.isNullOrWhiteSpace();
+            rs.errorMsg = rs.result === true ? "${get_res('description_is_not_null','Description không được để trống')}" + '\n' : "";
+            if (rs.result === true) {
+                return rs;
+            }
+
+             if(scope.entity.forum_type === false && (scope.entity.forum_info.course_name === "" || scope.entity.forum_info.class_code === "")){
+                rs.result = true;
+                rs.errorMsg = "Vui lòng điền đầy đủ thông tin khóa học";
+                return rs;
+            }
+
+             if(scope.entity.specific_avail.start_date > scope.entity.specific_avail.end_date){
+                rs.result = true;
+                rs.errorMsg = "Thời gian bắt đầu, thời gian kết thúc không hợp lệ";
+                return rs;
+            }
+
+             if(scope.entity.specific_avail.start_date.setHours(0,0,0,0) == scope.entity.specific_avail.end_date.setHours(0,0,0,0) && timeToSeconds(scope.entity.specific_avail.start_time) > timeToSeconds(scope.entity.specific_avail.end_time)){
+                rs.result = true;
+                rs.errorMsg = "Thời gian bắt đầu, thời gian kết thúc không hợp lệ";
+                return rs;
+            }
+
+            return rs;
+        }
+
+
+        loadValueList();
+        function loadValueList() {
+            services.api("${get_api_key('app_main.api.SYS_ValueList/get_list')}")
+            .data({
+                "name": [
+                    "LMS_Ex_Temp_negative_marks",
+                    "LMS_Ex_Temp_ques_pick",
+                    "LMSLSStatusForum"
+                ]
+            })
+            .done()
+            .then(function (res) {
+                scope.cbbNegativeMarks = getValue(res.values, "LMS_Ex_Temp_negative_marks");
+                scope.cbbQuestionPicking = getValue(res.values, "LMS_Ex_Temp_ques_pick");
+                scope.rdStatusForum = getValue(res.values, "LMSLSStatusForum");
+                scope.$applyAsync();
+                function getValue(response, listName) {
+                    return _.findWhere(response, { "list_name": listName }) ? _.findWhere(response, { "list_name": listName }).values : [];
+                }
+            })
+        }
+
+
+        function reloadData() {
+            var tableConfig = scope.$parent.$$tableConfig ? scope.$parent.$$tableConfig : scope.$root.$$tableConfig;
+            scope.$parent._tableData ? scope.$parent._tableData(tableConfig.iPage,
+                tableConfig.iPageLength, tableConfig.orderBy,
+                tableConfig.searchText, tableConfig.fnReloadData)
+                : scope.$root._tableData(tableConfig.iPage,
+                tableConfig.iPageLength, tableConfig.orderBy,
+                tableConfig.searchText, tableConfig.fnReloadData);
+        }
+
+         _getDataInitCombobox();
+        function _getDataInitCombobox() {
+            scope.$root.$getInitComboboxData(scope,
+                [
+                {
+                    "key": "${encryptor.get_key('cbb_lmsls_materialfolder')}",
+                    "code": scope.entity && scope.entity.hasOwnProperty('forum_administrator')? scope.entity.forum_administrator: null,
+                    "alias": "$$$forum_admin_id"
+                },
+                {
+                    "key": "${encryptor.get_key('cbb_lmsls_materialfolder')}",
+                    "code": scope.entity && scope.entity.hasOwnProperty('forum_info.course_name')? scope.entity.forum_info.course_name: null,
+                    "alias": "$$$course_name"
+                },
+                {
+                    "key": "${encryptor.get_key('cbb_lmsls_materialfolder')}",
+                    "code": scope.entity && scope.entity.hasOwnProperty('forum_info.class_code')? scope.entity.forum_info.class_code: null,
+                    "alias": "$$$class_code"
+                }
+                ]
+            );
+        }
+
+        function timeToSeconds(time) {
+        time = time.split(/:/);
+        return time[0] * 3600 + time[1] * 60 + time[2];
+        }
+
+    });
+</script>
+
+</%block>

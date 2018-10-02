@@ -173,6 +173,7 @@
 
         .ui-select-choices-row-inner {
             padding: 3px 3px;
+            min-height: 26px;
         }
     }
 
@@ -692,7 +693,6 @@ input[disabled] {
     margin-bottom: 0px !important;
     line-height: @h_control !important;
     text-align: left !important;
-    padding: 0 0px 0px 5px;
     font-weight: normal;
     height: @h_control;
     color: @cl_label;
@@ -790,6 +790,10 @@ input[disabled] {
         border-radius: unset !important;
     }
 
+    .form-group{
+        margin-bottom: unset;
+    }
+
     .caret {
         display: inline-block;
         position: absolute;
@@ -802,6 +806,8 @@ input[disabled] {
         text-rendering: auto;
         line-height: 1;
         opacity: .6;
+        box-shadow: unset;
+        -webkit-box-shadow: unset;
         -webkit-font-smoothing: antialiased;
         width: 14px !important;
         height: 14px !important;
@@ -815,4 +821,19 @@ input[disabled] {
     .caret:after {
         content: "\f123";
     }
+}
+
+.radio {
+    margin-top: 5px;
+    display: block;
+    position: relative;
+    padding-left: 30px;
+    margin-bottom: unset !important;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    font: 100% 'Segoe UI',sans-serif;
+    font-size: .875rem !important;
 }

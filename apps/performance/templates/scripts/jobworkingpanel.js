@@ -6,6 +6,7 @@
     scope.filterFunctionModel = ''
     scope.currentFunction = '';
     scope.mapName = [];
+    scope.isChangeFunc = false;
     scope.selectFunc = function (event, f) {
         scope.selectedFunction = f;
     }

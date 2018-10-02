@@ -13,7 +13,7 @@
             <tree-table data-source="$$tableTree.dataTableTree" data-fields="$$tableTree.tableFields"
                     display-field="department_name"
                     display-name="Bộ phận"
-                    parent-field="parent_code" key-field="department_code" 
+                    parent-field="parent_code" key-field="department_code"
                     multi-select="$$tableTree.treeMultiSelect" select-mode="$$tableTree.treeSelectMode"
                     on-select="$$tableTree.selectTreeNode"
                     current-node="$$tableTree.treeCurrentNode"
@@ -21,7 +21,8 @@
                     selected-root-nodes="$$tableTree.treeSelectedRootNodes"
                     search-text="$$tableTree.treeSearchText"
                     checked-field="is_selected"
-                    disabled="$$tableTree.treeDisabled"/>
+                    disabled="$$tableTree.treeDisabled"
+                    multi-select = "mode == 1 ? true : false"/>
                     
         </div>
     </collapse-box>

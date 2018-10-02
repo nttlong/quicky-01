@@ -95,25 +95,29 @@
             <div class="col-md-{{col}}">
                 <div class="form-group zb-form-group">
                     <label class="col-sm-5 zb-form-label">${get_res('kpi_formula','Công thức tính năng suất')}</label>
-                     <div class="col-sm-7" style="display: grid; grid-template-columns:auto 1fr;">
-                        <combobox load-data="$root.$getComboboxData" 
-                                ng-model="entity.kpi_formula"
-                                params="{key:'${encryptor.get_key('cbb_HCSLS_Unit')}', value:[{ '@lock': true }]}"
-                                on-search-change="false"
-                                on-search-press="true"
-                                placeholder=""
-                                init-data="$$$cbb_HCSLS_Unit.value"
-                                caption-field="{{$$$cbb_HCSLS_Unit.caption_field}}" 
-                                paging="true"
-                                close-on-select="true"
-                                template-fields="$$$cbb_HCSLS_Unit.display_fields"
-                                reload="false">
-                        </combobox>
-                         <button ng-click="addFormula()" class="zb-btn hcs-left-side-department-tree-tool-bar-btn-custom-icon" style="text-align: center;">
-                            <span>
-                            <i class="bowtie-icon bowtie-ellipsis"></i>
-                            </span>
-                        </button>
+                     <div class="col-sm-7" style="display: grid; grid-template-columns:1fr auto;">
+                        <div>
+                            <combobox load-data="$root.$getComboboxData" 
+                                    ng-model="entity.kpi_formula"
+                                    params="{key:'${encryptor.get_key('cbb_HCSLS_Unit')}', value:[{ '@lock': true }]}"
+                                    on-search-change="false"
+                                    on-search-press="true"
+                                    placeholder=""
+                                    init-data="$$$cbb_HCSLS_Unit.value"
+                                    caption-field="{{$$$cbb_HCSLS_Unit.caption_field}}" 
+                                    paging="true"
+                                    close-on-select="true"
+                                    template-fields="$$$cbb_HCSLS_Unit.display_fields"
+                                    reload="false">
+                            </combobox>
+                        </div>
+                        <div>
+                            <button ng-click="addFormula()" class="zb-btn hcs-left-side-department-tree-tool-bar-btn-custom-icon" style="text-align: center;">
+                                <span>
+                                <i class="bowtie-icon bowtie-ellipsis"></i>
+                                </span>
+                            </button>
+                        </div>
                     </div>
                 </div>
             </div>

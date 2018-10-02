@@ -2,10 +2,10 @@
     'use strict';
 
     angular.module('ZebraApp.components.combobox')
-        .directive('multiCombobox', ["$compile", combobox]);
+        .directive('multiCombobox', ["$compile", "templateService", combobox]);
 
     /** @ngInject */
-    function combobox($compile) {
+    function combobox($compile, templateService) {
         return {
             restrict: 'E',
             replace: true,
@@ -41,7 +41,7 @@
                 /*Caption hiển thị khi lần đầu loadCombobox*/
                 initData: "=",
                 params: "=",
-
+                ngDisabled: "=",
                 templateFields: "=",
                 /*Reload data khi nhấn button mở combobox*/
                 reload: "="
@@ -49,28 +49,7 @@
             //template: function(el, attrs) {
             //  return '<div class="switch-container ' + (attrs.color || '') + '"><input type="checkbox" ng-model="ngModel"></div>';
             //}
-            template: `
-              <div class="zb-form-combobox input-group">
-                <div class="form-control">
-                  <span class="placeholder" ng-if="$selectedItemDisplay.length<=0">{{placeholder}}</span>
-                  <div class="display-value" ng-if="$selectedItemDisplay.length>0">
-                        <span class="multi-value" ng-repeat="v in $selectedItemDisplay track by $index">
-                            {{v[captionField]}}
-                            <i class="bowtie-icon bowtie-math-multiply-light" ng-click="$deleteSelectedItem(v)"></i>
-                        </span>
-                  </div>
-                </div>
-                <div class="zb-combobox-template" ng-transclude style="display:none"></div>
-                <div class="input-group-btn">   
-                  <button class="btn btn-default zb-combo-btn-clear">
-                    <i class="bowtie-icon bowtie-edit-remove"></i>
-                  </button>
-                  <button class="btn btn-default zb-open-modal">
-                    <i class="bowtie-icon bowtie-navigate-external"></i>
-                  </button>
-                </div>
-              </div>
-            `,
+            templateUrl: templateService.getStatic("app/components/combobox/multi-combobox/multi-combobox.html"),
             //templateUrl: "app/components/input/text/text.html",
             link: function ($scope, elem, attr, ctrl, transclude) {
                 $scope.keyField = ($scope.keyField) ? $scope.keyField : "";
@@ -91,6 +70,11 @@
                         $scope.$selectedItemDisplay = _.reject($scope.$selectedItemDisplay, check);
                         $scope.$applyAsync();
                     }
+                }
+                $scope.getValueString = function(){
+                    if($scope.$selectedItemDisplay && $scope.$selectedItemDisplay.length > 0)
+                        return _.pluck($scope.$selectedItemDisplay, $scope.captionField).join(", ");
+                    return "";
                 }
 
                 var _control = {
@@ -131,13 +115,9 @@
                     }
                 }
 
-                $(elem).find(".zb-combo-btn-clear").bind("click", function () {
-                    _control.clearValue();
-                });
-
                 var dialogTemplate = '' +
                     '<div class="zb-modal-combobox modal fade" role="dialog" tabindex="-1">' +
-                    '    <div class="modal-dialog">' +
+                    '    <div class="modal-dialog modal-dialog-one-col">' +
                     '        <div class="modal-content">' +
                     '            <div class="modal-header">' +
                     '                <div class="left-content pull-left">' +
@@ -250,13 +230,13 @@
                                 if (angular.isFunction($scope.loadData)) {
                                     ($scope.loadData)($scope, function (result) {
                                         $scope.$cbbConfig.list = (result && result.data) ? result.data : [];
-                                        var selected = []
-                                        if ($scope.$cbbConfig.selected && $scope.$cbbConfig.selected.length > 0) {
-                                            selected = _.pluck($scope.$cbbConfig.selected, $scope.keyField);
-                                        }
+                                        // var selected = []
+                                        // if ($scope.$cbbConfig.selected && $scope.$cbbConfig.selected.length > 0) {
+                                        //     selected = _.pluck($scope.$cbbConfig.selected, $scope.keyField);
+                                        // }
                                         _.map($scope.$cbbConfig.list, function (val) {
-                                            if (selected.length > 0) {
-                                                if (selected.includes(val[$scope.keyField]))
+                                            if ($scope.ngModel && $scope.ngModel.length > 0) {
+                                                if ($scope.ngModel.includes(val[$scope.keyField]))
                                                     val['$$$checked'] = true;
                                                 else {
                                                     val['$$$checked'] = false;
@@ -370,6 +350,24 @@
                             }
                             $scope.$applyAsync();
                             fnLoadData();
+                        }else{
+                            if($scope.$cbbConfig){
+                                $scope.$cbbConfig.selected = [];
+                                _.map($scope.$cbbConfig.list, function (val) {
+                                    if ($scope.ngModel && $scope.ngModel.length > 0) {
+                                        if ($scope.ngModel.includes(val[$scope.keyField])){
+                                            val['$$$checked'] = true;
+                                            $scope.$cbbConfig.selected.push(val);
+                                        }
+                                        else {
+                                            val['$$$checked'] = false;
+                                        }
+                                    } else {
+                                        val['$$$checked'] = false;
+                                    }
+                                });
+                                $scope.$applyAsync();
+                            }
                         }
                     });
                     $dialog.find(".zb-close-modal").bind("click", function () {

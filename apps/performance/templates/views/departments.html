@@ -1,4 +1,4 @@
-﻿<style>
+﻿﻿<style>
     .hcs-navigation-panel-button {
         list-style-type:none;
         display:inline-flex;
@@ -31,8 +31,6 @@
                   selected-key="selectedFunction"
                   reload-on-change="false">
         <site-map>
-                <a href="#">Trang chủ</a>
-                <span><i class="bowtie-icon bowtie-chevron-right"></i></span>
                 <a ng-click="backPage()">{{$root.currentFunction.default_name}}</a>
                 <!--<a></a>-->
                 <a data-target="#dropdownFunction" style="color:#333" data-toggle="collapse"><i class="bowtie-icon bowtie-chevron-down"></i></a>
@@ -100,10 +98,22 @@
             </div>
         </div>
         <div class="hcs-right-side-department-content">
-            <div class="hcs-right-side-department-list-tool-bar">
-                <div class="zb-left-content pull-left" style="width:600px;">
+
+            <div class="hcs-top-action-mobile">
+                <button class="zb-btn zb-btn-o-green ng-scope hcs-menu-mobile"
+                        ng-click="$root.doToggle('.hcs-left-side-department-content')">
+                    <i class="bowtie-icon bowtie-menu"></i>
+                </button>
+                <button class="zb-btn zb-btn-o-green ng-scope hcs-action-mobile"
+                        ng-click="$root.doToggle('.hcs-top-action-large')">
+                    <i class="bowtie-icon bowtie-set-actions"></i>
+                </button>
+            </div>
+
+            <div class="hcs-right-side-department-list-tool-bar hcs-top-action-large">
+                <div class="zb-left-content col-xs-12 col-md-6 pull-left hcs-padding-resize" style="padding-left: 0; padding-right: 0;">
                     <div class="row">
-                        <div class="col-md-6">
+                        <div class="col-xs-6 col-md-6">
                             <input-select data-list="objSearch.selectBoxDataSource" class="size-lg"
                                             data-value="value" 
                                             data-caption="caption"
@@ -111,12 +121,13 @@
                                             value="3">
                             </input-select>
                         </div>
-                        <div class="col-md-6">
+                        <div class="col-xs-6 col-md-6">
                             <input-text-icon id="tableSearchText" on-click="objSearch.onSearch" ng-model="objSearch.$$$modelSearch"></input-text-icon>
                         </div>
                     </div>
                 </div>
-                <div class="zb-right-content pull-right">
+                <div class="zb-right-content col-xs-12 col-md-6 pull-right"
+                    style="padding-left: 0; padding-right: 0; text-align: right;">
                     <button ng-click="button.add()" class="zb-btn zb-btn-o-green">
                         <i class="bowtie-icon bowtie-math-plus"></i>
                     </button>

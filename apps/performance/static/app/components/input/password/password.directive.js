@@ -17,9 +17,10 @@
             replace: true,
             transclude: true,
             scope: {
-                result: "="
+                result: "=",
+                ngDisabled: "="
             },
-            template: '<input type="password" class="form-control zb-form-input"/>',
+            template: '<input type="password" ng-disabled="ngDisabled" class="form-control zb-form-input"/>',
             link: link
         };
         return directive;

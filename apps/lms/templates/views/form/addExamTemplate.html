@@ -9,35 +9,7 @@
 
 <div class="col-md-{{col_group}} col-sm-{{col_group}}">
    <collapse-box class="zb-form-common" title="${get_res('Create_an_exam_template','Create an Exam Template')}">
-      <!--<div class="col-md-12" style="font-size:12px;padding-top: 15px;">
-         <div class="col-md-4" ng-class="{ active: isSet(1) }"  ng-click="setTab(1)" style="cursor:pointer;border-left:2px solid rgb(68,114,196)">
-            <div class="col-md-2" >
-               <div class="circle-statistics">1</div>
-            </div>
-            <div class="col-md-10" >
-               <p>Enter</p>
-               <p>Exam Template Information</p>
-            </div>
-         </div>
-         <div class="col-md-5" ng-class="{ active: isSet(2) }"  ng-click="setTab(2)" style="cursor:pointer;border-left:2px solid rgb(68,114,196)">
-            <div class="col-md-2" >
-               <div class="circle-statistics">2</div>
-            </div>
-            <div class="col-md-10" >
-               <p>Specify</p>
-               <p>Number of questions (From Your Question Bank)</p>
-            </div>
-         </div>
-         <div class="col-md-3" ng-class="{ active: isSet(3) }"  ng-click="setTab(3)" style="cursor:pointer;border-left:2px solid rgb(68,114,196)">
-            <div class="col-md-3" >
-               <div class="circle-statistics">3</div>
-            </div>
-            <div class="col-md-9" >
-               <p>View</p>
-               <p>Exam Template Details</p>
-            </div>
-         </div>
-      </div>-->
+      
        <div class="hcs-tab-info">
             <div class="col-md-12 competency no-padding">
                 <div class="col-md-4 active" href="#tab_default_1" data-toggle="tab"
@@ -438,19 +410,28 @@
         scope.editDetail = editDetail;
 
         scope.category_list = []
-
+        scope.entity.question_list = scope.entity.question_list? scope.entity.question_list : []
         scope.entity.total_question = 0
         scope.entity.total_mask = 0
         scope.entity.easy_question = "0%"
         scope.entity.med_question = "0%"
         scope.entity.diff_question = "0%"
 
+        scope.entity.mode_pick = 1;
+        scope.createListQues =function () {
+             if (scope.entity.question_list && scope.entity.question_list.length > 0) {
+                scope.category_list.push(...scope.entity.question_list)
+            }
+
+        }
+        scope.createListQues();
+
         scope.entity.creator=scope.$root.__USER__.login_account
         scope.tab = 1;
         scope.setTab = function (newTab) {
             setTimeout(function () {
                 $(document).trigger("resize");
-            }, 20);
+            }, 100);
             if(scope.tabIdx >= newTab){
               scope.tab = newTab;
               $('.hcs-tab-info').find('.active').removeClass('active');
@@ -466,13 +447,41 @@
         { "data": "ques_id", "title": "${get_res('ques_id_table_header','ID')}" },
         { "data": "ques_detail_1", "title": "${get_res('ques_detail_table_header','Question')}" },
         { "data": "ques_category", "title": "${get_res('ques_category_table_header','Category')}" },
-        { "data": "ques_type", "title": "${get_res('ques_type_table_header','Question type')}" },
-        { "data": "ques_level", "title": "${get_res('ques_level_table_header','Difficulty Level')}" },
+        { "data": "ques_type", "title": "${get_res('ques_type_table_header','Question type')}", "format": "icon", "type": "rowtext", "icon": "icons", "position": "left" },
+        { "data": "ques_level", "title": "${get_res('ques_level_table_header','Difficulty Level')}","expr":function(row, data, func){
+            func(function(){
+                return "<p style='color:" + row.color+ ";"+ "font-weight:bold;'>" + row.ques_level + "</p>";
+
+            });
+            return true;
+        }},
         { "data": "ques_total_marks", "title": "${get_res('ques_mark_table_header','Mark')}" },
         { "data": "ques_max_answer_time", "title": "${get_res('answer_time_table_header','Answer Time')}" },
          ];
         //Cấu hình tên field và caption hiển thị trên UI
-
+         loadValueList();
+         function loadValueList() {
+            services.api("${get_api_key('app_main.api.SYS_ValueList/get_list')}")
+            .data({
+                "name": [
+                     "LMSEx_ques_type",
+                    "LMSEx_ques_level",
+                    "LMS_Ex_Temp_negative_marks",
+                    "LMS_Ex_Temp_ques_pick",
+                ]
+            })
+            .done()
+            .then(function (res) {
+               scope.vll_LMSEx_ques_type = getValue(res.values, "LMSEx_ques_type");
+                scope.vll_LMSEx_ques_level = getValue(res.values, "LMSEx_ques_level");
+                scope.cbbNegativeMarks = getValue(res.values, "LMS_Ex_Temp_negative_marks");
+                scope.cbbQuestionPicking = getValue(res.values, "LMS_Ex_Temp_ques_pick");
+                scope.$applyAsync();
+                function getValue(response, listName) {
+                    return _.findWhere(response, { "list_name": listName }) ? _.findWhere(response, { "list_name": listName }).values : [];
+                }
+            })
+        }
         scope.addQuestionDlg = function (index) {
 
             var errMsg;
@@ -520,6 +529,7 @@
                 })
                 .done()
                 .then(function (res) {
+
                     scope.category_list.push(...res.list_ques)
                      var tableConfig = scope.$$tableConfig;
 
@@ -569,7 +579,7 @@
         }
         scope.SearchText = '';
         //Refesh table
-        scope.entity.question_list = [];
+
         scope.tableSource = _loadDataServerSide;
         scope._tableData = _tableData;
         function _loadDataServerSide(fnReloadData, iPage, iPageLength, orderBy, searchText) {
@@ -593,9 +603,8 @@
             }
         };
         function _tableData(iPage, iPageLength, orderBy, searchText, callback, objSearchAdvance) {
-            if (scope.$parent.entity.question_list && scope.$parent.entity.question_list.length > 0) {
-                scope.category_list.push(...scope.$parent.entity.question_list)
-            }
+
+
 
 
             if (scope.category_list.length != 0 || scope.entity.total_question !=0) {
@@ -634,7 +643,37 @@
                     scope.entity.diff_question = _.filter(res.items, function (num) { return num.ques_level == 1 }).length / scope.entity.total_question * 100;
                     scope.entity.diff_question = scope.entity.diff_question.toString() + '%';
                     scope.entity.question_list = res.items;
+                    if(res.items.length >0 ){
 
+                        _.map(res.items,function (val) {
+                            debugger
+                            val.font_weight = "bold";
+                            if(val.ques_level == 1){
+                                val.color = "red"
+                            }
+                            else if(val.ques_level == 2){
+                                val.color = "rgb(191,143,0)"
+                            }
+                            else if(val.ques_level == 3){
+                                val.color = "rgb(47,117,181)"
+                            }
+
+                            val.icons = _.filter(scope.vll_LMSEx_ques_type,function (level) {
+                                return val.ques_type == level.value
+
+                            })[0].custom.icon
+                            val.ques_type = _.filter(scope.vll_LMSEx_ques_type,function (level) {
+                                return val.ques_type == level.value
+
+                            })[0].caption
+                            val.ques_level = _.filter(scope.vll_LMSEx_ques_level,function (level) {
+                                return val.ques_level == level.value
+
+                            })[0].caption
+                            return val
+
+                        })
+                        }
                     var data = {
                         recordsTotal: res.total_items,
                         recordsFiltered: res.total_items,
@@ -671,8 +710,9 @@
                 }
                 beforeCallToServer();
                 editData(function (res) {
+
                     if (res.error == null) {
-                        if(res.data & typeof(res.data) === 'object'){
+                        if(res.data && typeof(res.data) === 'object'){
                            scope.insertDataRes = res.data;
                         }
                         if(scope.tabIdx < scope.tabNumber){
@@ -681,6 +721,7 @@
                             scope.tabIdx ++;
                             $('.hcs-tab-info').find('.active').removeClass('active');
                             $("div[href='#tab_default_" + scope.tabIdx + "']").addClass('active');
+
                         }
                         //$dialog.closeDialog();//Đóng form input
                         $msg.alert("${get_global_res('Handle_Success','Thao tác thành công')}", $type_alert.INFO);//Xuất thông báo thành cônng
@@ -698,6 +739,9 @@
                             //Refesh datatable
                             scope.$parent.refreshDataRow();
                         }
+                        setTimeout(function () {
+                                    $(document).trigger("resize");
+                                },100);
                     } else {
                         $msg.message("${get_global_res('Internal_Server_Error','Có lỗi từ phía máy chủ')}", "${get_global_res('Please_Try_Again','Xin thử vui lòng thử lại')}", function () { });
                     }
@@ -807,6 +851,10 @@
                 }
             }
 
+
+            scope.entity = angular.fromJson(angular.toJson(scope.entity))
+
+
             services.api(url)
                 .data(scope.entity)
                 .done()
@@ -882,25 +930,8 @@
             return rs;
         }
 
-        loadValueList();
-        function loadValueList() {
-            services.api("${get_api_key('app_main.api.SYS_ValueList/get_list')}")
-            .data({
-                "name": [
-                    "LMS_Ex_Temp_negative_marks",
-                    "LMS_Ex_Temp_ques_pick",
-                ]
-            })
-            .done()
-            .then(function (res) {
-                scope.cbbNegativeMarks = getValue(res.values, "LMS_Ex_Temp_negative_marks");
-                scope.cbbQuestionPicking = getValue(res.values, "LMS_Ex_Temp_ques_pick");
-                scope.$applyAsync();
-                function getValue(response, listName) {
-                    return _.findWhere(response, { "list_name": listName }) ? _.findWhere(response, { "list_name": listName }).values : [];
-                }
-            })
-        }
+
+
 
         function _getDataInitCombobox() {
 			scope.$root.$getInitComboboxData(scope,

@@ -19,6 +19,7 @@
                 serverSide: "=", //default:false 
                 pressEnter: "=",
                 selectedItems: "=",
+                deSelectedItem: "=",
                 currentItem: "=",
                 searchText: "=",
                 refreshRow: "=",
@@ -30,6 +31,10 @@
             templateUrl: "app/components/table/table-data/table-data.html",
             link: function ($scope, elem, attr) {
                 var table = null;
+                $scope.fields = _.filter($scope.fields, function(val){
+                    if(!val.hasOwnProperty('visible') || val.visible !== false)
+                        return true;
+                });
 
                 function _initLayout() {
                     $scope.pageLength = ($scope.pageLength) ? $scope.pageLength : 30;
@@ -66,18 +71,18 @@
                     //set data cho danh sách row được chọn
                     function _fnSetSelectedItems($item, $isSelected) {
                         if ($isSelected) {
-                            var notExists = _.filter(_selectedItems, function (f) {
-                                return f["$$regKey"] === $item["$$regKey"];
-                            }).length === 0;
+                            var notExists = _.findWhere(table.data(), $item);
                             if (notExists) {
-                                _selectedItems.push($item);
+                                $scope.selectedItems.push($item);
                             }
+                            //$scope.selectedItems = _selectedItems;
                         } else {
-                            _selectedItems = _.filter(_selectedItems, function (f) {
-                                return f["$$regKey"] !== $item["$$regKey"];
-                            });
+                            // _selectedItems = _.filter(_selectedItems, function (f) {
+                            //     return f["$$regKey"] !== $item["$$regKey"];
+                            // });
+                            $scope.selectedItems = _.reject($scope.selectedItems, $item);
+                            $scope.deSelectedItem = $item;
                         }
-                        $scope.selectedItems = _selectedItems;
                         //$parse(_config.selectedItems).assign($scope.$parent, _selectedItems);
                         $scope.$applyAsync();
                     }
@@ -85,11 +90,15 @@
                     /**Check các dòng dữ liệu được chọn khi load data*/
                     function _initSelectedItem(data) {
                         if ($scope.selectedField && table) {
+                            var _data = []
                             $.each(data, function (i, v) {
                                 if (v[$scope.selectedField]) {
+                                    _data.push(_.findWhere(table.data(), v));
                                     table.row(i).select();
                                 }
                             });
+                            if(_data != [])
+                                $scope.selectedItems = _data;
                         }
                     }
 
@@ -128,10 +137,33 @@
                     }
 
                     let _columnDefs = [];
+
+//                    var checkStyle = function(fieldConfig, data, row){
+//                        console.log(fieldConfig, data, row);
+//                        if(fieldConfig.style){
+//                            var format = fieldConfig.style.format;
+//                            var expr = fieldConfig.style.expr;
+//
+//                            if(expr(data)){
+//                                switch(format){
+//
+//                                }
+//                                //row.addClass("asdaasdasd")
+//                            }
+//                        }
+//                    }
                     $.each($scope.fields, function (i, v) {
                         let _fnFormatRender = null;
                         if (v.format) {
                             var $s = v.format.split(":");
+                            // 2 biến này lưu giá trị của icon truyền vào
+                            var type_icon = null, val_icon = null, $f_icon = null, pos_icon = null;
+                            if($s[0].toLowerCase() === 'icon'){
+                                type_icon = v.type;
+                                val_icon = v.icon;
+                                pos_icon = v.position;
+                            }
+
                             var dateFormat = "";
                             $.each($s, function (i, v) {
                                 if (i == 1) {
@@ -143,6 +175,7 @@
                             });
 
                             if ($s[0].toLowerCase() === 'date') {
+
                                 //Add function render to columns
                                 //$filter('date')(date, format, timezone)
                                 _fnFormatRender = function (data, type, row) {
@@ -162,6 +195,7 @@
                                     //    default:
                                     //        $r = $filter('date')(data);
                                     //}
+
                                     return $r;
                                 }
                             } else if ($s[0].toLowerCase() === 'number') {
@@ -221,7 +255,49 @@
                                     }
                                     return $r;
                                 }
+                            } else if ($s[0].toLowerCase() === 'icon') {
+                                let $url = $scope.$root.url_static;
+                                _fnFormatRender = function (data, type, row) {
+                                    let $r, $i, $rs;
+                                    /*switch ($s.length) {
+                                        case 2:
+                                            $r = $filter('json')(data, $s[1]);
+                                            break;
+                                        default:
+                                            $r = $filter('json')(data);
+                                    }*/
+                                    $r = data;
+                                    switch (type_icon) {
+                                        case 'link':
+                                            $i = row[val_icon];
+                                            if(pos_icon == "left")
+                                                $rs = "<img class='hcs-small-img' src='" + $url + $i + "'/> " + $r;
+                                            else
+                                                $rs = $r + " <img class='hcs-small-img' src='" + $url + $i + "'/> ";
+                                            break;
+                                        case 'text':
+                                            $i = val_icon;
+                                            if(pos_icon == "left")
+                                                $rs = "<span class='" + $i + "' ></span>" + $r;
+                                            else
+                                                $rs = $r + " <span class='" + $i + "' ></span>";
+                                            break;
+                                            case 'rowtext':
+                                            $i = row[val_icon];
+                                            if(pos_icon == "left")
+                                                $rs = "<span class='" + $i + "' ></span>" + $r;
+                                            else
+                                                $rs = $r + " <span class='" + $i + "' ></span>";
+                                            break;
+                                        default:
+                                            $i = null;
+                                            $rs = null
+                                    }
+                                    return $rs ? $rs : $r;
+                                }
                             }
+                            ////////////sửa text vs style/////////////
+
                         }
 
                         // if (i > 0) {
@@ -257,6 +333,7 @@
                                 if (v.hasOwnProperty("className")) {
                                     if (v.format && v.format.toLowerCase() === "checkbox") {
                                         defItem.render = function (data, type, row, meta) {
+                                            //checkStyle(v, data, row);
                                             return "" +
                                                 "<div class='" + v.className + "' style='white-space:normal; width:" + v.width + ";text-overflow: ellipsis;overflow: hidden;'>" +
                                                 ((data) ? "<span class='zb-checkbox-symbol'>&#9745;</span>" : "<span class='zb-checkbox-symbol'>&#9744;</span>") +
@@ -264,8 +341,16 @@
                                         }
                                     } else {
                                         defItem.render = function (data, type, row, meta) {
-                                            if (_fnFormatRender) {
-                                                data = _fnFormatRender(data, type, row);
+                                            var fn = null;
+                                            var func =  function(callback){
+                                                if(callback){
+                                                    fn = callback;
+                                                }
+                                            };
+                                            if ((!v.hasOwnProperty('expr') || v.expr(row, data, func)) || _fnFormatRender) {
+                                                data = _fnFormatRender ? _fnFormatRender(data, type, row) : data;
+                                                if(fn)
+                                                    data = fn();
                                             }
                                             return "<div class='" + v.className + "' style='white-space:normal; width:" + v.width + ";text-overflow: ellipsis;overflow: hidden;'>" + ((data) ? data : '') + "</div>";
                                         }
@@ -273,6 +358,7 @@
                                 } else {
                                     if (v.format && v.format.toLowerCase() === "checkbox") {
                                         defItem.render = function (data, type, row, meta) {
+                                            //checkStyle(v, data, type, row, meta);
                                             return "" +
                                                 "<div style='white-space:normal; width:" + v.width + ";text-overflow: ellipsis;overflow: hidden;'>" +
                                                 ((data) ? "<span class='zb-checkbox-symbol'>&#9745;</span>" : "<span class='zb-checkbox-symbol'>&#9744;</span>") +
@@ -280,8 +366,16 @@
                                         }
                                     } else {
                                         defItem.render = function (data, type, row, meta) {
-                                            if (_fnFormatRender) {
-                                                data = _fnFormatRender(data, type, row);
+                                            var fn = null;
+                                            var func =  function(callback){
+                                                if(callback){
+                                                    fn = callback;
+                                                }
+                                            };
+                                            if ((!v.hasOwnProperty('expr') || v.expr(row, data, func)) || _fnFormatRender) {
+                                                data = _fnFormatRender ? _fnFormatRender(data, type, row) : data;
+                                                if(fn)
+                                                    data = fn();
                                             }
                                             return "<div style='white-space:normal; width:" + v.width + ";text-overflow: ellipsis;overflow: hidden;'>" + ((data) ? data : '') + "</div>";
                                         }
@@ -290,14 +384,23 @@
                             } else {
                                 if (v.format && v.format.toLowerCase() === "checkbox") {
                                     defItem.render = function (data, type, row, meta) {
+                                        //checkStyle(v, data, row);
                                         return ((data) ?
                                             "<span class='zb-checkbox-symbol'>&#9745;</span>" :
                                             "<span class='zb-checkbox-symbol'>&#9744;</span>");
                                     }
                                 } else {
                                     defItem.render = function (data, type, row, meta) {
-                                        if (_fnFormatRender) {
-                                            data = _fnFormatRender(data, type, row);
+                                        var fn = null;
+                                        var func =  function(callback){
+                                            if(callback){
+                                                fn = callback;
+                                            }
+                                        };
+                                        if ((!v.hasOwnProperty('expr') || v.expr(row, data, func)) || _fnFormatRender) {
+                                            data = _fnFormatRender ? _fnFormatRender(data, type, row) : data;
+                                            if(fn)
+                                                data = fn();
                                         }
                                         return data;
                                     }

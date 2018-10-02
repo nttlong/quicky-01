@@ -2,9 +2,10 @@
 <%!
     #_style="width:200px;"
 %>
-<%inherit file="../commons/dialog_save_close.html"/>
+<%inherit file="../commons/dialog_save_close_button.html"/>
 
 <%block name="modal_body">
+
         <div class="body-detail-view" >
         <div class="col-sm-4" style="overflow-y: scroll;
                                      height: 100%;" >
@@ -31,7 +32,22 @@
 </style>
 <script>
     (function (scope) {
-        
+
+    currentItem = scope.$parent.currentItem
+    scope.title = currentItem['material_id'] +  "_" + currentItem['material_name'];
+
+
+    //Nút download
+    function downloadFile() {
+        scope.$root.downLoadFileLearningMaterial();
+    }
+
+    //Nút share
+    function shareFile() {
+         scope.$root.viewShareFileLearningMaterial();
+    }
+
+
     });
 </script>
 </%block>

@@ -2,149 +2,149 @@
 <%!
     #_style="width:300px;"
 %>
-<%inherit file="../../commons/dialog_save_close.html"/>
+<%inherit file="../../commons/dialog_resize_save_close.html"/>
 
 <%block name="modal_body">
-            <div class="col-md-{{col_group}} col-sm-{{col_group}}">
-                <collapse-box class="zb-form-common" title="${get_global_res('Common_Information','Thông tin chung')}">
-                    <div class="col-md-{{col}}">
-                            <div class="form-group zb-form-group">
-                                <!--Mã khen thưởng-->
-                                <label for="input_award_code" class="col-sm-5 zb-form-label">${get_res('award_code','Mã khen thưởng')}</label>
-                                <div class="col-sm-7">
-                                    <input-text id="input_award_code" ng-model="entity.award_code" ng-disabled="{{ __mode === 2 ? 'true' : 'false' }}" required>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-{{col}}">
-                            <div class="form-group zb-form-group">
-                                <!--Tên khen thưởng-->
-                                <label for="input_award_name" class="col-sm-5 zb-form-label">${get_res('award_name','Tên khen thưởng')}</label>
-                                <div class="col-sm-7">
-                                    <input-text id="input_award_name" ng-model="entity.award_name" required>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-{{col}}">
-                            <div class="form-group zb-form-group">
-                                <!--Tên khác-->
-                                <label for="input_award_name2" class="col-sm-5 zb-form-label">${get_res('award_name2','Tên khác')}</label>
-                                <div class="col-sm-7">
-                                    <input-text id="input_award_name2" ng-model="entity.award_name2">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-{{col}}">
-                            <div class="form-group zb-form-group">
-                                <label for="input_award_type" class="col-sm-5 zb-form-label">${get_res('award_type','Phân loại')}</label>
-                                <div class="col-sm-7">
-                                    <input-select data-list="cbbAwardType" ng-model="entity.award_type"
-                                        placeholder="${get_res('award_type_place_holder','Loại khen thưởng')}" 
-                                        data-value="value" 
-                                        data-caption="caption"/>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-{{col}}">
-                            <div class="form-group zb-form-group">
-                                <!--Cấp khen thưởng-->
-                                <label for="input_award_level_code" class="col-sm-5 zb-form-label">${get_res('award_level_code','Cấp khen thưởng')}</label>
-                                <div class="col-sm-7">
-                                    <!--<input-combobox api-url="${get_api_key('app_main.api.common/get_dropdown_list')}"
-                                            list-code="${encryptor.get_key('cbb_award_level')}"
-                                            list-value="[{ '@award_level_code': '' }]"
-                                            current-item="entity.award_level_code"
-                                            multi-select="false">-->
-                                    <combobox load-data="$root.$getComboboxData" 
-                                          ng-model="entity.award_level_code"
-                                          params="{key:'${encryptor.get_key('cbb_award_level')}', value:[{ '@award_level_code': '' }]}"
-                                          on-search-change="false"
-                                          on-search-press="true"
-                                          placeholder=""
-                                          init-data="$$$cbb_award_level.value"
-                                          caption-field="{{$$$cbb_award_level.caption_field}}"
-                                          paging="true"
-                                          close-on-select="true"
-                                          template-fields="$$$cbb_award_level.display_fields"
-                                          reload="false">
-                                    </combobox>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-{{col}}">
-                            <div class="form-group zb-form-group">
-                                <!--Tổ chức khen thưởng-->
-                                <label for="input_award_place_code" class="col-sm-5 zb-form-label">${get_res('award_place_code','Tổ chức khen thưởng')}</label>
-                                <div class="col-sm-7">
-                                    <!--<input-combobox api-url="${get_api_key('app_main.api.common/get_dropdown_list')}"
-                                            list-code="${encryptor.get_key('cbb_award_place')}"
-                                            list-value="[{ '@award_place_code': '' }]"
-                                            current-item="entity.award_place_code"
-                                            multi-select="false">-->
-                                    <combobox load-data="$root.$getComboboxData" 
-                                              ng-model="entity.award_place_code"
-                                              params="{key:'${encryptor.get_key('cbb_award_place')}', value:[{ '@dd_code': '' }]}"
-                                              on-search-change="false"
-                                              on-search-press="true"
-                                              placeholder=""
-                                              init-data="$$$cbb_award_place.value"
-                                              caption-field="{{$$$cbb_award_place.caption_field}}"
-                                              paging="true"
-                                              close-on-select="true"
-                                              template-fields="$$$cbb_award_place.display_fields"
-                                              reload="false"
-                                              required>
-                                    </combobox>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-{{col}}">
-                            <div class="form-group zb-form-group">
-                                <!--Khen thưởng tập thể-->
-                                <label for="input_is_team" class="col-sm-5 zb-form-label">${get_res('is_team','Khen thưởng tập thể')}</label>
-                                <div class="col-sm-7">
-                                    <input-checkbox id="input_is_team" ng-model="entity.is_team">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-{{col}}">
-                            <div class="form-group zb-form-group">
-                                <!--Thứ tự-->
-                                <label for="input_ordinal" class="col-sm-5 zb-form-label">${get_res('ordinal','Thứ tự')}</label>
-                                <div class="col-sm-7">
-                                    <input-number id="input_ordinal" ng-model="entity.ordinal">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-{{col}}">
-                            <div class="form-group zb-form-group">
-                                <!--Ngưng sử dụng-->
-                                <label for="inputLock" class="col-sm-5 zb-form-label">${get_res('lock','Ngưng sử dụng')}</label>
-                                <div class="col-sm-7">
-                                    <input-checkbox id="inputLock" ng-model="entity.lock">
-                                </div>
-                            </div>
-                        </div>
-                </collapse-box>
-            </div>
-            <div class="col-md-{{ 12 - col_group}} col-sm-{{ 12 - col_group}}">
-                <collapse-box class="zb-form-common" title="${get_global_res('Note','Ghi chú')}">
-                    <div class="row">
-                        <!--Ghi chú-->
-                        <div class="col-sm-12">
-                            <input-textarea rows="10" ng-model="entity.note"></input-textarea>
-                        </div>
+<div class="col-xs-12 col-md-{{col_group}} col-sm-{{col_group}}">
+    <collapse-box class="zb-form-common" title="${get_global_res('Common_Information','Thông tin chung')}">
+        <div class="col-xs-{{col}} col-md-{{col}}">
+                <div class="form-group zb-form-group">
+                    <!--Mã khen thưởng-->
+                    <label for="input_award_code" class="col-xs-5 col-sm-5 zb-form-label">${get_res('award_code','Mã khen thưởng')}</label>
+                    <div class="col-xs-7 col-sm-7">
+                        <input-text id="input_award_code" ng-model="entity.award_code" ng-disabled="{{ __mode === 2 ? 'true' : 'false' }}" required>
                     </div>
-                    <div class="col-md-12" style="padding-top: 16px;">
-                        <div class="form-group zb-form-group">
-                            <label for="DisplayInfo" class="col-sm-3 zb-form-label">${get_global_res('create_and_modify','Tạo | Sửa')}</label>
-                            <div class="col-sm-9">
-                                <input-text value="{{ entity.created_on | date: $root.systemConfig.date_format}} {{entity.created_by}} | {{ entity.modified_on | date: $root.systemConfig.date_format}} {{entity.modified_by}}" ng-disabled="true">
-                            </div>
-                        </div>
-                    </div>
-                </collapse-box>
+                </div>
             </div>
+            <div class="col-xs-{{col}} col-md-{{col}}">
+                <div class="form-group zb-form-group">
+                    <!--Tên khen thưởng-->
+                    <label for="input_award_name" class="col-xs-5 col-sm-5 zb-form-label">${get_res('award_name','Tên khen thưởng')}</label>
+                    <div class="col-xs-7 col-sm-7">
+                        <input-text id="input_award_name" ng-model="entity.award_name" required>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-{{col}} col-md-{{col}}">
+                <div class="form-group zb-form-group">
+                    <!--Tên khác-->
+                    <label for="input_award_name2" class="col-xs-5 col-sm-5 zb-form-label">${get_res('award_name2','Tên khác')}</label>
+                    <div class="col-xs-7 col-sm-7">
+                        <input-text id="input_award_name2" ng-model="entity.award_name2">
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-{{col}} col-md-{{col}}">
+                <div class="form-group zb-form-group">
+                    <label for="input_award_type" class="col-xs-5 col-sm-5 zb-form-label">${get_res('award_type','Phân loại')}</label>
+                    <div class="col-xs-7 col-sm-7">
+                        <input-select data-list="cbbAwardType" ng-model="entity.award_type"
+                            placeholder="${get_res('award_type_place_holder','Loại khen thưởng')}"
+                            data-value="value"
+                            data-caption="caption"/>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-{{col}} col-md-{{col}}">
+                <div class="form-group zb-form-group">
+                    <!--Cấp khen thưởng-->
+                    <label for="input_award_level_code" class="col-xs-5 col-sm-5 zb-form-label">${get_res('award_level_code','Cấp khen thưởng')}</label>
+                    <div class="col-xs-7 col-sm-7">
+                        <!--<input-combobox api-url="${get_api_key('app_main.api.common/get_dropdown_list')}"
+                                list-code="${encryptor.get_key('cbb_award_level')}"
+                                list-value="[{ '@award_level_code': '' }]"
+                                current-item="entity.award_level_code"
+                                multi-select="false">-->
+                        <combobox load-data="$root.$getComboboxData"
+                              ng-model="entity.award_level_code"
+                              params="{key:'${encryptor.get_key('cbb_award_level')}', value:[{ '@award_level_code': '' }]}"
+                              on-search-change="false"
+                              on-search-press="true"
+                              placeholder=""
+                              init-data="$$$cbb_award_level.value"
+                              caption-field="{{$$$cbb_award_level.caption_field}}"
+                              paging="true"
+                              close-on-select="true"
+                              template-fields="$$$cbb_award_level.display_fields"
+                              reload="false">
+                        </combobox>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-{{col}} col-md-{{col}}">
+                <div class="form-group zb-form-group">
+                    <!--Tổ chức khen thưởng-->
+                    <label for="input_award_place_code" class="col-xs-5 col-sm-5 zb-form-label">${get_res('award_place_code','Tổ chức khen thưởng')}</label>
+                    <div class="col-xs-7 col-sm-7">
+                        <!--<input-combobox api-url="${get_api_key('app_main.api.common/get_dropdown_list')}"
+                                list-code="${encryptor.get_key('cbb_award_place')}"
+                                list-value="[{ '@award_place_code': '' }]"
+                                current-item="entity.award_place_code"
+                                multi-select="false">-->
+                        <combobox load-data="$root.$getComboboxData"
+                                  ng-model="entity.award_place_code"
+                                  params="{key:'${encryptor.get_key('cbb_award_place')}', value:[{ '@dd_code': '' }]}"
+                                  on-search-change="false"
+                                  on-search-press="true"
+                                  placeholder=""
+                                  init-data="$$$cbb_award_place.value"
+                                  caption-field="{{$$$cbb_award_place.caption_field}}"
+                                  paging="true"
+                                  close-on-select="true"
+                                  template-fields="$$$cbb_award_place.display_fields"
+                                  reload="false"
+                                  required>
+                        </combobox>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-{{col}} col-md-{{col}}">
+                <div class="form-group zb-form-group">
+                    <!--Khen thưởng tập thể-->
+                    <label for="input_is_team" class="col-xs-5 col-sm-5 zb-form-label">${get_res('is_team','Khen thưởng tập thể')}</label>
+                    <div class="col-xs-7 col-sm-7">
+                        <input-checkbox id="input_is_team" ng-model="entity.is_team">
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-{{col}} col-md-{{col}}">
+                <div class="form-group zb-form-group">
+                    <!--Thứ tự-->
+                    <label for="input_ordinal" class="col-xs-5 col-sm-5 zb-form-label">${get_res('ordinal','Thứ tự')}</label>
+                    <div class="col-xs-7 col-sm-7">
+                        <input-number id="input_ordinal" ng-model="entity.ordinal">
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-{{col}} col-md-{{col}}">
+                <div class="form-group zb-form-group">
+                    <!--Ngưng sử dụng-->
+                    <label for="inputLock" class="col-xs-5 col-sm-5 zb-form-label">${get_res('lock','Ngưng sử dụng')}</label>
+                    <div class="col-xs-7 col-sm-7">
+                        <input-checkbox id="inputLock" ng-model="entity.lock">
+                    </div>
+                </div>
+            </div>
+    </collapse-box>
+</div>
+<div class="col-xs-12 col-md-{{ 12 - col_group}} col-sm-{{ 12 - col_group}}">
+    <collapse-box class="zb-form-common" title="${get_global_res('Note','Ghi chú')}">
+        <div class="row">
+            <!--Ghi chú-->
+            <div class="col-xs-12 col-sm-12">
+                <input-textarea rows="10" ng-model="entity.note"></input-textarea>
+            </div>
+        </div>
+        <div class="col-xs-12 col-md-12" style="padding-top: 16px;">
+            <div class="form-group zb-form-group">
+                <label for="DisplayInfo" class="col-xs-5 col-sm-3 zb-form-label">${get_global_res('create_and_modify','Tạo | Sửa')}</label>
+                <div class="col-xs-7 col-sm-9">
+                    <input-text value="{{ entity.created_on | date: $root.systemConfig.date_format}} {{entity.created_by}} | {{ entity.modified_on | date: $root.systemConfig.date_format}} {{entity.modified_by}}" ng-disabled="true">
+                </div>
+            </div>
+        </div>
+    </collapse-box>
+</div>
 </%block>
 
 <%block name="modal_script">

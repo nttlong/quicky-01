@@ -1,5 +1,8 @@
-﻿(function (scope) {
+﻿﻿(function (scope) {
     scope.$root.extendToolbar = true;
+    scope.$root.isDisplayBasicButton =true;
+    scope.$root.isDisplayManagermentButton = true;
+    scope.$root.isDisplayFoldertButton = false;
     //(function reSize() {
     //    debugger
     //    var width = $(window).width();
@@ -22,8 +25,9 @@
 			style: "color: none"
 		}
 	]
-		
 
+
+    console.log(scope.isDisplayManagermentButton);
     scope.$root.isDisplay = true;
     scope.__tableSource = [];
     scope.mode = 0;
@@ -40,7 +44,7 @@
     }
     scope.$root.add = function () {
         scope.mode = 1; // set mode chỉnh sửa
-        openDialog("${get_res('Detail_LearningMaterial','Create New Folder')}", 'form/addLearningMaterialManagement', function () {
+        openDialog("${get_res('Add_New_Material','Add New Material')}", 'form/addLearningMaterialManagement', function () {
             setTimeout(function () {
                 $(window).trigger('resize');
             }, 200);
@@ -60,11 +64,12 @@
             $msg.message("${get_global_res('Notification','Thông báo')}", "${get_app_res('No_Row_Selected','Không có dòng được chọn')}", function () { });
         }
     }
+
     scope.$root.delete = function () {
         var arrayId = scope.selectedItems.filter(function (el) {
             return el && el._id
         })
-        //
+
         if (scope.selectedItems.length > 0) {
             $msg.confirm("${get_global_res('Notification','Thông báo')}", "${get_global_res('Do_You_Want_Delete','Bạn có muốn xóa không?')}", function () {
                 services.api("${get_api_key('app_main.api.LMSLS_MaterialManagement/delete')}")
@@ -77,14 +82,38 @@
                         }
                     })
             });
-        } else {
+        }
+        else {
             $msg.message("${get_global_res('Notification','Thông báo')}", "${get_app_res('No_Row_Selected','Không có dòng được chọn')}", function () { });
         }
 	}
+
+	scope.$root.deleteOne = function () {
+	     if (scope.currentItem) {
+            var Id = scope.currentItem['_id'];
+            $msg.confirm("${get_global_res('Notification','Thông báo')}", "${get_global_res('Do_You_Want_Delete','Bạn có muốn xóa không?')}", function () {
+                services.api("${get_api_key('app_main.api.LMSLS_MaterialManagement/delete_one')}")
+                    .data(Id)
+                    .done()
+                    .then(function (res) {
+                        if (res.deleted > 0) {
+                            scope.currentItem = [];
+                            scope.$root.refresh();
+                        }
+                    })
+            });
+        }
+        else {
+            $msg.message("${get_global_res('Notification','Thông báo')}", "${get_app_res('No_Row_Selected','Không có dòng được chọn')}", function () { });
+        }
+	}
+
+
+
     scope.$root.viewPermissionLearningMaterialManagerment = function () {
         if (scope.currentItem) {
             scope.mode = 2; // set mode chỉnh sửa
-            openDialog("${get_res('Detail_PermissionLearningMaterial','Create New Folder')}", 'form/permissionsLearningMaterialManagement', function () {
+            openDialog("${get_res('Permission_For','Permission for')}", 'form/permissionsLearningMaterialManagement', function () {
                 setTimeout(function () {
                     $(window).trigger('resize');
                 }, 200);
@@ -101,6 +130,7 @@
 			}, 200);
 		});
 	}
+
 
     scope.$root.downLoadFileLearningMaterial = function () {
         if (scope.currentItem) {
@@ -127,13 +157,29 @@
     }
     /* Table */
     //Cấu hình tên field và caption hiển thị trên UI
+
     scope.tableFields = [
         { "data": "material_id", "title": "${get_res('material_id_table_header','ID')}" },
-        { "data": "material_name", "title": "${get_res('material_name_table_header','File Name')}" },
-        { "data": "version", "title": "${get_res('version_table_header','Version')}" },
-        { "data": "creator", "title": "${get_res('creator_table_header','Created by')}" },
-        { "data": "author_name", "title": "${get_res('author_name_table_header','Approve by')}" },
-        
+        { "data": "material_name", "title": "${get_res('material_name_table_header','File Name')}"
+                        , "format": "icon", "type": "link", "icon": "file_thumbnail", "position": "left" },
+        { "data": "version", "title": "${get_res('version_table_header','Version')}"
+                        , "format": "icon", "type": "text", "icon": "bowtie-security-unlock-fill bowtie-icon", "position": "right"},
+        { "data": "creator", "title": "${get_res('creator_table_header','Created by')}" ,"expr":function(row, data, func){
+            func(function(){
+                return "<img class='hcs-small-img'  src='" + scope.$root.url_static + "css/icon/approver_tr.png" + "'/>"+ " "+row.creator ;
+
+            });
+            return true;
+        }},
+        { "data": "approve_user_id","title": "${get_res('author_name_table_header','Approve by')}","expr":function(row, data, func){
+            func(function(){
+                if(row.approve_user_id)
+                    return "<img class='hcs-small-img'  src='" + scope.$root.url_static + "css/icon/admin_tr.png" + "'/>"+ " "+row.approve_user_id;
+                return '';
+            });
+            return true;
+        } },
+
     ];
     scope.$$tableConfig = {};
     //scope.$root.$$tableConfig = {};
@@ -246,15 +292,7 @@
         }
     }
 
-    function tableFields() {
-        return [
-            { "data": "material_id", "title": "${get_res('material_id_table_header','ID')}" },
-            { "data": "material_name", "title": "${get_res('material_name_table_header','File Name')}" },
-            { "data": "version", "title": "${get_res('version_table_header','Version')}" },
-            { "data": "creator", "title": "${get_res('creator_table_header','Created by')}" },
-            { "data": "author_name", "title": "${get_res('author_name_table_header','Approve by')}" },
-        ];
-    }
+
 
 
     function handleData() {
@@ -496,7 +534,7 @@
                     })
             
             scope.mode = 2; // set mode chỉnh sửa
-            openDialog("${get_res('Detail_LearningMaterial','Create New Folder')}", 'form/viewDetailsLearningMaterialManagement', function () {
+            openDialog("${get_res('Detail_LearningMaterial66','Create New Folder')}", 'form/viewDetailsLearningMaterialManagement', function () {
                 setTimeout(function () {
                     $(window).trigger('resize');
                 }, 200);
@@ -622,10 +660,12 @@
             $msg.message("${get_global_res('Notification','Thông báo')}", "${get_app_res('No_Row_Selected','Không có dòng được chọn')}", function () { });
         }
     }
+
+
     scope.$root.viewShareFileLearningMaterial = function () {
         if (scope.currentItem) {
             scope.mode = 2; // set mode chỉnh sửa
-            openDialog("${get_res('Detail_LearningMaterial','Create New Folder')}", 'form/viewShareFileLearningMaterial', function () {
+            openDialog("${get_res('Share_File','Share')}", 'form/viewShareFileLearningMaterial', function () {
                 setTimeout(function () {
                     $(window).trigger('resize');
                 }, 200);
@@ -641,7 +681,7 @@
         
         if (scope.currentItem) {
             scope.mode = 2; // set mode chỉnh sửa
-            openDialog("${get_res('History_LearningMaterial','Xem lịch sử')}", 'form/viewHistoryLearningMaterialManagement', function () {
+            openDialog("${get_res('History_Of','History of')}", 'form/viewHistoryLearningMaterialManagement', function () {
                 setTimeout(function () {
                     $(window).trigger('resize');
                 }, 200);
@@ -655,7 +695,7 @@
 
         if (scope.currentItem) {
             scope.mode = 2; // set mode chỉnh sửa
-            openDialog("${get_res('History_LearningMaterial','Xem lịch sử')}", 'form/permissionsLearningMaterialManagement', function () {
+            openDialog("${get_res('Permission_For','Permission for')}", 'form/permissionsLearningMaterialManagement', function () {
                 setTimeout(function () {
                     $(window).trigger('resize');
                 }, 200);

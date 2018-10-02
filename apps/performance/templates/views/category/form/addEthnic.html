@@ -2,95 +2,95 @@
 <%!
     #_style="width:300px;"
 %>
-<%inherit file="../../commons/dialog_save_close.html"/>
+<%inherit file="../../commons/dialog_resize_save_close.html"/>
 
 <%block name="modal_body">
-            <div class="col-md-{{col_group}} col-sm-{{col_group}}" style="padding-bottom:20px;">
-                <collapse-box class="zb-form-common" title="${get_global_res('Common_Information','Thông tin chung')}">
-                    <div class="col-md-{{col}}">
-                            <div class="form-group zb-form-group">
-                                <!--Mã dân tộc-->
-                                <label for="inputEmp_Ethnic_Code" class="col-sm-5 zb-form-label">${get_res('ethnic_code','Mã dân tộc')}</label>
-                                <div class="col-sm-7">
-                                    <input-text id="inputEmp_Ethnic_Code" ng-model="entity.ethnic_code" ng-disabled="{{ __mode === 2 ? 'true' : 'false' }}" required>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-{{col}}">
-                            <div class="form-group zb-form-group">
-                                <!--Tên dân tộc-->
-                                <label for="inputEmp_Ethnic_Name" class="col-sm-5 zb-form-label">${get_res('ethnic_name','Tên dân tộc')}</label>
-                                <div class="col-sm-7">
-                                    <input-text id="inputEmp_Ethnic_Name" ng-model="entity.ethnic_name" required>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-{{col}}">
-                            <div class="form-group zb-form-group">
-                                <!--Tên khác-->
-                                <label for="inputEmp_Ethnic_Name2" class="col-sm-5 zb-form-label">${get_res('ethnic_name2','Tên khác')}</label>
-                                <div class="col-sm-7">
-                                    <input-text id="inputEmp_Ethnic_Name2" ng-model="entity.ethnic_name2">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-{{col}}">
-                            <div class="form-group zb-form-group">
-                                <!--Phạm vi-->
-                                <label for="inputEmp_Range" class="col-sm-5 zb-form-label">${get_res('range','Phạm vi')}</label>
-                                <div class="col-sm-7">
-                                    <input-number id="inputEmp_Range" ng-model="entity.range">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-{{col}}">
-                            <div class="form-group zb-form-group">
-                                <!--Là dân tộc thiểu số-->
-                                <label for="input_Is_Ethnic_Minority" class="col-sm-5 zb-form-label">${get_res('is_ethnic_minority','Là dân tộc thiểu số')}</label>
-                                <div class="col-sm-7">
-                                    <input-checkbox id="input_Is_Ethnic_Minority" ng-model="entity.is_ethnic_minority">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-{{col}}">
-                            <div class="form-group zb-form-group">
-                                <!--Thứ tự-->
-                                <label for="inputOrdinal" class="col-sm-5 zb-form-label">${get_res('ordinal','Thứ tự')}</label>
-                                <div class="col-sm-7">
-                                    <input-number id="inputOrdinal" ng-model="entity.ordinal">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-{{col}}">
-                            <div class="form-group zb-form-group">
-                                <!--Ngưng sử dụng-->
-                                <label for="inputLock" class="col-sm-5 zb-form-label">${get_res('lock','Ngưng sử dụng')}</label>
-                                <div class="col-sm-7">
-                                    <input-checkbox id="inputLock" ng-model="entity.lock">
-                                </div>
-                            </div>
-                        </div>
-                </collapse-box>
+<div class="col-xs-12 col-md-{{col_group}} col-sm-{{col_group}}" style="padding-bottom:20px;">
+   <collapse-box class="zb-form-common" title="${get_global_res('Common_Information','Thông tin chung')}">
+      <div class="col-xs-{{col}} col-md-{{col}}">
+         <div class="form-group zb-form-group">
+            <!--Mã dân tộc-->
+            <label for="inputEmp_Ethnic_Code" class="col-xs-5 col-sm-5 zb-form-label">${get_res('ethnic_code','Mã dân tộc')}</label>
+            <div class="col-xs-7 col-sm-7">
+               <input-text id="inputEmp_Ethnic_Code" ng-model="entity.ethnic_code" ng-disabled="{{ __mode === 2 ? 'true' : 'false' }}" required>
             </div>
-            <div class="col-md-{{ 12 - col_group}} col-sm-{{ 12 - col_group}}" style="padding-bottom:20px;">
-                <collapse-box class="zb-form-common" title="${get_global_res('Note','Ghi chú')}">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <!--Ghi chú-->
-                            <input-textarea rows="8" ng-model="entity.note"></input-textarea>
-                        </div>
-                    </div>
-                    <div class="col-md-12" style="padding-top: 16px;">
-                        <div class="form-group zb-form-group">
-                            <label for="DisplayInfo" class="col-sm-3 zb-form-label">${get_global_res('create_and_modify','Tạo | Sửa')}</label>
-                            <div class="col-sm-9">
-                                <input-text 
-                                            value="{{ entity.created_on | date: $root.systemConfig.date_format}} {{entity.created_by}} | {{ entity.modified_on | date: $root.systemConfig.date_format}} {{entity.modified_by}}" ng-disabled="true">
-                            </div>
-                        </div>
-                    </div>
-                </collapse-box>
+         </div>
+      </div>
+      <div class="col-xs-{{col}} col-md-{{col}}">
+         <div class="form-group zb-form-group">
+            <!--Tên dân tộc-->
+            <label for="inputEmp_Ethnic_Name" class="col-xs-5 col-sm-5 zb-form-label">${get_res('ethnic_name','Tên dân tộc')}</label>
+            <div class="col-xs-7 col-sm-7">
+               <input-text id="inputEmp_Ethnic_Name" ng-model="entity.ethnic_name" required>
             </div>
+         </div>
+      </div>
+      <div class="col-xs-{{col}} col-md-{{col}}">
+         <div class="form-group zb-form-group">
+            <!--Tên khác-->
+            <label for="inputEmp_Ethnic_Name2" class="col-xs-5 col-sm-5 zb-form-label">${get_res('ethnic_name2','Tên khác')}</label>
+            <div class="col-xs-7 col-sm-7">
+               <input-text id="inputEmp_Ethnic_Name2" ng-model="entity.ethnic_name2">
+            </div>
+         </div>
+      </div>
+      <div class="col-xs-{{col}} col-md-{{col}}">
+         <div class="form-group zb-form-group">
+            <!--Phạm vi-->
+            <label for="inputEmp_Range" class="col-xs-5 col-sm-5 zb-form-label">${get_res('range','Phạm vi')}</label>
+            <div class="col-xs-7 col-sm-7">
+               <input-number id="inputEmp_Range" ng-model="entity.range">
+            </div>
+         </div>
+      </div>
+      <div class="col-xs-{{col}} col-md-{{col}}">
+         <div class="form-group zb-form-group">
+            <!--Là dân tộc thiểu số-->
+            <label for="input_Is_Ethnic_Minority" class="col-xs-5 col-sm-5 zb-form-label">${get_res('is_ethnic_minority','Là dân tộc thiểu số')}</label>
+            <div class="col-xs-7 col-sm-7">
+               <input-checkbox id="input_Is_Ethnic_Minority" ng-model="entity.is_ethnic_minority">
+            </div>
+         </div>
+      </div>
+      <div class="col-xs-{{col}} col-md-{{col}}">
+         <div class="form-group zb-form-group">
+            <!--Thứ tự-->
+            <label for="inputOrdinal" class="col-xs-5 col-sm-5 zb-form-label">${get_res('ordinal','Thứ tự')}</label>
+            <div class="col-xs-7 col-sm-7">
+               <input-number id="inputOrdinal" ng-model="entity.ordinal">
+            </div>
+         </div>
+      </div>
+      <div class="col-xs-{{col}} col-md-{{col}}">
+         <div class="form-group zb-form-group">
+            <!--Ngưng sử dụng-->
+            <label for="inputLock" class="col-xs-5 col-sm-5 zb-form-label">${get_res('lock','Ngưng sử dụng')}</label>
+            <div class="col-xs-7 col-sm-7">
+               <input-checkbox id="inputLock" ng-model="entity.lock">
+            </div>
+         </div>
+      </div>
+   </collapse-box>
+</div>
+<div class="col-xs-12 col-md-{{ 12 - col_group}} col-sm-{{ 12 - col_group}}" style="padding-bottom:20px;">
+   <collapse-box class="zb-form-common" title="${get_global_res('Note','Ghi chú')}">
+      <div class="row">
+         <div class="col-xs-12 col-md-12">
+            <!--Ghi chú-->
+            <input-textarea rows="8" ng-model="entity.note"></input-textarea>
+         </div>
+      </div>
+      <div class="col-xs-12 col-md-12" style="padding-top: 16px;">
+         <div class="form-group zb-form-group">
+            <label for="DisplayInfo" class="col-xs-3 col-sm-3 zb-form-label">${get_global_res('create_and_modify','Tạo | Sửa')}</label>
+            <div class="col-xs-9 col-sm-9">
+               <input-text
+                  value="{{ entity.created_on | date: $root.systemConfig.date_format}} {{entity.created_by}} | {{ entity.modified_on | date: $root.systemConfig.date_format}} {{entity.modified_by}}" ng-disabled="true">
+            </div>
+         </div>
+      </div>
+   </collapse-box>
+</div>
 </%block>
 
 <%block name="modal_script">

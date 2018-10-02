@@ -1,4 +1,4 @@
-﻿<div class="row" style="padding: 15px;">
+﻿﻿<div class="row" style="padding: 15px;">
    <div class="information-header">
       <p class="detail-title">
          {{_currentItem.material_id}}_{{_currentItem.material_name}}
@@ -32,7 +32,7 @@
                     <!--Người tạo-->
                     <label for="inputEmp_Train_Mode_Name" class="col-sm-5 detail-content ">${get_res('creator','Creator')}</label>
                     <div class="col-md-6 col-lg-6 col-sm-6 detail-content ">
-                    <p class="info-item" style="text-align:center;font-size:14px;">{{_currentItem.created_by}}</p>
+                    <p class="info-item" style="text-align:center;font-size:14px;">{{_currentItem.creator}}</p>
                     </div>
                 </div>
                 <div class="form-group zb-form-group">
@@ -104,7 +104,7 @@
                     </label>
                     <div class="col-sm-12" style="padding:0px">
                         <div class="clearblock" ></div>
-                        <input-textarea rows="2" ng-model="entity.comment"></input-textarea>
+                        <input-textarea rows="2" ng-model="entity.comment" style="resize: none"></input-textarea>
                         <div class="clearblock" ></div>
                         <a class="relation-content-row" ng-click="postComment()" style="font-size:11px;cursor: pointer;float:right"> Post a comment</a>  
                     </div>
@@ -116,12 +116,14 @@
         <div class="col-md-4 col-lg-4 col-sm-4" >
             <div class="circle-statistics">
                 <span class="fa fa-star checked" style="color:orange"></span><br/>
-                {{total_rating}} ${get_res('out_of','Out of')} 5
+                <span style="font-size: 11px;font-weight: 900;display: block;color:#ffa500;">{{total_rating}}</span>
+                 ${get_res('Out_Of_Five','OUT OF')} 5
             </div>
+            <div style="font-size:10px;text-align:center;margin-top:5px;">Based on {{total}} ratings</div>
         </div>
         <div class="col-md-8 col-lg-8 col-sm-8" >
             <div class="form-group zb-form-group lms-font-size" ng-repeat="item in data_rating track by $index">
-                <span>{{$index}}</span>
+                <span>{{5 - $index}}</span>
                 <span class="fa fa-star checked" style="color:orange; padding-top: 3px; padding-left: 3px;">
                 </span><br/>
                 <div class="col-sm-12">
@@ -280,14 +282,22 @@
         color:#D5D3CF
     }
     .circle-statistics {
-        color: orange;
-        width: 100%;
-        border: 1px solid orange;
-        border-radius: 50%;
-        text-align: center;
-        font-size: 10px;
-        padding: 34% 0;
+    color: orange;
+    width: 80%;
+    border: 1px solid #FFDB6C !important;
+    border-radius: 50%;
+    text-align: center;
+    font-size: 10px;
+    padding: 39% 0;
+    margin: 0 auto;
     }
+
+    .circle-statistics .fa-star{
+        color: orange;
+        font-size: 18px;
+        margin-top: -30px;
+    }
+
     .retangle-statistics{
         width: 100%;
         height: 20px;
@@ -336,7 +346,24 @@
 </style>
 <script>
     (function (scope) {
-        scope._currentItem = scope.$parent.currentItem; 
+
+        scope._currentItem = scope.$parent.currentItem;
+        scope.loadEditData = function () {
+            if(scope.$parent.currentItem) {
+                services.api("${get_api_key('app_main.api.LMSLS_MaterialManagement/get_data_with_edit')}")
+                    .data({"where":
+                            {
+                                "id" : scope.$parent.currentItem._id
+                            }}
+                            )
+                    .done()
+                    .then(function (res) {
+                        scope._currentItem = res
+                        scope.$applyAsync();
+                    })
+            }
+        }
+        scope.loadEditData();
 
         scope.rating;
         scope.ratingValue = 0;
@@ -393,12 +420,15 @@
                 })
                 .done()
                 .then(function (res) {
+                    console.log(res);
+
                     scope.info_comments = res.comments;
                     scope.total_rating = res.rating.total_rating ? res.rating.total_rating.toFixed(2) : 0;
                     scope.data_rating = res.data_rating;
                     scope.data_rating_max = res.data_rating.reduce(function(prev, current) {
                         return (prev.rating > current.rating) ? prev : current
-                    }) 
+                    })
+                    scope.total = res.rating.total;
                     scope.$applyAsync();
                 })
         }

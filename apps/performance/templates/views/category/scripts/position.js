@@ -60,9 +60,14 @@
     scope.$parent.$parent.$parent.onSearch = onSearch;
     scope.$parent.$parent.$parent.onExport = onExport;
     scope.$parent.$parent.$parent.onImport = onImport;
+    scope.$parent.$parent.$parent.onRefresh = reloadData;
     scope._tableData = _tableData;
     scope.cbbCoEff = [];
     scope.cbbBeginDateCal = [];
+
+    function reloadData (){
+        _tableData(scope.$$tableConfig.iPage, scope.$$tableConfig.iPageLength, scope.$$tableConfig.orderBy, scope.$$tableConfig.SearchText, scope.$$tableConfig.fnReloadData);
+    }
 
     /**
      * Hàm mở form chỉnh sửa

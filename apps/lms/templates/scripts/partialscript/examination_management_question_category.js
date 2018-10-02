@@ -1,4 +1,4 @@
-﻿(function (scope) {
+﻿﻿(function (scope) {
     scope.$parent.$partialpage = "partialpage/examination_management_question_bank";
 
     /*                                                         */
@@ -43,7 +43,7 @@
     }
 
     scope.editQuestionCategory = function () {
-        if (scope.currentItem) {
+        if (scope.currentItem && !_.isEmpty(scope.currentItem)) {
             scope.mode = 2; // set mode chỉnh sửa
             openDialog("${get_res('edit_question_category','Edit Question Category')}", 'form/addQuestionCategory', function () {
                 setTimeout(function () {
@@ -371,12 +371,12 @@
                 })
                 .done()
             .then(function (res) {
-                
-                _.map(res.items, function (val) { val.number_ques = 10;  return val})
+
+                _.map(res, function (val) { val.number_ques = val.ques.length;  return val})
                     var data = {
                         recordsTotal: res.total_items,
                         recordsFiltered: res.total_items,
-                        data: res.items
+                        data: res
                     };
                     callback(data);
                    // scope.$$table.currentItem = null;

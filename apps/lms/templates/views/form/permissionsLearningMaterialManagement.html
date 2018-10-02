@@ -1,4 +1,4 @@
-﻿<%!
+﻿﻿<%!
     #_style="width:200px;"
 %>
     <%inherit file="../commons/dialog_save_close.html"/>
@@ -14,7 +14,7 @@
     <div class="form-group zb-form-group">
         <label for="inputEmp_Train_Mode_Name" class="col-sm-5 zb-form-label">File Name</label>
         <div class="col-sm-7">      
-                <input-text id="inputEmp_Train_Mode_Name" ng-model="_currentItem.material_name" disabled>
+                <input-text id="inputEmp_Train_Mode_Name" ng-model="fileName" disabled>
         </div>
     </div>
     <div class="form-group zb-form-group">
@@ -45,17 +45,20 @@
 <div class="col-md-12 " style="height:160px;  overflow-y: scroll;">
     <table class="display zb-data-table responsive nowrap dataTable no-footer">
         <tbody>
-            <tr role= "row" ng-repeat="elem in user_list track by $index">
+            <tr role= "row" ng-repeat="elem in user_list track by $index" ng-click="selectRow(elem)">
                 <td ><input-checkbox ng-model="elem.select_user"/></td>
                 <td class="ng-binding">
                     <i class="fa fa-{{elem.login_account ? 'user':'users'}}" style="font-size:24px"></i> {{elem.login_account ? elem.login_account : elem.role_name}}
                 </td>
                 
                 <td>
-                    <span ng-repeat="data in elem.list_permision" style="color:black">
-                        <i class="bowtie-icon bowtie-checkbox"></i> 
-                        {{data.allow === true ? data.name + "; " : null}}
-                    </span>
+                    <ng-container ng-if="elem.list_permision[0].allow">
+                            {{elem.list_permision[0].name + ";"}}
+                    </ng-container>
+                     <span ng-repeat="data in elem.list_permision" style="color:black" ng-if="!elem.list_permision[0].allow">
+                        <!--<i ng-if="data.allow" class="bowtie-icon bowtie-checkbox"></i>-->
+                          {{data.allow === true ? data.name + "; " : null}}
+                     </span>
                 </td>
             </tr>
         </tbody>
@@ -100,18 +103,42 @@
 <%block name="modal_script">
 <script>
     (function (scope) {
-        
+        scope.title = scope.$parent.headerTitle;
         scope.user_list = [];
         //scope.elem.select_user = [];
         scope._currentItem = scope.$parent.currentItem;
+
+        //Title Dialog
+        scope.title = scope.title + " " +  scope._currentItem['material_id'] +  "_" +  scope._currentItem['material_name'];
+
+        //File Name
+        scope.fileName = scope._currentItem['material_name'] +  " (" +  scope._currentItem['file_extends']  +  ".)";
         scope.changeAllow = function (model, val) {
             
             if (model.name == "Full control") {
                 for (var i = 0; i < scope.listPermissions.length; i++) {
                     scope.listPermissions[i].allow = val
                     scope.listPermissions[i].deny = !val
-                    }
+                }
             }
+            else{
+                 flag = true;
+                 for (var i = 1; i < scope.listPermissions.length; i++) {
+                        if(scope.listPermissions[i].allow == !val)
+                        {
+                            scope.listPermissions[0].allow = !val;
+                            scope.listPermissions[0].deny = val;
+                            flag = false;
+                            break;
+                        }
+                    }
+                if(flag)
+                {
+                    scope.listPermissions[0].allow = val
+                    scope.listPermissions[0].deny = !val
+                }
+            }
+
             model.deny = !val;
            scope.$applyAsync();
         }
@@ -122,6 +149,12 @@
                     scope.listPermissions[i].allow = !val
                     }
             }
+            else{
+                scope.listPermissions[0].deny = val
+                scope.listPermissions[0].allow = !val
+
+            }
+
             model.allow= !val;
            scope.$applyAsync();
         }
@@ -141,11 +174,9 @@
 			
 		]
         scope.delUser = function () {
-            
-            debugger
+
             if (scope.user_list && scope.user_list.length) {
                 scope.user_list = _.reject(scope.user_list , { "select_user" : true});
-                
             }
             scope.$applyAsync();
               
@@ -174,6 +205,11 @@
             scope.col_group = scope.col_group == 6 ? 8 : 6;
         }
 
+        scope.selectRow = function (elem) {
+            scope.listPermissions = JSON.parse(JSON.stringify(elem.list_permision));
+            console.log(elem);
+        }
+
         //scope.$watch("dataItemSelects", function (data) {
 
         //    debugger
@@ -187,7 +223,7 @@
         scope.saveNClose = saveNClose;
             
         function saveNClose() {
-            debugger
+
             if (scope.user_list && scope.user_list.length && scope.listPermissions && scope.listPermissions.length) {
 
                 scope.user_list = _.map(scope.user_list, function (user) {
@@ -222,7 +258,6 @@
                 })
                 .done()
                 .then(function (res) {
-                    debugger
                     if (scope.user_list.length == 0) {
                         if (res.permission.length > 0) {
                             scope.user_list = _.map(res.permission, function (user) { user.select_user = false; return user })

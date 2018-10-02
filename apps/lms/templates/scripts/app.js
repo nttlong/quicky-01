@@ -1,5 +1,8 @@
-﻿window.set_component_template_url('${get_static("app/directives/")}')
+﻿﻿window.set_component_template_url('${get_static("app/directives/")}')
+window.set_component_url('${get_static("app/components/")}')
 window.set_api_combobox("${get_api_key('app_main.api.common/get_dropdown_list')}")
+window.get_static = "${get_static('/')}"
+window.set_static(window.get_static)
 angular
     .module("admin", ["c-ui", 'ZebraApp.components', 'ZebraApp.widgets', 'hcs-template', 'ngclipboard', 'chart.js'])
     .controller("admin", controller)
@@ -17,9 +20,9 @@ angular
         };
     });
 
-controller.$inject = ["$dialog", "$scope"];
+controller.$inject = ["$dialog", "$scope", "$filter"];
 dialog_root_url('${get_app_url("pages/")}')
-function controller($dialog, $scope) {
+function controller($dialog, $scope, $filter) {
     $scope.isHomePage = true;
     $scope.$root.url_static = "${get_static('/')}";
     $scope.$root.systemConfig = null;/*HCSSYS_SystemConfig*/
@@ -56,6 +59,11 @@ function controller($dialog, $scope) {
         }
         return str.join(NumberDecimalSeparator);
     };
+
+    window.DateFormat = {
+        "format": $filter('date')
+    };
+
     $scope.$root.collapseSubMenu = function collapseSubMenu(e) {
         e.stopPropagation();
         $('#hcs-top-bar-menu ul li ul').slideUp();

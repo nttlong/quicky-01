@@ -1,7 +1,6 @@
 import quicky
 from quicky import layout_view
-app=quicky.applications.get_app_by_file(__file__)
-layout=layout_view.create(app.name,"users")
+layout=layout_view.create("hrm","users")
 layout.create(dict(
     collection="auth_user",
     columns=[
@@ -24,26 +23,36 @@ layout.create(dict(
     form=dict(
         rows=[
             dict(
-                col_md=[2,4],
+                col_md=[2,4,2,4],
                 col_sm=[4,8],
                 col_xs=[4,8],
                 fields=[
-                    dict(name="username")
+                    dict(name="Code"),
+                    dict(name="Name")
                 ]
             ),
             dict(
-                col_md=[2, 4,2,4],
+                col_md=[2, 10],
                 col_sm=[4, 8],
                 col_xs=[4, 8],
                 fields=[
-                    dict(name="first_name"),
-                    dict(name="last_name")
+                    dict(name="ProvinceId",
+                         type="select",
+                         source="list.provinces",
+                         lookup_field="_id",
+                         display_field="Name")
+
+                ]
+            ),
+            dict(
+                col_md=[2,10],
+                col_sm=[4, 8],
+                col_xs=[4, 8],
+                fields=[
+                    dict(name="Description",
+                         type="text-area")
                 ]
             )
         ]
-    ),
-    action_list="admin.api.users/get_list",
-    action_item="admin.api.users/get_item",
-    keys=["username"]
-
+    )
 ))

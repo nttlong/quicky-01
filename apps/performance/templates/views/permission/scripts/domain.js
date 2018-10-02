@@ -64,6 +64,12 @@
     scope.$parent.$parent.$parent.onSearch = onSearch;
     scope.$parent.$parent.$parent.onExport = onExport;
     scope.$parent.$parent.$parent.onImport = onImport;
+    scope.$parent.$parent.$parent.onRefresh = reloadData;
+
+    function reloadData(){
+        _tableData(scope.$$tableConfig.iPage, scope.$$tableConfig.iPageLength, scope.$$tableConfig.orderBy, scope.$$tableConfig.SearchText, scope.$$tableConfig.fnReloadData);
+    }
+
     /**
      * Hàm mở form chỉnh sửa
      */

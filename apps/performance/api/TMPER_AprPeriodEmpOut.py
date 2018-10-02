@@ -29,29 +29,44 @@ def get_list_with_searchtext(args):
 def get_list_distinct_approval_year_and_period(args):
     ret = {}
     collection = common.get_collection('TMPER_AprPeriod').aggregate([
-        {"$lookup":{'from':common.get_collection_name_with_schema('SYS_VW_ValueList'), 'localField':'apr_period', 'foreignField':'value', 'as': 'aprPeriod'}},
-        {"$unwind":{'path':'$aprPeriod', "preserveNullAndEmptyArrays":True}},
-        {"$match":{
-            "$and": [ { 'aprPeriod.list_name': "LApprovalPeriod" }, { 'aprPeriod.language': quicky.language.get_language()} ]
+        {"$lookup": {'from': common.get_collection_name_with_schema('SYS_VW_ValueList'), 'localField': 'apr_period',
+                     'foreignField': 'value', 'as': 'aprPeriod'}},
+        {"$unwind": {'path': '$aprPeriod', "preserveNullAndEmptyArrays": True}},
+        {"$match": {
+            "$and": [{'aprPeriod.list_name': "LApprovalPeriod"}, {'aprPeriod.language': quicky.language.get_language()}]
         }},
         {"$project": {
-            "apr_period_a":{ "$ifNull": ["$aprPeriod.caption", ""] },
+            "apr_period_a": {"$ifNull": ["$aprPeriod.caption", ""]},
             "apr_year_a": {'$toString': "$apr_year"},
             "apr_period": {'$toString': "$apr_period"},
             "apr_year": 1
         }},
         {"$project": {
-            "caption": { '$concat': [ "$apr_year_a", " / ", "$apr_period_a" ]},
-            "value" : { '$concat': [ "$apr_year_a", "__", "$apr_period" ]},
-            "apr_year":  1,
+            "caption": {'$concat': ["$apr_year_a", " / ", "$apr_period_a"]},
+            "value": {'$concat': ["$apr_year_a", "__", "$apr_period"]},
+            "apr_year": 1,
             "apr_period": {'$toInt': "$apr_period"},
-            
+
         }},
-        { "$sort" : SON([("apr_year",-1),("apr_period",-1)]) }
-        ])
-        
+        {"$sort": SON([("apr_year", -1), ("apr_period", -1)])}
+    ])
+
     ret = list(collection)
-    return ret
+    ret1 = []
+    if (args['data'] != None and args['data'].has_key('apr_period' and 'apr_year')):
+        for x in ret:
+            if (x['apr_period'] == args['data']['apr_period'] and x['apr_year'] == args['data']['apr_year']):
+                continue
+            else:
+                collection1 = common.get_collection('TMPER_AprPeriodEmpOut').aggregate([
+                    {"$match": {
+                        "$and": [{'apr_year': x['apr_year']}, {'apr_period': x['apr_period']}]
+                    }},
+                ])
+                if (len(list(collection1)) == 0):
+                    ret1.append(x)
+        item_list = [e for e in ret if e not in ret1]
+        return item_list
 
 def generate(args):
     try:

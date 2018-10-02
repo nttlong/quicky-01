@@ -1,5 +1,5 @@
 ﻿(function (scope) {
-
+    scope.$parent.$parent.$parent.isChangeFunc = false;
     scope.$$tableTree = {
         "dataTableTree": [],
         "tableFields": [

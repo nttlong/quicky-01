@@ -118,3 +118,19 @@ def getListRankCode(args):
         ])
         
     ret = list(collection)
+
+
+def getListRank(args):
+    ret = {}
+    collection = common.get_collection('TMLS_Rank').aggregate([
+        {"$project": {
+            "rank_code": 1,
+            "rank_name": 1,
+            "ordinal": 1
+        }}
+    ])
+
+    ret = list(collection)
+    return ret
+
+

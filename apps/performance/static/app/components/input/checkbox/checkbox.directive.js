@@ -14,7 +14,7 @@
                 model: "=ngModel",
                 caption: "@",
                 fnChange: "&ngChange",
-                disabled: "="
+                ngDisabled: "="
             },
             //template: function(el, attrs) {
             //  return '<div class="switch-container ' + (attrs.color || '') + '"><input type="checkbox" ng-model="ngModel"></div>';
@@ -24,12 +24,12 @@
                 var input = $(elem.find("input")[0]);
                 var div = $(elem);
 
-                if ($scope.disabled) {
-                    input.prop("disabled", true);
-                    div.addClass("disabled");
+                if ($scope.ngDisabled) {
+                    input.prop("ngDisabled", true);
+                    div.addClass("ngDisabled");
                 } else {
-                    input.prop("disabled", false);
-                    div.removeClass("disabled");
+                    input.prop("ngDisabled", false);
+                    div.removeClass("ngDisabled");
                 }
                 $(elem).find("input[type=checkbox]").change(function () {
                     // if($(this).is(":checked")) {

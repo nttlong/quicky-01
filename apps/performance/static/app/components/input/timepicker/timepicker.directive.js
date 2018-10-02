@@ -18,7 +18,8 @@
             template: template(),
             scope: {
                 ngModel: "=",
-                format: "@"
+                format: "@",
+                ngDisabled: "="
             }
         };
         return directive;
@@ -69,16 +70,16 @@
         }
 
         function template() {
-            return `
-                <span class="input-group zb-form-date-picker">
-                    <input type="text" class="zb-hour-picker">
-                    <span class="input-group-btn">
-                        <button ng-click="openPicker()" type="button" class="btn btn-default">
-                            <i class="bowtie-icon bowtie-stopwatch"></i>
-                        </button>
-                    </span>
-                </span>
-                `;
+            return ''
+                + '<span class="input-group zb-form-date-picker">'
+                + '    <input type="text" class="zb-hour-picker" ng-disabled="ngDisabled">'
+                + '    <span class="input-group-btn">'
+                + '        <button ng-click="openPicker()" type="button" class="btn btn-default" ng-disabled="ngDisabled">'
+                + '            <i class="bowtie-icon bowtie-stopwatch"></i>'
+                + '        </button>'
+                + '    </span>'
+                + '</span>'
+                ;
         }
     }
 

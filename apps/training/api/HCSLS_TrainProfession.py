@@ -41,8 +41,11 @@ def get_list_with_searchtext(args):
         modified_by="switch(case(modified_by!='',um.login_account),'')",
     )
 
-    if(searchText != None):
-        items.match("contains(profession_name, @name)",name=searchText)
+    # if(searchText != None):
+    #     items.match("contains(profession_name, @name)",name=searchText)
+    if (searchText != None):
+        items.match("contains(profession_code, @name) or contains(profession_name, @name)" + \
+                  " or contains(note, @name) or contains(ordinal, @name)", name=searchText.strip())
 
     if(sort != None):
         items.sort(sort)

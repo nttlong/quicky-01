@@ -1,0 +1,226 @@
+﻿<%!
+    #_style="width:300px;"
+%>
+<%inherit file="../commons/dialog_save_close_resize.html"/>
+
+<%block name="modal_body">
+<div class="col-md-{{col_group}} col-sm-{{col_group}}">
+    <collapse-box class="zb-form-common" title="${get_global_res('Common_Information','Thông tin chung')}">
+            <div class="col-md-{{col}}">
+                <div class="form-group zb-form-group">
+                    <!--Mã yếu tố-->
+                    <label class="col-sm-5 zb-form-label">${get_res('class_code','Mã lớp')}</label>
+                    <div class="col-sm-7">
+                        <input-text ng-model="entity.course_code" ng-disabled="{{ __mode === 2 ? 'true' : 'false' }}" required>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-{{col}}">
+                <div class="form-group zb-form-group">
+                    <label class="col-sm-5 zb-form-label">${get_res('plan_1','Theo kế hoạch')}</label>
+                     <div class="col-sm-7" style="display: grid; grid-template-columns:auto 1fr;">
+                         <div class="col-sm">
+                            <input-checkbox ng-model="entity.lock"/>
+                         </div>
+                         <div class="col-sm-12" style="display: grid; grid-template-columns:auto;float:right; margin-left:15px">
+                             <input-select data-list="cbbListKind"
+                                           ng-model="entity.kind"
+                                           data-value="value"
+                                           data-caption="caption"/>
+                         </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-{{col}}">
+                <div class="form-group zb-form-group">
+                    <!--Thuộc nhóm-->
+                    <label class="col-sm-5 zb-form-label">${get_res('train_group_code','Nhóm đào tạo')}</label>
+                    <div class="col-sm-7">
+                        <input-select data-list="cbbListKind"
+                                       ng-model="entity.kind"
+                                       data-value="value"
+                                       data-caption="caption"/>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-{{col}}">
+                <div class="form-group zb-form-group">
+                    <!--Thuộc nhóm-->
+                    <label class="col-sm-5 zb-form-label">${get_res('train_course_code','Khóa đào tạo')}</label>
+                    <div class="col-sm-7">
+                         <input-select data-list="cbbListKind"
+                                       ng-model="entity.kind"
+                                       data-value="value"
+                                       data-caption="caption" required/>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-{{col}}">
+                 <div class="form-group zb-form-group">
+                      <!--Tên khác-->
+                      <label class="col-sm-5 zb-form-label">${get_res('activity_task_1','Hình thức')}</label>
+                            <div class="col-sm-7">
+                                <input-select data-list="cbbListKind"
+                                              ng-model="entity.kind"
+                                              data-value="value"
+                                              data-caption="caption"/>
+                            </div>
+                 </div>
+            </div>
+            <div class="col-md-{{col}}">
+                <div class="form-group zb-form-group">
+                    <!--Tên quốc gia-->
+                    <label for="inputEmp_Nation_Name" class="col-sm-5 zb-form-label">${get_res('from_day','Từ ngày')}</label>
+                    <div class="col-sm-7">
+                        <date-picker ng-model="entity.from_day" data-format="{{$root.systemConfig.date_format}}"/>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-{{col}}">
+                <div class="form-group zb-form-group">
+                    <!--Tên quốc gia-->
+                    <label for="inputEmp_Nation_Name" class="col-sm-5 zb-form-label">${get_res('to_day','Đến ngày')}</label>
+                    <div class="col-sm-7">
+                        <date-picker ng-model="entity.to_day" data-format="{{$root.systemConfig.date_format}}"/>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-{{col}}">
+                <div class="form-group zb-form-group">
+                    <!--Trọng số-->
+                    <label class="col-sm-5 zb-form-label">${get_res('wave','Đợt')}</label>
+                    <div class="col-sm-7">
+                        <input-number ng-model="entity.number_month">
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-{{col}}">
+                 <div class="form-group zb-form-group">
+                      <!--Tên khác-->
+                      <label class="col-sm-5 zb-form-label">${get_res('teacher','Giáo viên')}</label>
+                            <div class="col-sm-7">
+                                <input-select data-list="cbbListKind"
+                                              ng-model="entity.kind"
+                                              data-value="value"
+                                              data-caption="caption"/>
+                      </div>
+                 </div>
+            </div>
+    </collapse-box>
+</div>
+<div class="col-md-{{ 12 - col_group}} col-sm-{{ 12 - col_group}}">
+    <collapse-box class="zb-form-common" title="${get_global_res('course_content','Nội dung')}">
+        <div class="col-sm-12">
+            <!--Ghi chú-->
+            <div class="form-group zb-form-group">
+                <div class="col-sm-12 no-padding">
+                    <input-textarea rows="3" ng-model="entity.course_content"></input-textarea>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-{{col}}">
+                <div class="form-group zb-form-group">
+                    <!--Tên yếu tố-->
+                    <label class="col-sm-5 zb-form-label">${get_res('train_hours','Cơ sở đào tạo')}</label>
+                    <div class="col-sm-7">
+                        <input-select data-list="cbbListKind"
+                                              ng-model="entity.kind"
+                                              data-value="value"
+                                              data-caption="caption"/>
+                    </div>
+                </div>
+            </div>
+        <div class="col-md-{{col}}">
+                <div class="form-group zb-form-group">
+                    <!--Tên quốc gia-->
+                    <label class="col-sm-5 zb-form-label">${get_res('train_room_code','Phòng học')}</label>
+                    <div class="col-sm-7">
+                        <input-select data-list="cbbListKind"
+                                              ng-model="entity.kind"
+                                              data-value="value"
+                                              data-caption="caption"/>
+                    </div>
+                </div>
+            </div>
+        <div class="col-md-{{col}}">
+                <div class="form-group zb-form-group">
+                    <!--Tên quốc gia-->
+                    <label class="col-sm-5 zb-form-label">${get_res('equipment_code','Thiết bị')}</label>
+                    <div class="col-sm-7">
+                        <input-text ng-model="entity.course_code" ng-disabled="{{ __mode === 2 ? 'true' : 'false' }}">
+                    </div>
+                </div>
+            </div>
+        <div class="col-md-{{col}}">
+                        <div class="form-group zb-form-group">
+                            <!--Tên khác-->
+                            <label class="col-sm-5 zb-form-label">${get_res('activity_number','Số hợp đồng')}</label>
+                            <div class="col-sm-7">
+                                <input-number ng-model="entity.number_month">
+                            </div>
+                        </div>
+        </div>
+        <div class="col-md-{{col}}">
+                <div class="form-group zb-form-group">
+                    <!--Tên quốc gia-->
+                    <label class="col-sm-5 zb-form-label">${get_res('certificate_form_1','Ngày hợp đồng')}</label>
+                    <div class="col-sm-7">
+                        <date-picker ng-model="entity.from_day" data-format="{{$root.systemConfig.date_format}}"/>
+                    </div>
+                </div>
+        </div>
+        <div class="col-md-{{col}}">
+                        <div class="form-group zb-form-group">
+                            <!--Tên khác-->
+                            <label class="col-sm-5 zb-form-label">${get_res('activity_task_2','Tình trạng')}</label>
+                            <div class="col-sm-7">
+                                <input-select data-list="cbbListKind"
+                                              ng-model="entity.kind"
+                                              data-value="value"
+                                              data-caption="caption"/>
+                            </div>
+                        </div>
+        </div>
+        <div class="col-md-{{col}}">
+                        <div class="form-group zb-form-group">
+                            <!--Tên khác-->
+                            <label class="col-sm-5 zb-form-label">${get_res('follow_code','Người theo dõi')}</label>
+                            <div class="col-sm-7">
+                                <input-select data-list="cbbListKind"
+                                              ng-model="entity.kind"
+                                              data-value="value"
+                                              data-caption="caption"/>
+                            </div>
+                        </div>
+        </div>
+        <div class="col-md-12" style="padding-top: 16px;">
+            <div class="form-group zb-form-group">
+                <label for="DisplayInfo" class="col-sm-4 zb-form-label">${get_global_res('create_and_modify','Tạo | Sửa')}</label>
+                <div class="col-sm-8">
+                    <input-text value="{{ entity.created_on | date: $root.systemConfig.date_format}} {{entity.created_by}} | {{ entity.modified_on | date: $root.systemConfig.date_format}} {{entity.modified_by}}" ng-disabled="true">
+                </div>
+            </div>
+        </div>
+    </collapse-box>
+</div>
+</%block>
+
+<%block name="modal_script">
+<script>
+    (function (scope) {
+    scope.__mode = scope.$parent.mode;
+    scope.title = scope.$parent.headerTitle;
+    scope.col = 12;
+    scope.col_group = 6;
+    scope.onResizeDialog = onResizeDialog;
+    function onResizeDialog() {
+            $dialog.fullScreen();
+            scope.col = scope.col == 12 ? 6 : 12;
+            scope.col_group = scope.col_group == 6 ? 8 : 6;
+        }
+
+    });
+
+</script>
+
+</%block>

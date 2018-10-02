@@ -1,0 +1,152 @@
+﻿<style>
+    .status-radio-green {
+        background-color:#00B050;
+        height:8px;width:8px;
+        border-radius:50%;
+        display:inline-block;margin:1px 5px 0 0;
+    }
+     .status-radio-yellow {
+        background-color:#ED7D31;
+        height:8px;width:8px;
+        border-radius:50%;
+        display:inline-block;
+        margin:1px 5px 0 0;
+    }
+       .status-radio-red {
+        background-color:#FF0000;
+        height:8px;width:8px;
+        border-radius:50%;
+        display:inline-block;
+        margin:1px 5px 0 0;
+    }
+
+    .status-text-green {
+        color:#00B050;
+        width:15px;
+        height:17px;
+        font-weight:900;
+    }
+
+
+    .status-text-yellow {
+        color:#ED7D31;
+        width:15px;
+        height:17px;
+        font-weight:900;
+    }
+
+    .status-text-red {
+        color:#FF0000;
+        width:15px;
+        height:17px;
+        font-weight:900;
+    }
+
+</style>
+<div class="hcs-container" style="height: 100%">
+    <page-sidebar on-add="onAdd"
+                  on-edit="onEdit"
+                  on-delete="onDelete"
+                  on-save="onSave"
+                  on-import="onImport"
+                  on-export="onExport"
+                  source="mapName"
+                  key-field="function_id"
+                  display-field="default_name"
+                  icon-field="icon"
+                  selected-key="selectedFunction"
+                  reload-on-change="false"
+                  advanced-search="advancedSearch">
+        <site-map>
+            <a><span>{{$root.currentFunction.default_name}}</span></a>
+            <span><i class="bowtie-icon bowtie-chevron-right"></i></span>
+            <span>{{currentFunction.default_name}}</span>
+            <a data-target="#dropdownFunction" style="color:#333" data-toggle="collapse"><i class="bowtie-icon bowtie-chevron-down"></i></a>
+            <div id="dropdownFunction" class="dropdown-content">
+                <div class="filter">
+                    <input-text-icon ng-model="search" style="padding:3px;">
+                </div>
+                <div class="dropdown">
+                    <p ng-repeat="f in mapName | filter : search" ng-class="{focus : selectedFunction === f.function_id}" ng-click="selectFunc($event, f.function_id)">{{f.custom_name ? f.default_name : f.custom_name}}</p>
+                </div>
+            </div>
+        </site-map>
+        <!--on-search-change="onSearch"-->
+            <extend-toolbar>
+                <div style="display: grid; grid-template-columns: 1fr 1fr">
+                     <input-text-icon icon="bowtie-icon bowtie-search"
+                                                on-click="onSearch"></input-text-icon>
+                    <div>
+                        <div class="dropdown" ng-if="$root.isDisplay">
+                            <button class="zb-btn dropdown-toggle" type="button" data-toggle="dropdown">
+                                <i class="bowtie-ellipsis bowtie-icon"></i>
+                            </button>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <button class="zb-btn border-0" ng-click="viewHistoryLearningMaterial()">
+                                        <i class="bowtie-icon bowtie-navigate-history"></i>
+                                    </button>
+                                    <span>${get_res('view_history','View History')}</span>
+                                </li>
+                                <li>
+                                    <button class="zb-btn border-0" ng-click="viewDetailsLearningMaterial()">
+                                        <i class="bowtie-icon bowtie-ellipsis"></i>
+                                    </button>
+                                    <span>${get_res('view_detail','Details')}</span>
+                                </li>
+							    <li>
+                                    <button class="zb-btn border-0" ng-click="viewPermissionLearningMaterialManagerment()">
+                                        <i class="glyphicon glyphicon-lock"></i>
+                                    </button>
+                                    <span>${get_res('view_assign_permission','Assign Permissions')}</span>
+                                </li>
+							    <li>
+                                    <button class="zb-btn border-0" ng-click="viewAdvandceSearchLearningMaterialManagerment()">
+                                        <i class="glyphicon glyphicon-filter"></i>
+                                    </button>
+                                    <span>${get_res('view_advandce_search','Advandce Search')}</span>
+                                </li>
+                                <li>
+                                    <button class="zb-btn border-0" ng-click="viewShareFileLearningMaterial()">
+                                        <i class="bowtie-icon bowtie-share"></i>
+                                    </button>
+                                    <span>${get_res('view_share_file','Share file')}</span>
+                                </li>
+                                <li>
+                                    <button class="zb-btn" ng-click="downLoadFileLearningMaterial()">
+                                        <i class="bowtie-icon bowtie-transfer-download"></i>
+                                    </button>
+                                    <span>${get_res('view_download_file','Download file')}</span>
+                                </li>
+                            </ul>
+                        </div>
+                        <button class="zb-btn zb-btn-o-green" ng-click="create()">
+                                <i class="bowtie-icon bowtie-math-plus"></i>
+                        </button>
+                        <button class="zb-btn zb-btn-o-blue" ng-click="edit()">
+                                <i class="bowtie-icon bowtie-edit-outline"></i>
+                            </button>
+                        <button class="zb-btn zb-btn-o-red" ng-click="delete()">
+                                <i class="bowtie-icon bowtie-edit-remove"></i>
+                        </button>
+                        <button class="zb-btn" ng-click="update_status_open()">
+                                <i style="font-size:14px" class="bowtie-icon bowtie-folder"></i>
+                        </button>
+                        <button class="zb-btn" ng-click="update_status_suspend()">
+                                <i class="bowtie-icon bowtie-status-warning"></i>
+                            </button>
+                        <button class="zb-btn" ng-click="update_status_write_protected()">
+                                <i class="bowtie-icon bowtie-unpin"></i>
+                        </button>
+                    </div>
+                </div>
+            </extend-toolbar>
+        <content>
+            <div c-template url="${get_app_url('')}/pages/{{$partialpage}}"
+                 style="position: absolute; top: 0; bottom: 0; left: 0; right: 0;"></div>
+        </content>
+    </page-sidebar>
+</div>
+<script>
+    <%include file="../scripts/lms_forum.js"/>
+</script>

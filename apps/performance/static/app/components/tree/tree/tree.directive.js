@@ -29,7 +29,8 @@
                 disabled: "=",
                 expandAll: "@",
                 collapseAll: "@",
-                selectFirstNode: "@"
+                selectFirstNode: "@",
+                expr: "="
             },
             /*
                 @: lấy giá trị trên attrs,
@@ -118,6 +119,24 @@
                         leavesOnly: false, // Match end nodes only
                         nodata: true, // Display a 'no data' status node if result is empty
                         mode: "hide" // "dimm" : Grayout unmatched nodes (pass "hide" to remove unmatched node instead)
+                    },
+                    renderNode: function(event, data) {
+                        if($scope.expr){
+                            var node = $(data.node.li);
+                            var config = null;
+                            if($scope.expr(data.node.data, function(cnf){
+                                config = cnf;
+                            })){
+                                if(node.find('.fancytree-title').length > 0){
+                                    if(config.hasOwnProperty('format'))
+                                        node.find('.fancytree-title')[0].innerHTML = config['format'];
+                                    // if(config.hasOwnProperty('selected') && config['selected'] === true)
+                                    //     data.node.selected = true;
+                                    if(config.hasOwnProperty('disabled') && config['disabled'] === true)
+                                        data.node.unselectable = config['disabled'];
+                                }
+                            }
+                        }
                     },
                     loadChildren: function (event, data) {
                         if ($scope.iconField) {

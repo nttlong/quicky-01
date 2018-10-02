@@ -248,7 +248,6 @@ def set_dict_insert_data(args):
 
 def set_dict_update_data(args):
     ret_dict = set_dict_insert_data(args)
-    del ret_dict['folder_id']
     return ret_dict
 def get_level_code_by_folder_id(args):
     where = args['data'].get('where')

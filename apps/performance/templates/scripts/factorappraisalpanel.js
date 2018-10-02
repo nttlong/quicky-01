@@ -2,6 +2,7 @@
     /*                                                         */
     /* ==================== Property Scope - START=============*/
     /*                                                         */
+    scope.isChangeFunc = false;
     scope.filterFunctionModel = ''
     scope.currentFunction = '';
     scope.mapName = [];

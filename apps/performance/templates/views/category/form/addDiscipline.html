@@ -2,85 +2,85 @@
 <%!
     #_style="width:300px;"
 %>
-<%inherit file="../../commons/dialog_save_close.html"/>
+<%inherit file="../../commons/dialog_resize_save_close.html"/>
 
 <%block name="modal_body">
-            <div class="col-md-{{col_group}} col-sm-{{col_group}}">
-                <collapse-box class="zb-form-common" title="${get_global_res('Common_Information','Thông tin chung')}">
-                    <div class="col-md-{{col}}">
-                        <div class="form-group zb-form-group">
-                            <!--Mã hình thức kỷ luật-->
-                            <label for="input_disc_code" class="col-sm-5 zb-form-label">${get_res('disc_code','Mã hình thức kỷ luật')}</label>
-                            <div class="col-sm-7">
-                                <input-text id="input_disc_code" ng-model="entity.disc_code" ng-disabled="{{ __mode === 2 ? 'true' : 'false' }}" required>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-{{col}}">
-                        <div class="form-group zb-form-group">
-                            <!--Tên hình thức kỷ luật-->
-                            <label for="input_disc_name" class="col-sm-5 zb-form-label">${get_res('disc_name','Tên hình thức kỷ luật')}</label>
-                            <div class="col-sm-7">
-                                <input-text id="input_disc_name" ng-model="entity.disc_name" required>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-{{col}}">
-                        <div class="form-group zb-form-group">
-                            <!--Tên khác-->
-                            <label for="input_disc_name2" class="col-sm-5 zb-form-label">${get_res('disc_name2','Tên khác')}</label>
-                            <div class="col-sm-7">
-                                <input-text id="input_disc_name2" ng-model="entity.disc_name2">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-{{col}}">
-                        <div class="form-group zb-form-group">
-                            <!--Kéo dài thời hạn lên lương-->
-                            <label for="input_is_due_salary" class="col-sm-5 zb-form-label">${get_res('is_due_salary','Kéo dài thời hạn lên lương')}</label>
-                            <div class="col-sm-7">
-                                <input-checkbox id="input_is_due_salary" ng-model="entity.is_due_salary">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-{{col}}">
-                        <div class="form-group zb-form-group">
-                            <!--Thứ tự-->
-                            <label for="inputOrdinal" class="col-sm-5 zb-form-label">${get_res('ordinal','Thứ tự')}</label>
-                            <div class="col-sm-7">
-                                <input-number id="inputOrdinal" ng-model="entity.ordinal">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-{{col}}">
-                        <div class="form-group zb-form-group">
-                            <!--Ngưng sử dụng-->
-                            <label for="inputLock" class="col-sm-5 zb-form-label">${get_res('lock','Ngưng sử dụng')}</label>
-                            <div class="col-sm-7">
-                                <input-checkbox id="inputLock" ng-model="entity.lock">
-                            </div>
-                        </div>
-                    </div>
-                </collapse-box>
+<div class="col-xs-12 col-md-{{col_group}} col-sm-{{col_group}}">
+    <collapse-box class="zb-form-common" title="${get_global_res('Common_Information','Thông tin chung')}">
+        <div class="col-xs-{{col}} col-md-{{col}}">
+            <div class="form-group zb-form-group">
+                <!--Mã hình thức kỷ luật-->
+                <label for="input_disc_code" class="col-xs-5 col-sm-5 zb-form-label">${get_res('disc_code','Mã hình thức kỷ luật')}</label>
+                <div class="col-xs-7 col-sm-7">
+                    <input-text id="input_disc_code" ng-model="entity.disc_code" ng-disabled="{{ __mode === 2 ? 'true' : 'false' }}" required>
+                </div>
             </div>
-            <div class="col-md-{{ 12 - col_group}} col-sm-{{ 12 - col_group}}" style="padding-bottom:20px;">
-                <collapse-box class="zb-form-common" title="</span>${get_global_res('Note','Ghi chú')}">
-                    <div class="row">
-                            <!--Ghi chú-->
-                            <div class="col-sm-12">
-                                <input-textarea rows="7" ng-model="entity.note"></input-textarea>
-                            </div>
-                    </div>
-                    <div class="col-md-12" style="padding-top: 16px;">
-                        <div class="form-group zb-form-group">
-                            <label for="DisplayInfo" class="col-sm-3 zb-form-label">${get_global_res('create_and_modify','Tạo | Sửa')}</label>
-                            <div class="col-sm-9">
-                                <input-text value="{{ entity.created_on | date: $root.systemConfig.date_format}} {{entity.created_by}} | {{ entity.modified_on | date: $root.systemConfig.date_format}} {{entity.modified_by}}" ng-disabled="true">
-                            </div>
-                        </div>
-                    </div>
-                </collapse-box>
+        </div>
+        <div class="col-xs-{{col}} col-md-{{col}}">
+            <div class="form-group zb-form-group">
+                <!--Tên hình thức kỷ luật-->
+                <label for="input_disc_name" class="col-xs-5 col-sm-5 zb-form-label">${get_res('disc_name','Tên hình thức kỷ luật')}</label>
+                <div class="col-xs-7 col-sm-7">
+                    <input-text id="input_disc_name" ng-model="entity.disc_name" required>
+                </div>
             </div>
+        </div>
+        <div class="col-xs-{{col}} col-md-{{col}}">
+            <div class="form-group zb-form-group">
+                <!--Tên khác-->
+                <label for="input_disc_name2" class="col-xs-5 col-sm-5 zb-form-label">${get_res('disc_name2','Tên khác')}</label>
+                <div class="col-xs-7 col-sm-7">
+                    <input-text id="input_disc_name2" ng-model="entity.disc_name2">
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-{{col}} col-md-{{col}}">
+            <div class="form-group zb-form-group">
+                <!--Kéo dài thời hạn lên lương-->
+                <label for="input_is_due_salary" class="col-xs-5 col-sm-5 zb-form-label">${get_res('is_due_salary','Kéo dài thời hạn lên lương')}</label>
+                <div class="col-xs-7 col-sm-7">
+                    <input-checkbox id="input_is_due_salary" ng-model="entity.is_due_salary">
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-{{col}} col-md-{{col}}">
+            <div class="form-group zb-form-group">
+                <!--Thứ tự-->
+                <label for="inputOrdinal" class="col-xs-5 col-sm-5 zb-form-label">${get_res('ordinal','Thứ tự')}</label>
+                <div class="col-xs-7 col-sm-7">
+                    <input-number id="inputOrdinal" ng-model="entity.ordinal">
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-{{col}} col-md-{{col}}">
+            <div class="form-group zb-form-group">
+                <!--Ngưng sử dụng-->
+                <label for="inputLock" class="col-xs-5 col-sm-5 zb-form-label">${get_res('lock','Ngưng sử dụng')}</label>
+                <div class="col-xs-7 col-sm-7">
+                    <input-checkbox id="inputLock" ng-model="entity.lock">
+                </div>
+            </div>
+        </div>
+    </collapse-box>
+</div>
+<div class="col-xs-12 col-md-{{ 12 - col_group}} col-sm-{{ 12 - col_group}}" style="padding-bottom:20px;">
+    <collapse-box class="zb-form-common" title="</span>${get_global_res('Note','Ghi chú')}">
+        <div class="row">
+                <!--Ghi chú-->
+                <div class="col-xs-12 col-sm-12">
+                    <input-textarea rows="7" ng-model="entity.note"></input-textarea>
+                </div>
+        </div>
+        <div class="col-xs-12 col-md-12" style="padding-top: 16px;">
+            <div class="form-group zb-form-group">
+                <label for="DisplayInfo" class="col-xs-5 col-sm-3 zb-form-label">${get_global_res('create_and_modify','Tạo | Sửa')}</label>
+                <div class="col-xs-7 col-sm-9">
+                    <input-text value="{{ entity.created_on | date: $root.systemConfig.date_format}} {{entity.created_by}} | {{ entity.modified_on | date: $root.systemConfig.date_format}} {{entity.modified_by}}" ng-disabled="true">
+                </div>
+            </div>
+        </div>
+    </collapse-box>
+</div>
 </%block>
 
 <%block name="modal_script">

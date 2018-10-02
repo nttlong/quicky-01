@@ -8,7 +8,7 @@
         { "data": "room_map", "title": "${get_res('room_map','Sơ đồ Phòng')}" },
         { "data": "note", "title": "${get_res('note','Note')}" },
         { "data": "ordinal", "title": "${get_res('ordinal','Thứ tự')}" },
-        { "data": "lock", "title": "${get_res('lock','Ngưng SD')}", "format": "checkbox"}
+        { "data": "lock", "title": "${get_res('lock','Ngưng SD')}", "format": "checkbox", width: "100px", className: "text-center"}
     ];
     scope.onSelectTableRow = pressEnter;
     scope.tableSource = _loadDataServerSide;
@@ -75,6 +75,7 @@
 
     // Insert 
     scope.$parent.$parent.$parent.addRoom = function () {
+    debugger
         scope.mode = 1; // set mode chỉnh sửa
         openDialog("${get_res('Create_room','Add Room')}", 'form/addRoom', function () {
             setTimeout(function () {
@@ -97,7 +98,6 @@
     * Hàm mở form delete
     */
     scope.$parent.$parent.$parent.delRoom = function () {
-    debugger
         if (!scope.selectedItems || scope.selectedItems.length === 0) {
             $msg.message("${get_global_res('Notification','Thông báo')}", "${get_global_res('No_Row_Selected','Không có dòng được chọn')}", function () { });
         } else {
@@ -125,7 +125,7 @@
      * Hàm mở dialog
      * @param {string} title Tittle của dialog
      * @param {string} path Đường dẫn file template
-     * @param {function} callback Xử lí sau khi gọi dialog\
+     * @param {function} callback Xử lí sau khi gọi dialog
      * @param {string} id Id của form dialog, default = 'myModal'
      */
     function openDialog(title, path, callback, id = 'myModal') {

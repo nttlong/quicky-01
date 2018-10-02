@@ -233,7 +233,6 @@
             dataDomain: null
         }
 
-
         scope._permissionList = _permissionList;
         function _permissionList() {
             if (scope.__mode == 2) {
@@ -305,7 +304,7 @@
         scope.col = 12;
         scope.col_group = 6;
 
-        scope.entity = scope.__mode != 1 ? scope.$parent.currentItem : null;
+        scope.entity = scope.__mode != 1 ? JSON.parse(JSON.stringify(scope.$parent.currentItem)) : null;
         if (scope.__mode === 2 && scope.entity.users === []) {
             scope.entity.users = [];
         }

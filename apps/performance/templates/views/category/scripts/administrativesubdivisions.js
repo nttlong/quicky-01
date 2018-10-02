@@ -1,4 +1,10 @@
 (function (scope) {
+    scope.$parent.$parent.$parent.onAdd = null;
+    scope.$parent.$parent.$parent.onEdit = null;
+    scope.$parent.$parent.$parent.onDelete = null;
+    scope.$parent.$parent.$parent.onExport = null;
+    scope.$parent.$parent.$parent.onImport = null;
+    scope.$parent.$parent.$parent.onSearch = null;
     scope.$parent.$parent.$parent.$watch("advancedSearch", function (val, old) {
         if (val && val.main_nation_code) {
             var tableConfig = scope.$$tableProvinceConfig;

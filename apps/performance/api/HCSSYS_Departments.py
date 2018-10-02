@@ -232,3 +232,21 @@ def set_dict_data(args):
         signed_by           =     (lambda x: x['signed_by'] if x.has_key('signed_by') else None)(args['data'])
     )
     return data
+
+def getRootDepartment(args):
+    ret = {}
+    collection = common.get_collection('HCSSYS_Departments').aggregate([
+        {"$match": {
+            "$and": [{'parent_code': None}, {'level':1}]
+        }},
+        {"$project": {
+            "parent_code":1,
+            "department_code":1,
+            "department_name":1,
+            "level_code":1,
+            "level":1,
+            "ordinal":1
+        }},
+    ])
+    ret = list(collection)
+    return ret

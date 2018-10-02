@@ -1,4 +1,4 @@
-﻿(function (scope) {
+﻿﻿(function (scope) {
     var _default = {
         rec_id : null,
         email_template_code : null,
@@ -8,7 +8,7 @@
         body : null,
         module_name : null
     }
-    scope.mode = 0;
+    scope.mode = 1;
     scope.valueListModule = [];
     scope.dataSource = [];
     scope.searchText = "";
@@ -32,6 +32,7 @@
             scope.$apply();
         },
         save: function () {
+            debugger
             if (scope.entity != null) {
             var rsCheck = checkError();
             if (rsCheck.result) {
@@ -41,6 +42,8 @@
             editData(function (res) {
                 if (res.error == null) {
                     $msg.alert("${get_global_res('Handle_Success','Thao tác thành công')}", $type_alert.INFO);
+                    if(scope.mode == 1)
+                        scope.mode = 2;
                     _getList();
                 } else if(res.error.code == "missing"){
                     $msg.message("${get_global_res('Input_Error','Nhập liệu sai')}", "${get_res('action_is_not_null','Hành vi chuẩn không được để trống')}", function () { });
@@ -55,7 +58,7 @@
                 $msg.message("${get_global_res('Notification','Thông báo')}", "${get_global_res('No_Row_Selected','Không có dòng được chọn')}", function () { });
             } else {
                 $msg.confirm("${get_global_res('Notification','Thông báo')}", "${get_global_res('Do_You_Want_Delete','Bạn có muốn xóa không?')}", function () {
-                    services.api("${get_api_key('app_main.api.HCSSYS_EmailTemplate/delete')}")
+                    services.api("${get_api_key('app_main.api.TM_EmailTemplate/delete')}")
                         .data(scope.currentRow)
                         .done()
                         .then(function (res) {
@@ -122,8 +125,8 @@
     }
 
     function getUrl(){
-        return scope.mode == 2 ? "${get_api_key('app_main.api.HCSSYS_EmailTemplate/update')}"
-        : "${get_api_key('app_main.api.HCSSYS_EmailTemplate/insert')}";
+        return scope.mode == 2 ? "${get_api_key('app_main.api.TM_EmailTemplate/update')}"
+        : "${get_api_key('app_main.api.TM_EmailTemplate/insert')}";
     }
 
     function _getValueList(callback) {
@@ -138,7 +141,7 @@
     }
 
     function _getList(){
-        services.api("${get_api_key('app_main.api.HCSSYS_EmailTemplate/get_list')}")
+        services.api("${get_api_key('app_main.api.TM_EmailTemplate/get_list')}")
             .data()
             .done()
             .then(function (res) {
@@ -151,7 +154,10 @@
         _getList();
         _getValueList(function(res){
             scope.valueListModule = res.values;
-            scope.$applyAsync();
+            scope.entity.module_name = scope.valueListModule[0].value;
         });
     })();
+    scope.$watch('entity.module_name', function(val){
+        console.log(val);
+    })
 });

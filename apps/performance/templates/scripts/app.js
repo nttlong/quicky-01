@@ -1,6 +1,8 @@
-﻿window.set_component_template_url('${get_static("app/directives/")}')
+﻿﻿window.set_component_template_url('${get_static("app/directives/")}')
+window.set_component_url('${get_static("app/components/")}')
 window.set_api_combobox("${get_api_key('app_main.api.common/get_dropdown_list')}")
 window.get_static = "${get_static('/')}"
+window.set_static(window.get_static)
 angular
     .module("admin", ["c-ui", 'ZebraApp.components', 'ZebraApp.widgets', 'hcs-template'])
     .controller("admin", controller)
@@ -48,6 +50,7 @@ function controller($dialog, $scope, $filter) {
     $scope.services = services = ws($scope);
     $scope.$root.$getComboboxData = extension().getComboboxData;
     $scope.$root.$getInitComboboxData = extension().getInitComboboxData;
+    $scope.$root.$extension = extension();
     $scope.$root.$groupingNumber = function (num){
         var info = $scope.$root.systemConfig;
         var NumberGroupSeparator = info.dec_place_separator === "," ? "." : ",";
@@ -91,6 +94,43 @@ function controller($dialog, $scope, $filter) {
             $("#btnShowMessage").siblings(".hcs-message-list").addClass("message-hidden");
         }
     });
+
+    // Responsive
+
+    window.onclick = function(ev){
+        if(window.innerWidth <= 768){
+            if(!ev.target.closest('.hcs-left-side-department-content') && !ev.target.closest('.hcs-menu-mobile')
+            && !ev.target.closest('.hcs-toggle-slider')){
+                if($('.hcs-left-side-department-content').css('display') == 'block'){
+                    $('.hcs-left-side-department-content').toggle('slide');
+                }
+
+                if($('.modal-dialog .hcs-left-side-department-content').css('display') == 'block'){
+                    $('.modal-dialog .hcs-left-side-department-content').toggle('slide');
+                }
+            }
+        }
+    };
+
+    window.onresize  = function(){
+        if($('.hcs-left-side-department-content').css('display') == 'none' && window.innerWidth >= 768){
+            $('.hcs-left-side-department-content').toggle('slide');
+        }
+
+        if($('.hcs-top-action-large').css('display') == 'none' && window.innerWidth >= 768){
+            $('.hcs-top-action-large').toggle('slide');
+        }
+    }
+
+    $scope.$root.doToggle = function(className, event) {
+        if(!event){
+            $(className).toggle("slide");
+        }else{
+            $(event.target).closest(".zb-top").find(".zb-right-content").toggle("slide");
+        }
+    }
+
+    // End Responsive
 
     $scope.$root.doLogout = function () {
         $scope.$root.__USER__ = null;
@@ -188,6 +228,12 @@ function controller($dialog, $scope, $filter) {
                 $scope.$root.$history.change(function (data) {
                     $scope.$root.$$absUrl = window.location.href;
                     if (data.page) {
+                        if(!_.findWhere($scope.$root.$function_list, {function_id:data.page}))
+                        {
+                            data.page = $scope.$root.$extension.TripleDES.decrypt(data.page);
+                            if(data.f)
+                                data.f = $scope.$root.$extension.TripleDES.decrypt(data.f);
+                        }
                         $scope.isHomePage = false;
                         var currentFunction = _.filter(functions, function (d) {
                             return d["function_id"] == data.page;
@@ -249,6 +295,40 @@ function extension() {
 
     fac.getComboboxData = getComboboxData;
     fac.getInitComboboxData = getInitComboboxData;
+    fac.TripleDES = {
+        _password: CryptoJS.MD5("lv"),
+        setPassword: function(password){
+            fac.TripleDES._password = CryptoJS.MD5(password);
+        },
+        encrypt: function(val){
+            try {
+                fac.TripleDES._password.words[4] = fac.TripleDES._password.words[0];
+                fac.TripleDES._password.words[5] = fac.TripleDES._password.words[1];
+
+                // create a 64-bit zero filled
+                var iv = CryptoJS.lib.WordArray.create(64/8);
+                return CryptoJS.TripleDES.encrypt(val, fac.TripleDES._password, {iv: iv}).toString();
+            }
+            catch(err) {
+                throw err
+            }
+        },
+        decrypt: function(val){
+            try {
+                fac.TripleDES._password.words[4] = fac.TripleDES._password.words[0];
+                fac.TripleDES._password.words[5] = fac.TripleDES._password.words[1];
+                var ct = {
+                    ciphertext: CryptoJS.enc.Base64.parse(val)
+                };
+                var iv = CryptoJS.lib.WordArray.create(64/8);
+                var decrypted = CryptoJS.TripleDES.decrypt(ct, fac.TripleDES._password, {iv: iv});
+                return decrypted.toString(CryptoJS.enc.Utf8);
+            }
+            catch(err) {
+                throw err
+            }
+        }
+    };
 
     /**
      * Hàm get combobox data
@@ -294,7 +374,7 @@ function extension() {
      * Trường hợp get đơn lẻ truyền tham số là object
      * example:{key:xxx, code:xxx}
      */
-    function getInitComboboxData(scope, key) {
+    function getInitComboboxData(scope, key, callback) {
         services.api("${get_api_key('app_main.api.common/get_init_data_combobox')}")
             .data({
                 name: key
@@ -308,7 +388,8 @@ function extension() {
                 } else {
                     scope[res.alias] = res;
                 }
-                scope.$apply();
+                if(callback) callback();
+                scope.$applyAsync();
             })
     }
 

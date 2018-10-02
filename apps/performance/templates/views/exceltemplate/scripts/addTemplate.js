@@ -1,6 +1,6 @@
-﻿(function (scope) {
+﻿﻿(function (scope) {
     //Table danh sách người dùng - START
-    scope.tableListUserFields = [
+    scope.tableListUserFields = angular.fromJson(angular.toJson([
         { "data": "field_name", "title": "${ get_res('field_name_table_header', 'Tên trường') }" },
         { "data": "header_text", "title": "${ get_res('header_text_table_header', 'Mô tả') }" },
         { "data": "lookup_data", "title": "${ get_res('lookup_data_table_header', 'Dữ liệu tra cứu') }" },
@@ -9,7 +9,14 @@
         { "data": "is_visible", "title": "${ get_res('is_visible_table_header', 'Hiển thị') }" },
         { "data": "is_key", "title": "${ get_res('is_key_table_header', 'Khóa chính') }" },
         { "data": "allow_null", "title": "${ get_res('allow_null_table_header', 'Không được để trống') }" },
-    ];
+    ]));
+
+    if(scope.tableListUserFields[0].data == "$$selectKey"){
+        scope.tableListUserFields = scope.tableListUserFields.slice(1, scope.tableListUserFields.length)
+    }
+
+    console.log(scope.tableListUserFields)
+
     scope.title = scope.$parent.headerTitle;
     scope.tableListUserSource = _loadDataListUserServerSide;
     scope.refreshDataListUserRow = function () { /*Do nothing*/ };
@@ -24,6 +31,8 @@
             orderBy: orderBy,
             searchText: searchText
         };
+
+        console.log(scope.$$table_List_User_Config)
         //setTimeout(function () {
         if (fnReloadData) {
             if (searchText) {

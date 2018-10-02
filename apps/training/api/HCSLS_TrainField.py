@@ -40,8 +40,11 @@ def get_list_with_searchtext(args):
         modified_by="switch(case(modified_by!='',um.login_account),'')",
     )
 
-    if(searchText != None):
-        items.match("contains(field_name, @name)",name=searchText)
+    # if(searchText != None):
+    #     items.match("contains(field_name, @name)",name=searchText)
+    if (searchText != None):
+        items.match("contains(field_code, @name) or contains(field_name, @name)" + \
+                  " or contains(note, @name) or contains(ordinal, @name)", name=searchText.strip())
 
     if(sort != None):
         items.sort(sort)

@@ -18,9 +18,7 @@
                 ngModel: "=",
                 rows: "@"
             },
-            template: `
-                <textarea rows="4"></textarea>
-            `
+            template: "<textarea rows='4'></textarea>"
         };
         return directive;
 
@@ -28,7 +26,6 @@
             $(element).attr("rows", scope.rows);
             $(element).summernote({
                 onChange: function () {
-                    debugger
                     scope.ngModel = $(element).code().replace(/<\/?[^>]+(>|$)/g, "");
                 }    // callback as option 
             });

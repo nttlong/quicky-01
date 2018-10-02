@@ -101,7 +101,7 @@
             </div>
             <div class="col-md-12" style="padding-top: 16px;">
                 <div class="form-group zb-form-group">
-                    <label for="DisplayInfo" class="col-sm-3 zb-form-label">${get_global_res('create_and_modify','Tạo | Sửaaaaa')}</label>
+                    <label for="DisplayInfo" class="col-sm-3 zb-form-label">${get_global_res('create_and_modify','Tạo | Sửa')}</label>
                     <div class="col-sm-9">
                         <input-text 
                                     value="{{ entity.created_on | date: $root.systemConfig.date_format}} {{entity.created_by}} | {{ entity.modified_on | date: $root.systemConfig.date_format}} {{entity.modified_by}}" ng-disabled="true">

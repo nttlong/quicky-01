@@ -1,4 +1,4 @@
-﻿(function (scope) {
+﻿﻿(function (scope) {
    /* scope.$partialpage = "partialpage/examination_management_template_exam_list";
 
     scope.createTemplateCategory = function () {
@@ -33,16 +33,16 @@
         main_nation_code: null
     }
 
-    scope.addLearningMaterial = function () {
-        scope.$root.add();
+    scope.createTemplate = function () {
+        scope.$root.createTemplate();
     }
 
-    scope.editLearningMaterial = function () {
-        scope.$root.edit();
+    scope.editTemplate = function () {
+        scope.$root.editTemplate();
     }
 
-    scope.delLearningMaterial = function () {
-        scope.$root.delete();
+    scope.delTemplate = function () {
+        scope.$root.delTemplate();
     }
 
     scope.viewDetailsLearningMaterial = function () {

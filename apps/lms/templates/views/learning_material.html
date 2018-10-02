@@ -1,4 +1,4 @@
-﻿<div class="hcs-container" style="height: 100%">
+﻿﻿<div class="hcs-container" style="height: 100%">
     <page-sidebar on-add="onAdd" 
                   on-edit="onEdit" 
                   on-delete="onDelete" 
@@ -18,7 +18,7 @@
             <span><i class="bowtie-icon bowtie-chevron-right"></i></span>
             <span>{{currentFunction.default_name}}</span></site-map>
         <extend-toolbar ng-if="$root.extendToolbar">
-            <div style="display: grid; grid-template-columns: {{$root.isDisplay ? 'auto 1fr 1fr' : '1fr 1fr'}} ">
+            <div style="display: grid; grid-template-columns: {{$root.isDisplay ? 'auto 1fr auto' : '1fr auto'}} ">
                 <div style="float: left;" ng-if="$root.isDisplay">
                     <button class="zb-btn" ng-click="onDisplayListData()">
                         <i class="bowtie-icon bowtie-editor-list-bullet"></i>
@@ -27,9 +27,9 @@
                         <i class="bowtie-icon bowtie-view-grid"></i>
                     </button>
                 </div>
-                <div class="col-md-6" style="padding-right: 0; top: 2px;">
+                <div class="col-md-6" style="padding-right: 0; top: 2px;"   >
                     <!--<input-text-icon id="tableSearchText" on-click="objSearch.onSearch" ng-model="objSearch.$$$modelSearch"></input-text-icon>-->
-                     <div class="hcs-left-side-department-tree-tool-bar-div-search">
+                     <div class="hcs-left-side-department-tree-tool-bar-div-search" ng-if="$root.isDisplayBasicButton">
                         <input class="hcs-left-side-department-tree-tool-bar-input-search" ng-model="objSearch.$$$modelSearch">
                         <div class="hcs-left-side-department-tree-tool-bar-input-search-bot"></div>
                         <div class="hcs-left-side-department-tree-tool-bar-input-search-bot-icon" ng-click="onSearchText()">
@@ -37,35 +37,33 @@
                         </div>
                     </div>
                 </div>
-                <div>
-                    <div class="dropdown" ng-if="$root.isDisplay">
+                <div style="display: flex;" >
+                    <button class="zb-btn" ng-click="viewAdvandceSearchLearningMaterialManagerment()" ng-if="$root.isDisplayManagermentButton">
+                            <i class="bowtie-icon bowtie-search-filter"></i>
+                    </button>
+                    <div class="dropdown" ng-if="$root.isDisplay" style="margin-left: 5px;">
                         <button class="zb-btn dropdown-toggle" type="button" data-toggle="dropdown">
                             <i class="bowtie-ellipsis bowtie-icon"></i>
                         </button>
                         <ul class="dropdown-menu">
-                            <li>
-                                <button class="zb-btn border-0" ng-click="viewHistoryLearningMaterial()">
-                                    <i class="bowtie-icon bowtie-navigate-history"></i>
-                                </button>
-                                <span>${get_res('view_history','View History')}</span>
-                            </li>
-                            <li>
+                            <ng-container ng-if="$root.isDisplayManagermentButton">
+                                <li>
                                 <button class="zb-btn border-0" ng-click="viewDetailsLearningMaterial()">
                                     <i class="bowtie-icon bowtie-ellipsis"></i>
                                 </button>
                                 <span>${get_res('view_detail','Details')}</span>
                             </li>
-							<li>
-                                <button class="zb-btn border-0" ng-click="viewPermissionLearningMaterialManagerment()">
-                                    <i class="glyphicon glyphicon-lock"></i>
+                            <li>
+                                <button class="zb-btn border-0" ng-click="editLearningMaterial()">
+                                    <i class="bowtie-icon bowtie-watch-eye-fill"></i>
                                 </button>
-                                <span>${get_res('view_assign_permission','Assign Permissions')}</span>
+                                <span>${get_res('view_info','View')}</span>
                             </li>
-							<li>
-                                <button class="zb-btn border-0" ng-click="viewAdvandceSearchLearningMaterialManagerment()">
-                                    <i class="glyphicon glyphicon-filter"></i>
+                            <li>
+                                <button class="zb-btn" ng-click="downLoadFileLearningMaterial()">
+                                    <i class="bowtie-icon bowtie-transfer-download"></i>
                                 </button>
-                                <span>${get_res('view_advandce_search','Advandce Search')}</span>
+                                <span>${get_res('view_download_file','Download file')}</span>
                             </li>
                             <li>
                                 <button class="zb-btn border-0" ng-click="viewShareFileLearningMaterial()">
@@ -74,32 +72,62 @@
                                 <span>${get_res('view_share_file','Share file')}</span>
                             </li>
                             <li>
-                                <button class="zb-btn" ng-click="downLoadFileLearningMaterial()">
-                                    <i class="bowtie-icon bowtie-transfer-download"></i>
+                                <button class="zb-btn border-0" ng-click="viewPermissionLearningMaterialManagerment()">
+                                    <i class="glyphicon glyphicon-lock"></i>
                                 </button>
-                                <span>${get_res('view_download_file','Download file')}</span>
+                                <span>${get_res('view_assign_permission','Assign Permissions')}</span>
                             </li>
+                            <li>
+                                <button class="zb-btn border-0" ng-click="viewHistoryLearningMaterial()">
+                                    <i class="bowtie-icon bowtie-navigate-history"></i>
+                                </button>
+                                <span>${get_res('view_history','View History')}</span>
+                            </li>
+                            </ng-container>
+                            <ng-container ng-if="$root.isDisplayFoldertButton">
+                                <li>
+                                    <button class="zb-btn border-0" ng-click="editLearningMaterial()">
+                                        <i class="bowtie-icon bowtie-edit-outline"></i>
+                                    </button>
+                                <span>${get_res('view_edit','Edit')}</span>
+                                </li>
+                            </ng-container>
+                            <li>
+                                <button class="zb-btn border-0" ng-click="delOneLearningMaterial()">
+                                    <i class="bowtie-icon bowtie-edit-remove"></i>
+                                </button>
+                                <span>${get_res('view_delete','Delete')}</span>
+                            </li>
+
                         </ul>
                     </div>
+                    <div ng-if="$root.isDisplayBasicButton" style="padding-left: 5px;">
                     <button class="zb-btn zb-btn-o-green" ng-click="addLearningMaterial()">
                             <i class="bowtie-icon bowtie-math-plus"></i>
                     </button>
-                    <button class="zb-btn zb-btn-o-blue" ng-click="editLearningMaterial()">
-                            <i class="bowtie-icon bowtie-edit-outline"></i>
+                    <ng-container ng-if="$root.isDisplayManagermentButton">
+                        <button class="zb-btn" ng-click="downLoadFileLearningMaterial()">
+                            <i class="bowtie-icon bowtie-transfer-download"></i>
                         </button>
+                        <button class="zb-btn" ng-click="viewShareFileLearningMaterial()">
+                            <i class="bowtie-icon bowtie-share"></i>
+                        </button>
+                    </ng-container>
                     <button class="zb-btn zb-btn-o-red" ng-click="delLearningMaterial()">
                             <i class="bowtie-icon bowtie-edit-remove"></i>
                     </button>
-                    <button class="zb-btn" ng-click="importLearningMaterial()">
-                            <i class="bowtie-icon bowtie-transfer-upload"></i>
-                        </button>
-                    <button class="zb-btn" ng-click="exportLearningMaterial()">
-                            <i class="bowtie-icon bowtie-transfer-download"></i>
-                        </button>
-                    <button class="zb-btn" ng-click="$root.refresh()">
-                            <i class="bowtie-icon bowtie-navigate-refresh"></i>
-                        </button>
 
+                    </div>
+                    <div class="col-md-6" style="padding-right: 0; top: 2px;" ng-if="!$root.isDisplayBasicButton">
+                    <!--<input-text-icon id="tableSearchText" on-click="objSearch.onSearch" ng-model="objSearch.$$$modelSearch"></input-text-icon>-->
+                     <div class="hcs-left-side-department-tree-tool-bar-div-search">
+                        <input class="hcs-left-side-department-tree-tool-bar-input-search" ng-model="objSearch.$$$modelSearch">
+                        <div class="hcs-left-side-department-tree-tool-bar-input-search-bot"></div>
+                        <div class="hcs-left-side-department-tree-tool-bar-input-search-bot-icon" ng-click="onSearchText()">
+                            <i class="glyphicon glyphicon-search"></i>
+                        </div>
+                        </div>
+                     </div>
                 </div>
             </div>
         </extend-toolbar>
@@ -112,3 +140,8 @@
 <script>
     <%include file="../scripts/learning_material.js"/>
 </script>
+<style>
+.zb-collapse-box.zb-form-common {
+    height:auto;
+}
+</style>

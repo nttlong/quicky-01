@@ -1,58 +1,58 @@
-﻿
+﻿﻿
 <%!
     #_style="width:300px;"
 %>
 <%inherit file="../../commons/dialog_save_close.html"/>
 
 <%block name="modal_body">
- <div class="col-md-12">
+ <div class="col-xs-12 col-md-12">
     <collapse-box class="zb-form-common" title="${get_global_res('Common_Information','Thông tin chung')}">        
-      <div class="col-md-6">
+      <div class="col-xs-12 col-md-6">
             <div class="form-group zb-form-group">
-                <label class="col-sm-5 zb-form-label">${get_res('begin_date','Từ ngày')}</label>
-                <div class="col-sm-7">
+                <label class="col-xs-5 col-sm-5 zb-form-label">${get_res('begin_date','Từ ngày')}</label>
+                <div class="col-xs-7 col-sm-7">
                      <date-picker ng-model="entity.begin_date" data-format="{{$root.systemConfig.date_format}}" required/>
                 </div>
             </div>
             <div class="form-group zb-form-group">
-                <label class="col-sm-5 zb-form-label">${get_res('end_date','Đến ngày')}</label>
-                <div class="col-sm-7">
+                <label class="col-xs-5 col-sm-5 zb-form-label">${get_res('end_date','Đến ngày')}</label>
+                <div class="col-xs-7 col-sm-7">
                     <date-picker ng-model="entity.end_date" data-format="{{$root.systemConfig.date_format}}"/>
                 </div>
             </div>
             <div class="form-group zb-form-group">
-                <label class="col-sm-5 zb-form-label">${get_res('working_location','Đơn vị làm việc')}</label>
-                <div class="col-sm-7">
+                <label class="col-xs-5 col-sm-5 zb-form-label">${get_res('working_location','Đơn vị làm việc')}</label>
+                <div class="col-xs-7 col-sm-7">
                     <input-text ng-model="entity.working_location" required>
                 </div>
             </div>
             <div class="form-group zb-form-group">
-                <label class="col-sm-5 zb-form-label">${get_global_res('address','Địa chỉ')}</label>
-                <div class="col-sm-7">
+                <label class="col-xs-5 col-sm-5 zb-form-label">${get_global_res('address','Địa chỉ')}</label>
+                <div class="col-xs-7 col-sm-7">
                     <input-text ng-model="entity.address">
                 </div>
             </div>
             <div class="form-group zb-form-group">
-                <label class="col-sm-5 zb-form-label">${get_res('is_na_company','Công ty nhà nước')}</label>
-                <div class="col-sm-7">
+                <label class="col-xs-5 col-sm-5 zb-form-label">${get_res('is_na_company','Công ty nhà nước')}</label>
+                <div class="col-xs-7 col-sm-7">
                     <input-checkbox ng-model="entity.is_na_company"/>
                 </div>
             </div>
             <div class="form-group zb-form-group">
-                <label class="col-sm-5 zb-form-label">${get_res('is_in_section','Cty thuộc nghành')}</label>
-                <div class="col-sm-7">
+                <label class="col-xs-5 col-sm-5 zb-form-label">${get_res('is_in_section','Cty thuộc nghành')}</label>
+                <div class="col-xs-7 col-sm-7">
                     <input-checkbox ng-model="entity.is_in_section"/>
                 </div>
             </div>
             <div class="form-group zb-form-group">
-                <label class="col-sm-5 zb-form-label">${get_res('salary','Mức lương')}</label>
-                <div class="col-sm-7">
+                <label class="col-xs-5 col-sm-5 zb-form-label">${get_res('salary','Mức lương')}</label>
+                <div class="col-xs-7 col-sm-7">
                      <input-number ng-model="entity.salary" required/>
                 </div>
             </div>
             <div class="form-group zb-form-group">
-               <label for="inputLastName" class="col-sm-5 zb-form-label">${get_res('currency_code','Nguyên tệ')}</label>
-               <div class="col-sm-7">
+               <label for="inputLastName" class="col-xs-5 col-sm-5 zb-form-label">${get_res('currency_code','Nguyên tệ')}</label>
+               <div class="col-xs-7 col-sm-7">
                     <combobox   load-data="$root.$getComboboxData"  
                                 ng-model="entity.currency_code"
                                 params="{key:'${encryptor.get_key('cbb_currency')}', value:[{ '@lock': true }]}"
@@ -69,16 +69,16 @@
               </div>
             </div>
     </div>
-      <div class="col-md-6">
+      <div class="col-xs-12 col-md-6">
             <div class="form-group zb-form-group">
-                <label class="col-sm-5 zb-form-label">${get_res('working_on','Công cụ làm việc')}</label>
-                <div class="col-sm-7">
+                <label class="col-xs-5 col-sm-5 zb-form-label">${get_res('working_on','Công cụ làm việc')}</label>
+                <div class="col-xs-7 col-sm-7">
                     <input-text ng-model="entity.working_on">
                 </div>
             </div>
             <div class="form-group zb-form-group">
-                <label class="col-sm-5 zb-form-label">${get_res('job_pos_code','Chức vụ')}</label>
-                <div class="col-sm-7">
+                <label class="col-xs-5 col-sm-5 zb-form-label">${get_res('job_pos_code','Chức vụ')}</label>
+                <div class="col-xs-7 col-sm-7">
                     <combobox load-data="$root.$getComboboxData"  
                               ng-model="entity.job_pos_code"
                               params="{key:'${encryptor.get_key('cbb_position')}', value:[{ '@lock': true }]}"
@@ -95,8 +95,8 @@
                 </div>
             </div>
             <div class="form-group zb-form-group">
-                <label class="col-sm-5 zb-form-label">${get_res('job_w_code','Chức danh')}</label>
-                <div class="col-sm-7">
+                <label class="col-xs-5 col-sm-5 zb-form-label">${get_res('job_w_code','Chức danh')}</label>
+                <div class="col-xs-7 col-sm-7">
                      <!--<combobox title="{{comboboxInfo.title}}" 
                                 load-data="$combobox.loadData" 
                                 ng-model="entity.job_w_code"
@@ -115,8 +115,8 @@
                 </div>
             </div>
             <div class="form-group zb-form-group">
-                <label class="col-sm-5 zb-form-label">${get_res('profession_code','Chuyên môn')}</label>
-                <div class="col-sm-7">
+                <label class="col-xs-5 col-sm-5 zb-form-label">${get_res('profession_code','Chuyên môn')}</label>
+                <div class="col-xs-7 col-sm-7">
                     <combobox load-data="$root.$getComboboxData"  
                               ng-model="entity.profession_code"
                               params="{key:'${encryptor.get_key('cbb_profession')}', value:[{ '@lock': true }]}"
@@ -133,8 +133,8 @@
                 </div>
             </div>
             <div class="form-group zb-form-group">
-                <label class="col-sm-5 zb-form-label">${get_res('emp_type_code','Loại nhân viên')}</label>
-                <div class="col-sm-7">
+                <label class="col-xs-5 col-sm-5 zb-form-label">${get_res('emp_type_code','Loại nhân viên')}</label>
+                <div class="col-xs-7 col-sm-7">
                     <combobox load-data="$root.$getComboboxData"  
                               ng-model="entity.emp_type_code"
                               params="{key:'${encryptor.get_key('cbb_employee_type')}', value:[{ '@lock': true }]}"
@@ -151,14 +151,14 @@
                 </div>
             </div>
             <div class="form-group zb-form-group">
-                <label class="col-sm-5 zb-form-label">${get_res('reason','Lý do nghỉ việc')}</label>
-                <div class="col-sm-7">
+                <label class="col-xs-5 col-sm-5 zb-form-label">${get_res('reason','Lý do nghỉ việc')}</label>
+                <div class="col-xs-7 col-sm-7">
                     <input-text ng-model="entity.reason">
                 </div>
             </div>
             <div class="form-group zb-form-group">
-                <label class="col-sm-5 zb-form-label">${get_res('quit_job_code','Hình thức thôi việc')}</label>
-                <div class="col-sm-7">
+                <label class="col-xs-5 col-sm-5 zb-form-label">${get_res('quit_job_code','Hình thức thôi việc')}</label>
+                <div class="col-xs-7 col-sm-7">
                     <combobox load-data="$root.$getComboboxData"  
                               ng-model="entity.quit_job_code"
                               params="{key:'${encryptor.get_key('cbb_quit_job')}', value:[{ '@lock': true }]}"
@@ -177,32 +177,32 @@
     </div>
     </collapse-box>
 </div>
-<div class="col-md-{{col_group}} col-sm-{{col_group}}">
+<div class="col-xs-12 col-md-{{col_group}} col-sm-{{col_group}}">
     <collapse-box class="zb-form-common" title="${get_global_res('reference_information','Thông tin tham chiếu')}">
-        <div class="col-sm-12">
+        <div class="col-xs-12 col-sm-12">
             <!--Ghi chú-->
             <div class="form-group zb-form-group">
-                <div class="col-sm-12 no-padding">
+                <div class="col-xs-12 col-sm-12 no-padding">
                     <input-textarea rows="4" ng-model="entity.task"></input-textarea>
                 </div>
             </div>
         </div>  
     </collapse-box>
 </div>
-<div class="col-md-{{ 12 - col_group}} col-sm-{{ 12 - col_group}}">
+<div class="col-xs-12 col-md-{{ 12 - col_group}} col-sm-{{ 12 - col_group}}">
     <collapse-box class="zb-form-common" title="${get_global_res('Note','Ghi chú')}">
-        <div class="col-sm-12">
+        <div class="col-xs-12 col-sm-12">
             <!--Ghi chú-->
             <div class="form-group zb-form-group">
-                <div class="col-sm-12 no-padding">
+                <div class="col-xs-12 col-sm-12 no-padding">
                     <input-textarea rows="4" ng-model="entity.note"></input-textarea>
                 </div>
             </div>
         </div>
-        <div class="col-md-12" style="padding-top: 16px;">
+        <div class="col-xs-12 col-md-12" style="padding-top: 16px;">
             <div class="form-group zb-form-group">
-                <label for="DisplayInfo" class="col-sm-4 zb-form-label">${get_global_res('create_and_modify','Tạo | Sửa')}</label>
-                <div class="col-sm-8">
+                <label for="DisplayInfo" class="col-xs-4 col-sm-4 zb-form-label">${get_global_res('create_and_modify','Tạo | Sửa')}</label>
+                <div class="col-xs-8 col-sm-8">
                     <input-text value="{{ entity.created_on | date: $root.systemConfig.date_format}} {{entity.created_by}} | {{ entity.modified_on | date: $root.systemConfig.date_format}} {{entity.modified_by}}" ng-disabled="true">
                 </div>
             </div>

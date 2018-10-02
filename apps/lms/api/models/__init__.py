@@ -1,6 +1,6 @@
 import django
 import quicky
-import authorization
+
 import qmongo
 from qmongo import database, helpers
 from performance.api import models as extend
@@ -29,3 +29,6 @@ from LMS_SetupProcessApproveLevel import LMS_SetupProcessApproveLevel
 from LMSSYS_Value_List import LMSSYS_Value_List
 from LMSLS_ExExamination import LMSLS_ExExamination
 from LMSLS_ExResultType import LMSLS_ExResultType
+from LMSLS_Topic import LMSLS_Topic
+from LMSLS_Forum import LMSLS_Forum
+

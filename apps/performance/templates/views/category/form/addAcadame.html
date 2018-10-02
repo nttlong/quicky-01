@@ -5,150 +5,150 @@
 <%inherit file="../../commons/dialog_save_close.html"/>
 
 <%block name="modal_body">
-            <div class="col-md-{{col_group}} col-sm-{{col_group}}">
-                <collapse-box class="zb-form-common" title="${get_global_res('Common_Information','Thông tin chung')}">
-                    <div class="col-md-{{col}}">
-                        <div class="form-group zb-form-group">
-                            <!--Mã trình độ-->
-                            <label for="inputEmp_Train_Mode_Code" class="col-sm-5 zb-form-label">${get_res('train_level_code','Mã loại Trình độ')}</label>
-                            <div class="col-sm-7">
-                                <input-text id="inputEmp_Train_Mode_Code" ng-model="entity.train_level_code" ng-disabled="{{ __mode === 2 ? 'true' : 'false' }}" required>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-{{col}}">
-                        <div class="form-group zb-form-group">
-                            <!--Tên loại hình đào tạo-->
-                            <label for="inputEmp_Train_Mode_Name" class="col-sm-5 zb-form-label">${get_res('train_level_name','Tên loại Trình độ')}</label>
-                            <div class="col-sm-7">
-                                <input-text id="inputEmp_Train_Mode_Name" ng-model="entity.train_level_name" required>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-{{col}}">
-                        <div class="form-group zb-form-group">
-                            <label for="inputEmp_QuitJob_Type" class="col-sm-5 zb-form-label">${get_res('range','Phân loại trình độ')}</label>
-                            <div class="col-sm-7">
-                                <input-select data-list="cbbTrainCof" ng-model="entity.range"
-                                    placeholder="${get_res('range','Phân loại trình độ')}" 
-                                    data-value="value" 
-                                    data-caption="caption"/>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-{{col}}">
-                        <div class="form-group zb-form-group">
-                            <!--Tên khác-->
-                            <label for="inputEmp_Train_Mode_Name2" class="col-sm-5 zb-form-label">${get_res('train_level_name2','Tên khác')}</label>
-                            <div class="col-sm-7">
-                                <input-text id="inputEmp_Train_Mode_Name2" ng-model="entity.train_level_name2">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-{{col}}">
-                        <div class="form-group zb-form-group">
-                            <!--Thứ tự-->
-                            <label for="inputOrdinal" class="col-sm-5 zb-form-label">${get_res('ordinal','Thứ tự')}</label>
-                            <div class="col-sm-7">
-                                <input-number id="inputOrdinal" ng-model="entity.ordinal">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-{{col}}">
-                        <div class="form-group zb-form-group">
-                            <!--Ngưng sử dụng-->
-                            <label for="inputLock" class="col-sm-5 zb-form-label">${get_res('lock','Ngưng sử dụng')}</label>
-                            <div class="col-sm-7">
-                                <input-checkbox id="inputLock" ng-model="entity.lock">
-                            </div>
-                        </div>
-                    </div>
-                </collapse-box>
+<div class="col-xs-12 col-md-{{col_group}} col-sm-{{col_group}}">
+    <collapse-box class="zb-form-common" title="${get_global_res('Common_Information','Thông tin chung')}">
+        <div class="col-xs-{{col}} col-md-{{col}}">
+            <div class="form-group zb-form-group">
+                <!--Mã trình độ-->
+                <label for="inputEmp_Train_Mode_Code" class="col-xs-5 col-sm-5 zb-form-label">${get_res('train_level_code','Mã loại Trình độ')}</label>
+                <div class="col-xs-7 col-sm-7">
+                    <input-text id="inputEmp_Train_Mode_Code" ng-model="entity.train_level_code" ng-disabled="{{ __mode === 2 ? 'true' : 'false' }}" required>
+                </div>
             </div>
-            <div class="col-md-{{ 12 - col_group}} col-sm-{{ 12 - col_group}}">
-                <collapse-box class="zb-form-common" title="${get_global_res('Note','Ghi chú')}">
-                    <div class="row">
-                        <!--Ghi chú-->
-                        <div class="col-sm-12">
-                            <input-textarea rows="7" ng-model="entity.note"></input-textarea>
-                        </div>
-                    </div>
-                    <div class="col-md-12" style="padding-top: 16px;">
-                        <div class="form-group zb-form-group">
-                            <label for="DisplayInfo" class="col-sm-3 zb-form-label">${get_global_res('create_and_modify','Tạo | Sửa')}</label>
-                            <div class="col-sm-9">
-                                <input-text value="{{ entity.created_on | date: $root.systemConfig.date_format}} {{entity.created_by}} | {{ entity.modified_on | date: $root.systemConfig.date_format}} {{entity.modified_by}}" ng-disabled="true">
-                            </div>
-                        </div>
-                    </div>
-                </collapse-box>
+        </div>
+        <div class="col-xs-{{col}} col-md-{{col}}">
+            <div class="form-group zb-form-group">
+                <!--Tên loại hình đào tạo-->
+                <label for="inputEmp_Train_Mode_Name" class="col-xs-5 col-sm-5 zb-form-label">${get_res('train_level_name','Tên loại Trình độ')}</label>
+                <div class="col-xs-7 col-sm-7">
+                    <input-text id="inputEmp_Train_Mode_Name" ng-model="entity.train_level_name" required>
+                </div>
             </div>
-            <!--Thiết lập theo hệ số lương-->
-            <div class="col-md-12 col-sm-12" style="padding-bottom:20px;">
-                <collapse-box class="zb-form-common" title="${get_global_res('Set_by_salary','Thiết lập theo hệ số lương')}">
-                    <div class="col-md-{{col_conf_sal}}">
-                        <div class="form-group zb-form-group">
-                            <label for="inputEmp_coeff" class="col-sm-5 zb-form-label">${get_res('acadame_coeff','Thiết lập theo')}</label>
-                            <div class="col-sm-7">
-                                <input-select data-list="cbbCoeff" 
-                                ng-model="entity.coeff" 
-                                placeholder="${get_res('acadame_coeff','Thiết lập theo')}" 
-                                data-value="value" 
-                                data-caption="caption" />
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-{{col_conf_sal}}">
-                        <div class="form-group zb-form-group">
-                            <!--Hệ số cố định-->
-                            <label for="inputEmp_is_fix" class="col-sm-5 zb-form-label">${get_res('is_fix','Hệ số cố định')}</label>
-                            <div class="col-sm-7">
-                                <input-number id="inputEmp_is_fix" ng-model="entity.is_fix">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-{{col_conf_sal}}">
-                        <div class="form-group zb-form-group">
-                            <!--Tên loại hình đào tạo-->
-                            <label for="inputEmp_begin_date_cal" class="col-sm-5 zb-form-label">${get_res('begin_date_cal','Ngày bắt đầu tính thâm niên')}</label>
-                            <div class="col-sm-7">
-                                <input-select data-list="cbbBeginDateCal" ng-model="entity.begin_date_cal"
-                                    placeholder="${get_res('begin_date_cal','Ngày bắt đầu tính thâm niên')}" 
-                                    data-value="value" 
-                                    data-caption="caption"/>
-                            </div>
-                        </div>
-                    </div>
-                </collapse-box>
+        </div>
+        <div class="col-xs-{{col}} col-md-{{col}}">
+            <div class="form-group zb-form-group">
+                <label for="inputEmp_QuitJob_Type" class="col-xs-5 col-sm-5 zb-form-label">${get_res('range','Phân loại trình độ')}</label>
+                <div class="col-xs-7 col-sm-7">
+                    <input-select data-list="cbbTrainCof" ng-model="entity.range"
+                        placeholder="${get_res('range','Phân loại trình độ')}"
+                        data-value="value"
+                        data-caption="caption"/>
+                </div>
             </div>
-            <div class="col-md-12" ng-hide="entity.coeff != 2 && __mode != 1">
-                <collapse-box class="zb-form-common" title="${get_res('setting_acadame','Thiết lập chi tiết Trình độ học vấn')}">
-                    <toolbar>
-                        <input-text-icon icon="bowtie-icon bowtie-search"
-                                         on-click="onSearch"></input-text-icon>
-                        <button ng-click="addDetail()" class="zb-btn zb-btn-o-green">
-                            <i class="bowtie-icon bowtie-math-plus"></i>
-                        </button>
-                        <button ng-click="editDetail()" class="zb-btn zb-btn-o-blue">
-                            <i class="bowtie-icon bowtie-edit-outline"></i>
-                        </button>
-                        <button ng-click="deleteDetail()" class="zb-btn zb-btn-o-red">
-                            <i class="bowtie-icon bowtie-trash"></i>
-                        </button>
-                        <button ng-click="" class="zb-btn">
-                            <i class="bowtie-icon bowtie-navigate-refresh"></i>
-                        </button>
-                    </toolbar>
-                    <div class="col-md-12 no-padding" style="height:230px;">
-                    <table-data data-source="$$table.tableSource" fields="$$table.tableFields" type="MultiSelect" 
-                        paging="true" page-length="100" server-side="true" 
-                        press-enter="$$table.onSelectTableRow" selected-items="$$table.selectedItems"
-                        current-item="$$table.currentItem" search-text="$$table.tableSearchText"
-                        refresh-row="$$table.refreshDataRow">
-                    </table-data>
-                    </div>
-                </collapse-box>
+        </div>
+        <div class="col-xs-{{col}} col-md-{{col}}">
+            <div class="form-group zb-form-group">
+                <!--Tên khác-->
+                <label for="inputEmp_Train_Mode_Name2" class="col-xs-5 col-sm-5 zb-form-label">${get_res('train_level_name2','Tên khác')}</label>
+                <div class="col-xs-7 col-sm-7">
+                    <input-text id="inputEmp_Train_Mode_Name2" ng-model="entity.train_level_name2">
+                </div>
             </div>
+        </div>
+        <div class="col-xs-{{col}} col-md-{{col}}">
+            <div class="form-group zb-form-group">
+                <!--Thứ tự-->
+                <label for="inputOrdinal" class="col-xs-5 col-sm-5 zb-form-label">${get_res('ordinal','Thứ tự')}</label>
+                <div class="col-xs-7 col-sm-7">
+                    <input-number id="inputOrdinal" ng-model="entity.ordinal">
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-{{col}} col-md-{{col}}">
+            <div class="form-group zb-form-group">
+                <!--Ngưng sử dụng-->
+                <label for="inputLock" class="col-xs-5 col-sm-5 zb-form-label">${get_res('lock','Ngưng sử dụng')}</label>
+                <div class="col-xs-7 col-sm-7">
+                    <input-checkbox id="inputLock" ng-model="entity.lock">
+                </div>
+            </div>
+        </div>
+    </collapse-box>
+</div>
+<div class="col-xs-12 col-md-{{ 12 - col_group}} col-sm-{{ 12 - col_group}}">
+    <collapse-box class="zb-form-common" title="${get_global_res('Note','Ghi chú')}">
+        <div class="row">
+            <!--Ghi chú-->
+            <div class="col-xs-12 col-sm-12">
+                <input-textarea rows="7" ng-model="entity.note"></input-textarea>
+            </div>
+        </div>
+        <div class="col-xs-12 col-md-12" style="padding-top: 16px;">
+            <div class="form-group zb-form-group">
+                <label for="DisplayInfo" class="col-xs-3 col-sm-3 zb-form-label">${get_global_res('create_and_modify','Tạo | Sửa')}</label>
+                <div class="col-xs-9 col-sm-9">
+                    <input-text value="{{ entity.created_on | date: $root.systemConfig.date_format}} {{entity.created_by}} | {{ entity.modified_on | date: $root.systemConfig.date_format}} {{entity.modified_by}}" ng-disabled="true">
+                </div>
+            </div>
+        </div>
+    </collapse-box>
+</div>
+<!--Thiết lập theo hệ số lương-->
+<div class="col-xs-12 col-md-12 col-sm-12" style="padding-bottom:20px;">
+    <collapse-box class="zb-form-common" title="${get_global_res('Set_by_salary','Thiết lập theo hệ số lương')}">
+        <div class="col-xs-12 col-md-{{col_conf_sal}}">
+            <div class="form-group zb-form-group">
+                <label for="inputEmp_coeff" class="col-xs-5 col-sm-5 zb-form-label">${get_res('acadame_coeff','Thiết lập theo')}</label>
+                <div class="col-xs-7 col-sm-7">
+                    <input-select data-list="cbbCoeff"
+                    ng-model="entity.coeff"
+                    placeholder="${get_res('acadame_coeff','Thiết lập theo')}"
+                    data-value="value"
+                    data-caption="caption" />
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-12 col-md-{{col_conf_sal}}">
+            <div class="form-group zb-form-group">
+                <!--Hệ số cố định-->
+                <label for="inputEmp_is_fix" class="col-xs-5 col-sm-5 zb-form-label">${get_res('is_fix','Hệ số cố định')}</label>
+                <div class="col-xs-7 col-sm-7">
+                    <input-number id="inputEmp_is_fix" ng-model="entity.is_fix">
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-12 col-md-{{col_conf_sal}}">
+            <div class="form-group zb-form-group">
+                <!--Tên loại hình đào tạo-->
+                <label for="inputEmp_begin_date_cal" class="col-xs-5 col-sm-5 zb-form-label">${get_res('begin_date_cal','Ngày bắt đầu tính thâm niên')}</label>
+                <div class="col-xs-7 col-sm-7">
+                    <input-select data-list="cbbBeginDateCal" ng-model="entity.begin_date_cal"
+                        placeholder="${get_res('begin_date_cal','Ngày bắt đầu tính thâm niên')}"
+                        data-value="value"
+                        data-caption="caption"/>
+                </div>
+            </div>
+        </div>
+    </collapse-box>
+</div>
+<div class="col-xs-12 col-md-12" ng-hide="entity.coeff != 2 && __mode != 1">
+    <collapse-box class="zb-form-common" title="${get_res('setting_acadame','Thiết lập chi tiết Trình độ học vấn')}">
+        <toolbar>
+            <input-text-icon icon="bowtie-icon bowtie-search"
+                             on-click="onSearch"></input-text-icon>
+            <button ng-click="addDetail()" class="zb-btn zb-btn-o-green">
+                <i class="bowtie-icon bowtie-math-plus"></i>
+            </button>
+            <button ng-click="editDetail()" class="zb-btn zb-btn-o-blue">
+                <i class="bowtie-icon bowtie-edit-outline"></i>
+            </button>
+            <button ng-click="deleteDetail()" class="zb-btn zb-btn-o-red">
+                <i class="bowtie-icon bowtie-trash"></i>
+            </button>
+            <button ng-click="" class="zb-btn">
+                <i class="bowtie-icon bowtie-navigate-refresh"></i>
+            </button>
+        </toolbar>
+        <div class="col-xs-12 col-md-12 no-padding" style="height:230px;">
+        <table-data data-source="$$table.tableSource" fields="$$table.tableFields" type="MultiSelect"
+            paging="true" page-length="100" server-side="true"
+            press-enter="$$table.onSelectTableRow" selected-items="$$table.selectedItems"
+            current-item="$$table.currentItem" search-text="$$table.tableSearchText"
+            refresh-row="$$table.refreshDataRow">
+        </table-data>
+        </div>
+    </collapse-box>
+</div>
 </%block>
 
 <%block name="modal_script">

@@ -5,6 +5,7 @@
                   on-save="onSave" 
                   on-import="onImport" 
                   on-export="onExport"
+                  on-refresh="onRefresh"
                   on-search-press="onSearch"
                   source="mapName" 
                   key-field="function_id" 
@@ -12,10 +13,23 @@
                   icon-field="icon" 
                   selected-key="selectedFunction"
                   reload-on-change="false">
-        <site-map>
-            <a><span>{{$root.currentFunction.default_name}}</span></a>
-            <span><i class="bowtie-icon bowtie-chevron-right"></i></span>
-            <span>{{currentFunction.default_name}}</span></site-map>
+        <site-map class="hcs-res-site-map-mobile ng-scope">
+            <div class="hcs-res-site-map-mobile-left">
+                <a><span>{{$root.currentFunction.default_name}}</span></a>
+                <span><i class="bowtie-icon bowtie-chevron-right"></i></span>
+                <span>{{currentFunction.default_name}}</span>
+            </div>
+            <div class="hcs-resp-action-zb-left-content hcs-res-site-map-mobile-right" style="float: right;">
+                <button ng-if="isChangeFunc" class="zb-btn zb-btn-o-green ng-scope hcs-menu-mobile"
+                        ng-click="$root.doToggle('.hcs-left-side-department-content')">
+                    <i class="bowtie-icon bowtie-menu"></i>
+                </button>
+                <button class="zb-btn zb-btn-o-green ng-scope"
+                        ng-click="$root.doToggle('.zb-right-content')">
+                    <i class="bowtie-icon bowtie-set-actions"></i>
+                </button>
+            </div>
+        </site-map>
         <!--on-search-change="onSearch"-->
         <advanced-search>
             <div class="col-md-3">

@@ -42,8 +42,9 @@ def get_list_with_searchtext(args):
         modified_by="switch(case(modified_by!='',um.login_account),'')",
     )
 
-    if(searchText != None):
-        items.match("contains(room_name, @name)",name=searchText)
+    if (searchText != None):
+        items.match("contains(room_code, @name) or contains(room_name, @name)" + \
+                  " or contains(supplier_code, @name) or contains(room_map, @name)", name=searchText.strip())
 
     if(sort != None):
         items.sort(sort)

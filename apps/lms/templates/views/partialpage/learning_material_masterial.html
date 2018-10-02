@@ -52,7 +52,7 @@ span.stars span {
                 </table-data>
             </div>
         </div>
-        <div class="hcs-right-side-department-content" ng-show="$parent.isGrid">
+        <div class="hcs-right-side-department-content" ng-show="$parent.isGrid" style="overflow:auto">
             <div class="hcs-right-side-department-content-grid">
                 <div class="col-md-6 hcs-right-side-department-content-grid-data" ng-repeat="item in ItemTables" ng-click="fnSelectDataGrid(item)" ng-dblclick="onSelectTableRow()">
                     <div class="lmm-item-material">
@@ -71,17 +71,9 @@ span.stars span {
                         <div class="row">
                             <div class="col-md-4 col-lg-4 col-sm-4">
                                 <div class="lmm-container-item-body">
-                                    <table width="100%" cellspacing="0" cellpadding="0" height="100%" style="table-layout: fixed;">
-                                        <tbody>
-                                            <tr>
-                                                <td>
-                                                    <a href="#">
-                                                        <img ng-src="{{$root.url_static}}{{item.files['file_thumbnail']}}" style="max-width: 103px;"/>
-                                                    </a>
-                                                </td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
+                                     <a href="#">
+                                         <img ng-src="{{$root.url_static}}{{item.file_thumbnail}}" style="max-width: 103px;margin:0 auto;display:block;width: 100%;"/>
+                                     </a>
                                 </div>
                                 <div class="lmm-container-item-star">
 									 <!--<div ng-repeat="rating in [item.total_rating]">

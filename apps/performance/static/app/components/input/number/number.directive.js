@@ -5,9 +5,9 @@
         .module('ZebraApp.components.inputs')
         .directive('inputNumber', inputNumber);
 
-    inputNumber.$inject = ['$window', "$parse", "$filter", "$locale"];
+    inputNumber.$inject = ['$window', "$parse", "$filter", "$locale", "templateService"];
     
-    function inputNumber($window, $parse, $filter, $locale) {
+    function inputNumber($window, $parse, $filter, $locale, templateService) {
         // Usage:
         //     <input-number></input-number>
         // Creates:
@@ -15,10 +15,11 @@
         var directive = {
             link: link,
             restrict: 'ECA',
-            template: template(),
+            templateUrl: templateService.getStatic("app/components/input/number/number.html"),
             scope: {
                 ngModel: "=",
-                ngChange: "&"
+                ngChange: "&",
+                ngDisabled: "="
             }
         };
         return directive;
@@ -146,15 +147,6 @@
                     }
                 })
             }
-        }
-
-        function template() {
-            return `
-                <div class="form-control zb-form-input" style='overflow-y:hidden;margin-top:0;margin-bottom:0;display: block'>
-                    <input type="text" style='outline:none;width:100%;height: 100%;border:none;-webkit-appearance:none;text-align:right' />
-                    <input type="number" style='outline:none;width:100%;height: 100%;border:none;-webkit-appearance:none;display:none' />
-                </div>
-                `;
         }
     }
 

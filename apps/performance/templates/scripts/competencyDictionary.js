@@ -1,6 +1,7 @@
-﻿(function (scope) {
+﻿﻿(function (scope) {
     scope.filterFunctionModel = ''
     scope.currentFunction = '';
+    scope.isChangeFunc = false;
     scope.mapName = [];
     scope.cbbSysLock = [];
     scope.selectFunc = function (event, f) {

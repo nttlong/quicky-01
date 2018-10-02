@@ -2,6 +2,7 @@
     /**
      * Table
      */
+     scope.$parent.$parent.$parent.isChangeFunc = true;
     scope.$$table = {
         tableFields: [
             { "data": "kpi_code", "title": "${get_res('kpi_code_table_header','Mã')}", "className":"text-left" },

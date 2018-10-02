@@ -1,9 +1,10 @@
-﻿(function (scope) {
+﻿﻿(function (scope) {
 
-		
+    scope.urls = scope.$root.url_static;
     scope.$root.extendToolbar = true;
-
-    scope.$root.isDisplay = true;
+    scope.$root.isDisplayManagermentButton = false;
+    scope.$root.isDisplayBasicButton =false;
+    scope.$root.isDisplay = false;
     scope.__tableSource = [];
     scope.mode = 0;
     scope.showDetail = false;
@@ -24,10 +25,18 @@
     //Cấu hình tên field và caption hiển thị trên UI
     scope.tableFields = [
             { "data": "material_id", "title": "${get_res('material_id_table_header','ID')}" },
-            { "data": "material_name", "title": "${get_res('material_name_table_header','File Name')}" },
+            { "data": "material_name", "title": "${get_res('material_name_table_header','File Name')}"
+                            , "format": "icon", "type": "link", "icon": "files", "position": "left" },
             { "data": "material_type", "title": "${get_res('material_type_table_header','File Type')}" },
             { "data": "size_files", "title": "${get_res('Size_table_header','Size')}" },
-            { "data": "creator", "title": "${get_res('creator_table_header','Created by')}" },
+            { "data": "creator", "title": "${get_res('creator_table_header','Created by')}"
+                            ,"expr":function(row, data, func){
+                func(function(){
+                    return "<img class='hcs-small-img' src='" + scope.urls + "css/icon/approver_tr.png" + "'/>"+ " " + row.creator ;
+
+                });
+                return true;
+            } },
             { "data": "num_downloads", "title": "${get_res('Number_download_table_header','No. of Download')}" },
             { "data": "last_downloads", "title": "${get_res('latest_download_table_header','Latest Downloaded on')}","format": "date:" + 'dd/MM/yyyy h:mm:ss a' },
         

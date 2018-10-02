@@ -77,6 +77,7 @@ def insert(args):
     try:
         lock.acquire()
         ret = {}
+
         if args['data'] != None:
             for i in args['data']['question_list']:
                 if i.has_key('$$regKey'):
@@ -93,6 +94,7 @@ def insert(args):
                             del a['$$selectKey']
                         if a.has_key('$$hashKey'):
                             del a['$$hashKey']
+        if (args['data'] != None):
             data = set_dict_insert_data(args)
             ret = models.LMSLS_ExTemplateList().insert(data)
             lock.release()

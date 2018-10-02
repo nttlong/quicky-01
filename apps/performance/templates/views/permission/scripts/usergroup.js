@@ -61,8 +61,12 @@
     scope.$parent.$parent.$parent.onDelete = onDelete;
     scope.$parent.$parent.$parent.onCopy = onCopy;
     scope.$parent.$parent.$parent.onSearch = onSearch;
+    scope.$parent.$parent.$parent.onRefresh = reloadData;
     //scope.$parent.$parent.$parent.onExport = onExport;
     //scope.$parent.$parent.$parent.onImport = onImport;
+    function reloadData(){
+        _tableData(scope.$$tableConfig.iPage, scope.$$tableConfig.iPageLength, scope.$$tableConfig.orderBy, scope.$$tableConfig.SearchText, scope.$$tableConfig.fnReloadData);
+    }
     scope._tableData = _tableData;
     scope.$applyAsync();
     /**

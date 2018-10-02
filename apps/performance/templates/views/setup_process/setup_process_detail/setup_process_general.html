@@ -1,0 +1,362 @@
+﻿
+<div class="tab-pane" style="padding-right:unset; height: 100%; overflow-y:hidden; overflow:auto; background-color:#fff;">
+	<div class="tabbable-panel">
+		<div class="tabbable-line">
+			<div class="hcs-tab-info">
+                <div class="col-md-12 competency no-padding">
+                    <div class="col-md-3 active" href="#tab_default_1" data-toggle="tab" ng-click="changeActive($event)">
+                        <img src="${get_static('assets/images/Setting.png')}" style="width:30px; margin-top:8px; margin-right:15px;"/>
+                        <label>
+                            ${get_res('config-general','Thiết lập chung')}
+                        </label>
+                    </div>
+                    <div class="col-md-3" href="#tab_default_2" data-toggle="tab" ng-click="changeActive($event)">
+                        <img src="${get_static('assets/images/Email.png')}" style="margin-top:0px"/>
+                        <label style="padding-left:5px;">
+                            ${get_res('email_confirm','Email thông báo')}
+                        </label>
+                    </div>
+                </div>
+            </div>
+			<div class="tab-content">
+                <div class="tab-pane active" id="tab_default_1">
+                    <div class="col-md-12">
+                     <!--<collapse-box class="zb-form-common" title="${get_res('general_config','Thiết lập chung')}">
+                        <toolbar class="eeeeee">
+                            <button ng-click="onSave()" class="zb-btn zb-btn-o-black" style="float:right">
+                                <i class="bowtie-icon bowtie-save"></i>
+                            </button>
+                        </toolbar>-->
+                            <div class="col-md-6">
+                                <div class="form-group zb-form-group" ng-if="__mode === 1 ? true : false">
+                                    <!--Mã nhân viên-->
+                                    <label class="col-sm-6 zb-form-label">${get_res('process_id','Mã quy trình')}</label>
+                                    <div class="col-sm-6">
+                                        <input-text required ng-model="entity.process_id" ng-disabled="__mode === 2 ? true : false"/>
+                                    </div>
+                                </div>
+                                <div class="form-group zb-form-group" ng-if="__mode === 1 ? true : false">
+                                    <!--Họ-->
+                                    <label for="inputLastName" class="col-sm-6 zb-form-label">${get_res('process_name','Tên quy trình')}</label>
+                                    <div class="col-sm-6">
+                                        <input-text ng-model="entity.process_name" required/>
+                                    </div>
+                                </div>
+                                <div class="form-group zb-form-group" ng-if="__mode === 1 ? true : false">
+                                    <!--Họ-->
+                                    <label for="inputLastName" class="col-sm-6 zb-form-label">${get_res('function_id','FunctionID')}</label>
+                                    <div class="col-sm-6">
+                                        <input-text ng-model="entity.function_id" required/>
+                                    </div>
+                                </div>
+                                <div class="form-group zb-form-group">
+                                    <!--Tên-->
+                                    <label class="col-sm-6 zb-form-label">${get_res('is_not_apply_process','Không áp dụng theo cấp duyệt')}</label>
+                                    <div class="col-sm-6">
+                                        <input-checkbox ng-model="entity.is_not_apply_process"/>
+                                    </div>
+                                </div>
+                                <div class="form-group zb-form-group">
+                                    <!--Bí danh-->
+                                    <label class="col-sm-6 zb-form-label">${get_res('max_approve_level','Số cấp duyệt')}</label>
+                                    <div class="col-sm-6">
+                                        <input-number ng-model="entity.max_approve_level"/>
+                                    </div>
+                                </div>
+                                 <div class="form-group zb-form-group">
+                                    <!--Tên-->
+                                    <label class="col-sm-6 zb-form-label">${get_res('is_approve_by_dept','Cấp duyệt thiết lập theo bộ phận')}</label>
+                                    <div class="col-sm-6">
+                                        <input-checkbox ng-model="entity.is_approve_by_dept"/>
+                                    </div>
+                                </div>
+                                <div class="form-group zb-form-group">
+                                    <!--Tên-->
+                                    <label class="col-sm-6 zb-form-label">${get_res('is_select_approvers','Cho phép User tự chọn lại Người duyệt')}</label>
+                                    <div class="col-sm-6">
+                                        <input-checkbox ng-model="entity.is_select_approver"/>
+                                    </div>
+                                </div>
+                                <div class="form-group zb-form-group">
+                                    <!--Tên-->
+                                    <label class="col-sm-6 zb-form-label">${get_res('is_require_when_approves','Bắt buộc nhập lý do khi Duyệt đồng ý')}</label>
+                                    <div class="col-sm-6">
+                                        <input-checkbox ng-model="entity.is_require_when_approve"/>
+                                    </div>
+                                </div>
+                                <div class="form-group zb-form-group">
+                                    <!--Tên-->
+                                    <label class="col-sm-6 zb-form-label">${get_res('is_require_when_rejects','Bắt buộc nhập lý do khi duyệt Không đồng ý')}</label>
+                                    <div class="col-sm-6">
+                                        <input-checkbox ng-model="entity.is_require_when_reject"/>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group zb-form-group">
+                                    <!--Tên-->
+                                    <label class="col-sm-6 zb-form-label">${get_res('is_show_list_approver','Hiển thị Lịch sử Quá trình Duyệt đề xuất')}</label>
+                                    <div class="col-sm-6">
+                                        <input-checkbox ng-model="entity.is_show_list_approver"/>
+                                    </div>
+                                </div>
+                                <div class="form-group zb-form-group">
+                                    <!--Tên-->
+                                    <label class="col-sm-6 zb-form-label">${get_res('is_require_attach_file','Yêu cầu Đính kèm file khi gửi')}</label>
+                                    <div class="col-sm-6">
+                                        <input-checkbox ng-model="entity.is_require_attach_file"/>
+                                    </div>
+                                </div>
+                                <div class="form-group zb-form-group">
+                                    <!--Bí danh-->
+                                    <label class="col-sm-6 zb-form-label">${get_res('file_size_limit','Giới hạn kích thước file (MB)')}</label>
+                                    <div class="col-sm-6">
+                                        <input-number ng-model="entity.file_size_limit"/>
+                                    </div>
+                                </div>
+                                <div class="form-group zb-form-group">
+                                    <!--Bí danh-->
+                                    <label class="col-sm-6 zb-form-label">${get_res('exclude_file_type','Không upload loại file (*.exe, *.mvc...)')}</label>
+                                    <div class="col-sm-6">
+                                        <input-text ng-model="entity.exclude_file_types"/>
+                                    </div>
+                                </div>
+                                <div class="form-group zb-form-group">
+                                   <label for="DisplayInfo" class="col-sm-6 zb-form-label">${get_global_res('create_and_modify','Tạo | Sửa')}</label>
+                                        <div class="col-sm-6">
+                                            <input-text value="{{ entity.created_on | date: $root.systemConfig.date_format}} {{entity.created_by}} | {{ entity.modified_on | date: $root.systemConfig.date_format}} {{entity.modified_by}}" ng-disabled="true"/>
+                                        </div>
+                                </div>
+                            </div>
+                        <!--</collapse-box>-->
+                    </div>
+                </div>
+                <div class="tab-pane" id="tab_default_2">
+                    <div class="col-md-6">
+                    <!--<div class="col-md-6">-->
+                        <collapse-box class="zb-form-common" title="${get_res('email_send','Email gửi duyệt')}">
+                            <div class="col-md-12">
+                                <div class="form-group zb-form-group">
+                                    <label class="col-sm-5 zb-form-label">${get_res('email_send_code','Mẫu Email')}</label>
+                                    <div class="col-sm-7">
+                                        <combobox load-data="$root.$getComboboxData"
+                                            ng-model="entity.email_send_code"
+                                            params="{key:'${encryptor.get_key('cbb_province')}', value:[{ '@lock': true }]}"
+                                            on-search-change="false"
+                                            on-search-press="true"
+                                            placeholder=""
+                                            init-data="$$$b_cbb_province.value"
+                                            caption-field="{{$$$b_cbb_province.caption_field}}"
+                                            paging="true"
+                                            close-on-select="true"
+                                            template-fields="$$$b_cbb_province.display_fields"
+                                            reload="false">
+                                        </combobox>
+                                    </div>
+                                </div>
+                                <div class="form-group zb-form-group">
+                                    <label  class="col-sm-5 zb-form-label">${get_res('email_send_to','Gửi tới')}</label>
+                                    <div class="col-sm-7">
+                                          <input-multi-select data-list="cbbLSendEmailTo" ng-model="entity.email_send_to"
+                                                              data-value="value" data-caption="caption"/>
+                                    </div>
+                                </div>
+                                <div class="form-group zb-form-group">
+                                    <label  class="col-sm-5 zb-form-label">${get_res('email_send_cc','Gửi thêm tới')}</label>
+                                    <div class="col-sm-7">
+                                        <input-multi-select ng-model="entity.email_send_cc" data-list="cbbLSendEmailCC"
+                                                            data-value="value" data-caption="caption" />
+                                    </div>
+                                </div>
+                                <div class="form-group zb-form-group">
+                                    <label  class="col-sm-5 zb-form-label">${get_res('email_send_more','Gửi chỉ định tới')}</label>
+                                    <div class="col-sm-7">
+                                        <input-text ng-model="entity.email_send_more" />
+                                    </div>
+                                </div>
+                            </div>
+                        </collapse-box>
+                    <!--</div>-->
+                    <!--<div class="col-md-6">-->
+                        <collapse-box class="zb-form-common" title="${get_res('email_delete','Email xoá')}">
+                            <div class="col-md-12">
+                                <div class="form-group zb-form-group">
+                                    <label class="col-sm-5 zb-form-label">${get_res('email_send_code','Mẫu Email')}</label>
+                                    <div class="col-sm-7">
+                                        <combobox load-data="$root.$getComboboxData"
+                                            ng-model="entity.email_delete_code"
+                                            params="{key:'${encryptor.get_key('cbb_province')}', value:[{ '@lock': true }]}"
+                                            on-search-change="false"
+                                            on-search-press="true"
+                                            placeholder=""
+                                            init-data="$$$b_cbb_province.value"
+                                            caption-field="{{$$$b_cbb_province.caption_field}}"
+                                            paging="true"
+                                            close-on-select="true"
+                                            template-fields="$$$b_cbb_province.display_fields"
+                                            reload="false">
+                                        </combobox>
+                                    </div>
+                                </div>
+                                <div class="form-group zb-form-group">
+                                    <label  class="col-sm-5 zb-form-label">${get_res('email_send_to','Gửi tới')}</label>
+                                    <div class="col-sm-7">
+                                        <input-multi-select data-list="cbbLEmailDeleteTo" ng-model="entity.email_delete_to"
+                                                              data-value="value" data-caption="caption"/>
+                                    </div>
+                                </div>
+                                <div class="form-group zb-form-group">
+                                    <label  class="col-sm-5 zb-form-label">${get_res('email_send_cc','Gửi thêm tới')}</label>
+                                    <div class="col-sm-7">
+                                        <input-multi-select data-list="cbbLEmailDeleteCC" ng-model="entity.email_delete_cc"
+                                                              data-value="value" data-caption="caption"/>
+                                    </div>
+                                </div>
+                                <div class="form-group zb-form-group">
+                                    <label  class="col-sm-5 zb-form-label">${get_res('email_send_more','Gửi chỉ định tới')}</label>
+                                    <div class="col-sm-7">
+                                        <input-text ng-model="entity.email_delete_more" />
+                                    </div>
+                                </div>
+                            </div>
+                        </collapse-box>
+                    <!--</div>-->
+                    </div>
+                    <div class="col-md-6">
+                    <!--<div class="col-md-6">-->
+                        <collapse-box class="zb-form-common" title="${get_res('email_cancel','Email xin huỷ')}">
+                            <div class="col-md-12">
+                                <div class="form-group zb-form-group">
+                                    <label class="col-sm-5 zb-form-label">${get_res('email_send_code','Mẫu Email')}</label>
+                                    <div class="col-sm-7">
+                                        <combobox load-data="$root.$getComboboxData"
+                                            ng-model="entity.email_cancel_code"
+                                            params="{key:'${encryptor.get_key('cbb_province')}', value:[{ '@lock': true }]}"
+                                            on-search-change="false"
+                                            on-search-press="true"
+                                            placeholder=""
+                                            init-data="$$$b_cbb_province.value"
+                                            caption-field="{{$$$b_cbb_province.caption_field}}"
+                                            paging="true"
+                                            close-on-select="true"
+                                            template-fields="$$$b_cbb_province.display_fields"
+                                            reload="false">
+                                        </combobox>
+                                    </div>
+                                </div>
+                                <div class="form-group zb-form-group">
+                                    <label  class="col-sm-5 zb-form-label">${get_res('email_send_to','Gửi tới')}</label>
+                                    <div class="col-sm-7">
+                                        <input-multi-select data-list="cbbLEmailCancelTo" ng-model="entity.email_cancel_to"
+                                                              data-value="value" data-caption="caption"/>
+                                    </div>
+                                </div>
+                                <div class="form-group zb-form-group">
+                                    <label  class="col-sm-5 zb-form-label">${get_res('email_send_cc','Gửi thêm tới')}</label>
+                                    <div class="col-sm-7">
+                                        <input-multi-select data-list="cbbLEmailCancelCC" ng-model="entity.email_cancel_cc"
+                                                              data-value="value" data-caption="caption"/>
+                                    </div>
+                                </div>
+                                <div class="form-group zb-form-group">
+                                    <label  class="col-sm-5 zb-form-label">${get_res('email_send_more','Gửi chỉ định tới')}</label>
+                                    <div class="col-sm-7">
+                                        <input-text ng-model="entity.email_cancel_more" />
+                                    </div>
+                                </div>
+                            </div>
+                        </collapse-box>
+                    <!--</div>-->
+                    <!--<div class="col-md-6">-->
+                        <collapse-box class="zb-form-common" title="${get_res('email_instead','Email duyệt thay Quy trình tại Ứng dụng')}">
+                            <div class="col-md-12">
+                                <div class="form-group zb-form-group">
+                                    <label class="col-sm-5 zb-form-label">${get_res('email_send_code','Mẫu Email')}</label>
+                                    <div class="col-sm-7">
+                                        <combobox load-data="$root.$getComboboxData"
+                                            ng-model="entity.email_instead_code"
+                                            params="{key:'${encryptor.get_key('cbb_province')}', value:[{ '@lock': true }]}"
+                                            on-search-change="false"
+                                            on-search-press="true"
+                                            placeholder=""
+                                            init-data="$$$b_cbb_province.value"
+                                            caption-field="{{$$$b_cbb_province.caption_field}}"
+                                            paging="true"
+                                            close-on-select="true"
+                                            template-fields="$$$b_cbb_province.display_fields"
+                                            reload="false">
+                                        </combobox>
+                                    </div>
+                                </div>
+                                <div class="form-group zb-form-group">
+                                    <label  class="col-sm-5 zb-form-label">${get_res('email_send_to','Gửi tới')}</label>
+                                    <div class="col-sm-7">
+                                        <input-multi-select data-list="cbbLEmailInsteadTo" ng-model="entity.email_instead_to"
+                                                              data-value="value" data-caption="caption"/>
+                                    </div>
+                                </div>
+                                <div class="form-group zb-form-group">
+                                    <label  class="col-sm-5 zb-form-label">${get_res('email_send_cc','Gửi thêm tới')}</label>
+                                    <div class="col-sm-7">
+                                        <input-multi-select data-list="cbbLEmailInsteadCC" ng-model="entity.email_instead_cc"
+                                                              data-value="value" data-caption="caption"/>
+                                    </div>
+                                </div>
+                                <div class="form-group zb-form-group">
+                                    <label  class="col-sm-5 zb-form-label">${get_res('email_send_more','Gửi chỉ định tới')}</label>
+                                    <div class="col-sm-7">
+                                        <input-text ng-model="entity.email_cancel_more" />
+                                    </div>
+                                </div>
+                            </div>
+                        </collapse-box>
+                    <!--</div>-->
+                    </div>
+                    <div class="col-md-12">
+                     <collapse-box class="zb-form-common" title="${get_res('tan_suat_gui_email','Tần suất gửi Email')}">
+                        <div class="col-md-6">
+                            <div class="form-group zb-form-group">
+                                <div class="col-sm-7">
+                                      <label class="radio">${get_res('is_send_email_pronto','Gửi ngay khi có phát sinh')}
+                                          <input type="radio" ng-click="onChangeRadioButton(1)" ng-value="true" name="GroupA" ng-model="entity.is_send_email_pronto">
+                                          <span class="checkround"></span>
+                                      </label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group zb-form-group">
+                                <div class="col-sm-7">
+                                    <label class="radio">${get_res('is_send_email_once','Gửi danh sách một lần trong ngày')}
+                                          <input type="radio" ng-click="onChangeRadioButton(2)" ng-value="true" name="GroupA" ng-model="entity.is_send_email_once">
+                                          <span class="checkround"></span>
+                                      </label>
+                                </div>
+                            </div>
+                            <div class="form-group zb-form-group">
+                                <!--Họ-->
+                                <label class="col-sm-6 zb-form-label">${get_res('is_send_email_once_from_hour','Từ giờ')}</label>
+                                <div class="col-sm-6">
+                                    <time-picker class="lv-time-picker" ng-model="entity.is_send_email_once_from_hour" format="HH:mm"
+                                                 ng-disabled="true" disable="disable"></time-picker>
+                                </div>
+                            </div>
+                            <div class="form-group zb-form-group">
+                                <!--Tên-->
+                                <label class="col-sm-6 zb-form-label">${get_res('is_send_email_once_to_hour','Đến giờ')}</label>
+                                <div class="col-sm-6">
+                                    <time-picker class="lv-time-picker" ng-model="entity.is_send_email_once_to_hour" format="HH:mm"
+                                                 ng-disabled="true"></time-picker>
+                                </div>
+                            </div>
+                        </div>
+                    </collapse-box>
+                </div>
+                </div>
+			</div>
+		</div>
+	</div>
+</div>
+<script>
+<%include file = "scripts/setup_process_general.js" />
+</script>

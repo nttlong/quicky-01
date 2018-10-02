@@ -15,7 +15,7 @@
 
     </main>
  <script>
-      var app=angular.module("admin",["c-ui","ui"]);
+      var app=angular.module("admin",["c-ui"]);
       app.controller("admin",["$dialog","$scope",function($dialog,$scope){
             $scope.VIEW_ID="${register_view()}"
           $dialog($scope)

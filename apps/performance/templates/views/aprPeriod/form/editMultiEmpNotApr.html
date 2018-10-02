@@ -68,8 +68,11 @@
 
 		scope.entity = {};
 		scope.selectBtn = selectBtn;
+		scope.cancelBtn = cancelBtn;
+		function cancelBtn() {
+			$dialog.closeDialog();
+		}
 		(function _getDataInitCombobox() {
-			debugger
             scope.$root.$getInitComboboxData(scope,
                 {
                     "key": "${encryptor.get_key('cbb_departments')}",

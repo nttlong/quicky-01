@@ -1,26 +1,13 @@
-﻿<%
-    request.register_view("Employee working","pages/profile")
-%>
-<style>
-    .tabbable-line{
-        display: table;
-        height: 100%;
-        width: 100%;
-    }
-    .hcs-tab-info{
-        display: table-row;
-    }
-    .tab-content {
-        display: table-row;
-    }
+﻿﻿<style>
+
 </style>
-<div class="tab-pane" style="padding-right:unset; height: 100%; background-color:#fff;">
+<div class="tab-pane" style="padding-right:unset; height: 100%; background-color:#fff;" view-id ="${register_view()}">
     <!--<nav-tabs min-height="82vh" max-height="82vh">
     </nav-tabs>-->
 	<div class="tabbable-panel" style="height: 100%;">
 		<div class="tabbable-line" style="height: 100%;">
             <div class="hcs-tab-info">
-                <div class="col-md-12 competency no-padding">
+                <div class="col-xs-12 col-md-12 competency no-padding">
                     <div class="hcs-tab-info-box active" href="#tab_default_1" data-toggle="tab" ng-click="changeActive($event, 1)">
                         <img src="${get_static('assets/images/General.png')}"/>
                         <label>
@@ -36,9 +23,14 @@
                 </div>
             </div>
 			<div class="tab-content" style="height: 100%">
-		        <div class="tab-pane active col-md-12" id="tab_default_1" style="height: calc(100% - 8px);">
-		                <collapse-box class="zb-form-common" ng-if="tabIdx == 1" title="${get_res('emp_working','Bổ nhiệm - điều chuyển')}">
-                        <toolbar class="eeeeee">
+		        <div class="tab-pane active col-xs-12 col-md-12" id="tab_default_1" style="height: calc(100% - 65px);">
+                    <collapse-box class="zb-form-common" ng-if="tabIdx == 1" title="${get_res('emp_working','Bổ nhiệm - điều chuyển')}">
+                        <toolbar class="hcs-action-collapse-box-mobile">
+                            <button ng-click="$root.doToggle('.hcs-action-collapse-box-large')" class="zb-btn zb-btn-o-green">
+                                <i class="bowtie-icon bowtie-menu"></i>
+                            </button>
+                        </toolbar>
+                        <toolbar class="hcs-action-collapse-box-large">
                             <input-text-icon icon="bowtie-icon bowtie-search"
                                                 on-click="onSearch"></input-text-icon>
                             <button ng-if="$active" ng-click="event.empWorking.onAdd()" class="zb-btn zb-btn-o-green">
@@ -71,7 +63,7 @@
                         </div>
                     </collapse-box>
 		        </div>
-		        <div class="tab-pane col-md-12" id="tab_default_2" ng-if="tabIdx == 2" style="height: calc(100% - 8px);">
+		        <div class="tab-pane col-xs-12 col-md-12" id="tab_default_2" ng-if="tabIdx == 2" style="height: calc(100% - 8px);">
 	                    <collapse-box class="zb-form-common"  title="${get_res('emp_experience','Kinh nghiệm trước đây')}">
                         <toolbar class="eeeeee">
                             <input-text-icon icon="bowtie-icon bowtie-search" style="width:200px;float:left;margin: 0 2.5px;"

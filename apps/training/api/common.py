@@ -150,6 +150,13 @@ def filter_lock(collection, args):
         return filter_data(collection, args, "lock")
     except Exception as ex:
         raise ex
+# Thang
+def filter_year(collection, args):
+    try:
+        return filter_data(collection, args, "year")
+    except Exception as ex:
+        raise ex
+# Thang
 
 def filter_stop(collection, args):
     try:

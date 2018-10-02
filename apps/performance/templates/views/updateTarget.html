@@ -1,0 +1,48 @@
+<style type="text/css">
+    .hcs-tab-info .approve div {
+        border-right: 1px solid #E2E2E2;
+        height: 50px;
+        text-align: center;
+    }
+    .hcs-tab-info .approve div label{
+        text-align: center;
+    }
+    .hcs-tab-info .approve div label span{
+        display: block;
+    }
+    .zb-item:hover{
+        background: #ebf9ff;
+        cursor: pointer;
+    }
+    .zb-list-view .zb-list-view-header label{
+        font-weight: 550;
+        padding-left: 5px;
+        margin: unset;
+    }
+    .zb-item .zb-list-title{
+        font-size:.875rem;
+    }
+</style>
+<div class="hcs-container" style="height: 100%">
+    <div class="tab-pane" style="padding-right:unset; height: 100%;background: #fff;">
+        <div>
+            <header-page>
+                <site-map>
+                    <span ng-if="$partialPage == _page[0]">{{$root.currentFunction.default_name}}</span>
+                    <a ng-if="$partialPage == _page[1]" ng-click="backPage()"><span>${get_res('give_target', 'Giao chỉ tiêu')}</span></a>
+                    <span ng-if="$partialPage == _page[1]"><i class="bowtie-icon bowtie-chevron-right"></i></span>
+                    <span ng-if="$partialPage == _page[1]">Năm 2018</span>
+                </site-map>
+                <toolbar>
+                    <button ng-click="onEdit()" ng-if="onEdit" class="zb-btn zb-btn-o-blue">
+                        <i class="bowtie-icon bowtie-edit-outline"></i>
+                    </button>
+                </toolbar>
+            </header-page>
+        </div>
+        <div c-template url="${get_app_url('')}/pages/{{$partialPage}}" style="height: calc(100% - 40px);"></div>
+    </div>
+</div>
+<script>
+    <%include file="../scripts/updateTarget.js"/>
+</script>

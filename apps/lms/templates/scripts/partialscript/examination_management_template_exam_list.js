@@ -1,4 +1,4 @@
-﻿(function (scope) {
+﻿﻿(function (scope) {
     scope.$parent.$partialpage = "partialpage/examination_management_template_exam_list";
 
     /**
@@ -19,53 +19,6 @@
             $dialog.draggable();
         });
         //}
-    }
-
-    scope.$root.createTemplate = function () {
-        
-        scope.mode = 1; // set mode chỉnh sửa
-        openDialog("${get_res('Create_exam_category','Create Exam Category')}", 'form/addTemplateCategory', function () {
-            setTimeout(function () {
-                $(window).trigger('resize');
-            }, 200);
-        });
-    }
-
-    scope.$root.editTemplate = function () {
-        
-        if (scope.currentItem) {
-            scope.mode = 2; // set mode chỉnh sửa
-            openDialog("${get_res('edit_exam_category','Edit Exam Category')}", 'form/addTemplateCategory', function () {
-                setTimeout(function () {
-                    $(window).trigger('resize');
-                }, 200);
-            });
-
-        } else {
-            $msg.message("${get_global_res('Notification','Thông báo')}", "${get_app_res('No_Row_Selected','Không có dòng được chọn')}", function () { });
-        }
-    }
-
-    scope.$root.delTemplate = function () {
-        var arrayId = scope.selectedItems.filter(function (el) {
-            return el && el._id
-        })
-        //
-        if (scope.selectedItems.length > 0) {
-            $msg.confirm("${get_global_res('Notification','Thông báo')}", "${get_global_res('Do_You_Want_Delete','Bạn có muốn xóa không?')}", function () {
-                services.api("${get_api_key('app_main.api.LMSLS_ExTemplateCategory/delete')}")
-                    .data(arrayId)
-                    .done()
-                    .then(function (res) {
-                        if (res.deleted > 0) {
-                            scope.currentItem = [];
-                            scope.$root.refresh();
-                        }
-                    })
-            });
-        } else {
-            $msg.message("${get_global_res('Notification','Thông báo')}", "${get_app_res('No_Row_Selected','Không có dòng được chọn')}", function () { });
-        }
     }
 
     scope.$root.isDisplay = true;
@@ -94,11 +47,41 @@
         { "data": "exam_temp_name1", "title": "${get_res('exam_temp_name1_header','Exam Template')}" },
         { "data": "total_question", "title": "${get_res('total_question_table_header','Questions')}" },
         { "data": "total_mask", "title": "${get_res('total_mask_table_header','Total Marks')}" },
-        { "data": "negative_marks", "title": "${get_res('negative_marks_table_header','Required Score')}" },
-        { "data": "diff_question", "title": "${get_res('diff_question_header','Difficult Questions')}" },
-        { "data": "med_question", "title": "${get_res('med_question_header','Medium Questions')}" },
-        { "data": "easy_question", "title": "${get_res('easy_question_table_header','Easy Questions')}" },
-        { "data": "creator", "title": "${get_res('created_by_table_header','Created by')}" },
+        { "data": "negative_marks", "title": "${get_res('negative_marks_table_header','Required Score')}","expr":function(row, data, func){
+            func(function(){
+                return "<p style='font-weight:bold;color:rgb(112,173,71)'> >"+row.negative_marks +"</p>";
+
+            });
+            return true;
+        } },
+        { "data": "diff_question", "title": "${get_res('diff_question_header','Difficult Questions')}","expr":function(row, data, func){
+            func(function(){
+                return "<p style='font-weight:bold;color:red'>" +row.diff_question +"</p>";
+
+            });
+            return true;
+        } },
+        { "data": "med_question", "title": "${get_res('med_question_header','Medium Questions')}","expr":function(row, data, func){
+            func(function(){
+                return "<p style='font-weight:bold;color:rgb(68,114,196)'>" +row.med_question+ "</p>";
+
+            });
+            return true;
+        } },
+        { "data": "easy_question", "title": "${get_res('easy_question_table_header','Easy Questions')}","expr":function(row, data, func){
+            func(function(){
+                return "<p style='font-weight:bold;color:rgb(68,114,196)'>" +row.easy_question+ "</p>";
+
+            });
+            return true;
+        } },
+        { "data": "creator", "title": "${get_res('created_by_table_header','Created by')}","expr":function(row, data, func){
+            func(function(){
+                return "<img class='hcs-small-img'  src='" + scope.$root.url_static + "css/icon/approver.png" + "'/>"+ " "+row.creator ;
+
+            });
+            return true;
+        } },
         { "data": "created_on", "title": "${get_res('created_on_table_header','Created on')}", "format": "date:" + 'dd/MM/yyyy h:mm:ss a'  },
     ];
     scope.$$tableConfig = {};
@@ -179,13 +162,14 @@
     }
 
     scope.$root.delTemplate = function () {
+        debugger
         var arrayId = scope.selectedItems.filter(function (el) {
             return el && el._id
         })
         //
         if (scope.selectedItems.length > 0) {
             $msg.confirm("${get_global_res('Notification','Thông báo')}", "${get_global_res('Do_You_Want_Delete','Bạn có muốn xóa không?')}", function () {
-                services.api("${get_api_key('app_main.api.LMSLS_ExTemplateCategory/delete')}")
+                services.api("${get_api_key('app_main.api.LMSLS_ExTemplateList/delete')}")
                     .data(arrayId)
                     .done()
                     .then(function (res) {

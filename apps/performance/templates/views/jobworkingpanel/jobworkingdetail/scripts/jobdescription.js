@@ -1,4 +1,10 @@
 ﻿(function (scope) {
+    scope.$parent.$parent.$parent.$parent.detail.onAdd = null;
+    scope.$parent.$parent.$parent.$parent.detail.onEdit = null;
+    scope.$parent.$parent.$parent.$parent.detail.onDelete = null;
+    scope.$parent.$parent.$parent.$parent.detail.onImport = null;
+    scope.$parent.$parent.$parent.$parent.detail.onExport = null;
+    scope.$parent.$parent.$parent.$parent.detail.onRefresh = null;
     scope.$parent.$parent.$parent.$parent.detail.onSave = onSave;
     scope.__mode = scope.$parent.$parent.$parent.$parent.detail.$mode;
     scope.gjw_code = scope.$parent.$parent.$parent.$parent.detail.$gjw_code;

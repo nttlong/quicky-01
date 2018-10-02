@@ -243,16 +243,32 @@ def set_dict_update_data(args):
 #        )
 #    return ret.get_page(0, 100)
 
-def get_list_category_question(args):
-    items = models.LMSLS_ExTemplateCategory().aggregate().project(
-        category_id = 1,
-        category_name = 1,
-        category_name2=1,
-        created_on = 1,
-        active=1,
-        note=1,
-        order=1,
-        moderator =1,
-        )
-    
-    return items.get_page(0, 100)
+def get_list_category_template(args):
+    try:
+            collection  =  common.get_collection('LMSLS_ExTemplateCategory')
+            ret = collection.aggregate([
+                    {
+                        "$lookup": {
+                           "from": "lv.LMSLS_ExTemplateList",
+                           "localField": "category_id",
+                           "foreignField": "exam_temp_category",
+                           "as": "ques",
+                         }
+                    },{
+                        "$project":
+                          {
+                              "category_id": 1,
+                              "category_name": 1,
+                              "category_name2": 1,
+                              "created_on": 1,
+                              "active": 1,
+                              "note": 1,
+                              "order": 1,
+                              "moderator":1,
+                              "ques":1,
+                          }
+                    }
+                ])
+            return list(ret)
+    except Exception as ex:
+        raise(ex)

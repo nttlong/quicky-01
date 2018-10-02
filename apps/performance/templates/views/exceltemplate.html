@@ -1,4 +1,4 @@
-﻿<style>
+﻿﻿<style>
     .app-content {
         overflow: unset !important;
     }
@@ -50,7 +50,19 @@
             </div>
         </div>
         <div class="hcs-right-side-department-content">
-            <div class="hcs-right-side-department-list-tool-bar">
+
+            <div class="hcs-top-action-mobile">
+                <button class="zb-btn zb-btn-o-green ng-scope hcs-menu-mobile"
+                        ng-click="$root.doToggle('.hcs-left-side-department-content')">
+                    <i class="bowtie-icon bowtie-menu"></i>
+                </button>
+                <button class="zb-btn zb-btn-o-green ng-scope hcs-action-mobile"
+                        ng-click="$root.doToggle('.hcs-top-action-large')">
+                    <i class="bowtie-icon bowtie-set-actions"></i>
+                </button>
+            </div>
+
+            <div class="hcs-right-side-department-list-tool-bar hcs-top-action-large">
                 <!--<div class="zb-left-content pull-left">
                     <div class="row">
                         <div class="col-md-6">

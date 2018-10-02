@@ -4,6 +4,9 @@
 
     scope.$active = (scope.$root.$commons) ? scope.$root.$commons.$active : null
 
+    scope.$parent.$parent.$parent.onSave = null;
+    scope.$parent.$parent.$parent.onRefresh = null;
+
     scope.$tableEmpWorking = {
         tableField: [
             { "data": "appoint_name", "title": "${get_res('appoint','Loại')}" },
@@ -361,4 +364,12 @@
         $('.hcs-tab-info').find('.active').removeClass('active');
         $(event.target).closest('div').addClass('active');
     }
+
+    scope.$root.$watch('$commons.$current_employee_code', function(val){
+        if(val){
+            scope.$currentEmployeeCode = val;
+            onRefresh();
+            onRefreshExperience();
+        }
+    });
 });

@@ -2,10 +2,10 @@
     'use strict';
 
     angular.module('ZebraApp.components.combobox')
-        .directive('combobox', ["$compile", combobox]);
+        .directive('combobox', ["$compile", "templateService", combobox]);
 
     /** @ngInject */
-    function combobox($compile) {
+    function combobox($compile, templateService) {
         return {
             restrict: 'E',
             replace: true,
@@ -41,40 +41,25 @@
                 /*Caption hiển thị khi lần đầu loadCombobox*/
                 initData: "=",
                 params: "=",
-
+                ngDisabled: "=",
                 templateFields: "=",
                 /*Reload data khi nhấn button mở combobox*/
-                reload: "="
+                reload: "=",
+                ngRequired: "@"
             },
             //template: function(el, attrs) {
             //  return '<div class="switch-container ' + (attrs.color || '') + '"><input type="checkbox" ng-model="ngModel"></div>';
             //}
-            template: `
-              <div class="zb-form-combobox input-group">
-                <div class="form-control">
-                  <span class="placeholder">{{placeholder}}</span>
-                  <span class="display-value">{{$selectedItem[captionField]}}</span>
-                </div>
-                <div class="zb-combobox-template" ng-transclude style="display:none"></div>
-                <div class="input-group-btn">   
-                  <button class="btn btn-default zb-combo-btn-clear">
-                    <i class="bowtie-icon bowtie-edit-remove"></i>
-                  </button>
-                  <button class="btn btn-default zb-open-modal">
-                    <i class="bowtie-icon bowtie-navigate-external"></i>
-                  </button>
-                </div>
-              </div>
-            `,
+            templateUrl: templateService.getStatic("app/components/combobox/combobox/combobox.html"),
             //templateUrl: "app/components/input/text/text.html",
             link: function ($scope, elem, attr, ctrl, transclude) {
                 $scope.keyField = ($scope.keyField) ? $scope.keyField : "";
                 $scope.captionField = ($scope.captionField) ? $scope.captionField : "";
                 $scope.title = ($scope.title) ? $scope.title : "";
                 $scope.templateFields = ($scope.templateFields) ? $scope.templateFields : [];
-                // if(attr["required"]){
-                //   $(elem).wrap("<span zb-required></span>")
-                // }
+                if($scope.ngRequired === 'true' || (attr["required"] && (!$scope.ngRequired))){
+                  $(elem).wrap("<span zb-required></span>")
+                }
                 var _control = {
                     setCaption: function () {
                         var placeholder = $(elem).find(".placeholder");
@@ -90,7 +75,7 @@
                     applyCaption: function (item) {
                         if ($scope.captionField) {
                             $scope.$selectedItem = item;
-                            if (item[$scope.captionField]) {
+                            if (item && item[$scope.captionField]) {
                                 _control.setCaption(item[$scope.captionField]);
                             } else {
                                 _control.setCaption(null);
@@ -114,9 +99,15 @@
                     }
                 }
 
-                $(elem).find(".zb-combo-btn-clear").bind("click", function () {
-                    _control.clearValue();
-                });
+                $(elem).find('input[type=text]').bind('keyup', function(e){
+                    if($scope.$selectedItem){
+                        if(e.keyCode === 8){
+                            if($scope.$selectedItem[$scope.captionField] != e.currentTarget.value){
+                                _control.clearValue();
+                            }
+                        }
+                    }
+                })
 
                 var dialogTemplate = '' +
                     '<div class="zb-modal-combobox modal fade" role="dialog" tabindex="-1">' +

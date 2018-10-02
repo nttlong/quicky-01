@@ -1,4 +1,5 @@
 ﻿
+
 <%!
     #_style="width:200px;"
 %>
@@ -12,6 +13,34 @@
         line-height: 30px !important;
         color: green !important;
     }
+    .circle-statistics-ques {
+    color: rgb(68,114,196);
+    width: 40px;
+    border: 1px solid rgb(68,114,196) ;
+    border-radius: 50%;
+    text-align: center;
+    font-size: 21px;
+    padding-top: 3px;
+    height: 40px;
+
+    }
+    .exam-result-td{
+        border: 1px solid darkgrey;
+        padding-left: 15px;
+        padding-bottom: 2px;
+
+    }
+    .exam-result-table{
+        font-family: arial, sans-serif;
+        border-collapse: collapse;
+        width: 100%;
+        table-layout: fixed;
+        font-size: 14px;
+    }
+    .activeques{
+    font-weight:bold;
+        border: 3px solid rgb(68,114,196) !important;
+    }
     label {
         line-height: 30px !important;
         font-size: .875rem !important;
@@ -20,6 +49,19 @@
         font-weight:bold;
         color:rgb(0,112,192);
         padding: 12px;
+    }
+    .button-exam-result-question{
+        background-color: rgb(218,227,243);
+        border: 1px solid black;
+        font-size: 12px;
+        font-weight: bold;
+        width: 90px;
+        height: 28px;
+        margin-left: 12px;
+    }
+    .label-exam-result{
+        font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+        color: grey;
     }
 </style>
 <div class="col-md-12">
@@ -34,7 +76,7 @@
 				        </li>
 				        <li>
 					        <a href="#tab_default_2" data-toggle="tab" ng-click="fnClickOnTab(2)">
-					            ${get_res('exam_questions','QUESTION REPORT')} 
+					            ${get_res('exam_questions','QUESTION REPORT')}
                             </a>
 				        </li>
 				        <li>
@@ -82,20 +124,20 @@
                                         <canvas id="bar" class="chart chart-bar"
                                                 chart-data="data" chart-labels="labels"> chart-series="series"
                                             </canvas>
-                                         </div> 
+                                         </div>
                                          </collapse-box>
-                                    
+
                                 </div>
                                 <div class="col-md-6">
                                             <collapse-box class="zb-form-common" title="${get_res('Questions & Marks Wise Report for Midterm Exam')}">
-                                            <div class="col-md-12" style="padding-top: 0px;">           
+                                            <div class="col-md-12" style="padding-top: 0px;">
                                                 <div class="lms-dashboard-chart"><br/>
                                                 <canvas id="pie" class="chart chart-pie"
                                                   chart-data="dataPie" chart-labels="labelsPie"  chart-colors="colorsPie" chart-options="options" >
-                                                </canvas> 
+                                                </canvas>
                                             </div>
                                             </div>
-                                            <div class="col-md-12" style="padding-top: 0px;">                       
+                                            <div class="col-md-12" style="padding-top: 0px;">
                                                         <table >
                                                             <tr ng-repeat="elem in labelsPie track by $index" style="margin-bottom:3px">
                                                                 <td style="background-color: {{colorsPie[$index]}}; width:50px;border:4px solid white" ></td>
@@ -104,23 +146,23 @@
                                                     </table>
                                             </div>
                                              </collapse-box>
-                                     
+
                                 </div>
                                 </div>
 			            </div>
                         <!--Tab 2-->
                         <div class="tab-pane" id="tab_default_2">
 		                    <div class="col-md-12" ng-if="idxTab == 2">
-                                <table-data data-source="tableSource" 
-                                            fields="tableFields" 
-                                            type="MultiSelect" 
-                                            paging="true" 
-                                            page-length="100" 
-                                            server-side="true" 
-                                            press-enter="onSelectTableRow" 
-                                            selected-items="selectedItems" 
-                                            current-item="currentItem" 
-                                            search-text="tableSearchText" 
+                                <table-data data-source="tableSource"
+                                            fields="tableFields"
+                                            type="MultiSelect"
+                                            paging="true"
+                                            page-length="100"
+                                            server-side="true"
+                                            press-enter="onSelectTableRow"
+                                            selected-items="selectedItems"
+                                            current-item="currentItem"
+                                            search-text="tableSearchText"
                                             refresh-row="refreshDataRow">
                                 </table-data>
                             </div>
@@ -129,15 +171,55 @@
                         <div class="tab-pane" id="tab_default_3">
 		                    <div class="col-md-12" style="padding-bottom:100px">
 		                    <collapse-box class="zb-form-common" title="${get_res('Solution for Midterm Exam')}">
-                                   <div class="col-md-7" style="padding-top: 0px;">                       
-                                        <div style="height:200px;width:300px;border: 1px solid #e5e5e5";overflow:auto;">
-	                                        <div class="col-md-12" style="border: 1px solid #e5e5e5">Total Questions:</div>
-                                            <div class="col-md-12"> </div>
-                                         </div>                
+                                   <div class="col-md-8" style="padding-top: 0px;">
+                                        <div style="height:auto;width:100%;overflow:auto;">
+	                                        <table class="exam-result-table">
+                                                <tr>
+                                                <td colspan="2" class="exam-result-td"><label>${get_res('numQuestion','Question')} {{currentQuestion +1}}: </label> {{test[currentQuestion].title}}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td colspan="2" class="exam-result-td">
+                                                        <div class="col-md-12">{{ test[currentQuestion].answer }}</div>
+                                                        <div class="col-md-12">{{test[currentQuestion].answer}}</div>
+                                                        <div class="col-md-12">{{test[currentQuestion].answer}}</div>
+                                                        <div class="col-md-12">{{test[currentQuestion].answer}}</div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                <td class="exam-result-td"><label class="label-exam-result">${get_res('max_marks','Max Marks: ')}</label> {{currentQuestion.max_mark}}</td>
+                                                <td class="exam-result-td"><label class="label-exam-result">${get_res('correct_answer:','Correct Answer: ')}</label> {{test[currentQuestion].correct}}</td>
+                                                </tr>
+                                                <tr>
+                                                <td class="exam-result-td"><label class="label-exam-result">${get_res('marks_scored:','Marks Scored: ')}</label> {{currentQuestion.marks_scored}}</td>
+                                                <td class="exam-result-td"><label class="label-exam-result" >${get_res('your_answer:','Your Answer: ')}</label> {{test[currentQuestion].your_answer}}</td>
+                                                </tr>
+                                                <tr>
+                                                <td class="exam-result-td"><label class="label-exam-result">${get_res('time_taken:','Time Taken:')}</label> {{test[currentQuestion].time_taken}}</td>
+                                                <td class="exam-result-td"><label style="color: darkred;font-style: italic">Incorrect</label></td>
+                                                </tr>
+                                                <tr>
+                                                <td class="exam-result-td" colspan="2"><label class="label-exam-result">${get_res('solution','Solution:')}</label> {{test[currentQuestion].solution}}</td>
+                                                </tr>
+                                                <tr>
+                                                <td class="exam-result-td" colspan="2" style="padding: 10px">
+                                                    <button type="button" style="background-color:rgb(218,227,243)" ng-click="previousQuestion()" class="btn btn-default button-exam-result-question"><i class="fa fa-mail-reply"></i>  Previous</button>
+                                                     <button type="button" style="background-color: rgb(218,227,243)" ng-click="nextQuestion()" class="btn btn-default button-exam-result-question">Next  <i class="fa fa-mail-forward"></i></button></td>
+                                                </tr>
+                                            </table>
+                                         </div>
                                     </div>
-                                <div class="col-md-5" style="padding-top: 0px;">                       
-                                                        
-                                    </div>
+                                 <div class="col-md-4" style="padding-top: 0px;">
+                                     <div style="height:200px;width:100%;border: 1px solid darkgrey;overflow:auto;">
+	                                        <div class="col-md-12" style="border-bottom: 1px solid darkgrey;padding: 14px"><label>${get_res('total_question','Total Questions:')}</label></div>
+                                            <div class="col-md-12" >
+                                                <div class="circle-statistics-ques"
+                                                     style="float: left;
+                                                            margin: 5px;cursor: pointer" ng-class="{ activeques: isSet($index)}" ng-repeat="elem in test track by $index" ng-click="chooseQuestion($index)" >
+                                                    {{$index +1}}
+                                                </div>
+                                            </div>
+                                     </div>
+                                 </div>
                                 </collapse-box>
                                 </div>
 			            </div>
@@ -153,6 +235,17 @@
 <%block name="modal_script">
 <script>
     (function (scope) {
+
+           scope.test =[
+               {"title": "ques 1", "answer":"1", "max_mark":"max","marks_scored":"0","time_taken":"3s","correct":"option1", "your_answer":"option2","solution":"Robert Hill showed that oxygen is released from water."},
+               {"title": "ques 2", "answer":"1", "max_mark":"max","marks_scored":"0","time_taken":"3s","correct":"option1", "your_answer":"option2","solution":"Lucy showed that oxygen is released from water."},
+               {"title": "ques 3", "answer":"1qwe", "max_mark":"max","marks_scored":"0","time_taken":"3s","correct":"option1", "your_answer":"option2","solution":"Robert Hill showed that oxygen is released from water."},
+               {"title": "ques 4", "answer":"1qwe", "max_mark":"max","marks_scored":"0","time_taken":"3s","correct":"option1", "your_answer":"option2","solution":"Robert Hill showed that oxygen is released from water."},
+               {"title": "ques 5", "answer":"1", "max_mark":"max","marks_scored":"0","time_taken":"3s","correct":"option1", "your_answer":"option2","solution":"Robert Hill showed that oxygen is released from water."},
+               {"title": "ques 6", "answer":"1", "max_mark":"max","marks_scored":"0","time_taken":"3s","correct":"option1", "your_answer":"option2","solution":"Robert Hill showed that oxygen is released from water."},
+               {"title": "ques 7", "answer":"1", "max_mark":"max","marks_scored":"0","time_taken":"3s","correct":"option1", "your_answer":"option2","solution":"Robert Hill showed that oxygen is released from water."},
+               {"title": "ques 8", "answer":"1", "max_mark":"max","marks_scored":"0","time_taken":"3s","correct":"option1", "your_answer":"option2","solution":"Robert Hill showed that oxygen is released from water."},
+           ]
             scope.currentItem = scope.$parent.currentItem;
               scope.labels = ['2006', '2007', '2008', '2009', '2010', '2011', '2012'];
               scope.series = ['Series A'];
@@ -164,7 +257,7 @@
             scope.dataPie = [300, 500, 100,200,100];
         scope.colorsPie = ['#803690', '#00ADF9', '#DCDCDC', '#46BFBD', '#FDB45C'];
         (function _init_() {
-            
+
             if (scope.currentItem) {
                 /*
                  * Get info Tab 1*
@@ -177,7 +270,7 @@
                     .done()
                     .then(function (res) {
                         debugger
-                        
+
                         scope.$applyAsync();
                         //if (res.form) {res }
                     })
@@ -229,7 +322,7 @@
             $.each(orderBy, function (i, v) {
                 sort[v.columns] = (v.type === "asc") ? 1 : -1;
             });
-            sort[orderBy[0].columns] = 
+            sort[orderBy[0].columns] =
                 services.api("${get_api_key('app_main.api.LMSLS_ExExamination/get_data_table_examination_by_id')}")
                     .data({
                         //parameter at here
@@ -250,8 +343,32 @@
                         // scope.$$table.currentItem = null;
                         scope.$apply();
                     })
-                        
 
+
+        }
+
+        scope.currentQuestion = 0;
+
+        scope.isSet = function(tabNum){
+          return scope.currentQuestion === tabNum;
+        };
+
+
+        scope.chooseQuestion = function (index){
+                scope.currentQuestion = index
+        }
+
+
+
+        scope.nextQuestion = function (){
+                if(scope.currentQuestion < scope.test.length-1){
+                    scope.currentQuestion = scope.currentQuestion + 1;
+                }
+        }
+        scope.previousQuestion = function (){
+                if(scope.currentQuestion >0){
+                    scope.currentQuestion = scope.currentQuestion - 1;
+                }
         }
         scope.fnClickOnTab = function (idx) {
             scope.idxTab = idx;

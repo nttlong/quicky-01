@@ -4,25 +4,88 @@
 %>
 <%inherit file="../commons/dialog_accepted.html"/>
 
+<style>
+    .radio input[type=radio]:disabled+label::before {
+    cursor: not-allowed;
+}
+</style>
+
 <%block name="modal_body">
+
 <div class="tab-pane" style="padding-right:unset; height: 100%; overflow-y:hidden; overflow:auto; background-color:#fff;">
-    <nav-tabs min-height="82vh" max-height="82vh">
-        <tab-content name="tab1" title="${get_res('tab_versions','Versions History')}">
-            <%include file = "versionHistoryLearningMaterial.html" />
-        </tab-content>
-        <tab-content name="tab2" title="${get_res('tab_download','Download History')}">
-            <%include file = "downloadHistoryLearningMaterial.html" />
-        </tab-content>
-        <tab-content name="tab3" title="${get_res('tab_sharing','Sharing History')}">
-            <%include file = "shareHistoryLearningMaterial.html" />
-        </tab-content>
-    </nav-tabs>
+    	<div class="tabbable-panel">
+		<div class="tabbable-line">
+			<div class="hcs-tab-info">
+                <div class="col-xs-12 col-md-12 competency no-padding">
+                     <div class="hcs-tab-info-box active" href="#tab_default_1" data-toggle="tab" ng-click="changeActive($event)">
+                        <img src="${get_static('assets/images/General.png')}"/>
+                        <label>
+                            ${get_res('Versions_History','Versions History')}
+                        </label>
+                    </div>
+                    <div class="hcs-tab-info-box" href="#tab_default_2" data-toggle="tab" ng-click="changeActive($event)">
+                        <img src="${get_static('assets/images/Level.png')}"/>
+                        <label style="padding-left:5px;">
+                            ${get_res('Download_History','Download History')}
+                        </label>
+                    </div>
+                    <div class="hcs-tab-info-box" href="#tab_default_3" data-toggle="tab" ng-click="changeActive($event)">
+                        <img src="${get_static('assets/images/Factor1.png')}"/>
+                        <label>
+                            ${get_res('Sharing_History','Sharing History')}
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="tab-content">
+                <div class="tab-pane active" id="tab_default_1">
+                    <div class="col-xs-12 col-md-12">
+                            <div class="hcs-tab-info-box">
+                        <%include file = "versionHistoryLearningMaterial.html" />
+                    </div>
+                    </div>
+                </div>
+                <div class="tab-pane" id="tab_default_2">
+                    <div class="col-xs-12 col-md-12">
+                     <div class="hcs-tab-info-box">
+                        <%include file = "downloadHistoryLearningMaterial.html" />
+                    </div>
+                   </div>
+                </div>
+                <div class="tab-pane" id="tab_default_3">
+                     <div class="col-xs-12 col-md-12">
+                     <div class="hcs-tab-info-box" >
+                        <%include file = "shareHistoryLearningMaterial.html" />
+                    </div>
+                     </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
+
+
 </%block>
 
 <%block name="modal_script">
 <script>
     (function (scope) {
+        scope.__mode = scope.$parent.mode;
+        scope.title = scope.$parent.headerTitle;
+        scope._currentItem = scope.$parent.currentItem
+
+        scope.title = scope.title + " " + scope._currentItem['material_id'] +  "_" + scope._currentItem['material_name'];
+        //File Name
+        scope.fileName = scope._currentItem['material_name'] +  " (" +  scope._currentItem['file_extends']  +  ".)";
+
+
+        scope.changeActive = function(event){
+        $('.hcs-tab-info').find('.active').removeClass('active');
+        $(event.target).closest('div').addClass('active');
+        }
+
+
+
         scope.Search_Click = Search_Click;
 
         function Search_Click(event) {

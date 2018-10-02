@@ -1,5 +1,9 @@
-﻿(function (scope) {
+﻿﻿(function (scope) {
+
     scope.$root.extendToolbar = true;
+    scope.$root.isDisplayBasicButton =true;
+    scope.$root.isDisplayManagermentButton = false;
+    scope.$root.isDisplayFoldertButton = true;
     scope.__tableSource = [];
     scope.$root.isDisplay = false;
     scope.mode = 0;
@@ -46,17 +50,63 @@
             $msg.message("${get_global_res('Notification','Thông báo')}", "${get_app_res('No_Row_Selected','Không có dòng được chọn')}", function () { });
         }
     }
+
+    scope.$root.deleteOne = function () {
+	     if (scope.currentItem) {
+            var Id = scope.currentItem['_id'];
+            $msg.confirm("${get_global_res('Notification','Thông báo')}", "${get_global_res('Do_You_Want_Delete','Bạn có muốn xóa không?')}", function () {
+                services.api("${get_api_key('app_main.api.LMSLS_MaterialFolder/delete_one')}")
+                    .data(Id)
+                    .done()
+                    .then(function (res) {
+                        if (res.deleted > 0) {
+                            scope.currentItem = [];
+                            scope.$root.refresh();
+                        }
+                    })
+            });
+        }
+        else {
+            $msg.message("${get_global_res('Notification','Thông báo')}", "${get_app_res('No_Row_Selected','Không có dòng được chọn')}", function () { });
+        }
+	}
+
+
+
     scope.objSearch = {
         $$$modelSearch: null,
         onSearch: onSearch
     }
     /* Table */
     //Cấu hình tên field và caption hiển thị trên UI
+
+    scope.urls = scope.$root.url_static;
     scope.tableFields = [
         { "data": "folder_name", "title": "${get_res('category_name_table_header','Category Name')}" },
-        { "data": "moderator_id", "title": "${get_res('moderator_table_header','Moderator')}" },
-        { "data": "approver_id", "title": "${get_res('approver_table_header','Approver(s)')}" },
-        { "data": "active", "title": "${get_res('status_table_header','Status')}" },
+        { "data": "moderator_id", "title": "${get_res('moderator_table_header','Moderator')}","expr":function(row, data, func){
+            func(function(){
+                return "<img class='hcs-small-img' style='width:15px;height:17px' src='" + scope.urls + "css/icon/admin_tr.png" + "'/>" + " " + row.moderator_id
+            });
+            return true;
+        } },
+        { "data": "approver_id", "title": "${get_res('approver_table_header','Approver(s)')}","expr":function(row, data, func){
+            func(function(){
+                if(row.approver_id)
+                    return "<img class='hcs-small-img' style='width:15px;height:17px' src='" + scope.urls + "css/icon/approver_tr.png" + "'/>"+ " "+row.approver_id;
+                return '';
+            });
+            return true;
+        } },
+        { "data": "active", "title": "${get_res('status_table_header','Status')}" ,"expr":function(row, data, func){
+            func(function(){
+                if (row.active == false)
+                    return "<span class='span-red'>" + scope.SpanStatus[0].name + "</span>"
+                if (row.active == true)
+                    return "<span class='span-blue'>" + scope.SpanStatus[1].name + "</span>"
+                return row.active;
+            });
+            return true;
+        }},
     ];
     scope.$$tableConfig = {};
     scope.$root.$$tableConfig = {};
@@ -68,6 +118,18 @@
         scope.mode = 2;
         scope.$root.edit();
     };
+    scope.SpanStatus = [
+        {
+            name: 'Not Published',
+            status: false,
+        },
+        {
+            name: 'Published',
+            status: false,
+        }
+    ]
+
+
     //Danh sách các dòng đc chọn (nếu là table MultiSelect)
     scope.selectedItems = [];
     //Dòng hiện tại đang được focus (nếu table là SingleSelect hoặc MultiSelect)
@@ -244,6 +306,7 @@
                     })
                     .done()
                     .then(function (res) {
+                        _.map(res.items,function(val){val.moderator_icon = "fa fa-user-plus" ; val.approver_icon = "fa fa-user-secret"})
                         var data = {
                             recordsTotal: res.total_items,
                             recordsFiltered: res.total_items,

@@ -36,6 +36,12 @@
             scope.displayItem = {};
             scope.clear = clear;
 
+            scope.getValueString = function(){
+                if(scope.displayItems && scope.displayItems.length > 0)
+                    return _.pluck(scope.displayItems, scope.initData['caption_field']).join(", ");
+                return "";
+            }
+
             function deleteSelectedItem(val) {
                 var obj = {};
                 obj[scope.valueField] = val[scope.valueField];
@@ -71,12 +77,14 @@
         }
 
         function assignValue(scope, val) {
-            scope.captionField = scope.initData['caption_field'];
-            scope.valueField = scope.initData['value_field'];
-            if (scope.multi === true) {
-                scope.displayItems = val;
-            } else {
-                scope.displayItem = val;
+            if(scope.initData){
+                scope.captionField = scope.initData['caption_field'];
+                scope.valueField = scope.initData['value_field'];
+                if (scope.multi === true) {
+                    scope.displayItems = val;
+                } else {
+                    scope.displayItem = val;
+                }
             }
         }
 
@@ -86,43 +94,41 @@
     }
 
     function template() {
-        return `
-              <div class="zb-form-combobox input-group" ng-if="multi">
-                <div class="form-control">
-                  <span class="placeholder" ng-if="displayItems.length<=0">{{placeholder}}</span>
-                  <div class="display-value">
-                        <span class="multi-value" ng-repeat="v in displayItems">
-                            {{v[captionField]}}
-                            <i class="bowtie-icon bowtie-math-multiply-light" ng-click="deleteSelectedItem(v)"></i>
-                        </span>
-                  </div>
-                </div>
-                <div class="zb-combobox-template"></div>
-                <div class="input-group-btn">   
-                  <button class="btn btn-default zb-combo-btn-clear" ng-disabled="ngDisabled" ng-click="clear()">
-                    <i class="bowtie-icon bowtie-edit-remove"></i>
-                  </button>
-                  <button class="btn btn-default zb-open-modal" ng-disabled="ngDisabled" ng-click="open()">
-                    <i class="bowtie-icon bowtie-navigate-external"></i>
-                  </button>
-                </div>
-              </div>
-              <div class="zb-form-combobox input-group" ng-if="!multi">
-                  <div class="form-control">
-                      <span class="placeholder" ng-if="!displayItem">{{ placeholder }}</span>
-                      <span class="display-value">{{ displayItem[captionField] }}</span>
-                  </div>
-                  <div class="zb-combobox-template"></div>
-                  <div class="input-group-btn">
-                      <button class="btn btn-default zb-combo-btn-clear" ng-disabled="ngDisabled" ng-click="clear()">
-                          <i class="bowtie-icon bowtie-edit-remove"></i>
-                      </button>
-                      <button class="btn btn-default zb-open-modal" ng-disabled="ngDisabled" ng-click="open()">
-                          <i class="bowtie-icon bowtie-navigate-external"></i>
-                      </button>
-                  </div>
-              </div>
-            `;
+        return ''
+              + '<div class="zb-form-combobox input-group" ng-if="multi">'
+              + '  <div class="form-control">'
+              + '    <span class="placeholder" ng-if="displayItems.length<=0">{{placeholder}}</span>'
+              + '    <div class="display-value" ng-if="false">'
+              + '          <span class="multi-value" ng-repeat="v in displayItems">'
+              + '              {{v[captionField]}}'
+              + '              <i class="bowtie-icon bowtie-math-multiply-light" ng-click="deleteSelectedItem(v)"></i>'
+              + '          </span>'
+              + '    </div>'
+              + '    <input type="text" style="height: 29px;'
+              + '              border: unset;'
+              + '              width: 100%;'
+              + '              outline: none;" value="{{getValueString()}}" ng-if="ngModel" ng-readonly="true"/>'
+              + '  </div>'
+              + '  <div class="zb-combobox-template"></div>'
+              + '  <div class="input-group-btn">'
+              + '    <button class="btn btn-default zb-open-modal" ng-disabled="ngDisabled" ng-click="open()">'
+              + '      <i class="bowtie-icon bowtie-navigate-external"></i>'
+              + '    </button>'
+              + '  </div>'
+              + '</div>'
+              + '<div class="zb-form-combobox input-group" ng-if="!multi">'
+              + '    <div class="form-control">'
+              + '        <span class="placeholder" ng-if="!displayItem">{{ placeholder }}</span>'
+              + '        <span class="display-value">{{ displayItem[captionField] }}</span>'
+              + '    </div>'
+              + '    <div class="zb-combobox-template"></div>'
+              + '    <div class="input-group-btn">'
+              + '        <button class="btn btn-default zb-open-modal" ng-disabled="ngDisabled" ng-click="open()">'
+              + '            <i class="bowtie-icon bowtie-navigate-external"></i>'
+              + '        </button>'
+              + '    </div>'
+              + '</div>'
+            ;
     }
 
 })();

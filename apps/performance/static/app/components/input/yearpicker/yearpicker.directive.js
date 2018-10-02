@@ -19,7 +19,8 @@
             scope: {
                 ngModel: "=",
                 multi: "=",
-                language: "@"
+                language: "@",
+                ngDisabled: "="
             }
         };
         return directive;
@@ -93,16 +94,16 @@
         }
 
         function template() {
-            return `
-                <span class="input-group zb-form-date-picker">
-                    <input type="text" class="zb-year-picker">
-                    <span class="input-group-btn">
-                        <button ng-click="openPicker()" type="button" class="btn btn-default">
-                            <i class="bowtie-icon bowtie-calendar-month"></i>
-                        </button>
-                    </span>
-                </span>
-                `;
+            return ''
+                + '<span class="input-group zb-form-date-picker">'
+                + '    <input type="text" class="zb-year-picker" ng-disabled="ngDisabled">'
+                + '    <span class="input-group-btn">'
+                + '        <button ng-click="openPicker()" type="button" class="btn btn-default" ng-disabled="ngDisabled">'
+                + '            <i class="bowtie-icon bowtie-calendar-month"></i>'
+                + '        </button>'
+                + '    </span>'
+                + '</span>'
+                ;
         }
     }
 

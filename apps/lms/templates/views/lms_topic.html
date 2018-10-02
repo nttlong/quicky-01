@@ -1,0 +1,83 @@
+﻿﻿<div class="hcs-container" style="height: 100%">
+    <page-sidebar on-add="onAdd" 
+                  on-edit="onEdit" 
+                  on-delete="onDelete" 
+                  on-save="onSave" 
+                  on-import="onImport" 
+                  on-export="onExport"
+                  on-search-press="onSearch"
+                  source="mapName" 
+                  key-field="function_id" 
+                  display-field="default_name" 
+                  icon-field="icon" 
+                  selected-key="selectedFunction"
+                  reload-on-change="true"
+                  advanced-search="advancedSearch">
+        <site-map>
+            <a><span>{{$root.currentFunction.default_name}}</span></a>
+            <span><i class="bowtie-icon bowtie-chevron-right"></i></span>
+            <span>{{currentFunction.default_name}}</span></site-map>
+        <extend-toolbar ng-if="$root.extendToolbar">
+            <div style="display: grid; grid-template-columns: {{$root.isDisplay ? 'auto 1fr 1fr' : '1fr auto'}} ">
+                <div style="float: left;" ng-if="$root.isDisplay">
+                    <button class="zb-btn" ng-click="onDisplayListData()">
+                        <i class="bowtie-icon bowtie-editor-list-bullet"></i>
+                    </button>
+                    <button class="zb-btn" ng-click="onDisplayGridData()">
+                        <i class="bowtie-icon bowtie-view-grid"></i>
+                    </button>
+                </div>
+                <div class="col-md-6" style="padding-right: 0; top: 2px;"   >
+                    <!--<input-text-icon id="tableSearchText" on-click="objSearch.onSearch" ng-model="objSearch.$$$modelSearch"></input-text-icon>-->
+                     <div class="hcs-left-side-department-tree-tool-bar-div-search" ng-if="$root.isDisplayBasicButton">
+                        <input class="hcs-left-side-department-tree-tool-bar-input-search" ng-model="objSearch.$$$modelSearch">
+                        <div class="hcs-left-side-department-tree-tool-bar-input-search-bot"></div>
+                        <div class="hcs-left-side-department-tree-tool-bar-input-search-bot-icon" ng-click="onSearchText()">
+                            <i class="glyphicon glyphicon-search"></i>
+                        </div>
+                    </div>
+                </div>
+                <div style="display: flex;" >
+
+                    <div ng-if="$root.isDisplayBasicButton" style="padding-left: 5px;">
+                    <button class="zb-btn zb-btn-o-green" ng-click="addTopic()">
+                            <i class="bowtie-icon bowtie-math-plus"></i>
+                    </button>
+                    <button class="zb-btn zb-btn-o-blue" ng-click="editTopic()">
+                            <i class="bowtie-icon bowtie-edit-outline"></i>
+                        </button>
+                    <button class="zb-btn zb-btn-o-red" ng-click="delTopic()">
+                            <i class="bowtie-icon bowtie-edit-remove"></i>
+                    </button>
+                        <button class="zb-btn dropdown-toggle" ng-click="approveTopic()" ng-if="$root.isApprove" >
+                            <i class="bowtie-icon bowtie-check "></i>
+                        </button>
+                    <button class="zb-btn" ng-click="pinTopic()">
+                            <i class="bowtie-icon bowtie-pin"></i>
+                    </button>
+                    <button class="zb-btn" ng-click="blockTopic()">
+                            <i class="bowtie-icon bowtie-security-lock"></i>
+                    </button>
+                    </div>
+                    <div class="col-md-6" style="padding-right: 0; top: 2px;" ng-if="!$root.isDisplayBasicButton">
+                    <!--<input-text-icon id="tableSearchText" on-click="objSearch.onSearch" ng-model="objSearch.$$$modelSearch"></input-text-icon>-->
+                     <div class="hcs-left-side-department-tree-tool-bar-div-search">
+                        <input class="hcs-left-side-department-tree-tool-bar-input-search" ng-model="objSearch.$$$modelSearch">
+                        <div class="hcs-left-side-department-tree-tool-bar-input-search-bot"></div>
+                        <div class="hcs-left-side-department-tree-tool-bar-input-search-bot-icon" ng-click="onSearchText()">
+                            <i class="glyphicon glyphicon-search"></i>
+                        </div>
+                        </div>
+                     </div>
+                </div>
+            </div>
+        </extend-toolbar>
+        <content>
+            <div c-template url="${get_app_url('')}/pages/{{$partialpage}}" 
+                 style="position: absolute; top: 0; bottom: 0; left: 0; right: 0;"></div>
+        </content>
+    </page-sidebar>
+</div>
+<script>
+    <%include file="../scripts/lms_topic.js"/>
+</script>

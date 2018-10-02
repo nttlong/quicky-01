@@ -1,6 +1,7 @@
-import quicky
+from create_sys_admin_user import create_sys_admin_user
 import datetime
 def authenticate(request):
+    create_sys_admin_user()
 
     if not request.user.is_anonymous() and \
             (request.user.is_superuser or \
@@ -27,13 +28,6 @@ def on_end_request(request):
 
     print("time is :{0} in {1}".format((datetime.datetime.now()-request.begin_time).microseconds,request.path_info))
 Database=dict(
-    host="172.16.7.63",
-    name="lv01_lms",
-    port=27017,
-    user="sys",
-    password="123456"
-)
-Database_=dict(
     host="localhost",
     name="hrm",
     port=27017,

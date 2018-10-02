@@ -2,10 +2,10 @@
     'use strict';
 
     angular.module('ZebraApp.components.combobox')
-        .directive('treeCombobox', ["$compile", combobox]);
+        .directive('treeCombobox', ["$compile", "templateService", combobox]);
 
     /** @ngInject */
-    function combobox($compile) {
+    function combobox($compile, templateService) {
         return {
             restrict: 'E',
             replace: true,
@@ -41,29 +41,7 @@
             //template: function(el, attrs) {
             //  return '<div class="switch-container ' + (attrs.color || '') + '"><input type="checkbox" ng-model="ngModel"></div>';
             //}
-            template: `
-              <div class="zb-form-combobox input-group">
-                <div class="form-control">
-                  <span class="placeholder">{{placeholder}}</span>
-                  <span class="display-value" ng-if="!multiSelect">{{$selectedItem[captionField]}}</span>
-                  <div class="display-value" ng-if="multiSelect">
-                        <span class="multi-value" ng-repeat="v in $selectedItem">
-                            {{v[captionField]}}
-                            <i class="bowtie-icon bowtie-math-multiply-light" ng-click="$deleteSelectedItem(v)"></i>
-                        </span>
-                  </div>
-                </div>
-                <div class="zb-combobox-template" ng-transclude style="display:none"></div>
-                <div class="input-group-btn">   
-                  <button class="btn btn-default zb-combo-btn-clear" ng-disabled="ngDisabled">
-                    <i class="bowtie-icon bowtie-edit-remove"></i>
-                  </button>
-                  <button class="btn btn-default zb-open-modal" ng-disabled="ngDisabled">
-                    <i class="bowtie-icon bowtie-navigate-external"></i>
-                  </button>
-                </div>
-              </div>
-            `,
+            templateUrl: templateService.getStatic("app/components/combobox/tree-combobox/tree-combobox.html"),
             //templateUrl: "app/components/input/text/text.html",
             link: function($scope, elem, attr, ctrl, transclude) {
                 // if(attr["required"]){
@@ -115,14 +93,31 @@
                         $scope.$applyAsync();
                     }
                 }
-                
 
-                $(elem).find(".zb-combo-btn-clear").bind("click", function() {
-                    _control.clearValue();
-                });
-                console.log($scope.selectedItem);
+                $scope.getValueString = function(){
+                    if($scope.multiSelect){
+                        if($scope.$selectedItem && $scope.$selectedItem.length > 0)
+                            return _.pluck($scope.$selectedItem, $scope.captionField).join(", ");
+                        return "";
+                    }else{
+                        return $scope.$selectedItem[$scope.captionField];
+                    }
+                }
+
+                if(!$scope.multiSelect){
+                    $(elem).find('input[type=text]').bind('keyup', function(e){
+                        if($scope.$selectedItem){
+                            if(e.keyCode === 8){
+                                if($scope.$selectedItem[$scope.captionField] != e.currentTarget.value){
+                                    _control.clearValue();
+                                }
+                            }
+                        }
+                    })
+                }
+
                 var dialogTemplate = '' +
-                    '<div class="zb-modal-combobox modal fade" role="dialog">' +
+                    '<div class="zb-modal-combobox modal fade" role="dialog" tabindex="-1">' +
                     '    <div class="modal-dialog modal-dialog-one-col">' +
                     '        <div class="modal-content">' +
                     '            <div class="modal-header">' +
@@ -164,7 +159,7 @@
 
                 $(elem).find(".zb-open-modal").bind("click", function() {
                     $dialog.appendTo("body");
-                    $dialog.modal({ backdrop: 'static', keyboard: false });
+                    $dialog.modal({ backdrop: 'static', keyboard: true });
 
                     if (!$scope.$cbbConfig) {
                         var fnLoadData = function(pgIdx, txtSearch) {

@@ -1,12 +1,20 @@
 ﻿(function () {
     'use strict';
     window._root__component_template_url = ""
+    window._root__component_url = ""
     window._api_combobox = ""
+    window._static = ""
     window.set_component_template_url = function (url) {
         _root__component_template_url = url
     }
+    window.set_component_url = function (url){
+        _root__component_url = url
+    }
     window.set_api_combobox=function(url) {
         _api_combobox = url
+    }
+    window.set_static = function(url){
+        _static = url;
     }
     angular
         .module('hcs-template')
@@ -15,13 +23,17 @@
     function layoutService() {
 
         fac.__templatePath = window._root__component_template_url;
+        fac.__getPathComponent = window._root__component_url;
         fac.__api_combobox = window._api_combobox;
+        fac.__static = window._static;
         fac.onClickFunctionLeftMenu = onClickFunctionLeftMenu;
         fac.onClickBreadCumbDropdownMenu = onClickBreadCumbDropdownMenu;
         fac.onClickHideLeftMenufunction = onClickHideLeftMenufunction;
         fac.getTemplatePath = getTemplatePath;
         fac.getCurrentPath = getCurrentPath;
         fac.getApiCombobox = getApiCombobox;
+        fac.getPathComponent = getPathComponent;
+        fac.getStatic = getStatic;
 
         /**
         * Handle when click function button on left side screen
@@ -77,12 +89,20 @@
             return fac.__templatePath + filePath + '/' + filePath + '.html';
         }
 
+        function getPathComponent(filePath){
+            return fac.__getPathComponent + '/' + filePath;
+        }
+
         function getCurrentPath() {
             return fac.__templatePath;
         }
 
         function getApiCombobox() {
             return fac.__api_combobox;
+        }
+
+        function getStatic(url){
+            return fac.__static + url;
         }
 
         return fac;

@@ -1,37 +1,42 @@
-﻿
+﻿﻿
 <%!
     #_style="width:200px;"
 %>
-<%inherit file="../../commons/dialog_selected_cancel.html"/>
+<%inherit file="../../commons/dialog_resize_selected_cancel.html"/>
 
 <%block name="modal_body">
- <div class="col-md-12 col-sm-12 col-12">
-    <collapse-box class="zb-form-common" title="${get_global_res('data_generate_source','Nguồn phát sinh dữ liệu')}">        
-         <div class="col-md-12 col-sm-12 col-12">
-			 <div class="form-group zb-form-group">
-				 <div class="col-md-5 col-sm-5 col-5 zb-form-label">
-                      <label class="radio ">${get_res('get_by_result_aprPeriod','Lấy theo kết quả của kỳ đánh giá')}
-                          <input type="radio" checked>
-                          <span class="checkround"></span>
-                      </label>
-					 </div>
-					 <div class="col-md-7 col-sm-7 col-7">
-                                 <input-select data-list="cbbApprovalPeriod" ng-model="entity.apr_now_result_period" data-value="value" data-caption="caption"/>
-                             </div>
+<div class="col-md-12 col-sm-12 col-xs-12">
+   <collapse-box class="zb-form-common" title="${get_global_res('data_generate_source','Nguồn phát sinh dữ liệu')}">
+      <div class="col-md-12 col-sm-12 col-xs-12">
+         <div class="form-group zb-form-group">
+            <div class="col-md-5 col-sm-5 col-xs-5 zb-form-label">
+               <label class="radio ">${get_res('get_by_result_aprPeriod','Lấy theo kết quả của kỳ đánh giá')}
+               <input type="radio" checked>
+               <span class="checkround"></span>
+               </label>
             </div>
-              </div>
-
-
-        <br />
-        <div class="col-md-12 col-sm-12 col-12" style="margin-top:30px;">
-               <div class="form-group zb-form-group"  style="margin-left:6px;">
-                            <input type="checkbox" ng-model="entity.chk_genExchangeData"/>
-                               <label class="col-md-4 col-sm-4 col-4 zb-form-label" style="margin-left: 8px;">${get_res('exchange_list_present','Thay thế danh sách hiện có')}</label>
-                         </div>
-              </div>
-        </collapse-box>
-          </div>
-    </%block>
+            <div class="col-md-7 col-sm-7 col-xs-7">
+               <input-select data-list="cbbApprovalPeriod" ng-model="entity.apr_now_result_period" data-value="value" data-caption="caption"/>
+            </div>
+         </div>
+      </div>
+      <br />
+      <div class="col-md-12 col-sm-12 col-xs-12" style="margin-top:30px;">
+        <div class="form-group zb-form-group">
+            <!--Ngưng sử dụng-->
+            <label for="inputLock" class="col-xs-5 col-sm-5 zb-form-label">${get_res('exchange_list_present','Thay thế danh sách hiện có')}</label>
+            <div class="col-xs-7 col-sm-7">
+                <input-checkbox id="inputLock" ng-model="entity.chk_genExchangeData">
+            </div>
+        </div>
+         <!--<div class="form-group zb-form-group"  style="margin-left:6px;">
+            <input type="checkbox" ng-model="entity.chk_genExchangeData"/>
+            <label class="col-md-4 col-sm-4 col-xs-4 zb-form-label" style="margin-left: 8px;">${get_res('exchange_list_present','Thay thế danh sách hiện có')}</label>
+         </div>-->
+      </div>
+   </collapse-box>
+</div>
+</%block>
 
 <%block name="modal_script">
 
@@ -74,7 +79,10 @@
 		function _loadCombobox(callback) {
 			debugger
                 services.api("${get_api_key('app_main.api.TMPER_AprPeriodEmpOut/get_list_distinct_approval_year_and_period')}")
-                    .data({})
+                    .data({
+                        apr_period: scope.$parent.$parent.mode == 1 ? scope.$parent.$parent.apr_period_now : scope.$parent.$parent.Re_Map_Period(scope.$parent.$parent.entity.apr_period),
+                        apr_year: scope.$parent.$parent.mode == 1 ? scope.$parent.$parent.apr_year_now : scope.$parent.$parent.entity.apr_year
+                    })
                     .done()
 					.then(function (res) {
 						debugger
@@ -85,13 +93,13 @@
 		function cancelBtn() {
 			$dialog.closeDialog();
 		}
-
 		scope.selectBtn = selectBtn;
+
         (function _init_() {
+        debugger
 			_loadCombobox(function (res) {
-				debugger
-				var period_now = scope.$parent.$parent.Re_Map_Period(scope.$parent.$apr_period);
-				var year_now = scope.$parent.$apr_year;
+				var period_now = scope.$parent.$parent.mode == 1 ? scope.$parent.$parent.apr_period_now : scope.$parent.$parent.Re_Map_Period(scope.$parent.$parent.entity.apr_period);
+				var year_now = scope.$parent.$parent.mode == 1 ? scope.$parent.$parent.apr_year_now : scope.$parent.$parent.entity.apr_year;
 				var j;
 				for (var i = 0; i < res.length; i++) {
 					if (res[i].apr_period == period_now && res[i].apr_year == year_now) {
@@ -127,8 +135,8 @@
 				services.api("${get_api_key('app_main.api.TMPER_AprPeriodEmpOut/generate')}")
 					.data({
 						res,
-						"now_apr_period": scope.$parent.$parent.Re_Map_Period(scope.$parent.$parent.currentItem.apr_period),
-						"now_apr_year": scope.$parent.$parent.currentItem.apr_year,
+						"now_apr_period": scope.$parent.$parent.mode == 1 ? scope.$parent.$parent.apr_period_now : scope.$parent.$parent.Re_Map_Period(scope.$parent.$parent.entity.apr_period),
+						"now_apr_year": scope.$parent.$parent.mode == 1 ? scope.$parent.$parent.apr_year_now : scope.$parent.$parent.entity.apr_year,
 						"chk_exchangeData": scope.entity.chk_genExchangeData
 					})
 					.done()
@@ -151,6 +159,7 @@
 			scope.$$tableConfig = scope.$parent.$$tableConfig;
 			(scope.$parent._tableData(scope.$$tableConfig.iPage, scope.$$tableConfig.iPageLength, scope.$$tableConfig.orderBy, scope.$$tableConfig.SearchText, scope.$$tableConfig.fnReloadData))();
 		}
+
 
 	});
 

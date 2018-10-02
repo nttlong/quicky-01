@@ -117,7 +117,6 @@
             })
             .done()
                 .then(function (res) {
-                debugger
                 scope.cbbLMSLRelation = getValue(res.values, "LMSLRelation");
                 scope.$applyAsync();
                 function getValue(response, listName) {

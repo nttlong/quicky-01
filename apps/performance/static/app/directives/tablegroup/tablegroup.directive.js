@@ -20,7 +20,6 @@
         return directive;
 
         function link(scope, element, attrs) {
-            debugger
             // set Gird Layout
             var girdLayout = _.pluck(scope.currentHeader, 'width').join(" ");
             var header = element.find('.lms-table-history-custom-header');

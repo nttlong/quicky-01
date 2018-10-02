@@ -1,0 +1,247 @@
+(function (scope){
+
+    scope.selectedItems = [];
+
+    scope.$parent.$parent.$parent.edit = function () {
+        if (scope.currentItem) {
+            scope.mode = 2; // set mode chỉnh sửa
+            openDialog("${get_res('edit_pl_forum','Edit Public Forum')}", 'form/addForumPublic', function () { });
+        } else {
+            $msg.message("${get_global_res('Notification','Thông báo')}", "${get_app_res('No_Row_Selected','Không có dòng được chọn')}", function () { });
+        }
+    }
+
+    scope.$parent.$parent.$parent.delete = function () {
+        scope.mode = 3;
+        if (!scope.selectedItems || scope.selectedItems.length === 0) {
+            $msg.message("${get_global_res('Notification','Thông báo')}", "${get_global_res('No_Row_Selected','Không có dòng được chọn')}", function () { });
+        } else {
+            $msg.confirm("${get_global_res('Notification','Thông báo')}", "${get_global_res('Do_You_Want_Delete','Bạn có muốn xóa không?')}", function () {
+                services.api("${get_api_key('app_main.api.LMSLS_Forum/delete')}")
+                    .data(scope.selectedItems)
+                    .done()
+                    .then(function (res) {
+                        if (res.deleted > 0) {
+                            _tableData(scope.$$tableConfig.iPage, scope.$$tableConfig.iPageLength, scope.$$tableConfig.orderBy, scope.$$tableConfig.SearchText, scope.$$tableConfig.fnReloadData);
+                            $msg.alert("${get_global_res('Handle_Success','Thao tác thành công')}", $type_alert.INFO);
+                            scope.$applyAsync();
+                            scope.currentItem = null;
+                            scope.selectedItems = [];
+                        }
+                    })
+            });
+        }
+    };
+
+     scope.$parent.$parent.$parent.update_status_open = function () {
+        if (!scope.selectedItems || scope.selectedItems.length === 0) {
+            $msg.message("${get_global_res('Notification','Thông báo')}", "${get_global_res('No_Row_Selected','Không có dòng được chọn')}", function () { });
+        } else {
+            $msg.confirm("${get_global_res('Notification','Thông báo')}", "${get_global_res('Do_You_Want_Update_Status','Bạn có muốn cập nhật lại trạng thái không?')}", function () {
+                services.api("${get_api_key('app_main.api.LMSLS_Forum/update_status_open')}")
+                    .data(scope.selectedItems)
+                    .done()
+                    .then(function (res) {
+                        _tableData(scope.$$tableConfig.iPage, scope.$$tableConfig.iPageLength, scope.$$tableConfig.orderBy, scope.$$tableConfig.SearchText, scope.$$tableConfig.fnReloadData);
+                        $msg.alert("${get_global_res('Handle_Success','Thao tác thành công')}", $type_alert.INFO);
+                        scope.$applyAsync();
+                        scope.currentItem = null;
+                        scope.selectedItems = [];
+                    })
+            });
+        }
+    };
+
+     scope.$parent.$parent.$parent.update_status_suspend = function () {
+        if (!scope.selectedItems || scope.selectedItems.length === 0) {
+            $msg.message("${get_global_res('Notification','Thông báo')}", "${get_global_res('No_Row_Selected','Không có dòng được chọn')}", function () { });
+        } else {
+            $msg.confirm("${get_global_res('Notification','Thông báo')}", "${get_global_res('Do_You_Want_Update_Status','Bạn có muốn cập nhật lại trạng thái không?')}", function () {
+                services.api("${get_api_key('app_main.api.LMSLS_Forum/update_status_suspend')}")
+                    .data(scope.selectedItems)
+                    .done()
+                    .then(function (res) {
+                        _tableData(scope.$$tableConfig.iPage, scope.$$tableConfig.iPageLength, scope.$$tableConfig.orderBy, scope.$$tableConfig.SearchText, scope.$$tableConfig.fnReloadData);
+                        $msg.alert("${get_global_res('Handle_Success','Thao tác thành công')}", $type_alert.INFO);
+                        scope.$applyAsync();
+                        scope.currentItem = null;
+                        scope.selectedItems = [];
+                    })
+            });
+        }
+    };
+
+     scope.$parent.$parent.$parent.update_status_write_protected = function () {
+        if (!scope.selectedItems || scope.selectedItems.length === 0) {
+            $msg.message("${get_global_res('Notification','Thông báo')}", "${get_global_res('No_Row_Selected','Không có dòng được chọn')}", function () { });
+        } else {
+            $msg.confirm("${get_global_res('Notification','Thông báo')}", "${get_global_res('Do_You_Want_Update_Status','Bạn có muốn cập nhật lại trạng thái không?')}", function () {
+                services.api("${get_api_key('app_main.api.LMSLS_Forum/update_status_write_protected')}")
+                    .data(scope.selectedItems)
+                    .done()
+                    .then(function (res) {
+                        _tableData(scope.$$tableConfig.iPage, scope.$$tableConfig.iPageLength, scope.$$tableConfig.orderBy, scope.$$tableConfig.SearchText, scope.$$tableConfig.fnReloadData);
+                        $msg.alert("${get_global_res('Handle_Success','Thao tác thành công')}", $type_alert.INFO);
+                        scope.$applyAsync();
+                        scope.currentItem = null;
+                        scope.selectedItems = [];
+                    })
+            });
+        }
+    };
+
+    scope.onSelectTableRow = function ($row) {
+        if (scope.currentItem) {
+            scope.mode = 2; // set mode chỉnh sửa
+            openDialog("${get_res('edit_lms_forum','Edit Forum')}", 'form/addForumPublic', function () { });
+        } else {
+            $msg.message("${get_global_res('Notification','Thông báo')}", "${get_app_res('No_Row_Selected','Không có dòng được chọn')}", function () { });
+        }
+    };
+
+    /**
+     * Hàm mở dialog
+     * @param {string} title Tittle của dialog
+     * @param {string} path Đường dẫn file template
+     * @param {function} callback Xử lí sau khi gọi dialog
+     * @param {string} id Id của form dialog, default = 'myModal'
+     */
+    function openDialog(title, path, callback, id = 'myModal') {
+        //check tồn tại của form dialog theo id
+        if ($('#myModal').length === 0) {
+            scope.headerTitle = title;
+            //Đặt ID cho form dialog
+            dialog(scope, id).url(path).done(function () {
+                callback();
+                //Set draggable cho form dialog
+                $dialog.draggable();
+            });
+        }
+    }
+
+
+      /* Table */
+    //Cấu hình tên field và caption hiển thị trên UI
+    scope.tableFields = [
+            { "data": "forum_id", "title": "${get_res('forum_id','ID')}" },
+            { "data": "forum_name", "title": "${get_res('forum_name','Forum Name')}" },
+            { "data": "description", "title": "${get_res('forum_description','Description')}" },
+            { "data": "forum_typeName", "title": "${get_res('forum_type','Forum Type')}","expr":function(row, data, func){
+                func(function(){
+                    return "<div style='color:#5B9BD5'>" + " " + row.forum_typeName + "</div>";
+                });
+                return true;
+            }},
+            { "data": "specific_avail.start_date", "title": "${get_res('forum_start_date','Start Date')}","format": "date:" + 'dd/MM/yyyy'  },
+            { "data": "specific_avail.end_date", "title": "${get_res('forum_end_date','End Date')}","format": "date:" + 'dd/MM/yyyy'  },
+            { "data": "forum_administrator", "title": "${get_res('forum_administrator','Forum Admin')}" },
+            { "data": "statusName", "title": "${get_res('forum_statusName','Status')}" ,"expr":function(row, data, func){
+                func(function(){
+                    if (row.statusName == "Open")
+                        return "<div class='status-radio-green''></div>" + "<i class='status-text-green''>" + row.statusName + "</i>";
+                    if (row.statusName == "Write Protected")
+                         return "<div class='status-radio-yellow''></div>" + "<i class='status-text-yellow''>" + row.statusName + "</i>";
+                    if (row.statusName == "Suspend")
+                        return "<div class='status-radio-red''></div>" + "<i class='status-text-red''>" + row.statusName + "</i>";
+                    return "<i style='width:15px;height:17px;font-weight:900'>" + " " + row.status + "</i>";
+                });
+                return true;
+            }},
+            { "data": "created_on", "title": "${get_res('forum_created_on','Create At')}","format": "date:" + 'dd.MM.yyyy hh:mm a' },
+    ];
+
+
+    scope.tableSource = _loadDataServerSide;
+
+    function _loadDataServerSide(fnReloadData, iPage, iPageLength, orderBy, searchText) {
+        scope.$root.$$tableConfig = scope.$$tableConfig = {
+            fnReloadData: fnReloadData,
+            iPage: iPage,
+            iPageLength: iPageLength,
+            orderBy: orderBy,
+            searchText: searchText
+        };
+        //setTimeout(function () {
+        if (fnReloadData) {
+            if (searchText) {
+                _tableData(iPage, iPageLength, orderBy, searchText, function (data) {
+                    fnReloadData(data);
+                });
+            } else {
+                _tableData(iPage, iPageLength, orderBy, null, function (data) {
+                    fnReloadData(data);
+                });
+            }
+        }
+        //}, 1000);
+    };
+
+    scope.$root._tableData = scope._tableData = _tableData;
+    function _tableData(iPage, iPageLength, orderBy, searchText, callback) {
+        var sort = {};
+        $.each(orderBy, function (i, v) {
+            sort[v.columns] = (v.type === "desc") ? -1 : -1;
+        });
+        sort[orderBy[0].columns] =
+            services.api("${get_api_key('app_main.api.LMSLS_Forum/get_list_with_searchtext_all')}")
+                .data({
+                    //parameter at here
+                    "pageIndex": iPage - 1,
+                    "pageSize": iPageLength,
+                    "search": searchText,
+                    "sort": sort
+                })
+                .done()
+                .then(function (res) {
+                    res.items.forEach(function(it){
+                        switch (it.forum_status) {
+	                    case 1:
+	                    	it.statusName = "${get_global_res('open','Open')}";
+	                    	break;
+	                    case 2:
+	                    	it.statusName = "${get_global_res('suspend','Suspend')}";
+	                    	break;
+	                    case 3:
+	                    	it.statusName = "${get_global_res('write_protected','Write Protected')}";
+	                    	break;
+	                    default:
+	                        it.statusName = "";
+                        }
+
+                        switch (it.forum_type) {
+	                    case true:
+	                    	it.forum_typeName = "${get_global_res('public','Public')}";
+	                    	break;
+	                    case false:
+	                    	it.forum_typeName = "${get_global_res('private','Private')}";
+	                    	break;
+                         default:
+	                        it.forum_typeName = "";
+                        }
+                    })
+
+                    var data = {
+                        recordsTotal: res.total_items,
+                        recordsFiltered: res.total_items,
+                        data: res.items
+                    };
+                    callback(data);
+
+                    //
+
+                    scope.currentItem = null;
+                    scope.$apply();
+                })
+    }
+
+    scope.refreshDataRow = refresh;
+
+    function refresh() {
+        var tableConfig = scope.$$tableConfig;
+        _tableData(tableConfig.iPage,
+            tableConfig.iPageLength, tableConfig.orderBy,
+            tableConfig.searchText, tableConfig.fnReloadData);
+    }
+
+
+});

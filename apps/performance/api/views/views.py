@@ -7,6 +7,7 @@ from ..models.HCSLS_Position import HCSLS_Position
 from ..models.HCSLS_JobWorking import HCSLS_JobWorking
 from ..models.HCSLS_Region import HCSLS_Region
 from ..models.SYS_ValueList import SYS_ValueList
+from ..models.TM_EmailHR import TM_EmailHR
 
 def SYS_VW_ValueList():
     return qview.create_mongodb_view(
@@ -38,6 +39,19 @@ def HCSEM_VW_EmployeeCBCC():
             ).match('is_cbcc == {0}', True)
         ,
         "HCSEM_VW_EmployeeCBCC"
+        )
+
+def HCSEM_VW_Employee_FullName_And_Email():
+    return qview.create_mongodb_view(
+            HCSEM_Employees().aggregate().project(
+            employee_code =  1,
+            first_name =  1,
+            last_name =  1,
+            email =  1,
+            full_name =  "concat(last_name, ' ', first_name)"
+            )
+        ,
+        "HCSEM_VW_Employee_FullName_And_Email"
         )
 
 def HCSLS_VW_JobWorkingFactorAppraisal():
@@ -159,3 +173,22 @@ def HCSEM_VWEmpWorking():
         ,
         "HCSEM_VWEmpWorking"
         )
+
+def TM_VW_EmailHR():
+    return qview.create_mongodb_view(
+        TM_EmailHR().aggregate()
+            .lookup(HCSEM_Employees(), "employee_code", "employee_code", "emp")
+            .unwind("emp", False)
+            .lookup(HCSSYS_Departments(), "department_code", "department_code", "dept")
+            .unwind("dept", False)
+            .project(
+            employee_code = "employee_code",
+            email_address="email_address",
+            department_code="department_code",
+            note="note",
+            department_name="switch(case(dept.department_name!='',dept.department_name),'')",
+            employee_name="concat(emp.last_name, ' ', emp.first_name)"
+        )
+        ,
+        "TM_VW_EmailHR"
+    )

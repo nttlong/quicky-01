@@ -5,6 +5,7 @@
                   on-save="onSave" 
                   on-import="onImport" 
                   on-export="onExport"
+                  on-refresh="onRefresh"
                   on-search-press="onSearch"
                   source="mapName" 
                   key-field="function_id" 
@@ -14,7 +15,7 @@
                   reload-on-change="false"
                   advanced-search="advancedSearch">
         <site-map>
-            <a><span>{{$root.currentFunction.default_name}}</span></a>
+            <span>{{$root.currentFunction.default_name}}</span>
             <span><i class="bowtie-icon bowtie-chevron-right"></i></span>
             <span>{{currentFunction.default_name}}</span>
             <a data-target="#dropdownFunction" style="color:#333" data-toggle="collapse"><i class="bowtie-icon bowtie-chevron-down"></i></a>
@@ -25,6 +26,11 @@
                 <div class="dropdown">
                     <p ng-repeat="f in mapName | filter : search" ng-class="{focus : selectedFunction === f.function_id}" ng-click="selectFunc($event, f.function_id)">{{f.custom_name ? f.default_name : f.custom_name}}</p>
                 </div>
+            </div>
+            <div class="hcs-resp-action-zb-left-content" style="float: right;">
+                <button class="zb-btn zb-btn-o-green ng-scope" ng-click="$root.doToggle('.zb-right-content')">
+                    <i class="bowtie-icon bowtie-set-actions"></i>
+                </button>
             </div>
         </site-map>
         <!--on-search-change="onSearch"-->
@@ -53,8 +59,7 @@
                             paging="true"
                             close-on-select="true"
                             template-fields="$$$cbb_region.display_fields"
-                            reload="false"
-                            required>
+                            reload="false">
                 </combobox>
             </div>
             <div class="col-xs-3" ng-if="selectedFunction == 'HCSSYS0380'">
@@ -74,8 +79,7 @@
                             paging="true"
                             close-on-select="true"
                             template-fields="$$$cbb_nation.display_fields"
-                            reload="false"
-                            required>
+                            reload="false">
                 </combobox>
             </div>
             <!--Combox filter data của màn hình phân cấp hành chính-->

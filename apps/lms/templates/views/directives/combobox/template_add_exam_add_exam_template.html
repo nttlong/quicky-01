@@ -119,8 +119,9 @@
         }
 
         function save() {
-            
-            if (scope.$table.currentItem.exam_temp_id) {  
+            debugger
+            if (scope.$table.currentItem.exam_temp_id) {
+                scope.$parent.category_list =[];
                 scope.$parent.category_list.push(...scope.$table.currentItem.question_list)
                 scope.$parent.entity.duration = scope.$table.currentItem.duration
                 scope.$parent.entity.exam_temp_name1 = scope.$table.currentItem.exam_temp_name1

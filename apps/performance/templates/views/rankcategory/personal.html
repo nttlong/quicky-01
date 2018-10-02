@@ -1,4 +1,4 @@
-﻿<style>
+﻿﻿<style>
     .app-content {
         overflow: unset !important;
     }
@@ -7,7 +7,13 @@
     <div>
         <header-page>
             <site-map>
-                <a><span>{{$root.currentFunction.default_name}}</span></a>
+                <span>{{$root.currentFunction.default_name}}</span>
+                <div class="hcs-resp-action-zb-left-content" style="float: right;">
+                    <button class="zb-btn zb-btn-o-green ng-scope"
+                            ng-click="$root.doToggle('.zb-right-content')">
+                        <i class="bowtie-icon bowtie-menu"></i>
+                    </button>
+                </div>
             </site-map>
             <toolbar>
                 <input-text-icon icon="bowtie-icon bowtie-search"
