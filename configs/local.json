@@ -96,6 +96,11 @@
     "name":"hrm",
     "collection":"sys.customers"
   },
+  "JASPER":{
+    "URL":"http://172.16.7.67:8080/jasperserver",
+    "USER":"jasperadmin",
+    "PASSWORD":"jasperadmin"
+  },
   "DB_BACK_END":{
     "host":"localhost",
     "port":27017,
@@ -126,7 +131,8 @@
     "user":"root",
     "password":"123456",
     "name":"hrm",
-    "collection":"sys_languages"
+    "collection":"sys_languages",
+    "disable":"true"
   },
   "DB_ENCRYPTOR_CACHE":{
     "host":"localhost",
@@ -162,7 +168,8 @@
       "name":"hrm",
       "path":"apps/hrm",
       "login_url":"/login",
-      "schema":"hrm"
+      "schema":"hrm",
+      "disable":true
 
     },{
       "host":"",

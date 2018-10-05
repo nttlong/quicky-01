@@ -60,6 +60,11 @@
         "LOCATION": "127.0.0.1:11211"
     }
   },
+  "JASPER":{
+    "URL":"http://172.16.7.67:8080/jasperserver",
+    "USER":"jasperadmin",
+    "PASSWORD":"jasperadmin"
+  }
   "SESSION_ENGINE":"django.contrib.sessions.backends.cache",
 
   "SESSION_EXPIRE_AT_BROWSER_CLOSE":true,

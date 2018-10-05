@@ -5,6 +5,11 @@
     "/packages/django",
     "/uvenv04/lib/python2.7/site-packages"
   ],
+  "JASPER":{
+    "URL":"http://172.16.7.67:8080/jasperserver",
+    "USER":"jasperadmin",
+    "PASSWORD":"jasperadmin"
+  },
   "AUTHORIZATION_ENGINE": "quicky.authorize",
   "HOST_DIR_1": "lms",
   "SECRET_KEY": "12jds*3210d)9",
