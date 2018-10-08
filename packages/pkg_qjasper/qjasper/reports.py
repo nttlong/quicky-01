@@ -1,4 +1,5 @@
 import requests
+import urllib
 from . import xml_parser
 from . import dm_obj
 def get_all_report(txt_search=None):
