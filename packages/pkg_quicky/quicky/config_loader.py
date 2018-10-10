@@ -116,8 +116,8 @@ def load_config(file_name,none_params=False):
     sys.modules.update({file_name: {"settings": settings}})
     sys.modules.update({file_name + ".settings": settings})
     os.environ.setdefault("DJANGO_SETTINGS_MODULE", file_name + ".settings")
-    from . import api
-    api.connect(config_from_file["DB_API_CACHE"])
+    # from . import api
+    # api.connect(config_from_file["DB_API_CACHE"])
     from . import backends
     backends.set_config(config_from_file["DB_BACK_END"])
     quicky.url.build_urls(settings.ROOT_URLCONF, [x for x in config_from_file["APPS"] if not x.get("disable", False)])

@@ -108,7 +108,7 @@
     "name":"hrm",
     "collection":"sys.auth_token"
   },
-  "DB_API_CACHE":{
+  "DB_API_CACHE_":{
     "host":"localhost",
     "port":27017,
     "user":"root",

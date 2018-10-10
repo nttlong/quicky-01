@@ -199,18 +199,28 @@ def get_api_key(path):
     global _cache_id_revert
     global _coll
     if _coll==None:
-        raise (Exception("It look like you forgot call api.connect on settings.py\n"
-                         "\t\tHow to use this?:\n"
-                         "\t\t\tIn settings.py:\n"
-                         "\t\t\t\t\t  from quicky import api\n"
-                         "\t\t\t\t\t  api.connect(\n"
-                         "\t\t\t\t\t  host=db host,\n"
-                         "\t\t\t\t\t  port= db port,\n"
-                         "\t\t\t\t\t  name=db name,\n"
-                         "\t\t\t\t\t  user=db user name,\n"
-                         "\t\t\t\t\t  password=db password,\n"
-                         "\t\t\t\t\t  collection=the name of collection storage api)\n"
-                         ))
+        from django.conf import settings
+        connect(dict(
+            host=settings.DATABASES["default"]["HOST"],
+            port=settings.DATABASES["default"]["PORT"],
+            user=settings.DATABASES["default"]["USER"],
+            password=settings.DATABASES["default"]["PASSWORD"],
+            name=settings.DATABASES["default"]["NAME"],
+            collection="api_caching"
+        ))
+        if _coll == None:
+            raise (Exception("It look like you forgot call api.connect on settings.py\n"
+                             "\t\tHow to use this?:\n"
+                             "\t\t\tIn settings.py:\n"
+                             "\t\t\t\t\t  from quicky import api\n"
+                             "\t\t\t\t\t  api.connect(\n"
+                             "\t\t\t\t\t  host=db host,\n"
+                             "\t\t\t\t\t  port= db port,\n"
+                             "\t\t\t\t\t  name=db name,\n"
+                             "\t\t\t\t\t  user=db user name,\n"
+                             "\t\t\t\t\t  password=db password,\n"
+                             "\t\t\t\t\t  collection=the name of collection storage api)\n"
+                             ))
     if not dict_utils.has_key(_cache_id,path):
         lock.acquire()
         try:
@@ -251,18 +261,28 @@ def get_api_key(path):
 def get_api_path(id):
     if not dict_utils.has_key(_cache_id_revert,id):
         if _coll == None:
-            raise (Exception("It look like you forgot call api.connect on settings.py\n"
-                             "\t\tHow to use this?:\n"
-                             "\t\t\tIn settings.py:\n"
-                             "\t\t\t\t\t  from quicky import api\n"
-                             "\t\t\t\t\t  api.connect(\n"
-                             "\t\t\t\t\t  host=db host,\n"
-                             "\t\t\t\t\t  port=db port,\n"
-                             "\t\t\t\t\t  name=db name,\n"
-                             "\t\t\t\t\t  user=db user name,\n"
-                             "\t\t\t\t\t  password=db password,\n"
-                             "\t\t\t\t\t  collection=the name of collection storage api)\n"
-                             ))
+            from django.conf import settings
+            connect(dict(
+                host=settings.DATABASES["default"]["HOST"],
+                port=settings.DATABASES["default"]["PORT"],
+                user=settings.DATABASES["default"]["USER"],
+                name=settings.DATABASES["default"]["NAME"],
+                password=settings.DATABASES["default"]["PASSWORD"],
+                collection="api_caching"
+            ))
+            if _coll == None:
+                raise (Exception("It look like you forgot call api.connect on settings.py\n"
+                                 "\t\tHow to use this?:\n"
+                                 "\t\t\tIn settings.py:\n"
+                                 "\t\t\t\t\t  from quicky import api\n"
+                                 "\t\t\t\t\t  api.connect(\n"
+                                 "\t\t\t\t\t  host=db host,\n"
+                                 "\t\t\t\t\t  port=db port,\n"
+                                 "\t\t\t\t\t  name=db name,\n"
+                                 "\t\t\t\t\t  user=db user name,\n"
+                                 "\t\t\t\t\t  password=db password,\n"
+                                 "\t\t\t\t\t  collection=the name of collection storage api)\n"
+                                 ))
         lock.acquire()
         try:
             item = _coll.find_one({
@@ -294,6 +314,3 @@ def logout(request):
     from django.contrib.auth import logout as signout
     from . import tenancy
     signout(request, request.user.schema)
-
-
-
