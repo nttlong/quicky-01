@@ -6,6 +6,7 @@
     scope.$root.isDisplayFoldertButton = true;
     scope.__tableSource = [];
     scope.$root.isDisplay = false;
+    scope.$root.isDisplayMoreButton = true;
     scope.mode = 0;
     scope.showDetail = false;
     scope.filterFunctionModel = ''
@@ -83,27 +84,25 @@
     scope.urls = scope.$root.url_static;
     scope.tableFields = [
         { "data": "folder_name", "title": "${get_res('category_name_table_header','Category Name')}" },
-        { "data": "moderator_id", "title": "${get_res('moderator_table_header','Moderator')}","expr":function(row, data, func){
+        { "data": "moderator_name", "title": "${get_res('moderator_table_header','Moderator')}","expr":function(row, data, func){
             func(function(){
-                return "<img class='hcs-small-img' style='width:15px;height:17px' src='" + scope.urls + "css/icon/admin_tr.png" + "'/>" + " " + row.moderator_id
+                return "<img style='width:15px;height:17px' src='" + scope.urls + "css/icon/admin_tr.png" + "'/>" + " " + row.moderator_name
             });
             return true;
-        } },
+        }},
         { "data": "approver_id", "title": "${get_res('approver_table_header','Approver(s)')}","expr":function(row, data, func){
             func(function(){
                 if(row.approver_id)
-                    return "<img class='hcs-small-img' style='width:15px;height:17px' src='" + scope.urls + "css/icon/approver_tr.png" + "'/>"+ " "+row.approver_id;
+                    return "<img style='width:15px;height:17px' src='" + scope.urls + "css/icon/approver_tr.png" + "'/>"+ " "+row.approver_id;
                 return '';
             });
             return true;
-        } },
+        }},
         { "data": "active", "title": "${get_res('status_table_header','Status')}" ,"expr":function(row, data, func){
             func(function(){
-                if (row.active == false)
-                    return "<span class='span-red'>" + scope.SpanStatus[0].name + "</span>"
-                if (row.active == true)
-                    return "<span class='span-blue'>" + scope.SpanStatus[1].name + "</span>"
-                return row.active;
+                if (row.statusName != "")
+                    return "<div class='span-block' style='background-color:" + row.styleColor +"'>" + row.statusName + "</div>"
+                return " ";
             });
             return true;
         }},
@@ -118,16 +117,6 @@
         scope.mode = 2;
         scope.$root.edit();
     };
-    scope.SpanStatus = [
-        {
-            name: 'Not Published',
-            status: false,
-        },
-        {
-            name: 'Published',
-            status: false,
-        }
-    ]
 
 
     //Danh sách các dòng đc chọn (nếu là table MultiSelect)
@@ -231,15 +220,6 @@
         }
     }
 
-    function tableFields() {
-        return [
-            { "data": "folder_name", "title": "${get_res('category_name_table_header','Category Name')}" },
-            { "data": "moderator_id", "title": "${get_res('moderator_table_header','Moderator')}" },
-            { "data": "approver_id", "title": "${get_res('approver_table_header','Approver(s)')}" },
-            { "data": "active", "title": "${get_res('status_table_header','Status')}" },
-        ];
-    }
-
     function handleData() {
 
         this.collection = {};
@@ -306,7 +286,21 @@
                     })
                     .done()
                     .then(function (res) {
-                        _.map(res.items,function(val){val.moderator_icon = "fa fa-user-plus" ; val.approver_icon = "fa fa-user-secret"})
+                        _.map(res.items,function(val){
+                            if(val.active == true)
+                            {
+                                val.statusName = "${get_res('published','Published')}";
+                                val.styleColor = "#2E75B6";
+                            }
+                            else if (val.active == false)
+                            {
+                                val.statusName = "${get_res('not_published', 'Not Published')}";
+                                val.styleColor = "#FF0000";
+                            }
+                            else val.statusName = "";
+
+                            return val;
+                         })
                         var data = {
                             recordsTotal: res.total_items,
                             recordsFiltered: res.total_items,

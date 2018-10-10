@@ -27,7 +27,8 @@
                 searchText: "=",
                 //checkAll: "=",
                 disabled: "=",
-                fields: "="
+                fields: "=",
+                formatMainColumn: "="
             },
             templateUrl: "app/components/tree/tree-table/tree-table.html",
             link: function($scope, elem, attr) {
@@ -294,7 +295,34 @@
                                 }
                                 var __data = (_fnFormatRender) ? _fnFormatRender(node.data[v.data]) : node.data[v.data];
                                 $tdList.eq(fromIdx + i).html(__data).addClass((v.className) ? v.className : '');
-                                
+                                /*Format from outside format*/
+                                var __outerFormat = {
+                                    func: function(callback){
+                                        if(callback)
+                                            __outerFormat.format = callback();
+                                    },
+                                    format: ""
+                                };
+                                var __outerFormatMainColumn = {
+                                    func: function(callback){
+                                        if(callback)
+                                            __outerFormatMainColumn.format = callback();
+                                    },
+                                    format: ""
+                                };
+                                //Format columns
+                                if(v.hasOwnProperty('expr') && v.expr(__outerFormat.func, data.node.data, node.data[v.data]) === true){
+                                    $tdList.eq(fromIdx + i).html(__outerFormat.format);
+                                }
+                                //Format main columns
+                                if($scope.formatMainColumn && $scope.formatMainColumn(__outerFormatMainColumn.func, data.node.data, node.data[$scope.displayField])){
+                                    if($scope.multiSelect){
+                                        $tdList.eq(1).find('span.fancytree-title').html(__outerFormatMainColumn.format);
+                                    }else{
+                                        $tdList.eq(0).find('span.fancytree-title').html(__outerFormatMainColumn.format);
+                                    }
+                                }
+                                /*Format from outside format*/
                             });
                         }
 

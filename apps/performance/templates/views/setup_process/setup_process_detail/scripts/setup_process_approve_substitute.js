@@ -1,13 +1,12 @@
 ﻿(function (scope) {
-
     scope.$$table = {
         tableFields: [
-            { "data": "process_code", "title": "${get_res('process_code','Mã người duyệt')}" },
-            { "data": "process_name", "title": "${get_res('process_name','Tên người duyệt')}" },
-            { "data": "substitute_code", "title": "${get_res('substitute_code','Mã người thay thế')}" },
-            { "data": "substitute_name", "title": "${get_res('substitute_name','Tên người thay thế')}" },
-            { "data": "from_date", "title": "${get_res('from_date','Hiệu lực từ ngày')}","format": "date:" + scope.$root.systemConfig.date_format },
-            { "data": "to_date", "title": "${get_res('to_date','Đến ngày')}","format": "date:" + scope.$root.systemConfig.date_format }
+            { "data": "process_code", "title": "${get_res('process_code','Mã người duyệt')}", "className": "text-left" },
+            { "data": "process_name", "title": "${get_res('process_name','Tên người duyệt')}", "className": "text-left" },
+            { "data": "substitute_code", "title": "${get_res('substitute_code','Mã người thay thế')}", "className": "text-left" },
+            { "data": "substitute_name", "title": "${get_res('substitute_name','Tên người thay thế')}", "className": "text-left" },
+            { "data": "from_date", "title": "${get_res('from_date','Hiệu lực từ ngày')}", "className": "text-center", "format": "date:" + scope.$root.systemConfig.date_format },
+            { "data": "to_date", "title": "${get_res('to_date','Đến ngày')}", "className": "text-center", "format": "date:" + scope.$root.systemConfig.date_format }
         ],
         $$tableConfig: {},
         tableSource: _loadDataServerSide,
@@ -52,13 +51,6 @@
             openDialog("${get_res('Factor_Appraisal','Chi tiết ủy quyền duyệt thay')}", 'setup_process/setup_process_detail/form/addSetupProcessApproverSubstitute', function () { });
     };
 
-    function reloadData(){
-        _tableData(scope.$$table.$$tableConfig.iPage, scope.$$table.$$tableConfig.iPageLength, scope.$$table.$$tableConfig.orderBy, scope.$$table.$$tableConfig.SearchText, scope.$$table.$$tableConfig.fnReloadData);
-        scope.$$table.currentItem = null;
-        scope.$$table.selectedItems = [];
-        scope.$applyAsync();
-    }
-
     function onEdit() {
         if (Object.keys(scope.$$table.currentItem).length > 0) {
             scope.mode = 2; // set mode chỉnh sửa
@@ -71,7 +63,7 @@
     debugger
        if (scope.entity !== null) {
                 services.api("${get_api_key('app_main.api.TM_SetupProcessApproverSubstitute/save')}")
-                    .data(scope.entity)
+                    .data(param)
                     .done()
                     .then(function (res) {
                         if (res.error === null) {
@@ -90,7 +82,10 @@
         } else {
             $msg.confirm("${get_global_res('Notification','Thông báo')}", "${get_global_res('Do_You_Want_Delete','Bạn có muốn xóa không?')}", function () {
                 services.api("${get_api_key('app_main.api.TM_SetupProcessApproverSubstitute/delete')}")
-                    .data(scope.$$table.selectedItems)
+                    .data({
+                        process_id : scope.$$process_id,
+                        _id : _.pluck(scope.$$table.selectedItems, "_id")
+                    })
                     .done()
                     .then(function (res) {
                         if (res.deleted > 0) {
@@ -122,7 +117,6 @@
 
     };
     function reloadData(){
-        debugger
         var config = scope.$$table.$$tableConfig;
         _tableData(config.iPage, config.iPageLength, config.orderBy, config.SearchText, config.fnReloadData);
     }
@@ -171,8 +165,7 @@
     });
 
     function _loadDataServerSide(fnReloadData, iPage, iPageLength, orderBy, searchText) {
-    debugger
-        scope.$$tableConfig = {
+        scope.$$table.$$tableConfig = {
             fnReloadData: fnReloadData,
             iPage: iPage,
             iPageLength: iPageLength,

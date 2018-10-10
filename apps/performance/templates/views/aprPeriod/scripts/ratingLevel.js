@@ -2,7 +2,7 @@
     scope.$$tableTree = {
         "dataTableTree": [],
         "tableFields": [
-            { "data": "department_code", "title": "${get_res('department_code','Mã')}", width: "100px", className: "text-left" }
+            { "data": "department_code", "title": "${get_res('department_code','Mã')}", width: "auto", className: "text-left" }
         ],
         "selectTreeNode": function (node) {
 
@@ -13,11 +13,11 @@
         "treeMultiSelect": true,
         "treeSelectMode": 3,
         "treeDisabled": false,
-
+        "formatMainColumn": {},
     };
 
 
-    scope.addDataGeneration = addDataGeneration
+    scope.$parent.$parent.$parent.onGen = addDataGeneration
      //var a = scope.$parent.currentFunction.function_id ;
     scope.$parent.$parent.$parent.onAdd =  onAdd;
     scope.$parent.$parent.$parent.onEdit = onEdit;
@@ -29,6 +29,12 @@
     scope.onExport = onExport;
     scope.onImport = onImport;
 
+    scope.$$tableTree.formatMainColumn = function(format,row,columns){
+        format(function(){
+            return "<span style='font-weight:bold'>" + columns + "</span>";
+            })
+         return row.rank_level && row.rank_level.length>0;
+    }
 
     function addDataGeneration() {
         scope.mode = 4;// set mode tạo mới
@@ -125,6 +131,7 @@
 
     function onEdit() {
         scope.mode = 2;
+        debugger
          if (!scope.$$tableTree.treeSelectedNodes || scope.$$tableTree.treeSelectedNodes.length === 0) {
             $msg.message("${get_global_res('Notification','Thông báo')}", "${get_global_res('No_Row_Selected','Không có dòng được chọn')}", function () { });
         }
@@ -156,6 +163,9 @@
     function onRefresh() {
 
     };
+    scope.$watch('$$tableTree.treeSelectedNodes', function (val) {
+        console.log("myTreeSelected"+val);
+    });
     /**
      * Hàm mở dialog
      * @param {string} title Tittle của dialog

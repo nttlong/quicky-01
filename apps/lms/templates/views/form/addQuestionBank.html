@@ -5,8 +5,18 @@
 <%inherit file="../commons/dialog_save_close.html"/>
 <%block name="modal_body">
 <style>
+
+
+.zb-form-checkbox .custom-checkbox {
+    padding-top: 4px;
+    padding-right: 5px;
+}
+
+
     .radio {
     padding-left: 20px;
+    margin-top: 4px;
+    margin-bottom: 8px;
 }
 
 .radio label {
@@ -203,7 +213,8 @@ input[type=checkbox] .styled:checked+label::after,input[type=radio] .styled:chec
     }
 
     .radio + .radio {
-        margin-top: 10px;
+        margin-top: 4px;
+        margin-bottom: 8px;
     }
 
     .bootstrap-tagsinput {
@@ -225,62 +236,65 @@ input[type=checkbox] .styled:checked+label::after,input[type=radio] .styled:chec
     <collapse-box class="zb-form-common" title="${get_res('add_question','Add a Question')}">
         <div class="col-md-12 col-sm-12">
             <div class="form-group zb-form-group">
-                <!--Mã Tài liệu, ID-->
-                <label for="inputEmp_Train_Mode_Name" class="col-sm-2 zb-form-label">${get_res('ques_id','Question ID')}</label>
-                <div class="col-sm-4">
-                    <input-text id="inputEmp_Train_Mode_Name" ng-model="entity.ques_id" 
-                                ng-disabled="__mode == 2" required>
-                </div>
-            </div>
-
-            <div class="form-group zb-form-group">
-                <!--Tên Tài liệu-->
-                <label for="inputEmp_Train_Mode_Name" class="col-sm-2 zb-form-label">${get_res('ques_category','Question Category')}</label>
-                <div class="col-sm-4">
-                    <div class="pull-left" >
-                        <span zb-required=""></span>
+                <div class="col-md-6" style="padding:0">
+                     <!--Mã Tài liệu, ID-->
+                    <label for="inputEmp_Train_Mode_Name" class="col-sm-4 zb-form-label">${get_res('ques_id','Question ID')}</label>
+                    <div class="col-sm-8">
+                        <input-text id="inputEmp_Train_Mode_Name" ng-model="entity.ques_id"
+                                    ng-disabled="__mode == 2" required>
                     </div>
-                    <!--<input-text id="inputEmp_Train_Mode_Name" ng-model="entity.ques_category" required>-->
-                    <combobox load-data="$root.$getComboboxData" 
-                            ng-model="entity.ques_category" 
-                            params="{key:'${encryptor.get_key('lms_cbb_exQuestionCategory')}', value:[]}" 
-                            on-search-change="false" 
-                            on-search-press="true"
-                            placeholder="" 
-                            init-data="cbb_excategory.value"
-                            caption-field="{{cbb_excategory.caption_field}}"
-                            paging="true" 
-                            close-on-select="true"
-                            template-fields="cbb_excategory.display_fields" 
-                            reload="false"
-                            required>
-                    </combobox>
+                </div>
+                <div class="col-sm-6" style="padding: 0">
+                      <!--Tên Tài liệu-->
+                    <label for="inputEmp_Train_Mode_Name" class="col-sm-4 zb-form-label">${get_res('ques_type','Question Type')}</label>
+                    <div class="col-sm-8">
+                        <input-select ng-model="entity.ques_type"
+                                      data-list="vll_LMSEx_ques_type"
+                                      data-value="value"
+                                      data-caption="caption" required/>
+                    </div>
                 </div>
             </div>
             <div class="form-group zb-form-group">
-                <!--Tên Tài liệu-->
-                <label for="inputEmp_Train_Mode_Name" class="col-sm-2 zb-form-label">${get_res('ques_type','Question Type')}</label>
-                <div class="col-sm-4">
-                    <input-select ng-model="entity.ques_type" 
-                                  data-list="vll_LMSEx_ques_type" 
-                                  data-value="value" 
-                                  data-caption="caption" required/>
+                <div class="col-md-6" style="padding:0">
+                    <!--Tên Tài liệu-->
+                    <label for="inputEmp_Train_Mode_Name" class="col-sm-4 zb-form-label">${get_res('ques_category','Question Category')}</label>
+                    <div class="col-sm-8">
+                        <div class="pull-left" >
+                            <span zb-required=""></span>
+                        </div>
+                        <!--<input-text id="inputEmp_Train_Mode_Name" ng-model="entity.ques_category" required>-->
+                        <combobox load-data="$root.$getComboboxData"
+                                ng-model="entity.ques_category"
+                                params="{key:'${encryptor.get_key('lms_cbb_exQuestionCategory')}', value:[]}"
+                                on-search-change="false"
+                                on-search-press="true"
+                                placeholder=""
+                                init-data="cbb_excategory.value"
+                                caption-field="{{cbb_excategory.caption_field}}"
+                                paging="true"
+                                close-on-select="true"
+                                template-fields="cbb_excategory.display_fields"
+                                reload="false"
+                                required>
+                        </combobox>
+                    </div>
                 </div>
-            </div>
-            <div class="form-group zb-form-group">
-                <!--Nguon dinh danh Tài liệu-->
-                <label for="inputEmp_Train_Mode_Name" class="col-sm-2 zb-form-label">${get_res('ques_level','Question Level')}</label>
-                <div class="col-sm-4">
-                    <input-select ng-model="entity.ques_level" 
-                                  data-list="vll_LMSEx_ques_level" 
-                                  data-value="value" 
-                                  data-caption="caption" required/>
+                <div class="col-sm-6" style="padding: 0">
+                    <!--Nguon dinh danh Tài liệu-->
+                    <label for="inputEmp_Train_Mode_Name" class="col-sm-4 zb-form-label">${get_res('ques_level','Question Level')}</label>
+                    <div class="col-sm-8">
+                        <input-select ng-model="entity.ques_level"
+                                      data-list="vll_LMSEx_ques_level"
+                                      data-value="value"
+                                      data-caption="caption" required/>
+                    </div>
                 </div>
             </div>
             <div class="form-group zb-form-group">
                 <!--Mô tả tài liệu-->
                 <label for="inputEmp_Train_Mode_Name" class="col-sm-2 zb-form-label">${get_res('file_view','File View')}</label>
-                <div class="col-sm-5">
+                <div class="col-sm-10">
 		            <input-select-file ng-model="entity.ques_file"></input-select-file>
                 </div>
             </div>
@@ -303,38 +317,46 @@ input[type=checkbox] .styled:checked+label::after,input[type=radio] .styled:chec
                     <c-html-box style="height: 100px;" data-rows="6" ng-model="entity.ques_detail_2"></c-html-box>
                 </div>
             </div>
+
             <div class="form-group zb-form-group">
                 <!--Tên Khóa học-->
                 <label for="inputEmp_Train_Mode_Name" class="col-sm-2 zb-form-label">${get_res('ques_hint','Hint')}</label>
-                <div class="col-sm-10">
-                    <div style="display: inline-flex;">
+                <div class="col-sm-4" style="display: inline-flex;">
                         <div class="radio radio-success">
-					        <input type="radio" name="resumeApply" ng-value="dt_true" id="rad1" 
+					        <input type="radio" name="resumeApply" ng-value="dt_true" id="rad1"
                                    ng-model="entity.ques_hint.ishintEnable">
 					        <label for="rad1">
 						        <span>${get_res('ques_enable','Enable')}</span>
 					        </label>
 				        </div>
                         <div class="radio radio-success" style="margin-left: 20px;">
-					        <input type="radio" name="resumeApply" ng-value="dt_false" id="rad2" 
+					        <input type="radio" name="resumeApply" ng-value="dt_false" id="rad2"
                                    ng-model="entity.ques_hint.ishintEnable">
 					        <label for="rad2">
-						        <span>${get_res('ques_disable','Disable')}</span> 
+						        <span>${get_res('ques_disable','Disable')}</span>
 					        </label>
 				        </div>
                     </div>
-                    <div>
-                        <input-select-file ng-model="entity.ques_hint.file"></input-select-file>
-                    </div>
+            </div>
+            <ng-container ng-if="entity.ques_hint.ishintEnable">
+                <div class="form-group zb-form-group">
+                 <div class="col-sm-10 col-sm-offset-2">
+                      <input-select-file ng-model="entity.ques_hint.file"></input-select-file>
+                 </div>
+            </div>
+                <div class="form-group zb-form-group">
+                <div class="col-sm-10 col-sm-offset-2">
                     <div>
                         <div class="clearblock" style="display:inline-block"></div>
                         <c-html-box style="height: 100px;" data-rows="6" ng-model="entity.ques_hint.note"></c-html-box>
                     </div>
                 </div>
             </div>
-            <!-- trường hợp chọn Question Type = 1, 2, 3 -->
-            <div class="form-group zb-form-group" 
-                ng-if="entity.ques_type == 1 || entity.ques_type == 2 || entity.ques_type == 3">
+            </ng-container>
+
+            <!-- trường hợp chọn Question Type = 1, 2 -->
+            <div class="form-group zb-form-group"  style="padding-bottom: 10px;"
+                ng-if="entity.ques_type == 1 || entity.ques_type == 2">
                 <label for="inputEmp_Train_Mode_Name" class="col-sm-2 zb-form-label">
                     ${get_res('ques_answers','Answers')}
                 </label>
@@ -342,7 +364,7 @@ input[type=checkbox] .styled:checked+label::after,input[type=radio] .styled:chec
                     <div class="col-md-12" ng-repeat="entry in entity.ques_answers track by $index" style="padding-left: 0;">
                         <div class="col-md-6" style="padding-left: 0;">
                             <div class="radio radio-success">
-					            <input type="radio" name="answers" ng-value="dt_true" 
+					            <input type="radio" name="answers" ng-value="dt_true"
                                        ng-change="entryChange(entity.ques_answers, $index)"
                                        ng-model="entry.isCorrect" id="rad_ans_{{$index}}">
 
@@ -360,20 +382,23 @@ input[type=checkbox] .styled:checked+label::after,input[type=radio] .styled:chec
                             
                             <input-textarea rows="4" ng-model="entry.answers"></input-textarea>
                         </div>
-                        <div class="col-md-6" style="padding-top: 30px;">
+                        <div class="col-md-6" style="padding-right: 0px;">
+                            <label class="zb-form-label" ng-if="$index == 0" style="margin-bottom:12px!important">${get_res('ques_score','Score')}</label>
+                            <label ng-if="$index != 0" style="margin-bottom:42px!important">
+                            </label>
                             <div class="form-group zb-form-group">
-                                <label for="inputEmp_Train_Mode_Name" class="col-sm-6 zb-form-label">
+                                <label for="inputEmp_Train_Mode_Name" class="col-sm-5 col-md-offset-3 zb-form-label">
                                     ${get_res('ques_if_correct','If Correct')}
                                 </label>
-                                <div class="col-sm-6">
+                                <div class="col-sm-5">
                                     <input-number id="inputEmp_Train_Mode_Name" ng-model="entry.if_correct">
                                 </div>
                             </div>
                             <div class="form-group zb-form-group">
-                                <label for="inputEmp_Train_Mode_Name" class="col-sm-6 zb-form-label">
+                                <label for="inputEmp_Train_Mode_Name" class="col-sm-5 col-md-offset-3 zb-form-label">
                                     ${get_res('ques_if_incorrect','If Incorrect')}
                                 </label>
-                                <div class="col-sm-6">
+                                <div class="col-sm-5">
                                     <input-number id="inputEmp_Train_Mode_Name" ng-model="entry.if_incorrect">
                                 </div>
                             </div>
@@ -394,7 +419,85 @@ input[type=checkbox] .styled:checked+label::after,input[type=radio] .styled:chec
                     </div>
                 </div>
             </div>
-            <!-- end trường hợp chọn Question Type = 1, 2, 3 -->
+            <!-- end trường hợp chọn Question Type = 1, 2 -->
+
+            <!-- trường hợp chọn Question Type = 3 -->
+            <div class="form-group zb-form-group"  style="padding-bottom: 10px;"
+                ng-if="entity.ques_type == 3">
+                <label for="inputEmp_Train_Mode_Name" class="col-sm-2 zb-form-label">
+                    ${get_res('ques_answers','Answers')}
+                </label>
+                <div class="col-sm-10">
+                    <div class="col-md-12" ng-repeat="entry in entity.ques_answers track by $index" style="padding-left: 0;">
+                        <div class="col-md-6" style="padding-left: 0;">
+                            <div>
+					            <!--<input type="radio" name="isCorrect{{$index}}" ng-value="dt_true"
+                                       ng-click="entryChange(entity.ques_answers, $index)"
+                                       ng-model="entry.isCorrect" id="rad_ans_{{$index}}">-->
+
+                                <div class="checkbox zb-form-checkbox" style="display: inline-block; float:left">
+                                    <label class="custom-checkbox">
+                                        <input type="checkbox" id="rad_ans_{{$index}}" ng-model="entry.isCorrect"
+                                               ng-change="entryChange(entity.ques_answers, $index)">
+                                        <span></span>
+                                    </label>
+                                </div>
+
+					            <label for="rad_ans_{{$index}}" style="display: grid; grid-template-columns: 30px 1fr;">
+						            <span>
+                                        {{entry.text}}
+                                    </span>
+                                    <span class="bowtie-check bowtie-icon"
+                                          ng-if="entry.isCorrect"
+                                          style="color: #3c763d; padding-top: 3px; padding-left: 5px;">
+                                        ${get_res('ques_correct_answers','Correct Answer')}
+                                    </span>
+					            </label>
+				            </div>
+
+                            <input-textarea rows="4" ng-model="entry.answers"></input-textarea>
+                        </div>
+                        <div class="col-md-6" style="padding-right: 0px;">
+                            <!--label Score-->
+                            <label class="zb-form-label" ng-if="$index == 0" style="margin-bottom:12px!important">${get_res('ques_score','Score')}</label>
+                            <label ng-if="$index != 0" style="margin-bottom:42px!important"></label>
+
+                            <div class="form-group zb-form-group">
+                                <label for="inputEmp_Train_Mode_Name" class="col-sm-5 col-md-offset-3 zb-form-label">
+                                    ${get_res('ques_if_correct','If Correct')}
+                                </label>
+                                <div class="col-sm-5">
+                                    <input-number id="inputEmp_Train_Mode_Name" ng-model="entry.if_correct">
+                                </div>
+                            </div>
+                            <div class="form-group zb-form-group">
+                                <label for="inputEmp_Train_Mode_Name" class="col-sm-5 col-md-offset-3 zb-form-label">
+                                    ${get_res('ques_if_incorrect','If Incorrect')}
+                                </label>
+                                <div class="col-sm-5">
+                                    <input-number id="inputEmp_Train_Mode_Name" ng-model="entry.if_incorrect">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div style="padding-top: 10px;">
+
+                        <span class="bowtie-icon bowtie-math-plus-circle-outline" style="cursor: pointer;text-underline-position:below;font-size:11px"
+                              ng-click="fnAddRowAnswers()">
+                            ${get_res('ques_add_new_option','Add New Option')}
+                        </span>
+
+                        <span class="bowtie-icon bowtie-math-multiply-box-outline" style="cursor: pointer;text-underline-position:below;font-size:11px;margin-left:20px"
+                              ng-click="fnMinusRowAnswers()">
+                            ${get_res('ques_remove_option','Remove')}
+                        </span>
+
+                    </div>
+                </div>
+            </div>
+            <!-- end trường hợp chọn Question Type = 3 -->
+
+
             <!-- trường hợp chọn Question Type = 8, 9 -->
             <div class="form-group zb-form-group" 
                 ng-if="entity.ques_type == 8 || entity.ques_type == 9">
@@ -405,7 +508,7 @@ input[type=checkbox] .styled:checked+label::after,input[type=radio] .styled:chec
                     <div class="col-md-12" ng-repeat="entry in entity.ques_answers track by $index" style="padding-left: 0;">
                         <div class="col-md-6" style="padding-left: 0;">
                             <div class="radio radio-success">
-					            <input type="radio" name="answers" ng-value="dt_true" 
+					            <input type="radio" name="answers" ng-value="dt_true"
                                        ng-change="entryChange(entity.ques_answers, $index)"
                                        ng-model="entry.isCorrect" id="rad_ans_{{$index}}">
 
@@ -458,11 +561,11 @@ input[type=checkbox] .styled:checked+label::after,input[type=radio] .styled:chec
                         </div>
                     </div>
                     <div style="padding-top: 10px;">
-                        <span class="bowtie-math-plus-light bowtie-icon text-success" style="cursor: pointer"
+                        <span class=" bowtie-icon bowtie-math-plus-circle-outline" style="cursor: pointer;text-underline-position:below;font-size:11px"
                               ng-click="fnAddRowAnswers()">
                             ${get_res('ques_add_new_option','Add New Option')}
                         </span>
-                        <span class="bowtie-math-minus-light bowtie-icon text-danger" style="cursor: pointer"
+                        <span class="bowtie-icon bowtie-math-multiply-box-outline" style="cursor: pointer;text-underline-position:below;font-size:11px;margin-left:20px"
                               ng-click="fnMinusRowAnswers()">
                             ${get_res('ques_remove_option','Remove')}
                         </span>
@@ -471,28 +574,24 @@ input[type=checkbox] .styled:checked+label::after,input[type=radio] .styled:chec
             </div>
             <!-- end trường hợp chọn Question Type = 4, 10, 11 -->
             <!-- trường hợp chọn Question Type = 7 -->
-            <div class="form-group zb-form-group" 
-                ng-if="entity.ques_type == 7"> 
+            <div class="form-group zb-form-group"
+                ng-if="entity.ques_type == 7">
                     <label for="inputEmp_Train_Mode_Name" class="col-sm-2 zb-form-label">
                         ${get_res('ques_limit_on_text','Limitation on text range')}
                     </label>
-                    <div class="col-sm-10">
+                    <div class="col-sm-4">
                         <input-select ng-model="entity.ques_limit_on_text" 
-                                  data-list="vll_LMSEx_ques_level" 
+                                  data-list="vll_LMSEx_limit"
                                   data-value="value" 
-                                  data-caption="caption" required/>
+                                  data-caption="caption"/>
                     </div>
-            </div>
-            <div class="form-group zb-form-group" 
-                ng-if="entity.ques_type == 7"> 
+
                     <label for="inputEmp_Train_Mode_Name" class="col-sm-2 zb-form-label">
                         ${get_res('ques_specify_limit','Specify Limit')}
                     </label>
-                    <div class="col-sm-10">
-                        <input-select ng-model="entity.ques_specify_limit" 
-                                  data-list="vll_LMSEx_ques_level" 
-                                  data-value="value" 
-                                  data-caption="caption" required/>
+                    <div class="col-sm-4">
+                        <input-number id="inputEmp_Train_Mode_Name" ng-model="entity.ques_specify_limit"
+                                      ng-disabled="entity.ques_limit_on_text == 1" />
                     </div>
             </div>
             <!-- end trường hợp chọn Question Type = 7 -->
@@ -512,16 +611,15 @@ input[type=checkbox] .styled:checked+label::after,input[type=radio] .styled:chec
                                 </span> 
                             </div>
                             <input-textarea rows="4" ng-model="entry.answers"></input-textarea>
-                            <input-text id="inputEmp_Train_Mode_Name" ng-model="entry.question">
+                            <input-text id="inputEmp_Train_Mode_Name" ng-model="entry.question" placeholder="Answer">
                         </div>
                     </div>
                     <div style="padding-top: 10px;">
-                        <span class="bowtie-math-plus-light bowtie-icon text-success" style="cursor: pointer"
+                        <span class="bowtie-icon bowtie-math-plus-circle-outline" style="cursor: pointer;text-underline-position:below;font-size:11px;"
                               ng-click="fnAddRowAnswers()">
                             ${get_res('ques_add_new_option','Add New Option')}
                         </span>
-                        <span class="bowtie-math-minus-light bowtie-icon text-danger" style="cursor: pointer"
-                              ng-click="fnMinusRowAnswers()">
+                        <span class="bowtie-icon bowtie-math-multiply-box-outline" style="cursor: pointer;text-underline-position:below;font-size:11px;margin-left:20px" ng-click="fnMinusRowAnswers()">
                             ${get_res('ques_remove_option','Remove')}
                         </span>
                     </div>
@@ -533,7 +631,6 @@ input[type=checkbox] .styled:checked+label::after,input[type=radio] .styled:chec
                     ${get_res('ques_total_marks','Total Marks')}
                 </label>
                 <div class="col-md-10">
-                    <div class="clearblock" style="padding-top: 20px;"></div>
                     <div class="form-group zb-form-group col-md-6" style="padding-left: 0">
                         <label for="inputEmp_Train_Mode_Name" class="col-sm-4 zb-form-label">
                             ${get_res('ques_right_marks','Right Marks')}
@@ -556,26 +653,21 @@ input[type=checkbox] .styled:checked+label::after,input[type=radio] .styled:chec
                 <label for="inputEmp_Train_Mode_Name" class="col-sm-2 zb-form-label">
                     ${get_res('ques_attach_file','Attach File')}
                 </label>
-                <div class="col-md-10">
-                    <div class="clearblock" style="padding-top: 20px;"></div>
-                    <div class="form-group zb-form-group col-md-6" style="padding-left: 0">
-                        <div class="radio radio-success">
-					        <input type="radio" name="rad_disable" id="rad_enable" ng-value="dt_true"
-                                   ng-model="entity.ques_attach_file">
-					        <label for="rad_enable">
-						        <span>${get_res('ques_enable','Enable')}</span> 
-					        </label>
-				        </div>
-                    </div>
-                    <div class="form-group zb-form-group col-md-6">
-                        <div class="radio radio-success">
-					        <input type="radio" name="rad_disable" id="rad_disable" ng-value="dt_false"
-                                   ng-model="entity.ques_attach_file">
-					        <label for="rad_disable">
-						        <span>${get_res('ques_disable','Disable')}</span> 
-					        </label>
-				        </div>
-                    </div>
+                <div class="col-sm-4" style="display: inline-flex;">
+                    <div class="radio radio-success">
+				        <input type="radio" name="rad_disable" ng-value="dt_true" id="rad_enable"
+                               ng-model="entity.ques_attach_file">
+				        <label for="rad_enable">
+					        <span>${get_res('ques_enable','Enable')}</span>
+				        </label>
+				    </div>
+                    <div class="radio radio-success" style="margin-left: 20px;">
+				        <input type="radio" name="rad_disable" ng-value="dt_false" id="rad_disable"
+                               ng-model="entity.ques_attach_file">
+				        <label for="rad_disable">
+					        <span>${get_res('ques_disable','Disable')}</span>
+				        </label>
+				    </div>
                 </div>
             </div>
             <div class="form-group zb-form-group">
@@ -583,7 +675,7 @@ input[type=checkbox] .styled:checked+label::after,input[type=radio] .styled:chec
                     ${get_res('ques_max_answer_time','Max Answer Time')}
                 </label>
                 <div class="col-md-5">
-                    <div class="col-md-9">
+                    <div class="col-md-9" style="padding-left: 0px;">
                     <time-picker ng-model="entity.ques_max_answer_time" format="ss"></time-picker> 
                      </div>
                    <div class="col-md-3">
@@ -591,7 +683,7 @@ input[type=checkbox] .styled:checked+label::after,input[type=radio] .styled:chec
                    </div>
                 </div>
             </div>
-            <div class="form-group zb-form-group">
+            <div class="form-group zb-form-group" ng-if="entity.ques_type != 7">
                 <label for="inputEmp_Train_Mode_Name" class="col-sm-2 zb-form-label">
                     ${get_res('ques_explanation','Explanation')}
                 </label>
@@ -613,7 +705,7 @@ input[type=checkbox] .styled:checked+label::after,input[type=radio] .styled:chec
                                   data-caption="caption"/>
                 </div>
             </div>
-            <div class="form-group zb-form-group">
+            <div class="form-group zb-form-group" ng-if="entity.ques_type != 4 && entity.ques_type != 7">
                 <label for="inputEmp_Train_Mode_Name" class="col-sm-2 zb-form-label">
                     ${get_res('ques_randomization','Randomization')}
                 </label>
@@ -655,28 +747,44 @@ input[type=checkbox] .styled:checked+label::after,input[type=radio] .styled:chec
 <%block name="modal_script">
 <script>
     (function (scope) {
-        
 
+        var _default = {
+             ques_hint: {
+                ishintEnable: true,
+             },
+             ques_attach_file: false,
+        };
+
+        scope.title = scope.$parent.headerTitle;
         var __entity = JSON.parse(JSON.stringify(scope.$parent.currentItem ? scope.$parent.currentItem : {}));
         //Mode 1: tạo mới, Mode 2: chỉnh sửa, Mode 3: sao chép
-        
 
         /////////////////////////////////////----------------------------------//////////////////////////////////
+        scope.isCorrectCheck = {};
         scope.dt_true = true;
-        scope.dt_false = true;
+        scope.dt_false = false;
         scope.entryChange = function (data, index) {
-            $.each(data, function (i, v) {
-                v.isCorrect = (i == index) ? true : false;
-            });
+            //Trừ trường hợp 3 multiple select
+            if(scope.entity.ques_type != 3)
+                $.each(data, function (i, v) {
+                    v.isCorrect = (i == index) ? true : false;
+                });
+
+            if(scope.entity.ques_type == 3)
+                $.each(data, function (i, v) {
+                      console.log(data);
+                });
             scope.$applyAsync();
         }
         scope.__mode = scope.$parent.mode;
-        scope.entity = scope.__mode == 1 ? {} : __entity;
+        //scope.entity = scope.__mode == 1 ? {} : __entity;
+        scope.entity = scope.__mode == 2 ? __entity : _default;
         scope.entity.ques_answers = scope.__mode == 1 ? [{}] : scope.entity.ques_answers;
         scope.entity.ques_type = scope.__mode == 1 ? 1 : scope.entity.ques_type;
         scope.entity.ques_answer_options = scope.__mode == 1 ? 1 : scope.entity.ques_answer_options;
         scope.entity.ques_evaluated_by = scope.__mode == 1 ? null : scope.entity.ques_evaluated_by;
         scope.entity.ques_max_answer_time = "00:00:00";
+
         loadValueList();
         function loadValueList() {
             services.api("${get_api_key('app_main.api.SYS_ValueList/get_list')}")
@@ -684,6 +792,7 @@ input[type=checkbox] .styled:checked+label::after,input[type=radio] .styled:chec
                 "name": [
                     "LMSEx_ques_type",
                     "LMSEx_ques_level",
+                    "LMSEx_limit",
                     "LMSEx_ques_answer_option",
                     "LMSEx_ques_randomization"
                 ]
@@ -692,6 +801,7 @@ input[type=checkbox] .styled:checked+label::after,input[type=radio] .styled:chec
             .then(function (res) {
                 scope.vll_LMSEx_ques_type = getValue(res.values, "LMSEx_ques_type");
                 scope.vll_LMSEx_ques_level = getValue(res.values, "LMSEx_ques_level");
+                scope.vll_LMSEx_limit = getValue(res.values, "LMSEx_limit");
                 scope.vll_LMSEx_ques_answer_option = getValue(res.values, "LMSEx_ques_answer_option");
                 scope.vll_LMSEx_ques_randomization = getValue(res.values, "LMSEx_ques_randomization");
                 scope.$applyAsync();
@@ -714,7 +824,6 @@ input[type=checkbox] .styled:checked+label::after,input[type=radio] .styled:chec
                 }
                 beforeCallToServer();
                 editData(function (res) {
-                    debugger
                     if (res.error == null) {
                         $dialog.closeDialog();//Đóng form input
                         $msg.alert("${get_global_res('Handle_Success','Thao tác thành công')}", $type_alert.INFO);//Xuất thông báo thành cônng
@@ -892,7 +1001,8 @@ input[type=checkbox] .styled:checked+label::after,input[type=radio] .styled:chec
 
         scope.fnAddRowAnswers = function () {
             scope.entity.ques_answers.push({
-                text: nextChar(scope.entity.ques_answers[scope.entity.ques_answers.length - 1].text)
+                text: nextChar(scope.entity.ques_answers[scope.entity.ques_answers.length - 1].text),
+                isCorrect: false
             });
             scope.$applyAsync();
         }
@@ -901,6 +1011,12 @@ input[type=checkbox] .styled:checked+label::after,input[type=radio] .styled:chec
                 scope.entity.ques_answers.pop({});
             }
         }
+
+        scope.$watch("entity.ques_limit_on_text", function (val){
+            if(val == 1)
+                 scope.entity.ques_specify_limit = 0;
+            scope.$applyAsync();
+        });
 
         scope.$watch("entity.ques_type", function (val) {
             if (val == 1 || val == 2) { // checkboxes + dropdown

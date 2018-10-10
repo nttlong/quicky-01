@@ -4,7 +4,7 @@
 
     scope.cbbApprovalPeriod = [];
     scope.$parent.$parent.$parent.onSave = onSave;
-
+    scope.$parent.$parent.$parent.onGen = "";
     scope.$parent.$parent.$parent.onAdd = "";
     scope.$parent.$parent.$parent.onEdit = "";
     scope.$parent.$parent.$parent.onDelete = "";

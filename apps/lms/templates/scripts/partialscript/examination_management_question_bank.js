@@ -23,7 +23,7 @@
 
     scope.$root.createQuestionCategory = function () {
         scope.mode = 1; // set mode chỉnh sửa
-        openDialog("${get_res('Detail_LearningMaterial','Create New Folder')}", 'form/addQuestionBank', function () {
+        openDialog("${get_res('create_a_question','Create a Question')}", 'form/addQuestionBank', function () {
             setTimeout(function () {
                 $(window).trigger('resize');
             }, 200);
@@ -34,7 +34,7 @@
 
         if(scope.currentItem){
         scope.mode = 2; // set mode chỉnh sửa
-        openDialog("${get_res('Detail_LearningMaterial','Create New Folder')}", 'form/addQuestionBank', function () {
+        openDialog("${get_res('edit_a_question','Edit a Question')}", 'form/addQuestionBank', function () {
             setTimeout(function () {
                 $(window).trigger('resize');
             }, 200);
@@ -65,6 +65,7 @@
         }
     }
 
+    scope.urls = scope.$root.url_static;
     scope.$root.isDisplay = true;
     scope.__tableSource = [];
     scope.mode = 0;
@@ -91,11 +92,15 @@
         { "data": "ques_detail_1", "title": "${get_res('ques_detail_table_header','Question')}" },
         { "data": "ques_category", "title": "${get_res('ques_category_table_header','Category')}" },
         { "data": "ques_total_marks", "title": "${get_res('ques_mark_table_header','Mark')}" },
-        { "data": "ques_type", "title": "${get_res('ques_type_table_header','Question type')}", "format": "icon", "type": "rowtext", "icon": "icons", "position": "left" },
+        { "data": "ques_type", "title": "${get_res('ques_type_table_header','Question type')}", "expr": function(row, data, func) {
+         func(function(){
+                return  "<img style='width:12px;min-height:12px;margin:0 5px 4px 0' src='" + scope.urls + row.images +"'/>" + row.ques_type;
+            });
+            return true;
+        }},
         { "data": "ques_level", "title": "${get_res('ques_level_table_header','Difficulty Level')}","expr":function(row, data, func){
             func(function(){
-                return "<p style='color:" + row.color+ ";"+ "font-weight:bold;'>" + row.ques_level + "</p>";
-
+                return "<span style='color:" + row.color+ ";"+ "font-weight:bold;'>" + row.ques_level + "</span>";
             });
             return true;
         }},
@@ -296,7 +301,6 @@
             })
             .done()
             .then(function (res) {
-
                 scope.vll_LMSEx_ques_type = getValue(res.values, "LMSEx_ques_type");
                 scope.vll_LMSEx_ques_level = getValue(res.values, "LMSEx_ques_level");
                 scope.vll_LMSEx_ques_answer_option = getValue(res.values, "LMSEx_ques_answer_option");
@@ -307,9 +311,8 @@
                 }
                  })
                 if(res.items.length >0 ){
-
                     _.map(res.items,function (val) {
-                        debugger
+
                         val.font_weight = "bold";
                         if(val.ques_level == 1){
                             val.color = "red"
@@ -321,10 +324,10 @@
                             val.color = "rgb(47,117,181)"
                         }
 
-                        val.icons = _.filter(scope.vll_LMSEx_ques_type,function (level) {
+                        val.images = _.filter(scope.vll_LMSEx_ques_type,function (level) {
                             return val.ques_type == level.value
 
-                        })[0].custom.icon
+                        })[0].custom.image
                         val.ques_type = _.filter(scope.vll_LMSEx_ques_type,function (level) {
                             return val.ques_type == level.value
 
@@ -333,6 +336,9 @@
                             return val.ques_level == level.value
 
                         })[0].caption
+
+                        console.log(val);
+
                         return val
 
                     })

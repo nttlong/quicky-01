@@ -31,7 +31,7 @@ def create_view(view_name, collection_name, pipe_line):
     get_db_context().command({
         "create": view_name,
         "viewOn": get_collection_name_with_schema(collection_name), 
-        "pipeline": pipeline
+        "pipeline": pipe_line
     })
 
 def get_current_schema():
@@ -140,7 +140,7 @@ def get_data(pageIndex, pageSize, where, sort):
 
 def get_config(args):
     try:
-        return models.models_per.HCSSYS_SystemConfig().aggregate().get_list()[0]
+        return models.HCSSYS_SystemConfig().aggregate().get_list()[0]
     except Exception as ex:
         logger.debug(ex)
         raise(ex)

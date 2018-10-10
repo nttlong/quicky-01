@@ -12,7 +12,7 @@
                           <p><img src="http://surehcs.lacviet.vn/WS2017/Customers/default/logo.png" alt="logo"></p>
                           <ul class="clearfix language">
                               %for x in request.get_languages():
-                                   <% 
+                                   <%
                                         img = 'css/images/login/ic_' + x['code'] + '.jpg'
                                     %>
                                    <a href="./login?language=${x['code']}&next=${model.url_next}">
@@ -86,7 +86,7 @@
             <li>(+84.511) 365.2567</li>
           </ul>
         </div>
-        
+
       </div>
         </div>
     </div>
@@ -111,3 +111,11 @@
   </div>
 </div>
 <script src="${get_static('js/plugins/slick.js')}"></script>
+<script>
+    angular
+    .module("admin", ["c-ui", 'ZebraApp.components', 'ZebraApp.widgets', 'hcs-template'])
+    .controller("admin", controller);
+    function controller($dialog, $scope, $filter) {
+        $scope.services = services = ws($scope);
+    }
+</script>

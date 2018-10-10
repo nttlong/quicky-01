@@ -23,6 +23,12 @@ angular
 controller.$inject = ["$dialog", "$scope", "$filter"];
 dialog_root_url('${get_app_url("pages/")}')
 function controller($dialog, $scope, $filter) {
+    window.top.PYUrl = window.location.origin + '/lms'
+    window.top.UIUrl = window.location.origin + '/HoiThao'
+    window.top.ServiceUrl = window.location.origin + '/HoiThao_WS'
+    window.top.SettingUrl = window.location.origin + '/HoiThaoPortal'
+
+    $scope.$root.$$absUrl = window.location.href;
     $scope.isHomePage = true;
     $scope.$root.url_static = "${get_static('/')}";
     $scope.$root.systemConfig = null;/*HCSSYS_SystemConfig*/
@@ -117,32 +123,60 @@ function controller($dialog, $scope, $filter) {
     });
 
     ////Đồng hồ
-    //$scope.$root.timer = {
-    //    clock: Clock(),
-    //    meridiem: getMeridiem(),
-    //    date: Calendar()
-    //};
-    //setInterval(function () {
-    //    $scope.$root.timer.clock = Clock();
-    //    if ($scope.$root.timer.clock === "00:00") {
-    //        $scope.$root.timer.date = Calendar();
-    //        $scope.$root.timer.meridiem = getMeridiem();
-    //    }
-    //    $scope.$root.$applyAsync();
-    //}, 10000);
+    $scope.$root.timer = {
+        clock: Clock(),
+        meridiem: getMeridiem(),
+        date: Calendar()
+    };
+    setInterval(function () {
+        $scope.$root.timer.clock = Clock();
+        if ($scope.$root.timer.clock === "00:00") {
+            $scope.$root.timer.date = Calendar();
+            $scope.$root.timer.meridiem = getMeridiem();
+        }
+        $scope.$root.$applyAsync();
+    }, 1000);
+
+    $scope.setTitle = function(){
+        if($scope.$root.currModule.module_name) {
+            document.title = $scope.$root.currModule.module_name;
+        }else{
+            setTimeout(function(){
+                $scope.setTitle();
+            }, 100);
+        }
+    }
+
+    $scope.$root.clickUrl = function(data){
+        console.log(data)
+        var url = data.redirect_url;
+        if(url){
+            url = url.replace("$C_UI", window.top.UIUrl)
+                            .replace("$C_WS", window.top.ServiceUrl)
+                            .replace("$C_APP", window.top.SettingUrl)
+                            .replace("$P_UI", window.top.PYUrl);
+            if(data.is_new_tab){
+                window.open(url, '_blank');
+            } else {
+                window.location.href = url;
+            }
+        }
+    }
 
     /**
      * Initialize Data
      */
     function activate() {
         $scope.$root.currentFunction = {};
+        $scope.$root.currModule = {};
         $scope.$root.currentModule = '';
-        $scope.$root.logo = 'http://surehcs.lacviet.vn/WS2017/Customers/default/logo.png';
+        $scope.$root.logo = "${get_static('/')}css/images/logo.png";
 
         //Get function list
         services.api("${get_api_key('app_main.api.functionlist/get_list')}")
             .data({
                 //parameter at here
+                language: "${request.get_language()}"
             })
             .done()
             .then(function (res) {
@@ -181,6 +215,7 @@ function controller($dialog, $scope, $filter) {
                         : "${get_app_url('')}/pages/home";
                 }
                 $scope.$root.$history.change(function (data) {
+                    $scope.$root.$$absUrl = window.location.href;
                     if (data.page) {
                         $scope.isHomePage = false;
                         var currentFunction = _.filter(functions, function (d) {
@@ -192,9 +227,11 @@ function controller($dialog, $scope, $filter) {
                             $scope.$root.currentModule = _.filter(functions, function (d) {
                                 return d["function_id"] == currentFunction[0].parent_id;
                             })[0];
+                            document.title = $scope.$root.currentModule.custom_name_lb;
                         }
                     } else {
                         $scope.$root.currentFunction = $scope.$root.currentModule = null;
+                        $scope.setTitle();
                         $scope.isHomePage = true;
                     }
                     $scope.$root.$applyAsync();
@@ -221,6 +258,36 @@ function controller($dialog, $scope, $filter) {
             .then(function (res) {
                 //Set HCSSYS_SystemConfig
                 $scope.$root.__USER__ = res;
+            })
+
+        //Get Module Navigation
+        services.api("${get_api_key('app_main.api.functionlist/get_list_module')}")
+            .data({
+                language: "${request.get_language()}"
+            })
+            .done()
+            .then(function (res) {
+                var modules = _.filter(res, function(v){
+                    return v.module_code.toLocaleLowerCase() != "lms";
+                })
+
+                var curr_module = _.filter(res, function(v){
+                    return v.module_code.toLocaleLowerCase() == "lms";
+                })
+
+                $scope.$root.currModule.module_name = (curr_module && curr_module.length > 0 )? curr_module[0].custom_name : "";
+
+                if(/\r|\n/.exec($scope.$root.currModule.module_name)) {
+                    $scope.title1 = $scope.$root.currModule.module_name.split("\n")[0];
+                    $scope.title2 = $scope.$root.currModule.module_name.split("\n")[1];
+                } else {
+                    $scope.title2 = $scope.$root.currModule.module_name;
+                }
+
+                //$scope.$root.title = $scope.$root.currModule.module_name;
+                $scope.$root.$$$list_modules = modules;
+                window.top.dataInfo = {};
+                window.top.dataInfo.listModule = res;
             })
     }
     /**
@@ -318,9 +385,10 @@ function toStartCase(str) {
 }
 
 function Calendar() {
+    moment.lang("${get_language()}" == "vn" ? "vi" : "${get_language()}");
     return toStartCase(moment().locale("${get_language()}").format('dddd, DD MMMM, YYYY'));
 }
 
-//function getMeridiem() {
-//    return moment().locale("${get_language()}").format("a");
-//}
+function getMeridiem() {
+    return moment().locale("${get_language()}").format("a");
+}

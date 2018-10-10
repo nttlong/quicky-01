@@ -33,6 +33,7 @@
     };
     scope.__mode = scope.$parent.$parent.$parent.$parent.mode;
     scope.LSendMail = [];
+    scope.LScoreBy = [];
     scope.$$process_id = scope.__mode == 2 ? scope.$parent.$parent.$parent.$parent.$$table.currentItem.process_id : null;
     scope.$$curr_max_approve_level = scope.__mode == 2 ? JSON.parse(JSON.stringify(scope.$parent.$parent.$parent.$parent.$$table.currentItem.max_approve_level)) : 0;
     //debugger
@@ -82,7 +83,7 @@
                     })
                     var data = {};
                     if(!scope.LSendMail || scope.LSendMail.length === 0){
-                        _getListSendMail("LSendEmail", function(res){
+                        _getListValueList("LSendEmail", function(res){
                             scope.LSendEmail = res.values;
                             _.each(response.items, function(valItems){
                                 if(valItems['email_approve_to'] && valItems['email_approve_to'].length > 0){
@@ -182,7 +183,7 @@
         }
     }
 
-    function _getListSendMail(parameter, callback) {
+    function _getListValueList(parameter, callback) {
         //valuelist
         services.api("${get_api_key('app_main.api.SYS_ValueList/get_list')}")
             .data({

@@ -26,8 +26,10 @@
     scope.$$curr_max_approve_level = JSON.parse(JSON.stringify(scope.$parent.$parent.$parent.$parent.$$curr_max_approve_level));
 
     scope.changeActive = function(event, view){
-        if(view == "department")
-            scope.$partialpage = _view[1];
+        if(view == "department"){
+            if(scope.$parent.$parent.$parent.$parent.$$is_approve_by_dept && scope.$parent.$parent.$parent.$parent.$$is_approve_by_dept == true)
+                scope.$partialpage = _view[1];
+        }
         else
             scope.$partialpage = _view[0];
         $('.hcs-tab-info').find('.active').removeClass('active');

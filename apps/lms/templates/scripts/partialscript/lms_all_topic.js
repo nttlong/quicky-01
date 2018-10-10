@@ -2,38 +2,6 @@
     scope.$root.extendToolbar = true;
     scope.$root.isDisplayBasicButton =true;
 
-    scope.StyleStatus = [
-        {
-            name: "Draft",
-            radio: "<div style='background-color:#4978B6;height:8px;width:8px;border-radius:50%;display:inline-block;margin:1px 5px 0 0;'></div>",
-            text: "<i style='color:#4978B6;width:15px;height:17px;font-weight:900;'>Draft</i>"
-        },
-        {
-            name: "Pending",
-            radio: "<div style='background-color:#ffc800;height:8px;width:8px;border-radius:50%;display:inline-block;margin:1px 5px 0 0;'></div>",
-            text: "<i style='color:#ffc800;width:15px;height:17px;font-weight:900;'>Pending</i>"
-       },
-       {
-            name: "Published",
-            radio: "<div style='background-color:#00B050;height:8px;width:8px;border-radius:50%;display:inline-block;margin:1px 5px 0 0;'></div>",
-            text: "<i style='color:#00B050;width:15px;height:17px;font-weight:900;'>Published</i>"
-        },
-        {
-            name: "Scheduled",
-            radio: "<div style='background-color:#ED7D31;height:8px;width:8px;border-radius:50%;display:inline-block;margin:1px 5px 0 0;'></div>",
-            text: "<i style='color:#ED7D31;width:15px;height:17px;font-weight:900;'>Scheduled</i>"
-        },
-        {
-            name: "Returned",
-            radio: "<div style='background-color:#838a88;height:8px;width:8px;border-radius:50%;display:inline-block;margin:1px 5px 0 0;'></div>",
-            text: "<i style='color:#838a88;width:15px;height:17px;font-weight:900;'>Returned</i>"
-        },
-        {
-            name: "Removed",
-            radio: "<div style='background-color:#FF0000;height:8px;width:8px;border-radius:50%;display:inline-block;margin:1px 5px 0 0;'></div>",
-            text: "<i style='color:#FF0000;width:15px;height:17px;font-weight:900;'>Removed</i>"
-        },
-    ]
     scope.urls = scope.$root.url_static;
 
     scope.$root.isDisplay = false;
@@ -44,13 +12,6 @@
     scope.filterFunctionModel = ''
     scope.currentFunction = '';
     scope.mapName = [];
-    scope.$parent.isDisplayGird = true;
-    scope.$root.onDisplayListData = function () {
-        scope.selectedItems = []
-    }
-    scope.$root.onDisplayGridData = function () {
-        scope.selectedItems = []
-    }
     scope.$root.add = function () {
         scope.mode = 1; // set mode chỉnh sửa
         openDialog("${get_res('Create_Topic','Create Topic')}", 'form/addTopic', function () {
@@ -86,6 +47,8 @@
                     .done()
                     .then(function (res) {
                          if (res.deleted > 0) {
+                            _tableData(scope.$$tableConfig.iPage, scope.$$tableConfig.iPageLength, scope.$$tableConfig.orderBy, scope.$$tableConfig.SearchText, scope.$$tableConfig.fnReloadData);
+                            $msg.alert("${get_global_res('Handle_Success','Thao tác thành công')}", $type_alert.INFO);
                             scope.currentItem = [];
                             scope.$root.refresh();
                         }
@@ -148,28 +111,18 @@
         { "data": "created_by", "title": "${get_res('created_by','Created By')}","expr":function(row, data, func){
             func(function(){
                 return "<span><img class='hcs-small-img' style='width:15px;height:17px' src='" + scope.urls + "css/icon/approver_tr.png" + "'/>"
-                + ' ' + row.created_by + ' ' +  window.DateFormat.format(row.created_on, 'dd.MM.yyyy hh:mm a')
+                + ' ' + row.created_by + ' ' +  window.DateFormat.format(row.created_on, scope.$root.systemConfig.date_format + ' hh:mm a')
                 + '</span>';
             });
             return true;
         }},
-        { "data": "topic_replies", "title": "${get_res('topic_replies','Replies')}" },
-        { "data": "topic_views", "title": "${get_res('topic_views','Views')}" },
+        { "data": "topic_replies", "title": "${get_res('topic_replies','Replies')}", "className": "text-center" },
+        { "data": "topic_views", "title": "${get_res('topic_views','Views')}", "className": "text-center" },
         { "data": "status", "title": "${get_res('topic_status','Status')}","expr":function(row, data, func){
             func(function(){
-                if (row.status == "Draft")
-                    return scope.StyleStatus[0].radio + scope.StyleStatus[0].text;
-                if (row.status == "Pending")
-                    return scope.StyleStatus[1].radio + scope.StyleStatus[1].text;
-                if (row.status == "Published")
-                    return scope.StyleStatus[2].radio + scope.StyleStatus[2].text;
-                if (row.status == "Scheduled")
-                    return scope.StyleStatus[3].radio + scope.StyleStatus[3].text;
-                if (row.status == "Returned")
-                    return scope.StyleStatus[4].radio + scope.StyleStatus[4].text;
-                if (row.status == "Removed")
-                    return scope.StyleStatus[5].radio + scope.StyleStatus[5].text;
-                return "<i style='width:15px;height:17px;font-weight:900'>" + " " + row.status + "</i>";
+                if (row.status != "")
+                    return "<div class='status-radio' style='background-color:" + row.styleColor + "'></div>" + "<i class='status-text' style='color:" + row.styleColor+ "'>" + row.statusName + "</i>"
+                return " ";
             });
             return true;
         }},
@@ -177,7 +130,7 @@
             func(function(){
                 if (row.modified_by != '' && row.modified_on != null)
                     return "<span><img class='hcs-small-img' style='width:15px;height:17px' src='" + scope.urls + "css/icon/approver_tr.png" + "'/>"
-                    + ' ' + row.modified_by + ' ' +  window.DateFormat.format(row.modified_on, 'dd.MM.yyyy hh:mm a')
+                    + ' ' + row.modified_by + ' ' +  window.DateFormat.format(row.modified_on, scope.$root.systemConfig.date_format + ' hh:mm a')
                     + '</span>';
                 else
                     return '';
@@ -217,11 +170,6 @@
     var _treeDepartmentsDataSource = null;
     scope.treeDepartmentsDataSource = null;
 
-    //navigation button
-    scope.firstRow = firstRow;
-    scope.previousRow = previousRow;
-    scope.nextRow = nextRow;
-    scope.lastRow = lastRow;
 
     //function button
     scope.refresh = refresh;
@@ -244,34 +192,6 @@
             tableConfig.iPageLength, tableConfig.orderBy,
             tableConfig.searchText, tableConfig.fnReloadData);
         _departments();
-    }
-
-    function firstRow() {
-        if (scope.__tableSource.length > 0) {
-            scope.currentItem = scope.__tableSource[0];
-        }
-    }
-
-    function previousRow() {
-        if (scope.__tableSource.length > 0) {
-            var idx_item = _.findIndex(scope.__tableSource, { "employee_code": scope.currentItem.employee_code });
-            var index = idx_item === 0 ? scope.__tableSource.length - 1 : idx_item - 1;
-            scope.currentItem = scope.__tableSource[index];
-        }
-    }
-
-    function nextRow() {
-        if (scope.__tableSource.length > 0) {
-            var idx_item = _.findIndex(scope.__tableSource, { "employee_code": scope.currentItem.employee_code });
-            var index = idx_item === (scope.__tableSource.length - 1) ? 0 : idx_item + 1;
-            scope.currentItem = scope.__tableSource[index];
-        }
-    }
-
-    function lastRow() {
-        if (scope.__tableSource.length > 0) {
-            scope.currentItem = scope.__tableSource[scope.__tableSource.length - 1];
-        }
     }
 
     function handleData() {
@@ -344,6 +264,40 @@
                 })
                 .done()
             .then(function (res) {
+                    _.map(res.items, function(it) {
+                        switch (it.status) {
+	                    case 1:
+	                    	it.statusName = "${get_global_res('draft','Draft')}";
+	                    	it.styleColor = "#4978B6";
+	                    	break;
+	                    case 2:
+	                    	it.statusName = "${get_global_res('pending','Pending')}";
+	                    	it.styleColor = "#ffc800";
+	                    	break;
+	                    case 3:
+	                    	it.statusName = "${get_global_res('published','Published')}";
+	                    	it.styleColor = "#00B050";
+	                    	break;
+	                     case 4:
+	                    	it.statusName = "${get_global_res('scheduled','Scheduled')}";
+	                    	it.styleColor = "#ED7D31";
+	                    	break;
+	                    case 5:
+	                    	it.statusName = "${get_global_res('returned','Returned')}";
+	                    	it.styleColor = "#838a88";
+	                    	break;
+	                    case 6:
+	                    	it.statusName = "${get_global_res('removed','Removed')}";
+	                    	it.styleColor = "#FF0000";
+	                    	break;
+	                    default:
+	                        it.statusName = "";
+                        }
+
+                        return it;
+                    })
+
+
                     var data = {
                         recordsTotal: res.total_items,
                         recordsFiltered: res.total_items,

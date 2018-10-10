@@ -75,7 +75,7 @@
                     <div class="col-sm-5">
                         <combobox load-data="$root.$getComboboxData"
                                   ng-model="entity.forum_administrator"
-                                  params="{key:'${encryptor.get_key('cbb_lmsls_materialfolder')}', value:[{ '@lock': true }]}"
+                                  params="{key:'${encryptor.get_key('lms_cbb_emp')}', value:[{ '@lock': true }]}"
                                   on-search-change="false"
                                   on-search-press="true"
                                   placeholder=""
@@ -93,6 +93,7 @@
            <label for="inputEmp_Train_Mode_Name" class="col-sm-3 zb-form-label">${get_res('force_moderation_post','Force Moderation of Posts')}</label>
            <div class="col-sm-9">
               <div style="display: inline-flex;">
+
                  <div class="radio radio-success" ng-repeat="item in rdStatusForum track by $index" style="margin-right:20px">
                     <input type="radio" name="forum_status" id="idradCourse9" ng-value="item.value"
                        ng-model="entity.forum_status">

@@ -1,12 +1,167 @@
 ﻿<%inherit file="base.html"/>
 <%include file="header.html"/>
+
+<style>
+    .app-content {
+        height: 100%;
+        margin-top: 6px;
+        margin-bottom: 0px;
+    }
+
+    .hcs-container {
+        background: #fff;
+    }
+
+    .hcs-home-portal-footer {
+        position: unset;
+        display: inline-block;
+    }
+
+    ul {
+        margin-bottom: 0;
+    }
+
+    .hcs-background {
+        height: calc(100% - 156px);
+        background: url({{$root.url_static}}css/images/HCSPortal.jpg);
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: bottom;
+        width: calc(100% + 7px);
+    }
+
+    .hcs-container .hcs-menu {
+        height: 200px;
+        margin-top: -60px;
+    }
+
+    .hcs-container .hcs-menu .hcs-menu-item {
+        float: left;
+        min-width: 160px;
+        max-width: 275px ;
+        height: 185px;
+        margin: 5px 3px;
+        cursor: pointer;
+        position: relative;
+        background: #e0b101;
+        color: #fff;
+        border: 1px solid #cecece;
+    }
+
+    .hcs-container .hcs-menu .hcs-menu-item .menu-title {
+        position: absolute;
+        top: 15px;
+        left: 0;
+        right: 0;
+        padding: 0 15px;
+        font-size: 15px;
+        font-weight: bold;
+        font-family: SegoeUI;
+    }
+
+    .hcs-container .hcs-menu .hcs-menu-item .menu-description {
+        position: absolute;
+        top: 60px;
+        left: 0;
+        right: 0;
+        padding: 0 15px;
+        font-size: 12px;
+        font-family: SegoeUI;
+    }
+
+    .hcs-container .hcs-menu .hcs-menu-item .menu-icon {
+        position: absolute;
+        bottom: 20px;
+        left: 0;
+        right: 10px;
+        text-align: right;
+        font-size: 20px;
+    }
+
+    @media(min-width: 1208px) {
+    .hcs-container .hcs-menu {
+        padding:0 calc((100% - 1150px)/2);
+    }
+}
+
+@media(min-width: 1040px) and (max-width:1207px) {
+    .hcs-container .hcs-background {
+        height:calc(100% - 330px);
+    }
+
+    .hcs-container .hcs-menu {
+        padding: 0 calc((100% - 1020px)/2);
+    }
+}
+
+@media(min-width: 880px) and (max-width:1039px) {
+    .hcs-container .hcs-background {
+        height:calc(100% - 330px);
+    }
+
+    .hcs-container .hcs-menu {
+        padding: 0 calc((100% - 850px)/2);
+    }
+}
+
+@media(min-width: 710px) and (max-width:879px) {
+    .hcs-container .hcs-background {
+        height:calc(100% - 330px);
+    }
+
+    .hcs-container .hcs-menu {
+        padding: 0 calc((100% - 690px)/2);
+    }
+}
+
+@media(min-width: 540px) and (max-width:709px) {
+    .hcs-container .hcs-background {
+        height:calc(100% - 530px);
+    }
+
+    .hcs-container .hcs-menu {
+        padding: 0 calc((100% - 510px)/2);
+    }
+}
+
+@media(min-width: 390px) and (max-width:539px) {
+    .hcs-container .hcs-background {
+        display:none;
+    }
+
+    .hcs-container .hcs-menu {
+        padding: 0 calc((100% - 340px)/2);
+    }
+}
+</style>
+
 <main class="app-content">
-    <div class="hcs-home-background-lms" ng-if="isHomePage">
+    <div class="hcs-container" ng-if="isHomePage">
+        <div class="hcs-background">
+
+        </div>
+        <div class="hcs-menu">
+            <div class="hcs-menu-item" ng-repeat="item in $$$fs_module"
+                 style="
+                    width: calc((100% - {{$$$fs_module.length}} * 10px) / {{$$$fs_module.length}});
+                    background: {{item.color.background}}
+                    ">
+                <span class="menu-title" ng-bind-html="item.custom_name_lb|trustAsHtml">
+                </span>
+                <span class="menu-description" >
+                    {{item.description_lb}}
+                </span>
+                <span class="menu-icon bowtie-icon bowtie-chevron-right-light"></span>
+            </div>
+        </div>
     </div>
-    <div c-template url="{{$root.getPage()}}" style="height: 100%">
+
+
+    <div c-template url="{{$root.getPage()}}">
     </div>
+
+    <%include file="footer.html"/>
 </main>
-<%include file="footer.html"/>
 <script>
     <%include file="/scripts/app.js"/>
 </script>

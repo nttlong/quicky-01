@@ -19,7 +19,7 @@
             <span>{{currentFunction.default_name}}</span></site-map>
         <extend-toolbar ng-if="$root.extendToolbar">
             <div style="display: grid; grid-template-columns: {{$root.isDisplay ? 'auto 1fr auto' : '1fr auto'}} ">
-                <div style="float: left;" ng-if="$root.isDisplay">
+                <div style="float: left;margin-right:5px;" ng-if="$root.isDisplay">
                     <button class="zb-btn" ng-click="onDisplayListData()">
                         <i class="bowtie-icon bowtie-editor-list-bullet"></i>
                     </button>
@@ -27,21 +27,21 @@
                         <i class="bowtie-icon bowtie-view-grid"></i>
                     </button>
                 </div>
-                <div class="col-md-6" style="padding-right: 0; top: 2px;"   >
-                    <!--<input-text-icon id="tableSearchText" on-click="objSearch.onSearch" ng-model="objSearch.$$$modelSearch"></input-text-icon>-->
-                     <div class="hcs-left-side-department-tree-tool-bar-div-search" ng-if="$root.isDisplayBasicButton">
-                        <input class="hcs-left-side-department-tree-tool-bar-input-search" ng-model="objSearch.$$$modelSearch">
-                        <div class="hcs-left-side-department-tree-tool-bar-input-search-bot"></div>
-                        <div class="hcs-left-side-department-tree-tool-bar-input-search-bot-icon" ng-click="onSearchText()">
-                            <i class="glyphicon glyphicon-search"></i>
-                        </div>
-                    </div>
-                </div>
+                <!--<div class="col-md-6" style="padding-right: 0; top: 2px;"   >-->
+                     <!--<div class="hcs-left-side-department-tree-tool-bar-div-search" ng-if="$root.isDisplayBasicButton">-->
+                        <!--<input class="hcs-left-side-department-tree-tool-bar-input-search" ng-model="objSearch.$$$modelSearch">-->
+                        <!--<div class="hcs-left-side-department-tree-tool-bar-input-search-bot"></div>-->
+                        <!--<div class="hcs-left-side-department-tree-tool-bar-input-search-bot-icon" ng-click="onSearchText()">-->
+                            <!--<i class="glyphicon glyphicon-search"></i>-->
+                        <!--</div>-->
+                    <!--</div>-->
+                <!--</div>-->
+                <input-text-icon id="tableSearchText" on-click="objSearch.onSearch" ng-model="objSearch.$$$modelSearch" ng-if="$root.isDisplayBasicButton"></input-text-icon>
                 <div style="display: flex;" >
-                    <button class="zb-btn" ng-click="viewAdvandceSearchLearningMaterialManagerment()" ng-if="$root.isDisplayManagermentButton">
+                    <button class="zb-btn" ng-click="viewAdvandceSearchLearningMaterialManagerment()" ng-if="$root.isDisplayManagermentButton" style="margin-right: 5px;">
                             <i class="bowtie-icon bowtie-search-filter"></i>
                     </button>
-                    <div class="dropdown" ng-if="$root.isDisplay" style="margin-left: 5px;">
+                    <div class="dropdown" ng-if="$root.isDisplayMoreButton">
                         <button class="zb-btn dropdown-toggle" type="button" data-toggle="dropdown">
                             <i class="bowtie-ellipsis bowtie-icon"></i>
                         </button>
@@ -94,7 +94,7 @@
                             </ng-container>
                             <li>
                                 <button class="zb-btn border-0" ng-click="delOneLearningMaterial()">
-                                    <i class="bowtie-icon bowtie-edit-remove"></i>
+                                    <i class="bowtie-icon bowtie-trash"></i>
                                 </button>
                                 <span>${get_res('view_delete','Delete')}</span>
                             </li>
@@ -114,19 +114,19 @@
                         </button>
                     </ng-container>
                     <button class="zb-btn zb-btn-o-red" ng-click="delLearningMaterial()">
-                            <i class="bowtie-icon bowtie-edit-remove"></i>
+                            <i class="bowtie-icon bowtie-trash"></i>
                     </button>
 
                     </div>
                     <div class="col-md-6" style="padding-right: 0; top: 2px;" ng-if="!$root.isDisplayBasicButton">
-                    <!--<input-text-icon id="tableSearchText" on-click="objSearch.onSearch" ng-model="objSearch.$$$modelSearch"></input-text-icon>-->
-                     <div class="hcs-left-side-department-tree-tool-bar-div-search">
-                        <input class="hcs-left-side-department-tree-tool-bar-input-search" ng-model="objSearch.$$$modelSearch">
-                        <div class="hcs-left-side-department-tree-tool-bar-input-search-bot"></div>
-                        <div class="hcs-left-side-department-tree-tool-bar-input-search-bot-icon" ng-click="onSearchText()">
-                            <i class="glyphicon glyphicon-search"></i>
-                        </div>
-                        </div>
+                    <input-text-icon id="tableSearchText" on-click="objSearch.onSearch" ng-model="objSearch.$$$modelSearch"></input-text-icon>
+                     <!--<div class="hcs-left-side-department-tree-tool-bar-div-search">-->
+                        <!--<input class="hcs-left-side-department-tree-tool-bar-input-search" ng-model="objSearch.$$$modelSearch">-->
+                        <!--<div class="hcs-left-side-department-tree-tool-bar-input-search-bot"></div>-->
+                        <!--<div class="hcs-left-side-department-tree-tool-bar-input-search-bot-icon" ng-click="onSearchText()">-->
+                            <!--<i class="glyphicon glyphicon-search"></i>-->
+                        <!--</div>-->
+                        <!--</div>-->
                      </div>
                 </div>
             </div>

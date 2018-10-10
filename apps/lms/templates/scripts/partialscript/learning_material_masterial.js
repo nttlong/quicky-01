@@ -3,6 +3,7 @@
     scope.$root.isDisplayBasicButton =true;
     scope.$root.isDisplayManagermentButton = true;
     scope.$root.isDisplayFoldertButton = false;
+    scope.$root.isDisplayMoreButton = true;
     //(function reSize() {
     //    debugger
     //    var width = $(window).width();
@@ -27,7 +28,6 @@
 	]
 
 
-    console.log(scope.isDisplayManagermentButton);
     scope.$root.isDisplay = true;
     scope.__tableSource = [];
     scope.mode = 0;
@@ -54,7 +54,7 @@
     scope.$root.edit = function () {
         if (scope.currentItem) {
             scope.mode = 2; // set mode chỉnh sửa
-            openDialog("${get_res('Detail_LearningMaterial','Create New Folder')}", 'form/addLearningMaterialManagement', function () {
+            openDialog("${get_res('Add_New_Material','Add New Material')}", 'form/addLearningMaterialManagement', function () {
                 setTimeout(function () {
                     $(window).trigger('resize');
                 }, 200);
@@ -162,8 +162,12 @@
         { "data": "material_id", "title": "${get_res('material_id_table_header','ID')}" },
         { "data": "material_name", "title": "${get_res('material_name_table_header','File Name')}"
                         , "format": "icon", "type": "link", "icon": "file_thumbnail", "position": "left" },
-        { "data": "version", "title": "${get_res('version_table_header','Version')}"
-                        , "format": "icon", "type": "text", "icon": "bowtie-security-unlock-fill bowtie-icon", "position": "right"},
+        { "data": "version", "title": "${get_res('version_table_header','Version')}","expr":function(row, data, func){
+            func(function(){
+                return row.version + "<img style='width:16px;height:16px;margin:0 0 7px 5px;'  src='" + scope.$root.url_static + "css/icon/unlock-padlock.png" + "'/>";
+            });
+            return true;
+        }},
         { "data": "creator", "title": "${get_res('creator_table_header','Created by')}" ,"expr":function(row, data, func){
             func(function(){
                 return "<img class='hcs-small-img'  src='" + scope.$root.url_static + "css/icon/approver_tr.png" + "'/>"+ " "+row.creator ;
@@ -293,8 +297,6 @@
     }
 
 
-
-
     function handleData() {
 
         this.collection = {};
@@ -370,7 +372,8 @@
                         recordsFiltered: res.total_items,
                         data: res.items
                     };
-     //               scope.__tableSource = JSON.parse(JSON.stringify(res.items));
+
+                    //scope.__tableSource = JSON.parse(JSON.stringify(res.items));
 					//scope.ItemTables = JSON.parse(JSON.stringify(res.items));
 					//var total_rating = 0;
 					//for (var i = 0; i < scope.ItemTables.length; i++) {
@@ -617,7 +620,6 @@
             function test() {
 
                 if(scope.currentItem.files.file_data.indexOf('application/pdf')!= (-1)){
-                console.log(scope.currentItem.files.file_data.indexOf('application/pdf'))
                 showPDF(scope.currentItem.files.file_data);
             }
             else if(scope.currentItem.files.file_data.indexOf('data:image/png')!= (-1)

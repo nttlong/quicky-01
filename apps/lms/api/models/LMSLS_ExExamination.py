@@ -56,7 +56,8 @@ def LMSLS_ExExamination():
             check_plagi = helpers.create_field("bool"),
             show_hint = helpers.create_field("bool"),
             duration=helpers.create_field("text"),
-            edit_instruction=helpers.create_field("text")
+            edit_instruction=helpers.create_field("text"),
+            status = helpers.create_field("bool")
 
         )
         _hasCreated=True

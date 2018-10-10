@@ -3,7 +3,7 @@
 <script>
     (function(scope,params){
         scope.$params=params;
-        scope.view_path="${get_view_path()}";
+        scope.view_path="${get_view_path()}"
         scope.$ws=ws(scope);
         scope.$error=function(res){
             bootoast.toast({

@@ -122,11 +122,11 @@
                                                     on-search-change="false"
                                                     on-search-press="true"
                                                     placeholder=""
-                                                    init-data="$$$category_id.value"
-                                                    caption-field="{{$$$category_id.caption_field}}"
+                                                    init-data="$$$category_temp.value"
+                                                    caption-field="{{$$$category_temp.caption_field}}"
                                                     paging="true"
                                                     close-on-select="true"
-                                                    template-fields="$$$category_id.display_fields"
+                                                    template-fields="$$$category_temp.display_fields"
                                                     reload="false">
                                         </combobox>
                                     </div>
@@ -153,7 +153,7 @@
        <div  class="col-md-{{col}}">             
         <div class="modal-body" style="overflow:unset;">
             <div style="height:calc(100% - 40px);border:1px solid rgb(208, 208, 208)" >
-            <table-data data-source="tableSource" fields="tableFields" type="MultiSelect" 
+            <table-data data-source="tableSource" fields="tableFields" type="MultiSelect"
                     paging="true" page-length="table_info.page_size" server-side="true" 
                     press-enter="onSelectTableRow" selected-items="selectedItems" 
                     current-item="currentItem" search-text="tableSearchText"
@@ -200,9 +200,7 @@
     (function (scope) {
    
         scope.addAsNewTemplate = function () {   
-            
         if (scope.entity.question_list.length >0) {
-            
             openDialog("${get_res('edit_exam_Template','Add a Exam Template')}", 'form/addExamTemplate', function () {
                 setTimeout(function () {
                     $(window).trigger('resize');
@@ -230,12 +228,12 @@
         }
        
         scope.onChoose = function () {
-            if(scope.entity.choose_from ==false)
+            if(scope.entity.choose_from == false)
             {
                 scope.entity.mode_pick= 1;
+                scope.category_list = [];
             }
-            scope.category_list = [];
- 
+
             scope.$applyAsync();
             var tableConfig = scope.$$tableConfig;
 
@@ -244,15 +242,23 @@
                 tableConfig.searchText, tableConfig.fnReloadData);
 
         }
+
         scope.tableFields = [
-        { "data": "ques_id", "title": "${get_res('ques_id_table_header','ID')}" },
+        { "data": "ques_index", "title": "${get_res('ques_id_table_header','ID')}" },
         { "data": "ques_detail_1", "title": "${get_res('ques_detail_table_header','Question')}" },
         { "data": "ques_category", "title": "${get_res('ques_category_table_header','Category')}" },
-        { "data": "ques_type", "title": "${get_res('ques_type_table_header','Question type')}" },
-        { "data": "ques_level", "title": "${get_res('ques_level_table_header','Difficulty Level')}" },  
+        { "data": "ques_type", "title": "${get_res('ques_type_table_header','Question type')}" , "format": "icon", "type": "rowtext", "icon": "icons", "position": "left" },
+        { "data": "ques_level", "title": "${get_res('ques_level_table_header','Difficulty Level')}" ,"expr":function(row, data, func){
+            func(function(){
+                return "<p style='color:" + row.color+ ";"+ "font-weight:bold;margin:0;'>" + row.ques_level + "</p>";
+
+            });
+            return true;
+        }},
         { "data": "ques_total_marks", "title": "${get_res('ques_mark_table_header','Mark')}" },
         { "data": "ques_max_answer_time", "title": "${get_res('answer_time_table_header','Answer Time')}" },
-         ];
+        ];
+
         //Cấu hình tên field và caption hiển thị trên UI
         scope.addTemplateDlg = function (index) {
             
@@ -348,27 +354,23 @@
                 tableConfig.searchText, tableConfig.fnReloadData);
             
         }
-                function _getDataInitCombobox() {
-			
-			scope.$root.$getInitComboboxData(scope,
-				{
-                    "key": "${encryptor.get_key('lms_cbb_exTemplateCategory')}",
-                    "code": scope.entity && scope.entity.hasOwnProperty('category')? scope.entity.category: null,
-                    "alias": "$$$category_id"
-                }
-			);
-		}
+
+
         _getDataInitCombobox();
-        function __getDataInitCombobox() {
+        function _getDataInitCombobox() {
 			
 			scope.$root.$getInitComboboxData(scope,
-				{
+			    [{
                     "key": "${encryptor.get_key('lms_cbb_exQuestionCategory')}",
                     "code": scope.entity && scope.entity.hasOwnProperty('category')? scope.entity.category: null,
                     "alias": "$$$category_id"
-                }
+                },
+                {
+                    "key": "${encryptor.get_key('lms_cbb_exTemplateCategory')}",
+                    "code": scope.entity && scope.entity.hasOwnProperty('exam_category')? scope.entity.exam_category: null,
+                    "alias": "$$$category_temp"
+                }]
 			);
 		}
-        __getDataInitCombobox();
     });
 </script>

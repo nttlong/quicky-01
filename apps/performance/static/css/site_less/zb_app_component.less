@@ -837,3 +837,90 @@ input[disabled] {
     font: 100% 'Segoe UI',sans-serif;
     font-size: .875rem !important;
 }
+
+.zb-form-radio{
+    height: 30px !important;
+    padding-top: 4px;
+    margin: 0 0 0 4px;
+}
+
+/*Multiselect*/
+
+input-multi-select > .SumoSelect{
+    width: 100%;
+    border-bottom: 1px solid #cbcbcb;
+}
+
+input-multi-select > .SumoSelect > select{
+    height:30px;
+}
+
+input-multi-select > .SumoSelect >.CaptionCont{
+    box-shadow:unset;
+    border:unset;
+    padding: 1px 1em 0px 0px;
+    height: 30px;
+}
+
+input-multi-select > .SumoSelect:hover{
+    outline: unset;
+    border: unset;
+    border-bottom: 1px solid #cbcbcb;
+}
+input-multi-select > .SumoSelect:hover>.CaptionCont{
+    box-shadow:unset;
+}
+input-multi-select > .SumoSelect:hover>.CaptionCont>span{
+    box-shadow:unset;
+}
+input-multi-select > .SumoSelect>.CaptionCont >span{
+    font-size:.875rem;
+    line-height: 29px;
+    height:29px;
+    padding-right:5px;
+}
+input-multi-select > .SumoSelect>.CaptionCont >span:hover{
+    cursor:pointer;
+}
+input-multi-select > .SumoSelect>.CaptionCont >label>i{
+    background-image:unset;
+    top: 7px;
+    left: 0;
+    right: -5px;
+    bottom: 0;
+    font-family: Ionicons;
+    font-style: normal;
+    font-weight: 400;
+    font-variant: normal;
+    width: 10px;
+    height: 10px;
+    color: #6E6E6E;
+    font-size: .875rem;
+}
+input-multi-select > .SumoSelect>.CaptionCont >label>i:after {
+    content: "\f123";
+}
+
+input-multi-select > .SumoSelect>.optWrapper>.options li label{
+    font-size: .875rem;
+    font-weight: 400;
+    margin-bottom:unset;
+}
+
+input-multi-select > .SumoSelect>.optWrapper>.options li:hover{
+    background-color: #f5f5f5 !important;
+}
+
+input-multi-select >.SumoSelect .select-all.partial>span i, .SumoSelect .select-all.selected>span i,
+input-multi-select >.SumoSelect>.optWrapper.multiple>.options li.opt.selected span i{
+  background-color:#008ccb
+}
+
+input-multi-select > .SumoSelect.open>.optWrapper{
+  top:30px;
+}
+input-multi-select > .SumoSelect.open>.CaptionCont,
+input-multi-select > .SumoSelect >.CaptionCont,
+input-multi-select > .SumoSelect:focus>.CaptionCont{
+  box-shadow:unset;
+}

@@ -1,8 +1,8 @@
 ﻿
 <div class="tab-pane" style="padding-right:unset; height: 100%; overflow-y:hidden; overflow:auto; background-color:#fff;">
-	<div class="tabbable-panel">
-		<div class="tabbable-line">
-			<div class="hcs-tab-info">
+    <div class="tabbable-panel">
+        <div class="tabbable-line">
+            <div class="hcs-tab-info">
                 <div class="col-md-12 competency no-padding">
                     <div class="col-md-3 active" href="#tab_default_1" data-toggle="tab" ng-click="changeActive($event)">
                         <img src="${get_static('assets/images/Setting.png')}" style="width:30px; margin-top:8px; margin-right:15px;"/>
@@ -18,7 +18,7 @@
                     </div>
                 </div>
             </div>
-			<div class="tab-content">
+            <div class="tab-content">
                 <div class="tab-pane active" id="tab_default_1">
                     <div class="col-md-12">
                      <!--<collapse-box class="zb-form-common" title="${get_res('general_config','Thiết lập chung')}">
@@ -54,6 +54,13 @@
                                     <label class="col-sm-6 zb-form-label">${get_res('is_not_apply_process','Không áp dụng theo cấp duyệt')}</label>
                                     <div class="col-sm-6">
                                         <input-checkbox ng-model="entity.is_not_apply_process"/>
+                                    </div>
+                                </div>
+                                <div class="form-group zb-form-group">
+                                    <!--Bí danh-->
+                                    <label class="col-sm-6 zb-form-label">${get_res('process_level_apply_for','Duyệt theo cấp bậc áp dụng cho')}</label>
+                                    <div class="col-sm-6">
+                                        <input-select data-list="LPERF_ProcessLevelApplyFor" data-value="value" data-caption="caption" ng-model="entity.process_level_apply_for"/>
                                     </div>
                                 </div>
                                 <div class="form-group zb-form-group">
@@ -178,7 +185,7 @@
                         </collapse-box>
                     <!--</div>-->
                     <!--<div class="col-md-6">-->
-                        <collapse-box class="zb-form-common" title="${get_res('email_delete','Email xoá')}">
+                        <collapse-box class="zb-form-common" title="${get_res('email_delete','Email xoá')}" ng-show="entity.is_email_delete == 1">
                             <div class="col-md-12">
                                 <div class="form-group zb-form-group">
                                     <label class="col-sm-5 zb-form-label">${get_res('email_send_code','Mẫu Email')}</label>
@@ -224,7 +231,7 @@
                     </div>
                     <div class="col-md-6">
                     <!--<div class="col-md-6">-->
-                        <collapse-box class="zb-form-common" title="${get_res('email_cancel','Email xin huỷ')}">
+                        <collapse-box class="zb-form-common" title="${get_res('email_cancel','Email xin huỷ')}" ng-show="entity.is_email_cancel == 1">
                             <div class="col-md-12">
                                 <div class="form-group zb-form-group">
                                     <label class="col-sm-5 zb-form-label">${get_res('email_send_code','Mẫu Email')}</label>
@@ -268,7 +275,7 @@
                         </collapse-box>
                     <!--</div>-->
                     <!--<div class="col-md-6">-->
-                        <collapse-box class="zb-form-common" title="${get_res('email_instead','Email duyệt thay Quy trình tại Ứng dụng')}">
+                        <collapse-box class="zb-form-common" title="${get_res('email_instead','Email duyệt thay Quy trình tại Ứng dụng')}" ng-show="entity.is_email_instead == 1">
                             <div class="col-md-12">
                                 <div class="form-group zb-form-group">
                                     <label class="col-sm-5 zb-form-label">${get_res('email_send_code','Mẫu Email')}</label>
@@ -312,50 +319,50 @@
                         </collapse-box>
                     <!--</div>-->
                     </div>
-                    <div class="col-md-12">
-                     <collapse-box class="zb-form-common" title="${get_res('tan_suat_gui_email','Tần suất gửi Email')}">
-                        <div class="col-md-6">
-                            <div class="form-group zb-form-group">
-                                <div class="col-sm-7">
-                                      <label class="radio">${get_res('is_send_email_pronto','Gửi ngay khi có phát sinh')}
-                                          <input type="radio" ng-click="onChangeRadioButton(1)" ng-value="true" name="GroupA" ng-model="entity.is_send_email_pronto">
-                                          <span class="checkround"></span>
-                                      </label>
+                    <div class="col-md-6 col-xs-6">
+                         <collapse-box class="zb-form-common" title="${get_res('tan_suat_gui_email','Tần suất gửi Email')}">
+                            <div class="col-md-12 col-xs-12">
+                                <div class="form-group zb-form-group">
+                                    <label class="radio zb-form-radio">
+                                        <input type="radio" name="radio_is_send_email" ng-click="onChangeRadioButton(1)" ng-value="true" ng-model="entity.is_send_email_pronto">
+                                        <span class="checkround"></span>
+                                        ${get_res('is_send_email_pronto','Gửi ngay khi có phát sinh')}
+                                    </label>
                                 </div>
                             </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-group zb-form-group">
-                                <div class="col-sm-7">
-                                    <label class="radio">${get_res('is_send_email_once','Gửi danh sách một lần trong ngày')}
-                                          <input type="radio" ng-click="onChangeRadioButton(2)" ng-value="true" name="GroupA" ng-model="entity.is_send_email_once">
-                                          <span class="checkround"></span>
-                                      </label>
+                            <div class="col-md-12 col-xs-12">
+                                <div class="form-group zb-form-group">
+                                    <label class="radio zb-form-radio">
+                                        <input type="radio" name="radio_is_send_email" ng-click="onChangeRadioButton(2)" ng-value="true" ng-model="entity.is_send_email_once">
+                                        <span class="checkround"></span>
+                                        ${get_res('is_send_email_once','Gửi danh sách một lần trong ngày')}
+                                    </label>
                                 </div>
                             </div>
-                            <div class="form-group zb-form-group">
-                                <!--Họ-->
-                                <label class="col-sm-6 zb-form-label">${get_res('is_send_email_once_from_hour','Từ giờ')}</label>
-                                <div class="col-sm-6">
-                                    <time-picker class="lv-time-picker" ng-model="entity.is_send_email_once_from_hour" format="HH:mm"
-                                                 ng-disabled="true" disable="disable"></time-picker>
+                            <div class="col-md-12 col-xs-12">
+                                <div class="form-group zb-form-group">
+                                    <label class="col-sm-6 col-xs-6 zb-form-label">${get_res('is_send_email_once_from_hour','Từ giờ')}</label>
+                                    <div class="col-sm-6 col-xs-6">
+                                        <time-picker class="lv-time-picker" ng-model="entity.send_email_once_from_hour" format="HH:mm"
+                                                     ng-disabled="entity.is_send_email_once ? false : true"></time-picker>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="form-group zb-form-group">
-                                <!--Tên-->
-                                <label class="col-sm-6 zb-form-label">${get_res('is_send_email_once_to_hour','Đến giờ')}</label>
-                                <div class="col-sm-6">
-                                    <time-picker class="lv-time-picker" ng-model="entity.is_send_email_once_to_hour" format="HH:mm"
-                                                 ng-disabled="true"></time-picker>
+                            <div class="col-md-12 col-xs-12">
+                                <div class="form-group zb-form-group">
+                                    <label class="col-sm-6 col-xs-6 zb-form-label">${get_res('is_send_email_once_to_hour','Đến giờ')}</label>
+                                    <div class="col-sm-6 col-xs-6">
+                                        <time-picker class="lv-time-picker" ng-model="entity.send_email_once_to_hour" format="HH:mm"
+                                                     ng-disabled="entity.is_send_email_once ? false : true"></time-picker>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    </collapse-box>
+                        </collapse-box>
+                    </div>
                 </div>
-                </div>
-			</div>
-		</div>
-	</div>
+            </div>
+        </div>
+    </div>
 </div>
 <script>
 <%include file = "scripts/setup_process_general.js" />

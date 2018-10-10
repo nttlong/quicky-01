@@ -23,7 +23,9 @@ def get_list_edit_permission(role_code):
             "import":"$permission.import",
             "copy":"$permission.copy",
             "attach":"$permission.attach",
-            "download":"$permission.download"
+            "download":"$permission.download",
+            "print": "$permission.print",
+            "action": "$permission.action"
             }},
         {"$lookup":{"from":common.get_collection_name_with_schema("SYS_FunctionList"), "localField":'function_id', "foreignField":'function_id', "as":'fnl'}},
         {"$unwind":{"path":"$fnl", "preserveNullAndEmptyArrays":False}},
@@ -40,12 +42,14 @@ def get_list_edit_permission(role_code):
             "import":1,
             "copy":1,
             "attach":1,
-            "download":1
+            "download":1,
+            "print": 1,
+            "action": 1
             }}
         ])
     list_per = list(ret)
 
-    list_fnl = functionlist.get_list({})
+    list_fnl = list(common.get_collection('SYS_FunctionList').find({"app":"PERF"}))
 
     arr_per_func_id = [x["function_id"]for x in list_per]
 
@@ -70,7 +74,9 @@ def get_list_edit_permission(role_code):
             "import":False,
             "copy":False,
             "attach":False,
-            "download":False
+            "download":False,
+            "print": False,
+            "action": False
             })
 
     return result

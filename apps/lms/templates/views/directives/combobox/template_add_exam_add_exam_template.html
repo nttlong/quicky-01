@@ -20,7 +20,7 @@
           <input-text-icon on-click="change" style="padding:5px;">
             </input-text-icon>
             <div style="height:calc(100% - 40px)">
-            <table-data data-source="tableSource" fields="tableFields" type="MultiSelect" 
+            <table-data data-source="tableSource" fields="tableFields" type="SingleSelect"
                     paging="true" page-length="table_info.page_size" server-side="true" 
                     press-enter="$table.onSelectTableRow" selected-items="$table.selectedItems" 
                     current-item="$table.currentItem" search-text="$table.tableSearchText"
@@ -119,9 +119,10 @@
         }
 
         function save() {
-            debugger
+
             if (scope.$table.currentItem.exam_temp_id) {
                 scope.$parent.category_list =[];
+
                 scope.$parent.category_list.push(...scope.$table.currentItem.question_list)
                 scope.$parent.entity.duration = scope.$table.currentItem.duration
                 scope.$parent.entity.exam_temp_name1 = scope.$table.currentItem.exam_temp_name1
@@ -171,7 +172,6 @@
                     .done()
                 .then(function (res) {
                     var dataRes = res.items;
-
 
                         var data = {
                             recordsTotal: res.total_items,

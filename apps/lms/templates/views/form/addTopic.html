@@ -335,7 +335,7 @@ input[type=checkbox] .styled:checked+label::after,input[type=radio] .styled:chec
     <collapse-box class="zb-form-common" title="${get_global_res('Description','Mô tả')}">
         <div class="row">
             <div class="col-xs-12 col-sm-12">
-                <input-textarea rows="10" ng-model="entity.topic_description"></input-textarea>
+                <input-textarea rows="8" ng-model="entity.topic_description"></input-textarea>
             </div>
         </div>
         <div class="col-md-12" style="padding-top: 16px;">
@@ -494,10 +494,9 @@ input[type=checkbox] .styled:checked+label::after,input[type=radio] .styled:chec
             if (rs.result === true) {
                 return rs;
             }
-            valid = lv.Validate(scope.entity.forum_id);
-            rs.result = valid.isNullOrWhiteSpace();
-            rs.errorMsg = rs.result === true ? "${get_res('forum_list_is_not_null','Forum không được chọn')}" + '\n' : "";
-            if (rs.result === true) {
+            if (!scope.entity.forum_id) {
+                rs.errorMsg = "${get_res('forum_list_is_not_null','Forum không được chọn')}"
+                rs.result = true;
                 return rs;
             }
             valid = lv.Validate(scope.entity.topic_description);

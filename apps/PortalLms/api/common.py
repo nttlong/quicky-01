@@ -31,7 +31,7 @@ def create_view(view_name, collection_name, pipe_line):
     get_db_context().command({
         "create": view_name,
         "viewOn": get_collection_name_with_schema(collection_name), 
-        "pipeline": pipeline
+        "pipeline": pipe_line
     })
 
 def get_current_schema():
@@ -70,10 +70,10 @@ def aggregate_sort(sort):
     """
     Chuyển đỗi dict thành thành array tuple
     example:
-        {                       
+        {
             "a": -1,         => [("a", -1), ("b", 1)]
-            "b": 1              
-        }                       
+            "b": 1
+        }
     """
     "sort -> dict"
     result = []
@@ -103,8 +103,8 @@ def aggregate_filter_lock(value):
 
 def get_pagination(args):
     try:
-        global __collectionName 
-        global __collection 
+        global __collectionName
+        global __collection
 
         if('collection' in args['data'].keys()):
             __collectionName    =   args['data']['collection']
@@ -140,7 +140,7 @@ def get_data(pageIndex, pageSize, where, sort):
 
 def get_config(args):
     try:
-        return models.models_per.HCSSYS_SystemConfig().aggregate().get_list()[0]
+        return models.HCSSYS_SystemConfig().aggregate().get_list()[0]
     except Exception as ex:
         logger.debug(ex)
         raise(ex)
@@ -236,8 +236,8 @@ def get_init_data_combobox(args):
 
 def create_data_init_combobox(args, display_field, caption_field, value_field, multi_select, parent_field):
     try:
-        global __collectionName 
-        global __collection 
+        global __collectionName
+        global __collection
 
         ret      = {}
         ret_list = []
@@ -246,7 +246,7 @@ def create_data_init_combobox(args, display_field, caption_field, value_field, m
 
             combobox_code = encryptor.get_value(args['data']['key'])
 
-            combobox_info = models.models_per.HCSSYS_ComboboxList().aggregate().project(
+            combobox_info = models.HCSSYS_ComboboxList().aggregate().project(
                 combobox_code       =   1,
                 language            =   1,
                 display_name        =   1,
@@ -339,8 +339,8 @@ def create_data_init_combobox(args, display_field, caption_field, value_field, m
 def create_data_combobox(args):
     #Hàm get dropdown list theo tên collection và tên cột
     try:
-        global __collectionName 
-        global __collection 
+        global __collectionName
+        global __collection
 
         ret      = {}
         ret_list = []
@@ -349,7 +349,7 @@ def create_data_combobox(args):
 
             combobox_code = encryptor.get_value(args['data']['key'])
 
-            combobox_info = models.models_per.HCSSYS_ComboboxList().aggregate().project(
+            combobox_info = models.HCSSYS_ComboboxList().aggregate().project(
                 combobox_code       =   1,
                 language            =   1,
                 display_name        =   1,
@@ -456,10 +456,24 @@ def create_data_combobox(args):
                 page_index = args['data']['pageIndex']
 
             if parent_field == None or parent_field == "":
-                data = ret.get_page(page_index, page_size)
-            else:
+                #delete pagination
+                #data = ret.get_page(page_index, page_size)
+                result = ret.get_list()
                 data = {
-                    "items":ret.get_list()
+                    "items": result,
+                    "total_items": len(result),
+                    "page_index": page_index,
+                    "page_size": page_size,
+                    "note": "current version not support pagination"
+                }
+            else:
+                result = ret.get_list()
+                data = {
+                    "items":result,
+                    "total_items": len(result),
+                    "page_index": 0,
+                    "page_size": 100,
+                    "note": "tree combobox not using pagination"
                     }
 
             if data != {}:

@@ -97,6 +97,14 @@
 <%block name="modal_script">
 <script>
     (function (scope) {
+        var _model = {
+            process_id:null,
+            process_code:null,
+            substitute_code:null,
+            from_date:null,
+            to_date:null,
+            note:null
+        };
         scope.title = scope.$parent.headerTitle;
         scope.saveNClose = saveNClose;
         scope.saveNNext = saveNNext;
@@ -151,12 +159,13 @@
 
         function editData(callback) {
             var url = getUrl();
-            scope.entity.process_id = scope.$parent.$$process_id
+            scope.entity.process_id = scope.$parent.$$process_id;
+            var param = _.mapObject(_model, function(val, key) { return val = scope.entity[key] ? scope.entity[key] : null });
             if (scope.__mode == 3) {
 
             }
             services.api(url)
-                .data(scope.entity)
+                .data(param)
                 .done()
                 .then(function (res) {
                     callback(res);

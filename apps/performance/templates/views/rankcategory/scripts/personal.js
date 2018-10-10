@@ -13,6 +13,7 @@
     ];
     //
     scope.$$tableConfig = {};
+    scope.currFunction = "HCSSYS0020";
     //Dữ liệu cho table
     scope.tableSource = _loadDataServerSide;
     function _loadDataServerSide(fnReloadData, iPage, iPageLength, orderBy, searchText) {
@@ -55,13 +56,13 @@
     scope.onSearch = onSearch;
     scope.onExport = onExport;
     scope.onImport = onImport;
-    scope.$parent.$parent.$parent.onEdit = onEdit;
-    scope.$parent.$parent.$parent.onAdd = onAdd;
-    scope.$parent.$parent.$parent.onDelete = onDelete;
-    scope.$parent.$parent.$parent.onCopy = onCopy;
-    scope.$parent.$parent.$parent.onSearch = onSearch;
-    scope.$parent.$parent.$parent.onExport = onExport;
-    scope.$parent.$parent.$parent.onImport = onImport;
+    // scope.$parent.onEdit = onEdit;
+    // scope.$parent.onAdd = onAdd;
+    // scope.$parent.onDelete = onDelete;
+    // scope.$parent.onCopy = onCopy;
+    // scope.$parent.onSearch = onSearch;
+    // scope.$parent.onExport = onExport;
+    // scope.$parent.onImport = onImport;
     scope._tableData = _tableData;
     scope.cbbContinents = [];
     //scope.getDisplayNameAccessMode = getDisplayNameAccessMode;

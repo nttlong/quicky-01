@@ -1,6 +1,7 @@
 ﻿
 <%!
     #_style="width:200px;"
+    _height=";max-height:100vh;"
 %>
 <%inherit file="../../commons/dialog_resize_selected_cancel.html"/>
 
@@ -10,26 +11,26 @@
   <div class="col-md-12 col-sm-12 col-12">
 			 <div class="form-group zb-form-group">
 				 <div class="col-md-5 col-sm-5 col-5 zb-form-label">
-                      <label class="radio ">${get_res('get_by_setup_aprPeriod','Lấy theo thiết lập của kỳ đánh giá')}
-                           <input type="radio" name="optradio" checked/>
+                      <label class="radio zb-form-radio">${get_res('get_by_setup_aprPeriod','Lấy theo thiết lập của kỳ đánh giá')}
+                           <input type="radio" name="optradio" ng-model="selectedRadioBtn" ng-value="0" checked/>
                           <span class="checkround"></span>
                       </label>
 					 </div>
 					 <div class="col-md-7 col-sm-7 col-7">
-                                <input-select data-list="cbbApprovalPeriod" ng-model="entity.apr_now_result_period" data-value="value" data-caption="caption" />
+                                <input-select data-list="cbbApprovalPeriod" ng-disabled="selectedRadioBtn!=0" ng-model="entity.apr_now_result_period" data-value="value" data-caption="caption" />
                              </div>
             </div>
               </div>
 		<div class="col-md-12 col-sm-12 col-12">
 			 <div class="form-group zb-form-group">
 				 <div class="col-md-5 col-sm-5 col-5 zb-form-label">
-                      <label class="radio ">${get_res('get_by_result_aprPeriod','Lấy theo kết quả của kỳ đánh giá')}
-                          <input type="radio" name="optradio"/>
+                      <label class="radio zb-form-radio">${get_res('get_by_result_aprPeriod','Lấy theo kết quả của kỳ đánh giá')}
+                          <input type="radio" name="optradio" ng-model="selectedRadioBtn" ng-value="1"/>
                           <span class="checkround"></span>
                       </label>
 					 </div>
 					 <div class="col-md-7 col-sm-7 col-7">
-                                <input-select data-list="cbbApprovalPeriod" ng-model="entity.apr_now_result_period" data-value="value" data-caption="caption"/>
+                                <input-select data-list="cbbApprovalPeriod" ng-disabled="selectedRadioBtn!=1" ng-model="entity.apr_now_result_period" data-value="value" data-caption="caption"/>
                              </div>
             </div>
               </div>
@@ -65,6 +66,7 @@
 	debugger
 		scope.title = "Phát sinh định mức xếp loại";
 		scope.onResizeDialog = onResizeDialog;
+		scope.selectedRadioBtn = 0;//default select first radiobtn
 		scope.cbbApprovalPeriod = [];
 		function onResizeDialog() {
 			$dialog.fullScreen();
@@ -92,7 +94,7 @@
 				for (i = j; i < res.length; i++) {
 					gen_res.push(res[i]);
 				}
-				scope.cbbApprovalPeriod = gen_res;
+				scope.cbbApprovalPeriod = res;
 				scope.entity.apr_now_result_period = gen_res[0].value;
 				scope.$applyAsync();
 			});

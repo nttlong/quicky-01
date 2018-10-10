@@ -1,6 +1,32 @@
 
 import datetime
 def authenticate(request):
+    if request._get_request().has_key("token"):
+        token=request._get_request()["token"]
+        return_url = request._get_request()["retUrl"]
+        lang = request._get_request()["lang"]
+        if (lang != None and lang != ""):
+            if lang == "VN":
+                lang = "vi"
+            else:
+                lang = "en"
+        from quicky import backends
+        import quicky
+        from quicky.backends.crypto import sso_authenticate
+        from api import models
+        login_token = sso_authenticate(token)
+        if login_token.is_success:
+            login_account = models.auth_user_info().aggregate()\
+                .project(login_account = 1, username = 1)\
+                .match("login_account == {0}", login_token.login_account).get_item()
+            request.__setattr__("user_login", login_account['username'])
+            import quicky
+            quicky.language.set_language(lang)
+            request.session["language"] = lang
+            return backends.sigin_by_login_token(request, token, return_url)
+        else:
+            return False
+
     if not request.user.is_anonymous() and request.user.is_active:
         return True
     else:

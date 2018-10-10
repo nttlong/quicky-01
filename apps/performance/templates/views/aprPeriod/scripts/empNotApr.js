@@ -25,7 +25,7 @@
     //Refesh table
     scope.refreshDataRow = function () { /*Do nothing*/ };
 
-    scope.addDataGeneration = addDataGeneration
+    scope.$parent.$parent.$parent.onGen = onGenDataGeneration;
     scope.$parent.$parent.$parent.onAdd = onAdd;
     scope.$parent.$parent.$parent.onEdit = onEdit;
     scope.$parent.$parent.$parent.onDelete = onDelete;
@@ -90,7 +90,7 @@
                 })
     }
 
-    function addDataGeneration() {
+    function onGenDataGeneration() {
         scope.mode = 4;// set mode tạo mới
         scope.$apr_period = scope.$parent.mode == 1 ? scope.$parent.apr_period_now : scope.$parent.entity.apr_period;
         scope.$apr_year = scope.$parent.mode == 1 ? scope.$parent.apr_year_now : scope.$parent.apr_year_now;

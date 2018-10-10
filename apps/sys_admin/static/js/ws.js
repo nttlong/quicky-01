@@ -74,6 +74,7 @@ function ws_call(api_path, view_path, data, cb, owner) {
                 while (txt.indexOf(String.fromCharCode(10)) > -1) {
                     txt = txt.replace(String.fromCharCode(10), "<br/>")
                 }
+                $msg.error("Có l?i t? máy ch?", "Xin vui lòng th? l?i ho?c li?n h? v?i b? ph?n k? thu?t", txt, function () { });
             }
         });
 

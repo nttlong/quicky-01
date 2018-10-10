@@ -226,56 +226,47 @@ input[type=checkbox] .styled:checked+label::after,input[type=radio] .styled:chec
     }
 </style>
 
-<div class="col-md-{{col_group}} col-sm-{{col_group}}">
-       <div class="hcs-tab-info">
-            <div class="col-md-12 competency no-padding">
-                <div class="col-md-4 active" href="#tab_default_1" data-toggle="tab"
-                     ng-click="setTab(1, $event)">
-                    <div class="circle-statistics"
-                         style="float: left;
-                                margin-right: 10px;">
-                        1
+
+<div class="tab-pane" style="padding-right:unset; height: 100%; overflow-y:hidden; overflow:auto; background-color:#fff;">
+	<div class="tabbable-panel">
+		<div class="tabbable-line">
+			<div class="hcs-tab-info">
+            <div class="col-xs-12 col-md-12 competency no-padding">
+                    <div class="hcs-tab-info-box active" href="#tab_default_1" data-toggle="tab" ng-click="changeActive($event)">
+                        <img src="${get_static('assets/images/01.png')}"/>
+                        <label style="padding: 12px 0 0 10px;">
+                            ${get_res('forum_information','Forum Information')}
+                        </label>
                     </div>
-                           <label style="padding-top: 10px;">
-                        <span style="display: table;">${get_res('forum_information','Forum Information')}</span>
-                    </label>
-                </div>
-                <div class="col-md-4" ng-class="{disabled: (__mode === 1 && tabIdx < 2)}" href="#tab_default_2" data-toggle="tab"
-                     ng-click="setTab(2, $event)">
-                    <div class="circle-statistics"
-                         style="float: left;
-                                margin-right: 10px;">
-                        2
+                    <div class="hcs-tab-info-box" href="#tab_default_2" data-toggle="tab" ng-click="changeActive($event)">
+                        <img src="${get_static('assets/images/2.png')}"/>
+                        <label style="padding: 12px 0 0 10px;">
+                            ${get_res('forum_setting','Forum Setting')}
+                        </label>
                     </div>
-                              <label style="padding-top: 10px;">
-                        <span style="display: table;">${get_res('forum_setting','Forum Setting')}</span>
-                    </label>
-                </div>
-                <div class="col-md-4" ng-class="{disabled: (__mode === 1 && tabIdx < 3)}" href="#tab_default_3" data-toggle="tab"
-                     ng-click="setTab(3, $event)">
-                    <div class="circle-statistics"
-                         style="float: left;
-                                margin-right: 10px;">
-                        3
+                    <div class="hcs-tab-info-box" href="#tab_default_3" data-toggle="tab" ng-click="changeActive($event)">
+                        <img style="margin:0" src="${get_static('assets/images/3.png')}"/>
+                        <label style="padding: 12px 0 0 10px;">
+                            ${get_res('forum_moderations','Forum Moderation')}
+                        </label>
                     </div>
-                    <label style="padding-top: 10px;">
-                        <span style="display: table;">${get_res('forum_moderations','Forum Moderation')}</span>
-                    </label>
                 </div>
             </div>
-       </div>
-      <div class="col-md-12">
-        <div ng-show="isSet(1)">
-           <%include file = "addForumPublicTabOne.html" />
-        </div>
-        <div ng-show="isSet(2)">
-           <%include file = "addForumPublicTabTwo.html" />
-        </div>
-        <div ng-show="isSet(3)">
-           <%include file = "addForumPublicTabThree.html" />
-        </div>
-      </div>
+			<div class="tab-content">
+                <div class="tab-pane active" id="tab_default_1">
+                     <%include file = "addForumPublicTabOne.html" />
+                </div>
+                <div class="tab-pane" id="tab_default_2">
+                     <%include file = "addForumPublicTabTwo.html" />
+                </div>
+                <div class="tab-pane" id="tab_default_3">
+                     <%include file = "addForumPublicTabThree.html" />
+			    </div>
+			</div>
+		</div>
+	</div>
 </div>
+
 
 <style>
     .hcs-tab-column-5 {
@@ -343,8 +334,6 @@ input[type=checkbox] .styled:checked+label::after,input[type=radio] .styled:chec
             forum_status: 1,
 
             type_moderation: 1,
-
-
         };
 
         scope.col = 12;
@@ -383,18 +372,10 @@ input[type=checkbox] .styled:checked+label::after,input[type=radio] .styled:chec
             caption: "Posts containing these words"
         }];
 
-        scope.tab = 1;
-        scope.setTab = function (newTab, event) {
-            setTimeout(function () {
-                $(document).trigger("resize");
-            }, 20);
-              scope.tab = newTab;
-              $('.hcs-tab-info').find('.active').removeClass('active');
-              $(event.target).closest('div').addClass('active');
-        };
-        scope.isSet = function(tabNum){
-          return scope.tab === tabNum;
-        };
+        scope.changeActive = function(event){
+        $('.hcs-tab-info').find('.active').removeClass('active');
+        $(event.target).closest('div').addClass('active');
+        }
 
         scope.__mode = scope.$parent.mode;
         scope.title = scope.$parent.headerTitle;
@@ -409,10 +390,6 @@ input[type=checkbox] .styled:checked+label::after,input[type=radio] .styled:chec
 
         //Nút lưu
         //scope.saveNClose = saveNClose;
-
-        console.log(typeof scope.entity.specific_avail.start_time);
-
-
 
         function saveNNext() {
 
@@ -599,7 +576,7 @@ input[type=checkbox] .styled:checked+label::after,input[type=radio] .styled:chec
             scope.$root.$getInitComboboxData(scope,
                 [
                 {
-                    "key": "${encryptor.get_key('cbb_lmsls_materialfolder')}",
+                    "key": "${encryptor.get_key('lms_cbb_emp')}",
                     "code": scope.entity && scope.entity.hasOwnProperty('forum_administrator')? scope.entity.forum_administrator: null,
                     "alias": "$$$forum_admin_id"
                 },
@@ -618,10 +595,12 @@ input[type=checkbox] .styled:checked+label::after,input[type=radio] .styled:chec
         }
 
         function timeToSeconds(time) {
-        time = time.split(/:/);
-        return time[0] * 3600 + time[1] * 60 + time[2];
+            if(!_.isUndefined(time) )
+            {
+                time = time.split(':');
+                return time[0] * 3600 + time[1] * 60 + time[2];
+            }
         }
-
     });
 </script>
 

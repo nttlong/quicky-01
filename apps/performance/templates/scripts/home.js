@@ -63,13 +63,15 @@
         }
 
         this.redirectPage = function(child) {
-            if (child.url.trim()) {
-                scope.$root.currentModule = _.filter(scope.$root.$functions, function (d) {
-                    return d["function_id"] == child.parent_id;
-                })[0];//.custom_name.replace("/", " ");
-                scope.$root.currentFunction = child;
+            if(!child.image){
+                if (child.url.trim()) {
+                    scope.$root.currentModule = _.filter(scope.$root.$functions, function (d) {
+                        return d["function_id"] == child.parent_id;
+                    })[0];//.custom_name.replace("/", " ");
+                    scope.$root.currentFunction = child;
+                }
+                location.href = '#page=' + child.function_id;
             }
-            location.href = '#page=' + child.function_id;
         }
     }
 

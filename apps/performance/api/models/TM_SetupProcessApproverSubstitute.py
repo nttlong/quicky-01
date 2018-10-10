@@ -4,8 +4,9 @@ _hasCreated = False
 def TM_SetupProcessApproverSubstitute():
     global _hasCreated
     if not _hasCreated:
-        helpers.define_model(
+        helpers.extent_model(
             "TM_SetupProcessApproverSubstitute",
+            "base",
             [['process_id', 'process_code', 'substitute_code']],
             process_id=helpers.create_field("int", True),
             process_code=helpers.create_field("text", True),

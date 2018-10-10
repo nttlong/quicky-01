@@ -110,7 +110,7 @@
             $scope.$$table.tableSearchText = val;
             $scope.$applyAsync();
         }
-        var __url_get_data_table = "${get_api_key('app_main.api.HCSEM_Employees/get_list_with_searchtext')}";
+        var __url_get_data_table = "${get_api_key('app_main.api.FormSearch/get_list_employee_filter')}";
         var __url_get_data_tree = "${get_api_key('app_main.api.HCSSYS_Departments/get_list')}";
         $scope.$$table = {
             tableFields: [
@@ -205,7 +205,8 @@
                         "sort": sort,
                         "where": {
                             'department_code': $scope.$$tree.treeCurrentNode.hasOwnProperty("department_code") === true ? $scope.$$tree.treeCurrentNode.department_code : null,
-                            'active': true
+                            'active': true,
+                            'ignore': $scope.$parent.$frmSearch[$scope.$parent.$frmSearch.alias].ignore
                         },
                         "active": true
                     })

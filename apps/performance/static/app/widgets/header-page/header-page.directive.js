@@ -2,24 +2,29 @@
     'use strict';
 
     angular.module('ZebraApp.widgets')
-        .directive('headerPage', ["$compile", headerPage]);
+        .directive('headerPage', ["$compile", "templateService", "authenticatedService", headerPage]);
 
-    function headerPage($compile) {
+    function headerPage($compile, templateService, authenticatedService) {
         return {
             restrict: 'E',
             replace: true,
             transclude: {
                 siteMap: "?siteMap",
-                extendToolbar: "?toolbar",
+                extendToolbar: "?extendToolbar",
                 content: "?content"
             },
             scope: {
+                fnGen: "=onGen",
                 fnAdd: "=onAdd",
                 fnEdit: "=onEdit",
                 fnDelete: "=onDelete",
                 fnSave: "=onSave",
+                fnCopy: "=onCopy",
                 fnImport: "=onImport",
                 fnExport: "=onExport",
+                fnPrint: "=onPrint",
+                fnAction: "=onAction",
+                fnRefresh: "=onRefresh",
                 fnSearchPress: "=onSearchPress",
                 fnSearchChange: "=onSearchChange",
                 listItem: "=source",
@@ -29,28 +34,13 @@
                 selectedKey: "=",
                 reloadOnChange: "=",
                 advancedSearch: "=",
-                extendToolbar: "="
+                extendToolbar: "=",
+                disabled: "="
             },
             //templateUrl: "app/widgets/page-sidebar/page-sidebar.html",
-            template: ''
-            + '<div class="zb-page-sidebar hcs-page-sidebar-custom">'
-            + '    <div class="zb-right hcs-right-custom">'
-            + '        <div class="zb-top">'
-            + '            <div class="zb-left-content">'
-            + '                <button ng-click="toggleCollapseMenu()" class="zb-btn zb-btn-blue zb-btn-collapse"'
-            + '                    style="background: transparent; color: #8c8c8c; border: 0;">'
-            + '                    <i class="bowtie-icon bowtie-view-grid"></i>'
-            + '                </button>'
-            + '                <div ng-transclude="siteMap" class="zb-sitemap"></div>'
-            + '            </div>'
-            + '            <div class="zb-right-content" ng-transclude="extendToolbar">'
-            + '                '
-            + '            </div>'
-            + '        </div>'
-            + '    </div>'
-            + '</div>'
-            ,
+            templateUrl: templateService.getStatic("app/widgets/header-page/header-page.html"),
             link: function ($scope, elem, attr, ctrls, $transclude) {
+                debugger
                 var left = $(elem).find(".zb-left");
                 var right = $(elem).find(".zb-right");
                 var rightContent = $(elem).find(".zb-right .zb-content");
@@ -58,6 +48,13 @@
 
                 var advancedSearch = $(elem).find(".zb-advanced-search");
                 var btnAdvancedSearch = $(elem).find("#btnAdvancedSearch");
+
+                $scope.$watch("selectedKey", function (v) {
+                    authenticatedService.getPermissionByFunctionId(v, function(res){
+                        $scope.authorise = res;
+                        $scope.$applyAsync();
+                    });
+                });
 
                 $scope.isAdvancedSearch = $transclude.isSlotFilled('advancedSearch');
                 $scope.showAdvancedSearch = showAdvancedSearch;

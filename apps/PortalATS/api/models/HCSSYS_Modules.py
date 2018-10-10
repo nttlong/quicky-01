@@ -11,6 +11,9 @@ helpers.extent_model(
             module_name=("text", True),
             module_type=("text"),
             url=("text"),
+            redirect_url=("text"),
+            sorting=("text"),
+            is_new_tab=("bool")
         )
 def on_before_insert(data):
     pass

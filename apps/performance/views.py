@@ -87,7 +87,7 @@ def load_page(request,path):
 def logout_view(request):
     import SystemConfig
     logout(request, request.user.schema)
-    quicky.language.remove_language()
+    #quicky.language.remove_language()
     SystemConfig.clear_cache()
     request.session.clear()
     return redirect(request.get_app_url(""))

@@ -14,11 +14,15 @@ def on_before_update(data):
     user = "application"
     if hasattr(threading.current_thread(),"user"):
         user = threading.current_thread().user.username
-    if data.get('modified_by',None)==None:
-        data.update({
-            "modified_on":datetime.datetime.now(),
-            "modified_by":user
-            })
+    #if data.get('modified_by',None)==None:
+    data.update({
+        "modified_on":datetime.datetime.now(),
+        "modified_by":user
+        })
+    if data.has_key('created_on'):
+        data.pop('created_on')
+    if data.has_key('created_by'):
+        data.pop('created_by')
 
 helpers.define_model(
     "base",

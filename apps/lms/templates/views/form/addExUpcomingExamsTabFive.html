@@ -322,7 +322,7 @@
             </div>
            </div>
             <div class="col-md-{{col}}" >
-            <div class="form-group zb-form-group">
+                <div class="form-group zb-form-group">
                 <!--Tên Khóa học-->
                 <label for="inputEmp_Train_Mode_Name" class="col-sm-5 zb-form-label">${get_res('check_plagi','Check Plagiarism')}</label>
                 <div class="col-sm-7">
@@ -341,6 +341,32 @@
                                    ng-model="entity.check_plagi" >
 					        <label for="idradCheckPlagiarism2">
 						        <span>${get_res('no','No')}</span> 
+					        </label>
+				        </div>
+                    </div>
+                </div>
+            </div>
+           </div>
+              <div class="col-md-{{col}}" >
+                <div class="form-group zb-form-group">
+                <!--Tên Khóa học-->
+                <label for="inputEmp_Train_Mode_Name" class="col-sm-5 zb-form-label">${get_res('publish','Publish')}</label>
+                <div class="col-sm-7">
+                    <div class="col-sm-6" style="padding:0">
+                        <div class="radio radio-success">
+					        <input type="radio" name="checkPublish" ng-value="dt_true" id="idradPublish1"
+                                   ng-model="entity.status" >
+					        <label for="idradPublish1">
+						        <span>${get_res('yes','Yes')}</span>
+					        </label>
+				        </div>
+                        </div>
+                    <div class="col-sm-6" style="padding:0">
+                        <div class="radio radio-success" >
+					        <input type="radio" name="checkPublish" ng-value="dt_false" id="idradPublish2"
+                                   ng-model="entity.status" >
+					        <label for="idradPublish2">
+						        <span>${get_res('no','No')}</span>
 					        </label>
 				        </div>
                     </div>

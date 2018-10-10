@@ -20,7 +20,7 @@
         _FormSearch.prototype.KPI = KPI;
         _FormSearch.prototype.EmployeeFilter = EmployeeFilter;
 
-        function setConfigFrmSearch(ngModel, title = "", multiCheck = false, prop) {
+        function setConfigFrmSearch(ngModel, title = "", multiCheck = false, prop, ignore = []) {
             ngModel = !ngModel ? {} : ngModel;
             __scope.$frmSearch = {
             };
@@ -29,6 +29,7 @@
             __scope.$frmSearch[__alias].multi = multiCheck;
             __scope.$frmSearch.alias = __alias;
             __scope.$frmSearch[__alias].prop = prop;
+            __scope.$frmSearch[__alias].ignore = ignore;
             __scope.$frmSearch[__alias].value = ngModel[prop];
             __scope.$frmSearch[__alias]['event'] = {
                 "accept": function () { },
@@ -36,14 +37,14 @@
             }
         }
 
-        function EmployeeFilter(ngModel, prop, title, multi) {
+        function EmployeeFilter(ngModel, prop, title, multi, ignore = []) {
             var me = this;
             me.title = title;
             me.path = "commons/FormSearch/Department";
             me.multi = multi;
             me.prop = prop;
             me.openDialog = openDialog(me.title, me.path, function () { });
-            setConfigFrmSearch(ngModel, me.title, me.multi, me.prop);
+            setConfigFrmSearch(ngModel, me.title, me.multi, me.prop, ignore);
             __scope.$frmSearch[__alias].selected = ngModel[prop];
             __scope.$frmSearch[__alias].setValue = function (val) {
                 ngModel[prop] = val;

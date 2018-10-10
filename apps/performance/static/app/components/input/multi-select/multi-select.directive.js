@@ -38,51 +38,89 @@
             if (attrs.hasOwnProperty('required')) {
                 $(element).wrap("<span zb-required></span>")
             }
-            scope.withDeleteItem = {};
-            scope.withDeleteSelectItems = {};
-            scope.withDeleteSelectItems = scope.$parent.list;
-            scope.setCaption = function () {
-                if (scope.ngModel && scope.ngModel.length > 0) {
-                    scope.withDeleteSelectItems.selected = [];
-                    _.each(scope.withDeleteSelectItems, function (val) {
-                        if (scope.ngModel.includes(val[scope.fieldValue])) {
-                            scope.withDeleteSelectItems.selected.push(val);
-                        }
-                    });
+
+            var _init_ = null;
+            var _flag_ = false;
+
+            function getDisplayString(){
+                if(scope.ngModel && scope.ngModel.length > 0)
+                {
+                    var filter = _.pluck(_.filter(scope.list, function(val){
+                        if(scope.ngModel.includes(val[scope.fieldValue]))
+                            return true;
+                    }), scope.fieldCaption);
+                    return filter.join(", ");
                 }
+                return ""
             }
-            scope.setValue = function () {
-                scope.ngModel = _.pluck(scope.withDeleteSelectItems.selected, scope.fieldValue);
-                if (scope.ngChange)
-                    scope.ngChange()(scope.ngModel);
-                scope.$applyAsync();
-            }
-            scope.$watch('list', function (val) {
-                if (val && val.length > 0) {
-                    scope.withDeleteSelectItems = val;
-                    scope.setCaption();
+            scope.$watch('list', function(val){
+                if(val){
+                    var ctrl = $(element.find('.zb-input-multi-select-component')).SumoSelect({
+                        captionFormat: getDisplayString(),
+                        searchText: "",
+                        placeholder: scope.placeholder ? scope.placeholder : "",
+                        search: true
+                    });
+                    var _control = $(element.find('.zb-input-multi-select-component'))[0].sumo;
+                    _.each(val, function(elm, index){
+                        _control.add(elm[scope.fieldValue], elm[scope.fieldCaption]);
+                    });
+                    if(_init_ && !_flag_)
+                    {
+                        _flag_ = true;
+                        _init_();
+                    }
+                }
+            });
+            scope.$watch('ngModel', function(val){
+                if(val && val.length > 0){
+                    if(!scope.dt)
+                        scope.dt = val;
                 }
             })
+            scope.$watch('dt', function(val){
+                if(val){
+                    if(!_init_)
+                    {
+                        _init_ = function(){
+                            var _dataList = JSON.parse(JSON.stringify(val));
+                            var ctrl = $(element.find('.zb-input-multi-select-component'))[0].sumo;
+                            _.each(_dataList, function(val){
+                                ctrl.selectItem(val.toString());
+                            });
+                        }
+                    }else{
+                        var _list = []
+                        _.each(val, function(v){
+                            var rs = _.find(scope.list, function(e){
+                                return e[scope.fieldValue] == v;
+                            })
+                            if(rs)
+                                _list.push(rs[scope.fieldValue]);
+                        })
+                        scope.ngModel = _list;
+                    }
+                }
+            })
+            scope.setValue = function(){
+                var _list = [];
+                _.each(scope.dt, function(val){
+                    var rs = _.find(scope.list, function(e){
+                        return e[scope.fieldValue] == val;
+                    })
+                    if(rs)
+                        _list.push(rs[scope.fieldValue]);
+                })
+                scope.ngModel = _list;
+                var ctrl = $(element.find('.zb-input-multi-select-component'));
+                ctrl[0].sumo.setTextCustom(getDisplayString());
+            };
         }
 
         function template() {
             return ''
-            + '<div class="ng-cloak zb-multi-select" ng-controller="SelectpickerMultiPanelCtrl" ng-disabled="ngDisabled">'
-            + '    <div class="form-group ">'
-            + '            <ui-select multiple ng-change="setValue()" ng-model="withDeleteSelectItems.selected" ng-disabled="ngDisabled" search-enabled="true" append-to-body="false" class="form-control form-control">'
-            + '                <ui-select-match placeholder="{{placeholder}}">'
-            + '                    {{$item[fieldCaption]}}'
-            + '                </ui-select-match>'
-            + '                <ui-select-choices repeat="withDeleteItem in withDeleteSelectItems | filter: $select.search">'
-            + '                    {{withDeleteItem[fieldCaption]}}'
-            + '                </ui-select-choices>'
-            + '            </ui-select>'
-            + '            <span>'
-            + '            </span>'
-            + '    </div>'
-            + '    <i class="caret pull-right" ng-show="withDeleteSelectItems.selected.length == 0"></i>'
-            + '</div>'
-            ;
+                + '<select multiple="multiple" ng-click="setValue()" ng-model="dt" class="zb-input-multi-select-component">'
+                + '</select>';
         }
     }
 

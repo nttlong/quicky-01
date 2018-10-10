@@ -1,8 +1,8 @@
-﻿<%page cached="True"/>
-﻿<!DOCTYPE html>
-<html lang="en" ng-app="admin">
-    <head>
-        <title>Admin</title>
+<%page cached="True"/>
+<!DOCTYPE html>
+<html lang="en" ng-app="admin" ng-cloak>
+	<head>
+        <!--<title>Admin</title>-->
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -28,6 +28,7 @@
         <link rel="stylesheet" href="${get_static('libs/styles/vendor-2cae343ef1.css')}">
         <!--<link rel="stylesheet" href="${get_static('libs/styles/app-b6796b3788.css')}">-->
         <link rel="stylesheet" href="${get_static('css/bowtie-icon.css')}"/>
+        <link rel="stylesheet" href="${get_static('css/sap-icon.css')}"/>
 
         <!--<link rel="stylesheet" href="${get_static('assets/linearicon/style.css')}">-->
         <link rel="stylesheet" href="${get_static('assets/line-awesome/css/line-awesome.min.css')}">
@@ -55,16 +56,19 @@
         <script src="${get_static('app/libs/tree/jquery.fancytree.table.js')}"></script>
         <script src="${get_static('app/libs/summernote.js')}"></script>
         <script src="${get_static('app/widgets/tagsInput/bootstrap-tagsinput.js')}"></script>
+        <script src="${get_static('js/fullcalendar/fullcalendar.min.js')}"></script>
         <link href="${get_static('app/widgets/tagsInput/bootstrap-tagsinput.css')}"/>
         <link rel="shortcut icon" href="${get_static('media/favicon.ico')}" />
         <link href="${get_static('css/libs/bootstrap-datetimepicker/bootstrap-datetimepicker.css')}" rel="stylesheet" />
+        <link href="${get_static('css/libs/fullcalendar/fullcalendar.min.css')}" rel="stylesheet" />
+        <link href="${get_static('css/libs/fullcalendar/fullcalendar.print.min.css')}" rel="stylesheet" />
     </head>
     <body class="app zb-body" ng-controller="admin" style="margin: 0;">
         <!--<script src="${get_static('assets/vendors/base/vendors.bundle.js')}" type="text/javascript"></script>
         <script src="${get_static('assets/demo/default/base/scripts.bundle.js')}" type="text/javascript"></script>
         <script src="${get_static('assets/vendors/custom/fullcalendar/fullcalendar.bundle.js')}" type="text/javascript"></script>
         <script src="${get_static('assets/app/js/dashboard.js')}" type="text/javascript"></script>-->
-        
+
         <!--<script src="${get_static('libs/scripts/vendor-cd23f96791.js')}"></script>
         <script src="${get_static('libs/scripts/app-5a80256787.js')}">-->
         <script type="text/javascript" src="${get_static('app/widgets/widgets.js')}"></script>

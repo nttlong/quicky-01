@@ -107,7 +107,7 @@
               + '    <input type="text" style="height: 29px;'
               + '              border: unset;'
               + '              width: 100%;'
-              + '              outline: none;" value="{{getValueString()}}" ng-if="ngModel" ng-readonly="true"/>'
+              + '              outline: none;" value="{{getValueString()}}" title="{{getValueString()}}" ng-if="ngModel" ng-readonly="true"/>'
               + '  </div>'
               + '  <div class="zb-combobox-template"></div>'
               + '  <div class="input-group-btn">'

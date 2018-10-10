@@ -18,7 +18,8 @@
 </style>
 <div class="hcs-container" view-id="${register_view()}">
     <div class="row hcs-profile-detail" style="margin:unset; height:100%;" ng-if="$display.showDetail">
-            <page-sidebar on-add="onAdd" 
+            <page-sidebar on-gen="onGen"
+                  on-add="onAdd"
                   on-edit="onEdit" 
                   on-delete="onDelete" 
                   on-save="onSave" 
@@ -33,7 +34,7 @@
                   icon-field="icon" 
                   selected-key="$display.selectedFunction"
                   reload-on-change="true">
-        <site-map class="hcs-res-site-map-mobile ng-scope">
+        <site-map class="hcs-res-site-map-mobile ng-scope" style="display:inherit;padding:0 10px 0 50px">
             <div>
                 <a ng-click="backPage()">{{$root.currentFunction.default_name}}</a>
                 <span><i class="bowtie-icon bowtie-chevron-right"></i></span>
@@ -46,7 +47,7 @@
                         <input-text-icon ng-model="search" style="padding:3px;">
                     </div>
                     <div class="dropdown">
-                        <p ng-repeat="f in mapName | filter : search" ng-class="{focus : selectedFunction === f.function_id}" ng-click="selectFunc($event, f.function_id)">{{f.custom_name ? f.default_name : f.custom_name}}</p>
+                        <p ng-repeat="f in $display.mapName | filter : search" ng-class="{focus : $display.selectedFunction === f.function_id}" ng-click="selectFunc($event, f.function_id)">{{f.custom_name ? f.default_name : f.custom_name}}</p>
                     </div>
                 </div>
             </div>

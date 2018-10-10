@@ -22,6 +22,9 @@
     scope.delete = function () {    
         scope.$root.delete();
     }
+    scope.deleteOne = function () {
+        scope.$root.deleteOne();
+    }
     scope.onDisplayListData = function () {
         scope.isList = true;
         scope.isGrid = false;

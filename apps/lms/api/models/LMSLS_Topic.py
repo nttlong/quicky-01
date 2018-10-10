@@ -30,7 +30,6 @@ helpers.extent_model(
             topic_pin=helpers.create_field("bool"),
             topic_block=helpers.create_field("bool"),
 
-
             created_on=helpers.create_field("date"),
             created_by=helpers.create_field("text"),
             modified_on=helpers.create_field("date"),

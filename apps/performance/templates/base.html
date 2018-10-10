@@ -1,6 +1,6 @@
 ﻿<%page cached="True"/>
 <!DOCTYPE html>
-<html lang="en" ng-app="admin">
+<html lang="en" ng-app="admin" ng-cloak>
     <head>
         <title>
             ${get_res('main_title','Lac Viet SureHCS - Hệ thống Đánh giá năng suất')}
@@ -33,6 +33,7 @@
     <link rel="stylesheet" href="${get_static('libs/styles/vendor-2cae343ef1.css')}">
     <!--<link rel="stylesheet" href="${get_static('libs/styles/app-b6796b3788.css')}">-->
     <link rel="stylesheet" href="${get_static('css/bowtie-icon.css')}"/>
+    <link rel="stylesheet" href="${get_static('css/sap-icon.css')}"/>
 
     <!--<link rel="stylesheet" href="${get_static('assets/linearicon/style.css')}">-->
     <link rel="stylesheet" href="${get_static('assets/line-awesome/css/line-awesome.min.css')}">
@@ -51,6 +52,7 @@
     <link href="${get_static('css/libs/bootstrap-datetimepicker/bootstrap-datetimepicker.css')}" rel="stylesheet" />
     <link href="${get_static('css/libs/bootstrap-datepicker/bootstrap-datepicker3.css')}" rel="stylesheet" />
     <link href="${get_static('css/libs/bootstrap-datepicker/bootstrap-datepicker3.standalone.min.css')}" rel="stylesheet" />
+    <link href="${get_static('css/libs/sumoselect/sumoselect.min.css')}" rel="stylesheet" />
 
     <link href="${get_static('app/libs/tree/skin-xp/ui.fancytree.css')}" rel="stylesheet" />
     <script src="${get_static('app/libs/tree/jquery.fancytree.js')}"></script>
@@ -71,6 +73,8 @@
         
         <!--<script src="${get_static('libs/scripts/vendor-cd23f96791.js')}"></script>
         <script src="${get_static('libs/scripts/app-5a80256787.js')}">-->
+        <script type="text/javascript" src="${get_static('app/services/authenticated.module.js')}"></script>
+        <script type="text/javascript" src="${get_static('app/services/authenticatedService.js')}"></script>
         <script type="text/javascript" src="${get_static('app/widgets/widgets.js')}"></script>
         <script type="text/javascript" src="${get_static('app/widgets/collapse-box/collapse-box.directive.js')}"></script>
         <script type="text/javascript" src="${get_static('app/widgets/tile-box/tile-box.directive.js')}"></script>
@@ -121,6 +125,7 @@
         <script src="${get_static('js/bootstrap-datepicker/bootstrap-datepicker.min.js')}"></script>
         <script src="${get_static('js/bootstrap-datepicker/locales/bootstrap-datepicker.vi.js')}"></script>
         <script src="${get_static('js/bootstrap-datetimepicker/bootstrap-datetimepicker.min.js')}"></script>
+        <script src="${get_static('/js/sumoselect/jquery.sumoselect.js')}"></script>
         <%include file="script.html"/>
         ${self.body()}
     </body>

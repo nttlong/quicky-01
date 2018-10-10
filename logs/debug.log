@@ -2338,3 +2338,1126 @@ hrm.auth_user.find (0.00) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
 hrm.auth_user.find (0.00) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
 hrm.auth_user.find (0.00) {'_id': ObjectId('5b54289b367cc4201c6a3db9')}
 hrm.auth_user.find (0.00) {'username': u'sys'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+Internal Server Error: /
+Traceback (most recent call last):
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/django/core/handlers/base.py", line 112, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/quicky/url.py", line 278, in exec_request
+    **kwargs)
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/quicky/executor.py", line 155, in exec_request_for_multi
+    return self.exec_request(request,**kwargs)
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/quicky/executor.py", line 35, in exec_request
+    raise ex
+Exception: It looks like you forget put 'SYS_VIEWS' in 'setting.py'
+Not Found: /favicon.ico
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+Not Found: /{{$root.logo}}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.01) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.01) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.01) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.01) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+Internal Server Error: /
+Traceback (most recent call last):
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/django/core/handlers/base.py", line 88, in get_response
+    response = middleware_method(request)
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/quicky/middleware/__init__.py", line 567, in process_request
+    self.init_customer_code(request)
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/quicky/middleware/__init__.py", line 128, in init_customer_code
+    if not request.__app__.is_persistent_schema():
+AttributeError: 'int' object has no attribute 'is_persistent_schema'
+Internal Server Error: /lv
+Traceback (most recent call last):
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/django/core/handlers/base.py", line 88, in get_response
+    response = middleware_method(request)
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/quicky/middleware/__init__.py", line 567, in process_request
+    self.init_customer_code(request)
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/quicky/middleware/__init__.py", line 142, in init_customer_code
+    if request.__app__.is_persistent_schema():
+AttributeError: 'int' object has no attribute 'is_persistent_schema'
+Internal Server Error: /lv
+Traceback (most recent call last):
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/django/core/handlers/base.py", line 88, in get_response
+    response = middleware_method(request)
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/quicky/middleware/__init__.py", line 567, in process_request
+    self.init_customer_code(request)
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/quicky/middleware/__init__.py", line 142, in init_customer_code
+    if request.__app__.is_persistent_schema():
+AttributeError: 'int' object has no attribute 'is_persistent_schema'
+django_session.save (0.00) {'schema': u'lv', '_id': u'lpzsap8jf1cg2nq6atdlsm67dv2jreia', 'expire_date': datetime.datetime(2018, 10, 24, 2, 55, 18, 980127, tzinfo=<UTC>), 'session_data': u'OTE2OWEzNjFmMzk3MzVhMTZiNjlmM2EwODhiNTVkOGExNWRjM2JlYzp7fQ=='}
+django_session.save (0.00) {'schema': u'lv', '_id': u'lpzsap8jf1cg2nq6atdlsm67dv2jreia', 'expire_date': datetime.datetime(2018, 10, 24, 2, 55, 19, 51929, tzinfo=<UTC>), 'session_data': u'OTE2OWEzNjFmMzk3MzVhMTZiNjlmM2EwODhiNTVkOGExNWRjM2JlYzp7fQ=='}
+Internal Server Error: /performance/static/js/plugins/slick.js
+Traceback (most recent call last):
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/django/core/handlers/base.py", line 112, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/django/views/static.py", line 58, in serve
+    raise Http404(_('"%(path)s" does not exist') % {'path': fullpath})
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/django/utils/translation/__init__.py", line 76, in ugettext
+    return _trans.ugettext(message)
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/django/utils/translation/trans_real.py", line 283, in ugettext
+    return do_translate(message, 'ugettext')
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/django/utils/translation/trans_real.py", line 266, in do_translate
+    result = getattr(_default, translation_function)(eol_message)
+AttributeError: 'NoneType' object has no attribute 'ugettext'
+Internal Server Error: /performance/static/js/plugins/slick.js
+Traceback (most recent call last):
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/django/core/handlers/base.py", line 112, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/django/views/static.py", line 58, in serve
+    raise Http404(_('"%(path)s" does not exist') % {'path': fullpath})
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/django/utils/translation/__init__.py", line 76, in ugettext
+    return _trans.ugettext(message)
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/django/utils/translation/trans_real.py", line 283, in ugettext
+    return do_translate(message, 'ugettext')
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/django/utils/translation/trans_real.py", line 266, in do_translate
+    result = getattr(_default, translation_function)(eol_message)
+AttributeError: 'NoneType' object has no attribute 'ugettext'
+Internal Server Error: /performance/static/js/plugins/slick.js
+Traceback (most recent call last):
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/django/core/handlers/base.py", line 112, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/django/views/static.py", line 58, in serve
+    raise Http404(_('"%(path)s" does not exist') % {'path': fullpath})
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/django/utils/translation/__init__.py", line 76, in ugettext
+    return _trans.ugettext(message)
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/django/utils/translation/trans_real.py", line 283, in ugettext
+    return do_translate(message, 'ugettext')
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/django/utils/translation/trans_real.py", line 266, in do_translate
+    result = getattr(_default, translation_function)(eol_message)
+AttributeError: 'NoneType' object has no attribute 'ugettext'
+Internal Server Error: /performance/static/js/plugins/slick.js
+Traceback (most recent call last):
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/django/core/handlers/base.py", line 112, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/django/views/static.py", line 58, in serve
+    raise Http404(_('"%(path)s" does not exist') % {'path': fullpath})
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/django/utils/translation/__init__.py", line 76, in ugettext
+    return _trans.ugettext(message)
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/django/utils/translation/trans_real.py", line 283, in ugettext
+    return do_translate(message, 'ugettext')
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/django/utils/translation/trans_real.py", line 266, in do_translate
+    result = getattr(_default, translation_function)(eol_message)
+AttributeError: 'NoneType' object has no attribute 'ugettext'
+Internal Server Error: /performance/static/js/plugins/slick.js
+Traceback (most recent call last):
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/django/core/handlers/base.py", line 112, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/django/views/static.py", line 58, in serve
+    raise Http404(_('"%(path)s" does not exist') % {'path': fullpath})
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/django/utils/translation/__init__.py", line 76, in ugettext
+    return _trans.ugettext(message)
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/django/utils/translation/trans_real.py", line 283, in ugettext
+    return do_translate(message, 'ugettext')
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/django/utils/translation/trans_real.py", line 266, in do_translate
+    result = getattr(_default, translation_function)(eol_message)
+AttributeError: 'NoneType' object has no attribute 'ugettext'
+Internal Server Error: /performance/static/js/plugins/slick.js
+Traceback (most recent call last):
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/django/core/handlers/base.py", line 112, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/django/views/static.py", line 58, in serve
+    raise Http404(_('"%(path)s" does not exist') % {'path': fullpath})
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/django/utils/translation/__init__.py", line 76, in ugettext
+    return _trans.ugettext(message)
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/django/utils/translation/trans_real.py", line 283, in ugettext
+    return do_translate(message, 'ugettext')
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/django/utils/translation/trans_real.py", line 266, in do_translate
+    result = getattr(_default, translation_function)(eol_message)
+AttributeError: 'NoneType' object has no attribute 'ugettext'
+Internal Server Error: /performance/static/js/plugins/slick.js
+Traceback (most recent call last):
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/django/core/handlers/base.py", line 112, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/django/views/static.py", line 58, in serve
+    raise Http404(_('"%(path)s" does not exist') % {'path': fullpath})
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/django/utils/translation/__init__.py", line 76, in ugettext
+    return _trans.ugettext(message)
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/django/utils/translation/trans_real.py", line 283, in ugettext
+    return do_translate(message, 'ugettext')
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/django/utils/translation/trans_real.py", line 266, in do_translate
+    result = getattr(_default, translation_function)(eol_message)
+AttributeError: 'NoneType' object has no attribute 'ugettext'
+Internal Server Error: /performance/static/js/plugins/slick.js
+Traceback (most recent call last):
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/django/core/handlers/base.py", line 112, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/django/views/static.py", line 58, in serve
+    raise Http404(_('"%(path)s" does not exist') % {'path': fullpath})
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/django/utils/translation/__init__.py", line 76, in ugettext
+    return _trans.ugettext(message)
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/django/utils/translation/trans_real.py", line 283, in ugettext
+    return do_translate(message, 'ugettext')
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/django/utils/translation/trans_real.py", line 266, in do_translate
+    result = getattr(_default, translation_function)(eol_message)
+AttributeError: 'NoneType' object has no attribute 'ugettext'
+Internal Server Error: /performance/static/js/plugins/slick.js
+Traceback (most recent call last):
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/django/core/handlers/base.py", line 112, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/django/views/static.py", line 58, in serve
+    raise Http404(_('"%(path)s" does not exist') % {'path': fullpath})
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/django/utils/translation/__init__.py", line 76, in ugettext
+    return _trans.ugettext(message)
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/django/utils/translation/trans_real.py", line 283, in ugettext
+    return do_translate(message, 'ugettext')
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/django/utils/translation/trans_real.py", line 266, in do_translate
+    result = getattr(_default, translation_function)(eol_message)
+AttributeError: 'NoneType' object has no attribute 'ugettext'
+Internal Server Error: /performance/static/js/plugins/slick.js
+Traceback (most recent call last):
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/django/core/handlers/base.py", line 112, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/django/views/static.py", line 58, in serve
+    raise Http404(_('"%(path)s" does not exist') % {'path': fullpath})
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/django/utils/translation/__init__.py", line 76, in ugettext
+    return _trans.ugettext(message)
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/django/utils/translation/trans_real.py", line 283, in ugettext
+    return do_translate(message, 'ugettext')
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/django/utils/translation/trans_real.py", line 266, in do_translate
+    result = getattr(_default, translation_function)(eol_message)
+AttributeError: 'NoneType' object has no attribute 'ugettext'
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+django_session.save (0.00) {'schema': u'lv', '_id': u'uanxajnphl8ojtuz1hkbijh8a0zyismu', 'expire_date': datetime.datetime(2018, 10, 24, 3, 2, 37, 71514, tzinfo=<UTC>), 'session_data': u'OTE2OWEzNjFmMzk3MzVhMTZiNjlmM2EwODhiNTVkOGExNWRjM2JlYzp7fQ=='}
+django_session.remove (0.00) {'_id': {'$in': [u'lpzsap8jf1cg2nq6atdlsm67dv2jreia']}, 'schema': u'lv'}
+lv.auth_user.save (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8', 'first_name': u'', 'last_name': u'', '_id': ObjectId('5b20925a232037334054b073'), 'is_active': True, 'email': u'', 'is_superuser': False, 'is_staff': False, 'last_login': datetime.datetime(2018, 10, 10, 3, 2, 37, 97167, tzinfo=<UTC>), 'password': u'pbkdf2_sha256$12000$71ZauZ1K0jwS$zKPkNCm0toSn/5CqITaN3BKVM45nnjB0NugiE64XaDQ=', 'date_joined': datetime.datetime(2018, 6, 11, 9, 41, 14, 644000, tzinfo=<UTC>)}
+django_session.save (0.00) {'schema': u'lv', '_id': u'uanxajnphl8ojtuz1hkbijh8a0zyismu', 'expire_date': datetime.datetime(2018, 10, 24, 3, 2, 37, 106863, tzinfo=<UTC>), 'session_data': u'NTU3Y2YzOWFjNmY3ZWM4OTE3ODQ4YWI1YWQ0ZDZhMzBjMTUzZjRmNjp7Imxhbmd1YWdlIjoidmkiLCJfYXV0aF91c2VyX2JhY2tlbmQiOiJwZXJtaXNzaW9uX2JhY2tlbmRfbm9ucmVsLmJhY2tlbmRzLk5vbnJlbFBlcm1pc3Npb25CYWNrZW5kIiwiX2F1dGhfdXNlcl9pZCI6IjViMjA5MjVhMjMyMDM3MzM0MDU0YjA3MyJ9'}
+Internal Server Error: /performance/static/js/plugins/slick.js
+Traceback (most recent call last):
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/django/core/handlers/base.py", line 112, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/django/views/static.py", line 58, in serve
+    raise Http404(_('"%(path)s" does not exist') % {'path': fullpath})
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/django/utils/translation/__init__.py", line 76, in ugettext
+    return _trans.ugettext(message)
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/django/utils/translation/trans_real.py", line 283, in ugettext
+    return do_translate(message, 'ugettext')
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/django/utils/translation/trans_real.py", line 266, in do_translate
+    result = getattr(_default, translation_function)(eol_message)
+AttributeError: 'NoneType' object has no attribute 'ugettext'
+Internal Server Error: /performance/static/js/plugins/slick.js
+Traceback (most recent call last):
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/django/core/handlers/base.py", line 112, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/django/views/static.py", line 58, in serve
+    raise Http404(_('"%(path)s" does not exist') % {'path': fullpath})
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/django/utils/translation/__init__.py", line 76, in ugettext
+    return _trans.ugettext(message)
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/django/utils/translation/trans_real.py", line 283, in ugettext
+    return do_translate(message, 'ugettext')
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/django/utils/translation/trans_real.py", line 266, in do_translate
+    result = getattr(_default, translation_function)(eol_message)
+AttributeError: 'NoneType' object has no attribute 'ugettext'
+django_session.save (0.00) {'schema': u'lv', '_id': u'rkl73xtskxt29nqc10u0hwmed8n0w550', 'expire_date': datetime.datetime(2018, 10, 24, 3, 3, 4, 720084, tzinfo=<UTC>), 'session_data': u'OTE2OWEzNjFmMzk3MzVhMTZiNjlmM2EwODhiNTVkOGExNWRjM2JlYzp7fQ=='}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+django_session.save (0.00) {'schema': u'lv', '_id': u'bcegukptqh9w1qrlmg3nj0wxqv9bs3m8', 'expire_date': datetime.datetime(2018, 10, 24, 3, 3, 13, 141353, tzinfo=<UTC>), 'session_data': u'OTE2OWEzNjFmMzk3MzVhMTZiNjlmM2EwODhiNTVkOGExNWRjM2JlYzp7fQ=='}
+django_session.remove (0.00) {'_id': {'$in': [u'rkl73xtskxt29nqc10u0hwmed8n0w550']}, 'schema': u'lv'}
+lv.auth_user.save (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8', 'first_name': u'', 'last_name': u'', '_id': ObjectId('5b20925a232037334054b073'), 'is_active': True, 'email': u'', 'is_superuser': False, 'is_staff': False, 'last_login': datetime.datetime(2018, 10, 10, 3, 3, 13, 148311, tzinfo=<UTC>), 'password': u'pbkdf2_sha256$12000$71ZauZ1K0jwS$zKPkNCm0toSn/5CqITaN3BKVM45nnjB0NugiE64XaDQ=', 'date_joined': datetime.datetime(2018, 6, 11, 9, 41, 14, 644000, tzinfo=<UTC>)}
+django_session.save (0.00) {'schema': u'lv', '_id': u'bcegukptqh9w1qrlmg3nj0wxqv9bs3m8', 'expire_date': datetime.datetime(2018, 10, 24, 3, 3, 13, 151671, tzinfo=<UTC>), 'session_data': u'NTU3Y2YzOWFjNmY3ZWM4OTE3ODQ4YWI1YWQ0ZDZhMzBjMTUzZjRmNjp7Imxhbmd1YWdlIjoidmkiLCJfYXV0aF91c2VyX2JhY2tlbmQiOiJwZXJtaXNzaW9uX2JhY2tlbmRfbm9ucmVsLmJhY2tlbmRzLk5vbnJlbFBlcm1pc3Npb25CYWNrZW5kIiwiX2F1dGhfdXNlcl9pZCI6IjViMjA5MjVhMjMyMDM3MzM0MDU0YjA3MyJ9'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+Not Found: /{{$root.logo}}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+Internal Server Error: /lv/api
+Traceback (most recent call last):
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/django/core/handlers/base.py", line 112, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/django/views/decorators/http.py", line 41, in inner
+    return func(request, *args, **kwargs)
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/django/views/decorators/csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/quicky/executor.py", line 35, in exec_request
+    raise ex
+AttributeError: 'NoneType' object has no attribute 'aggregate'
+lv.auth_user.find (0.01) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.01) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+Internal Server Error: /lv/api
+Traceback (most recent call last):
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/django/core/handlers/base.py", line 112, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/django/views/decorators/http.py", line 41, in inner
+    return func(request, *args, **kwargs)
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/django/views/decorators/csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/quicky/executor.py", line 35, in exec_request
+    raise ex
+AttributeError: 'NoneType' object has no attribute 'aggregate'
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+Internal Server Error: /lv/api
+Traceback (most recent call last):
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/django/core/handlers/base.py", line 112, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/django/views/decorators/http.py", line 41, in inner
+    return func(request, *args, **kwargs)
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/django/views/decorators/csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/quicky/executor.py", line 35, in exec_request
+    raise ex
+AttributeError: 'NoneType' object has no attribute 'aggregate'
+lv.auth_user.find (0.02) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+Internal Server Error: /lv/api
+Traceback (most recent call last):
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/django/core/handlers/base.py", line 112, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/django/views/decorators/http.py", line 41, in inner
+    return func(request, *args, **kwargs)
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/django/views/decorators/csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/quicky/executor.py", line 35, in exec_request
+    raise ex
+AttributeError: 'NoneType' object has no attribute 'aggregate'
+lv.auth_user.find (0.01) {'_id': ObjectId('5b20925a232037334054b073')}
+Not Found: /{{$root.logo}}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.03) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+Internal Server Error: /lv/api
+Traceback (most recent call last):
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/django/core/handlers/base.py", line 112, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/django/views/decorators/http.py", line 41, in inner
+    return func(request, *args, **kwargs)
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/django/views/decorators/csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/quicky/executor.py", line 35, in exec_request
+    raise ex
+AttributeError: 'NoneType' object has no attribute 'aggregate'
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+Internal Server Error: /lv/api
+Traceback (most recent call last):
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/django/core/handlers/base.py", line 112, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/django/views/decorators/http.py", line 41, in inner
+    return func(request, *args, **kwargs)
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/django/views/decorators/csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/quicky/executor.py", line 35, in exec_request
+    raise ex
+AttributeError: 'NoneType' object has no attribute 'aggregate'
+lv.auth_user.find (0.01) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+Internal Server Error: /lv/api
+Traceback (most recent call last):
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/django/core/handlers/base.py", line 112, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/django/views/decorators/http.py", line 41, in inner
+    return func(request, *args, **kwargs)
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/django/views/decorators/csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/quicky/executor.py", line 35, in exec_request
+    raise ex
+AttributeError: 'NoneType' object has no attribute 'aggregate'
+lv.auth_user.find (0.02) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+Internal Server Error: /lv/api
+Traceback (most recent call last):
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/django/core/handlers/base.py", line 112, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/django/views/decorators/http.py", line 41, in inner
+    return func(request, *args, **kwargs)
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/django/views/decorators/csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/quicky/executor.py", line 35, in exec_request
+    raise ex
+AttributeError: 'NoneType' object has no attribute 'aggregate'
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+Not Found: /{{$root.logo}}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.02) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+Internal Server Error: /lv/api
+Traceback (most recent call last):
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/django/core/handlers/base.py", line 112, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/django/views/decorators/http.py", line 41, in inner
+    return func(request, *args, **kwargs)
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/django/views/decorators/csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/quicky/executor.py", line 35, in exec_request
+    raise ex
+AttributeError: 'NoneType' object has no attribute 'aggregate'
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+Internal Server Error: /lv/api
+Traceback (most recent call last):
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/django/core/handlers/base.py", line 112, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/django/views/decorators/http.py", line 41, in inner
+    return func(request, *args, **kwargs)
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/django/views/decorators/csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/quicky/executor.py", line 35, in exec_request
+    raise ex
+AttributeError: 'NoneType' object has no attribute 'aggregate'
+lv.auth_user.find (0.04) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+Internal Server Error: /lv/api
+Traceback (most recent call last):
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/django/core/handlers/base.py", line 112, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/django/views/decorators/http.py", line 41, in inner
+    return func(request, *args, **kwargs)
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/django/views/decorators/csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/quicky/executor.py", line 35, in exec_request
+    raise ex
+AttributeError: 'NoneType' object has no attribute 'aggregate'
+lv.auth_user.find (0.01) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+Internal Server Error: /lv/api
+Traceback (most recent call last):
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/django/core/handlers/base.py", line 112, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/django/views/decorators/http.py", line 41, in inner
+    return func(request, *args, **kwargs)
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/django/views/decorators/csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/quicky/executor.py", line 35, in exec_request
+    raise ex
+AttributeError: 'NoneType' object has no attribute 'aggregate'
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+Not Found: /{{$root.logo}}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.02) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+Internal Server Error: /lv/api
+Traceback (most recent call last):
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/django/core/handlers/base.py", line 112, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/django/views/decorators/http.py", line 41, in inner
+    return func(request, *args, **kwargs)
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/django/views/decorators/csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/quicky/executor.py", line 35, in exec_request
+    raise ex
+AttributeError: 'NoneType' object has no attribute 'aggregate'
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+Internal Server Error: /lv/api
+Traceback (most recent call last):
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/django/core/handlers/base.py", line 112, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/django/views/decorators/http.py", line 41, in inner
+    return func(request, *args, **kwargs)
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/django/views/decorators/csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/quicky/executor.py", line 35, in exec_request
+    raise ex
+AttributeError: 'NoneType' object has no attribute 'aggregate'
+lv.auth_user.find (0.01) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+Internal Server Error: /lv/api
+Traceback (most recent call last):
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/django/core/handlers/base.py", line 112, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/django/views/decorators/http.py", line 41, in inner
+    return func(request, *args, **kwargs)
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/django/views/decorators/csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/quicky/executor.py", line 35, in exec_request
+    raise ex
+AttributeError: 'NoneType' object has no attribute 'aggregate'
+Internal Server Error: /lv/api
+Traceback (most recent call last):
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/django/core/handlers/base.py", line 112, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/django/views/decorators/http.py", line 41, in inner
+    return func(request, *args, **kwargs)
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/django/views/decorators/csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/quicky/executor.py", line 35, in exec_request
+    raise ex
+AttributeError: 'NoneType' object has no attribute 'aggregate'
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+Not Found: /{{$root.logo}}
+Not Found: /{{$root.logo}}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.01) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+Internal Server Error: /lv/api
+Traceback (most recent call last):
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/django/core/handlers/base.py", line 112, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/django/views/decorators/http.py", line 41, in inner
+    return func(request, *args, **kwargs)
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/django/views/decorators/csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/quicky/executor.py", line 35, in exec_request
+    raise ex
+AttributeError: 'NoneType' object has no attribute 'aggregate'
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+Internal Server Error: /lv/api
+Traceback (most recent call last):
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/django/core/handlers/base.py", line 112, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/django/views/decorators/http.py", line 41, in inner
+    return func(request, *args, **kwargs)
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/django/views/decorators/csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/quicky/executor.py", line 35, in exec_request
+    raise ex
+AttributeError: 'NoneType' object has no attribute 'aggregate'
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+Internal Server Error: /lv/api
+Traceback (most recent call last):
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/django/core/handlers/base.py", line 112, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/django/views/decorators/http.py", line 41, in inner
+    return func(request, *args, **kwargs)
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/django/views/decorators/csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/quicky/executor.py", line 35, in exec_request
+    raise ex
+AttributeError: 'NoneType' object has no attribute 'aggregate'
+lv.auth_user.find (0.04) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+Internal Server Error: /lv/api
+Traceback (most recent call last):
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/django/core/handlers/base.py", line 112, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/django/views/decorators/http.py", line 41, in inner
+    return func(request, *args, **kwargs)
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/django/views/decorators/csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/quicky/executor.py", line 35, in exec_request
+    raise ex
+AttributeError: 'NoneType' object has no attribute 'aggregate'
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+Not Found: /{{$root.logo}}
+lv.auth_user.find (0.02) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+Internal Server Error: /lv/api
+Traceback (most recent call last):
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/django/core/handlers/base.py", line 112, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/django/views/decorators/http.py", line 41, in inner
+    return func(request, *args, **kwargs)
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/django/views/decorators/csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/quicky/executor.py", line 35, in exec_request
+    raise ex
+AttributeError: 'NoneType' object has no attribute 'aggregate'
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+Internal Server Error: /lv/api
+Traceback (most recent call last):
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/django/core/handlers/base.py", line 112, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/django/views/decorators/http.py", line 41, in inner
+    return func(request, *args, **kwargs)
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/django/views/decorators/csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/quicky/executor.py", line 35, in exec_request
+    raise ex
+AttributeError: 'NoneType' object has no attribute 'aggregate'
+lv.auth_user.find (0.01) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+Internal Server Error: /lv/api
+Traceback (most recent call last):
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/django/core/handlers/base.py", line 112, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/django/views/decorators/http.py", line 41, in inner
+    return func(request, *args, **kwargs)
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/django/views/decorators/csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/quicky/executor.py", line 35, in exec_request
+    raise ex
+AttributeError: 'NoneType' object has no attribute 'aggregate'
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+Internal Server Error: /lv/api
+Traceback (most recent call last):
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/django/core/handlers/base.py", line 112, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/django/views/decorators/http.py", line 41, in inner
+    return func(request, *args, **kwargs)
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/django/views/decorators/csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/quicky/executor.py", line 35, in exec_request
+    raise ex
+AttributeError: 'NoneType' object has no attribute 'aggregate'
+Not Found: /performance/static/js/angular.min.js.map
+Not Found: /performance/static/js/datatables/pdfmake.min.js.map
+Not Found: /performance/static/css/libs/bootstrap-datepicker/bootstrap-datepicker.min.css.map
+Not Found: /performance/static/css/libs/bootstrap-datepicker/bootstrap-datepicker3.css.map
+Not Found: /performance/static/css/libs/bootstrap-datepicker/bootstrap-datepicker3.standalone.min.css.map
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+Not Found: /performance/static/js/datatables/pdfmake.min.js.map
+Not Found: /performance/static/js/angular.min.js.map
+Not Found: /performance/static/css/libs/bootstrap-datepicker/bootstrap-datepicker.min.css.map
+Not Found: /performance/static/css/libs/bootstrap-datepicker/bootstrap-datepicker3.css.map
+Not Found: /performance/static/css/libs/bootstrap-datepicker/bootstrap-datepicker3.standalone.min.css.map
+Not Found: /{{$root.logo}}
+Not Found: /{{$root.logo}}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.01) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+Internal Server Error: /lv/api
+Traceback (most recent call last):
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/django/core/handlers/base.py", line 112, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/django/views/decorators/http.py", line 41, in inner
+    return func(request, *args, **kwargs)
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/django/views/decorators/csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/quicky/executor.py", line 35, in exec_request
+    raise ex
+AttributeError: 'NoneType' object has no attribute 'aggregate'
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+Internal Server Error: /lv/api
+Traceback (most recent call last):
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/django/core/handlers/base.py", line 112, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/django/views/decorators/http.py", line 41, in inner
+    return func(request, *args, **kwargs)
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/django/views/decorators/csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/quicky/executor.py", line 35, in exec_request
+    raise ex
+AttributeError: 'NoneType' object has no attribute 'aggregate'
+lv.auth_user.find (0.01) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+Internal Server Error: /lv/api
+Traceback (most recent call last):
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/django/core/handlers/base.py", line 112, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/django/views/decorators/http.py", line 41, in inner
+    return func(request, *args, **kwargs)
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/django/views/decorators/csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/quicky/executor.py", line 35, in exec_request
+    raise ex
+AttributeError: 'NoneType' object has no attribute 'aggregate'
+lv.auth_user.find (0.02) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+Internal Server Error: /lv/api
+Traceback (most recent call last):
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/django/core/handlers/base.py", line 112, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/django/views/decorators/http.py", line 41, in inner
+    return func(request, *args, **kwargs)
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/django/views/decorators/csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/quicky/executor.py", line 35, in exec_request
+    raise ex
+AttributeError: 'NoneType' object has no attribute 'aggregate'
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+Internal Server Error: /lv/api
+Traceback (most recent call last):
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/django/core/handlers/base.py", line 112, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/django/views/decorators/http.py", line 41, in inner
+    return func(request, *args, **kwargs)
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/django/views/decorators/csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/quicky/executor.py", line 35, in exec_request
+    raise ex
+ValueError: No JSON object could be decoded
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+Not Found: /performance/static/js/angular.min.js.map
+Not Found: /performance/static/js/datatables/pdfmake.min.js.map
+Not Found: /performance/static/css/libs/bootstrap-datepicker/bootstrap-datepicker3.css.map
+Not Found: /performance/static/css/libs/bootstrap-datepicker/bootstrap-datepicker.min.css.map
+Not Found: /performance/static/css/libs/bootstrap-datepicker/bootstrap-datepicker3.standalone.min.css.map
+Not Found: /{{$root.logo}}
+lv.auth_user.find (0.02) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.02) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.02) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+Not Found: /performance/static/js/datatables/pdfmake.min.js.map
+Not Found: /performance/static/js/angular.min.js.map
+Not Found: /performance/static/css/libs/bootstrap-datepicker/bootstrap-datepicker.min.css.map
+Not Found: /performance/static/css/libs/bootstrap-datepicker/bootstrap-datepicker3.standalone.min.css.map
+Not Found: /performance/static/css/libs/bootstrap-datepicker/bootstrap-datepicker3.css.map
+lv.auth_user.find (0.01) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.02) {'_id': ObjectId('5b20925a232037334054b073')}
+Not Found: /{{$root.logo}}
+Internal Server Error: /
+Traceback (most recent call last):
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/django/core/handlers/base.py", line 88, in get_response
+    response = middleware_method(request)
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/qauth/authorization.py", line 6, in process_request
+    if request.get_schema()!=None:
+AttributeError: 'WSGIRequest' object has no attribute 'get_schema'
+Internal Server Error: /lv
+Traceback (most recent call last):
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/django/core/handlers/base.py", line 88, in get_response
+    response = middleware_method(request)
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/qauth/authorization.py", line 6, in process_request
+    if request.get_schema()!=None:
+AttributeError: 'WSGIRequest' object has no attribute 'get_schema'
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+Not Found: /performance/static/css/libs/bootstrap-datepicker/bootstrap-datepicker.min.css.map
+Not Found: /performance/static/js/datatables/pdfmake.min.js.map
+Not Found: /performance/static/js/angular.min.js.map
+Not Found: /performance/static/css/libs/bootstrap-datepicker/bootstrap-datepicker3.css.map
+Not Found: /performance/static/css/libs/bootstrap-datepicker/bootstrap-datepicker3.standalone.min.css.map
+Not Found: /{{$root.logo}}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+Not Found: /{{$root.logo}}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.01) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+Internal Server Error: /lv/api
+Traceback (most recent call last):
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/django/core/handlers/base.py", line 112, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/django/views/decorators/http.py", line 41, in inner
+    return func(request, *args, **kwargs)
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/django/views/decorators/csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/quicky/executor.py", line 35, in exec_request
+    raise ex
+AttributeError: 'NoneType' object has no attribute 'aggregate'
+lv.auth_user.find (0.01) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+Internal Server Error: /lv/api
+Traceback (most recent call last):
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/django/core/handlers/base.py", line 112, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/django/views/decorators/http.py", line 41, in inner
+    return func(request, *args, **kwargs)
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/django/views/decorators/csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/quicky/executor.py", line 35, in exec_request
+    raise ex
+AttributeError: 'NoneType' object has no attribute 'aggregate'
+lv.auth_user.find (0.03) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.02) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+Internal Server Error: /lv/api
+Traceback (most recent call last):
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/django/core/handlers/base.py", line 112, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/django/views/decorators/http.py", line 41, in inner
+    return func(request, *args, **kwargs)
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/django/views/decorators/csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/quicky/executor.py", line 35, in exec_request
+    raise ex
+AttributeError: 'NoneType' object has no attribute 'aggregate'
+Internal Server Error: /lv/api
+Traceback (most recent call last):
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/django/core/handlers/base.py", line 112, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/django/views/decorators/http.py", line 41, in inner
+    return func(request, *args, **kwargs)
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/django/views/decorators/csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/quicky/executor.py", line 35, in exec_request
+    raise ex
+AttributeError: 'NoneType' object has no attribute 'aggregate'
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+Not Found: /{{$root.logo}}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.01) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+Internal Server Error: /lv/api
+Traceback (most recent call last):
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/django/core/handlers/base.py", line 112, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/django/views/decorators/http.py", line 41, in inner
+    return func(request, *args, **kwargs)
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/django/views/decorators/csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/quicky/executor.py", line 35, in exec_request
+    raise ex
+AttributeError: 'NoneType' object has no attribute 'aggregate'
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+Internal Server Error: /lv/api
+Traceback (most recent call last):
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/django/core/handlers/base.py", line 112, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/django/views/decorators/http.py", line 41, in inner
+    return func(request, *args, **kwargs)
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/django/views/decorators/csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/quicky/executor.py", line 35, in exec_request
+    raise ex
+AttributeError: 'NoneType' object has no attribute 'aggregate'
+Internal Server Error: /lv/api
+Traceback (most recent call last):
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/django/core/handlers/base.py", line 112, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/django/views/decorators/http.py", line 41, in inner
+    return func(request, *args, **kwargs)
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/django/views/decorators/csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/quicky/executor.py", line 35, in exec_request
+    raise ex
+AttributeError: 'NoneType' object has no attribute 'aggregate'
+lv.auth_user.find (0.01) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+Internal Server Error: /lv/api
+Traceback (most recent call last):
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/django/core/handlers/base.py", line 112, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/django/views/decorators/http.py", line 41, in inner
+    return func(request, *args, **kwargs)
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/django/views/decorators/csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/quicky/executor.py", line 35, in exec_request
+    raise ex
+AttributeError: 'NoneType' object has no attribute 'aggregate'
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+Not Found: /{{$root.logo}}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.01) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+Internal Server Error: /lv/api
+Traceback (most recent call last):
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/django/core/handlers/base.py", line 112, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/django/views/decorators/http.py", line 41, in inner
+    return func(request, *args, **kwargs)
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/django/views/decorators/csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/quicky/executor.py", line 35, in exec_request
+    raise ex
+AttributeError: 'NoneType' object has no attribute 'aggregate'
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+Internal Server Error: /lv/api
+Traceback (most recent call last):
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/django/core/handlers/base.py", line 112, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/django/views/decorators/http.py", line 41, in inner
+    return func(request, *args, **kwargs)
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/django/views/decorators/csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/quicky/executor.py", line 35, in exec_request
+    raise ex
+AttributeError: 'NoneType' object has no attribute 'aggregate'
+lv.auth_user.find (0.01) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.03) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+Internal Server Error: /lv/api
+Traceback (most recent call last):
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/django/core/handlers/base.py", line 112, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/django/views/decorators/http.py", line 41, in inner
+    return func(request, *args, **kwargs)
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/django/views/decorators/csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/quicky/executor.py", line 35, in exec_request
+    raise ex
+AttributeError: 'NoneType' object has no attribute 'aggregate'
+Internal Server Error: /lv/api
+Traceback (most recent call last):
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/django/core/handlers/base.py", line 112, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/django/views/decorators/http.py", line 41, in inner
+    return func(request, *args, **kwargs)
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/django/views/decorators/csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/quicky/executor.py", line 35, in exec_request
+    raise ex
+AttributeError: 'NoneType' object has no attribute 'aggregate'
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+Not Found: /{{$root.logo}}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+Internal Server Error: /lv/api
+Traceback (most recent call last):
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/django/core/handlers/base.py", line 112, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/django/views/decorators/http.py", line 41, in inner
+    return func(request, *args, **kwargs)
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/django/views/decorators/csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/quicky/executor.py", line 35, in exec_request
+    raise ex
+AttributeError: 'NoneType' object has no attribute 'aggregate'
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b20925a232037334054b073')}
+Not Found: /{{$root.logo}}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+Internal Server Error: /lv/api
+Traceback (most recent call last):
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/django/core/handlers/base.py", line 112, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/django/views/decorators/http.py", line 41, in inner
+    return func(request, *args, **kwargs)
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/django/views/decorators/csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/quicky/executor.py", line 35, in exec_request
+    raise ex
+Exception: 'schema' was not found
+Internal Server Error: /lv/api
+Traceback (most recent call last):
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/django/core/handlers/base.py", line 112, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/django/views/decorators/http.py", line 41, in inner
+    return func(request, *args, **kwargs)
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/django/views/decorators/csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/quicky/executor.py", line 35, in exec_request
+    raise ex
+Exception: 'schema' was not found
+Internal Server Error: /lv/api
+Traceback (most recent call last):
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/django/core/handlers/base.py", line 112, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/django/views/decorators/http.py", line 41, in inner
+    return func(request, *args, **kwargs)
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/django/views/decorators/csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/quicky/executor.py", line 35, in exec_request
+    raise ex
+Exception: 'schema' was not found
+Internal Server Error: /lv/api
+Traceback (most recent call last):
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/django/core/handlers/base.py", line 112, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/django/views/decorators/http.py", line 41, in inner
+    return func(request, *args, **kwargs)
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/django/views/decorators/csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/quicky/executor.py", line 35, in exec_request
+    raise ex
+Exception: 'schema' was not found
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+Not Found: /{{$root.logo}}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.02) {'_id': ObjectId('5b20925a232037334054b073')}
+Internal Server Error: /lv/api
+Traceback (most recent call last):
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/django/core/handlers/base.py", line 112, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/django/views/decorators/http.py", line 41, in inner
+    return func(request, *args, **kwargs)
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/django/views/decorators/csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/quicky/executor.py", line 35, in exec_request
+    raise ex
+Exception: 'schema' was not found
+Internal Server Error: /lv/api
+Traceback (most recent call last):
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/django/core/handlers/base.py", line 112, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/django/views/decorators/http.py", line 41, in inner
+    return func(request, *args, **kwargs)
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/django/views/decorators/csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/quicky/executor.py", line 35, in exec_request
+    raise ex
+Exception: 'schema' was not found
+Internal Server Error: /lv/api
+Traceback (most recent call last):
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/django/core/handlers/base.py", line 112, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/django/views/decorators/http.py", line 41, in inner
+    return func(request, *args, **kwargs)
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/django/views/decorators/csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/quicky/executor.py", line 35, in exec_request
+    raise ex
+Exception: 'schema' was not found
+Internal Server Error: /lv/api
+Traceback (most recent call last):
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/django/core/handlers/base.py", line 112, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/django/views/decorators/http.py", line 41, in inner
+    return func(request, *args, **kwargs)
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/django/views/decorators/csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/quicky/executor.py", line 35, in exec_request
+    raise ex
+Exception: 'schema' was not found
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+Not Found: /{{$root.logo}}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.02) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+Internal Server Error: /lv/api
+Traceback (most recent call last):
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/django/core/handlers/base.py", line 112, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/django/views/decorators/http.py", line 41, in inner
+    return func(request, *args, **kwargs)
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/django/views/decorators/csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/quicky/executor.py", line 35, in exec_request
+    raise ex
+Exception: 'schema' was not found
+Internal Server Error: /lv/api
+Traceback (most recent call last):
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/django/core/handlers/base.py", line 112, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/django/views/decorators/http.py", line 41, in inner
+    return func(request, *args, **kwargs)
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/django/views/decorators/csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/quicky/executor.py", line 35, in exec_request
+    raise ex
+Exception: 'schema' was not found
+Internal Server Error: /lv/api
+Traceback (most recent call last):
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/django/core/handlers/base.py", line 112, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/django/views/decorators/http.py", line 41, in inner
+    return func(request, *args, **kwargs)
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/django/views/decorators/csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/quicky/executor.py", line 35, in exec_request
+    raise ex
+Exception: 'schema' was not found
+Internal Server Error: /lv/api
+Traceback (most recent call last):
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/django/core/handlers/base.py", line 112, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/django/views/decorators/http.py", line 41, in inner
+    return func(request, *args, **kwargs)
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/django/views/decorators/csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/quicky/executor.py", line 35, in exec_request
+    raise ex
+Exception: 'schema' was not found
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+Not Found: /{{$root.logo}}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+Internal Server Error: /lv/api
+Traceback (most recent call last):
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/django/core/handlers/base.py", line 112, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/django/views/decorators/http.py", line 41, in inner
+    return func(request, *args, **kwargs)
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/django/views/decorators/csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/quicky/executor.py", line 35, in exec_request
+    raise ex
+Exception: 'schema' was not found
+Internal Server Error: /lv/api
+Traceback (most recent call last):
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/django/core/handlers/base.py", line 112, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/django/views/decorators/http.py", line 41, in inner
+    return func(request, *args, **kwargs)
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/django/views/decorators/csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/quicky/executor.py", line 35, in exec_request
+    raise ex
+Exception: 'schema' was not found
+Internal Server Error: /lv/api
+Traceback (most recent call last):
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/django/core/handlers/base.py", line 112, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/django/views/decorators/http.py", line 41, in inner
+    return func(request, *args, **kwargs)
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/django/views/decorators/csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/quicky/executor.py", line 35, in exec_request
+    raise ex
+Exception: 'schema' was not found
+Internal Server Error: /lv/api
+Traceback (most recent call last):
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/django/core/handlers/base.py", line 112, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/django/views/decorators/http.py", line 41, in inner
+    return func(request, *args, **kwargs)
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/django/views/decorators/csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/quicky/executor.py", line 35, in exec_request
+    raise ex
+Exception: 'schema' was not found
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+Not Found: /{{$root.logo}}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+Internal Server Error: /lv/api
+Traceback (most recent call last):
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/django/core/handlers/base.py", line 112, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/django/views/decorators/http.py", line 41, in inner
+    return func(request, *args, **kwargs)
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/django/views/decorators/csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/quicky/executor.py", line 35, in exec_request
+    raise ex
+Exception: 'schema' was not found
+Internal Server Error: /lv/api
+Traceback (most recent call last):
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/django/core/handlers/base.py", line 112, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/django/views/decorators/http.py", line 41, in inner
+    return func(request, *args, **kwargs)
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/django/views/decorators/csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/quicky/executor.py", line 35, in exec_request
+    raise ex
+Exception: 'schema' was not found
+Internal Server Error: /lv/api
+Traceback (most recent call last):
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/django/core/handlers/base.py", line 112, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/django/views/decorators/http.py", line 41, in inner
+    return func(request, *args, **kwargs)
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/django/views/decorators/csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/quicky/executor.py", line 35, in exec_request
+    raise ex
+Exception: 'schema' was not found
+Internal Server Error: /lv/api
+Traceback (most recent call last):
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/django/core/handlers/base.py", line 112, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/django/views/decorators/http.py", line 41, in inner
+    return func(request, *args, **kwargs)
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/django/views/decorators/csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/quicky/executor.py", line 35, in exec_request
+    raise ex
+Exception: 'schema' was not found
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+Not Found: /{{$root.logo}}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.01) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.01) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}

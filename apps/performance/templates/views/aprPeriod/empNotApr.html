@@ -1,13 +1,10 @@
 ﻿﻿
 <div class="hcs-right-side-department-list-tool-bar" view-id="${register_view()}">
-                <div class="zb-right-content pull-right" style="margin-top: -35px;margin-right: 212px;">
-					 <button class="zb-btn zb-btn-o-green ng-scope" ng-click="addDataGeneration()">
-                        <i class="glyphicon glyphicon-plus-sign"></i>
-                    </button>
+                <div class="zb-right-content pull-right" style="margin-top: -35px;margin-right: 245px;">
                 </div>
                 <div class="clearfix"></div>
             </div>
-<div class="tab-pane" style="padding-right:unset; height: 100%; ">
+<div class="tab-pane" style="padding-right:unset; height: 95%; ">
                 <table-data data-source="tableSource" 
                             fields="tableFields" 
                             type="MultiSelect" 
@@ -21,8 +18,8 @@
                             refresh-row="refreshDataRow">
                 </table-data>
 			</div>
-<p style="color: deepskyblue;font-size: 13px;padding-top: 180px;padding-left: 12px;">
-	<i>Bạn có thể chọn nhiều dòng và chọn "Sửa" để cập nhật "Lý do" và "Ghi chú".</i></p>
+<p style="color: gray;font-size: 15px;padding-left: 10px;">
+	${get_res('select_to_edit_reason_note','Bạn có thể chọn nhiều dòng và chọn "Sửa" để cập nhật "Lý do" và "Ghi chú"')}</p>
 <script>
     <%include file = "scripts/empNotApr.js" />
 </script>

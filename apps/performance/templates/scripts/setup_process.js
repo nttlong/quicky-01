@@ -33,7 +33,7 @@
         tableSource: _loadDataServerSide,
         onSelectTableRow: function ($row) {
             scope.currentProcess = $row;
-            scope.button.edit();
+            scope.button.edit($row);
         },
         selectedItems: [],
         currentItem: {},
@@ -42,16 +42,20 @@
     };
 
     scope.$$process_id = null;
+    scope.$$is_approve_by_dept = null;
 
     scope.button = {
         add: function () {
             scope.mode = 1;
             redirectPage();
         },
-        edit: function () {
+        edit: function ($row) {
+            debugger
             scope.mode = 2;
+            _init_($row.process_id);
             scope.$$process_id = scope.$$table.currentItem.process_id;
             scope.$$curr_max_approve_level = scope.$$table.currentItem.max_approve_level;
+            scope.$$is_approve_by_dept = scope.$$table.currentItem.is_approve_by_dept;
             redirectPage();
         },
         delete: function () {
@@ -99,20 +103,19 @@
     }
 
     function onSelectedRow($row) {
-    debugger
         scope.mode = 2;
         redirectPage();
     }
 
     function backPage() {
-        $('.hcs-profile-list').fadeToggle();
-        setTimeout(function () {
+        //$('.hcs-profile-list').fadeToggle();
+        //setTimeout(function () {
             scope.obj.showDetail = scope.obj.showDetail === false ? true : false;
             scope.mode = 0;
             scope.$partialpage = scope.mapName[0].url;
             scope.obj.selectedFunction = scope.mapName[0].function_id;
             $(window).trigger('resize');
-        }, 400);
+        // }, 100);
     }
 
     function handleData() {
@@ -121,43 +124,93 @@
 
         this.mapName = [];
 
-        this.mapName =
-            [{
-                default_name: "${get_global_res('config_general','Thiết lập chung')}",
-                custom_name: "${get_global_res('config_general','Thiết lập chung')}",
-                url: "setup_process/setup_process_detail/setup_process_general",
-                icon: "bowtie-icon bowtie-settings-gear-outline",
-                sorting: "1",
-                active: true,
-                function_id: "TMSYS0011"
-            },
-            {
-                default_name: "${get_global_res('config_details','Cấp duyệt')}",
-                custom_name: "${get_global_res('config_details','Cấp duyệt')}",
-                url: "setup_process/setup_process_detail/setup_process_approve_level",
-                icon: "bowtie-icon bowtie-step",
-                sorting: "2",
-                active: true,
-                function_id: "TMSYS0012"
-            },
-            {
-                default_name: "${get_global_res('config_defaults','Người duyệt')}",
-                custom_name: "${get_global_res('config_defaults','Người duyệt')}",
-                url: "setup_process/setup_process_detail/setup_process_approve_emp",
-                sorting: "3",
-                active: true,
-                function_id: "TMSYS0013"
-            },
-            {
-                default_name: "${get_global_res('approve_substitute','Uỷ quyền')}",
-                custom_name: "${get_global_res('approve_substitute','Uỷ quyền')}",
-                url: "setup_process/setup_process_detail/setup_process_approve_substitute",
-                icon: "bowtie-icon bowtie-security-group",
-                sorting: "4",
-                active: true,
-                function_id: "TMSYS0014"
-            }
-            ];
+        this.mapName ={
+                    "DauKy": [
+                        {
+                            default_name: "${get_global_res('config_general','Thiết lập chung')}",
+                            custom_name: "${get_global_res('config_general','Thiết lập chung')}",
+                            url: "setup_process/setup_process_detail/setup_process_general",
+                            icon: "bowtie-icon bowtie-settings-gear-outline",
+                            sorting: "1",
+                            active: true,
+                            function_id: "TMSYS0011"
+                        },
+                        {
+                            default_name: "${get_global_res('config_details','Cấp duyệt')}",
+                            custom_name: "${get_global_res('config_details','Cấp duyệt')}",
+                            url: "setup_process/setup_process_detail/setup_process_approve_level",
+                            icon: "bowtie-icon bowtie-step",
+                            sorting: "2",
+                            active: true,
+                            function_id: "TMSYS0012"
+                        },
+                        {
+                            default_name: "${get_global_res('config_defaults','Người duyệt')}",
+                            custom_name: "${get_global_res('config_defaults','Người duyệt')}",
+                            url: "setup_process/setup_process_detail/setup_process_approve_emp",
+                            sorting: "3",
+                            icon: "la la-user-plus",
+                            active: true,
+                            function_id: "TMSYS0013"
+                        },
+                        {
+                            default_name: "${get_global_res('approve_substitute','Uỷ quyền')}",
+                            custom_name: "${get_global_res('approve_substitute','Uỷ quyền')}",
+                            url: "setup_process/setup_process_detail/setup_process_approve_substitute",
+                            icon: "bowtie-icon bowtie-security-group",
+                            sorting: "4",
+                            active: true,
+                            function_id: "TMSYS0014"
+                        }
+                    ],
+                    "CuoiKy": [
+                        {
+                            default_name: "${get_global_res('config_general','Thiết lập chung')}",
+                            custom_name: "${get_global_res('config_general','Thiết lập chung')}",
+                            url: "setup_process/setup_process_detail_last/setup_process_general",
+                            icon: "bowtie-icon bowtie-settings-gear-outline",
+                            sorting: "1",
+                            active: true,
+                            function_id: "TMSYS0021"
+                        },
+                        {
+                            default_name: "${get_global_res('config_details','Cấp duyệt')}",
+                            custom_name: "${get_global_res('config_details','Cấp duyệt')}",
+                            url: "setup_process/setup_process_detail_last/setup_process_approve_level",
+                            icon: "bowtie-icon bowtie-step",
+                            sorting: "2",
+                            active: true,
+                            function_id: "TMSYS0022"
+                        },
+                        {
+                            default_name: "${get_res('use_for_employee','Dùng cho nhân viên')}",
+                            custom_name: "${get_res('use_for_employee','Dùng cho nhân viên')}",
+                            url: "setup_process/setup_process_detail_last/setup_process_employee",
+                            icon: "fa fa-user",
+                            sorting: "4",
+                            active: true,
+                            function_id: "TMSYS0023"
+                        },
+                        {
+                            default_name: "${get_global_res('config_defaults','Người duyệt')}",
+                            custom_name: "${get_global_res('config_defaults','Người duyệt')}",
+                            url: "setup_process/setup_process_detail_last/setup_process_approve_emp",
+                            icon: "la la-user-plus",
+                            sorting: "3",
+                            active: true,
+                            function_id: "TMSYS0024"
+                        },
+                        {
+                            default_name: "${get_global_res('approve_substitute','Uỷ quyền')}",
+                            custom_name: "${get_global_res('approve_substitute','Uỷ quyền')}",
+                            url: "setup_process/setup_process_detail_last/setup_process_approve_substitute",
+                            icon: "bowtie-icon bowtie-security-group",
+                            sorting: "4",
+                            active: true,
+                            function_id: "TMSYS0025"
+                        }
+                    ]
+            };
         //_.filter(scope.$root.$function_list, function (f) {
         //return f.level_code.includes(scope.$root.currentFunction.function_id)
         //    && f.level_code.length == scope.$root.currentFunction.level_code.length + 1
@@ -220,17 +273,21 @@
         scope.$applyAsync();
     }
 
-    (function _init_() {
+    function _init_(process_id) {
         scope.handleData = new handleData();
-        scope.mapName = scope.handleData.mapName;
+        switch(process_id){
+            case "1":
+                scope.mapName = scope.handleData.mapName["DauKy"];break;
+            case "2":
+                scope.mapName = scope.handleData.mapName["CuoiKy"];break;
+        }
         scope.$partialpage = scope.mapName[0].url;
         scope.currentFunction = scope.mapName[0];
         scope.obj.selectedFunction = (scope.mapName.length > 0) ? scope.mapName[0].function_id : null;
         scope.$applyAsync();
-    })();
+    };
 
     scope.$watch("obj.selectedFunction", function (function_id) {
-        debugger
         var $his = scope.$root.$history.data();
         if (scope.$$table.currentItem) {
             var func = _.filter(scope.mapName, function (f) {

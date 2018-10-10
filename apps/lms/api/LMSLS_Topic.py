@@ -666,7 +666,7 @@ def get_list_with_searchtext_all(args):
                             {"$eq": ["$topic_removed", False]}
                         ]
                     },
-                    "then": "Draft",
+                    "then": 1,
                     "else": {
                         "$cond": {
                             "if": {
@@ -676,7 +676,7 @@ def get_list_with_searchtext_all(args):
                                     {"$eq": ["$topic_removed", False]}
                                 ]
                             },
-                            "then": "Pending",
+                            "then": 2,
                             "else": {
                                 "$cond": {
                                     "if": {
@@ -691,7 +691,7 @@ def get_list_with_searchtext_all(args):
                                         ]
 
                                     },
-                                    "then": "Published",
+                                    "then": 3,
                                     "else": {
                                         "$cond": {
                                             "if": {
@@ -706,7 +706,7 @@ def get_list_with_searchtext_all(args):
                                                 ]
 
                                             },
-                                            "then": "Scheduled",
+                                            "then": 4,
                                             "else": {
                                                 "$cond": {
                                                     "if": {
@@ -721,7 +721,7 @@ def get_list_with_searchtext_all(args):
                                                         ]
 
                                                     },
-                                                    "then": "Returned",
+                                                    "then": 5,
                                                     "else": {
                                                         "$cond": {
                                                             "if": {
@@ -734,7 +734,7 @@ def get_list_with_searchtext_all(args):
                                                                 ]
 
                                                             },
-                                                            "then": "Removed",
+                                                            "then": 6,
                                                             "else": "false"
                                                         }
                                                     }
@@ -759,7 +759,6 @@ def get_list_with_searchtext_all(args):
             "$match": qmongo.helpers.filter("contains(topic_name, @name) or contains(topic_description, @name)",
                                             name=searchText).get_filter()
         })
-
 
     if (sort != None):
         arrayData.append({
@@ -807,7 +806,7 @@ def update(args):
                 data,
                 "_id == {0}",
                 ObjectId(args['data']['_id']))
-            if ret['data'].raw_result['updatedExisting'] == True:
+            if ret.has_key('data') and ret['data'].raw_result['updatedExisting'] == True:
                 ret.update(
                     item=get_list_data().match("_id == {0}", ObjectId(args['data']['_id'])).get_item()
                 )
@@ -864,7 +863,6 @@ def delete_to_trash(args):
         lock.release()
         raise (ex)
 
-
 def update_topic_pin(args):
     try:
         lock.acquire()
@@ -914,7 +912,6 @@ def update_topic_block(args):
         except Exception as ex:
             lock.release()
             raise (ex)
-
 
 def set_dict_insert_data(args):
     ret_dict = dict()

@@ -1,3 +1,4 @@
+
 from quicky import applications
 from qmongo import helpers,database
 import datetime

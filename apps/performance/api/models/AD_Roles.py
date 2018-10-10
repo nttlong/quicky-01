@@ -19,17 +19,20 @@ helpers.extent_model(
     #start_date=("date"),
     #end_date=("text"),
     #note=("date"),
+
     permission=("list", False, dict_permission.update({
         "function_id":("text"),
-        "read":("text"),
-        "create":("text"),
-        "write":("text"),
-        "delete":("text"),
+        "read":("text"), # Xem
+        "create":("text"), # Them
+        "write":("text"), # update
+        "delete":("text"), # Xoa
         "export":("text"),
         "import":("text"),
         "copy":("text"),
         "attach":("text"),
         "download":("text"),
+        "print":("text"),
+        "action":("text"),
         "created_by":("text"),
         "created_on":("text"),
         "modified_by":("text"),

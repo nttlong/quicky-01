@@ -11,16 +11,6 @@
     scope.isList = true;
     scope.isGrid = false;
     scope.objSearch = {};
-    scope.onDisplayListData = function () {
-        scope.isList = true;
-        scope.isGrid = false;
-        scope.$root.onDisplayListData();
-    }
-    scope.onDisplayGridData = function () {
-        scope.isList = false;
-        scope.isGrid = true;
-        scope.$root.onDisplayGridData();
-    }
     scope.onSearchText = function () {
 
         scope.searchText = scope.objSearch.$$$modelSearch

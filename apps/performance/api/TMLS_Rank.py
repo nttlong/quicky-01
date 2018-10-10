@@ -3,7 +3,7 @@ from bson import ObjectId
 import models
 import common
 import datetime
-from Query import TMLS_Rank
+from Query import TMLS_Rank,AprPeriodRank
 import logging
 import threading
 import TMSYS_ConfigChangeObjectPriority
@@ -69,6 +69,7 @@ def insert(args):
         if args['data'] != None:
             data =  set_dict_insert_data(args)
             ret  =  models.TMLS_Rank().insert(data)
+            AprPeriodRank.update_rank_level_when_insert_rank_to_sync(args['data']['rank_code'],args['data']['total_from'] if args['data']['total_from']!=None else 0)
             lock.release()
             return ret
 
@@ -111,6 +112,7 @@ def delete(args):
         ret = {}
         if args['data'] != None:
             ret  =  models.TMLS_Rank().delete("rank_code in {0}",[x["rank_code"]for x in args['data']])
+            AprPeriodRank.update_rank_level_when_delete_rank_to_sync(args['data'])
             lock.release()
             return ret
 

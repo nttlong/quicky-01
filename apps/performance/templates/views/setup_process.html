@@ -2,7 +2,26 @@
     .zb-content {
         background-color:white !important;
     }
-
+    .zb-form-radio{
+        height: 30px !important;
+        padding-top: 4px;
+        margin: 0 0 0 4px;
+    }
+    .zb-sidebar-disbled{
+        opacity: 0.5;
+    }
+    .zb-sidebar-disbled:hover{
+        cursor: no-drop !important;
+    }
+    .hcs-tab-info-box-disabled{
+        opacity: 0.5 !important;
+    }
+    .hcs-tab-info-box-disabled label:hover{
+        cursor: no-drop !important;
+    }
+    .hcs-tab-info-box-disabled:hover{
+        cursor: no-drop !important;
+    }
 </style>
 <div class="hcs-container">
     <div class="row hcs-profile-detail" style="margin:unset; height:100%;" ng-if="obj.showDetail">
@@ -25,7 +44,7 @@
             <site-map>
                 <a ng-click="backPage()">{{$root.currentFunction.default_name}}</a>
                 <span><i class="bowtie-icon bowtie-chevron-right"></i></span>
-                <a>{{$$table.currentItem.process_name}}</a>
+                <span>{{$$table.currentItem.process_name}}</span>
 
                 <a data-target="#dropdownFunction" style="color:#333" data-toggle="collapse"><i
                         class="bowtie-icon bowtie-chevron-down"></i></a>

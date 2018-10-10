@@ -8,7 +8,7 @@ logger = logging.getLogger(__name__)
 global lock
 lock = threading.Lock()
 
-#def get_list_data():
+# def get_list_data():
 #    items = models.LMSLS_ExExamination().aggregate()
 #    items.left_join(models.auth_user_info(), "created_by", "username", "uc")
 #    items.left_join(models.auth_user_info(), "modified_by", "username", "um")
@@ -33,7 +33,7 @@ lock = threading.Lock()
 #        modified_on="switch(case(modified_on!='',modified_on),'')",
 #        modified_by="switch(case(modified_by!='',um.login_account),'')",
 #        )
-    
+#
 #    return items
 def get_list_with_searchtext(args):
     searchText = args['data'].get('search', '')
@@ -55,6 +55,7 @@ def get_list_with_searchtext(args):
             duration=1,
             exam_mode=1,
             specific_avail=1,
+            status=1
         )
   
     if(sort != None):
@@ -94,7 +95,7 @@ def update(args):
                 ObjectId(args['data']['_id']))
             if ret['data'].raw_result['updatedExisting'] == True:
                 ret.update(
-                    item = models.LMSLS_ExExamination().aggregate().match("_id == {0}", ObjectId(args['data']['_id'])).get_item()
+                    item=models.LMSLS_ExExamination().aggregate().match("_id == {0}", ObjectId(args['data']['_id'])).get_item()
                     )
             lock.release()
             return ret
@@ -113,6 +114,23 @@ def delete(args):
         ret = {}
         if args['data'] != None:
             ret  =  models.LMSLS_ExExamination().delete("_id in {0}",[ObjectId(x["_id"])for x in args['data']])
+            lock.release()
+            return ret
+
+        lock.release()
+        return dict(
+            error = "request parameter is not exist"
+        )
+    except Exception as ex:
+        lock.release()
+        raise(ex)
+
+def delete_one(id):
+    try:
+        lock.acquire()
+        ret = {}
+        if id['data'] != '':
+            ret  =  models.LMSLS_ExExamination().delete("_id == {0}", ObjectId(id['data']))
             lock.release()
             return ret
 
@@ -175,6 +193,7 @@ def set_dict_insert_data(args):
         duration= (lambda x: x['duration'] if x.has_key('duration') else None)(args['data']),
         edit_instruction=(lambda x: x['edit_instruction'] if x.has_key('edit_instruction') else None)(args['data']),
         specific_avail= (lambda x: x['specific_avail'] if x.has_key('specific_avail') else None)(args['data']),
+        status= (lambda x: x['status'] if x.has_key('status') else None)(args['data']),
     )
 
     return ret_dict
@@ -246,6 +265,7 @@ def get_data_examination_by_id(args):
                     add_feedback=1,
                     list_time_retake=1,
                     edit_instruction=1,
+                    status=1
                 )
             # test
             if(where.has_key('exam_id')):

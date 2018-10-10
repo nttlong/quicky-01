@@ -1,10 +1,11 @@
 ﻿﻿window.set_component_template_url('${get_static("app/directives/")}')
 window.set_component_url('${get_static("app/components/")}')
 window.set_api_combobox("${get_api_key('app_main.api.common/get_dropdown_list')}")
+window.set_authenticated_permission_service("${get_api_key('app_main.api.authenticate_permission/get_permission')}")
 window.get_static = "${get_static('/')}"
 window.set_static(window.get_static)
 angular
-    .module("admin", ["c-ui", 'ZebraApp.components', 'ZebraApp.widgets', 'hcs-template'])
+    .module("admin", ["c-ui", 'ZebraApp.components', 'ZebraApp.widgets', 'hcs-template', 'authenticatedModule'])
     .controller("admin", controller)
     .filter('$filterFunction', function () {
         return function (input, txtSearch) {
@@ -26,6 +27,11 @@ dialog_root_url('${get_app_url("pages/")}')
     import json
 %>
 function controller($dialog, $scope, $filter) {
+    window.top.PYUrl = window.location.origin + '/lms'
+    window.top.UIUrl = window.location.origin + '/HoiThao'
+    window.top.ServiceUrl = window.location.origin + '/HoiThao_WS'
+    window.top.SettingUrl = window.location.origin + '/HoiThaoPortal'
+
     $scope.isHomePage = true;
     $scope.$root.$$absUrl = window.location.href;
     $scope.$root.url_static = "${get_static('/')}";
@@ -146,19 +152,21 @@ function controller($dialog, $scope, $filter) {
         $(event.target).closest('.hcs-message-group').find('.hcs-menu-group-content').slideToggle(300)
     }
     ////Đồng hồ
-    //$scope.$root.timer = {
-    //    clock: Clock(),
-    //    meridiem: getMeridiem(),
-    //    date: Calendar()
-    //};
-    //setInterval(function () {
-    //    $scope.$root.timer.clock = Clock();
-    //    if ($scope.$root.timer.clock === "00:00") {
-    //        $scope.$root.timer.date = Calendar();
-    //        $scope.$root.timer.meridiem = getMeridiem();
-    //    }
-    //    $scope.$root.$applyAsync();
-    //}, 10000);
+    $scope.$root.timer = {
+        clock: Clock(),
+        meridiem: getMeridiem(),
+        date: Calendar()
+    };
+    setInterval(function () {
+        $scope.$root.timer.clock = Clock();
+        if ($scope.$root.timer.clock === "00:00") {
+            $scope.$root.timer.date = Calendar();
+            $scope.$root.timer.meridiem = getMeridiem();
+        }
+        $scope.$root.$applyAsync();
+    }, 100);
+
+    //getTime($scope);
 
     $(window).on('click', function (e) {
         if (!e.target.closest('#dropdownFunction'))
@@ -176,18 +184,46 @@ function controller($dialog, $scope, $filter) {
         }
     });
 
+    $scope.setTitle = function(){
+        if($scope.$root.currModule.module_name) {
+            document.title = $scope.$root.currModule.module_name;
+        }else{
+            setTimeout(function(){
+                $scope.setTitle();
+            }, 100);
+        }
+    }
+
+    $scope.$root.clickUrl = function(data){
+        console.log(data)
+        var url = data.redirect_url;
+        if(url){
+            url = url.replace("$C_UI", window.top.UIUrl)
+                            .replace("$C_WS", window.top.ServiceUrl)
+                            .replace("$C_APP", window.top.SettingUrl)
+                            .replace("$P_UI", window.top.PYUrl);
+            if(data.is_new_tab){
+                window.open(url, '_blank');
+            } else {
+                window.location.href = url;
+            }
+        }
+    }
+
     /**
      * Initialize Data
      */
     function activate() {
         $scope.$root.currentFunction = {};
         $scope.$root.currentModule = '';
-        $scope.$root.logo = 'http://surehcs.lacviet.vn/WS2017/Customers/default/logo.png';
+        $scope.$root.currModule = {};
+        $scope.$root.logo = "${get_static('/')}css/images/logo.png";
 
         //Get function list
         services.api("${get_api_key('app_main.api.functionlist/get_list')}")
             .data({
                 //parameter at here
+                language: "${request.get_language()}"
             })
             .done()
             .then(function (res) {
@@ -197,11 +233,13 @@ function controller($dialog, $scope, $filter) {
                  */
                 $.each(res, function (idx, val) {
                     if (val.parent_id == null) {
-                        var arr = val["custom_name"].split("/");
-                        var display_name = arr[0];
-                        var display_name_bold = arr[1];
-                        val["display_name"] = display_name;
-                        val['display_name_bold'] = display_name_bold;
+                        var arr = val["custom_name"] ? val["custom_name"].split("/") : "";
+                        if(arr && arr.length > 1){
+                            var display_name = arr[0];
+                            var display_name_bold = arr[1];
+                            val["display_name"] = display_name;
+                            val['display_name_bold'] = display_name_bold;
+                        }
                     }
                 });
 
@@ -215,7 +253,7 @@ function controller($dialog, $scope, $filter) {
                 });
                 $.each(fs, function (idx, val) {
                     val["child_items"] = _.filter(res, function (d) {
-                        return d["parent_id"] == val["function_id"];
+                        return d["parent_id"] == val["function_id"] && d["active"] == true;
                     });
                 });
                 $scope.$root.$functions = fs;
@@ -244,9 +282,11 @@ function controller($dialog, $scope, $filter) {
                             $scope.$root.currentModule = _.filter(functions, function (d) {
                                 return d["function_id"] == currentFunction[0].parent_id;
                             })[0];
+                            document.title = $scope.$root.currentModule.custom_name_lb;
                         }
                     } else {
                         $scope.$root.currentFunction = $scope.$root.currentModule = null;
+                        $scope.setTitle();
                         $scope.isHomePage = true;
                     }
                     $scope.$root.$applyAsync();
@@ -261,6 +301,7 @@ function controller($dialog, $scope, $filter) {
             .done()
             .then(function (res) {
                 //Set HCSSYS_SystemConfig
+
                 $scope.$root.systemConfig = res;
             })
 
@@ -274,11 +315,59 @@ function controller($dialog, $scope, $filter) {
                 //Set HCSSYS_SystemConfig
                 $scope.$root.__USER__ = res;
             })
+
+            //Get Module Navigation
+        services.api("${get_api_key('app_main.api.functionlist/get_list_module')}")
+            .data({
+                language: "${request.get_language()}"
+            })
+            .done()
+            .then(function (res) {
+                var modules = _.filter(res, function(v){
+                    return v.module_code.toLocaleLowerCase() != "perf";
+                })
+
+                var curr_module = _.filter(res, function(v){
+                    return v.module_code.toLocaleLowerCase() == "perf";
+                })
+
+                $scope.$root.currModule.module_name = (curr_module && curr_module.length > 0 )? curr_module[0].custom_name : "";
+
+                if(/\r|\n/.exec($scope.$root.currModule.module_name)) {
+                    $scope.title1 = $scope.$root.currModule.module_name.split("\n")[0];
+                    $scope.title2 = $scope.$root.currModule.module_name.split("\n")[1];
+                } else {
+                    $scope.title2 = $scope.$root.currModule.module_name;
+                }
+
+                //$scope.$root.title = $scope.$root.currModule.module_name;
+                $scope.$root.$$$list_modules = modules;
+                window.top.dataInfo = {};
+                window.top.dataInfo.listModule = res;
+            })
     }
     /**
      * Init
      */
     activate();
+}
+
+function getTime($scope) {
+    moment.lang('${get_language()}');
+
+    $scope.$$$dateTime = {
+        $$$date: toTitleCase(moment()["format"]("dddd, D MMMM, YYYY")),
+        $$$hour: moment()["format"]("hh:mm"),
+        $$$clock: moment()["format"]("a").toLocaleUpperCase()
+    }
+
+    setTimeout(getTime($scope), 1000);
+
+    $scope.$applyAsync();
+}
+
+function toTitleCase(str) {
+    return str.replace(/\w\S*/g, function (txt) { return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase(); });
 }
 
 function extension() {
@@ -411,9 +500,10 @@ function toStartCase(str) {
 }
 
 function Calendar() {
+    moment.lang("${get_language()}" == "vn" ? "vi" : "${get_language()}");
     return toStartCase(moment().locale("${get_language()}").format('dddd, DD MMMM, YYYY'));
 }
 
-//function getMeridiem() {
-//    return moment().locale("${get_language()}").format("a");
-//}
+function getMeridiem() {
+    return moment().locale("${get_language()}").format("a");
+}

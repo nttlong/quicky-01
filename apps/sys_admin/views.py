@@ -12,13 +12,13 @@ from bson.objectid import ObjectId
 import json
 import importlib
 import sqlalchemy
-from quicky import dict_utils
+# import authorization
 
 from datetime import date, datetime
 import quicky
 from quicky import tenancy
 application=quicky.applications.get_app_by_file(__file__)
-# import forms
+import forms
 import logging
 logger = logging.getLogger(__name__)
 @quicky.view.template("index.html")
@@ -40,7 +40,7 @@ def login(request):
     create_sys_admin_user.create_sys_admin_user()
 
     _login["language"] = request._get_request().get("language", "en")
-    if dict_utils.has_key(request.GET,"next"):
+    if request.GET.has_key("next"):
         _login["next"] = request.GET.get("next",request.get_app_url(""))
     request.session["language"] = _login["language"]
     if request._get_post().keys().__len__() > 0:
@@ -70,6 +70,7 @@ def login(request):
 # @argo.template(file="simple_login",
 #                is_login_page=True)
 def login_to_template(request):
+    print request
     return request.render({})
 
 @quicky.view.template("category.html")
@@ -85,28 +86,9 @@ def load_categories(request,path):
 
 )
 def load_page(request,path):
-    from quicky import authorize
-    authorize.register_view(
-        app=request.get_app().name,
-        view=request.get_view_path()
-    )
     return  request.render({
         "path":path.lower()
     })
-@quicky.view.template(
-    file="dynamic.html",
-    is_public=True
-
-)
-def load_dialog(request,path):
-    return  request.render({
-        "path":path.lower()
-    })
-@quicky.view.template("logout.html")
-def logout(request):
-    from quicky.api import logout
-    logout(request)
-    return redirect(request.get_app_url(""))
 
 
 

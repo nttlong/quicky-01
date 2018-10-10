@@ -2,49 +2,53 @@
     <div class="hcs-home-page-top-bar-container">
         <!--BEGIN LEFT-->
         <div class="hcs-home-page-top-bar-left">
-            <span class="hcs-btn-header-menu" id="btnShowMenu">
-                <i class="bowtie-icon bowtie-menu"></i>
-            </span>
+            <div class="hcs-header-menu-left" id="btnShowMenu">
+                <button class="hcs-header-menu-left-btn">
+                    <div class="hcs-header-menu-left-box">
+                        <span class="glyphicon glyphicon-menu-hamburger"></span>
+                    </div>
+                </button>
+            </div>
             <div class="hcs-menu-list menu-hidden hcs-demo-header-menu">
                 <div class="col-md-12 hcs-menu-list-title hcs-demo-header-menu-top">
-                    <p class="hcs-menu-title-1 hcs-demo-header-menu-title-1">Hệ thống</p>
-                    <p class="hcs-menu-title-2 hcs-demo-header-menu-title-2">Đánh giá năng suất</p>
+                    <p class="hcs-menu-title-1 hcs-demo-header-menu-title-1">{{title1}}</p>
+                    <p class="hcs-menu-title-2 hcs-demo-header-menu-title-2">{{title2}}</p>
                 </div>
                 <div class="hcs-menu-list-group">
-                    <div class="hcs-message-group zb-collapse-box ng-scope" ng-repeat="function in $functions" 
-                         title="{{function.custom_name.replace('/', ' ')}}" ng-if="!function.parent_id">
+                    <div class="hcs-message-group zb-collapse-box ng-scope" ng-repeat="function in $functions"
+                         title="{{function.custom_name_lb.replace('/', ' ')}}" ng-if="!function.parent_id">
                         <div class="zb-header hcs-zb-header-custom-1">
                             <div class="zb-header-left hcs-zb-header-left-custom">
-                                <div class="zb-header-content hcs-zb-header-content-custom"> 
-                                    <span class="zb-header-icon hcs-zb-header-icon-custom">                  
+                                <div class="zb-header-content hcs-zb-header-content-custom">
+                                    <span class="zb-header-icon hcs-zb-header-icon-custom">
                                         <i class="bowtie-icon bowtie-chevron-left-light zb-icon-up hcs-zb-icon-up-custom"></i>
-                                    </span> 
-                                    <span class="zb-header-number hcs-zb-header-number-custom-header">{{$index + 1}}</span> 
+                                    </span>
+                                    <span class="zb-header-number hcs-zb-header-number-custom-header">{{$index + 1}}</span>
                                     <span class="zb-header-title hcs-zb-header-title-custom" ng-click="slideToggle($event)">
-                                        {{function.custom_name.replace('/', ' ')}}
-                                    </span> 
+                                        {{function.custom_name_lb.replace('/', ' ')}}
+                                    </span>
                                 </div>
                             </div>
                             <div class="zb-header-right hcs-zb-header-right-custom"></div>
                         </div>
-                        <div class="hcs-menu-group-content" style="display: none;">
+                        <div class="hcs-menu-group-content"  style="display: none;">
                             <!--<a ng-repeat="child in function.child_items" href="{{'#page=' + child.function_id}}">{{child.custom_name.replace('/', '')}}</a>-->
-                            <div class="hcs-message-group hcs-message-group-custom zb-collapse-box ng-scope" 
-                                 ng-repeat="child in function.child_items track by $index" 
+                            <div class="hcs-message-group hcs-message-group-custom zb-collapse-box ng-scope"
+                                 ng-repeat="child in function.child_items | filter:{ custom_name_lb: ''} track by $index "
                                  number="1">
                                 <div class="zb-header hcs-zb-header-custom-child">
                                     <div class="zb-header-left hcs-zb-header-left-custom">
-                                        <div class="zb-header-content hcs-zb-header-content-custom"> 
-                                            <span class="zb-header-icon hcs-zb-header-icon-custom">                  
-                                                <i class="bowtie-icon bowtie-chevron-left-light hcs-zb-icon-up-custom zb-icon-up"></i>         
-                                            </span> 
+                                        <div class="zb-header-content hcs-zb-header-content-custom">
+                                            <span class="zb-header-icon hcs-zb-header-icon-custom">
+                                                <i class="bowtie-icon bowtie-chevron-left-light hcs-zb-icon-up-custom zb-icon-up"></i>
+                                            </span>
                                             <span class="zb-header-number hcs-zb-header-number-custom-1">
                                                 {{$index + 1}}.
-                                            </span> 
-                                            <a class="zb-header-title hcs-zb-header-title-custom-1" 
+                                            </span>
+                                            <a class="zb-header-title hcs-zb-header-title-custom-1"
                                                   href="{{'#page=' + child.function_id}}" >
-                                                {{child.custom_name.replace('/', ' ')}}
-                                            </a> 
+                                                {{child.custom_name_lb.replace('/', ' ')}}
+                                            </a>
                                         </div>
                                     </div>
                                     <div class="zb-header-right hcs-zb-header-right-custom"></div>
@@ -54,19 +58,91 @@
                     </div>
                 </div>
             </div>
-            <a href="#" class="hcs-navbar-brand"><img src="{{$root.logo}}"></a>
+            <a href="#" class="hcs-navbar-brand">
+                <img src="{{$root.logo}}">
+            </a>
         </div>
         <!--END LEFT-->
-        <div class="pull-left" id="hcs-top-bar-current-module">
-            Hệ thống Tuyển dụng
+        <div class="pull-left hcs-home-title" id="hcs-top-bar-current-module">
+            {{$root.currentModule.custom_name_lb ? $root.currentModule.custom_name_lb.split("/").join(" ") : $root.currModule.module_name}}
         </div>
         <!--BEGIN RIGHT-->
         <div class="hcs-home-page-top-bar-right">
-            <button class="btn btn-primary hcs-home-header-button" id="btnShowMessage">
-                <span class="message-heartbit"></span>
-                <span class="message-number">99</span>
-                <span><i class="bowtie-icon bowtie-notification"></i></span>
-            </button>
+            <div class="dropdown pull-right">
+                <button class="btn btn-primary hcs-home-button-user" type="button" data-toggle="dropdown">
+                    <div class="hcs-home-button-user-box">
+                        <!--<span class="glyphicon glyphicon-user"></span>-->
+                        <span class="bowtie-icon bowtie-user"><!--<i class="bowtie-icon bowtie-user"></i>--></span>
+                        <span class="hcs-header-username">{{$root.__USER__.display_name}}</span>
+                        <!--<span class="hcs-header-chevron"><i class="bowtie-icon bowtie-chevron-down"></i></span>-->
+                    </div>
+                </button>
+                <ul class="dropdown-menu hcs-home-button-user-menu">
+                    <li ng-repeat="module in $root.$$$list_modules">
+                        <div class="hcs-home-user-menu-box lv-button-logout" ng-click="$root.clickUrl(module)" role="button" tabindex="0">
+                            <!--<i class="bowtie-icon bowtie-user"></i>-->
+                            <span>{{module.custom_name}}</span>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="hcs-home-user-menu-box lv-button-logout" ng-click="" role="button" tabindex="0">
+                            <!--<i class="bowtie-icon bowtie-status-info-outline"></i>-->
+                            <span>${get_res('change_password','Đổi mật khẩu')}</span>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="hcs-home-user-menu-box lv-button-logout" ng-click="$root.doLogout()" role="button" tabindex="0">
+                            <!--<i class="bowtie-icon bowtie-status-failure-outline"></i>-->
+                            <span>${get_res('log_out','Đăng xuất')}</span>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="dropdown pull-right">
+                <!--<button class="btn btn-primary hcs-home-header-button hcs-home-button-lang" type="button" data-toggle="dropdown">
+                    <span>
+                        <img class="language-icon"
+                             ng-src="{{$root.url_static}}css/images/vn.png">
+                    </span>
+                </button>-->
+                <img class="language-icon" data-toggle="dropdown"
+                             ng-src="{{$root.url_static}}css/images/${request.get_language()}.png">
+                <ul class="dropdown-menu hcs-home-button-language-menu">
+                    <!--<li>
+                        <span class="language-title">${get_global_res('language', 'Ngôn ngữ')}</span>
+                    </li>-->
+                    %for x in request.get_languages():
+                        <%
+                            img = 'css/images/login/ic_' + x['code'] + '.jpg'
+                            class_name = ""
+                            style = ""
+                            if x['code'] == request.get_language():
+                                class_name = "active"
+                                style = "color: #27BA86;"
+                        %>
+                        <li>
+                            <a href='${get_app_url("language") + "?language=" + x["code"] + "&next="}{{$root.$$absUrl}}'>
+                                <!--<img class="language-icon" src="${get_static(img)}" />-->
+                                <span style="${style}" class="${class_name}">${ x['name'] }</span>
+                           </a>
+                                <input type="hidden" name="site" value='{{$root.$$absUrl}}' hidden/>
+                        </li>
+                    %endfor
+                </ul>
+            </div>
+            <!--<button class="btn btn-primary hcs-home-header-button">
+                <span><i class="bowtie-icon bowtie-view-full-screen"></i></span>
+            </button>-->
+            <div class="pull-right" id="btnShowMessage">
+                <button class="btn btn-primary hcs-home-header-button" >
+                    <div class="hcs-home-header-button-box">
+                        <!--<span class="message-heartbit"></span>
+                        <span class="message-number">99</span>-->
+                        <span class="bowtie-icon bowtie-notification"></span>
+                    </div>
+                </button>
+            </div>
             <div class="hcs-message-list message-hidden">
                 <div class="col-md-12 hcs-message-list-title">
                     <span>Bạn có 99 tin nhắn mới</span>
@@ -113,76 +189,23 @@
                 </div>
             </div>
 
-            <div class="dropdown">
-                <button class="btn btn-primary hcs-home-header-button hcs-home-button-lang" type="button" data-toggle="dropdown">
-                    <span>
-                        <img class="language-icon"
-                             ng-src="{{$root.url_static}}css/images/vn.png">
-                    </span>
+            <div class="pull-right">
+                <button class="btn btn-primary hcs-home-header-button" >
+                    <div class="hcs-home-header-button-box">
+                        <span class="bowtie-icon bowtie-search"></span>
+                    </div>
                 </button>
-                <ul class="dropdown-menu hcs-home-button-language-menu">
-                    <li>
-                        <span class="language-title">${get_global_res('language', 'Ngôn ngữ')}</span>
-                    </li>
-                    %for x in request.get_languages():
-                        <%
-                            img = 'css/images/login/ic_' + x['code'] + '.jpg'
-                            class_name = ""
-                            if x['code'] == request.get_language():
-                                class_name = "active"
-                        %>
-                        <li>
-                            <a href='${get_app_url("language") + "?language=" + x["code"] + "&next="}{{$root.$$absUrl}}' class="${class_name}">
-                                <img class="language-icon" src="${get_static(img)}" />
-                                <span>${ x['name'] }</span>
-                           </a>
-                                <input type="hidden" name="site" value='{{$root.$$absUrl}}' hidden/>
-                        </li>
-                        <li class="divider"></li>
-                    %endfor
-                </ul>
             </div>
-            <!--<button class="btn btn-primary hcs-home-header-button">
-                <span><i class="bowtie-icon bowtie-view-full-screen"></i></span>
-            </button>-->
-            <div class="dropdown">
-                <button class="btn btn-primary hcs-home-button-user" type="button" data-toggle="dropdown">
-                    <!--<span class="glyphicon glyphicon-user"></span>-->
-                    <span class="img-user"><i class="bowtie-icon bowtie-user"></i></span>
-                    <span class="hcs-header-username">{{$root.__USER__.display_name}}</span>
-                    <span class="hcs-header-chevron"><i class="bowtie-icon bowtie-chevron-down"></i></span>
-                </button>
-                <ul class="dropdown-menu hcs-home-button-user-menu">
-                    <li ng-repeat="md in data_modules">
-                        <div class="lv-button-logout" ng-click="" role="button" tabindex="0">
-                            <a ng-href="{{md.url}}">
-                                <i class="bowtie-icon bowtie-link"></i>
-                                <span>{{md.module_name}}</span>
-                            </a>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="lv-button-logout" ng-click="" role="button" tabindex="0">
-                            <i class="bowtie-icon bowtie-user"></i>
-                            <span>Hồ sơ</span>
-                        </div>
-                    </li>
-                    <li class="divider"></li>
-                    <li>
-                        <div class="lv-button-logout" ng-click="" role="button" tabindex="0">
-                            <i class="bowtie-icon bowtie-status-info-outline"></i>
-                            <span>Trợ giúp</span>
-                        </div>
-                    </li>
-                    <li class="divider"></li>
-                    <li>
-                        <div class="lv-button-logout" ng-click="$root.doLogout()" role="button" tabindex="0">
-                            <i class="bowtie-icon bowtie-status-failure-outline"></i>
-                            <span>Thoát</span>
-                        </div>
-                    </li>
-                </ul>
+
+            <div class="pull-right hcs-home-header-hour" role="navigation">
+                <div class="hcs-home-header-clock">
+                    <span class="hcs-home-header-clock-ampm ng-binding">{{$root.timer.meridiem | uppercase}}</span>
+                    <span class="hcs-home-header-clock-time ng-binding">{{$root.timer.clock}}</span>
+                    <br>
+                    <span class="hcs-home-header-clock-date ng-binding">{{$root.timer.date}}</span>
+                </div>
             </div>
+
         </div>
         <!--<div class="pull-right" role="navigation">
             <div class="hcs-home-header-clock">

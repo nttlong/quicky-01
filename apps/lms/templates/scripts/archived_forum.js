@@ -135,22 +135,39 @@
                 });
                 return true;
             }},
-            { "data": "specific_avail.start_date", "title": "${get_res('forum_start_date','Start Date')}","format": "date:" + 'dd/MM/yyyy'  },
-            { "data": "specific_avail.end_date", "title": "${get_res('forum_end_date','End Date')}","format": "date:" + 'dd/MM/yyyy'  },
-            { "data": "forum_administrator", "title": "${get_res('forum_administrator','Forum Admin')}" },
+            { "data": "specific_avail.start_date", "title": "${get_res('forum_start_date','Start Date')}", "className": "text-center" ,"expr":function(row, data, func){
+                func(function(){
+                    if(data != null)
+                        return "<image style='width:16px;height:16px;margin-bottom:3px' src='" +  scope.$root.url_static + "css/icon/calendar.png'/>" +" " + window.DateFormat.format(data, scope.$root.systemConfig.date_format);
+                    return " ";
+                });
+                return true;
+            }},
+            { "data": "specific_avail.end_date", "title": "${get_res('forum_end_date','End Date')}", "className": "text-center" ,"expr":function(row, data, func){
+                func(function(){
+                    if(data != null)
+                        return "<image style='width:16px;height:16px;margin-bottom:3px' src='" +  scope.$root.url_static + "css/icon/calendar.png'/>" +" " + window.DateFormat.format(data, scope.$root.systemConfig.date_format);
+                    return " ";
+                });
+                return true;
+            }},
+            { "data": "forum_administrator_name", "title": "${get_res('forum_administrator','Forum Admin')}" ,"expr":function(row, data, func){
+                func(function(){
+                    if(data != null)
+                        return "<img style='width:15px;height:17px' src='" + scope.$root.url_static + "css/icon/approver_tr.png" + "'/>" + " " + data;
+                    return " ";
+                });
+                return true;
+            }},
             { "data": "statusName", "title": "${get_res('forum_statusName','Status')}","expr":function(row, data, func){
-                 func(function(){
-                    if (row.statusName == "Open")
-                        return "<div class='status-radio-green''></div>" + "<i class='status-text-green''>" + row.statusName + "</i>";
-                    if (row.statusName == "Write Protected")
-                         return "<div class='status-radio-yellow''></div>" + "<i class='status-text-yellow''>" + row.statusName + "</i>";
-                    if (row.statusName == "Suspend")
-                        return "<div class='status-radio-red''></div>" + "<i class='status-text-red''>" + row.statusName + "</i>";
+                func(function(){
+                    if(row.statusName != "")
+                        return "<div class='" + row.styleRadio + "'></div>" + "<i class='" + row.styleText+ "'>" + row.statusName + "</i>";
                     return "<i style='width:15px;height:17px;font-weight:900'>" + " " + row.status + "</i>";
                 });
                 return true;
             }},
-            { "data": "created_on", "title": "${get_res('forum_created_on','Create At')}","format": "date:" + 'dd/MM/yyyy h:mm:ss a' },
+            { "data": "created_on", "title": "${get_res('forum_created_on','Create At')}","format": "date:" +  scope.$root.systemConfig.date_format + ' h:mm:ss a' },
     ];
 
 
@@ -164,7 +181,6 @@
             orderBy: orderBy,
             searchText: searchText
         };
-        //setTimeout(function () {
         if (fnReloadData) {
             if (searchText) {
                 _tableData(iPage, iPageLength, orderBy, searchText, function (data) {
@@ -176,7 +192,6 @@
                 });
             }
         }
-        //}, 1000);
     };
 
     scope.$root._tableData = scope._tableData = _tableData;
@@ -196,16 +211,22 @@
                 })
                 .done()
                 .then(function (res) {
-                    res.items.forEach(function(it){
+                    _.map(res.items, function(it) {
                         switch (it.forum_status) {
 	                    case 1:
 	                    	it.statusName = "${get_global_res('open','Open')}";
+	                    	it.styleRadio = "status-radio-green";
+	                    	it.styleText = "status-text-green";
 	                    	break;
 	                    case 2:
 	                    	it.statusName = "${get_global_res('suspend','Suspend')}";
+	                    	it.styleRadio = "status-radio-red";
+	                    	it.styleText = "status-text-red";
 	                    	break;
 	                    case 3:
 	                    	it.statusName = "${get_global_res('write_protected','Write Protected')}";
+	                    	it.styleRadio = "status-radio-yellow";
+	                    	it.styleText = "status-text-yellow";
 	                    	break;
 	                    default:
 	                        it.statusName = "";
@@ -218,9 +239,11 @@
 	                    case false:
 	                    	it.forum_typeName = "${get_global_res('private','Private')}";
 	                    	break;
-	                    default:
+                         default:
 	                        it.forum_typeName = "";
                         }
+
+                        return it;
                     })
 
                     var data = {

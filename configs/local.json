@@ -33,10 +33,9 @@
         "django.contrib.auth.middleware.AuthenticationMiddleware",
 
         "django.contrib.messages.middleware.MessageMiddleware",
-        "django.middleware.clickjacking.XFrameOptionsMiddleware",
+        "django.middleware.clickjacking.XFrameOptionsMiddleware"
 
-        "quicky.middleware.extension",
-        "qauth.authorization.auth"
+
 
 
 
@@ -158,25 +157,55 @@
     "name":"hrm",
     "collection":"sys.tracking"
   },
-  "APPS":[
-    {"host":"sys",
-     "name":"sys-admin",
-      "path":"apps/sys_admin",
-      "schema":"sys"
-    },{
-      "host":"",
-      "name":"hrm",
-      "path":"apps/hrm",
-      "login_url":"/login",
-      "schema":"hrm",
-      "disable":true
+   "APPS": [
+    {
+      "host": "sys",
+      "name": "sys-admin",
+      "path": "apps/sys_admin",
+      "schema": "sys",
+      "settings": {
+        "DATABASE": {
+          "host": "172.16.7.67",
+          "port": 27017,
+          "name": "lms",
+          "user": "sys",
+          "password": "123456"
+        }
+      }
+    },
+    {
+      "host": "",
+      "name": "performance",
+      "path": "apps/performance",
+      "login_url": "login"
 
-    },{
-      "host":"",
-      "name":"performance",
-      "path":"apps/performance",
-      "schema_1":"lv",
+    },
+    {
+      "host": "demo",
+      "name": "demo",
+      "path": "apps/demo",
+      "login_url": "/../login",
+      "static_dir": "apps/performance/static",
       "disable":true
+    },
+    {
+      "host": "lms",
+      "name": "lms",
+      "path": "apps/lms",
+      "login_url": "/../login",
+      "static_dir": "apps/performance/static"
+    },
+    {
+      "host": "training",
+      "name": "training",
+      "path": "apps/training",
+      "login_url": "/../login",
+      "static_dir": "apps/performance/static"
+    },{
+      "host":"video",
+      "name":"video",
+      "path":"apps/video"
+
     }
   ]
 

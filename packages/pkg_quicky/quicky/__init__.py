@@ -1,4 +1,4 @@
-VERSION = [1,0,0,"beta",2]
+VERSION = [1,0,0,"beta",3]
 def get_version():
     return VERSION[0].__str__()+\
            "."+VERSION[1].__str__()+\

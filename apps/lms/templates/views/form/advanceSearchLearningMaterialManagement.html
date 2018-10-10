@@ -2,7 +2,7 @@
 <%!
     #_style="width:200px;"
 %>
-<%inherit file="../commons/dialog_accepted.html"/>
+<%inherit file="../commons/dialog_search_close.html"/>
 
 <%block name="modal_body">
 <div class="col-md-12">
@@ -344,6 +344,12 @@
             //}
             ////}, 1000);
         };
+
+        scope.Close = Close;
+
+        function Close(event) {
+            $(event.target).closest("#myModal").modal('toggle');
+        }
 
         scope.Search_Click = Search_Click;
 

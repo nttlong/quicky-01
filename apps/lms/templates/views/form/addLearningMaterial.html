@@ -726,18 +726,20 @@ input[type=checkbox] .styled:checked+label::after,input[type=radio] .styled:chec
 
         (function _getDataInitCombobox() {
             scope.$root.$getInitComboboxData(scope, [{
-                "key": "${encryptor.get_key('cbb_lmsls_materialfolder')}",
-                "code": scope.entity.parent_code ? scope.entity.parent_code : null,
-                "alias": "cbb_lmsls_materialfolder"
-            }, {
-                "key": "${encryptor.get_key('lms_cbb_emp')}",
-                "code": scope.entity.moderator_id ? scope.entity.moderator_id : null,
-                "alias": "cbb_employees"
-            }, {
+                    "key": "${encryptor.get_key('cbb_lmsls_materialfolder')}",
+                    "code": scope.entity.parent_code ? scope.entity.parent_code : null,
+                    "alias": "cbb_lmsls_materialfolder"
+                },
+                {
+                    "key": "${encryptor.get_key('lms_cbb_emp')}",
+                    "code": scope.entity.moderator_id ? scope.entity.moderator_id : null,
+                    "alias": "cbb_employees"
+                },
+                {
                     "key": "${encryptor.get_key('lms_cbb_emp')}",
                     "code": scope.entity.approver_id ? scope.entity.approver_id : null,
                     "alias": "$$$list_emp"
-                }]);
+            }]);
         })();
     });
 </script>

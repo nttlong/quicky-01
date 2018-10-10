@@ -2,9 +2,9 @@
     'use strict';
 
     angular.module('ZebraApp.widgets')
-        .directive('pageSidebar', ["$compile", "templateService", pageSidebar]);
+        .directive('pageSidebar', ["$compile", "templateService", "authenticatedService", pageSidebar]);
 
-    function pageSidebar($compile, templateService) {
+    function pageSidebar($compile, templateService, authenticatedService) {
         return {
             restrict: 'E',
             replace: true,
@@ -15,12 +15,16 @@
                 content: "content"
             },
             scope: {
+                fnGen: "=onGen",
                 fnAdd: "=onAdd",
                 fnEdit: "=onEdit",
                 fnDelete: "=onDelete",
                 fnSave: "=onSave",
+                fnCopy: "=onCopy",
                 fnImport: "=onImport",
                 fnExport: "=onExport",
+                fnPrint: "=onPrint",
+                fnAction: "=onAction",
                 fnRefresh: "=onRefresh",
                 fnSearchPress: "=onSearchPress",
                 fnSearchChange: "=onSearchChange",
@@ -31,7 +35,8 @@
                 selectedKey: "=",
                 reloadOnChange: "=",
                 advancedSearch: "=",
-                extendToolbar: "="
+                extendToolbar: "=",
+                disabled: "="
             },
             templateUrl: templateService.getStatic("app/widgets/page-sidebar/page-sidebar.html"),
             link: function ($scope, elem, attr, ctrls, $transclude) {
@@ -47,13 +52,20 @@
                 $scope.$watch("listItem", function (v) {
                     if (!$scope.selectedKey && angular.isArray($scope.listItem) && $scope.listItem.length > 0) {
                         $scope.selectedKey = $scope.listItem[0][$scope.keyField];
+                        authenticatedService.getPermissionByFunctionId($scope.selectedKey, function(res){
+                            debugger
+                            $scope.authorise = res;
+                            $scope.$applyAsync();
+                        });
                     }
                 });
 
                 $scope.isAdvancedSearch = $transclude.isSlotFilled('advancedSearch');
                 $scope.showAdvancedSearch = showAdvancedSearch;
                 $scope.toggleCollapseMenu = toggleCollapseMenu;
+                $scope.checkItemDisabled = checkItemDisabled;
                 $scope.$onSelectItem = $onSelectItem;
+
                 $scope.$applyAsync();
 
 
@@ -70,19 +82,35 @@
                     rightContent.toggleClass("show-advanced");
                 }
 
+                function checkItemDisabled(func_id){
+                    return $scope.disabled && $scope.disabled.includes(func_id) ? true : false;
+                }
+
                 function $onSelectItem(key) {
+                    if(!$scope.disabled || ($scope.disabled && !$scope.disabled.includes(key)))
                     $scope.selectedKey = key;
 
-                    //if ($scope.reloadOnChange) {
-                    //    $scope.fnAdd = null;
-                    //    $scope.fnEdit = null;
-                    //    $scope.fnDelete = null;
-                    //    $scope.fnSave = null;
-                    //    $scope.fnImport = null;
-                    //    $scope.fnExport = null;
-                    //    $scope.fnSearchPress = null;
-                    //    $scope.fnSearchChange = null;
-                    //}
+                    if($scope.selectedKey){
+                        authenticatedService.getPermissionByFunctionId($scope.selectedKey, function(res){
+                            debugger
+                            $scope.authorise = res;
+                            $scope.$applyAsync();
+                        });
+                    }else{
+                        $scope.fnGen = null;
+                        $scope.fnAdd = null;
+                        $scope.fnEdit = null;
+                        $scope.fnDelete = null;
+                        $scope.fnSave = null;
+                        $scope.fnCopy = null;
+                        $scope.fnImport = null;
+                        $scope.fnExport = null;
+                        $scope.fnPrint = null;
+                        $scope.fnAction = null;
+                        $scope.fnRefresh = null;
+                        $scope.fnSearchPress = null;
+                        $scope.fnSearchChange = null;
+                    }
 
                     $scope.$applyAsync();
                 }

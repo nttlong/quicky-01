@@ -70,12 +70,11 @@ def get_item(args):
     item = sys_customers().find_one("code=={0}", args["data"]["code"])
     return item
 def get_items(args):
-    qr = sys_customers().aggregate().project(
+    items = sys_customers().aggregate().project(
         code=1,
         name=1,
         _id=0
-    )
-    items=qr.get_list()
+    ).get_list()
     import sys
     items.insert(0, {
         "code": "-",
@@ -96,8 +95,7 @@ def get_list_of_users_by_customer(args):
     schema=None
     if args["data"]["customerCode"] == "-":
         import sys
-        from django.conf import settings
-        schema=settings.MULTI_TENANCY_DEFAULT_SCHEMA
+        schema=sys.modules["settings"].MULTI_TENANCY_DEFAULT_SCHEMA
     elif args["data"]["customerCode"]== "system":
         from quicky import applications
         schema =applications.get_app_by_file(__file__).mdl.settings.DEFAULT_DB_SCHEMA
@@ -107,7 +105,7 @@ def get_list_of_users_by_customer(args):
         if customer_item == None:
             return {}
 
-    qr=auth_user()\
+    data=auth_user()\
         .switch_schema(schema)\
         .aggregate()\
         .project(
@@ -122,8 +120,8 @@ def get_list_of_users_by_customer(args):
         email=1,
         date_joined=1
 
-    )
-    data=qr.get_page(
+    )\
+        .get_page(
         page_size=args["data"].get("pageSize", 50),
         page_index=args["data"].get("pageIndex", 0)
     )

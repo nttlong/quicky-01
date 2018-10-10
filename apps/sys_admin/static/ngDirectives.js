@@ -104,16 +104,6 @@ function dialog($scope) {
             me._params=data;
             return me;
         }
-        me.ok=function(callback,params){
-            me._ok=callback;
-            me._ok_params=params;
-            return me;
-        }
-        me.cancel=function(callback,params){
-            me._cancel=callback;
-            me._cancel_params=params;
-            return me;
-        }
         me.done = function (callback) {
             var $sender=undefined
             if(_onBeforeLoadContent){
@@ -135,11 +125,9 @@ function dialog($scope) {
                     }
                     sScope.$element.appendTo("body");
                     sScope.$element.find(".modal-dialog").hide();
-                    sScope.$ok=function(){
-                        return me._ok(me._ok_params)
-                    };
-                    sScope.$cancel=function(){ return me._cancel(me._cancel_params)};
                     var _width=$(sScope.$element.find(".modal-body").children()[0]).width();
+
+                    debugger;
                     function watch() {
                         if (!$.contains($("body")[0], sScope.$element[0])) {
                             sScope.$destroy();
@@ -175,7 +163,6 @@ function dialog($scope) {
                         }
                     }
                     sScope.$doClose = function () {
-
                         sScope.$element.modal('hide')
                     }
                     watch();
@@ -188,7 +175,7 @@ function dialog($scope) {
                 }
             })
         }
-        me.witdh=function(value){
+        me.with=function(value){
             me._width=value;
             return me;
         }
@@ -207,26 +194,11 @@ function $url() {
             var ref = window.location.href.split('#')[1];
             var items = ref.split('&');
             for (var i = 0; i < items.length; i++) {
-                var subItems=items[i].split('=');
-                var key=subItems[0];
-                var val=subItems[1];
-
-                me.data[subItems[0]] =unescape(decodeURIComponent(val));
-                if(me.data[subItems[0]] == null){
-                    alert("loi")
-                }
+                me.data[items[i].split('=')[0]] = items[i].split('=')[1];
             }
         }
         me.param = function (key, value) {
             me.data[key] = value;
-            return me;
-        }
-        me.remove = function (keys) {
-            var items=keys.split(',');
-            for(var i=0;i<items.length;i++){
-                me.data[items[i]] =undefined;
-            }
-
             return me;
         }
         me.clear = function () {
@@ -237,7 +209,7 @@ function $url() {
             var ret = "";
             var keys = Object.keys(me.data);
             for (var i = 0; i < keys.length; i++) {
-                ret += keys[i] + "=" +encodeURIComponent(escape( me.data[keys[i]])) + "&"
+                ret += keys[i] + "=" + me.data[keys[i]] + "&"
             }
             return ret.substring(0, ret.length - 1);
         }

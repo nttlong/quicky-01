@@ -31,7 +31,7 @@ def create_view(view_name, collection_name, pipe_line):
     get_db_context().command({
         "create": view_name,
         "viewOn": get_collection_name_with_schema(collection_name), 
-        "pipeline": pipeline
+        "pipeline": pipe_line
     })
 
 def get_current_schema():

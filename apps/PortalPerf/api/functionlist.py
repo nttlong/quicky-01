@@ -4,8 +4,20 @@ logger = logging.getLogger(__name__)
 import common
 
 def get_list(args):
+    if (args["data"] == None or args["data"].has_key("language") == False or args["data"]["language"] == None):
+        return dict();
+
+    lang = args["data"]["language"]
+
+    if (lang == "vi"):
+        lang = 'vn'
+
+    lang = lang.upper()
+
     items = models.models_per.SYS_FunctionList().aggregate()
     items.left_join(models.models_per.HCSSYS_FunctionListSummary(), "function_id", "function_id", "uc")
+    items.left_join(models.HCSSYS_FunctionListLabel(), "function_id", "function_id", "lb")
+    items.match("(lb.language == {0}) or ((image != {1}) and (image != {2}))", lang, "", None)
     items.project(
         sorting              = 1,
         description          = 1,
@@ -24,7 +36,10 @@ def get_list(args):
         app                  = 1,
         level_code           = 1,
         color                = 1,
-        sumary               = "uc"
+        sumary               = "uc",
+        default_name_lb      = "lb.default_name",
+        custom_name_lb       = "lb.custom_name",
+        description_lb       = "lb.description"
         ).match("app == {0}", "PortalPerf").sort({"sorting":1})
     data = items.get_list()
     for x in data:
@@ -33,8 +48,87 @@ def get_list(args):
     return data
 
 def get_list_module(args):
-    ret = models.HCSSYS_Modules().aggregate().sort({"odinal": 1})
-    return ret.get_list()
+    if(args["data"] == None or args["data"].has_key("language") == False or args["data"]["language"] == None):
+        return dict();
+
+    lang = args["data"]["language"]
+
+    if (lang == "vi"):
+        lang = 'vn'
+
+    lang = lang.upper()
+
+    collection = common.get_collection('HCSSYS_Modules')
+
+    ret = collection.aggregate([
+        {
+            "$sort": {"sorting": 1}
+        }, {
+            "$match": {
+                "module_type": "portal"
+            }
+        }, {
+        "$lookup":
+           {
+                "from": common.get_collection_name_with_schema('HCSSYS_FunctionListLabel'),
+                "let": { "module_code": "$module_code" },
+                "pipeline": [
+                    { "$match":
+                        { "$expr":
+                            {
+                                "$and": [
+                                    {
+                                        "$eq": ["$language", lang]
+                                    }, {
+                                        "$eq": [ "$function_id",  "$$module_code" ]
+                                    }, {
+                                        "$eq": ["$application", "HCSSYS_Modules"]
+                                    }
+                                ]
+                            }
+                        }
+                    },
+                    { "$project": { "function_id": 1, "language": 1, "default_name": 1, "custom_name": 1, "description": 1 } }
+                ],
+                "as": "stockdata"
+            }
+        }, {
+            "$unwind": "$stockdata"
+        }, {
+            "$project": {
+                "module_code": 1,
+                "module_name": 1,
+                "module_type": 1,
+                "url":         1,
+                "redirect_url": 1,
+                "is_active":   1,
+                "sorting": 1,
+                "is_new_tab": 1,
+                "default_name": "$stockdata.default_name",
+                "custom_name": "$stockdata.custom_name",
+                "description": "$stockdata.description",
+                "function_id": "$stockdata.function_id",
+            }
+        }
+
+    ])
+
+    #ret = models.HCSSYS_Modules().aggregate()
+    #ret.match("module_type == {0}", "portal")
+    #ret.sort({"sorting": 1})
+    #ret.left_join()
+    #ret.project(
+    #    module_code = 1,
+    #    module_name = 1,
+    #    module_type = 1,
+    #    url = 1,
+    #    redirect_url = 1,
+    #    is_active = 1,
+    #    sorting = 1,
+    #    is_new_tab = 1,
+    #    lb = 1
+    #)
+    return list(ret)
 
 def exec_query(args):
     import json

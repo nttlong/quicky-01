@@ -19,8 +19,6 @@
       app.controller("admin",["$dialog","$scope",function($dialog,$scope){
             $scope.VIEW_ID="${register_view()}"
           $dialog($scope)
-        $scope.$root.url=$url
-        console.log($scope.$root.$url);
         $scope.$root.error=function(msg){
             bootoast.toast({
                 message: msg,
@@ -90,6 +88,5 @@
                 "top":5
               });
           });
-
       }]);
     </script>

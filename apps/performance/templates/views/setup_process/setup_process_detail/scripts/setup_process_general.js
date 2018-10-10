@@ -36,10 +36,9 @@
         is_send_email_once: false,
         send_email_once_from_hour: null,
         send_email_once_to_hour: null,
-        created_by: scope.$root.__USER__.login_account,
-        created_on: new Date(),
-        modified_on: null,
-        modified_by: null
+        process_level_apply_for: null,
+        score_by: null,
+        score_by_coeff: null
     }
     scope._disableControl = false;
 
@@ -49,6 +48,12 @@
     }
     scope.$parent.$parent.$parent.onSave = onSave;
     scope.$parent.$parent.$parent.onSearch = null;
+    scope.$parent.$parent.$parent.onAdd = null;
+    scope.$parent.$parent.$parent.onEdit = null;
+    scope.$parent.$parent.$parent.onImport = null;
+    scope.$parent.$parent.$parent.onExport = null;
+    scope.$parent.$parent.$parent.onRefresh = null;
+    scope.$parent.$parent.$parent.onDelete = null;
     scope.__mode = scope.$parent.$parent.$parent.$parent.mode;
     scope.entity = {};
     scope.$$process_id = scope.__mode == 2 ? scope.$parent.$parent.$parent.$parent.$$process_id : null;
@@ -64,7 +69,7 @@
                 continuteSave(function () {
                     callApi("${get_api_key('app_main.api.TM_SetupProcess/generate_list_approve_by_max_approve_level')}",
                         {
-                            "process_id": scope.$$process_id,
+                            "process_id": scope.__mode == 2 ? scope.$$process_id : scope.entity.process_id,
                             "max_approve_level": scope.$$curr_max_approve_level
                         }, function () {
                             scope.$parent.$parent.$parent.$parent.$$curr_max_approve_level = scope.$$curr_max_approve_level;
@@ -77,7 +82,7 @@
                 continuteSave(function () {
                     callApi("${get_api_key('app_main.api.TM_SetupProcess/generate_list_approve_by_max_approve_level')}",
                         {
-                            "process_id": scope.$$process_id,
+                            "process_id": scope.__mode == 2 ? scope.$$process_id : scope.entity.process_id,
                             "max_approve_level": scope.$$curr_max_approve_level
                         }, function () {
                             scope.$parent.$parent.$parent.$parent.$$curr_max_approve_level = scope.$$curr_max_approve_level;
@@ -96,6 +101,7 @@
                 scope.$$curr_max_approve_level = JSON.parse(JSON.stringify(scope.entity.max_approve_level));
                 if (res.error == null) {
                     $msg.alert("${get_global_res('Handle_Success','Thao tác thành công')}", $type_alert.INFO);
+                    scope.$parent.$parent.$parent.$parent.$$is_approve_by_dept = scope.entity.is_approve_by_dept;
                     scope.$parent.$parent.$parent._reloadData();
                     if (fnCallBack) {
                         fnCallBack();

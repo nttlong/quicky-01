@@ -14,7 +14,7 @@ from models import Login
 
 from django.contrib.auth.models import User
 from django.core.exceptions import ObjectDoesNotExist
-from django.contrib.auth import authenticate,login as form_login
+from django.contrib.auth import authenticate, load_backend, logout, login as form_login
 import quicky
 application=applications.get_app_by_file(__file__)
 # from django.urls import reverse
@@ -64,6 +64,22 @@ def load_page(request,path):
         return request.render({})
     except:
         return HttpResponse("page was not found")
+
+@quicky.view.template("sign_out.html")
+def logout_view(request):
+    logout(request, request.user.schema)
+    #quicky.language.remove_language()
+    request.session.clear()
+    return redirect(request.get_app_url(""))
+
+@quicky.view.template(is_public=True)
+def change_language(request):
+    import quicky
+    from django.conf import settings as st
+    lan = request.GET.get('language', st.LANGUAGE_CODE)
+    request.session['language'] = lan
+    quicky.language.set_language(lan)
+    return redirect(request.get_app_url(""))
 
 @quicky.view.template("sign_out.html")
 def sign_out(request):

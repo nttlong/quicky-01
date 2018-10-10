@@ -84,11 +84,9 @@
         $(event.target).closest('div').addClass('active');
         }
 
+        scope.Close = Close;
 
-
-        scope.Search_Click = Search_Click;
-
-        function Search_Click(event) {
+        function Close(event) {
             $(event.target).closest("#myModal").modal('toggle');
         }
     });

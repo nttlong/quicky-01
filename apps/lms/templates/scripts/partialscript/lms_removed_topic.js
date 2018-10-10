@@ -52,6 +52,8 @@
                     .done()
                     .then(function (res) {
                         if (res.deleted > 0) {
+                            _tableData(scope.$$tableConfig.iPage, scope.$$tableConfig.iPageLength, scope.$$tableConfig.orderBy, scope.$$tableConfig.SearchText, scope.$$tableConfig.fnReloadData);
+                            $msg.alert("${get_global_res('Handle_Success','Thao tác thành công')}", $type_alert.INFO);
                             scope.currentItem = [];
                             scope.$root.refresh();
                         }
@@ -113,17 +115,17 @@
         { "data": "created_by", "title": "${get_res('created_by','Created by')}","expr":function(row, data, func){
             func(function(){
                 return "<span><img class='hcs-small-img' style='width:15px;height:17px' src='" + scope.urls + "css/icon/approver_tr.png" + "'/>"
-                + ' ' + row.created_by + ' ' +  window.DateFormat.format(row.created_on, 'dd.MM.yyyy hh:mm a')
+                + ' ' + row.created_by + ' ' +  window.DateFormat.format(row.created_on, scope.$root.systemConfig.date_format + ' hh:mm a')
                 + '</span>';
             });
             return true;
         }},
-        { "data": "topic_replies", "title": "${get_res('topic_replies','Replies')}" },
-        { "data": "topic_views", "title": "${get_res('topic_views','Views')}" },
+        { "data": "topic_replies", "title": "${get_res('topic_replies','Replies')}", "className": "text-center" },
+        { "data": "topic_views", "title": "${get_res('topic_views','Views')}", "className": "text-center" },
         { "data": "modified_by", "title": "${get_res('modified_by','Last Updated by')}","expr":function(row, data, func){
             func(function(){
                 return "<span><img class='hcs-small-img' style='width:15px;height:17px' src='" + scope.urls + "css/icon/approver_tr.png" + "'/>"
-                + ' ' + row.modified_by + ' ' +  window.DateFormat.format(row.modified_on, 'dd.MM.yyyy hh:mm a')
+                + ' ' + row.modified_by + ' ' +  window.DateFormat.format(row.modified_on, scope.$root.systemConfig.date_format + ' hh:mm a')
                 + '</span>';
             });
             return true;
@@ -161,12 +163,6 @@
     var _treeDepartmentsDataSource = null;
     scope.treeDepartmentsDataSource = null;
 
-    //navigation button
-    scope.firstRow = firstRow;
-    scope.previousRow = previousRow;
-    scope.nextRow = nextRow;
-    scope.lastRow = lastRow;
-
     //function button
     scope.refresh = refresh;
 
@@ -188,34 +184,6 @@
             tableConfig.iPageLength, tableConfig.orderBy,
             tableConfig.searchText, tableConfig.fnReloadData);
         _departments();
-    }
-
-    function firstRow() {
-        if (scope.__tableSource.length > 0) {
-            scope.currentItem = scope.__tableSource[0];
-        }
-    }
-
-    function previousRow() {
-        if (scope.__tableSource.length > 0) {
-            var idx_item = _.findIndex(scope.__tableSource, { "employee_code": scope.currentItem.employee_code });
-            var index = idx_item === 0 ? scope.__tableSource.length - 1 : idx_item - 1;
-            scope.currentItem = scope.__tableSource[index];
-        }
-    }
-
-    function nextRow() {
-        if (scope.__tableSource.length > 0) {
-            var idx_item = _.findIndex(scope.__tableSource, { "employee_code": scope.currentItem.employee_code });
-            var index = idx_item === (scope.__tableSource.length - 1) ? 0 : idx_item + 1;
-            scope.currentItem = scope.__tableSource[index];
-        }
-    }
-
-    function lastRow() {
-        if (scope.__tableSource.length > 0) {
-            scope.currentItem = scope.__tableSource[scope.__tableSource.length - 1];
-        }
     }
 
     function handleData() {

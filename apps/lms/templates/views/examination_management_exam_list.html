@@ -17,18 +17,18 @@
             <a><span>{{$root.currentFunction.default_name}}</span></a>
             <span><i class="bowtie-icon bowtie-chevron-right"></i></span>
             <span>{{currentFunction.default_name}}</span></site-map>
-        <extend-toolbar >
+        <extend-toolbar>
             <div style="display: grid; grid-template-columns: auto 1fr">
-                <div class="col-md-6" style="padding-right: 0; top: 2px;">
-                    <!--<input-text-icon id="tableSearchText" on-click="objSearch.onSearch" ng-model="objSearch.$$$modelSearch"></input-text-icon>-->
-                     <div class="hcs-left-side-department-tree-tool-bar-div-search">
-                        <input class="hcs-left-side-department-tree-tool-bar-input-search" ng-model="objSearch.$$$modelSearch">
-                        <div class="hcs-left-side-department-tree-tool-bar-input-search-bot"></div>
-                        <div class="hcs-left-side-department-tree-tool-bar-input-search-bot-icon" ng-click="onSearchText()">
-                            <i class="glyphicon glyphicon-search"></i>
-                        </div>
-                    </div>
-                </div>
+                <!--<div class="col-md-6" style="padding-right: 0; top: 2px;">-->
+                     <!--<div class="hcs-left-side-department-tree-tool-bar-div-search">-->
+                        <!--<input class="hcs-left-side-department-tree-tool-bar-input-search" ng-model="objSearch.$$$modelSearch">-->
+                        <!--<div class="hcs-left-side-department-tree-tool-bar-input-search-bot"></div>-->
+                        <!--<div class="hcs-left-side-department-tree-tool-bar-input-search-bot-icon" ng-click="onSearchText()">-->
+                            <!--<i class="glyphicon glyphicon-search"></i>-->
+                        <!--</div>-->
+                    <!--</div>-->
+                <!--</div>-->
+                <input-text-icon id="tableSearchText" on-click="objSearch.onSearch" ng-model="objSearch.$$$modelSearch"></input-text-icon>
                 <div style="margin-left: 12px;">
                     <div class="dropdown ng-scope">
                         <button class="zb-btn dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false">
@@ -39,37 +39,49 @@
                                 <button class="zb-btn border-0" ng-click="viewHistoryLearningMaterial()">
                                     <i class="bowtie-icon bowtie-file-preview"></i>
                                 </button>
-                                <span>Exam Preview</span>
+                                <span>${get_res('exam_preview','Exam Preview')}</span>
                             </li>
                             <li>
                                 <button class="zb-btn border-0" ng-click="viewExamSummary()">
                                     <i class="bowtie-icon bowtie-file-content"></i>
                                 </button>
-                                <span>Exam Summary</span>
+                                <span>${get_res('exam_summary','Exam Summary')}</span>
                             </li>
 							<li>
-                                <button class="zb-btn border-0" ng-click="viewPermissionLearningMaterialManagerment()">
+                                <button class="zb-btn border-0" ng-click="viewExamHistory()">
                                     <i class="bowtie-icon bowtie-file-preview"></i>
                                 </button>
-                                <span>Exam History</span>
+                                <span>${get_res('exam_history','Exam History')}</span>
                             </li>
 							<li>
-                                <button class="zb-btn border-0" ng-click="viewAdvandceSearchLearningMaterialManagerment()">
+                                <button class="zb-btn border-0" ng-click="printExam()">
                                     <i class="bowtie-icon bowtie-print"></i>
                                 </button>
-                                <span>Print Exam</span>
+                                <span>${get_res('print_exam','Print Exam')}</span>
                             </li>
                             <li>
-                                <button class="zb-btn border-0" ng-click="viewShareFileLearningMaterial()">
+                                <button class="zb-btn border-0" ng-click="clearExamHistory()">
                                     <i class="bowtie-icon bowtie-math-multiply-box-outline"></i>
                                 </button>
-                                <span>Clear Exam History</span>
+                                <span>${get_res('clear_exam_history','Clear Exam History')}</span>
                             </li>
                             <li>
-                                <button class="zb-btn" ng-click="downLoadFileLearningMaterial()">
+                                <button class="zb-btn" ng-click="duplicateExam()">
                                     <i class="bowtie-icon bowtie-clone"></i>
                                 </button>
-                                <span>Duplicate</span>
+                                <span>${get_res('duplicate','Duplicate')}</span>
+                            </li>
+                             <li>
+                                <button class="zb-btn" ng-click="edit()">
+                                    <i class="bowtie-icon bowtie-edit-outline"></i>
+                                </button>
+                                <span>${get_res('edit', 'Edit')}</span>
+                            </li>
+                             <li>
+                                <button class="zb-btn" ng-click="deleteOne()">
+                                    <i class="bowtie-icon bowtie-trash"></i>
+                                </button>
+                                 <span>${get_res('delete', 'Delete')}</span>
                             </li>
                         </ul>
                     </div>
@@ -80,18 +92,17 @@
                             <i class="bowtie-icon bowtie-edit-outline"></i>
                         </button>
                     <button class="zb-btn zb-btn-o-red" ng-click="delete()">
-                            <i class="bowtie-icon bowtie-edit-remove"></i>
+                            <i class="bowtie-icon bowtie-trash"></i>
+                    </button>
+                    <button class="zb-btn" ng-click="printExam()">
+                            <i class="bowtie-icon bowtie-print"></i>
                     </button>
                     <button class="zb-btn" ng-click="importTemplate()">
                             <i class="bowtie-icon bowtie-transfer-upload"></i>
-                        </button>
+                    </button>
                     <button class="zb-btn" ng-click="exportTemplate()">
                             <i class="bowtie-icon bowtie-transfer-download"></i>
-                        </button>
-                    <button class="zb-btn" ng-click="$root.refresh()">
-                            <i class="bowtie-icon bowtie-navigate-refresh"></i>
-                        </button>
-
+                    </button>
                 </div>
             </div>
         </extend-toolbar>

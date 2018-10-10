@@ -8,6 +8,8 @@ def get_employee_list_by_department(dept_code, page_size, page_index, sort, sear
     return ret
 
 def get_empworking_by_employee_code(emp_code, page_index, page_size, sort, search):
+    from qmongo.qcollections import queryable
+
     a = views.SYS_VW_ValueList()
     ret = {}
     collection = common.get_collection('HCSEM_EmpWorking').aggregate([{"$match":{'employee_code':{'$regex':'^' + emp_code}}},

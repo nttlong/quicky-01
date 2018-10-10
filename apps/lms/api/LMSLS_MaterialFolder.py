@@ -55,6 +55,8 @@ def get_list_with_searchtext(args):
     pageIndex = (lambda pIndex: pIndex if pIndex != None else 0)(pageIndex)
     pageSize = (lambda pSize: pSize if pSize != None else 20)(pageSize)
     ret=models.LMSLS_MaterialFolder().aggregate()
+    ret.lookup(models.LMS_VW_Employee(), "moderator_id", "employee_code", "emp")
+    ret.unwind("emp", False)
     ret.left_join(models.models.auth_user_info(), "created_by", "username", "uc")
     ret.left_join(models.models.auth_user_info(), "modified_by", "username", "um")
     ret.project(
@@ -69,6 +71,7 @@ def get_list_with_searchtext(args):
             lock=1,
             note=1,
             moderator_id=1,
+            moderator_name="concat(emp.last_name, ' ', emp.first_name)",
             approver_id=1,
             active=1,
             permisions=1,

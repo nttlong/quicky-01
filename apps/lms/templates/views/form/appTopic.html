@@ -403,8 +403,10 @@ input[type=checkbox] .styled:checked+label::after,input[type=radio] .styled:chec
             if (scope.__mode == 3) {
 
             }
+            var parameter = JSON.parse(JSON.stringify(scope.entity));
+            delete parameter['publish_date'];
             services.api(url)
-                .data(scope.entity)
+                .data(parameter)
                 .done()
                 .then(function (res) {
                     callback(res);

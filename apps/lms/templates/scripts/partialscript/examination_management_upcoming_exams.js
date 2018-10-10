@@ -33,7 +33,7 @@
 
     scope.$root.create = function () {
         scope.mode = 1; // set mode chỉnh sửa
-        openDialog("${get_res('Create_question_category','Create Question Category')}", 'form/addExUpcomingExams', function () {
+        openDialog("${get_res('create_an_examination','Create an Examination')}", 'form/addExUpcomingExams', function () {
             setTimeout(function () {
                 $(window).trigger('resize');
             }, 200);
@@ -41,10 +41,9 @@
     }
 
     scope.$root.edit = function () {
-        debugger
         if (scope.currentItem&& !_.isEmpty(scope.currentItem)) {
             scope.mode = 2; // set mode chỉnh sửa
-            openDialog("${get_res('edit_question_category','Edit Question Category')}", 'form/addExUpcomingExams', function () {
+            openDialog("${get_res('edit_an_examination','Edit an Examination')}", 'form/addExUpcomingExams', function () {
                 setTimeout(function () {
                     $(window).trigger('resize');
                 }, 200);
@@ -56,7 +55,6 @@
     }
 
     scope.$root.delete = function () {
-        
         var arrayId = scope.selectedItems.filter(function (el) {
             return el && el._id
         })
@@ -67,8 +65,9 @@
                     .data(arrayId)
                     .done()
                     .then(function (res) {
-                        debugger
                         if (res.deleted > 0) {
+                            _tableData(scope.$$tableConfig.iPage, scope.$$tableConfig.iPageLength, scope.$$tableConfig.orderBy, scope.$$tableConfig.SearchText, scope.$$tableConfig.fnReloadData);
+                            $msg.alert("${get_global_res('Handle_Success','Thao tác thành công')}", $type_alert.INFO);
                             scope.currentItem = [];
                             scope.$root.refresh();
                         }
@@ -78,6 +77,28 @@
             $msg.message("${get_global_res('Notification','Thông báo')}", "${get_app_res('No_Row_Selected','Không có dòng được chọn')}", function () { });
         }
     }
+
+    scope.$root.deleteOne = function () {
+	     if (scope.currentItem) {
+            var Id = scope.currentItem['_id'];
+            $msg.confirm("${get_global_res('Notification','Thông báo')}", "${get_global_res('Do_You_Want_Delete','Bạn có muốn xóa không?')}", function () {
+                services.api("${get_api_key('app_main.api.LMSLS_ExExamination/delete_one')}")
+                    .data(Id)
+                    .done()
+                    .then(function (res) {
+                        if (res.deleted > 0) {
+                            _tableData(scope.$$tableConfig.iPage, scope.$$tableConfig.iPageLength, scope.$$tableConfig.orderBy, scope.$$tableConfig.SearchText, scope.$$tableConfig.fnReloadData);
+                            $msg.alert("${get_global_res('Handle_Success','Thao tác thành công')}", $type_alert.INFO);
+                            scope.currentItem = [];
+                            scope.$root.refresh();
+                        }
+                    })
+            });
+        }
+        else {
+            $msg.message("${get_global_res('Notification','Thông báo')}", "${get_app_res('No_Row_Selected','Không có dòng được chọn')}", function () { });
+        }
+	}
 
     scope.$root.viewExamSummary = function () {
         
@@ -193,39 +214,49 @@
     }
 
     //Cấu hình tên field và caption hiển thị trên UI
+     scope.tableFields
     scope.tableFields = [
         { "data": "exam_id", "title": "${get_res('exam_id_table_header','ID')}" },
         { "data": "exam_name1", "title": "${get_res('exam_name_table_header','Exam Name')}" },
         { "data": "exam_category", "title": "${get_res('exam_category_ques_header','Exam Category')}" },
         { "data": "exam_type", "title": "${get_res('exam_type_table_header','Exam Type')}","expr":function(row, data, func){
             func(function(){
-                return "<p style='color:rgb(91,155,213)'>" + row.exam_type + "</p>" ;
-
+                return "<p style='color:rgb(91,155,213);margin-bottom:0px;'>" + row.exam_type + "</p>" ;
             });
             return true;
         } },
-        { "data": "total_question", "title": "${get_res('total_question_table_header','Total Questions')}" },
-        { "data": "start_date", "title": "${get_res('start_date_table_header','Start Date')}", "format": "date:" + 'dd/MM/yyyy' ,"expr":function(row, data, func){
+        { "data": "total_question", "title": "${get_res('total_question_table_header','Total Questions')}", "className": "text-center" },
+        { "data": "start_date", "title": "${get_res('start_date_table_header','Start Date')}", "className": "text-center" ,"expr":function(row, data, func){
             func(function(){
-                return "<i style='color:#FF0040' class='bowtie-icon bowtie-calendar'></i>" +" " + data;
+                if(row.start_date != null)
+                    return "<image style='width:16px;height:16px;margin-bottom:3px' src='" +  scope.$root.url_static + "css/icon/calendar.png'/>" +" " + window.DateFormat.format(row.start_date, scope.$root.systemConfig.date_format);
+                return " ";
             });
             return true;
         }},
-        { "data": "end_date", "title": "${get_res('end_date_header','End Date')}", "format": "date:" + 'dd/MM/yyyy',"expr":function(row, data, func){
+        { "data": "end_date", "title": "${get_res('end_date_header','End Date')}", "className": "text-center" , "expr":function(row, data, func){
             func(function(){
-                return "<i style='color:#FF0040' class='bowtie-icon bowtie-calendar'></i>" +" " + data;
+                if (row.end_date != null)
+                    return "<image style='width:16px;height:16px;margin-bottom:3px' src='" +  scope.$root.url_static + "css/icon/calendar.png'/>" +" " + window.DateFormat.format(row.end_date, scope.$root.systemConfig.date_format);
+                return " ";
             });
             return true;
         } },
-        { "data": "duration", "title": "${get_res('duration_table_header','Duration')}" },
+        { "data": "duration", "title": "${get_res('duration_table_header','Duration')}"},
         { "data": "exam_mode", "title": "${get_res('exam_mode_table_header','Exam Mode')}" ,"expr":function(row, data, func){
             func(function(){
-                return "<p style='font-weight:bold;color:" + row.color + "'>"  + row.exam_mode +"</p>";
+                return "<p style='font-weight:bold;margin-bottom:0px;color:" + row.color + "'>"  + row.exam_mode +"</p>";
             });
             return true;
         }},
-        { "data": "status", "title": "${get_res('status_table_header','Status')}" },
-        
+        { "data": "status", "title": "${get_res('status_table_header','Status')}","expr":function(row, data, func){
+            func(function(){
+                if(row.statusName != "")
+                    return "<div class='" + row.styleRadio + "'></div>" + "<i class='" + row.styleText+ "'>" + row.statusName + "</i>";
+                return " ";
+            });
+            return true;
+        }},
     ];
 
     scope.$$tableConfig = {};
@@ -237,7 +268,6 @@
     scope.onSelectTableRow = function ($row) {
         scope.mode = 2;
         scope.$root.edit();
-        console.log("vvvv")
     };
     //Danh sách các dòng đc chọn (nếu là table MultiSelect)
     scope.selectedItems = [];
@@ -415,8 +445,23 @@
                             val.start_date = '';
                             val.end_date = '';
                         }
-                        val.status ='';
-                        return val;
+
+                        switch (val.status) {
+                            case true:
+                                val.statusName = "${get_global_res('published','Published')}";
+                                val.styleRadio = "status-radio-green";
+	                    	    val.styleText = "status-text-green";
+                                break;
+                            case false:
+                                val.statusName = "${get_global_res('draft', 'Draft')}";
+                                val.styleRadio = "status-radio-red";
+	                    	    val.styleText = "status-text-red";
+                                break;
+                            default:
+	                                val.statusName = "";
+                        }
+                         return val;
+
                     })
                     
                     var data = {

@@ -69,6 +69,8 @@ from TM_EmailTemplate import TM_EmailTemplate
 from HCSSYS_AttachmentFile import HCSSYS_AttachmentFile
 from TM_SetupProcessApproverEmp import TM_SetupProcessApproverEmp
 from TM_SetupProcessApproverDept import TM_SetupProcessApproverDept
+from TM_SetupProcessApplyEmp import TM_SetupProcessApplyEmp
+from HCSSYS_FunctionListLabel import HCSSYS_FunctionListLabel
 
 # Long meagere code
 from TM_SetupProcess import TM_SetupProcess

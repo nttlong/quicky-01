@@ -121,9 +121,7 @@ def get_list_with_searchtext(args):
     pageIndex = (lambda pIndex: pIndex if pIndex != None else 0)(pageIndex)
     pageSize = (lambda pSize: pSize if pSize != None else 20)(pageSize)
     ret=models.LMSLS_MaterialManagement().aggregate()
-    ret.left_join(models.models.auth_user_info(), "created_by", "username", "uc")
-    ret.left_join(models.models.auth_user_info(), "modified_by", "username", "um")
-    # Tìm kiếm theo advance search 
+    # Tìm kiếm theo advance search
     # nếu không có advance search thì bỏ qua
     isWhereAdvance = False
     if(where != None):
@@ -141,47 +139,53 @@ def get_list_with_searchtext(args):
                 else:
                     ret.match("contains(material_name, @name)",name=where["searchAdvance"]["searchText"])
 
-    # search theo Date Contributed from - Date Contributed to
+
     if(isWhereAdvance == True):
+        # search theo Date Contributed from - Date Contributed to
         if(where["searchAdvance"].has_key('date_contributed_from') and where["searchAdvance"]["date_contributed_from"] != None
            and where["searchAdvance"].has_key('date_contributed_to') and where["searchAdvance"]["date_contributed_to"] != None): 
             ret.match("(submit_date <= @date_contributed_to) and (submit_date >= @date_contributed_from)"
                           ,date_contributed_to=where["searchAdvance"]['date_contributed_to']
                           ,date_contributed_from=where["searchAdvance"]['date_contributed_from'])
 
-    # search theo Date Created from - Date Created to
-    if(isWhereAdvance == True):
-        if(where["searchAdvance"].has_key('date_created_from') and where["searchAdvance"]["date_created_from"] != None
-           and where["searchAdvance"].has_key('date_created_to') and where["searchAdvance"]["date_created_to"] != None): 
+        # search theo Date Created from - Date Created to
+        if (where["searchAdvance"].has_key('date_created_from') and where["searchAdvance"]["date_created_from"] != None
+                and where["searchAdvance"].has_key('date_created_to') and where["searchAdvance"][
+                    "date_created_to"] != None):
             ret.match("(publisher_date <= @date_created_to) and (publisher_date >= @date_created_from)"
-                          ,date_created_to=where["searchAdvance"]['date_created_to']
-                          ,date_created_from=where["searchAdvance"]['date_created_from'])
-    
-    # search theo size của file
-    if(isWhereAdvance == True):
-        if(where["searchAdvance"].has_key('size_from') and where["searchAdvance"]["size_from"] != None
-           and where["searchAdvance"].has_key('size_to') and where["searchAdvance"]["size_to"] != None): 
+                      , date_created_to=where["searchAdvance"]['date_created_to']
+                      , date_created_from=where["searchAdvance"]['date_created_from'])
+
+        # search theo size của file
+        if (where["searchAdvance"].has_key('size_from') and where["searchAdvance"]["size_from"] != None
+                and where["searchAdvance"].has_key('size_to') and where["searchAdvance"]["size_to"] != None):
             ret.match("(files.file_size <= @size_to) and (files.file_size >= @size_from)"
-                          ,size_to=where["searchAdvance"]['size_to']
-                          ,size_from=where["searchAdvance"]['size_from'])    
-    
-    # search theo category
-    if(isWhereAdvance == True):
-        if(where["searchAdvance"].has_key('category_id') and where["searchAdvance"]["category_id"] != None): 
-            if(isinstance(where["searchAdvance"]['category_id'], list) == True):
+                      , size_to=where["searchAdvance"]['size_to']
+                      , size_from=where["searchAdvance"]['size_from'])
+
+        # search theo category
+        if (where["searchAdvance"].has_key('category_id') and where["searchAdvance"]["category_id"] != None):
+            if (isinstance(where["searchAdvance"]['category_id'], list) == True):
                 ret.match("level_code in @level_code", level_code=where["searchAdvance"]['category_id'])
             else:
                 ret.match("level_code in @level_code", level_code=[where["searchAdvance"]['category_id']])
 
-    #search theo Create By -> Author 
-    if(isWhereAdvance == True):
-        if(where["searchAdvance"].has_key('created_by') and where["searchAdvance"]["created_by"] != None): 
+        # search theo Create By -> Author
+        if (where["searchAdvance"].has_key('created_by') and where["searchAdvance"]["created_by"] != None):
             ret.match("author_name == @author_name", author_name=where["searchAdvance"]['created_by'])
 
-    #search theo Contributed by -> Created_by
-    if(isWhereAdvance == True):
-        if(where["searchAdvance"].has_key('contributed_by') and where["searchAdvance"]["contributed_by"] != None): 
+        # search theo Contributed by -> Created_by
+        if (where["searchAdvance"].has_key('contributed_by') and where["searchAdvance"]["contributed_by"] != None):
             ret.match("created_by == @contributed_by", contributed_by=where["searchAdvance"]['contributed_by'])
+
+        # search star form - star to
+        if (where["searchAdvance"].has_key('star_rating_from') and where["searchAdvance"][
+            "star_rating_from"] != None and
+                where["searchAdvance"].has_key('star_rating_to') and where["searchAdvance"][
+                    "star_rating_to"] != None):
+            ret.match("(total_rating <= @star_rating_to) and (total_rating >= @star_rating_from)"
+                      , star_rating_to=where["searchAdvance"]['star_rating_to']
+                      , star_rating_from=where["searchAdvance"]['star_rating_from'])
 
     if(searchText != None):
         ret.match("contains(material_name, @name) or contains(material_id, @name) or contains(version, @name) or contains(creator, @name)",name=searchText)
@@ -192,29 +196,21 @@ def get_list_with_searchtext(args):
     ret.project(
             material_id=1,
             material_name=1,
-            material_name2=1,
             approve_user_id=1,
             creator=1,
             version=1,
+            files=1,
             file_thumbnail="files.file_thumbnail",
             file_extends="files.file_extends",
-            files=1,
-            created_by="uc.login_account",
-            created_on="created_on",
-            modified_on="switch(case(modified_on!='',modified_on),'')",
-            modified_by="switch(case(modified_by!='',um.login_account),'')",
+            comments=1,
+            total_rating="avg(comments.rating)",
         )
-    if(isWhereAdvance == True):
-        #search star form - star to
-            if(where["searchAdvance"].has_key('star_rating_from') and where["searchAdvance"]["star_rating_from"] != None and
-               where["searchAdvance"].has_key('star_rating_to') and where["searchAdvance"]["star_rating_to"] != None):
-                ret.match("(total_rating <= @star_rating_to) and (total_rating >= @star_rating_from)"
-                          ,star_rating_to=where["searchAdvance"]['star_rating_to']
-                          ,star_rating_from=where["searchAdvance"]['star_rating_from'])
+
     data_items = ret.get_page(pageIndex, pageSize)
-    arrItems = []
+
      # search theo file format
     if(isWhereAdvance == True):
+        arrItems = []
         if(where["searchAdvance"].has_key('file_format') and where["searchAdvance"]["file_format"] != None):
             if(isinstance(where["searchAdvance"]['file_format'], list) == True):
                 if(data_items["items"]!=None and len(data_items["items"]) > 0):

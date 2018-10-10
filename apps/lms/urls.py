@@ -13,10 +13,11 @@ urlpatterns = [
     url(r'^login$',views.login,name='logn'),
     url(r'^pages/(?P<path>.*)$', views.load_page, name='singleshop'),
     #url(r'^list/(?P<path>.*)$', views.load_list, name='singleshop'),
-    url(r'^sign_out',views.sign_out),
+    url(r'^logout',views.logout_view),
+    url(r'^language',views.change_language),
     url(r'^api$',"quicky.api.call"),
     url(r'^excel_export$', export.call, name='excel_export'),
-    url(r'^file/download', views.file_download),
+    url(r'^get_schema', views.get_schema_main),
     app.get_static_urls()
 ]
 

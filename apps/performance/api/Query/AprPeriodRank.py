@@ -66,3 +66,24 @@ def get_apr_rank_by_apr_period_year(apr_period, apr_year):
     ])
     ret = list(collection)
     return ret
+
+def update_rank_level_when_insert_rank_to_sync(rank_code,percent):
+    ret = {}
+    collection = common.get_collection('TMPER_AprPeriodRank')
+    ret = collection.update_many({'rank_level':{'$ne':None}},
+                {'$push':{'rank_level':{
+                    'rank_code':rank_code, 'percent': percent
+                }
+                }
+            }
+        )
+    return ret
+
+def update_rank_level_when_delete_rank_to_sync(datas):
+    ret = {}
+    collection = common.get_collection('TMPER_AprPeriodRank')
+    ret = collection.update_many({'rank_level':{'$ne':None}},
+    {'$pull': {'rank_level':{
+        'rank_code':{'$in': [d['rank_code'] for d in datas]}
+    }}})
+    return ret

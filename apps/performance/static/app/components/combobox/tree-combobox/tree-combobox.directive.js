@@ -100,7 +100,9 @@
                             return _.pluck($scope.$selectedItem, $scope.captionField).join(", ");
                         return "";
                     }else{
-                        return $scope.$selectedItem[$scope.captionField];
+                        if($scope.captionField && $scope.$selectedItem)
+                            return $scope.$selectedItem[$scope.captionField];
+                        return '';
                     }
                 }
 

@@ -3,14 +3,15 @@ _hasCreated = False
 def TM_SetupProcess():
     global _hasCreated
     if not _hasCreated:
-        helpers.define_model(
+        helpers.extent_model(
             "TM_SetupProcess",
+            "base",
             [["process_id"]],
-            process_id=helpers.create_field("int", True),
+            process_id=helpers.create_field("text", True),
             process_name=helpers.create_field("text", True),
             function_id=helpers.create_field("text"),
             is_not_apply_process=helpers.create_field("bool"),
-            max_approve_level=helpers.create_field("int"),
+            max_approve_level=helpers.create_field("numeric"),
             is_approve_by_dept=helpers.create_field("bool"),
             is_require_reason=helpers.create_field("bool"),
             is_require_when_approve=helpers.create_field("bool"),
@@ -18,7 +19,7 @@ def TM_SetupProcess():
             is_show_list_approver=helpers.create_field("bool"),
             is_reselect_approver=helpers.create_field("bool"),
             is_require_attach_file=helpers.create_field("bool"),
-            file_size_limit=helpers.create_field("numberic"),
+            file_size_limit=helpers.create_field("numeric"),
             exclude_file_types=helpers.create_field("text"),
             is_email_cancel=helpers.create_field("bool"),
             is_email_delete=helpers.create_field("bool"),
@@ -43,10 +44,9 @@ def TM_SetupProcess():
             is_send_email_once=helpers.create_field("bool"),
             send_email_once_from_hour=helpers.create_field("text"),
             send_email_once_to_hour=helpers.create_field("text"),
-            created_on=helpers.create_field("date"),
-            created_by=helpers.create_field("text"),
-            modified_on=helpers.create_field("date"),
-            modified_by=helpers.create_field("text"),
+            process_level_apply_for=helpers.create_field("numeric"),
+            score_by=helpers.create_field("numeric"),
+            score_by_coeff=helpers.create_field("list")
         )
         _hasCreated = True
     ret = db_context.collection("TM_SetupProcess")

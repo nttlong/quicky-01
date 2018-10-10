@@ -14,40 +14,18 @@ __menu_items__=[
                 }
             ]
 
-        },{
-            "caption":"System",
-            "items":[
-                {
-                    "page":"pages/email_settings",
-                    "caption":"Email settings"
-                }
-            ]
-        },{
-            "caption":"content",
-            "items":[
-                {
-                    "page":"Course",
-                    "caption":"Course ware"
-                },{
-                    "page":"Wiki",
-                    "caption":"wiki"
-                }
-            ]
-        },{
-           "caption":"privileges",
-           "items":[
-               {
-                   "page":"pages/privileges/roles",
-                   "caption":"Roles"
-               },{
-                   "page":"pages/privileges/views",
-                   "caption":"Views"
-               },{
-                   "page":"pages/privileges/manage_users",
-                   "caption":"Users"
-               }
-           ]
-        }
+         },{
+        "caption":"content",
+        "items":[
+            {
+                "page":"Course",
+                "caption":"Course ware"
+            },{
+                "page":"Wiki",
+                "caption":"wiki"
+            }
+        ]
+    }
 
 ]
 

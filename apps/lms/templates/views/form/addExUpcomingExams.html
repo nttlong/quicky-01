@@ -7,7 +7,9 @@
 
 <%block name="modal_body">
 <style>
-    .radio {
+
+
+.radio {
     padding-left: 20px;
 }
 
@@ -359,7 +361,6 @@ input[type=checkbox] .styled:checked+label::after,input[type=radio] .styled:chec
         scope.tabIdx = scope.__mode == 2 ? scope.tabNumber : 1;
 
         if(scope.__mode == 2) {
-        debugger
             services.api("${get_api_key('app_main.api.LMSLS_ExExamination/get_data_examination_by_id')}")
                 .data({
                     "exam_id": __entity.exam_id
@@ -404,6 +405,7 @@ input[type=checkbox] .styled:checked+label::after,input[type=radio] .styled:chec
         scope.entity.result_email = true;
         scope.entity.pause_resume = true;
         scope.entity.check_plagi = true;
+        scope.entity.status = true;
 
         //combobox source
         scope.cbbTrainCof = scope.$parent.LAcadameRange;
@@ -489,8 +491,8 @@ input[type=checkbox] .styled:checked+label::after,input[type=radio] .styled:chec
         };
         function _tableData(iPage, iPageLength, orderBy, searchText, callback, objSearchAdvance) {
             
-           
-            
+
+
             if (scope.category_list.length != 0 || scope.entity.total_question != 0) {
                
                 var list_ques_id = [];
@@ -516,10 +518,55 @@ input[type=checkbox] .styled:checked+label::after,input[type=radio] .styled:chec
                 })
                 .done()
             .then(function (res) {
-                  res.items = _.map(res.items, function (val) { val.ques_max_answer_time = val.ques_max_answer_time.toString() + " secs"; return val })
+
+                services.api("${get_api_key('app_main.api.SYS_ValueList/get_list')}")
+                    .data({
+                        "name": [
+                            "LMSEx_ques_type",
+                            "LMSEx_ques_level",
+                        ]
+                    })
+                    .done()
+                    .then(function (res) {
+                        scope.vll_LMSEx_ques_type = getValue(res.values, "LMSEx_ques_type");
+                        scope.vll_LMSEx_ques_level = getValue(res.values, "LMSEx_ques_level");
+                        scope.$applyAsync();
+                        function getValue(response, listName) {
+                            return _.findWhere(response, { "list_name": listName }) ? _.findWhere(response, { "list_name": listName }).values : [];
+                        }
+                    })
+
+                  res.items = _.map(res.items, function (val) {
+                            val.ques_max_answer_time = TimetoSecond(val.ques_max_answer_time) + " secs";
+
+                            val.font_weight = "bold";
+                            if(val.ques_level == 1){
+                                val.color = "red"
+                            }
+                            else if(val.ques_level == 2){
+                                val.color = "rgb(191,143,0)"
+                            }
+                            else if(val.ques_level == 3){
+                                val.color = "rgb(47,117,181)"
+                            }
+
+                            val.icons = _.filter(scope.vll_LMSEx_ques_type,function (level) {
+                                return val.ques_type == level.value
+
+                            })[0].custom.icon
+                            val.ques_type = _.filter(scope.vll_LMSEx_ques_type,function (level) {
+                                return val.ques_type == level.value
+
+                            })[0].caption
+                            val.ques_level = _.filter(scope.vll_LMSEx_ques_level,function (level) {
+                                return val.ques_level == level.value
+
+                            })[0].caption
+
+                            return val
+                        })
                     scope.entity.total_question = res.items.length
                     scope.entity.total_mask = _.reduce(_.map(res.items, function (val) { return val.ques_total_marks }), function (memo, num) { return memo + num; });
-                    
 
                     scope.entity.easy_question = _.filter(res.items, function (num) { return num.ques_level == 3 }).length / scope.entity.total_question * 100;
                     scope.entity.easy_question = scope.entity.easy_question.toString() + '%';
@@ -528,6 +575,12 @@ input[type=checkbox] .styled:checked+label::after,input[type=radio] .styled:chec
                     scope.entity.diff_question = _.filter(res.items, function (num) { return num.ques_level == 1 }).length / scope.entity.total_question * 100;
                     scope.entity.diff_question = scope.entity.diff_question.toString() + '%';
                     scope.entity.question_list = res.items;
+
+                    $.each(scope.entity.question_list, function(i,v){
+                        v.ques_index = i + 1;
+                    });
+
+                    console.log(res.items);
 
                     var data = {
                         recordsTotal: res.total_items,
@@ -538,7 +591,7 @@ input[type=checkbox] .styled:checked+label::after,input[type=radio] .styled:chec
                     callback(data);
                     scope.currentItem = null;
                     scope.$apply();
-                        })
+                    })
                 }
         //}
     }
@@ -579,11 +632,9 @@ input[type=checkbox] .styled:checked+label::after,input[type=radio] .styled:chec
                         //$dialog.closeDialog();//Đóng form input
                         $msg.alert("${get_global_res('Handle_Success','Thao tác thành công')}", $type_alert.INFO);//Xuất thông báo thành cônng
                         if (scope.__mode == 1 || scope.__mode == 3) {
-                            
                             reloadData();
                         } else if (scope.__mode == 2) {
-                            
-                            scope.$parent.currentItem = scope.entity;
+                            scope.$parent.currentItem = angular.toJson(angular.fromJson(scope.entity));
                            // scope.$parent.currentItem.material_version = scope.entity.material_version
                             scope.$parent.currentItem.modified_on = res.item.modified_on;
                             scope.$parent.currentItem.modified_by = res.item.modified_by;
@@ -639,7 +690,6 @@ input[type=checkbox] .styled:checked+label::after,input[type=radio] .styled:chec
                         scope._tableData(
                             tableConfig.iPage, tableConfig.iPageLength, tableConfig.orderBy,
                             tableConfig.searchText, tableConfig.fnReloadData);
-                            s
                     } else {
                         $msg.message("${get_global_res('Notification','Thông báo')}", "${get_global_res('Internal_Server_Error','Có lỗi từ phía máy chủ')}", function () { });
                     }
@@ -690,7 +740,6 @@ input[type=checkbox] .styled:checked+label::after,input[type=radio] .styled:chec
         }
 
         function editData(callback) {
-            debugger
             var url = getUrl();
            
             if (scope.__mode == 3) {
@@ -805,7 +854,6 @@ input[type=checkbox] .styled:checked+label::after,input[type=radio] .styled:chec
             .data()
             .done()
                 .then(function (res) {
-                debugger
                     scope.cbbResultType = res;
 
                 scope.$applyAsync();
@@ -815,7 +863,14 @@ input[type=checkbox] .styled:checked+label::after,input[type=radio] .styled:chec
             })
         }
 
-
+        function TimetoSecond (time) {
+            return time.split(':')
+            .reverse()
+            .map(Number)
+            .reduce(function (pUnit, cUnit, index) {
+              return pUnit + cUnit * Math.pow(60, index);
+            });
+        };
 
     });
 </script>

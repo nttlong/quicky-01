@@ -31,4 +31,5 @@ from LMSLS_ExExamination import LMSLS_ExExamination
 from LMSLS_ExResultType import LMSLS_ExResultType
 from LMSLS_Topic import LMSLS_Topic
 from LMSLS_Forum import LMSLS_Forum
-
+from HCSSYS_FunctionListLabel import HCSSYS_FunctionListLabel
+from HCSSYS_FunctionListSummary import HCSSYS_FunctionListSummary

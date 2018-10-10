@@ -58,7 +58,6 @@ function dialog($scope, id = 'myModal') {
         };
     }
     function compile(scope, scripts, content,_params) {
-    debugger;
         var subScope = scope.$new(true, scope);
 
         for (var i = 0; i < scripts.length; i++) {
@@ -394,7 +393,6 @@ mdl.directive("cTemplate", ["$compile", function ($compile) {
         })
     }
     function getScript(res) {
-        debugger;
         var content = res.res;
         if (content.indexOf("<body>") > -1) {
             var x = content.indexOf("<body>") + "<body>".length;

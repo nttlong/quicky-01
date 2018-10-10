@@ -74,52 +74,8 @@
         <!--on-search-change="onSearch"-->
             <extend-toolbar>
                 <div style="display: grid; grid-template-columns: 1fr 1fr">
-                     <input-text-icon icon="bowtie-icon bowtie-search"
-                                                on-click="onSearch"></input-text-icon>
+                    <input-text-icon icon="bowtie-icon bowtie-search" on-click="onSearch"></input-text-icon>
                     <div>
-                        <div class="dropdown" ng-if="$root.isDisplay">
-                            <button class="zb-btn dropdown-toggle" type="button" data-toggle="dropdown">
-                                <i class="bowtie-ellipsis bowtie-icon"></i>
-                            </button>
-                            <ul class="dropdown-menu">
-                                <li>
-                                    <button class="zb-btn border-0" ng-click="viewHistoryLearningMaterial()">
-                                        <i class="bowtie-icon bowtie-navigate-history"></i>
-                                    </button>
-                                    <span>${get_res('view_history','View History')}</span>
-                                </li>
-                                <li>
-                                    <button class="zb-btn border-0" ng-click="viewDetailsLearningMaterial()">
-                                        <i class="bowtie-icon bowtie-ellipsis"></i>
-                                    </button>
-                                    <span>${get_res('view_detail','Details')}</span>
-                                </li>
-							    <li>
-                                    <button class="zb-btn border-0" ng-click="viewPermissionLearningMaterialManagerment()">
-                                        <i class="glyphicon glyphicon-lock"></i>
-                                    </button>
-                                    <span>${get_res('view_assign_permission','Assign Permissions')}</span>
-                                </li>
-							    <li>
-                                    <button class="zb-btn border-0" ng-click="viewAdvandceSearchLearningMaterialManagerment()">
-                                        <i class="glyphicon glyphicon-filter"></i>
-                                    </button>
-                                    <span>${get_res('view_advandce_search','Advandce Search')}</span>
-                                </li>
-                                <li>
-                                    <button class="zb-btn border-0" ng-click="viewShareFileLearningMaterial()">
-                                        <i class="bowtie-icon bowtie-share"></i>
-                                    </button>
-                                    <span>${get_res('view_share_file','Share file')}</span>
-                                </li>
-                                <li>
-                                    <button class="zb-btn" ng-click="downLoadFileLearningMaterial()">
-                                        <i class="bowtie-icon bowtie-transfer-download"></i>
-                                    </button>
-                                    <span>${get_res('view_download_file','Download file')}</span>
-                                </li>
-                            </ul>
-                        </div>
                         <button class="zb-btn zb-btn-o-green" ng-click="create()">
                                 <i class="bowtie-icon bowtie-math-plus"></i>
                         </button>
@@ -127,7 +83,7 @@
                                 <i class="bowtie-icon bowtie-edit-outline"></i>
                             </button>
                         <button class="zb-btn zb-btn-o-red" ng-click="delete()">
-                                <i class="bowtie-icon bowtie-edit-remove"></i>
+                                <i class="bowtie-icon bowtie-trash"></i>
                         </button>
                         <button class="zb-btn" ng-click="update_status_open()">
                                 <i style="font-size:14px" class="bowtie-icon bowtie-folder"></i>

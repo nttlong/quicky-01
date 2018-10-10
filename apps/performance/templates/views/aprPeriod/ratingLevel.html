@@ -1,16 +1,12 @@
-﻿            <div class="hcs-right-side-department-list-tool-bar">
-                <div class="zb-right-content pull-right" style="margin-top: -35px;margin-right: 212px;">
-					 <button class="zb-btn zb-btn-o-green ng-scope" ng-click="addDataGeneration()">
-                        <i class="glyphicon glyphicon-plus-sign"></i>
-                    </button>
-                </div>
-                <div class="clearfix"></div>
-            </div>
-
-<div class="col-md-12 no-padding">
+﻿<div class="hcs-right-side-department-list-tool-bar">
+    <div class="zb-right-content pull-right" style="margin-top: -35px;margin-right: 245px;">
+        </div>
+    <div class="clearfix"></div>
+</div>
+<div class="col-md-12 no-padding" style="height: 100%;">
     <collapse-box class="zb-datatable" title="${get_res('Department_Group_list','Danh sách phòng ban')}">
-        <div class="col-md-12 no-padding" style="height: 220px;">
-            <tree-table data-source="$$tableTree.dataTableTree" data-fields="$$tableTree.tableFields"
+        <div class="col-md-12 no-padding" style="height: 100%;">
+            <tree-table style="overflow-y:auto;height: 100%;" class="scollable-table" data-source="$$tableTree.dataTableTree" data-fields="$$tableTree.tableFields"
                     display-field="department_name"
                     display-name="Bộ phận"
                     parent-field="parent_code" key-field="department_code"
@@ -22,7 +18,8 @@
                     search-text="$$tableTree.treeSearchText"
                     checked-field="is_selected"
                     disabled="$$tableTree.treeDisabled"
-                    multi-select = "mode == 1 ? true : false"/>
+                    multi-select = "mode == 1 ? true : false"
+                    format-main-column="$$tableTree.formatMainColumn"/>
                     
         </div>
     </collapse-box>

@@ -15,6 +15,7 @@
     "localhost",
     "172.16.11.127"
   ],
+  "SYS_VIEWS":"sys_views",
   "INSTALLED_APPS": [
     "permission_backend_nonrel",
     "django.contrib.admin",

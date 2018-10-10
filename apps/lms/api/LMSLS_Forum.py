@@ -93,6 +93,8 @@ def get_list_with_searchtext_public(args):
     pageSize = (lambda pSize: pSize if pSize != None else 20)(pageSize)
 
     ret = models.LMSLS_Forum().aggregate()
+    ret.lookup(models.LMS_VW_Employee(), "forum_administrator", "employee_code", "emp")
+    ret.unwind("emp", False)
     ret.match("(forum_type=={0})", True)
     ret.project(
         forum_id=1,
@@ -120,6 +122,7 @@ def get_list_with_searchtext_public(args):
         force_moderation_post=1,
         type_moderation=1,
         forum_administrator=1,
+        forum_administrator_name="concat(emp.last_name, ' ', emp.first_name)",
         forum_status=1,
 
         created_on=1,
@@ -147,6 +150,8 @@ def get_list_with_searchtext_private(args):
     pageIndex = (lambda pIndex: pIndex if pIndex != None else 0)(pageIndex)
     pageSize = (lambda pSize: pSize if pSize != None else 20)(pageSize)
     ret = models.LMSLS_Forum().aggregate()
+    ret.lookup(models.LMS_VW_Employee(), "forum_administrator", "employee_code", "emp")
+    ret.unwind("emp", False)
     ret.match("(forum_type=={0})", False)
     ret.project(
         forum_id=1,
@@ -174,6 +179,7 @@ def get_list_with_searchtext_private(args):
         force_moderation_post=1,
         type_moderation=1,
         forum_administrator=1,
+        forum_administrator_name="concat(emp.last_name, ' ', emp.first_name)",
         forum_status=1,
 
         created_on=1,
@@ -201,6 +207,8 @@ def get_list_with_searchtext_all(args):
     pageIndex = (lambda pIndex: pIndex if pIndex != None else 0)(pageIndex)
     pageSize = (lambda pSize: pSize if pSize != None else 20)(pageSize)
     ret = models.LMSLS_Forum().aggregate()
+    ret.lookup(models.LMS_VW_Employee(), "forum_administrator", "employee_code", "emp")
+    ret.unwind("emp", False)
     ret.project(
         forum_id=1,
         forum_name=1,
@@ -227,6 +235,7 @@ def get_list_with_searchtext_all(args):
         force_moderation_post=1,
         type_moderation=1,
         forum_administrator=1,
+        forum_administrator_name="concat(emp.last_name, ' ', emp.first_name)",
         forum_status=1,
 
         created_on=1,
@@ -254,6 +263,8 @@ def get_list_with_searchtext_archived(args):
     pageIndex = (lambda pIndex: pIndex if pIndex != None else 0)(pageIndex)
     pageSize = (lambda pSize: pSize if pSize != None else 20)(pageSize)
     ret = models.LMSLS_Forum().aggregate()
+    ret.lookup(models.LMS_VW_Employee(), "forum_administrator", "employee_code", "emp")
+    ret.unwind("emp", False)
     ret.match("(specific_avail.end_date<{0})", datetime.datetime.now())
     ret.project(
         forum_id=1,
@@ -281,6 +292,7 @@ def get_list_with_searchtext_archived(args):
         force_moderation_post=1,
         type_moderation=1,
         forum_administrator=1,
+        forum_administrator_name="concat(emp.last_name, ' ', emp.first_name)",
         forum_status=1,
 
         created_on=1,

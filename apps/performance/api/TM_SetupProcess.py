@@ -8,7 +8,10 @@ import datetime
 def get_list_with_process_id(args):
     try:
         if args['data'] != None and args['data'].has_key('process_id'):
-            items = models.TM_SetupProcess().aggregate().project(
+            items = models.TM_SetupProcess().aggregate()
+            items.left_join(models.auth_user_info(), "created_by", "username", "uc")
+            items.left_join(models.auth_user_info(), "modified_by", "username", "um")
+            items.project(
                 process_id=1,
                 process_name=1,
                 is_not_apply_process=1,
@@ -45,10 +48,10 @@ def get_list_with_process_id(args):
                 is_send_email_once=1,
                 send_email_once_from_hour=1,
                 send_email_once_to_hour=1,
-                created_by=1,
+                created_by="uc.login_account",
                 created_on=1,
-                modified_on=1,
-                modified_by=1
+                modified_on="switch(case(modified_on!='',modified_on),'')",
+                modified_by="switch(case(modified_by!='',um.login_account),'')",
                 ).match("process_id == {0}", args['data']['process_id'])    
         return items.get_item()
         raise(Exception("not found process_id"))
@@ -120,18 +123,76 @@ def get_list_with_searchtext(args):
 
 def insert(args):
     if args['data'] != None:
+        # Quy trình duyệt cuối kỳ phát sinh data cho UI Tab cấp duyệt/Cách tính điểm đánh giá
+        # process_id = "2"
+        if args['data']['process_id'] == "2":
+            args['data']['score_by_coeff'] = [
+                {
+                    "approve_level": 0,
+                    "coeff": 1
+                }
+            ]
+            for x in range(args['data']['max_approve_level']):
+                args['data']['score_by_coeff'].append({
+                    "approve_level":range(args['data']['max_approve_level']).index(x) + 1,
+                    "coeff": 1
+                })
         ret = models.TM_SetupProcess().insert(args['data'])
         return ret
     return None
 
 def update(args):
     process_id = ""
+    current_process = None
     if args['data'] != None:
         if args['data']['process_id'] == None:
             return None
         else:
             if(args['data'].has_key('process_id')):
                 process_id = args['data']['process_id']
+                if process_id == "2":
+                    current_process = list(common.get_collection("TM_SetupProcess").aggregate(
+                        [
+                            {"$project":{
+                                "process_id":1,
+                                "max_approve_level": 1,
+                                "score_by_coeff": 1
+                                }
+                            },
+                            {"$match":{
+                                "process_id": args['data']['process_id']
+                                }
+                            }
+                        ]
+                    ))[0]
+                    #Tăng cấp duyệt
+                    if current_process['max_approve_level'] < args['data']['max_approve_level']:
+                        max_level = args['data']['max_approve_level'] - current_process['max_approve_level']
+                        for x in range(max_level):
+                            current_process['score_by_coeff'].append({
+                                "approve_level":current_process['max_approve_level'] + range(max_level).index(x) + 1,
+                                "coeff": 1
+                            })
+                        models.TM_SetupProcess().update(
+                            {
+                                "score_by_coeff": current_process['score_by_coeff']
+                            },
+                            "process_id == @process_id",
+                            process_id = args['data']['process_id']
+                        )
+                    #Giảm cấp duyệt
+                    elif current_process['max_approve_level'] > args['data']['max_approve_level']:
+                        max_level = current_process['max_approve_level'] - args['data']['max_approve_level']
+                        for x in range(max_level):
+                            current_process['score_by_coeff'].pop(current_process['max_approve_level'] - (range(max_level).index(x)))
+                        models.TM_SetupProcess().update(
+                            {
+                                "score_by_coeff": current_process['score_by_coeff']
+                            },
+                            "process_id == @process_id",
+                            process_id=args['data']['process_id']
+                        )
+
                 args['data'].pop('process_id')
             ret = models.TM_SetupProcess().update(
             args['data'],
@@ -241,3 +302,30 @@ def generate_list_approve_by_max_approve_level(args):
                 )
                 return ret
     return None
+
+def get_score_coeff_by_process_id(args):
+    try:
+        return models.TM_SetupProcess().aggregate().project(
+            process_id = 1,
+            process_level_apply_for = 1,
+            score_by = 1,
+            score_by_coeff = 1
+        ).match("process_id == @process_id", process_id = args['data']['process_id']).get_item()
+    except Exception as ex:
+        raise ex
+
+def update_score_by_coeff_by_process_id(args):
+    try:
+        ret = {}
+        process_id = args['data']['process_id']
+        del args['data']['process_id']
+        if args['data']['score_by'] != 4:
+            del args['data']['score_by_coeff']
+        ret = models.TM_SetupProcess().update(
+            args['data'],
+            "process_id == @process",
+            process = process_id
+        )
+        return ret
+    except Exception as ex:
+        raise ex

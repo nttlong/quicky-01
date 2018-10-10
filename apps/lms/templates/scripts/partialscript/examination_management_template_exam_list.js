@@ -49,40 +49,40 @@
         { "data": "total_mask", "title": "${get_res('total_mask_table_header','Total Marks')}" },
         { "data": "negative_marks", "title": "${get_res('negative_marks_table_header','Required Score')}","expr":function(row, data, func){
             func(function(){
-                return "<p style='font-weight:bold;color:rgb(112,173,71)'> >"+row.negative_marks +"</p>";
-
+                if(data != null)
+                    return "<span style='font-weight:bold;color:rgb(112,173,71)'> >"+row.negative_marks +"</span>";
+                return " ";
             });
             return true;
         } },
         { "data": "diff_question", "title": "${get_res('diff_question_header','Difficult Questions')}","expr":function(row, data, func){
             func(function(){
-                return "<p style='font-weight:bold;color:red'>" +row.diff_question +"</p>";
-
+                return "<span style='font-weight:bold;color:red'>" +row.diff_question +"</span>";
             });
             return true;
         } },
         { "data": "med_question", "title": "${get_res('med_question_header','Medium Questions')}","expr":function(row, data, func){
             func(function(){
-                return "<p style='font-weight:bold;color:rgb(68,114,196)'>" +row.med_question+ "</p>";
+                return "<span style='font-weight:bold;color:rgb(68,114,196)'>" +row.med_question+ "</span>";
 
             });
             return true;
         } },
         { "data": "easy_question", "title": "${get_res('easy_question_table_header','Easy Questions')}","expr":function(row, data, func){
             func(function(){
-                return "<p style='font-weight:bold;color:rgb(68,114,196)'>" +row.easy_question+ "</p>";
+                return "<span style='font-weight:bold;color:rgb(68,114,196)'>" +row.easy_question+ "</span>";
 
             });
             return true;
         } },
-        { "data": "creator", "title": "${get_res('created_by_table_header','Created by')}","expr":function(row, data, func){
+        { "data": "creator", "title": "${get_res('created_by','Created by')}","expr":function(row, data, func){
             func(function(){
-                return "<img class='hcs-small-img'  src='" + scope.$root.url_static + "css/icon/approver.png" + "'/>"+ " "+row.creator ;
-
+                return "<span><img class='hcs-small-img' style='width:15px;height:17px' src='" + scope.$root.url_static + "css/icon/approver_tr.png" + "'/>"
+                + ' ' + row.creator + ' ' +  window.DateFormat.format(row.created_on, scope.$root.systemConfig.date_format + ' hh:mm a')
+                + '</span>';
             });
             return true;
-        } },
-        { "data": "created_on", "title": "${get_res('created_on_table_header','Created on')}", "format": "date:" + 'dd/MM/yyyy h:mm:ss a'  },
+        }},
     ];
     scope.$$tableConfig = {};
     scope.$root.$$tableConfig = {};

@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-#from bson import ObjectId
+from bson import ObjectId
 import models
 import common
 global lock
@@ -53,8 +53,12 @@ def get_list_with_searchtext(args):
         substitute_name="concat(em.last_name, ' ', em.first_name)",
     )
 
+    items.match("process_id == {0}", args['data']['process_id'])
+
     if(searchText != None) :
-        items.match("contains(process_name, @name)", name=searchText)
+        items.match("contains(process_code, @name) or contains(process_name, @name) or " + \
+                    "contains(substitute_code, @name) or contains(substitute_name, @name) or " + \
+                    "contains(frsend_email_once_from_hourom_date, @name) or contains(to_date, @name)", name=searchText)
 
     if(sort != None):
         items.sort(sort)
@@ -122,9 +126,9 @@ def delete(args):
     if args['data'] != None:
         # ret = models.TM_SetupProcessApproverSubstitute().delete("process_code in {0}", [x["process_code"] for x in args['data']])
         ret = models.TM_SetupProcessApproverSubstitute().delete(
-            "process_code == {0} and process_id in {1}",
-            args['data']['process_code'],
-            args['data']['process_id'])
+            "_id in {1}",
+            args['data']['process_id'],
+            [ObjectId(x) for x in args['data']['_id']])
         return ret
     return None
 

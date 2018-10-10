@@ -3,9 +3,9 @@
 	scope.showDetail = false;
     scope.filterFunctionModel = '';
 	scope.currentFunction = '';
-    scope.selectFunc = function (event, f) {
-        scope.selectedFunction = f;
-    };
+    //scope.selectFunc = function (event, f) {
+    //    scope.selectedFunction = f;
+    //};
      scope.apr_period_now = "",
      scope.apr_year_now = "",
     scope.$display = {
@@ -18,7 +18,7 @@
     };
 
     scope.selectFunc = function (event, f) {
-        scope.selectedFunction = f;
+        scope.$display.selectedFunction = f;
     };
 
     scope.entity = {};
@@ -164,7 +164,7 @@
         else {
             scope.entity = scope.currentItem;
             setTimeout(function () {
-                   scope.$display.showDetail = scope.$display.showDetail === false ? true : false;
+                scope.$display.showDetail = scope.$display.showDetail === false ? true : false;
                 scope.currentItem = scope.$display.mapName[0];
                 scope.$partialpage = scope.$display.mapName[0].url;
                 scope.$applyAsync();
@@ -323,6 +323,7 @@
     };
 
 	(function _init_() {
+	    debugger
 		scope.handleData = new handleData();
         scope.$display.mapName = scope.handleData.$display.mapName;
         scope.currentFunction = scope.$display.mapName[0];
@@ -331,6 +332,7 @@
 	})();
 
     scope.$watch("$display.selectedFunction", function (function_id) {
+        debugger
         var $his = scope.$root.$history.data();
         //if (scope.currentItem) {
             var func = _.filter(scope.$display.mapName, function (f) {

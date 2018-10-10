@@ -1,0 +1,10 @@
+packages/django
+packages/pkg_django_db
+packages/pkg_qauth
+packages/pkg_qexcel
+packages/pkg_qjasper
+packages/pkg_qloader
+packages/pkg_qmongo
+packages/pkg_qobjects
+packages/pkg_qtracking
+packages/pkg_quicky

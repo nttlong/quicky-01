@@ -5,7 +5,18 @@
 </style>
 <div class="tab-pane" style="padding-right:unset; height: 100%; ">
     <div>
-        <header-page>
+        <header-page  on-add="onAdd" 
+                      on-edit="onEdit" 
+                      on-delete="onDelete" 
+                      on-import="onImport" 
+                      on-export="onExport"
+                      on-refresh="onRefresh"
+                      on-search-press="onSearch"
+                      key-field="function_id" 
+                      display-field="default_name" 
+                      icon-field="icon" 
+                      selected-key="currFunction"
+                      reload-on-change="false">
             <site-map>
                 <span>{{$root.currentFunction.default_name}}</span>
                 <div class="hcs-resp-action-zb-left-content" style="float: right;">

@@ -11,6 +11,7 @@ from pymongo.read_concern import ReadConcern
 from pymongo.write_concern import WriteConcern
 import uuid
 import threading
+import bson
 logger = logging.getLogger(__name__)
 
 __collectionName = ''
@@ -29,8 +30,8 @@ def get_db_context():
 def create_view(view_name, collection_name, pipe_line):
     get_db_context().command({
         "create": view_name,
-        "viewOn": get_collection_name_with_schema(collection_name), 
-        "pipeline": pipeline
+        "viewOn": get_collection_name_with_schema(collection_name),
+        "pipeline": pipe_line
     })
 
 def get_current_schema():
@@ -65,10 +66,45 @@ def get_user_id():
         user = threading.current_thread().user.username
     return user
 
+def aggregate_sort(sort):
+    """
+    Chuyển đỗi dict thành thành array tuple
+    example:
+        {
+            "a": -1,         => [("a", -1), ("b", 1)]
+            "b": 1
+        }
+    """
+    "sort -> dict"
+    result = []
+    if(type(sort) is dict):
+        for x in sort.keys():
+            result.append((x, sort[x]))
+    else:
+        raise(Exception("argument not exactly"))
+
+    return bson.SON(result)
+
+def aggregate_filter_lock(value):
+    """
+    0: filter data lock = true
+    1: filter data lock = !true
+    other: get all
+    """
+    if value == None:
+        return {'$in':[True, False, None, ""]}
+    if int(value) == 0:
+        return {'$ne': True}
+    elif int(value) == 1:
+        return {'$eq': True}
+    else:
+        return {'$in':[True, False, None, ""]}
+
+
 def get_pagination(args):
     try:
-        global __collectionName 
-        global __collection 
+        global __collectionName
+        global __collection
 
         if('collection' in args['data'].keys()):
             __collectionName    =   args['data']['collection']
@@ -148,6 +184,7 @@ def get_init_data_combobox(args):
                             result.append({
                                 "key":x['key'],
                                 "value":None,
+                                "predicate": (lambda x: x['predicate'] if x.has_key('predicate') else None)(x),
                                 "code":x['code'],
                                 "name":encryptor.get_value(x['key']),
                                 "display_fields":[],
@@ -163,7 +200,7 @@ def get_init_data_combobox(args):
                             value_field = [[]]
                             multi_select = [[]]
                             parent_field = [[]]
-                            x['value'] = create_data_init_combobox(dict(data = {"key":x["key"], "code":x["code"]}), display_fields, caption_field, value_field, multi_select, parent_field)
+                            x['value'] = create_data_init_combobox(dict(data = {"key":x["key"], "code":x["code"], "value":x["predicate"]}), display_fields, caption_field, value_field, multi_select, parent_field)
                             x['display_fields'] = display_fields[0]
                             x['caption_field'] = caption_field[0]
                             x['value_field'] = value_field[0]
@@ -179,7 +216,7 @@ def get_init_data_combobox(args):
                         parent_field = [[]]
                         return {
                             "key": args["data"].get("name", "")["key"],
-                            "value": create_data_init_combobox(dict(data = {"key":args["data"].get("name", "")["key"], "code":args["data"].get("name", "")["code"]}), display_fields, caption_field, value_field, multi_select, parent_field),
+                            "value": create_data_init_combobox(dict(data = {"key":args["data"].get("name", "")["key"], "code":args["data"].get("name", "")["code"], "value":args["data"].get("name", "").get("predicate", None)}), display_fields, caption_field, value_field, multi_select, parent_field),
                             "code": args["data"].get("name", "")["code"],
                             "name":encryptor.get_value(args["data"].get("name", "")['key']),
                             "display_fields": display_fields[0],
@@ -199,8 +236,8 @@ def get_init_data_combobox(args):
 
 def create_data_init_combobox(args, display_field, caption_field, value_field, multi_select, parent_field):
     try:
-        global __collectionName 
-        global __collection 
+        global __collectionName
+        global __collection
 
         ret      = {}
         ret_list = []
@@ -247,6 +284,7 @@ def create_data_init_combobox(args, display_field, caption_field, value_field, m
 
 
             column    = combobox_info['table_fields']
+            where     = combobox_info['predicate']
             multi     = combobox_info['multi_select']
 
             if column != []:
@@ -266,6 +304,27 @@ def create_data_init_combobox(args, display_field, caption_field, value_field, m
                 else:
                     ret.match(combobox_info['value_field'] + " == {0}", args['data']['code'])
 
+            #predicate
+            if where.has_key('operator') and \
+               (where.get('column', None) != None and\
+               len(where.get('column', None)) > 0) and\
+               where.get('operator', '') != "":
+                try:
+                    if args['data'].has_key('value') and args['data'].get('value', None) != None and type(args['data']['value']) is list:
+                        dict_where = dict()
+                        for x in args['data']['value']:
+                            new_key    = x.keys()[0].replace("@", "")
+                            old_key    = x.keys()[0]
+                            x[new_key] = x.pop(old_key)
+                            dict_where.update(x)
+
+                        ret.match(where['operator'], dict_where)
+                    #else:
+                    #    ret.match(where['operator'])
+
+                except Exception as ex:
+                    raise(Exception("syntax where error"))
+
             if multi == True:
                 return ret.get_list()
             else:
@@ -280,8 +339,8 @@ def create_data_init_combobox(args, display_field, caption_field, value_field, m
 def create_data_combobox(args):
     #Hàm get dropdown list theo tên collection và tên cột
     try:
-        global __collectionName 
-        global __collection 
+        global __collectionName
+        global __collection
 
         ret      = {}
         ret_list = []
@@ -397,10 +456,24 @@ def create_data_combobox(args):
                 page_index = args['data']['pageIndex']
 
             if parent_field == None or parent_field == "":
-                data = ret.get_page(page_index, page_size)
-            else:
+                #delete pagination
+                #data = ret.get_page(page_index, page_size)
+                result = ret.get_list()
                 data = {
-                    "items":ret.get_list()
+                    "items": result,
+                    "total_items": len(result),
+                    "page_index": page_index,
+                    "page_size": page_size,
+                    "note": "current version not support pagination"
+                }
+            else:
+                result = ret.get_list()
+                data = {
+                    "items":result,
+                    "total_items": len(result),
+                    "page_index": 0,
+                    "page_size": 100,
+                    "note": "tree combobox not using pagination"
                     }
 
             if data != {}:

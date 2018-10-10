@@ -24,6 +24,7 @@
             templateUrl: templateService.getStatic("app/widgets/tile-box/tile-box.html"),
             //templateUrl: "app/components/input/text/text.html",
             link: function ($scope, elem, attr) {
+            $scope.url_static = $scope.$root.url_static
                 var header = $(elem).find(".zb-tile-header");
                 var headerTitle = $(elem).find(".zb-tile-header-left");
                 var headerInfo = $(elem).find(".zb-tile-header-right");
@@ -41,7 +42,7 @@
                 } else if ($scope.imageUrl) {
                     header.remove();
                     content.remove();
-                    $(elem).html("<img src='" + $scope.imageUrl + "' width='100%' height='100%'/>");
+                    $(elem).html("<img src='" + $scope.$root.url_static + $scope.imageUrl + "' width='100%' height='100%'/>");
                 } else {
                     /*HEADER*/
                     if (!$scope.txtTitle) {
@@ -65,30 +66,34 @@
                     }
                 }
                 if ($scope.color) {
-                    var color = JSON.parse($scope.color);
-                    //
-                    $(elem).find('span').css({
-                        color: color.text
+                    setTimeout(function(){
+                        var color = JSON.parse($scope.color);
+                        //
+                        $(elem).find('span').css({
+                            color: color.text
+                        })
+                        //
+                        if(!$scope.imageUrl){
+                            $(elem).css({
+                                background: color.background
+                            })
+                        }
+                        //
+                        $(elem).find(".hcs-function-title-box-2").css({
+                            color: color.text
+                        })
+                        //
+                        $(elem).hover(function (e) {
+                            var bsdIn = "0px 0px 0 2px " + color.border;
+                            var bsdOut = "none";
+                            console.log(color.border)
+                            $(this).css('box-shadow', e.type === "mouseenter" ? bsdIn : bsdOut);
+                        });
+                        //
+                        $(elem).find(".hcs-function-footer-icon").css("color", color['color-icon'])
+                        //
+                        $(elem).find(".hcs-function-footer-number").css("color", color['color-icon'])
                     })
-                    //
-                    $(elem).css({
-                        background: color.background
-                    })
-                    //
-                    $(elem).find(".hcs-function-title-box-2").css({
-                        color: color.text
-                    })
-                    //
-                    $(elem).hover(function (e) {
-                        var bsdIn = "0px 0px 0 2px " + color.border;
-                        var bsdOut = "none";
-                        console.log(color.border)
-                        $(this).css('box-shadow', e.type === "mouseenter" ? bsdIn : bsdOut);
-                    });
-                    //
-                    $(elem).find(".hcs-function-footer-icon").css("color", color['color-icon'])
-                    //
-                    $(elem).find(".hcs-function-footer-number").css("color", color['color-icon'])
                 }
 
                 $scope.$applyAsync();

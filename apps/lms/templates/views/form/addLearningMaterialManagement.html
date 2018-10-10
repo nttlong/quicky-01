@@ -194,8 +194,7 @@
                         <!--Drag and drop file-->
                         <template-drag-drop limit-condition="[]"
                                             current-item="entity.files"
-                                            mode-modify="__mode"
-                        >
+                                            mode-modify="__mode">
                         </template-drag-drop>
                         <br/>
                     </div>
@@ -316,14 +315,15 @@
                             )
                     .done()
                     .then(function (res) {
-
                         scope.entity = res
                         scope.$applyAsync();
                     })
             }
         }
         scope.loadEditData();
+
         scope.entity.folder_id = null;
+
         //Cấu hình tên field và caption hiển thị trên UI
         scope.$$table = {
             "tableFields": [
@@ -581,13 +581,7 @@
                 })
         }
 
-
-
-
-
-
         function beforeCallToServer() {
-
         }
 
         function getUrl() {

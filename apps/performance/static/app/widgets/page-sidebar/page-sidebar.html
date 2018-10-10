@@ -1,7 +1,10 @@
 <div class="zb-page-sidebar">
     <div class="zb-left">
         <ul class="zb-left-ul">
-            <li ng-repeat="item in listItem" class="zb-left-li" ng-class="item[keyField]==selectedKey?'li-selected':''"      ng-click="$onSelectItem(item[keyField])">
+            <li ng-repeat="item in listItem" 
+                class="zb-left-li"
+                ng-class="{'li-selected': item[keyField]==selectedKey ? true : false, 'zb-sidebar-disbled' : checkItemDisabled(item[keyField])}"
+                ng-click="$onSelectItem(item[keyField])">
                     <span class="left-icon text-center"><i class="{{item[iconField]}}"></i></span>
                     <span class="left-title text-center">{{item[displayField]}}</span>
             </li>
@@ -22,25 +25,31 @@
                 <button ng-click="showAdvancedSearch()" class="zb-btn" ng-if="isAdvancedSearch">
                     <i class="bowtie-icon bowtie-search-filter"></i>
                 </button>
-                <button class="zb-btn zb-btn-o-green" ng-if="fnAdd" ng-click="fnAdd()">
+                <button class="zb-btn" ng-if="fnGen && authorise.create === true" ng-click="fnGen()">
+                    <i class="bowtie-icon bowtie-dictionary-add"></i>
+                </button>
+                <button class="zb-btn zb-btn-o-green" ng-if="fnAdd && authorise.create === true" ng-click="fnAdd()">
                     <i class="bowtie-icon bowtie-math-plus"></i>
                 </button>
-                <button class="zb-btn zb-btn-o-blue" ng-if="fnEdit" ng-click="fnEdit()">
+                <button class="zb-btn zb-btn-o-blue" ng-if="fnEdit && authorise.write === true" ng-click="fnEdit()">
                     <i class="bowtie-icon bowtie-edit-outline"></i>
                 </button>
-                <button class="zb-btn zb-btn-o-red" ng-if="fnDelete" ng-click="fnDelete()">
+                <button class="zb-btn zb-btn-o-red" ng-if="fnDelete && authorise.delete === true" ng-click="fnDelete()">
                     <i class="bowtie-icon bowtie-trash"></i>
                 </button>
-                <button class="zb-btn" ng-if="fnSave" ng-click="fnSave()">
+                <button class="zb-btn" ng-if="fnSave && authorise.write === true" ng-click="fnSave()">
                     <i class="bowtie-icon bowtie-save"></i>
                 </button>
-                <button class="zb-btn" ng-if="fnImport" ng-click="fnImport()">
+                <button class="zb-btn" ng-if="fnCopy && authorise.copy === true" ng-click="fnCopy()">
+                    <i class="bowtie-icon bowtie-edit-copy"></i>
+                </button>
+                <button class="zb-btn" ng-if="fnImport && authorise.import === true" ng-click="fnImport()">
                     <i class="bowtie-icon bowtie-transfer-upload"></i>
                 </button>
-                <button class="zb-btn" ng-if="fnExport" ng-click="fnExport()">
+                <button class="zb-btn" ng-if="fnExport && authorise.export === true" ng-click="fnExport()">
                     <i class="bowtie-icon bowtie-transfer-download"></i>
                 </button>
-                <button class="zb-btn" ng-if="fnRefresh" ng-click="fnRefresh()">
+                <button class="zb-btn" ng-if="fnRefresh && authorise.read === true" ng-click="fnRefresh()">
                     <i class="bowtie-icon bowtie-navigate-refresh"></i>
                 </button>
             </div>
