@@ -28,11 +28,11 @@ class executor(object):
             if hasattr(self.__app__.settings, "DEFAULT_DB_SCHEMA") and not has_set_schema:
                 tenancy.set_schema(self.__app__.settings.DEFAULT_DB_SCHEMA)
     def exec_request(self, request, **kwargs):
-        try:
-            return self.run_request(request,**kwargs)
-        except Exception as ex:
-            __log__.debug(ex.message,ex)
-            raise ex
+        # try:
+        return self.run_request(request,**kwargs)
+        # except Exception as ex:
+        #     __log__.debug(ex.message,ex)
+        #     raise ex
 
 
     def run_request(self, request, **kwargs):

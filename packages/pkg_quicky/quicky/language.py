@@ -47,18 +47,26 @@ def set_config(*args,**kwargs):
                 _db.authenticate(args["user"],args["password"])
             _coll=_db.get_collection(args["collection"])
             _collection_name=args["collection"]
-
+def load_config_from_django_settings():
+    from django.conf import settings
+    LANGUAGE_COLLECTION="lang_res"
+    try:
+        LANGUAGE_COLLECTION = settings.LANGUAGE_COLLECTION
+    except Exception as ex:
+        pass
+    set_config(dict(
+        host= settings.DATABASE["default"]["HOST"],
+        port = settings.DATABASE["default"]["PORT"],
+        user =settings.DATABASE["default"]["USER"],
+        password =settings.DATABASE["default"]["PASSWORD"],
+        name = settings.DATABASE["default"]["PASSWORD"],
+        collection = LANGUAGE_COLLECTION
+    ))
 def get_language_item(schema,lan,app,view,key,value):
 
     coll=_coll
     if _collection_name == None:
-        from django.conf import settings
-        if not hasattr(settings,"LANGUAGE_COLLECTION"):
-            raise (Exception("It looks like you forgot put 'LANGUAGE_COLLECTION' point to storage of language resoucre"))
-        dbconfig = settings.DATABASES["default"]
-
-
-
+        load_config_from_django_settings()
 
     if schema!=None:
         coll=_db.get_collection(schema+"."+_collection_name)

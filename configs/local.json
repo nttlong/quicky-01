@@ -124,7 +124,7 @@
     "name":"hrm",
     "schema":"sys"
   },
-  "DB_LANGUAGE":{
+  "DB_LANGUAGE_":{
     "host":"localhost",
     "port":27017,
     "user":"root",
@@ -133,7 +133,7 @@
     "collection":"sys_languages",
     "disable":"true"
   },
-  "DB_ENCRYPTOR_CACHE":{
+  "DB_ENCRYPTOR_CACHE_":{
     "host":"localhost",
     "port":27017,
     "user":"root",
@@ -149,7 +149,7 @@
     "name":"hrm",
     "collection":"sys.excel_config"
   },
-  "DB_TRACKING":{
+  "DB_TRACKING_":{
     "host":"localhost",
     "port":27017,
     "user":"root",

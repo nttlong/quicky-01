@@ -53,6 +53,23 @@ def set_config(*args,**kwargs):
                 _db.authenticate(args["user"],args["password"])
             _coll=_db.get_collection(args["collection"])
             _collection_name=args["collection"]
+def load_config_from_django():
+    from django.conf import settings
+    config=None
+    try:
+
+        config=settings.DB_TRACKING
+    except Exception as ex:
+        config=dict(
+            host=settings.DATABASES["default"]["HOST"],
+            port=settings.DATABASES["default"]["PORT"],
+            user=settings.DATABASES["default"]["USER"],
+            password=settings.DATABASES["default"]["PASSWORD"],
+            collection="sys.tracking",
+            name = settings.DATABASES["default"]["NAME"]
+        )
+    set_config(config)
+
 def track_load_page(app_name,schema,page,username):
     import inspect
     import datetime
@@ -61,6 +78,8 @@ def track_load_page(app_name,schema,page,username):
     caller =inspect.stack()[1][3]
     time = datetime.datetime.now()
     utc_time =datetime.datetime.utcnow()
+    if _coll == None:
+        load_config_from_django()
     def runner():
         try:
             ret= _coll.insert_one({
@@ -92,7 +111,8 @@ def track_call_api_before(app_name,schema,data,username):
     utc_time = datetime.datetime.utcnow()
     from bson import ObjectId
     rec_id = ObjectId()
-
+    if _coll == None:
+        load_config_from_django()
     def runner():
         import json
         try:
@@ -131,7 +151,8 @@ def track_call_api_after(app_name,schema,rec_id,data,username):
     utc_time = datetime.datetime.utcnow()
     from bson import ObjectId
 
-
+    if _coll == None:
+        load_config_from_django()
     def runner():
         import json
         try:

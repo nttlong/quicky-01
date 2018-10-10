@@ -45,6 +45,15 @@ def set_config(*args,**kwargs):
         _coll=_db.get_collection(args["collection"])
         _collection_name=args["collection"]
 
+def load_config_from_django_settings():
+    from django.conf import settings
+    set_config(dict(
+        host= settings.DATABASES["default"]["HOST"],
+        port= settings.DATABASES["default"]["PORT"],
+        user=settings.DATABASES["default"]["USER"],
+        password=settings.DATABASES["default"]["PASSWORD"],
+        collection="sys.encriptor_cache",
+    ))
 
 def get_key(value):
     """
@@ -54,11 +63,15 @@ def get_key(value):
     """
     global _cache
     global _cache_revert
+
     if _cache.has_key(value):
         return _cache[value]
     else:
         lock.acquire()
         try:
+            # global _coll
+            if _coll == None:
+                load_config_from_django_settings()
             item=_coll.find_one({
                 "value":re.compile("^"+value+"$",re.IGNORECASE)
                 })
@@ -86,12 +99,16 @@ def get_value(key):
     :param key: uuid text
     :return: text has been map when call get_key in this package
     """
+
     global _cache_revert
     if _cache_revert.has_key(key):
         return _cache_revert[key]
     else:
          lock.acquire()
          try:
+             # global _coll
+             if _coll == None:
+                 load_config_from_django_settings()
              item=_coll.find_one({
                 "key":re.compile("^"+key+"$",re.IGNORECASE)
                 })
