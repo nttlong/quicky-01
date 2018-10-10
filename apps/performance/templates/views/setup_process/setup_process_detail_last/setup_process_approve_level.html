@@ -1,0 +1,70 @@
+﻿<div class="hcs-tab-info">
+    <div class="col-xs-12 col-md-12 competency no-padding">
+        <div class="hcs-tab-info-box active" href="#tab_default_1" data-toggle="tab" ng-click="changeActive($event, 'tab1')">
+            <label>
+                <i class="bowtie-icon bowtie-icon bowtie-step" style="font-size: 25px;"/>
+                ${get_res('detail_approve_level','Chi tiết cấp duyệt')}
+            </label>
+        </div>
+        <div class="hcs-tab-info-box" href="#tab_default_2" data-toggle="tab" ng-click="changeActive($event, 'tab2')">
+            <label style="padding-left:5px;">
+                <i class="bowtie-icon bowtie-draft" style="font-size: 25px;"/>
+                ${get_res('score_evaluation_method','Cách tính điểm đánh giá')}
+            </label>
+        </div>
+    </div>
+</div>
+<div class="tab-content" style="height: 100%;">
+    <div class="tab-pane active" id="tab_default_1" style="height: calc(100% - 75px);">
+         <table-data data-source="$$table.tableSource" 
+                    fields="$$table.tableFields" 
+                    type="MultiSelect" 
+                    paging="true" 
+                    page-length="100" 
+                    server-side="true" 
+                    press-enter="$$table.onSelectTableRow" 
+                    selected-items="$$table.selectedItems" 
+                    current-item="$$table.currentItem" 
+                    search-text="$$table.tableSearchText"
+                    refresh-row="$$table.refreshDataRow">
+        </table-data>
+    </div>
+    <div class="tab-pane" id="tab_default_2">
+        <div class="row">
+            <div class="col-md-12 col-xs-12">
+                <div class="form-group zb-form-group">
+                    <div class="col-md-12 col-xs-12">
+                        <label class="radio" ng-repeat="elm in LScoreBy">
+                            <input type="radio" name="radioScoreBy" ng-value="elm.value" ng-model="tableSourceScoreCoeff.score_by">
+                            <span class="checkround"></span>
+                            {{elm.caption}}
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-10 col-md-offset-1">
+                <div class="form-group zb-form-group" style="height: 300px; overflow: auto;">
+                    <table class="display zb-data-table responsive nowrap dataTable no-footer" ng-disabled="tableSourceScoreCoeff.score_by != 4">
+                        <thead>
+                            <th style="width: 40%;">${get_res('level', 'Cấp')}</th>
+                            <th style="width: 50%;">${get_res('coeff', 'Hệ số')}</th>
+                            <th></th>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="elm in tableSourceScoreCoeff.score_by_coeff track by $index">
+                                <td role= "row">{{elm.approve_level}} <span ng-if="elm.approve_level == 0">(${get_res('rate_yourself', 'Tự đánh giá')})</span></td>
+                                <td role= "row">{{elm.coeff}}</td>
+                                <td><button ng-disabled="tableSourceScoreCoeff.score_by != 4" class="pull-right" ng-click="editDetail(elm)" style="background: none;border: none;color: #37a5dd;"><i class="bowtie-icon bowtie-edit-outline" /></button></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    <%include file="scripts/setup_process_approve_level.js"/>
+</script>

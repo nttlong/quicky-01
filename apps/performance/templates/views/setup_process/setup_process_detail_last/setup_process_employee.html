@@ -1,0 +1,68 @@
+<div class="hcs-container">
+    <div class="row hcs-profile-list">
+        <div class="hcs-left-side-department-content">
+            <div class="hcs-left-side-department-tree-tool-bar" style="padding: 3px 0px 0px 0px">
+                <label for="inputCodeDomain" class="col-sm-12 col-xs-12">${get_res('view_by','Xem theo')}</label>
+                <input-select class="size-lg" data-list="LviewBy" data-value="value" data-caption="caption" ng-model="viewBy">
+            </div>
+            <div class="hcs-left-side-department-tree" style="height: calc(100% - 38px);" ng-if="modeView == 0">
+                <tree-data data-source="$$tree[0].treeDataSource" 
+                           display-field="gjw_name"
+                           parent-field="parent_code" 
+                           key-field="gjw_code" 
+                           multi-select="$$tree[0].treeMultiSelect" 
+                           select-mode="$$tree[0].treeMode" 
+                           on-select="$$tree[0].selectTreeNode"
+                           current-node="$$tree[0].treeCurrentNode"
+                           selected-nodes="$$tree[0].treeSelectedNodes"
+                           selected-root-nodes="$$tree[0].treeSelectedRootNodes"
+                           search-text="$$tree[0].treeSearchText"
+                           check-all="$$tree[0].treeCheckAll"
+                           checked-field="is_selected"
+                           disabled="true"
+                           expand-all="$treeExpandAll"
+                           collapse-all="$treeCollapseAll"/>
+             </div>
+             <div class="hcs-left-side-department-tree" style="height: calc(100% - 38px);" ng-if="modeView == 1">
+                <tree-data data-source="$$tree[1].treeDataSource" 
+                           display-field="department_name"
+                           parent-field="parent_code" 
+                           key-field="department_code" 
+                           multi-select="$$tree[1].treeMultiSelect" 
+                           select-mode="$$tree[1].treeMode" 
+                           on-select="$$tree[1].selectTreeNode"
+                           current-node="$$tree[1].treeCurrentNode"
+                           selected-nodes="$$tree[1].treeSelectedNodes"
+                           selected-root-nodes="$$tree[1].treeSelectedRootNodes"
+                           search-text="$$tree[1].treeSearchText"
+                           check-all="$$tree[1].treeCheckAll"
+                           checked-field="is_selected"
+                           disabled="true"
+                           expand-all="$treeExpandAll"
+                           collapse-all="$treeCollapseAll"/>
+            </div>
+            <div class="hcs-left-side-department-tree" style="height: calc(100% - 38px);" ng-if="modeView == 2">
+            </div>
+        </div>
+        <div class="hcs-right-side-department-content">
+            <div class="hcs-right-side-department-list" style="height:calc(100% + 1px);">
+                <table-data data-source="$$table.tableSource" 
+                            fields="$$table.tableFields" 
+                            type="MultiSelect" 
+                            paging="true" 
+                            page-length="100" 
+                            server-side="true" 
+                            press-enter="$$table.onSelectTableRow" 
+                            selected-items="$$table.selectedItems" 
+                            current-item="$$table.currentItem" 
+                            search-text="$$table.tableSearchText"
+                            refresh-row="$$table.refreshDataRow">
+                </table-data>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="clearfix"></div>
+<script>
+    <%include file="scripts/setup_process_employee.js"/>
+</script>

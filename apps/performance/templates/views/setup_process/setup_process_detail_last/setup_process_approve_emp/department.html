@@ -1,0 +1,224 @@
+<div class="col-xs-12 col-md-12"  style="height: 100%;">
+    <div class="col-xs-12 col-md-12 no-padding" style="height: 100%;">
+        <table-data data-source="$$table.tableSource"
+                    fields="$$table.tableFields"
+                    type="MultiSelect"
+                    paging="true"
+                    page-length="100"
+                    server-side="true"
+                    press-enter="$$table.onSelectTableRow"
+                    selected-items="$$table.selectedItems"
+                    current-item="$$table.currentItem"
+                    search-text="$$table.tableSearchText"
+                    refresh-row="$$table.refreshDataRow">
+        </table-data>
+    </div>
+</div>
+<script>
+(function (scope) {
+    scope.$$table = {
+        tableFields: [
+            { "data": "department_code", "title": "${get_res('department_code','Mã bộ phận')}", "className": "text-left" },
+            { "data": "department_name", "title": "${get_res('department_name','Tên bộ phận')}", "className": "text-left" },
+            { "data": "approve_level_1", "title": "${get_global_res('level','Cấp độ')}" + " 1", "className": "text-left", "visible": scope.$parent.$$curr_max_approve_level >= 1 ? true : false },
+            { "data": "approve_level_2", "title": "${get_global_res('level','Cấp độ')}" + " 2", "className": "text-left", "visible": scope.$parent.$$curr_max_approve_level >= 2 ? true : false },
+            { "data": "approve_level_3", "title": "${get_global_res('level','Cấp độ')}" + " 3", "className": "text-left", "visible": scope.$parent.$$curr_max_approve_level >= 3 ? true : false },
+            { "data": "approve_level_4", "title": "${get_global_res('level','Cấp độ')}" + " 4", "className": "text-left", "visible": scope.$parent.$$curr_max_approve_level >= 4 ? true : false },
+            { "data": "approve_level_5", "title": "${get_global_res('level','Cấp độ')}" + " 5", "className": "text-left", "visible": scope.$parent.$$curr_max_approve_level >= 5 ? true : false },
+            { "data": "approve_level_6", "title": "${get_global_res('level','Cấp độ')}" + " 6", "className": "text-left", "visible": scope.$parent.$$curr_max_approve_level >= 6 ? true : false },
+            { "data": "approve_level_7", "title": "${get_global_res('level','Cấp độ')}" + " 7", "className": "text-left", "visible": scope.$parent.$$curr_max_approve_level >= 7 ? true : false },
+            { "data": "approve_level_8", "title": "${get_global_res('level','Cấp độ')}" + " 8", "className": "text-left", "visible": scope.$parent.$$curr_max_approve_level >= 8 ? true : false },
+            { "data": "approve_level_9", "title": "${get_global_res('level','Cấp độ')}" + " 9", "className": "text-left", "visible": scope.$parent.$$curr_max_approve_level >= 9 ? true : false },
+            { "data": "approve_level_10", "title": "${get_global_res('level','Cấp độ')}" + " 10", "className": "text-left", "visible": scope.$parent.$$curr_max_approve_level >= 10 ? true : false },
+            { "data": "approve_level_11", "title": "${get_global_res('level','Cấp độ')}" + " 11", "className": "text-left", "visible": scope.$parent.$$curr_max_approve_level >= 11 ? true : false },
+            { "data": "approve_level_12", "title": "${get_global_res('level','Cấp độ')}" + " 12", "className": "text-left", "visible": scope.$parent.$$curr_max_approve_level >= 12 ? true : false },
+            { "data": "approve_level_13", "title": "${get_global_res('level','Cấp độ')}" + " 13", "className": "text-left", "visible": scope.$parent.$$curr_max_approve_level >= 13 ? true : false },
+            { "data": "approve_level_14", "title": "${get_global_res('level','Cấp độ')}" + " 14", "className": "text-left", "visible": scope.$parent.$$curr_max_approve_level >= 14 ? true : false },
+            { "data": "approve_level_15", "title": "${get_global_res('level','Cấp độ')}" + " 15", "className": "text-left", "visible": scope.$parent.$$curr_max_approve_level >= 15 ? true : false },
+            { "data": "approve_level_16", "title": "${get_global_res('level','Cấp độ')}" + " 16", "className": "text-left", "visible": scope.$parent.$$curr_max_approve_level >= 16 ? true : false },
+            { "data": "approve_level_17", "title": "${get_global_res('level','Cấp độ')}" + " 17", "className": "text-left", "visible": scope.$parent.$$curr_max_approve_level >= 17 ? true : false },
+            { "data": "approve_level_18", "title": "${get_global_res('level','Cấp độ')}" + " 18", "className": "text-left", "visible": scope.$parent.$$curr_max_approve_level >= 18 ? true : false },
+            { "data": "approve_level_19", "title": "${get_global_res('level','Cấp độ')}" + " 19", "className": "text-left", "visible": scope.$parent.$$curr_max_approve_level >= 19 ? true : false },
+            { "data": "approve_level_20", "title": "${get_global_res('level','Cấp độ')}" + " 20", "className": "text-left", "visible": scope.$parent.$$curr_max_approve_level >= 20 ? true : false }
+        ],
+        $$tableConfig: {},
+        tableSource: _loadDataServerSide,
+        onSelectTableRow: function ($row) { onEdit(); },
+        selectedItems: [],
+        currentItem: {},
+        tableSearchText: "",
+        refreshDataRow: function () { /*Do nothing*/ }
+    };
+    scope._tableData = _tableData;
+    scope.reloadData = reloadData;
+    scope.mode = 0;
+    scope.searchText = "";
+    scope.listDepartmentUsed = [];
+    scope.reloadDepartmentUsed = reloadDepartmentUsed;
+
+    scope.$parent.$parent.$parent.$parent.onSearch = onSearch;
+    scope.$parent.$parent.$parent.$parent.onAdd = onAdd;
+    scope.$parent.$parent.$parent.$parent.onEdit = onEdit;
+    scope.$parent.$parent.$parent.$parent.onDelete = onDelete;
+    scope.$parent.$parent.$parent.$parent.onImport = onImport;
+    scope.$parent.$parent.$parent.$parent.onExport = onExport;
+    scope.$parent.$parent.$parent.$parent.onRefresh = reloadData;
+    scope.$parent.onRefresh = function(){
+        _tableData(scope.$$table.$$tableConfig.iPage, scope.$$table.$$tableConfig.iPageLength, scope.$$table.$$tableConfig.orderBy, scope.$$table.$$tableConfig.SearchText, scope.$$table.$$tableConfig.fnReloadData);
+    };
+
+    function onSearch(val) {
+        scope.$$table.tableSearchText = val;
+        var tableConfig = scope.$$table.$$tableConfig;
+        _tableData(tableConfig.iPage,
+            tableConfig.iPageLength, tableConfig.orderBy,
+            tableConfig.searchText, tableConfig.fnReloadData);
+    }
+
+    function onAdd() {
+        scope.mode = 1;// set mode tạo mới
+        openDialog("${get_res('add_approver_by_department','Thêm người duyệt theo bộ phận')}" , 'setup_process/setup_process_detail/setup_process_approve_emp/form/editSetupProcessApprDept', function () { });
+    };
+
+    function reloadData(){
+        _tableData(scope.$$table.$$tableConfig.iPage, scope.$$table.$$tableConfig.iPageLength, scope.$$table.$$tableConfig.orderBy, scope.$$table.$$tableConfig.SearchText, scope.$$table.$$tableConfig.fnReloadData);
+        scope.$$table.currentItem = null;
+        scope.$$table.selectedItems = [];
+        scope.$applyAsync();
+    }
+
+    function onEdit() {
+        if (Object.keys(scope.$$table.currentItem).length > 0) {
+            scope.mode = 2; // set mode chỉnh sửa
+            openDialog("${get_res('detail_approver_by_department','Chi tiết người duyệt theo bộ phận')}" , 'setup_process/setup_process_detail/setup_process_approve_emp/form/editSetupProcessApprDept', function () { });
+        } else {
+            $msg.message("${get_global_res('Notification','Thông báo')}", "${get_app_res('No_Row_Selected','Không có dòng được chọn')}", function () { });
+        }
+    };
+    function onDelete() {
+        if (!scope.$$table.selectedItems || scope.$$table.selectedItems.length === 0) {
+            $msg.message("${get_global_res('Notification','Thông báo')}", "${get_global_res('No_Row_Selected','Không có dòng được chọn')}", function () { });
+        } else {
+            $msg.confirm("${get_global_res('Notification','Thông báo')}", "${get_global_res('Do_You_Want_Delete','Bạn có muốn xóa không?')}", function () {
+                services.api("${get_api_key('app_main.api.TM_SetupProcessApproverDept/delete_dept')}")
+                    .data({
+                        process_id:scope.$parent.$$process_id,
+                        department_code: _.pluck(scope.$$table.selectedItems, "department_code")
+                    })
+                    .done()
+                    .then(function (res) {
+                        if (res.deleted > 0) {
+                            reloadData();
+                            $msg.alert("${get_global_res('Handle_Success','Thao tác thành công')}", $type_alert.INFO);
+                        }
+                    })
+            });
+        }
+    };
+    function onExport() {
+        lv.ExportFile("/excel_export")
+            .data({
+                'collection_name': 'TM_SetupProcessApproverDept'
+            }).done();
+    }
+    function onImport() {
+        lv.ImportFile("${get_api_key('app_main.excel.import/call')}")
+            .done(function (res) {
+                console.log("lv.UploadService", res);
+            });
+    }
+
+    /**
+     * Hàm mở dialog
+     * @param {string} title Tittle của dialog
+     * @param {string} path Đường dẫn file template
+     * @param {function} callback Xử lí sau khi gọi dialog
+     * @param {string} id Id của form dialog, default = 'myModal'
+     */
+    function openDialog(title, path, callback, id = 'myModal') {
+
+        //check tồn tại của form dialog theo id
+        if ($('#' + id).length === 0) {
+            scope.headerTitle = title;
+            //Đặt ID cho form dialog
+            dialog(scope).url(path).done(function () {
+                callback();
+                //Set draggable cho form dialog
+                $dialog.draggable();
+            });
+        }
+    }
+
+    function _loadDataServerSide(fnReloadData, iPage, iPageLength, orderBy, searchText) {
+        scope.$$table.$$tableConfig = {
+            fnReloadData: fnReloadData,
+            iPage: iPage,
+            iPageLength: iPageLength,
+            orderBy: orderBy,
+            searchText: searchText
+        };
+        if (fnReloadData) {
+            if (searchText) {
+                _tableData(iPage, iPageLength, orderBy, searchText, function (data) {
+                    fnReloadData(data);
+                });
+            } else {
+                _tableData(iPage, iPageLength, orderBy, null, function (data) {
+                    fnReloadData(data);
+                });
+            }
+        }
+    };
+
+    function _tableData(iPage, iPageLength, orderBy, searchText, callback) {
+        var sort = {};
+        $.each(orderBy, function (i, v) {
+            sort[v.columns] = (v.type === "asc") ? 1 : -1;
+        });
+        sort[orderBy[0].columns] =
+            services.api("${get_api_key('app_main.api.TM_SetupProcessApproverDept/get_list_process_approve_by_dept')}")
+                .data({
+                    //parameter at here
+                    "pageIndex": iPage - 1,
+                    "pageSize": iPageLength,
+                    "search": searchText,
+                    "sort": sort,
+                    "process_id": scope.$parent.$$process_id
+                })
+                .done()
+                .then(function (res) {
+                    if (res.items) {
+                        var data = {
+                            recordsTotal: res.total_items,
+                            recordsFiltered: res.total_items,
+                            data: res.items
+                        };
+                        callback(data);
+                        scope.currentItem = null;
+                        scope.$apply();
+                    }
+                })
+    }
+
+    function getDepartmentByProcessId(process_id, callback){
+        services.api("${get_api_key('app_main.api.TM_SetupProcessApproverDept/get_list_by_process_id')}")
+                    .data({
+                        "process_id":process_id
+                    })
+                    .done()
+                    .then(function (res) {
+                        callback(res);
+                    })
+    }
+
+    function reloadDepartmentUsed(){
+        getDepartmentByProcessId(scope.$parent.$$process_id, function(res){
+            scope.listDepartmentUsed = _.pluck(res, "department_code");
+        });
+    }
+
+    (function __init__(){
+        reloadDepartmentUsed();
+    })();
+});
+</script>

@@ -1,0 +1,180 @@
+<div class="tab-pane">
+    <div class="col-md-6 col-xs-6">
+        <collapse-box class="zb-form-common" title="${get_global_res('Common_Information','Thông tin chung')}">
+            <div class="col-sm-12 col-xs-12">
+                <div class="form-group zb-form-group">
+                    <!--Mã chỉ tiêu-->
+                    <label class="col-sm-5 zb-form-label">${get_res('class_code','Mã lớp')}</label>
+                    <div class="col-sm-7">
+                        <input-text required>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-12 col-xs-12">
+                <div class="form-group zb-form-group">
+                    <!--Mã chỉ tiêu-->
+                    <label class="col-sm-5 zb-form-label">${get_res('class_name','Tên lớp lớp')}</label>
+                    <div class="col-sm-7">
+                        <input-text>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-12 col-xs-12">
+                <div class="form-group zb-form-group">
+                    <!--Tên chỉ tiêu-->
+                    <label class="col-sm-5 zb-form-label">${get_res('follow_plan','Theo kế hoạch')}</label>
+                    <div class="col-sm-7" style="display: grid; grid-template-columns:auto 1fr;">
+                        <div>
+                            <input-checkbox></input-checkbox>
+                        </div>
+                        <div>
+                            <input-select></input-select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-12 col-xs-12">
+                <div class="form-group zb-form-group">
+                    <!--Tên khác-->
+                    <label class="col-sm-5 zb-form-label">${get_res('training_group','Nhóm đào tạo')}</label>
+                    <div class="col-sm-7">
+                        <input-select></input-select>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-12 col-xs-12">
+                <div class="form-group zb-form-group">
+                    <!--Thuộc nhóm-->
+                    <label class="col-sm-5 zb-form-label">${get_res('training_course','Khóa đào tạo')}</label>
+                    <div class="col-sm-7">
+                         <input-select required></input-select>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-12 col-xs-12">
+                <div class="form-group zb-form-group">
+                    <label class="col-sm-5 zb-form-label">${get_res('form_type','Hình thức')}</label>
+                     <div class="col-sm-7">
+                        <input-select required></input-select>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-12 col-xs-12">
+                <div class="form-group zb-form-group">
+                    <label class="col-sm-5 zb-form-label">${get_res('date_from','Từ ngày')}</label>
+                     <div class="col-sm-7">
+                        <date-picker></date-picker>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-12 col-xs-12">
+                <div class="form-group zb-form-group">
+                    <label class="col-sm-5 zb-form-label">${get_res('date_to','Đến ngày')}</label>
+                    <div class="col-sm-7">
+                        <date-picker></date-picker>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-12 col-xs-12">
+                <div class="form-group zb-form-group">
+                    <label class="col-sm-5 zb-form-label">Đợt</label>
+                     <div class="col-sm-7">
+                        <input-text></input-text>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-12 col-xs-12">
+                <div class="form-group zb-form-group">
+                    <label class="col-sm-5 zb-form-label">${get_res('teacher','Giáo viên')}</label>
+                     <div class="col-sm-7">
+                        <input-select/>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-12 col-xs-12">
+                <div class="form-group zb-form-group">
+                    <label class="col-sm-5 zb-form-label">${get_res('students','Số học sinh')}</label>
+                     <div class="col-sm-7">
+                        <input-number></input-number>
+                    </div>
+                </div>
+           </div>
+        </collapse-box>
+    </div>
+    <div class="col-md-6 col-xs-6">
+        <collapse-box class="zb-form-common" title="${get_res('content','Nội dung')}">
+            <div class="col-sm-12 col-xs-12">
+                <div class="form-group zb-form-group">
+                    <input-textarea rows="4" ng-model="entity.note"></input-textarea>
+                </div>
+            </div>
+            <div class="col-sm-12 col-xs-12">
+                <div class="form-group zb-form-group">
+                    <label class="col-sm-5 zb-form-label">Cơ sở đào tạo</label>
+                    <div class="col-sm-7">
+                        <input-select></input-select>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-12 col-xs-12">
+                <div class="form-group zb-form-group">
+                    <label class="col-sm-5 zb-form-label">${get_res('class_room','Phòng học')}</label>
+                    <div class="col-sm-7">
+                        <input-select></input-select>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-12 col-xs-12">
+                <div class="form-group zb-form-group">
+                    <label class="col-sm-5 zb-form-label">${get_res('device','Thiết bị')}</label>
+                    <div class="col-sm-7">
+                        <input-text></input-text>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-12 col-xs-12">
+                <div class="form-group zb-form-group">
+                    <label class="col-sm-5 zb-form-label">${get_res('contract_no','Số hợp đồng')}</label>
+                    <div class="col-sm-7">
+                        <input-text></input-text>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-12 col-xs-12">
+                <div class="form-group zb-form-group">
+                    <label class="col-sm-5 zb-form-label">${get_res('contract_date','Ngày hợp đồng')}</label>
+                    <div class="col-sm-7">
+                        <date-picker></date-picker>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-12 col-xs-12">
+                <div class="form-group zb-form-group">
+                    <label class="col-sm-5 zb-form-label">Tình trạng</label>
+                    <div class="col-sm-7">
+                        <input-select></input-select>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-12 col-xs-12">
+                <div class="form-group zb-form-group">
+                    <label class="col-sm-5 zb-form-label">${get_res('follower','Người theo dõi')}</label>
+                    <div class="col-sm-7">
+                        <input-select></input-select>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-12 col-xs-12">
+                <div class="form-group zb-form-group">
+                <label for="DisplayInfo" class="col-sm-5 zb-form-label">${get_global_res('create_and_modify','Tạo | Sửa')}</label>
+                <div class="col-sm-7">
+                    <input-text value="{{ entity.created_on | date: $root.systemConfig.date_format}} {{entity.created_by}} | {{ entity.modified_on | date: $root.systemConfig.date_format}} {{entity.modified_by}}" ng-disabled="true">
+                </div>
+            </div>
+            </div>
+        </collapse-box>
+    </div>
+</div>
+<script>
+    <%include file="../../scripts/partialscript/training_follow_common.js"/>
+</script>

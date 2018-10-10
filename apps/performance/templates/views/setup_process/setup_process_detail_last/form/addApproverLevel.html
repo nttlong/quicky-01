@@ -1,0 +1,541 @@
+﻿
+<%!
+    #_style="width:400px;"
+    #_height="250px"
+    _maximize="false"
+%>
+<%inherit file="../../../commons/dialog_save.html"/>
+
+<%block name="modal_body">
+<div class="col-md-12 col-xs-12">
+    <collapse-box class="zb-form-common" title="${get_res('approver_setting','Thiết lập cấp duyệt')}">
+        <div class="col-md-6 col-xs-6">
+            <div class="form-group zb-form-group">
+                <label class="col-sm-5 zb-form-label">${get_res('approve_level','Cấp duyệt')}</label>
+                <div class="col-sm-7">
+                    <input-text ng-model="entity.approve_level" ng-disabled="true"/>
+                </div>
+            </div>
+            <div class="form-group zb-form-group">
+                <label  class="col-sm-5 zb-form-label">${get_res('not_receive_email','Không nhận Email')}</label>
+                <div class="col-sm-7">
+                      <input-checkbox ng-model="entity.not_receive_email" />
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 col-xs-6">
+              <div class="form-group zb-form-group">
+                      <label class="col-sm-5 col-xs-5 zb-form-label">${get_res('approver_value','Người duyệt')}
+                      </label>
+                    <div class="col-sm-7 col-xs-7">
+                        <input-select ng-model="entity.approver_value" data-list="listPerfApprover" data-value="value" data-caption="caption"/>
+                    </div>
+                </div>
+              <div class="form-group zb-form-group">
+                          <label class="col-sm-5 col-xs-5 zb-form-label">${get_res('default_approve_code','Người duyệt cố định')}
+                          </label>
+                   <div class="col-sm-7 col-xs-7" ng-show="entity.approver_value == 0">
+                        <combobox load-data="$root.$getComboboxData"
+                                  ng-model="entity.default_approver_code"
+                                  params="{key:'${encryptor.get_key('cbb_employees_cbcc')}', value:[]}"
+                                  on-search-change="false"
+                                  on-search-press="true"
+                                  placeholder=""
+                                  init-data="$$$default_approver_code.value"
+                                  caption-field="{{$$$default_approver_code.caption_field}}"
+                                  paging="true"
+                                  close-on-select="true"
+                                  template-fields="$$$default_approver_code.display_fields"
+                                  reload="false">
+                        </combobox>
+                    </div>
+                    {{entity.default_approve_code}}
+                    <div class="col-sm-7 col-xs-7" ng-show="entity.approver_value != 0">
+                        <combobox load-data="$root.$getComboboxData"
+                                  ng-model="entity.default_approver_code"
+                                  params="{key:'${encryptor.get_key('cbb_TM_VW_EmailHR')}', value:[]}"
+                                  on-search-change="false"
+                                  on-search-press="true"
+                                  placeholder=""
+                                  init-data="$$$default_approver_code_hr.value"
+                                  caption-field="{{$$$default_approver_code_hr.caption_field}}"
+                                  paging="true"
+                                  close-on-select="true"
+                                  template-fields="$$$default_approver_code_hr.display_fields"
+                                  ng-disabled="entity.approver_value != 5"
+                                  reload="false">
+                        </combobox>
+                    </div>
+              </div>
+        </div>
+    </collapse-box>
+</div>
+<div class="col-md-6 col-xs-6">
+    <collapse-box class="zb-form-common" title="${get_res('email_approve','Email DUYỆT')}">
+        <div class="col-md-12 col-xs-12">
+            <div class="form-group zb-form-group">
+                <label class="col-sm-5 zb-form-label">${get_res('email_send_code','Mẫu Email')}</label>
+                <div class="col-sm-7">
+                    <combobox load-data="$root.$getComboboxData"
+                        ng-model="entity.email_approve_code"
+                        params="{key:'${encryptor.get_key('cbb_TM_Email_Template')}', value:[{ '@module_name': 'TMPER' }]}"
+                        on-search-change="false"
+                        on-search-press="true"
+                        placeholder=""
+                        init-data="$$$email_approve_code.value"
+                        caption-field="{{$$$email_approve_code.caption_field}}"
+                        paging="true"
+                        close-on-select="true"
+                        template-fields="$$$email_approve_code.display_fields"
+                        reload="false">
+                    </combobox>
+                </div>
+            </div>
+            <div class="form-group zb-form-group">
+                <label  class="col-sm-5 zb-form-label">${get_res('email_send_to','Gửi tới')}</label>
+                <div class="col-sm-7">
+                      <input-multi-select data-list="cbbLSendEmailTo" ng-model="entity.email_approve_to"
+                                          data-value="value" data-caption="caption"/>
+                </div>
+            </div>
+            <div class="form-group zb-form-group">
+                <label  class="col-sm-5 zb-form-label">${get_res('email_send_cc','Gửi thêm tới')}</label>
+                <div class="col-sm-7">
+                    <input-multi-select ng-model="entity.email_approve_cc" data-list="cbbLSendEmailCC"
+                                        data-value="value" data-caption="caption" />
+                </div>
+            </div>
+            <div class="form-group zb-form-group">
+                <label  class="col-sm-5 zb-form-label">${get_res('email_send_more','Gửi chỉ định tới')}</label>
+                <div class="col-sm-7">
+                    <input-text ng-model="entity.email_approve_more" />
+                </div>
+            </div>
+        </div>
+    </collapse-box>
+    <collapse-box ng-show="!$parent.$parent.$parent.$parent.$parent.$$table.currentItem.is_email_cancel" class="zb-form-common" title="${get_res('email_approve_cancel','Email DUYỆT HUỶ')}">
+        <div class="col-md-12 col-xs-12">
+            <div class="form-group zb-form-group">
+                <label class="col-sm-5 zb-form-label">${get_res('email_send_code','Mẫu Email')}</label>
+                <div class="col-sm-7">
+                    <combobox load-data="$root.$getComboboxData"
+                        ng-model="entity.email_approve_cancel_code"
+                        params="{key:'${encryptor.get_key('cbb_TM_Email_Template')}', value:[{ '@module_name': 'TMPER' }]}"
+                        on-search-change="false"
+                        on-search-press="true"
+                        placeholder=""
+                        init-data="$$$email_delete_code.value"
+                        caption-field="{{$$$email_delete_code.caption_field}}"
+                        paging="true"
+                        close-on-select="true"
+                        template-fields="$$$email_delete_code.display_fields"
+                        reload="false">
+                    </combobox>
+                </div>
+            </div>
+            <div class="form-group zb-form-group">
+                <label  class="col-sm-5 zb-form-label">${get_res('email_send_to','Gửi tới')}</label>
+                <div class="col-sm-7">
+                    <input-multi-select data-list="cbbLEmailDeleteTo" ng-model="entity.email_approve_cancel_to"
+                                          data-value="value" data-caption="caption"/>
+                </div>
+            </div>
+            <div class="form-group zb-form-group">
+                <label  class="col-sm-5 zb-form-label">${get_res('email_send_cc','Gửi thêm tới')}</label>
+                <div class="col-sm-7">
+                    <input-multi-select data-list="cbbLEmailDeleteCC" ng-model="entity.email_approve_cancel_cc"
+                                          data-value="value" data-caption="caption"/>
+                </div>
+            </div>
+            <div class="form-group zb-form-group">
+                <label  class="col-sm-5 zb-form-label">${get_res('email_send_more','Gửi chỉ định tới')}</label>
+                <div class="col-sm-7">
+                    <input-text ng-model="entity.email_approve_cancel_more" />
+                </div>
+            </div>
+        </div>
+    </collapse-box>
+</div>
+<div class="col-md-6 col-xs-6">
+    <collapse-box ng-show="!$parent.$parent.$parent.$parent.$parent.$$table.currentItem.is_email_cancel" class="zb-form-common" title="${get_res('email_cancel','Email KHÔNG DUYỆT')}">
+        <div class="col-md-12 col-xs-12">
+            <div class="form-group zb-form-group">
+                <label class="col-sm-5 zb-form-label">${get_res('email_send_code','Mẫu Email')}</label>
+                <div class="col-sm-7">
+                    <combobox load-data="$root.$getComboboxData"
+                        ng-model="entity.email_reject_code"
+                        params="{key:'${encryptor.get_key('cbb_TM_Email_Template')}', value:[{ '@module_name': 'TMPER' }]}"
+                        on-search-change="false"
+                        on-search-press="true"
+                        placeholder=""
+                        init-data="$$$email_cancel_code.value"
+                        caption-field="{{$$$email_cancel_code.caption_field}}"
+                        paging="true"
+                        close-on-select="true"
+                        template-fields="$$$email_cancel_code.display_fields"
+                        reload="false">
+                    </combobox>
+                </div>
+            </div>
+            <div class="form-group zb-form-group">
+                <label  class="col-sm-5 zb-form-label">${get_res('email_send_to','Gửi tới')}</label>
+                <div class="col-sm-7">
+                    <input-multi-select data-list="cbbLEmailCancelTo" ng-model="entity.email_reject_to"
+                                          data-value="value" data-caption="caption"/>
+                </div>
+            </div>
+            <div class="form-group zb-form-group">
+                <label  class="col-sm-5 zb-form-label">${get_res('email_send_cc','Gửi thêm tới')}</label>
+                <div class="col-sm-7">
+                    <input-multi-select data-list="cbbLEmailCancelCC" ng-model="entity.email_reject_cc"
+                                          data-value="value" data-caption="caption"/>
+                </div>
+            </div>
+            <div class="form-group zb-form-group">
+                <label  class="col-sm-5 zb-form-label">${get_res('email_send_more','Gửi chỉ định tới')}</label>
+                <div class="col-sm-7">
+                    <input-text ng-model="entity.email_reject_more" />
+                </div>
+            </div>
+        </div>
+    </collapse-box>
+    <collapse-box class="zb-form-common" title="${get_res('email_reject_cancel','Email KHÔNG DUYỆT HỦY')}">
+        <div class="col-md-12 col-xs-12">
+            <div class="form-group zb-form-group">
+                <label class="col-sm-5 zb-form-label">${get_res('email_send_code','Mẫu Email')}</label>
+                <div class="col-sm-7">
+                    <combobox load-data="$root.$getComboboxData"
+                        ng-model="entity.email_reject_cancel_code"
+                        params="{key:'${encryptor.get_key('cbb_TM_Email_Template')}', value:[{ '@module_name': 'TMPER' }]}"
+                        on-search-change="false"
+                        on-search-press="true"
+                        placeholder=""
+                        init-data="$$$email_instead_code.value"
+                        caption-field="{{$$$email_instead_code.caption_field}}"
+                        paging="true"
+                        close-on-select="true"
+                        template-fields="$$$email_instead_code.display_fields"
+                        reload="false">
+                    </combobox>
+                </div>
+            </div>
+            <div class="form-group zb-form-group">
+                <label  class="col-sm-5 zb-form-label">${get_res('email_send_to','Gửi tới')}</label>
+                <div class="col-sm-7">
+                    <input-multi-select data-list="cbbLEmailInsteadTo" ng-model="entity.email_reject_cancel_to"
+                                          data-value="value" data-caption="caption"/>
+                </div>
+            </div>
+            <div class="form-group zb-form-group">
+                <label  class="col-sm-5 zb-form-label">${get_res('email_send_cc','Gửi thêm tới')}</label>
+                <div class="col-sm-7">
+                    <input-multi-select data-list="cbbLEmailInsteadCC" ng-model="entity.email_reject_cancel_cc"
+                                          data-value="value" data-caption="caption"/>
+                </div>
+            </div>
+            <div class="form-group zb-form-group">
+                <label  class="col-sm-5 zb-form-label">${get_res('email_send_more','Gửi chỉ định tới')}</label>
+                <div class="col-sm-7">
+                    <input-text ng-model="entity.email_reject_cancel_more" />
+                </div>
+            </div>
+        </div>
+    </collapse-box>
+</div>
+</%block>
+
+<%block name="modal_script">
+<script>
+    (function (scope) {
+        var _model = {
+            rec_id : null,
+            process_id : null,
+            approve_level : null,
+            approver_value : null,
+            email_approve_code : null,
+            email_approve_to : null,
+            email_approve_cc : null,
+            email_approve_more : null,
+            email_reject_code : null,
+            email_reject_to : null,
+            email_reject_cc : null,
+            email_reject_more : null,
+            email_approve_cancel_code : null,
+            email_approve_cancel_to : null,
+            email_approve_cancel_cc : null,
+            email_approve_cancel_more : null,
+            email_reject_cancel_code : null,
+            email_reject_cancel_to : null,
+            email_reject_cancel_cc : null,
+            email_reject_cancel_more : null,
+            default_approver_code : null,
+            not_receive_email : null
+        };
+        scope.title = scope.$parent.headerTitle;
+        scope.saveNNext = saveNNext;
+        scope.__mode = scope.$parent.mode;
+        scope.entity = scope.__mode === 2 ? JSON.parse(JSON.stringify(scope.$parent.$$table.currentItem)) : null;
+        scope.entity.approver_value = !scope.entity.approver_value ? 0 : scope.entity.approver_value;
+
+        function saveNNext() {
+            debugger
+            if (scope.entity != null) {
+                var rsCheck = checkError();//Kết quả check input
+                if (rsCheck.result) {
+                    $msg.message("${get_global_res('Input_Error','Nhập liệu sai')}", rsCheck.errorMsg, function () { });
+                    return;
+                }
+                editData(function (res) {
+                    if (res.error == null) {
+                        $dialog.closeDialog();//Đóng form input
+                        $msg.alert("${get_global_res('Handle_Success','Thao tác thành công')}", $type_alert.INFO);//Xuất thông báo thành cônng
+                        reloadData();
+                    } else {
+                        $msg.message("${get_global_res('Internal_Server_Error','Có lỗi từ phía máy chủ')}", "${get_global_res('Please_Try_Again','Xin thử vui lòng thử lại')}", function () { });
+                    }
+                });
+            }
+        }
+
+        function editData(callback) {
+            debugger
+            var url = getUrl();
+            var param = _.mapObject(_model, function(val, key) { return val = scope.entity[key] ? scope.entity[key] : null });
+            services.api(url)
+                .data(param)
+                .done()
+                .then(function (res) {
+                    callback(res);
+                })
+        }
+
+        function getUrl() {
+            return "${get_api_key('app_main.api.TM_SetupProcessApproveLevel/update')}"
+        }
+
+        /**
+         * Function check input
+         */
+        function checkError() {
+            var errMsg;
+            var valid = null;
+            var rs = {
+                "result": false,
+                "errorMsg": ''
+            };
+            debugger
+            if(scope.entity.email_approve_more){
+                if(scope.entity.email_approve_more.indexOf(",") < 0){
+                    valid = lv.Validate(scope.entity.email_approve_more);
+                    rs.result = valid.isEmail();
+                    rs.errorMsg = rs.result === false ? "${get_res('email_address_invalid','Địa chỉ Email không hợp lệ')}" + '\n' : "" ;
+                    if(rs.result === false){
+                        rs.result = true;
+                        return rs;
+                    }else{
+                        rs.result = false;
+                    }
+                }else{
+                    var emails = scope.entity.email_approve_more.split(",");
+                    _.each(emails, function(val){
+                        valid = lv.Validate(val.trim());
+                        rs.result = valid.isEmail();
+                        console.log(val + " " + valid.isEmail());
+                        rs.errorMsg = rs.result === false ? "${get_res('email_address_invalid','Địa chỉ Email không hợp lệ')}" + '\n' : "" ;
+                        if(rs.result === false){
+                            rs.result = true;
+                            return rs;
+                        }else{
+                            rs.result = false;
+                        }
+                    })
+                    if(rs.result == true)
+                        return rs;
+                }
+            }
+            if(scope.entity.email_reject_more){
+                if(scope.entity.email_reject_more.indexOf(",") < 0){
+                    valid = lv.Validate(scope.entity.email_reject_more);
+                    rs.result = valid.isEmail();
+                    rs.errorMsg = rs.result === false ? "${get_res('email_address_invalid','Địa chỉ Email không hợp lệ')}" + '\n' : "" ;
+                    if(rs.result === false){
+                        rs.result = true;
+                        return rs;
+                    }else{
+                        rs.result = false;
+                    }
+                }else{
+                    var emails = scope.entity.email_reject_more.split(",");
+                    _.each(emails, function(val){
+                        valid = lv.Validate(val.trim());
+                        rs.result = valid.isEmail();
+                        console.log(val + " " + valid.isEmail());
+                        rs.errorMsg = rs.result === false ? "${get_res('email_address_invalid','Địa chỉ Email không hợp lệ')}" + '\n' : "" ;
+                        if(rs.result === false){
+                            rs.result = true;
+                            return rs;
+                        }else{
+                            rs.result = false;
+                        }
+                    })
+                    if(rs.result == true)
+                        return rs;
+                }
+            }
+            if(scope.entity.email_approve_cancel_more){
+                if(scope.entity.email_approve_cancel_more.indexOf(",") < 0){
+                    valid = lv.Validate(scope.entity.email_approve_cancel_more);
+                    rs.result = valid.isEmail();
+                    rs.errorMsg = rs.result === false ? "${get_res('email_address_invalid','Địa chỉ Email không hợp lệ')}" + '\n' : "" ;
+                    if(rs.result === false){
+                        rs.result = true;
+                        return rs;
+                    }else{
+                        rs.result = false;
+                    }
+                }else{
+                    var emails = scope.entity.email_approve_cancel_more.split(",");
+                    _.each(emails, function(val){
+                        valid = lv.Validate(val.trim());
+                        rs.result = valid.isEmail();
+                        console.log(val + " " + valid.isEmail());
+                        rs.errorMsg = rs.result === false ? "${get_res('email_address_invalid','Địa chỉ Email không hợp lệ')}" + '\n' : "" ;
+                        if(rs.result === false){
+                            rs.result = true;
+                            return rs;
+                        }else{
+                            rs.result = false;
+                        }
+                    })
+                    if(rs.result == true)
+                        return rs;
+                }
+            }
+            if(scope.entity.email_reject_cancel_more){
+                if(scope.entity.email_reject_cancel_more.indexOf(",") < 0){
+                    valid = lv.Validate(scope.entity.email_reject_cancel_more);
+                    rs.result = valid.isEmail();
+                    rs.errorMsg = rs.result === false ? "${get_res('email_address_invalid','Địa chỉ Email không hợp lệ')}" + '\n' : "" ;
+                    if(rs.result === false){
+                        rs.result = true;
+                        return rs;
+                    }else{
+                        rs.result = false;
+                    }
+                }else{
+                    var emails = scope.entity.email_reject_cancel_more.split(",");
+                    _.each(emails, function(val){
+                        valid = lv.Validate(val.trim());
+                        rs.result = valid.isEmail();
+                        console.log(val + " " + valid.isEmail());
+                        rs.errorMsg = rs.result === false ? "${get_res('email_address_invalid','Địa chỉ Email không hợp lệ')}" + '\n' : "" ;
+                        if(rs.result === false){
+                            rs.result = true;
+                            return rs;
+                        }else{
+                            rs.result = false;
+                        }
+                    })
+                    if(rs.result == true)
+                        return rs;
+                }
+            }
+            return rs;
+        }
+
+        function reloadData() {
+            var tableConfig = scope.$parent.$$table.$$tableConfig;
+            scope.$parent._tableData(tableConfig.iPage,
+            tableConfig.iPageLength, tableConfig.orderBy,
+            tableConfig.searchText, tableConfig.fnReloadData);
+        }
+
+        function _getDataInitCombobox() {
+            //valuelist
+            services.api("${get_api_key('app_main.api.SYS_ValueList/get_list')}")
+                .data({
+                    "name": [
+                        "LSendEmail",
+                        "PERF_Approver"
+                    ]
+                })
+                .done()
+                .then(function (res) {
+                    scope.cbbLSendEmailTo = getValue(res.values, "LSendEmail");
+                    scope.cbbLSendEmailCC = JSON.parse(JSON.stringify(scope.cbbLSendEmailTo));
+                    scope.cbbLEmailDeleteTo = JSON.parse(JSON.stringify(scope.cbbLSendEmailTo));
+                    scope.cbbLEmailDeleteCC = JSON.parse(JSON.stringify(scope.cbbLSendEmailTo));
+                    scope.cbbLEmailCancelTo = JSON.parse(JSON.stringify(scope.cbbLSendEmailTo));
+                    scope.cbbLEmailCancelCC = JSON.parse(JSON.stringify(scope.cbbLSendEmailTo));
+                    scope.cbbLEmailInsteadTo = JSON.parse(JSON.stringify(scope.cbbLSendEmailTo));
+                    scope.cbbLEmailInsteadCC = JSON.parse(JSON.stringify(scope.cbbLSendEmailTo));
+                    scope.listPerfApprover = getValue(res.values, "PERF_Approver");
+                    scope.$applyAsync();
+                    //scope.$applyAsync();
+                    function getValue(response, listName, callback) {
+                        var result = _.findWhere(response, { "list_name": listName }) ? _.findWhere(response, { "list_name": listName }).values : [];
+                        if(callback)
+                            callback(result);
+                        return result;
+                    }
+                })
+        }
+        _getDataInitCombobox();
+
+        (function _getDataInitCombobox() {
+            scope.$root.$getInitComboboxData(scope,
+                [{
+                    "key": "${encryptor.get_key('cbb_employees_cbcc')}",
+                    "code": scope.entity
+                        && scope.entity.hasOwnProperty('default_approver_code')
+                        ? scope.entity.default_approver_code
+                        : null,
+                    "alias": "$$$default_approver_code"
+                },
+                {
+                    "key": "${encryptor.get_key('cbb_TM_VW_EmailHR')}",
+                    "code": scope.entity
+                        && scope.entity.hasOwnProperty('default_approver_code')
+                        ? scope.entity.default_approver_code
+                        : null,
+                    "alias": "$$$default_approver_code_hr"
+                },
+                {
+                    "key": "${encryptor.get_key('cbb_TM_Email_Template')}",
+                    "code": scope.entity
+                        && scope.entity.hasOwnProperty('email_approve_code')
+                        ? scope.entity.email_approve_code
+                        : null,
+                    "alias": "$$$email_approve_code"
+                },
+                {
+                    "key": "${encryptor.get_key('cbb_TM_Email_Template')}",
+                    "code": scope.entity
+                        && scope.entity.hasOwnProperty('email_reject_code')
+                        ? scope.entity.email_reject_code
+                        : null,
+                    "alias": "$$$email_cancel_code"
+                },
+                {
+                    "key": "${encryptor.get_key('cbb_TM_Email_Template')}",
+                    "code": scope.entity
+                        && scope.entity.hasOwnProperty('email_approve_cancel_code')
+                        ? scope.entity.email_approve_cancel_code
+                        : null,
+                    "alias": "$$$email_delete_code"
+                }
+                ,{
+                    "key": "${encryptor.get_key('cbb_TM_Email_Template')}",
+                    "code": scope.entity
+                        && scope.entity.hasOwnProperty('email_reject_cancel_code')
+                        ? scope.entity.email_reject_cancel_code
+                        : null,
+                    "alias": "$$$email_instead_code"
+                }
+                ]
+            );
+        })();
+    });
+</script>
+
+</%block>
