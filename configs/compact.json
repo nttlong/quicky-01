@@ -1,0 +1,150 @@
+{
+  "PACKAGES":[
+    "/packages",
+    "/packages/mongodb",
+    "/packages/django",
+    "/uvenv04/lib/python2.7/site-packages"
+  ],
+  "SYS_VIEWS":"sys.views",
+  "HOST_DIR_":"lms",
+  "AUTHORIZATION_ENGINE":"quicky.authorize",
+  "HOST_DIR_":"test",
+  "SECRET_KEY":"12jds*3210d)9",
+  "DEBUG":true,
+  "ALLOWED_HOSTS": ["127.0.0.1", "localhost","172.16.11.127"],
+  "INSTALLED_APPS":[
+        "permission_backend_nonrel",
+        "django.contrib.admin",
+        "django.contrib.auth",
+        "django.contrib.contenttypes",
+        "django.contrib.sessions",
+        "django.contrib.messages",
+        "django.contrib.staticfiles"
+
+    ],
+  "AUTHENTICATION_BACKENDS":[
+        "permission_backend_nonrel.backends.NonrelPermissionBackend",
+        "quicky.backends.HashModelBackend"
+  ],
+  "MIDDLEWARE_CLASSES": [
+        "django.contrib.sessions.middleware.SessionMiddleware",
+        "django.middleware.common.CommonMiddleware",
+        "django.middleware.csrf.CsrfViewMiddleware",
+        "django.contrib.auth.middleware.AuthenticationMiddleware",
+
+        "django.contrib.messages.middleware.MessageMiddleware",
+        "django.middleware.clickjacking.XFrameOptionsMiddleware"
+    ],
+  "TEMPLATES": [
+        {
+            "BACKEND": "django.template.backends.django.DjangoTemplates",
+            "DIRS": [],
+            "APP_DIRS": true,
+            "OPTIONS": {
+                "context_processors": [
+                    "django.template.context_processors.debug",
+                    "django.template.context_processors.request",
+                    "django.contrib.auth.context_processors.auth",
+                    "django.contrib.messages.context_processors.messages",
+                    "django.core.context_processors.csrf"
+                ]
+            }
+        }
+    ],
+  "CACHES_1": {
+    "default": {
+        "BACKEND": "django.core.cache.backends.memcached.MemcachedCache",
+        "LOCATION": "127.0.0.1:11211"
+    }
+  },
+  "SESSION_ENGINE_1":"django.contrib.sessions.backends.cache",
+  "SESSION_EXPIRE_AT_BROWSER_CLOSE":true,
+  "DATABASES": {
+       "default" : {
+           "ENGINE": "django_mongodb_engine",
+           "NAME": "hrm",
+           "HOST": "localhost",
+           "PORT": 27017,
+           "USER": "root",
+           "PASSWORD": "123456"
+       }
+
+    },
+  "LANGUAGE_CODE":"en-us",
+  "TIME_ZONE":"UTC",
+  "USE_I18N":true,
+  "LANGUAGES": [
+        ["en", "English"],
+        ["vn", "Tiếng Việt"]
+  ],
+  "USE_L10N":true,
+  "USE_TZ":true,
+  "USE_MULTI_TENANCY":true,
+  "MULTI_TENANCY_DEFAULT_SCHEMA":"lv",
+  "JASPER":{
+    "URL":"http://172.16.7.67:8080/jasperserver",
+    "USER":"jasperadmin",
+    "PASSWORD":"jasperadmin"
+  },
+
+  "DB_EXCEL_EXPORT_CONFIG":{
+    "host":"localhost",
+    "port":27017,
+    "user":"root",
+    "password":"123456",
+    "name":"hrm",
+    "collection":"sys.excel_config"
+  },
+   "APPS": [
+    {
+      "host": "sys",
+      "name": "sys-admin",
+      "path": "apps/sys_admin",
+      "schema": "sys",
+      "settings": {
+        "DATABASE": {
+          "host": "172.16.7.67",
+          "port": 27017,
+          "name": "lms",
+          "user": "sys",
+          "password": "123456"
+        }
+      }
+    },
+    {
+      "host": "",
+      "name": "performance",
+      "path": "apps/performance",
+      "login_url": "login"
+
+    },
+    {
+      "host": "demo",
+      "name": "demo",
+      "path": "apps/demo",
+      "login_url": "/../login",
+      "static_dir": "apps/performance/static",
+      "disable":true
+    },
+    {
+      "host": "lms",
+      "name": "lms",
+      "path": "apps/lms",
+      "login_url": "/../login",
+      "static_dir": "apps/performance/static"
+    },
+    {
+      "host": "training",
+      "name": "training",
+      "path": "apps/training",
+      "login_url": "/../login",
+      "static_dir": "apps/performance/static"
+    },{
+      "host":"video",
+      "name":"video",
+      "path":"apps/video"
+
+    }
+  ]
+
+}

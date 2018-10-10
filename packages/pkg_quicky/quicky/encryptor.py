@@ -53,6 +53,7 @@ def load_config_from_django_settings():
         user=settings.DATABASES["default"]["USER"],
         password=settings.DATABASES["default"]["PASSWORD"],
         collection="sys.encriptor_cache",
+        name = settings.DATABASES["default"]["NAME"]
     ))
 
 def get_key(value):
