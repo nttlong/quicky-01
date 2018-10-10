@@ -193,21 +193,23 @@ def connect(*args,**kwargs):
         logger.debug(ex)
         raise ex
 
-
+def load_from_django_settings():
+    from django.conf import settings
+    connect(dict(
+        host=settings.DATABASES["default"]["HOST"],
+        port=settings.DATABASES["default"]["PORT"],
+        user=settings.DATABASES["default"]["USER"],
+        password=settings.DATABASES["default"]["PASSWORD"],
+        name=settings.DATABASES["default"]["NAME"],
+        collection="sys.api_caching"
+    ))
 def get_api_key(path):
     global _cache_id
     global _cache_id_revert
     global _coll
     if _coll==None:
         from django.conf import settings
-        connect(dict(
-            host=settings.DATABASES["default"]["HOST"],
-            port=settings.DATABASES["default"]["PORT"],
-            user=settings.DATABASES["default"]["USER"],
-            password=settings.DATABASES["default"]["PASSWORD"],
-            name=settings.DATABASES["default"]["NAME"],
-            collection="api_caching"
-        ))
+        load_from_django_settings()
         if _coll == None:
             raise (Exception("It look like you forgot call api.connect on settings.py\n"
                              "\t\tHow to use this?:\n"
@@ -262,14 +264,7 @@ def get_api_path(id):
     if not dict_utils.has_key(_cache_id_revert,id):
         if _coll == None:
             from django.conf import settings
-            connect(dict(
-                host=settings.DATABASES["default"]["HOST"],
-                port=settings.DATABASES["default"]["PORT"],
-                user=settings.DATABASES["default"]["USER"],
-                name=settings.DATABASES["default"]["NAME"],
-                password=settings.DATABASES["default"]["PASSWORD"],
-                collection="api_caching"
-            ))
+            load_from_django_settings()
             if _coll == None:
                 raise (Exception("It look like you forgot call api.connect on settings.py\n"
                                  "\t\tHow to use this?:\n"
@@ -314,3 +309,6 @@ def logout(request):
     from django.contrib.auth import logout as signout
     from . import tenancy
     signout(request, request.user.schema)
+
+
+
