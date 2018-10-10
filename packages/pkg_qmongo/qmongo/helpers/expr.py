@@ -1051,7 +1051,7 @@ def get_expr(fx,*params):
                 #         get_expr(x,*params) for x in fx["expr"]
                 #     ]
                 # }
-    elif fx['id']=='get_params':
+    elif fx.has_key("id") and fx['id']=='get_params':
         return params[fx['value']]
     elif fx.has_key("type"):
         if fx["type"]=="function":

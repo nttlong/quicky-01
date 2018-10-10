@@ -32,22 +32,22 @@ class filter(object):
                  folderUri=None,
                  type=resource_types.none,
                  sortBy=resource_sort_fields.none,
-                 limit=50,
-                 offset=0):
+                 page_size=50,
+                 page_index=0):
         self.name_or_description=name_or_description
         self.folderUri=folderUri
         self.type=type
         self.sortBy=sortBy
-        self.limit=limit
-        self.offset=offset
+        self.page_size=page_size
+        self.page_index=page_index
     def __str__(self):
         return get_str_filter(
             self.name_or_description,
             self.folderUri,
             self.type,
             self.sortBy,
-            self.limit,
-            self.offset
+            self.page_size,
+            self.page_size*self.page_index
         )
 
 
@@ -71,7 +71,7 @@ def get_str_filter(name_or_description=None,
     if name_or_description!=None:
         ret=ret+"q="+(name_or_description)+"&"
     if folderUri!=None:
-        ret = ret + "folderUri=" + urllib.urlencode(folderUri) + "&"
+        ret = ret + "folderUri=" + folderUri + "&"
     if type!=resource_types.none:
         ret = ret + "type=" + (type.__str__()["resource_types.".__len__():type.__str__().__len__()]) + "&"
     if sortBy!=resource_sort_fields.none:

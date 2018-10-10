@@ -1,5 +1,5 @@
 # encoding=utf8
-VERSION = [1,0,0,"beta",3]
+VERSION = [1,0,0,"beta",5]
 from . import search_filter
 def get_version():
     return VERSION[0].__str__()+\

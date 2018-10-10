@@ -1,4 +1,5 @@
 import datetime
+from collections import OrderedDict
 class __validator_class__(object):
     def __init__(self):
         # self.__properties__ ={}
@@ -70,11 +71,20 @@ class lazyobject(__validator_class__):
                         for x in v:
                             if type(x) is dict:
                                 values.append(lazyobject(x))
+                            elif type(x) is OrderedDict:
+                                values.append(lazyobject({
+                                    x["key"]:x["value"]
+                                }))
                             else:
                                 values.append(x)
                         setattr(self,k,values)
                     else:
-                        setattr(self, k, v)
+                        if type(v) is OrderedDict:
+                            setattr(self, k, lazyobject({
+                                v.keys()[0]:v[v.keys()[0]]
+                            }))
+                        else:
+                            setattr(self, k, v)
             self.__dict__.update({"__validator__": True})
     def __to_dict__(self):
         keys = [x for x in self.__dict__.keys() if x[0:2] != "__"]

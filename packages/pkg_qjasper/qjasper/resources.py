@@ -52,3 +52,39 @@ def search(filter):
             page_size=0,
             pages=0
         )
+def get_info(path):
+    from . import get_auth
+    from . import get_url_server
+    if path[0]=='/':
+        path=path[1:path.__len__()]
+    url = get_url_server() + "/rest_v2/resources/"+path
+    url = url + "?" + filter.__str__()
+    ret = requests.get(
+        url,
+        auth=get_auth(),
+        data=dict(
+            json=True
+        )
+    )
+    info=xml_parser.parse(ret.content)
+    ret_info=dm_obj.lazyobject(info[info.keys()[0]])
+    ret_info.__validator__=False
+    ret_info.resource_type=info.keys()[0]
+    return ret_info
+def create_folder(path):
+    from . import get_auth
+    from . import get_url_server
+    if path[0] == '/':
+        path = path[1:path.__len__()]
+    url = get_url_server() + "/rest_v2/resources/" + path+"?createFolders=True"
+    url = url + "?" + filter.__str__()
+    ret = requests.post(
+        url,
+        auth=get_auth(),
+        data=dict(
+            json=True
+        )
+    )
+    info = xml_parser.parse(ret.content)
+    ret_info = dm_obj.lazyobject(info[info.keys()[0]])
+    return ret_info

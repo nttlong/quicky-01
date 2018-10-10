@@ -51,9 +51,9 @@ class __aggregate__():
     @property
     def items(self):
         if self.__session__ == None:
-            cursor = self.__coll__.aggregate(self.__pipeline__,allowDiskUse=True)
+            cursor = self.__coll__.aggregate(self.__pipeline__)
         else:
-            cursor = self.__coll__.aggregate(self.__pipeline__,self.__session__,allowDiskUse=True)
+            cursor = self.__coll__.aggregate(self.__pipeline__,self.__session__)
         return list(cursor)
     @property
     def objects(self):
@@ -347,14 +347,9 @@ class queryable(object):
 
         if type(_id) is dict:
             for key,value in _id.items():
-                if type(value) is dict:
-                    __id.update({
-                        key: value
-                    })
-                else:
-                    __id.update({
-                        key:expr.get_calc_expr(value,*args,**kwargs)
-                    })
+                __id.update({
+                    key:expr.get_calc_expr(value,*args,**kwargs)
+                })
         else:
             __id = "$" + _id
         _group = {
@@ -363,14 +358,9 @@ class queryable(object):
             }
         }
         for key,value in selectors.items():
-            if type(value) is dict:
-                _group["$group"].update({
-                    key: value
-                })
-            else:
-                _group["$group"].update({
-                    key:expr.get_calc_expr(value)
-                })
+            _group["$group"].update({
+                key:expr.get_calc_expr(value,*args,**kwargs)
+            })
         self.__pipe_line__.append(_group)
         return self
     def sort(self,*args,**kwargs):
@@ -396,3 +386,13 @@ class queryable(object):
             "$sort": _ret_sort
         })
         return self
+    def count_items(self):
+        tmp = [x.copy() for x in self.__pipe_line__]
+        self.__pipe_line__ =[]
+        self.__pipe_line__.append({
+            "$count": "count_items"
+        })
+        ret= self.object
+        self.__pipe_line__ = tmp
+        return ret.count_items
+
