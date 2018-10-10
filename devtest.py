@@ -5,7 +5,7 @@ BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 from quicky import config_loader
 config_loader.set_base_dir(BASE_DIR)
 # config_loader.start_app("local")
-config_loader.load_config("local",none_params=True)
+config_loader.load_config("dev_compact",none_params=True)
 # config_reader.load("dev_server")
 from quicky import tenancy
 # tenancy.set_schema("lv")
