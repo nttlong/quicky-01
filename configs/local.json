@@ -87,7 +87,7 @@
   "USE_TZ":true,
   "USE_MULTI_TENANCY":true,
   "MULTI_TENANCY_DEFAULT_SCHEMA":"lv",
-  "MULTI_TENANCY_CONFIGURATION":{
+  "MULTI_TENANCY_CONFIGURATION_":{
     "host":"localhost",
     "port":27017,
     "user":"root",

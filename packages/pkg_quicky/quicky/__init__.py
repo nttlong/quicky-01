@@ -40,7 +40,7 @@ def get_tenancy_code_regex():
     # return "\(w{0,24})"
 def validate_tenancy_code(code):
     """
-    Validate tenancy code 
+    Validate tenancy code
     :param code:
     :return:
     """
@@ -99,7 +99,10 @@ def get_django_settings_module():
                                      "collection=[manage muti tenant collection name]".format(
                         system_settings.__file__
                     )))
+    from django.conf import settings
+    # return settings
     return system_settings
+
 def to_server_local_time(val):
     # type: (datetime) -> datetime
     """
@@ -130,11 +133,24 @@ def get_tenancy_collection():
     Get tenancy collection refer 'MULTI_TENANCY_CONFIGURATION' in settings.py
     :return:
     """
+    from django.conf import settings
+    config = None
+    try:
+        config = settings.MULTI_TENANCY_CONFIGURATION
+    except Exception as ex:
+        pass
+    if config== None:
+        config=dict(
+            host = settings.DATABASES["default"]["HOST"],
+            port = settings.DATABASES["default"]["PORT"],
+            name = settings.DATABASES["default"]["NAME"],
+            user = settings.DATABASES["default"]["USER"],
+            password=settings.DATABASES["default"]["PASSWORD"],
+            collection="sys_customers"
+        )
     global _db_multi_tenancy
     if _db_multi_tenancy==None:
         import pymongo
-
-        config=get_django_settings_module().MULTI_TENANCY_CONFIGURATION
         cnn=pymongo.MongoClient(
             host=config["host"],
             port=config["port"]
@@ -151,10 +167,17 @@ def get_tenancy_schema(code):
     :param code:
     :return:
     """
-    from . import get_django_settings_module
+    from django.conf import settings
+    # from . import get_django_settings_module
     import re
     # cmp=re.compile(r"[a-zA-Z_0-9-]+\z",re.IGNORECASE)
-    if get_django_settings_module().MULTI_TENANCY_DEFAULT_SCHEMA==code:
+    try:
+        default_schema=settings.MULTI_TENANCY_DEFAULT_SCHEMA
+    except Exception as ex:
+        raise Exception("It looks like you forgot set 'MULTI_TENANCY_DEFAULT_SCHEMA' on settings\r\n"
+                        "Why? Yoh have set 'USE_MULTI_TENANCY' is true in settings.")
+
+    if default_schema==code:
         return code
 
     global _cache_multi_tenancy
