@@ -59,7 +59,7 @@ def load_config_from_django_settings():
         port = settings.DATABASES["default"]["PORT"],
         user =settings.DATABASES["default"]["USER"],
         password =settings.DATABASES["default"]["PASSWORD"],
-        name = settings.DATABASES["default"]["PASSWORD"],
+        name = settings.DATABASES["default"]["NAME"],
         collection = LANGUAGE_COLLECTION
     ))
 def get_language_item(schema,lan,app,view,key,value):
