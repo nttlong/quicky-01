@@ -1,0 +1,14 @@
+<root>
+    <datasource>provinces</datasource>
+    <keys>
+        <key>code</key>
+    </keys>
+    <fields>
+        <field name="code" type="text" require="true"/>
+        <field name="name" type="text" require="true"/>
+        <field name="description" type="text" require="true"/>
+        <field name="createdBy" type="date" require="true"/>
+        <field name="modifiedBy" type="date" require="true"/>
+
+    </fields>
+</root>

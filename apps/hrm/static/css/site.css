@@ -1,0 +1,32 @@
+div.mask {
+    background-image: url("images/Spinner-1s-68px.svg");
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    z-index: 12000;
+    background-position: center center;
+    background-repeat: no-repeat
+    
+}
+div.ag-header-row {
+    padding: 4px;
+}
+div.ag-theme-balham .ag-floating-filter-button {
+    margin-top: 0px !important;
+   
+
+}
+div.ag-header-row {
+    padding: 0;
+}
+/* div.ag-header-row .ag-header-cell {
+     padding-top: 4px !important;
+     border: solid 1px red;
+
+}
+div.ag-header-row .ag-header-cell.ag-header-cell-sortable{
+    border: solid 1px blue;
+    padding-top: 0px !important;
+} */

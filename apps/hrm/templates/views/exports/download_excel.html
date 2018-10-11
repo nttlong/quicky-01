@@ -1,0 +1,13 @@
+<div>
+    <a href="${get_app_url('download/excel')}/{{source}}" target="_blank">
+            {{source}}
+    </a>
+
+</div>
+<script>
+    (function(s,params){
+        s.source=params.source;
+        s.$applyAsync();
+
+    });
+</script>
