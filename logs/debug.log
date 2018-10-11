@@ -4333,3 +4333,88 @@ hrm.auth_user.save (0.00) {'username': u'sys', 'first_name': u'', 'last_name': u
 django_session.save (0.00) {'schema': u'hrm', '_id': u'mg2e507gdkab5tb6d1j9r8aho9auwyyv', 'expire_date': datetime.datetime(2018, 10, 25, 9, 39, 12, 67489, tzinfo=<UTC>), 'session_data': u'MWFkZjRjMzU4ZmE4NDZmM2UyN2I1ZGNlYWYwNWQ4M2Y4ZjIzNWNkNjp7Il9hdXRoX3VzZXJfYmFja2VuZCI6InBlcm1pc3Npb25fYmFja2VuZF9ub25yZWwuYmFja2VuZHMuTm9ucmVsUGVybWlzc2lvbkJhY2tlbmQiLCJfYXV0aF91c2VyX2lkIjoiNWI3M2NiNTY4NTc0MGY0M2IxYTlkY2RmIiwibGFuZ3VhZ2UiOiJlbiJ9'}
 hrm.auth_user.find (0.00) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
 hrm.auth_user.find (0.00) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+Internal Server Error: /hrm/pages/list/provinces
+Traceback (most recent call last):
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/django/core/handlers/base.py", line 112, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/quicky/executor.py", line 32, in exec_request
+    return self.run_request(request,**kwargs)
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/quicky/executor.py", line 44, in run_request
+    __mdl__.process_request(request)
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/quicky/middleware/__init__.py", line 567, in process_request
+    self.init_customer_code(request)
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/quicky/middleware/__init__.py", line 142, in init_customer_code
+    if request.__app__.is_persistent_schema():
+AttributeError: 'int' object has no attribute 'is_persistent_schema'
+Not Found: /hrm/static/js/angular.min.js.map
+Not Found: /polyfills/promise-6.1.0.js.map
+Internal Server Error: /hrm/pages/emps/employees
+Traceback (most recent call last):
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/django/core/handlers/base.py", line 112, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/quicky/executor.py", line 32, in exec_request
+    return self.run_request(request,**kwargs)
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/quicky/executor.py", line 44, in run_request
+    __mdl__.process_request(request)
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/quicky/middleware/__init__.py", line 567, in process_request
+    self.init_customer_code(request)
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/quicky/middleware/__init__.py", line 142, in init_customer_code
+    if request.__app__.is_persistent_schema():
+AttributeError: 'int' object has no attribute 'is_persistent_schema'
+Internal Server Error: /hrm/pages/emps/employees
+Traceback (most recent call last):
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/django/core/handlers/base.py", line 112, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/quicky/executor.py", line 32, in exec_request
+    return self.run_request(request,**kwargs)
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/quicky/executor.py", line 44, in run_request
+    __mdl__.process_request(request)
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/quicky/middleware/__init__.py", line 567, in process_request
+    self.init_customer_code(request)
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/quicky/middleware/__init__.py", line 142, in init_customer_code
+    if request.__app__.is_persistent_schema():
+AttributeError: 'int' object has no attribute 'is_persistent_schema'
+Internal Server Error: /hrm/pages/emps/employees
+Traceback (most recent call last):
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/django/core/handlers/base.py", line 112, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/quicky/executor.py", line 32, in exec_request
+    return self.run_request(request,**kwargs)
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/quicky/executor.py", line 44, in run_request
+    __mdl__.process_request(request)
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/quicky/middleware/__init__.py", line 568, in process_request
+    self.init_customer_code(request)
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/quicky/middleware/__init__.py", line 143, in init_customer_code
+    if request.__app__.is_persistent_schema():
+AttributeError: 'int' object has no attribute 'is_persistent_schema'
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.01) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+Internal Server Error: /hrm/api
+Traceback (most recent call last):
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/django/core/handlers/base.py", line 112, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/django/views/decorators/http.py", line 41, in inner
+    return func(request, *args, **kwargs)
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/django/views/decorators/csrf.py", line 57, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/quicky/executor.py", line 32, in exec_request
+    return self.run_request(request,**kwargs)
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/quicky/executor.py", line 127, in run_request
+    ret_data = self.__fn__(request, **kwargs)
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/quicky/api.py", line 172, in call
+    raise ex
+Exception: Call  'get_list' in 'hrm.api.categories' encountered ''module' object has no attribute 'employees''
+Not Found: /polyfills/promise-6.1.0.js.map
+Not Found: /hrm/static/js/angular.min.js.map
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.03) {'username': u'sys'}
+Not Found: /hrm/static/js/angular.min.js.map
+Not Found: /polyfills/promise-6.1.0.js.map

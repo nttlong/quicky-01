@@ -13,7 +13,7 @@ global _abs_urls
 global _language_cache
 global lock
 global __app_host__
-__app_by_path_cache__ = None
+
 _language_cache = {}
 _abs_urls = {}
 __apps_cache__ = {}
@@ -93,11 +93,6 @@ class extension(object):
             _str_ = _str_.replace("//", "/")
         return _str_
     def init_app(self,request):
-
-
-        if __apps_cache__.has_key(request.path):
-            setattr(request, "__app__", __apps_cache__[request.path])
-            return __apps_cache__[request.path]
         from .. import applications
         from django.conf import settings
         if hasattr(request,"__app__") and request.__app__ !=-1:
@@ -105,8 +100,8 @@ class extension(object):
 
         if __apps_cache__.has_key(request.path):
             setattr(request,"__app__",__apps_cache__[request.path])
-        path = self.__str_trim__(request.path)
-
+        path = request.path
+        path = path[1:path.__len__()]
         if hasattr(settings,"HOST_DIR") and settings.HOST_DIR!="":
             path = path[settings.HOST_DIR.__len__():path.__len__()]
         if path == "api":
@@ -125,9 +120,9 @@ class extension(object):
             app = applications.get_app_by_host_dir("")
         if app ==-1:
             app = applications.get_app_by_host_dir(items[0])
-
         setattr(request,"__app__",app)
-        __apps_cache__.update({request.path: app})
+        if app!=-1:
+            __apps_cache__.update({request.path: app})
     def init_customer_code(self,request):
         from django.conf import settings
         _path_ =__remove_last__('/', __remove_first__('/',request.path))
