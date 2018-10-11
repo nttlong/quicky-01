@@ -103,7 +103,7 @@
       }
     },
     {
-      "host": "",
+      "host": "per",
       "name": "performance",
       "path": "apps/performance",
       "login_url": "login",
@@ -133,7 +133,8 @@
       "path": "apps/lms",
       "login_url": "/../login",
       "static_dir": "apps/performance/static",
-      "disable":true
+      "disable":false,
+      "schema":"lv"
     },
     {
       "host": "training",
@@ -141,11 +142,13 @@
       "path": "apps/training",
       "login_url": "/../login",
       "static_dir": "apps/performance/static",
-      "disable":true
+      "disable":false,
+      "schema":"lv"
     },{
       "host":"video",
       "name":"video",
-      "path":"apps/video"
+      "path":"apps/video",
+      "disable":true
 
     }
   ]
