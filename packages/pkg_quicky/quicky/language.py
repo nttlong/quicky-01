@@ -55,11 +55,11 @@ def load_config_from_django_settings():
     except Exception as ex:
         pass
     set_config(dict(
-        host= settings.DATABASE["default"]["HOST"],
-        port = settings.DATABASE["default"]["PORT"],
-        user =settings.DATABASE["default"]["USER"],
-        password =settings.DATABASE["default"]["PASSWORD"],
-        name = settings.DATABASE["default"]["PASSWORD"],
+        host= settings.DATABASES["default"]["HOST"],
+        port = settings.DATABASES["default"]["PORT"],
+        user =settings.DATABASES["default"]["USER"],
+        password =settings.DATABASES["default"]["PASSWORD"],
+        name = settings.DATABASES["default"]["PASSWORD"],
         collection = LANGUAGE_COLLECTION
     ))
 def get_language_item(schema,lan,app,view,key,value):
