@@ -118,9 +118,11 @@ class extension(object):
             app = applications.get_app_by_host_dir(items[0])
         if app ==-1:
             app = applications.get_app_by_host_dir("")
-
+        if app ==-1:
+            app = applications.get_app_by_host_dir(items[0])
         setattr(request,"__app__",app)
-        __apps_cache__.update({request.path: app})
+        if app!=-1:
+            __apps_cache__.update({request.path: app})
     def init_customer_code(self,request):
         from django.conf import settings
         _path_ =__remove_last__('/', __remove_first__('/',request.path))
