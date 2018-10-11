@@ -4556,3 +4556,19 @@ hrm.auth_user.find (0.00) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
 hrm.auth_user.find (0.00) {'username': u'sys'}
 hrm.auth_user.find (0.00) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
 hrm.auth_user.find (0.00) {'username': u'sys'}
+django_session.save (0.00) {'schema': u'lv', '_id': u'fhhkbxdysyl9mhmwehubkyfi3ne0sdp0', 'expire_date': datetime.datetime(2018, 10, 25, 9, 50, 21, 657513, tzinfo=<UTC>), 'session_data': u'OTE2OWEzNjFmMzk3MzVhMTZiNjlmM2EwODhiNTVkOGExNWRjM2JlYzp7fQ=='}
+django_session.save (0.00) {'schema': u'lv', '_id': u'fhhkbxdysyl9mhmwehubkyfi3ne0sdp0', 'expire_date': datetime.datetime(2018, 10, 25, 9, 50, 21, 672588, tzinfo=<UTC>), 'session_data': u'OTE2OWEzNjFmMzk3MzVhMTZiNjlmM2EwODhiNTVkOGExNWRjM2JlYzp7fQ=='}
+Not Found: /performance/static/js/plugins/slick.js
+Not Found: /performance/static/js/plugins/slick.js
+Not Found: /performance/static/js/plugins/slick.js
+Not Found: /performance/static/js/plugins/slick.js
+Not Found: /performance/static/js/plugins/slick.js
+Not Found: /performance/static/js/plugins/slick.js
+Not Found: /performance/static/js/plugins/slick.js
+Not Found: /performance/static/js/plugins/slick.js
+Not Found: /performance/static/js/plugins/slick.js
+Not Found: /performance/static/js/plugins/slick.js
+Not Found: /performance/static/js/plugins/slick.js
+Not Found: /performance/static/js/plugins/slick.js
+Not Found: /performance/static/js/plugins/slick.js
+Not Found: /performance/static/js/plugins/slick.js

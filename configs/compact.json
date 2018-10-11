@@ -107,7 +107,8 @@
       "name": "performance",
       "path": "apps/performance",
       "login_url": "login",
-      "disable":true
+      "disable":false,
+      "schema":"lv"
 
     },
     {
