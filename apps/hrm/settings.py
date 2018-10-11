@@ -1,4 +1,6 @@
 import quicky
+from quicky import  middleware
+
 def authenticate(request):
     if not request.user.is_anonymous() and \
         request.user.is_active:
@@ -23,13 +25,13 @@ def db():
         password=settings.DATABASES["default"]['PASSWORD'],
     )
 
-Database_=dict(
-    host="172.16.7.63",
-    port=27017,
-    user="sys",
-    password="123456",
-    name="lv01_lms",
-    tz_aware=quicky.get_django_settings_module().USE_TZ,
-    timezone= "UTC"#quicky.get_django_settings_module().TIME_ZONE
-
-)
+# Database_=dict(
+#     host="172.16.7.63",
+#     port=27017,
+#     user="sys",
+#     password="123456",
+#     name="lv01_lms",
+#     tz_aware=quicky.get_django_settings_module().USE_TZ,
+#     timezone= "UTC"#quicky.get_django_settings_module().TIME_ZONE
+#
+# )

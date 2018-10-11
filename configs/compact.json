@@ -106,7 +106,16 @@
       "host": "",
       "name": "performance",
       "path": "apps/performance",
-      "login_url": "login"
+      "login_url": "login",
+      "disable":true
+
+    },
+    {
+      "host": "hrm",
+      "name": "hrm",
+      "path": "apps/hrm",
+      "login_url": "login",
+      "schema":"hrm"
 
     },
     {
@@ -122,14 +131,16 @@
       "name": "lms",
       "path": "apps/lms",
       "login_url": "/../login",
-      "static_dir": "apps/performance/static"
+      "static_dir": "apps/performance/static",
+      "disable":true
     },
     {
       "host": "training",
       "name": "training",
       "path": "apps/training",
       "login_url": "/../login",
-      "static_dir": "apps/performance/static"
+      "static_dir": "apps/performance/static",
+      "disable":true
     },{
       "host":"video",
       "name":"video",

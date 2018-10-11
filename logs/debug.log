@@ -4155,3 +4155,181 @@ lv.auth_user.find (0.01) {'_id': ObjectId('5b20925a232037334054b073')}
 lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
 lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
 lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+Not Found: /{{$root.logo}}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.01) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.01) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+lv.auth_user.find (0.00) {'username': u'343dd8ac-3e64-4f41-9db7-3a4137ba30a8'}
+Internal Server Error: /hrm
+Traceback (most recent call last):
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/django/core/handlers/base.py", line 112, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/quicky/executor.py", line 139, in exec_request_for_multi
+    __mdl__.process_request(request)
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/quicky/middleware/__init__.py", line 567, in process_request
+    self.init_customer_code(request)
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/quicky/middleware/__init__.py", line 176, in init_customer_code
+    if path[0] == '/':
+IndexError: string index out of range
+lv.auth_user.find (0.00) {'_id': ObjectId('5b20925a232037334054b073')}
+Not Found: /lv/hrm/
+django_session.save (0.00) {'schema': u'hrm', '_id': u'6suor32eo27qwgzubu3x5lb31wmn37xk', 'expire_date': datetime.datetime(2018, 10, 25, 9, 14, 11, 84086, tzinfo=<UTC>), 'session_data': u'OTE2OWEzNjFmMzk3MzVhMTZiNjlmM2EwODhiNTVkOGExNWRjM2JlYzp7fQ=='}
+django_session.save (0.00) {'schema': u'hrm', '_id': u'6suor32eo27qwgzubu3x5lb31wmn37xk', 'expire_date': datetime.datetime(2018, 10, 25, 9, 14, 11, 138339, tzinfo=<UTC>), 'session_data': u'OTE2OWEzNjFmMzk3MzVhMTZiNjlmM2EwODhiNTVkOGExNWRjM2JlYzp7fQ=='}
+Internal Server Error: /hrm/login
+Traceback (most recent call last):
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/django/core/handlers/base.py", line 112, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/quicky/executor.py", line 32, in exec_request
+    return self.run_request(request,**kwargs)
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/quicky/executor.py", line 88, in run_request
+    ret_auth=request.get_app().settings.authenticate(request)
+  File "/home/hcsadmin/q03/apps/performance/settings.py", line 7, in authenticate
+    st = SystemConfig.get()
+  File "/home/hcsadmin/q03/apps/performance/SystemConfig.py", line 80, in get
+    raise(ex)
+Exception: Please use:
+import qmongo
+qmongo.set_schema(schema_name)
+Internal Server Error: /hrm/login
+Traceback (most recent call last):
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/django/core/handlers/base.py", line 112, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/quicky/executor.py", line 32, in exec_request
+    return self.run_request(request,**kwargs)
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/quicky/executor.py", line 44, in run_request
+    __mdl__.process_request(request)
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/quicky/middleware/__init__.py", line 567, in process_request
+    self.init_customer_code(request)
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/quicky/middleware/__init__.py", line 142, in init_customer_code
+    if request.__app__.is_persistent_schema():
+AttributeError: 'int' object has no attribute 'is_persistent_schema'
+Not Found: /
+Internal Server Error: /hrm/
+Traceback (most recent call last):
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/django/core/handlers/base.py", line 112, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/quicky/executor.py", line 32, in exec_request
+    return self.run_request(request,**kwargs)
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/quicky/executor.py", line 44, in run_request
+    __mdl__.process_request(request)
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/quicky/middleware/__init__.py", line 567, in process_request
+    self.init_customer_code(request)
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/quicky/middleware/__init__.py", line 142, in init_customer_code
+    if request.__app__.is_persistent_schema():
+AttributeError: 'int' object has no attribute 'is_persistent_schema'
+Internal Server Error: /hrm/
+Traceback (most recent call last):
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/django/core/handlers/base.py", line 112, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/quicky/executor.py", line 32, in exec_request
+    return self.run_request(request,**kwargs)
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/quicky/executor.py", line 44, in run_request
+    __mdl__.process_request(request)
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/quicky/middleware/__init__.py", line 567, in process_request
+    self.init_customer_code(request)
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/quicky/middleware/__init__.py", line 142, in init_customer_code
+    if request.__app__.is_persistent_schema():
+AttributeError: 'int' object has no attribute 'is_persistent_schema'
+Internal Server Error: /hrm/
+Traceback (most recent call last):
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/django/core/handlers/base.py", line 112, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/quicky/executor.py", line 32, in exec_request
+    return self.run_request(request,**kwargs)
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/quicky/executor.py", line 44, in run_request
+    __mdl__.process_request(request)
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/quicky/middleware/__init__.py", line 567, in process_request
+    self.init_customer_code(request)
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/quicky/middleware/__init__.py", line 142, in init_customer_code
+    if request.__app__.is_persistent_schema():
+AttributeError: 'int' object has no attribute 'is_persistent_schema'
+Internal Server Error: /hrm/
+Traceback (most recent call last):
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/django/core/handlers/base.py", line 112, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/quicky/executor.py", line 32, in exec_request
+    return self.run_request(request,**kwargs)
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/quicky/executor.py", line 44, in run_request
+    __mdl__.process_request(request)
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/quicky/middleware/__init__.py", line 567, in process_request
+    self.init_customer_code(request)
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/quicky/middleware/__init__.py", line 142, in init_customer_code
+    if request.__app__.is_persistent_schema():
+AttributeError: 'int' object has no attribute 'is_persistent_schema'
+django_session.save (0.00) {'schema': u'lv', '_id': u'5hboiygsy9f2doj4w9ufoc8p3lztp80d', 'expire_date': datetime.datetime(2018, 10, 25, 9, 21, 5, 309000, tzinfo=<UTC>), 'session_data': u'OTE2OWEzNjFmMzk3MzVhMTZiNjlmM2EwODhiNTVkOGExNWRjM2JlYzp7fQ=='}
+Internal Server Error: /hrm/
+Traceback (most recent call last):
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/django/core/handlers/base.py", line 112, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/quicky/executor.py", line 32, in exec_request
+    return self.run_request(request,**kwargs)
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/quicky/executor.py", line 44, in run_request
+    __mdl__.process_request(request)
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/quicky/middleware/__init__.py", line 567, in process_request
+    self.init_customer_code(request)
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/quicky/middleware/__init__.py", line 142, in init_customer_code
+    if request.__app__.is_persistent_schema():
+AttributeError: 'int' object has no attribute 'is_persistent_schema'
+django_session.save (0.00) {'schema': u'lv', '_id': u'kaeq6qr99qqxyp1vstba3b9v7htlq15h', 'expire_date': datetime.datetime(2018, 10, 25, 9, 23, 4, 102922, tzinfo=<UTC>), 'session_data': u'OTE2OWEzNjFmMzk3MzVhMTZiNjlmM2EwODhiNTVkOGExNWRjM2JlYzp7fQ=='}
+Internal Server Error: /hrm/
+Traceback (most recent call last):
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/django/core/handlers/base.py", line 112, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/quicky/executor.py", line 32, in exec_request
+    return self.run_request(request,**kwargs)
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/quicky/executor.py", line 44, in run_request
+    __mdl__.process_request(request)
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/quicky/middleware/__init__.py", line 568, in process_request
+    self.init_app(request)
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/quicky/middleware/__init__.py", line 105, in init_app
+    path = __str_trim__(request.path)
+NameError: global name '__str_trim__' is not defined
+Internal Server Error: /hrm/login
+Traceback (most recent call last):
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/django/core/handlers/base.py", line 112, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/quicky/executor.py", line 32, in exec_request
+    return self.run_request(request,**kwargs)
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/quicky/executor.py", line 44, in run_request
+    __mdl__.process_request(request)
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/quicky/middleware/__init__.py", line 569, in process_request
+    self.init_customer_code(request)
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/quicky/middleware/__init__.py", line 144, in init_customer_code
+    if request.__app__.is_persistent_schema():
+AttributeError: 'int' object has no attribute 'is_persistent_schema'
+hrm.auth_user.find (0.00) {'username': 'sys'}
+hrm.auth_user.save (0.00) {'username': u'sys', 'first_name': u'', 'last_name': u'', '_id': ObjectId('5b73cb5685740f43b1a9dcdf'), 'is_active': True, 'email': u'sys@beatles.com', 'is_superuser': True, 'is_staff': True, 'last_login': datetime.datetime(2018, 9, 14, 9, 21, 25, 10000, tzinfo=<UTC>), 'password': u'pbkdf2_sha256$12000$BcInrzuaaz7N$85rWrCTUh0vFY2pow3DL88d8vG1qAfRPwj8cADyyOl8=', 'date_joined': datetime.datetime(2018, 8, 15, 6, 42, 30, 417000, tzinfo=<UTC>)}
+django_session.save (0.00) {'schema': u'hrm', '_id': '6suor32eo27qwgzubu3x5lb31wmn37xk', 'expire_date': datetime.datetime(2018, 10, 25, 9, 37, 46, 658565, tzinfo=<UTC>), 'session_data': u'YTIwMDM1ZDE4Mzg1ZWU5ZTUxNjkzNTM0NWMyMDc3YjYwMjFiODVjYzp7Imxhbmd1YWdlIjoiZW4ifQ=='}
+Internal Server Error: /hrm/login
+Traceback (most recent call last):
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/django/core/handlers/base.py", line 112, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/quicky/executor.py", line 32, in exec_request
+    return self.run_request(request,**kwargs)
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/quicky/executor.py", line 86, in run_request
+    if hasattr(request.get_app().settings, "authenticate"):
+  File "/home/hcsadmin/.local/lib/python2.7/site-packages/quicky/middleware/__init__.py", line 312, in get_app
+    return request.__app__
+AttributeError: 'WSGIRequest' object has no attribute '__app__'
+hrm.auth_user.find (0.00) {'username': 'sys'}
+hrm.auth_user.save (0.01) {'username': u'sys', 'first_name': u'', 'last_name': u'', '_id': ObjectId('5b73cb5685740f43b1a9dcdf'), 'is_active': True, 'email': u'sys@beatles.com', 'is_superuser': True, 'is_staff': True, 'last_login': datetime.datetime(2018, 9, 14, 9, 21, 25, 10000, tzinfo=<UTC>), 'password': u'pbkdf2_sha256$12000$BcInrzuaaz7N$85rWrCTUh0vFY2pow3DL88d8vG1qAfRPwj8cADyyOl8=', 'date_joined': datetime.datetime(2018, 8, 15, 6, 42, 30, 417000, tzinfo=<UTC>)}
+hrm.auth_user.find (0.00) {'username': u'sys'}
+django_session.save (0.00) {'schema': u'hrm', '_id': u'mg2e507gdkab5tb6d1j9r8aho9auwyyv', 'expire_date': datetime.datetime(2018, 10, 25, 9, 39, 12, 48797, tzinfo=<UTC>), 'session_data': u'YTIwMDM1ZDE4Mzg1ZWU5ZTUxNjkzNTM0NWMyMDc3YjYwMjFiODVjYzp7Imxhbmd1YWdlIjoiZW4ifQ=='}
+django_session.remove (0.00) {'_id': {'$in': [u'6suor32eo27qwgzubu3x5lb31wmn37xk']}, 'schema': u'hrm'}
+hrm.auth_user.save (0.00) {'username': u'sys', 'first_name': u'', 'last_name': u'', '_id': ObjectId('5b73cb5685740f43b1a9dcdf'), 'is_active': True, 'email': u'sys@beatles.com', 'is_superuser': True, 'is_staff': True, 'last_login': datetime.datetime(2018, 10, 11, 9, 39, 12, 53593, tzinfo=<UTC>), 'password': u'pbkdf2_sha256$12000$BcInrzuaaz7N$85rWrCTUh0vFY2pow3DL88d8vG1qAfRPwj8cADyyOl8=', 'date_joined': datetime.datetime(2018, 8, 15, 6, 42, 30, 417000, tzinfo=<UTC>)}
+django_session.save (0.00) {'schema': u'hrm', '_id': u'mg2e507gdkab5tb6d1j9r8aho9auwyyv', 'expire_date': datetime.datetime(2018, 10, 25, 9, 39, 12, 67489, tzinfo=<UTC>), 'session_data': u'MWFkZjRjMzU4ZmE4NDZmM2UyN2I1ZGNlYWYwNWQ4M2Y4ZjIzNWNkNjp7Il9hdXRoX3VzZXJfYmFja2VuZCI6InBlcm1pc3Npb25fYmFja2VuZF9ub25yZWwuYmFja2VuZHMuTm9ucmVsUGVybWlzc2lvbkJhY2tlbmQiLCJfYXV0aF91c2VyX2lkIjoiNWI3M2NiNTY4NTc0MGY0M2IxYTlkY2RmIiwibGFuZ3VhZ2UiOiJlbiJ9'}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
+hrm.auth_user.find (0.00) {'_id': ObjectId('5b73cb5685740f43b1a9dcdf')}
