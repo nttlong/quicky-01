@@ -2,6 +2,7 @@ pytz
 sqlalchemy
 requests
 enum
+mako
 packages/django
 packages/pkg_django_db
 packages/pkg_qauth

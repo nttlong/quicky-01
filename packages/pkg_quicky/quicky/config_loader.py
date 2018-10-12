@@ -68,18 +68,6 @@ def load_config(file_name,none_params=False):
 
                     language.set_config(config_from_file[key])
                     setattr(settings, key, config_from_file[key])
-                # elif key == "DB_TRACKING":
-                #     import qtracking
-                #     qtracking.set_config(config_from_file[key])
-                #     setattr(settings,key,config_from_file[key])
-                # elif key=="JASPER":
-                #     import qjasper
-                #     qjasper.set_config(
-                #         url=config_from_file[key]["URL"],
-                #         user=config_from_file[key]["USER"],
-                #         password=config_from_file[key]["PASSWORD"]
-                #
-                #     )
                 elif key == "APPS":
                     pass
                 else:

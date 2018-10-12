@@ -20,12 +20,12 @@
       "name": "performance",
       "path": "apps/performance",
       "login_url": "login",
-      "disable":false,
-      "schema_":"lv"
+      "disable":true,
+      "schema":"lv"
 
     },
     {
-      "host": "hrm",
+      "host": "",
       "name": "hrm",
       "path": "apps/hrm",
       "login_url": "login",
@@ -68,8 +68,10 @@
     {
       "name":"potal",
       "host":"portal",
-      "path":"apps/PortalLms",
-      "schema":"lv"
+      "path":"apps/PortalPerf",
+      "schema":"lv",
+      "static_dir": "apps/performance/static",
+      "disable":true
     }
   ]
 }

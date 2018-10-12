@@ -73,7 +73,7 @@ def build_urls(module_name, *args, **kwargs):
             app_dicts = {}
             for x in args[0]:
                 app_dicts.update({
-                    x["host"]: x
+                    x.get("host",""): x
                 })
             list_of_apps_with_persistent_schema = [x for x in args[0]
                                                    if dict_utils.has_key(x, "schema")

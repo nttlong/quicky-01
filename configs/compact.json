@@ -2,10 +2,11 @@
   "PACKAGES":[
     "packages/django",
     "packages/pkg_django_db/django_db",
-    "packages/pkg_qauth",
+    "packages/pkg_qauth/qauth",
     "packages/pkg_qexcel/qexcel",
     "packages/pkg_qjasper/qjasper",
     "packages/pkg_qloader/qloader",
+
     "packages/pkg_qmongo/qmongo",
     "packages/pkg_qobjects/qobjects",
     "packages/pkg_qtracking/qtracking",
