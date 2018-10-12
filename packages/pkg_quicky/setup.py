@@ -4,9 +4,6 @@ setup(
     name='quicky',
     version=versions.get_version(),
     packages=['quicky', 'quicky.db', 'quicky.JSON', 'quicky.backends', 'quicky.middleware', 'quicky.qvideo_stream'],
-    install_requires=[
-          'django',
-    ],
     url='',
     license='MIT',
     author='nttlong',

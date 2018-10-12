@@ -4,8 +4,8 @@ import imp
 import importlib
 import sys
 import posixpath
-from django.conf.urls.static import static
-from django.conf.urls import include, patterns, url
+# from django.conf.urls.static import static
+# from django.conf.urls import include, patterns, url
 from .app_info import app_config
 from . import dict_utils
 import logging
@@ -26,6 +26,7 @@ def build_urls(module_name, *args, **kwargs):
     """
     from . import get_tenancy_code_regex
     from django.conf import settings
+    from django.conf.urls import include, patterns, url
     host_dir = None
 
     try:

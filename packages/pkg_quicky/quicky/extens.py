@@ -6,7 +6,7 @@ import json
 from . import applications
 from . import encryptor
 import sys
-from django.http import HttpResponse
+# from django.http import HttpResponse
 from mako.template import Template
 from mako.lookup import TemplateLookup
 from . import language as lang_manager
@@ -42,6 +42,7 @@ def apply(request,template_file,app):
     def register_view():
         return applications.get_settings().AUTHORIZATION_ENGINE.register_view(app=get_app_name(),view=get_view_path())
     def render(model):
+        from django.http import HttpResponse
         from mako import exceptions
         login_page=None
         is_public=None
