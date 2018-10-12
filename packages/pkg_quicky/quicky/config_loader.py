@@ -21,6 +21,13 @@ def load_config(file_name,none_params=False):
     import json
     with open(BASE_DIR + os.sep + "configs" + os.sep + file_name + '.json') as f:
         config_from_file = json.load(f)
+        if type(config_from_file["APPS"]) in [str,unicode]:
+            with open(BASE_DIR + os.sep + "configs" + os.sep + config_from_file["APPS"] + '.json') as f2:
+                APPS = json.load(f2)
+                config_from_file.update({
+                    "APPS":APPS["APPS"]
+                })
+
         for x in config_from_file.get("PACKAGES", []):
             try:
                 sys.path.append(BASE_DIR + os.sep + x.replace("/", os.sep))

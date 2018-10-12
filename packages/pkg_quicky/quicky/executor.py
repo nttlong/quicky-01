@@ -28,7 +28,7 @@ class executor(object):
             if hasattr(self.__app__.settings, "DEFAULT_DB_SCHEMA") and not has_set_schema:
                 tenancy.set_schema(self.__app__.settings.DEFAULT_DB_SCHEMA)
     def exec_request(self, request, **kwargs):
-        print request.path
+        print "resolve request {0} with source file {1}".format(request.path,self.__fn__.func_code.co_filename)
         # try:
         return self.run_request(request,**kwargs)
         # except Exception as ex:
@@ -122,6 +122,7 @@ class executor(object):
         import qtracking
         if request.get_view_path()!="api":
             qtracking.track_load_page(request.get_app().name,tenancy.get_schema(),request.get_view_path(),request.user.username)
+            print "exec {0} for {1}".format(self.__fn__.func_code.co_filename,request.path)
             return self.__fn__ (request, **kwargs)
         else:
             ret_id=qtracking.track_call_api_before(request.get_app().name,tenancy.get_schema(), request.body, request.user.username)

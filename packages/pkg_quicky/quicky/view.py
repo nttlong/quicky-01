@@ -18,6 +18,7 @@ def template_uri(fn):
 
     def layer(*args, **kwargs):
         def repl(f):
+            print f.func_code.co_filename
             return fn(f, *args, **kwargs)
         return repl
     return layer

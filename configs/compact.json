@@ -1,9 +1,15 @@
 {
   "PACKAGES":[
-    "/packages",
-    "/packages/mongodb",
-    "/packages/django",
-    "/uvenv04/lib/python2.7/site-packages"
+    "packages/django",
+    "packages/pkg_django_db/django_db",
+    "packages/pkg_qauth",
+    "packages/pkg_qexcel/qexcel",
+    "packages/pkg_qjasper/qjasper",
+    "packages/pkg_qloader/qloader",
+    "packages/pkg_qmongo/qmongo",
+    "packages/pkg_qobjects/qobjects",
+    "packages/pkg_qtracking/qtracking",
+    "packages/pkg_quicky/quicky"
   ],
   "SYS_VIEWS":"sys.views",
   "HOST_DIR_":"lms",
@@ -86,71 +92,5 @@
     "USER":"jasperadmin",
     "PASSWORD":"jasperadmin"
   },
-  "APPS": [
-    {
-      "host": "sys",
-      "name": "sys-admin",
-      "path": "apps/sys_admin",
-      "schema": "sys",
-      "settings": {
-        "DATABASE": {
-          "host": "172.16.7.67",
-          "port": 27017,
-          "name": "lms",
-          "user": "sys",
-          "password": "123456"
-        }
-      }
-    },
-    {
-      "host": "per",
-      "name": "performance",
-      "path": "apps/performance",
-      "login_url": "login",
-      "disable":false,
-      "schema":"lv"
-
-    },
-    {
-      "host": "hrm",
-      "name": "hrm",
-      "path": "apps/hrm",
-      "login_url": "login",
-      "schema":"hrm"
-
-    },
-    {
-      "host": "demo",
-      "name": "demo",
-      "path": "apps/demo",
-      "login_url": "/../login",
-      "static_dir": "apps/performance/static",
-      "disable":true
-    },
-    {
-      "host": "lms",
-      "name": "lms",
-      "path": "apps/lms",
-      "login_url": "/../login",
-      "static_dir": "apps/performance/static",
-      "disable":false,
-      "schema":"lv"
-    },
-    {
-      "host": "training",
-      "name": "training",
-      "path": "apps/training",
-      "login_url": "/../login",
-      "static_dir": "apps/performance/static",
-      "disable":false,
-      "schema":"lv"
-    },{
-      "host":"video",
-      "name":"video",
-      "path":"apps/video",
-      "disable":true
-
-    }
-  ]
-
+  "APPS": "compact_apps"
 }

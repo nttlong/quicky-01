@@ -255,8 +255,7 @@ def build_urls(module_name, *args, **kwargs):
                                 if url_regex != "^$":
                                     if url_regex.count("^(?i)") == 0:
                                         url_regex = url_regex.replace("^", "^(?i)")
-                                # if url_regex[url_regex.__len__() - 2:url_regex.__len__()] == "/$":
-                                #     url_regex = url_regex[0:url_regex.__len__() - 2] + "$"
+
                                 map_url = url(
                                     url_regex,
                                     url_item.callback

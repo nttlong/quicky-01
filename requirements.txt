@@ -1,3 +1,7 @@
+pytz
+sqlalchemy
+requests
+enum
 packages/django
 packages/pkg_django_db
 packages/pkg_qauth
