@@ -5122,3 +5122,6 @@ django_session.save (0.00) {'schema': u'lv', '_id': u'u6cuckxys6q8it2htj0fmkxv4v
 django_session.save (0.00) {'schema': u'lv', '_id': u'u6cuckxys6q8it2htj0fmkxv4vybnpyw', 'expire_date': datetime.datetime(2018, 10, 26, 3, 18, 43, 722000, tzinfo=<UTC>), 'session_data': u'OTE2OWEzNjFmMzk3MzVhMTZiNjlmM2EwODhiNTVkOGExNWRjM2JlYzp7fQ=='}
 Not Found: /per/static/js/plugins/slick.js
 Not Found: /per/static/js/plugins/slick.js
+Not Found: /per/static/js/plugins/slick.js
+Not Found: /per/static/js/plugins/slick.js
+Not Found: /login

@@ -57,12 +57,19 @@
       "static_dir": "apps/performance/static",
       "disable":true,
       "schema":"lv"
-    },{
+    },
+    {
       "host":"video",
       "name":"video",
       "path":"apps/video",
       "disable":true
 
+    },
+    {
+      "name":"potal",
+      "host":"portal",
+      "path":"apps/PortalLms",
+      "schema":"lv"
     }
   ]
 }
