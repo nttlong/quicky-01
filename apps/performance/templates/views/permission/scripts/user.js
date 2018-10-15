@@ -5,14 +5,14 @@
         { "data": "login_account", "title": "${ get_res('login_account_table_header', 'Mã người dùng') }", "className": "text-left"},
         { "data": "display_name", "title": "${ get_res('display_name_table_header', 'Tên hiển thị') }", "className": "text-left"},
         { "data": "role_name", "title": "${ get_res('role_name_table_header', 'Thuộc nhóm người dùng') }", "className": "text-left"},
-        { "data": "is_system", "title": "${ get_res('is_system_table_header', 'Là quản trị hệ thống') }", "className": "text-center", "format" : "checkbox"},
-        { "data": "never_expire", "title": "${ get_res('never_expire_table_header', 'Không bị khóa') }", "className": "text-center", "format": "checkbox"},
-        { "data": "manlevel_from", "title": "${ get_res('manlevel_from_table_header', 'Mức quản lí từ') }", "className": "text-center"},
-        { "data": "manlevel_to", "title": "${ get_res('manlevel_to_table_header', 'Mức quản lí đến') }", "className": "text-center"},
+        { "data": "is_system", "title": "${ get_res('is_system_table_header', 'Là quản trị hệ thống') }","width":"100px", "className": "text-center", "format" : "checkbox"},
+        { "data": "never_expire", "title": "${ get_res('never_expire_table_header', 'Không bị khóa') }","width":"100px", "className": "text-center", "format": "checkbox"},
+        { "data": "manlevel_from", "title": "${ get_res('manlevel_from_table_header', 'Mức quản lí từ') }","width":"100px", "className": "text-center"},
+        { "data": "manlevel_to", "title": "${ get_res('manlevel_to_table_header', 'Mức quản lí đến') }","width":"100px", "className": "text-center"},
         {
             "data": "created_on",
             "title": "${ get_res('created_on_table_header', 'Thời điểm tạo') }", 
-            "className": "text-center",
+            "className": "text-left",
             "format": "date: " + scope.$root.systemConfig.date_format
         }
     ];

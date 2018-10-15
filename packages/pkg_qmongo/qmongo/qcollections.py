@@ -68,6 +68,10 @@ class __aggregate__():
 
 class queryable(object):
     def __init__(self,*args,**kwargs):
+        from .database import QR
+        import qmongo
+        self.__coll__ = None
+
         if args ==() and kwargs == {}:
             raise (Exception("\n It look likes you forgot set params when call 'qcollections.queryable' \n"
                              "'qcollections.queryable' init with below option:\n"
@@ -80,18 +84,28 @@ class queryable(object):
                 self.__db__ =args[0]
                 if args.__len__()>1 and type(args[1]) in [unicode,str]:
                     self.__coll__ = self.__db__.get_collection(args[1])
+            if isinstance(args[0],QR):
+                self.__db__ = args[0].db
             elif type(args[0]) is Collection:
                 self.__coll__ = args[0]
             elif type(args[0]) in [unicode,str]:
-                if not __databases__.has_key(args[0]):
+                if not __databases__.has_key(args[0]) and isinstance(qmongo.get_db_context(),QR):
+                    self.__db__ = qmongo.get_db_context().db
+                if not __databases__.has_key(args[0]) and isinstance(qmongo.get_db_context(), Database):
+                    self.__db__ = qmongo.get_db_context()
+                elif qmongo.get_db_context()== None:
                     str_connections = ""
                     for k,v in __databases__.items():
                         str_connections = str_connections +"\n\t\t"+k
                     raise (Exception("It look likes you forgot call 'qcollections.connect' with connection name is'{0}'\n"
                                      "The database connection are in below list :{1}".format(args[0],str_connections)))
-                else:
+                elif __databases__.has_key(args[0]) and args.__len__()==2:
                     self.__db__ = __databases__[args[0]]
                     self.__coll__ = self.__db__.get_collection(args[1])
+            if args.__len__()==2 and  self.__coll__ == None and type(args[1]) in [unicode,str]:
+                self.__coll__ = self.__db__.get_collection(args[1])
+            elif args.__len__()==1 and self.__coll__ == None and type(args[0]) in [unicode,str]:
+                self.__coll__ = self.__db__.get_collection(args[0])
         self.__where__ = None
         self.__pipe_line__=[]
         self.__modifiers__={}
@@ -294,9 +308,22 @@ class queryable(object):
             elif type(v) in [str,unicode]:
                 _project_.update({k: helpers.expr.get_calc_expr(v,*params)})
             elif type(v) is dict:
-                _project_.update({k:v})
+                from . import q_dic_parse
+                x= q_dic_parse.parse_to_mongo_dict(v,*params)
+                _project_.update({k:x})
         self.__pipe_line__.append({"$project":_project_})
         return self
+    def redact(self,expression,*args,**kwargs):
+        params= list(args)
+        from . import helpers
+        _redact_=helpers.expr.get_calc_expr(expression,*params)
+        self.__pipe_line__.append({"$redact":_redact_})
+        return self
+
+    def out(self,to_collection_name):
+        self.__pipe_line__.append({"$out": to_collection_name})
+        return self
+
     def match(self,expression,*args,**kwargs):
         from . import helpers
         if type(expression) is dict:
@@ -363,6 +390,7 @@ class queryable(object):
             })
         self.__pipe_line__.append(_group)
         return self
+
     def sort(self,*args,**kwargs):
         import pymongo
         _sort_ = None

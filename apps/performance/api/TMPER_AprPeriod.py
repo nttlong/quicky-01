@@ -3,12 +3,14 @@ from bson import ObjectId
 import models
 import common
 from Query import AprPeriod, AprPeriodEmpOut, AprPeriodRank
+from hcs_authorization import action_type,authorization
 import logging
 import threading
 logger = logging.getLogger(__name__)
 global lock
 lock = threading.Lock()
 
+@authorization.authorise(action=action_type.Action.READ)
 def get_list_with_searchtext(args):
     searchText = args['data'].get('search', '')
     pageSize = args['data'].get('pageSize', 0)
@@ -18,13 +20,14 @@ def get_list_with_searchtext(args):
     pageIndex = (lambda pIndex: pIndex if pIndex != None else 0)(pageIndex)
     pageSize = (lambda pSize: pSize if pSize != None else 20)(pageSize)
 
-    ret=AprPeriod.display_list_apr_period()
+    ret=AprPeriod.display_list_apr_period(searchText)
     ret=common.filter_lock(ret, args)
     if(sort != None):
         ret.sort(sort)
       
     return ret.get_page(pageIndex, pageSize)
 
+@authorization.authorise(action=action_type.Action.READ)
 def get_item_by_period_year(args):
     ret=models.TMPER_AprPeriod().aggregate()
     ret.left_join(models.auth_user_info(), "created_by", "username", "uc")
@@ -58,7 +61,7 @@ def get_item_by_period_year(args):
     return ret.get_item()
 
 
-
+@authorization.authorise(action=action_type.Action.WRITE)
 def save(args):
     try:
         lock.acquire()
@@ -86,7 +89,7 @@ def save(args):
         raise(ex)
 
     
-
+@authorization.authorise(action=action_type.Action.DELETE)
 def delete(args):
     try:
         lock.acquire()
@@ -113,6 +116,7 @@ def delete(args):
         lock.release()
         raise(ex)
 
+@authorization.authorise(common= True)
 def set_dict_insert_data(args):
     ret_dict = dict()
     ret_dict.update(
@@ -133,6 +137,7 @@ def set_dict_insert_data(args):
 
     return ret_dict
 
+@authorization.authorise(common= True)
 def set_dict_update_data(args):
     ret_dict = set_dict_insert_data(args)
     #del ret_dict['_id']

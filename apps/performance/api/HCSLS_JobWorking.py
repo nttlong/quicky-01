@@ -8,8 +8,10 @@ import datetime
 import threading
 logger = logging.getLogger(__name__)
 global lock
+from hcs_authorization import action_type,authorization
 lock = threading.Lock()
 
+@authorization.authorise(action=action_type.Action.READ)
 def get_list_with_searchtext(args):
     if args['data'].has_key('gjw_code') and args['data']['gjw_code'] != None and args['data']['gjw_code'] != "":
         searchText = args['data'].get('search', '')
@@ -34,6 +36,7 @@ def get_list_with_searchtext(args):
         return ret.get_page(pageIndex, pageSize)
     return None
 
+@authorization.authorise(action=action_type.Action.READ)
 def get_job_working_group_by_group_code(args):
     try:
         if args['data'].has_key('gjw_code') and args['data']['gjw_code'] != None and args['data']['gjw_code'] != "":
@@ -42,6 +45,7 @@ def get_job_working_group_by_group_code(args):
     except Exception as ex:
         raise ex
 
+@authorization.authorise(action=action_type.Action.READ)
 def get_list_permission_and_mission(args):
     searchText = args['data'].get('search', '')
     pageSize = args['data'].get('pageSize', 0)
@@ -51,13 +55,14 @@ def get_list_permission_and_mission(args):
     pageIndex = (lambda pIndex: pIndex if pIndex != None else 0)(pageIndex)
     pageSize = (lambda pSize: pSize if pSize != None else 20)(pageSize)
 
-    ret = JobWorking.get_list_permission_and_mission_by_job_working_code(args['data']['job_w_code'])
+    ret = JobWorking.get_list_permission_and_mission_by_job_working_code(args['data']['job_w_code'],searchText)
 
     if(sort != None):
         ret.sort(sort)
         
     return ret.get_page(pageIndex, pageSize)
 
+@authorization.authorise(action=action_type.Action.READ)
 def get_job_description(args):
     try:
         if args['data'].has_key('job_w_code'):
@@ -67,6 +72,7 @@ def get_job_description(args):
     except Exception as ex:
         raise ex
 
+@authorization.authorise(action=action_type.Action.READ)
 def get_list_evaluation_factor(args):
     try:
         searchText = args['data'].get('search', '')
@@ -86,6 +92,7 @@ def get_list_evaluation_factor(args):
     except Exception as ex:
         raise ex
 
+@authorization.authorise(action=action_type.Action.CREATE)
 def insert(args):
     try:
         lock.acquire()
@@ -105,6 +112,7 @@ def insert(args):
         lock.release()
         raise(ex)
 
+@authorization.authorise(action=action_type.Action.WRITE)
 def update(args):
     try:
         lock.acquire()
@@ -130,6 +138,7 @@ def update(args):
         lock.release()
         raise(ex)
 
+@authorization.authorise(action=action_type.Action.DELETE)
 def delete(args):
     try:
         lock.acquire()
@@ -157,6 +166,7 @@ def delete(args):
         lock.release()
         raise(ex)
 
+@authorization.authorise(action=action_type.Action.CREATE)
 def insert_task(args):
     try:
         lock.acquire()
@@ -191,6 +201,7 @@ def insert_task(args):
         lock.release()
         raise(ex)
 
+@authorization.authorise(action=action_type.Action.WRITE)
 def update_task(args):
     try:
         lock.acquire()
@@ -230,6 +241,7 @@ def update_task(args):
         lock.release()
         raise(ex)
 
+@authorization.authorise(action=action_type.Action.DELETE)
 def delete_task(args):
     try:
         lock.acquire()
@@ -261,6 +273,7 @@ def delete_task(args):
         lock.release()
         raise(ex)
 
+@authorization.authorise(common=True)
 def set_dict_insert_data(args):
     ret_dict = dict()
 
@@ -290,6 +303,7 @@ def set_dict_insert_data(args):
 
     return ret_dict
 
+@authorization.authorise(common=True)
 def set_dict_update_data(args):
     ret_dict = set_dict_insert_data(args)
     del ret_dict['job_w_code']
@@ -298,6 +312,7 @@ def set_dict_update_data(args):
     del ret_dict['kpi']
     return ret_dict
 
+@authorization.authorise(common=True)
 def set_dict_insert_task(args):
     ret_dict = dict()
     ret_dict.update(
@@ -313,6 +328,7 @@ def set_dict_insert_task(args):
             )
     return ret_dict
 
+@authorization.authorise(common=True)
 def set_dict_update_task(args):
     ret_dict = set_dict_insert_task(args)
     del ret_dict['rec_id']
@@ -320,6 +336,7 @@ def set_dict_update_task(args):
     ret_dict['modified_by'] = common.get_user_id()
     return ret_dict
 
+@authorization.authorise(action=action_type.Action.READ)
 def get_list_performance_standanrd(args):
     searchText = args['data'].get('search', '')
     pageSize = args['data'].get('pageSize', 0)
@@ -336,6 +353,7 @@ def get_list_performance_standanrd(args):
         
     return ret.get_page(pageIndex, pageSize)
 
+@authorization.authorise(action=action_type.Action.READ)
 def get_list_performance_standanrd_by_job_working_code(job_w_code):
     ret=models.HCSLS_JobWorking().aggregate()
     ret.match("job_w_code == {0}", job_w_code)
@@ -365,6 +383,7 @@ def get_list_performance_standanrd_by_job_working_code(job_w_code):
 
     return ret
 
+@authorization.authorise(action=action_type.Action.CREATE)
 def insert_kpi(args):
     try:
         lock.acquire()
@@ -399,6 +418,7 @@ def insert_kpi(args):
         lock.release()
         raise(ex)
 
+@authorization.authorise(common = True)
 def set_dict_insert_kpi(args):
     ret_dict = dict()
     ret_dict.update(
@@ -416,6 +436,7 @@ def set_dict_insert_kpi(args):
             )
     return ret_dict
 
+@authorization.authorise(action=action_type.Action.WRITE)
 def update_kpi(args):
     try:
         lock.acquire()
@@ -447,6 +468,7 @@ def update_kpi(args):
         lock.release()
         raise(ex)
 
+@authorization.authorise(action=action_type.Action.DELETE)
 def delete_kpi(args):
     try:
         lock.acquire()
@@ -478,6 +500,7 @@ def delete_kpi(args):
         lock.release()
         raise(ex)
 
+@authorization.authorise(common=True)
 def set_dict_update_kpi(args):
     ret_dict = set_dict_insert_kpi(args)
     del ret_dict['rec_id']
@@ -485,6 +508,7 @@ def set_dict_update_kpi(args):
     ret_dict['modified_by'] = common.get_user_id()
     return ret_dict
 
+@authorization.authorise(action=action_type.Action.CREATE)
 def insert_factor_appraisal(args):
     try:
         lock.acquire()
@@ -531,6 +555,7 @@ def insert_factor_appraisal(args):
         lock.release()
         raise(ex)
 
+@authorization.authorise(action=action_type.Action.WRITE)
 def update_factor_appraisal(args):
     try:
         lock.acquire()
@@ -570,6 +595,7 @@ def update_factor_appraisal(args):
         lock.release()
         raise(ex)
 
+@authorization.authorise(action=action_type.Action.DELETE)
 def delete_factor_appraisal(args):
     try:
         lock.acquire()
@@ -601,6 +627,7 @@ def delete_factor_appraisal(args):
         lock.release()
         raise(ex)
 
+@authorization.authorise(common = True)
 def set_dict_insert_factor_appraisal(args):
     ret_dict = dict()
     ret_dict.update(
@@ -615,6 +642,7 @@ def set_dict_insert_factor_appraisal(args):
             )
     return ret_dict
 
+@authorization.authorise(common = True)
 def set_dict_update_factor_appraisal(args):
     ret_dict = set_dict_insert_factor_appraisal(args)
     del ret_dict['rec_id']
@@ -622,6 +650,7 @@ def set_dict_update_factor_appraisal(args):
     ret_dict['modified_by'] = common.get_user_id()
     return ret_dict
 
+@authorization.authorise(action=action_type.Action.READ)
 def get_list_performance_standanrd(args):
     try:
         search = args['data'].get('search', '')
@@ -792,6 +821,7 @@ def get_list_performance_standanrd(args):
     except Exception as ex:
         raise(ex)
 
+@authorization.authorise(action=action_type.Action.CREATE)
 def insert_performance_standanrd(args):
     try:
         lock.acquire()
@@ -947,6 +977,7 @@ def insert_performance_standanrd(args):
         lock.release()
         raise(ex)
 
+@authorization.authorise(common = True)
 def dict_insert_performance_standanrd(args):
     ret = dict()
     ret.update(
@@ -968,6 +999,7 @@ def dict_insert_performance_standanrd(args):
         )
     return ret
 
+@authorization.authorise(action=action_type.Action.WRITE)
 def update_performance_standanrd(args):
     try:
         lock.acquire()
@@ -1049,6 +1081,7 @@ def update_performance_standanrd(args):
         lock.release()
         raise(ex)
 
+@authorization.authorise(action=action_type.Action.DELETE)
 def delete_performance_standard(args):
     try:
         lock.acquire()

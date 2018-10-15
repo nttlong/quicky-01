@@ -131,16 +131,16 @@
         }
         valid = lv.Validate(scope.entity.department_code);
         rs.result = valid.isNullOrWhiteSpace();
-        rs.errorMsg = rs.result === true ? "${get_res('department_code_is_not_null','Bộ phậm làm việc không được để trống')}" + '\n' : "";
+        rs.errorMsg = rs.result === true ? "${get_res('department_code_is_not_null','Bộ phận làm việc không được để trống')}" + '\n' : "";
         if (rs.result === true) {
             return rs;
         }
-        //valid = lv.Validate(scope.entity.job_w_code);
-        //rs.result = valid.isNullOrWhiteSpace();
-        //rs.errorMsg = rs.result === true ? "${get_res('job_w_code_is_not_null','Chức danh không được để trống')}" + '\n' : "";
-        //if (rs.result === true) {
-        //    return rs;
-        //}
+        valid = lv.Validate(scope.entity.job_w_code);
+        rs.result = valid.isNullOrWhiteSpace();
+        rs.errorMsg = rs.result === true ? "${get_res('job_w_code_is_not_null','Chức danh không được để trống')}" + '\n' : "";
+        if (rs.result === true) {
+            return rs;
+        }
         return rs;
     }
 

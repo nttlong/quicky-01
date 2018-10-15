@@ -176,6 +176,9 @@ function controller($dialog, $scope, $filter) {
         $scope.$root.currentFunction = {};
         $scope.$root.currModule = {};
         $scope.$root.currentModule = '';
+        $scope.$root.$$$authoriseFunction  = {
+            id: "HOME"
+        };
         $scope.$root.logo = "${get_static('/')}css/images/logo.png";
 
         //Get function list
@@ -254,7 +257,7 @@ function controller($dialog, $scope, $filter) {
             })
 
         //Get HCSSYS_SystemConfig
-        services.api("${get_api_key('app_main.api.common/get_config')}")
+        services.api("${get_api_key('app_main.api.HCSSYS_SystemConfig/get_config')}")
             .data({
                 //parameter at here
             })

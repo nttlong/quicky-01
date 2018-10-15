@@ -67,6 +67,11 @@ def set_db_context(*args,**kwargs):
         cnn = connect(*args, **kwargs)
     setattr(threading.currentThread(),"__qmongo_db_context_current_db",cnn)
     return cnn
+def get_db_context():
+    if hasattr(threading.currentThread(), "__qmongo_db_context_current_db"):
+        return getattr(threading.currentThread(), "__qmongo_db_context_current_db")
+    else:
+        return None
 import threading
 def get_schema():
     "Get tenancy schema"

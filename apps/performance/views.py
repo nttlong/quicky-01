@@ -25,6 +25,8 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 def index(request):
     
     if request.user.is_anonymous():
+        if hasattr(quicky.system_settings, "SSO_LOGIN_URL") and quicky.system_settings.SSO_LOGIN_URL != "":
+            redirect(quicky.system_settings + "?ret=" + request.get_app_url("login"))
         return redirect(request.get_app_url("login"))
     else:
         model = {}
@@ -90,7 +92,10 @@ def logout_view(request):
     #quicky.language.remove_language()
     SystemConfig.clear_cache()
     request.session.clear()
-    return redirect(request.get_app_url(""))
+    if hasattr(quicky.system_settings, "LOGOUT_URL") and quicky.system_settings.LOGOUT_URL != "":
+        return redirect(quicky.system_settings.LOGOUT_URL)
+    else:
+        return redirect(request.get_app_url(""))
 
 @quicky.view.template(is_public=True)
 def change_language(request):
@@ -100,6 +105,12 @@ def change_language(request):
     request.session['language'] = lan
     quicky.language.set_language(lan)
     return redirect(request.get_app_url(""))
+
+@quicky.view.template("unauthorized.html")
+def unauthorized(request):
+    return request.render({
+        "path":"unauthorized"
+    })
 
 #@quicky.view.template("list.html")
 #def load_list(request,path):

@@ -5,7 +5,9 @@
 <%inherit file="../../commons/dialog_save_close.html"/>
 
 <%block name="modal_body">
-<div class="col-md-{{col_group}} col-sm-{{col_group}}">
+
+<div class="hcs-modal-format">
+    <div class="col-md-{{col_group}} col-sm-{{col_group}}">
     <collapse-box class="zb-form-common" title="${get_global_res('Common_Information','Thông tin chung')}">
         <div class="col-md-{{col}}">
             <div class="form-group zb-form-group">
@@ -40,7 +42,7 @@
                     <label class="col-sm-5 zb-form-label">${get_res('kpi_group_code','Thuộc nhóm chỉ tiêu')}</label>
                     <div class="col-sm-7">
                          <tree-combobox
-                            load-data="$root.$getComboboxData" 
+                            load-data="$root.$getComboboxData"
                             ng-model="entity.kpi_group_code"
                             placeholder=""
                             init-data="$$$cbb_hcsls_kpi_group.value"
@@ -58,14 +60,14 @@
                 <div class="form-group zb-form-group">
                     <label class="col-sm-5 zb-form-label">${get_res('unit_code','Đơn vị tính')}</label>
                      <div class="col-sm-7">
-                        <combobox load-data="$root.$getComboboxData" 
+                        <combobox load-data="$root.$getComboboxData"
                                 ng-model="entity.unit_code"
                                 params="{key:'${encryptor.get_key('cbb_HCSLS_Unit')}', value:[{ '@lock': true }]}"
                                 on-search-change="false"
                                 on-search-press="true"
                                 placeholder=""
                                 init-data="$$$cbb_HCSLS_Unit.value"
-                                caption-field="{{$$$cbb_HCSLS_Unit.caption_field}}" 
+                                caption-field="{{$$$cbb_HCSLS_Unit.caption_field}}"
                                 paging="true"
                                 close-on-select="true"
                                 template-fields="$$$cbb_HCSLS_Unit.display_fields"
@@ -78,8 +80,8 @@
                 <div class="form-group zb-form-group">
                     <label class="col-sm-5 zb-form-label">${get_res('cycle_type','Chu kỳ')}</label>
                      <div class="col-sm-7">
-                        <input-select data-list="cbbLCycleType" 
-                                   ng-model="entity.cycle_type" data-value="value" 
+                        <input-select data-list="cbbLCycleType"
+                                   ng-model="entity.cycle_type" data-value="value"
                                    data-caption="caption"/>
                     </div>
                 </div>
@@ -97,14 +99,14 @@
                     <label class="col-sm-5 zb-form-label">${get_res('kpi_formula','Công thức tính năng suất')}</label>
                      <div class="col-sm-7" style="display: grid; grid-template-columns:1fr auto;">
                         <div>
-                            <combobox load-data="$root.$getComboboxData" 
+                            <combobox load-data="$root.$getComboboxData"
                                     ng-model="entity.kpi_formula"
                                     params="{key:'${encryptor.get_key('cbb_HCSLS_Unit')}', value:[{ '@lock': true }]}"
                                     on-search-change="false"
                                     on-search-press="true"
                                     placeholder=""
                                     init-data="$$$cbb_HCSLS_Unit.value"
-                                    caption-field="{{$$$cbb_HCSLS_Unit.caption_field}}" 
+                                    caption-field="{{$$$cbb_HCSLS_Unit.caption_field}}"
                                     paging="true"
                                     close-on-select="true"
                                     template-fields="$$$cbb_HCSLS_Unit.display_fields"
@@ -125,8 +127,8 @@
                 <div class="form-group zb-form-group">
                     <label class="col-sm-5 zb-form-label">${get_res('value_cal_type_name','Cách tính cột "Thực hiện"')}</label>
                      <div class="col-sm-7">
-                        <input-select data-list="cbbValueCalType" 
-                                   ng-model="entity.value_cal_type" data-value="value" 
+                        <input-select data-list="cbbValueCalType"
+                                   ng-model="entity.value_cal_type" data-value="value"
                                    data-caption="caption" required/>
                     </div>
                 </div>
@@ -135,8 +137,8 @@
                 <div class="form-group zb-form-group">
                     <label class="col-sm-5 zb-form-label">${get_res('input_type','Cách nhập dữ liệu')}</label>
                      <div class="col-sm-7">
-                        <input-select data-list="cbbSYS_InputType" 
-                                   ng-model="entity.input_type" data-value="value" 
+                        <input-select data-list="cbbSYS_InputType"
+                                   ng-model="entity.input_type" data-value="value"
                                    data-caption="caption"/>
                     </div>
                 </div>
@@ -177,7 +179,7 @@
            </div>
     </collapse-box>
 </div>
-<div class="col-md-{{ 12 - col_group}} col-sm-{{ 12 - col_group}}">
+    <div class="col-md-{{ 12 - col_group}} col-sm-{{ 12 - col_group}}">
     <collapse-box class="zb-form-common" title="${get_global_res('apply_for','Áp dụng cho')}">
         <div class="col-md-{{col}}">
             <div class="form-group zb-form-group">
@@ -208,7 +210,7 @@
         </div>
     </collapse-box>
 </div>
-<div class="col-md-{{ 12 - col_group}} col-sm-{{ 12 - col_group}}">
+    <div class="col-md-{{ 12 - col_group}} col-sm-{{ 12 - col_group}}">
     <collapse-box class="zb-form-common" title="${get_global_res('kpi_desc','Mô tả chỉ tiêu')}">
         <div class="col-sm-12">
             <!--Ghi chú-->
@@ -220,7 +222,7 @@
         </div>
     </collapse-box>
 </div>
-<div class="col-md-{{ 12 - col_group}} col-sm-{{ 12 - col_group}}">
+    <div class="col-md-{{ 12 - col_group}} col-sm-{{ 12 - col_group}}">
     <collapse-box class="zb-form-common" title="${get_global_res('Note','Ghi chú')}">
         <div class="col-sm-12">
             <!--Ghi chú-->
@@ -229,18 +231,19 @@
                     <input-textarea rows="3" ng-model="entity.note"></input-textarea>
                 </div>
             </div>
-        </div>
-        <div class="col-md-12" style="padding-top: 16px;">
-            <div class="form-group zb-form-group">
+            <div class="form-group zb-form-group" style="padding-top: 16px;">
                 <label for="DisplayInfo" class="col-sm-4 zb-form-label">${get_global_res('create_and_modify','Tạo | Sửa')}</label>
                 <div class="col-sm-8">
                     <input-text value="{{ entity.created_on | date: $root.systemConfig.date_format}} {{entity.created_by}} | {{ entity.modified_on | date: $root.systemConfig.date_format}} {{entity.modified_by}}" ng-disabled="true">
                 </div>
             </div>
-        </div>     
-       
+        </div>
+
     </collapse-box>
 </div>
+</div>
+
+
 </%block>
 
 <%block name="modal_script">

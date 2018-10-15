@@ -34,18 +34,18 @@
                   selected-key="$display.selectedFunction"
                   reload-on-change="false">
                 <extend-toolbar ng-show="$display.selectedFunction === 'HCSEMP0020'">
-                    <button class="zb-btn" ng-click="firstRow()">
-                            <i class="bowtie-icon bowtie-fast-backward"></i>
-                        </button>
-                    <button class="zb-btn" ng-click="previousRow()">
+                    <button class="zb-btn zb-btn-o-blue" ng-click="firstRow()">
                             <i class="bowtie-icon bowtie-previous-frame"></i>
                         </button>
-                    <button class="zb-btn" ng-click="nextRow()">
-                            <i class="bowtie-icon bowtie-next-frame"></i>
+                    <button class="zb-btn zb-btn-o-green" ng-click="previousRow()">
+                            <i class="bowtie-icon bowtie-fast-backward"></i>
                         </button>
-                    <button class="zb-btn" ng-click="lastRow()">
+                    <button class="zb-btn zb-btn-o-green" ng-click="nextRow()">
                             <i class="bowtie-icon bowtie-fast-forward"></i>
                         </button>
+                    <button class="zb-btn zb-btn-o-blue" ng-click="lastRow()">
+                            <i class="bowtie-icon bowtie-next-frame"></i>
+                    </button>
                 </extend-toolbar>
         <site-map class="hcs-res-site-map-mobile">
                 <div class="hcs-res-site-map-mobile-left">
@@ -151,13 +151,11 @@
                                               data-list="cbbEmployeeActive"
                                               data-value="value" data-caption="caption" />
                         </div>
-                        <div class="col-xs-6" style="padding-left: 0px;">
-                            <input-text-icon id="tableSearchText" on-click="objSearch.onSearch" ng-model="objSearch.$$$modelSearch"></input-text-icon>
-                        </div>
                     </div>
                 </div>
-                <div class="zb-right-content col-xs-12 col-md-6 pull-right"
+                <div class="zb-right-content pull-right"
                      style="padding-left: 0; padding-right: 0; text-align: right;">
+                    <input-text-icon style="width:200px;float:left;margin-right:5px" id="tableSearchText" on-click="objSearch.onSearch" ng-model="objSearch.$$$modelSearch"></input-text-icon>
                     <button class="zb-btn zb-btn-o-green ng-scope"
                             ng-click="addEmployee()">
                         <i class="bowtie-icon bowtie-math-plus"></i>
@@ -168,10 +166,10 @@
                     <button class="zb-btn ng-scope">
                         <i class="bowtie-icon bowtie-transfer-download"></i>
                     </button>
-                    <button class="zb-btn ng-scope">
+                    <button class="zb-btn zb-btn-o-dark-blue ng-scope">
                         <i class="bowtie-icon bowtie-print"></i>
                     </button>
-                    <button class="zb-btn ng-scope" ng-click="refresh()">
+                    <button class="zb-btn zb-btn-o-purple ng-scope" ng-click="refresh()">
                         <i class="bowtie-icon bowtie-navigate-refresh"></i>
                     </button>
                 </div>
@@ -188,7 +186,8 @@
                             selected-items="selectedItems"
                             current-item="currentItem"
                             search-text="tableSearchText"
-                            refresh-row="refreshDataRow">
+                            refresh-row="refreshDataRow"
+                            find="findEmployeeInDataSource">
                 </table-data>
             </div>
         </div>

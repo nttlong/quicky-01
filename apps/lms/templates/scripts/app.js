@@ -4,7 +4,7 @@ window.set_api_combobox("${get_api_key('app_main.api.common/get_dropdown_list')}
 window.get_static = "${get_static('/')}"
 window.set_static(window.get_static)
 angular
-    .module("admin", ["c-ui", 'ZebraApp.components', 'ZebraApp.widgets', 'hcs-template', 'ngclipboard', 'chart.js'])
+    .module("admin", ["c-ui", 'ZebraApp.components', 'ZebraApp.widgets', 'hcs-template', 'ngclipboard', 'chart.js', 'authenticatedModule'])
     .controller("admin", controller)
     .filter('$filterFunction', function () {
         return function (input, txtSearch) {
@@ -52,20 +52,30 @@ function controller($dialog, $scope, $filter) {
     $scope.services = services = ws($scope);
     $scope.$root.$getComboboxData = extension().getComboboxData;
     $scope.$root.$getInitComboboxData = extension().getInitComboboxData;
-    $scope.$root.$groupingNumber = function (num) {
-        var info = $scope.$root.systemConfig;
-        var NumberGroupSeparator = info.dec_place_separator === "," ? "." : ",";
-        var NumberDecimalSeparator = info.dec_place_separator === "," ? "," : ".";
-        var str = num.toString().split('.');
-        if (str[0].length >= 5) {
-            str[0] = str[0].replace(/(\d)(?=(\d{3})+$)/g, '$1' + NumberGroupSeparator);
+    $scope.$root.$formatSystem = {
+        "number": function(data){
+            if(!data){
+                return "";
+            }
+            else if(Number(data) === data && data % 1 !== 0){
+                return formatNumber(data);
+            }
+            else if(Number(data) === data && data % 1 === 0){
+                return $scope.$root.$groupingNumber(data);
+            }else{
+                return "";
+            }
+        },
+        "date": function(data){
+            return $filter('date')(data, $scope.$root.systemConfig.date_format);
         }
-        if (str[1] && str[1].length >= 5) {
-            str[1] = str[1].replace(/(\d{3})/g, '$1');
-        }
-        return str.join(NumberDecimalSeparator);
-    };
+    }
 
+    window.NumberFormat = {
+        "format": function(data){
+            formatNumber(data);
+        }
+    }
     window.DateFormat = {
         "format": $filter('date')
     };
@@ -110,6 +120,11 @@ function controller($dialog, $scope, $filter) {
         })
         $(event.target).closest('.hcs-message-group').find('.hcs-menu-group-content').slideToggle(300)
     }
+
+     $(window).on('click', function (e) {
+        if (!e.target.closest('#dropdownFunction'))
+            $('#dropdownFunction').collapse('hide');
+    });
 
     document.addEventListener("keydown", function (evt) {
         if (evt.ctrlKey && evt.shiftKey && evt.code === "KeyF") {
@@ -163,6 +178,28 @@ function controller($dialog, $scope, $filter) {
         }
     }
 
+    function formatNumber(data){
+        var dataFormatSeperator = $scope.$root.$groupingNumber(data);
+        var NumberDecimalSeparator = $scope.$root.systemConfig.dec_place_separator === "," ? "," : ".";
+        var leng = $scope.$root.systemConfig.dec_place_currency - dataFormatSeperator.substring(dataFormatSeperator.lastIndexOf($scope.$root.systemConfig.dec_place_separator) + 1, dataFormatSeperator.length).length;
+
+        var lenDec = dataFormatSeperator.substring(dataFormatSeperator.lastIndexOf($scope.$root.systemConfig.dec_place_separator) + 1, dataFormatSeperator.length).length;
+
+        function retData(data, len){
+            for(var i = 0; i < len; i++){
+                data += "0";
+            }
+            return data;
+        }
+
+        if(lenDec > $scope.$root.systemConfig.dec_place_currency){
+            var data = retData(dataFormatSeperator, leng);
+            return data.substring(0, data.lastIndexOf(NumberDecimalSeparator) + $scope.$root.systemConfig.dec_place_currency + 1);
+        }
+
+        return retData(dataFormatSeperator, leng);
+    }
+
     /**
      * Initialize Data
      */
@@ -170,6 +207,9 @@ function controller($dialog, $scope, $filter) {
         $scope.$root.currentFunction = {};
         $scope.$root.currModule = {};
         $scope.$root.currentModule = '';
+        $scope.$root.$$$authoriseFunction  = {
+            id: "HOME"
+        };
         $scope.$root.logo = "${get_static('/')}css/images/logo.png";
 
         //Get function list
@@ -239,7 +279,7 @@ function controller($dialog, $scope, $filter) {
             })
 
         //Get HCSSYS_SystemConfig
-        services.api("${get_api_key('app_main.api.common/get_config')}")
+        services.api("${get_api_key('app_main.api.HCSSYS_SystemConfig/get_config')}")
             .data({
                 //parameter at here
             })

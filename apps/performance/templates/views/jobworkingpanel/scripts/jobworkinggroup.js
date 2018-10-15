@@ -3,14 +3,15 @@
     scope.$$tableTree = {
         "dataTableTree": [],
         "tableFields": [
-            { "data": "gjw_code", "title": "${get_res('function_list','Mã nhóm')}", width: "100px", className: "text-center" },
-            { "data": "note", "title": "${get_res('note','Ghi chú')}", width: "100px", className: "text-center" },
+            { "data": "gjw_code", "title": "${get_res('function_list','Mã nhóm')}", width: "100px", className: "text-left" },
+            { "data": "note", "title": "${get_res('note','Ghi chú')}", width: "100px", className: "text-left" },
             { "data": "ordinal", "title": "${get_res('ordinal','Thứ tự')}", width: "100px", className: "text-center" },
             { "data": "lock", "title": "${get_res('lock','Ngưng sử dụng')}", format: "checkbox", width: "100px", className: "text-center" }
         ],
         "selectTreeNode": function (node) {
 
         },
+        "treePressEnter":{},
         "treeCurrentNode": {},
         "treeSelectedNodes": [],
         "treeSelectedRootNodes": [],
@@ -21,6 +22,7 @@
 
     scope.$parent.$parent.$parent.$parent.onAdd = onAdd;
     scope.$parent.$parent.$parent.$parent.onEdit = onEdit;
+    scope.$parent.$parent.$parent.$parent.onSearch = onSearch;
     scope.$parent.$parent.$parent.$parent.onDelete = onDelete;
     scope.$parent.$parent.$parent.$parent.onImport = onImport;
     scope.$parent.$parent.$parent.$parent.onExport = onExport;
@@ -28,6 +30,14 @@
     scope.$parent.$parent.$parent.$parent.onRefresh = onRefresh;
 
     scope._jobWorkingGroup = _jobWorkingGroup;
+    scope.$$tableTree.treePressEnter = function(data){
+        onEdit();
+    }
+    function onSearch(val){
+        scope.$$tableTree.treeSearchText = val;
+        scope.$apply();
+    }
+
     function _jobWorkingGroup() {
         services.api("${get_api_key('app_main.api.HCSLS_JobWorkingGroup/get_tree')}")
             .data()

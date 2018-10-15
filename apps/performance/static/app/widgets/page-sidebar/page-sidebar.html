@@ -22,7 +22,7 @@
                 <div ng-transclude="extendToolbar" class="zb-extend-toolbar"></div>
                 <input-text-icon icon="bowtie-icon bowtie-search" icon-align="right" placeholder="" ng-model="texticon2" on-click="fnSearchPress" on-change="fnSearchChange" ng-show="fnSearchPress || fnSearchChange">
                 </input-text-icon>
-                <button ng-click="showAdvancedSearch()" class="zb-btn" ng-if="isAdvancedSearch">
+                <button ng-click="showAdvancedSearch()" class="zb-btn zb-btn-o-orange" ng-if="isAdvancedSearch">
                     <i class="bowtie-icon bowtie-search-filter"></i>
                 </button>
                 <button class="zb-btn" ng-if="fnGen && authorise.create === true" ng-click="fnGen()">
@@ -37,7 +37,7 @@
                 <button class="zb-btn zb-btn-o-red" ng-if="fnDelete && authorise.delete === true" ng-click="fnDelete()">
                     <i class="bowtie-icon bowtie-trash"></i>
                 </button>
-                <button class="zb-btn" ng-if="fnSave && authorise.write === true" ng-click="fnSave()">
+                <button class="zb-btn zb-btn-o-red" ng-if="fnSave && authorise.write === true" ng-click="fnSave()">
                     <i class="bowtie-icon bowtie-save"></i>
                 </button>
                 <button class="zb-btn" ng-if="fnCopy && authorise.copy === true" ng-click="fnCopy()">
@@ -49,7 +49,7 @@
                 <button class="zb-btn" ng-if="fnExport && authorise.export === true" ng-click="fnExport()">
                     <i class="bowtie-icon bowtie-transfer-download"></i>
                 </button>
-                <button class="zb-btn" ng-if="fnRefresh && authorise.read === true" ng-click="fnRefresh()">
+                <button class="zb-btn zb-btn-o-purple" ng-if="fnRefresh && authorise.read === true" ng-click="fnRefresh()">
                     <i class="bowtie-icon bowtie-navigate-refresh"></i>
                 </button>
             </div>

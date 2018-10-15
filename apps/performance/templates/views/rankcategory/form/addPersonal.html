@@ -23,7 +23,7 @@
         height:100%
     }
 </style>
-<div class="outer" style="float: left; height: 100%;">
+<div class="outer hcs-modal-format" style="float: left; height: 100%;">
    <div class="inner-title">
       <div class="col-xs-12 col-md-{{col_group}} col-sm-{{col_group}}" style="padding-bottom:20px;">
          <collapse-box class="zb-form-common" title="${get_global_res('Common_Information','Thông tin chung')}">
@@ -32,7 +32,7 @@
                   <!--Mã xếp loại-->
                   <label class="col-xs-5 col-sm-5 zb-form-label">${get_res('rank_code','Mã xếp loại')}</label>
                   <div class="col-xs-7 col-sm-7">
-                     <input-text ng-model="entity.rank_code" required>
+                     <input-text ng-model="entity.rank_code" required/>
                   </div>
                </div>
             </div>
@@ -41,7 +41,7 @@
                   <!--Tên xếp loại-->
                   <label class="col-xs-5 col-sm-5 zb-form-label">${get_res('rank_name','Tên xếp loại')}</label>
                   <div class="col-xs-7 col-sm-7">
-                     <input-text ng-model="entity.rank_name" required>
+                     <input-text ng-model="entity.rank_name" required/>
                   </div>
                </div>
             </div>
@@ -50,7 +50,7 @@
                   <!--Tên khác-->
                   <label class="col-xs-5 col-sm-5 zb-form-label">${get_res('rank_name2','Tên khác')}</label>
                   <div class="col-xs-7 col-sm-7">
-                     <input-text ng-model="entity.rank_name2">
+                     <input-text ng-model="entity.rank_name2"/>
                   </div>
                </div>
             </div>
@@ -59,7 +59,7 @@
                   <!--Tổng điểm từ-->
                   <label class="col-xs-5 col-sm-5 zb-form-label">${get_res('total_from','Tổng điểm từ')}</label>
                   <div class="col-xs-7 col-sm-7">
-                     <input-number ng-model="entity.total_from" type="float">
+                     <input-number ng-model="entity.total_from" type="float"/>
                   </div>
                </div>
             </div>
@@ -68,7 +68,7 @@
                   <!--Tổng điểm đến-->
                   <label class="col-xs-5 col-sm-5 zb-form-label">${get_res('total_to','Tổng điểm đến')}</label>
                   <div class="col-xs-7 col-sm-7">
-                     <input-number ng-model="entity.total_to" type="float">
+                     <input-number ng-model="entity.total_to" type="float"/>
                   </div>
                </div>
             </div>
@@ -77,7 +77,7 @@
                   <!--Thứ tự-->
                   <label class="col-xs-5 col-sm-5 zb-form-label">${get_res('ordinal','Thứ tự')}</label>
                   <div class="col-xs-7 col-sm-7">
-                     <input-number ng-model="entity.ordinal">
+                     <input-number ng-model="entity.ordinal"/>
                   </div>
                </div>
             </div>
@@ -86,7 +86,7 @@
                   <!--Thiết lập riêng-->
                   <label class="col-xs-5 col-sm-5 zb-form-label">${get_res('is_change_object','Thiết lập riêng')}</label>
                   <div class="col-xs-7 col-sm-7">
-                     <input-checkbox ng-model="entity.is_change_object" ng-change="onChangeObject()" ng-disabled="__mode == 2 || __mode == 3">
+                     <input-checkbox ng-model="entity.is_change_object" ng-change="onChangeObject()" ng-disabled="__mode == 2 || __mode == 3"/>
                   </div>
                </div>
             </div>
@@ -95,7 +95,7 @@
                   <!--Ngưng sử dụng-->
                   <label class="col-xs-5 col-sm-5 zb-form-label">${get_res('lock','Ngưng sử dụng')}</label>
                   <div class="col-xs-7 col-sm-7">
-                     <input-checkbox ng-model="entity.lock">
+                     <input-checkbox ng-model="entity.lock"/>
                   </div>
                </div>
             </div>
@@ -103,7 +103,7 @@
       </div>
       <div class="col-xs-12 col-md-{{ 12 - col_group}} col-sm-{{ 12 - col_group}}" style="padding-bottom:20px;">
          <collapse-box class="zb-form-common" title="${get_global_res('general_assessment','Đánh giá chung')}">
-            <div class="row">
+            <div class="form-group zb-form-group">
                <!--Đánh giá chung-->
                <div class="col-sm-12">
                   <input-textarea rows="7" ng-model="entity.rank_content"></input-textarea>
@@ -114,7 +114,7 @@
                   <label for="DisplayInfo" class="col-xs-3 col-sm-3 zb-form-label">${get_global_res('create_and_modify','Tạo | Sửa')}</label>
                   <div class="col-xs-9 col-sm-9">
                      <input-text
-                        value="{{ entity.created_on | date: $root.systemConfig.date_format}} {{entity.created_by}} | {{ entity.modified_on | date: $root.systemConfig.date_format}} {{entity.modified_by}}" ng-disabled="true">
+                        value="{{ entity.created_on | date: $root.systemConfig.date_format}} {{entity.created_by}} | {{ entity.modified_on | date: $root.systemConfig.date_format}} {{entity.modified_by}}" ng-disabled="true"/>
                   </div>
                </div>
             </div>

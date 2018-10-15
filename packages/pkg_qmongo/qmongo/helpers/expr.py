@@ -1092,19 +1092,28 @@ def get_calc_exprt_boolean_expression(fx,*params):
     _get_val_ = lambda x,y:x if y ==() else y[x]
 
     if type(fx) is _ast.Num:
-        return _get_val_(fx.n,params)
+        return _get_val_(fx.n,*params)
 
     p=get_right(fx,*params)
     if fx._fields.count("left")>0 and type(fx.left) is _ast.Call:
-        field = get_left(fx.left.args[0])
+        field = get_left(fx.left.args[0],*params)
         if p["right"]["type"]=="const":
-            return {
-                p["operator"]:[
-                    {
-                        "$" + fx.left.func.id:"$"+field["id"]
-                    },p["right"]["value"]
-                ]
-            }
+            if field['type']== 'function':
+                return {
+                    p["operator"]: [
+                        {
+                            "$" + fx.left.func.id: { field["id"]:field["params"]}
+                        }, p["right"]["value"]
+                    ]
+                }
+            else:
+                return {
+                    p["operator"]:[
+                        {
+                            "$" + fx.left.func.id:"$"+field["id"]
+                        },p["right"]["value"]
+                    ]
+                }
         if p["right"]["type"]=="params":
             return {
                 p["operator"]: [
@@ -1128,7 +1137,24 @@ def get_calc_exprt_boolean_expression(fx,*params):
             ]
         }
     if type(fx) is _ast.Name:
-        return get_left(fx,*params)
+        ret = get_left(fx, *params)
+        return "$"+ret['id']
+    if type(fx) is _ast.Attribute:
+        return get_left(fx, *params)
+    if type(fx) is _ast.Str:
+        ret = get_left(fx, *params)
+        if ret.has_key("type") and ret["type"]=="const" and ret.has_key("value"):
+            return ret["value"]
+        else:
+            raise Exception("unknown node")
+    if type(fx) is _ast.Call:
+        ret = get_left(fx, *params)
+        if ret.has_key('type') and ret['type'] =='function' and ret['id']=='get_params':
+            return params[ret['value']]
+        else:
+            raise Exception("unknown node")
+
+
 def extract_json(fx,*params):
     """
     Convert pythong tree expression into mongodb selector in $project of mongodb aggregate
@@ -1239,6 +1265,9 @@ def extract_json(fx,*params):
             ]
 
         }
+    if type(fx) is _ast.List:
+        return [extract_json(x, *params) for x in fx.elts]
+
 def get_calc_expr_boolean_expression_result(fx,*params):
     """Apply parameters in expression to real value
     Why this is important?

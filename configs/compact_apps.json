@@ -16,16 +16,16 @@
       }
     },
     {
-      "host": "per",
+      "host": "",
       "name": "performance",
       "path": "apps/performance",
       "login_url": "login",
-      "disable":true,
+      "disable":false,
       "schema":"lv"
 
     },
     {
-      "host": "",
+      "host": "hrm",
       "name": "hrm",
       "path": "apps/hrm",
       "login_url": "login",
@@ -38,7 +38,7 @@
       "path": "apps/demo",
       "login_url": "/../login",
       "static_dir": "apps/performance/static",
-      "disable":true
+      "disable":false
     },
     {
       "host": "lms",
@@ -46,7 +46,7 @@
       "path": "apps/lms",
       "login_url": "/../login",
       "static_dir": "apps/performance/static",
-      "disable":true,
+      "disable":false,
       "schema":"lv"
     },
     {
@@ -55,14 +55,14 @@
       "path": "apps/training",
       "login_url": "/../login",
       "static_dir": "apps/performance/static",
-      "disable":true,
+      "disable":false,
       "schema":"lv"
     },
     {
       "host":"video",
       "name":"video",
       "path":"apps/video",
-      "disable":true
+      "disable":false
 
     },
     {
@@ -71,7 +71,7 @@
       "path":"apps/PortalPerf",
       "schema":"lv",
       "static_dir": "apps/performance/static",
-      "disable":true
+      "disable":false
     }
   ]
 }

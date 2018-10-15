@@ -1,7 +1,9 @@
-"""
-Tien comment
-"""
 import datetime
+from hcs_authorization import authorization
+import django_db
+Database=django_db.getdb_config()
+login_url="login"
+authorization.set_db_context_authorization(Database)
 def authenticate(request):
     import SystemConfig
     st = SystemConfig.get()
@@ -10,7 +12,7 @@ def authenticate(request):
         return_url = request._get_request()["retUrl"]
         lang = request._get_request().get("lang", st.default_language)
         if (lang != None and lang != ""):
-            if lang == "VN":
+            if lang.lower() == "vn":
                 lang = "vi"
             else:
                 lang = "en"
@@ -45,18 +47,22 @@ def authenticate(request):
     # else:
     #     return True
 
+def AUTHORIZED(func_id):
+    from api import models
+    exist = models.AD_Roles().aggregate()\
+    .unwind("permission", False)\
+    .project(
+        function_id = "permission.function_id"
+    )\
+    .match("function_id == {0}", func_id).get_item()
+
+    if exist != None:
+        return True
+    return False
+
 def on_begin_request(request):
     setattr(request,"begin_time",datetime.datetime.now())
     print(request)
 
 def on_end_request(request):
     print("time is :{0} in {1}".format((datetime.datetime.now()-request.begin_time).microseconds,request.path_info))
-
-Database=dict(
-    host="localhost",
-    name="hrm",
-    port=27017,
-    user="root",
-    password="123456"
-)
-login_url="login"

@@ -7,7 +7,8 @@
 <%inherit file="../../../commons/dialog_resize_save_close.html"/>
 
 <%block name="modal_body">
-<div class="col-xs-12 col-md-6 col-sm-6">
+<div class="hcs-modal-format">
+    <div class="col-xs-12 col-md-6 col-sm-6">
     <collapse-box class="zb-form-common" title="${get_global_res('Common_Information','Thông tin chung')}">
         <div class="col-xs-12 col-md-12 col-sm-12">
             <div class="form-group zb-form-group">
@@ -19,19 +20,19 @@
             <div class="form-group zb-form-group">
                  <label class="col-xs-4 col-sm-4 zb-form-label">${get_res('description','Mô tả')}</label>
                  <div class="col-xs-8 col-sm-8">
-                     <output-label value="entity.description"></output-label>
+                     <output-label class="no-padding" value="entity.description"></output-label>
                  </div>
              </div>
             <div class="form-group zb-form-group">
                  <label class="col-xs-4 col-sm-4 zb-form-label">${get_res('unit','Đơn vị tính')}</label>
                  <div class="col-xs-8 col-sm-8">
-                     <output-label value="entity.unit"></output-label>
+                     <output-label class="no-padding" value="entity.unit"></output-label>
                  </div>
              </div>
             <div class="form-group zb-form-group">
                  <label class="col-xs-4 col-sm-4 zb-form-label">${get_res('cycle','Chu kỳ')}</label>
                  <div class="col-xs-8 col-sm-8">
-                     <output-label value="entity.cycle"></output-label>
+                     <output-label class="no-padding" class="no-padding" value="entity.cycle"></output-label>
                  </div>
              </div>
             <div class="form-group zb-form-group">
@@ -58,7 +59,7 @@
         </div>
     </collapse-box>
 </div>
-<div class="col-xs-12 col-md-6 col-sm-6">
+    <div class="col-xs-12 col-md-6 col-sm-6">
     <collapse-box class="zb-form-common" title="${get_global_res('Other_Information','Thông tin khác')}">
         <div class="col-xs-12 col-md-12 col-sm-12">
             <div class="form-group zb-form-group">
@@ -72,6 +73,7 @@
             </div>
         </div>
     </collapse-box>
+</div>
 </div>
 </%block>
 

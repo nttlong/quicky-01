@@ -190,6 +190,8 @@ def edit_permission(args):
                         "copy":x['copy'],
                         "attach":x['attach'],
                         "download":x['download'],
+                        "print": x['print'],
+                        "action": x['action'],
                         "created_by":common.get_user_id(),
                         "created_on":datetime.datetime.now(),
                         "modified_by":common.get_user_id(),

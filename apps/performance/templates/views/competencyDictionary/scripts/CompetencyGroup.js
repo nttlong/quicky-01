@@ -3,13 +3,14 @@
     scope.$$tableTree = {
         "dataTableTree": [],
         "tableFields": [
-            { "data": "com_group_code", "title": "${get_res('com_group_code','Mã nhóm')}", width: "100px", className: "text-center" },
+            { "data": "com_group_code", "title": "${get_res('com_group_code','Mã nhóm')}", width: "100px", className: "text-left" },
             { "data": "ordinal", "title": "${get_res('ordinal','Thứ tự')}", width: "100px", className: "text-center" },
             { "data": "lock", "title": "${get_res('lock','Ngưng sử dụng')}", format: "checkbox", width: "100px", className: "text-center" }
         ],
         "selectTreeNode": function (node) {
 
         },
+        "treeEnterPress":{},
         "treeCurrentNode": {},
         "treeSelectedNodes": [],
         "treeSelectedRootNodes": [],
@@ -29,7 +30,9 @@
     scope.$parent.$parent.$parent.onPrint = onPrint;
 
     scope._competencyGroup = _competencyGroup;
-
+    scope.$$tableTree.treeEnterPress = function(data){
+        onEdit();
+    }
     function _competencyGroup() {
         services.api("${get_api_key('app_main.api.TMLS_CompetencyGroup/get_tree')}")
             .data({

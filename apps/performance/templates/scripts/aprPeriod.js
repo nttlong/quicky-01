@@ -51,6 +51,7 @@
             $(window).trigger('resize');
         }, 500);
     };
+
     scope.Map_Period = Map_Period;
     function Map_Period(periodNum) {
         var strPeriod = "";
@@ -117,6 +118,14 @@
 	//Navigation: quay trở về UI list
 	scope.backPage = backPage;
 
+    scope.onSearchTable = onSearchTable;
+    scope.onSearch = function(val){
+        alert("val");
+    }
+    function onSearchTable(val){
+        scope.tableSearchText = val;
+        scope.$apply();
+    }
 
 	function backPage() {
         $('.hcs-profile-list').fadeToggle();
@@ -152,16 +161,17 @@
 
     function editAprPeriod() {
         debugger
-         $('.hcs-profile-list').fadeToggle();
-         scope.$root.$commons = {
-            //$current_employee_code: null,
-            $active: true
+        scope.$root.$commons = {
+                //$current_employee_code: null,
+                $active: true
         };
         scope.mode = 2;
         if (scope.currentItem == null && scope.selectedItems.length === 0) {
             $msg.message("${get_global_res('Notification','Thông báo')}", "${get_global_res('No_Row_Selected','Không có dòng được chọn')}", function () { });
         }
         else {
+            $('.hcs-profile-list').fadeToggle();
+
             scope.entity = scope.currentItem;
             setTimeout(function () {
                 scope.$display.showDetail = scope.$display.showDetail === false ? true : false;
@@ -170,7 +180,7 @@
                 scope.$applyAsync();
                 $(window).trigger('resize');
             }, 500);
-            
+
         }
     }
 
@@ -327,6 +337,7 @@
 		scope.handleData = new handleData();
         scope.$display.mapName = scope.handleData.$display.mapName;
         scope.currentFunction = scope.$display.mapName[0];
+        scope.$root.$$$authoriseFunction = scope.$root.currentFunction.function_id;
         scope.$display.selectedFunction = (scope.$display.mapName.length > 0) ? scope.$display.mapName[0].function_id : null;
 		scope.$applyAsync();
 	})();

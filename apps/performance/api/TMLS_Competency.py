@@ -6,10 +6,12 @@ import logging
 import datetime
 import threading
 import common
+from hcs_authorization import action_type,authorization
 logger = logging.getLogger(__name__)
 global lock
 lock = threading.Lock()
 
+@authorization.authorise(action=action_type.Action.READ)
 def get_list_with_searchtext(args):
     searchText = args['data'].get('search', '')
     pageSize = args['data'].get('pageSize', 0)
@@ -110,7 +112,6 @@ def get_list_with_searchtext(args):
             'items': '$data'
         }
     }])
-
     return (lambda x: x[0] if x != None and len(x) > 0 else {
         'page_size': pageSize,
         'page_index': pageIndex,
@@ -118,6 +119,7 @@ def get_list_with_searchtext(args):
         'items': []
         })(list(ret))
 
+@authorization.authorise(action=action_type.Action.READ)
 def get_by_com_code(args):
     try:
         ret = models.TMLS_Competency().aggregate()
@@ -151,6 +153,7 @@ def get_by_com_code(args):
     except Exception as ex:
         raise(ex)
 
+@authorization.authorise(action=action_type.Action.CREATE)
 def insert(args):
     try:
         lock.acquire()
@@ -171,6 +174,7 @@ def insert(args):
         lock.release()
         raise(ex)
 
+@authorization.authorise(action=action_type.Action.WRITE)
 def update(args):
     try:
         lock.acquire()
@@ -199,6 +203,7 @@ def update(args):
         lock.release()
         raise(ex)
 
+@authorization.authorise(action=action_type.Action.DELETE)
 def delete(args):
     try:
         lock.acquire()
@@ -232,6 +237,7 @@ def delete(args):
         lock.release()
         raise(ex)
 
+@authorization.authorise(action=action_type.Action.CREATE)
 def insert_job_working_competency(job_w_code, comp):
     try:
         if(len(job_w_code)) > 0:
@@ -298,6 +304,7 @@ def insert_job_working_competency(job_w_code, comp):
     except Exception as ex:
         raise(ex)
 
+@authorization.authorise(common= True)
 def set_dict_insert_data(args):
     result = dict()
     result.update(
@@ -319,6 +326,7 @@ def set_dict_insert_data(args):
 
     return result
 
+@authorization.authorise(common= True)
 def set_dict_update_data(args):
     result = set_dict_insert_data(args)
     del result['com_code']

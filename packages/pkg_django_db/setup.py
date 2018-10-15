@@ -1,8 +1,8 @@
 from setuptools import setup
-
+import django_db
 setup(
     name='django_db',
-    version='1.0.0.0',
+    version=django_db.get_version(),
     packages=['django_db'],
     url='',
     license='MIT',

@@ -19,7 +19,7 @@
             <%block name="modal_body"/>
         </div>
         <div class="modal-footer">
-            <div class="right-content pull-right">
+            <div class="right-content pull-right" ng-if="($root.$$$authoriseFunction.authorisePermission.create && $root.$$$authoriseFunction.authorisePermission.create === true) || ($root.$$$authoriseFunction.authorisePermission.write && $root.$$$authoriseFunction.authorisePermission.write === true)">
                 <button ng-click="saveNNext($event)" title="${get_global_res('save_and_add','Lưu & thêm')}"><i class="bowtie-icon bowtie-save-as"></i></button>
                 <button ng-click="saveNClose($event)" title="${get_global_res('save_and_close','Lưu & đóng')}"><i class="bowtie-icon bowtie-save-close"></i></button>
             </div>

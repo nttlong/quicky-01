@@ -8,6 +8,7 @@
 
         },
         "treeCurrentNode": {},
+        "treePressEnter": {},
         "treeSelectedNodes": [],
         "treeSelectedRootNodes": [],
         "treeMultiSelect": true,
@@ -20,6 +21,7 @@
     scope.$parent.$parent.$parent.onGen = addDataGeneration
      //var a = scope.$parent.currentFunction.function_id ;
     scope.$parent.$parent.$parent.onAdd =  onAdd;
+    scope.$parent.$parent.$parent.onSearch = onSearch;
     scope.$parent.$parent.$parent.onEdit = onEdit;
     scope.$parent.$parent.$parent.onDelete =  onDelete;
     scope.$parent.$parent.$parent.onImport =  onImport;
@@ -34,6 +36,10 @@
             return "<span style='font-weight:bold'>" + columns + "</span>";
             })
          return row.rank_level && row.rank_level.length>0;
+    }
+
+    scope.$$tableTree.treePressEnter = function(data){
+        onEdit();
     }
 
     function addDataGeneration() {
@@ -89,7 +95,7 @@
             .then(function (res) {
                 scope.$rating = res;
                 res = _.map(res, function (val) {
-                    return { "data": val.rank_code, "title": "%"+ "<"+ val.rank_name +">", width: "100px", className: "text-center" };
+                    return { "data": val.rank_code, "title": "%"+ "<"+ val.rank_name +">", width: "100px", className: "text-left" };
                 })
                 scope.$parent.$$$tableFields = res;
                 callback(res)
@@ -143,6 +149,11 @@
         }
 
     };
+
+    function onSearch(val) {
+        scope.$$tableTree.treeSearchText = val;//scope.SearchText;
+        scope.$apply();
+    }
 
     function onImport() {
         lv.ImportFile("${get_api_key('app_main.excel.import/call')}")

@@ -19,7 +19,7 @@
             <%block name="modal_body"/>
         </div>
         <div class="modal-footer">
-            <div class="right-content pull-right">
+            <div class="right-content pull-right" ng-if="($root.$$$authoriseFunction.authorisePermission.create && $root.$$$authoriseFunction.authorisePermission.create === true) || ($root.$$$authoriseFunction.authorisePermission.write && $root.$$$authoriseFunction.authorisePermission.write === true)">
                  <button ng-click="selectBtn($event)" title="${get_global_res('select_btn','')}"><i class="glyphicon glyphicon-ok"></i></button>
                 <button ng-click="cancelBtn($event)" title="${get_global_res('cancel_btn','')}"><i class="fa fa-ban"></i></button>
             </div>

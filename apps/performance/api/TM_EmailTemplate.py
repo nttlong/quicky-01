@@ -7,7 +7,9 @@ import threading
 logger = logging.getLogger(__name__)
 global lock
 lock = threading.Lock()
+from hcs_authorization import action_type,authorization
 
+@authorization.authorise(action=action_type.Action.READ)
 def get_list(args):
     return get_email_template().get_list()
 
@@ -29,6 +31,7 @@ def get_email_template():
 
     return collection
 
+@authorization.authorise(action=action_type.Action.CREATE)
 def insert(args):
     try:
         lock.acquire()
@@ -46,6 +49,7 @@ def insert(args):
         lock.release()
         raise(ex)
 
+@authorization.authorise(action=action_type.Action.WRITE)
 def update(args):
     try:
         lock.acquire()
@@ -73,6 +77,7 @@ def update(args):
         lock.release()
         raise(ex)
 
+@authorization.authorise(action=action_type.Action.DELETE)
 def delete(args):
     try:
         lock.acquire()

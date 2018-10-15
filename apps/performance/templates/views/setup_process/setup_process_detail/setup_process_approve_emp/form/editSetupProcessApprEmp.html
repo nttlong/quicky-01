@@ -4,7 +4,8 @@
     <%inherit file="../../../../commons/dialog_save.html"/>
 
 <%block name="modal_body">
-<div class="col-md-{{col_group}} col-xs-{{col_group}}">
+<div class="hcs-modal-format">
+    <div class="col-md-{{col_group}} col-xs-{{col_group}}">
     <collapse-box class="zb-form-common" title="${get_res('employee','Nhân viên')}">
         <div class="col-md-12 col-xs-12">
             <div class="form-group zb-form-group" style="display: grid;grid-auto-columns: 1fr auto;" ng-if="__mode == 1">
@@ -55,7 +56,7 @@
         </div>
     </collapse-box>
 </div>
-<div class="col-md-{{ 12 - col_group}} col-xs-{{ 12 - col_group}}">
+    <div class="col-md-{{ 12 - col_group}} col-xs-{{ 12 - col_group}}">
     <collapse-box class="zb-form-common" title="${get_res('config_approver', 'Thiết lập người duyệt')}">
         <div class="col-md-12 col-xs-12"  ng-repeat="elm in configApprover track by $index">
             <div class="form-group zb-form-group">
@@ -85,6 +86,8 @@
         </div>
     </collapse-box>
 </div>
+</div>
+
 </%block>
 
 <%block name="modal_script">

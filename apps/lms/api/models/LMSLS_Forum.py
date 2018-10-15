@@ -21,6 +21,7 @@ helpers.extent_model(
             )),
             forum_avail=helpers.create_field("bool"),
             specific_avail=helpers.create_field("object", False, dict(
+                start_date=helpers.create_field("date"),
                 end_date=helpers.create_field("date")
             )),
             allow_anonymous_posts=helpers.create_field("bool"),

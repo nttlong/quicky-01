@@ -58,7 +58,7 @@ def get_job_description_by_job_working_code(job_w_code):
 
     return ret
 
-def get_list_permission_and_mission_by_job_working_code(job_w_code):
+def get_list_permission_and_mission_by_job_working_code(job_w_code,search_text):
     ret=models.HCSLS_JobWorking().aggregate()
     ret.match("job_w_code == {0}", job_w_code)
     ret.unwind("task")
@@ -76,6 +76,8 @@ def get_list_permission_and_mission_by_job_working_code(job_w_code):
         modified_on="switch(case(task.modified_on!='',task.modified_on),'')",
         modified_by="switch(case(task.modified_by!='',um.login_account),'')",
     )
+    if(search_text!= None and search_text!= ''):
+        ret.match("contains(task_name,{0}) or contains(description,{0})",search_text)
     ret.match("task_name != {0}", None)
     ret.sort(dict(
         ordinal = 1

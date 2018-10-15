@@ -13,3 +13,4 @@ packages/pkg_qmongo
 packages/pkg_qobjects
 packages/pkg_qtracking
 packages/pkg_quicky
+packages/pkg_hcs_authorization

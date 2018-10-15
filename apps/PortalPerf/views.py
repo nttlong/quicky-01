@@ -24,6 +24,8 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 def index(request):
     
     if request.user.is_anonymous():
+        if hasattr(quicky.system_settings, "SSO_LOGIN_URL") and quicky.system_settings.SSO_LOGIN_URL != "":
+            redirect(quicky.system_settings + "?ret=" + request.get_app_url("login"))
         return redirect(request.get_app_url("login"))
     else:
         model = {}
@@ -70,7 +72,10 @@ def logout_view(request):
     logout(request, request.user.schema)
     #quicky.language.remove_language()
     request.session.clear()
-    return redirect(request.get_app_url(""))
+    if hasattr(quicky.system_settings, "LOGOUT_URL") and quicky.system_settings.LOGOUT_URL != "":
+        return redirect(quicky.system_settings.LOGOUT_URL)
+    else:
+        return redirect(request.get_app_url(""))
 
 @quicky.view.template(is_public=True)
 def change_language(request):

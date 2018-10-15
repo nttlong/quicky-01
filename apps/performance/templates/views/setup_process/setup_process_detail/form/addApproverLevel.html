@@ -7,7 +7,8 @@
 <%inherit file="../../../commons/dialog_save.html"/>
 
 <%block name="modal_body">
-<div class="col-md-12 col-xs-12">
+<div class="hcs-modal-format">
+    <div class="col-md-12 col-xs-12">
     <collapse-box class="zb-form-common" title="${get_res('approver_setting','Thiết lập cấp duyệt')}">
         <div class="col-md-6 col-xs-6">
             <div class="form-group zb-form-group">
@@ -70,7 +71,7 @@
         </div>
     </collapse-box>
 </div>
-<div class="col-md-6 col-xs-6">
+    <div class="col-md-6 col-xs-6">
     <collapse-box class="zb-form-common" title="${get_res('email_approve','Email DUYỆT')}">
         <div class="col-md-12 col-xs-12">
             <div class="form-group zb-form-group">
@@ -156,7 +157,7 @@
         </div>
     </collapse-box>
 </div>
-<div class="col-md-6 col-xs-6">
+    <div class="col-md-6 col-xs-6">
     <collapse-box ng-show="!$parent.$parent.$parent.$parent.$parent.$$table.currentItem.is_email_cancel" class="zb-form-common" title="${get_res('email_cancel','Email KHÔNG DUYỆT')}">
         <div class="col-md-12 col-xs-12">
             <div class="form-group zb-form-group">
@@ -242,6 +243,8 @@
         </div>
     </collapse-box>
 </div>
+</div>
+
 </%block>
 
 <%block name="modal_script">

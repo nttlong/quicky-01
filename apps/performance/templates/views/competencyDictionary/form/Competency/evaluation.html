@@ -42,22 +42,22 @@
         </toolbar>
         <div class="col-xs-12 col-md-6">
             <div class="form-group zb-form-group">
-                <label class="col-xs-3 col-sm-3 zb-form-label">${get_res('evaluation_factor','Yếu tố đánh giá')}</label>
-                <div class="col-xs-9 col-sm-9">
+                <label class="col-xs-4 col-sm-3 col-md-4 zb-form-label">${get_res('evaluation_factor','Yếu tố đánh giá')}</label>
+                <div class="col-xs-8 col-sm-9 col-md-8">
                     <input-textarea rows="5" ng-model="entity.factor" required></input-textarea>
                 </div>
             </div>
         </div>
         <div class="col-xs-12 col-md-6">
             <div class="form-group zb-form-group">
-                <label class="col-xs-3 col-sm-3 zb-form-label">${get_res('weight','Trọng số')}</label>
-                <div class="col-xs-9 col-sm-9">
+                <label class="col-xs-4 col-sm-3 col-md-4 zb-form-label">${get_res('weight','Trọng số')}</label>
+                <div class="col-xs-8 col-sm-9 col-md-8">
                     <input-number ng-model="entity.weight" type="float"></input-number>
                 </div>
             </div>
             <div class="form-group zb-form-group">
-                <label class="col-xs-3 col-sm-3 zb-form-label">${get_res('com_level_code','Dành cho cấp độ')}</label>
-                <div class="col-xs-9 col-sm-9">
+                <label class="col-xs-4 col-sm-3 col-md-4 zb-form-label">${get_res('com_level_code','Dành cho cấp độ')}</label>
+                <div class="col-xs-8 col-sm-9 col-md-8">
                     <combobox load-data="$root.$getComboboxData" 
                                   ng-model="entity.com_level_code"
                                   params="{key:'${encryptor.get_key('cbb_com_level_group_by_com_code')}', value:[{ '@com_code': $parent.$com_code }]}"
@@ -75,15 +75,15 @@
                 </div>
             </div>
             <div class="form-group zb-form-group">
-                <label class="col-xs-3 col-sm-3 zb-form-label">${get_res('ordinal','Thứ tự')}</label>
-                <div class="col-xs-9 col-sm-9">
+                <label class="col-xs-4 col-sm-3 col-md-4 zb-form-label">${get_res('ordinal','Thứ tự')}</label>
+                <div class="col-xs-8 col-sm-9 col-md-8">
                     <input-number ng-model="entity.ordinal"></input-number>
                 </div>
             </div>
             <div class="form-group zb-form-group">
-                <label for="DisplayInfo" class="col-xs-3 col-sm-3 zb-form-label">${get_global_res('create_and_modify','Tạo | Sửa')}</label>
-                <div class="col-xs-9 col-sm-9">
-                    <input-text value="{{ entity.created_on | date: $root.systemConfig.date_format}} {{entity.created_by}} | {{ entity.modified_on | date: $root.systemConfig.date_format}} {{entity.modified_by}}" ng-disabled="true">
+                <label for="DisplayInfo" class="col-xs-4 col-sm-3 col-md-4 zb-form-label">${get_global_res('create_and_modify','Tạo | Sửa')}</label>
+                <div class="col-xs-8 col-sm-9 col-md-8">
+                    <input-text value="{{ entity.created_on | date: $root.systemConfig.date_format}} {{entity.created_by}} | {{ entity.modified_on | date: $root.systemConfig.date_format}} {{entity.modified_by}}" ng-disabled="true"/>
                 </div>
             </div>
         </div>

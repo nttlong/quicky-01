@@ -1,6 +1,9 @@
 (function (scope){
 
     scope.selectedItems = [];
+    scope.currentItem = null;
+    scope.tableSearchText = '';
+    scope.SearchText = '';
 
     scope.$parent.$parent.$parent.edit = function () {
         if (scope.currentItem) {
@@ -33,7 +36,7 @@
         }
     };
 
-     scope.$parent.$parent.$parent.update_status_open = function () {
+    scope.$parent.$parent.$parent.update_status_open = function () {
         if (!scope.selectedItems || scope.selectedItems.length === 0) {
             $msg.message("${get_global_res('Notification','Thông báo')}", "${get_global_res('No_Row_Selected','Không có dòng được chọn')}", function () { });
         } else {
@@ -52,7 +55,7 @@
         }
     };
 
-     scope.$parent.$parent.$parent.update_status_suspend = function () {
+    scope.$parent.$parent.$parent.update_status_suspend = function () {
         if (!scope.selectedItems || scope.selectedItems.length === 0) {
             $msg.message("${get_global_res('Notification','Thông báo')}", "${get_global_res('No_Row_Selected','Không có dòng được chọn')}", function () { });
         } else {
@@ -71,7 +74,7 @@
         }
     };
 
-     scope.$parent.$parent.$parent.update_status_write_protected = function () {
+    scope.$parent.$parent.$parent.update_status_write_protected = function () {
         if (!scope.selectedItems || scope.selectedItems.length === 0) {
             $msg.message("${get_global_res('Notification','Thông báo')}", "${get_global_res('No_Row_Selected','Không có dòng được chọn')}", function () { });
         } else {
@@ -89,6 +92,13 @@
             });
         }
     };
+
+    scope.$parent.$parent.$parent.onSearch ;
+
+    function onSearch(val) {
+        scope.tableSearchText = val;
+        scope.$applyAsync();
+    }
 
     scope.onSelectTableRow = function ($row) {
         if (scope.currentItem) {

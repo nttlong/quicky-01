@@ -25,16 +25,28 @@
                 refreshRow: "=",
                 responsive: "=",
                 selectedField: "@",
-                languageResource: "="
+                languageResource: "=",
+                find: "="
             },
             //template: '<table class="display zb-data-table responsive nowrap"></table>',
             templateUrl: "app/components/table/table-data/table-data.html",
             link: function ($scope, elem, attr) {
                 var table = null;
+                var _internalDataSource = [];
                 $scope.fields = _.filter($scope.fields, function(val){
                     if(!val.hasOwnProperty('visible') || val.visible !== false)
                         return true;
                 });
+
+                 $scope.find = function(param){
+                    if(angular.isObject(param))
+                        return _.findWhere(_internalDataSource, param);
+                    if(angular.isNumber(param))
+                        return _internalDataSource[param];
+                    if(angular.isFunction(param));
+                        return _.find(_internalDataSource, param);
+                    return null;
+                 }
 
                 function _initLayout() {
                     $scope.pageLength = ($scope.pageLength) ? $scope.pageLength : 30;
@@ -205,7 +217,7 @@
                                     let $r;
                                     switch ($s.length) {
                                         case 2:
-                                            $r = $filter('number')(data, $s[1]);
+                                            $r = $scope.$root.$formatSystem.number(data ? data : null);
                                             break;
                                         default:
                                             $r = $filter('number')(data);
@@ -558,6 +570,7 @@
                                             v["$$regKey"] = i;
                                         });
                                         callback(ret);
+                                        _internalDataSource = ret.data;
                                         setTimeout(function () {
                                             _initSelectedItem(ret.data);
                                         }, 300);

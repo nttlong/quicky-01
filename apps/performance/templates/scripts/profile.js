@@ -30,8 +30,8 @@
         { "data": "gender", "title": "${get_res('gender_table_header','Giới tính')}" },
         { "data": "job_w_code", "title": "${get_res('job_w_code_table_header','Chức danh công việc')}" },
         { "data": "department_name", "title": "${get_res('department_name_table_header','Bộ phận')}" },
-        { "data": "active", "title": "Active", "format": "checkbox" },
-        { "data": "join_date", "title": "${get_res('join_date_table_header','Ngày vào làm')}", "format": "date:" + scope.$root.systemConfig.date_format }
+        { "data": "active", "title": "Active", "format": "checkbox", "className": "text-center" },
+        { "data": "join_date", "title": "${get_res('join_date_table_header','Ngày vào làm')}", "className": "text-center" , "format": "date:" + scope.$root.systemConfig.date_format }
     ];
     scope.$$tableConfig = {};
     //Dữ liệu cho table
@@ -165,7 +165,9 @@
 
     function firstRow() {
         if (scope.__tableSource.length > 0) {
-            scope.currentItem = scope.__tableSource[0];
+            scope.currentItem = scope.findEmployeeInDataSource(0);
+            scope.$root.$commons.$info_employee = scope.__tableSource[0];
+            scope.$applyAsync();
         }
     }
 
@@ -173,7 +175,9 @@
         if (scope.__tableSource.length > 0) {
             var idx_item = _.findIndex(scope.__tableSource, { "employee_code": scope.currentItem.employee_code });
             var index = idx_item === 0 ? scope.__tableSource.length - 1 : idx_item - 1;
-            scope.currentItem = scope.__tableSource[index];
+            scope.currentItem = scope.findEmployeeInDataSource(index);
+            scope.$root.$commons.$info_employee = scope.__tableSource[index];
+            scope.$applyAsync();
         }
     }
 
@@ -181,13 +185,17 @@
         if (scope.__tableSource.length > 0) {
             var idx_item = _.findIndex(scope.__tableSource, { "employee_code": scope.currentItem.employee_code });
             var index = idx_item === (scope.__tableSource.length - 1) ? 0 : idx_item + 1;
-            scope.currentItem = scope.__tableSource[index];
+            scope.currentItem = scope.findEmployeeInDataSource(index);
+            scope.$root.$commons.$info_employee = scope.__tableSource[index];
+            scope.$applyAsync();
         }
     }
 
     function lastRow() {
         if (scope.__tableSource.length > 0) {
-            scope.currentItem = scope.__tableSource[scope.__tableSource.length - 1];
+            scope.currentItem = scope.findEmployeeInDataSource(scope.__tableSource.length - 1);
+            scope.$root.$commons.$info_employee = scope.__tableSource[scope.__tableSource.length - 1];
+            scope.$applyAsync();
         }
     }
 
@@ -373,6 +381,12 @@
         );
     };
 
+    function reloadTableData(){
+        _loadDataServerSide(scope.$$tableConfig.fnReloadData,
+            1, scope.$$tableConfig.iPageLength,
+            scope.$$tableConfig.orderBy, scope.$$tableConfig.searchText);
+    }
+
     (function _init_() {
         _departments();
         _selectBoxData();
@@ -380,6 +394,7 @@
         scope.handleData = new handleData();
         scope.$display.mapName = scope.handleData.$display.mapName;
         scope.currentFunction = scope.$display.mapName[0];
+        scope.$root.$$$authoriseFunction.id = scope.$root.currentFunction.function_id;
         scope.$display.selectedFunction = (scope.$display.mapName.length > 0) ? scope.$display.mapName[0].function_id : null;
         scope.$applyAsync();
     })();
@@ -423,9 +438,7 @@
     //});
 
     scope.$watch('treeCurrentNode', function (val) {
-        _loadDataServerSide(scope.$$tableConfig.fnReloadData,
-            1, scope.$$tableConfig.iPageLength,
-            scope.$$tableConfig.orderBy, scope.$$tableConfig.searchText)
+        reloadTableData();
     })
 
 

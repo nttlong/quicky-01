@@ -80,6 +80,18 @@
                             <input-checkbox ng-model="treeCurrentNode.download">
                         </div>
                     </div>
+                    <div class="form-group row hcs-group-form-group">
+                        <label class="col-sm-5 zb-form-label">${get_res('permission_attach','Đính kèm file')}</label>
+                        <div class="col-sm-7">
+                            <input-checkbox ng-model="treeCurrentNode.print">
+                        </div>
+                    </div>
+                    <div class="form-group row hcs-group-form-group">
+                        <label class="col-sm-5 zb-form-label">${get_res('permission_download','Tải file')}</label>
+                        <div class="col-sm-7">
+                            <input-checkbox ng-model="treeCurrentNode.action">
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

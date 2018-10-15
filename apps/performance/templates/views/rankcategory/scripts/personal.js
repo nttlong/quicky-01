@@ -5,8 +5,8 @@
         { "data": "rank_code", "title": "${get_res('rank_code_table_header','Mã')}", "className": "text-left" },
         { "data": "rank_name", "title": "${get_res('rank_name_table_header','Tên')}", "className": "text-left" },
         { "data": "rank_content", "title": "${get_res('rank_content_table_header','Đánh giá chung')}", "className": "text-left" },
-        { "data": "total_from", "title": "${get_res('total_from_table_header','Tổng điểm từ')}", "className": "text-center" },
-        { "data": "total_to", "title": "${get_res('total_to_table_header','Tổng điểm đến')}", "className": "text-center" },
+        { "data": "total_from", "title": "${get_res('total_from_table_header','Tổng điểm từ')}", "className": "text-left" },
+        { "data": "total_to", "title": "${get_res('total_to_table_header','Tổng điểm đến')}", "className": "text-left" },
         { "data": "is_change_object", "title": "${get_res('is_change_object_table_header','Thiết lập riêng')}", "className": "text-center", "format": "checkbox" },
         { "data": "ordinal", "title": "${get_res('ordinal_table_header','Thứ tự')}", "className": "text-center" },
         { "data": "lock", "title": "${get_res('lock_table_header','Ngưng SD')}", "className": "text-center", "format": "checkbox" }

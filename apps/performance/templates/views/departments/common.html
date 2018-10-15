@@ -1,4 +1,4 @@
-﻿﻿<div class="tab-pane fade in active" style="height:100%;overflow:auto; background: #fff;">
+﻿﻿<div class="tab-pane hcs-format fade in active" style="height:100%;overflow:auto; background: #fff;">
     <div class="col-xs-12 col-md-12">
         <collapse-box class="zb-form-common" title="${get_res('basic_info','Thông tin cơ bản')}">
             <div class="col-xs-12 col-md-6">
@@ -126,7 +126,7 @@
                 </div>
                 <!--Giải thể-->
                 <div class="form-group zb-form-group">
-                    <div class="col-xs-5 col-md-5">
+                    <div class="col-xs-5 col-md-5" style="padding-left:5px">
                         <input-checkbox ng-model="entity.lock" data-caption="${get_res('lock','Giải thể')}"/>
                     </div>
                     <div class="col-xs-7 col-sm-7">
@@ -153,17 +153,6 @@
                         <input-text id="inputDepartmentsCode" ng-model="entity.decision_no"/>
                     </div>
                 </div>
-            </div>
-            <div class="col-md-6">
-                <!--Ngày quyết định-->
-                <div class="form-group zb-form-group">
-                    <label for="inputDecisionDate" class="col-xs-5 col-sm-5 zb-form-label">${get_res('decision_date','Ngày quyết định')}</label>
-                    <div class="col-xs-7 col-sm-7">
-                        <date-picker ng-model="entity.decision_date" data-format="{{$root.systemConfig.date_format}}" />
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-6">
                 <!--Số giấy phép-->
                 <div class="form-group zb-form-group">
                     <label for="inputLicenseNo" class="col-xs-5 col-sm-5 zb-form-label">${get_res('license_no','Số giấy phép')}</label>
@@ -171,29 +160,6 @@
                         <input-text id="inputLicenseNo" ng-model="entity.license_no"/>
                     </div>
                 </div>
-            </div>
-            <div class="col-md-6">
-                <!--Người ký-->
-                <div class="form-group zb-form-group">
-                    <label for="inputSignedBy" class="col-xs-5 col-sm-5 zb-form-label">${get_res('signed_by','Người ký')}</label>
-                    <div class="col-xs-7 col-sm-7">
-                        <combobox load-data="$root.$getComboboxData" 
-                                ng-model="entity.signed_by"
-                                params="{key:'${encryptor.get_key('cbb_employees_cbcc')}', value:[]}"
-                                on-search-change="false"
-                                on-search-press="true"
-                                placeholder=""
-                                init-data="$$$signed_by.value"
-                                caption-field="{{$$$signed_by.caption_field}}" 
-                                paging="true"
-                                close-on-select="true"
-                                template-fields="$$$signed_by.display_fields"
-                                reload="false">
-                        </combobox>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-6">
                 <!--Mã số thuế-->
                 <div class="form-group zb-form-group">
                     <label for="inputTaxCode" class="col-xs-5 col-sm-5 zb-form-label">${get_res('tax_code','Mã số thuế')}</label>
@@ -203,6 +169,32 @@
                 </div>
             </div>
             <div class="col-md-6">
+                <!--Ngày quyết định-->
+                <div class="form-group zb-form-group">
+                    <label for="inputDecisionDate" class="col-xs-5 col-sm-5 zb-form-label">${get_res('decision_date','Ngày quyết định')}</label>
+                    <div class="col-xs-7 col-sm-7">
+                        <date-picker ng-model="entity.decision_date" data-format="{{$root.systemConfig.date_format}}" />
+                    </div>
+                </div>
+                <!--Người ký-->
+                <div class="form-group zb-form-group">
+                    <label for="inputSignedBy" class="col-xs-5 col-sm-5 zb-form-label">${get_res('signed_by','Người ký')}</label>
+                    <div class="col-xs-7 col-sm-7">
+                        <combobox load-data="$root.$getComboboxData"
+                                ng-model="entity.signed_by"
+                                params="{key:'${encryptor.get_key('cbb_employees_cbcc')}', value:[]}"
+                                on-search-change="false"
+                                on-search-press="true"
+                                placeholder=""
+                                init-data="$$$signed_by.value"
+                                caption-field="{{$$$signed_by.caption_field}}"
+                                paging="true"
+                                close-on-select="true"
+                                template-fields="$$$signed_by.display_fields"
+                                reload="false">
+                        </combobox>
+                    </div>
+                </div>
                 <!--Ngày hiệu lực-->
                 <div class="form-group zb-form-group">
                     <label for="inputEffectDate" class="col-xs-5 col-sm-5 zb-form-label">${get_res('effect_date','Ngày hiệu lực')}</label>

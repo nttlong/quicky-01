@@ -26,7 +26,7 @@
                     maxHeight: attr["maxHeight"]
                 }
                 var tabContainer = $(elem).find(".zb-tab-container");
-                tabContainer.css("overflow", "auto");
+                //tabContainer.css("overflow", "auto");
                 if (config.height) {
                     tabContainer.css("height", config.height);
                 }

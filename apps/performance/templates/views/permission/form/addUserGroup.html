@@ -1,6 +1,7 @@
 ﻿
 <%!
     #_style="width:300px;"
+    _height=";padding:0px;"
 %>
 <%inherit file="../../commons/dialog_save_close.html"/>
 
@@ -16,13 +17,14 @@
         padding: 0 !important;
     }
 </style>
-<div class="col-md-{{col_group}} col-sm-{{col_group}}">
+<div class="hcs-modal-format">
+    <div class="col-md-{{col_group}} col-sm-{{col_group}}">
     <collapse-box class="zb-form-common" title="${get_global_res('Common_Information','Thông tin chung')}">
         <div class="col-md-{{col}}">
             <div class="form-group zb-form-group">
                 <!--Mã nhóm người dùng-->
-                <label for="inputUserName" class="col-sm-5 zb-form-label">${get_res('role_code','Mã nhóm người dùng')}</label>
-                <div class="col-sm-7">
+                <label for="inputUserName" class="col-sm-5 col-md-5 col-xs-3 zb-form-label">${get_res('role_code','Mã nhóm người dùng')}</label>
+                <div class="col-sm-7 col-md-7 col-xs-9">
                     <input-text id="inputUserName" ng-model="entity.role_code" ng-disabled="{{ __mode === 2 ? 'true' : 'false' }}" required>
                 </div>
             </div>
@@ -30,8 +32,8 @@
         <div class="col-md-{{col}}">
             <div class="form-group zb-form-group">
                 <!--Tên nhóm người dùng-->
-                <label for="inputDisplayName" class="col-sm-5 zb-form-label">${get_res('role_name','Tên nhóm người dùng')}</label>
-                <div class="col-sm-7">
+                <label for="inputDisplayName" class="col-sm-5 col-md-5 col-xs-3 zb-form-label">${get_res('role_name','Tên nhóm người dùng')}</label>
+                <div class="col-sm-7 col-md-7 col-xs-9">
                     <input-text id="inputDisplayName" ng-model="entity.role_name" required>
                 </div>
             </div>
@@ -39,14 +41,14 @@
         <div class="col-md-{{col}}">
             <div class="form-group zb-form-group">
                 <!--Vùng dữ liệu truy cập-->
-                <label for="inputGroupUser" class="col-sm-5 zb-form-label">${get_res('dd_code','Vùng dữ liệu truy cập')}</label>
-                <div class="col-sm-7">
+                <label for="inputGroupUser" class="col-sm-5 col-md-5 col-xs-3 zb-form-label">${get_res('dd_code','Vùng dữ liệu truy cập')}</label>
+                <div class="col-sm-7 col-md-7 col-xs-9">
                     <!--<input-combobox id="inputEmployeeId" required
                         list-code="${encryptor.get_key('cbb_data_domain')}"
                         list-value="[{ '@dd_code': '' }]"
                         current-item="entity.dd_code"
                         multi-select="false">-->
-                    <combobox load-data="$root.$getComboboxData" 
+                    <combobox load-data="$root.$getComboboxData"
                               ng-model="entity.dd_code"
                               params="{key:'${encryptor.get_key('cbb_data_domain')}', value:[{ '@dd_code': '' }]}"
                               on-search-change="false"
@@ -66,40 +68,38 @@
         <div class="col-md-{{col}}">
             <div class="form-group zb-form-group">
                 <!--Ngưng sử dụng-->
-                <label for="inputGroupUser" class="col-sm-5 zb-form-label">${get_res('stop','Ngưng sử dụng')}</label>
-                <div class="col-md-7">
+                <label for="inputGroupUser" class="col-sm-5 col-md-5 col-xs-3 zb-form-label">${get_res('stop','Ngưng sử dụng')}</label>
+                <div class="col-md-7 col-sm-7 col-xs-9">
                     <input-checkbox ng-model="entity.stop"/>
                 </div>
             </div>
         </div>
     </collapse-box>
 </div>
-<div class="col-md-{{ 12 - col_group }} col-sm-{{ 12 - col_group }}">
-    <collapse-box class="zb-form-common" title="${get_global_res('Note','Ghi chú')}">
-        <div class="row">
-            <div class="col-md-12">
-                <!--Ghi chú-->
-                <input-textarea rows="6" ng-model="entity.description"></input-textarea>
-            </div>
-        </div>
-    </collapse-box>
-</div>
-<div class="col-md-12">
+    <div class="col-md-{{ 12 - col_group }} col-sm-{{ 12 - col_group }}">
+
+        <collapse-box class="zb-form-common" title="${get_global_res('Note','Ghi chú')}">
+            <!--Ghi chú-->
+            <div class="form-group zb-form-group">
+                <div class="col-xs-12 col-md-12">
+                    <input-textarea rows="6" ng-model="entity.description"></input-textarea>
+                </div>
+          </div>
+        </collapse-box>
+    </div>
+    <div class="col-md-12">
     <style>
-        .hcs-zb-header-icon-custom {
+        tab-content .hcs-zb-header-icon-custom {
             display:none;
         }
-        .hcs-zb-content-custom {
-            padding-top:unset !important;
-        }
     </style>
-    <nav-tabs min-height="54vh" max-height="54vh" style="overflow:unset;" ng-show="__mode != 1">
-        <tab-content name="tab1" style="height: 49vh;" title="${get_res('list_user','Danh sách người dùng')}">
-            <div class="col-md-12" style="height: 50vh;padding:unset;">
+    <nav-tabs ng-show="__mode != 1">
+        <tab-content name="tab1" title="${get_res('list_user_group','Danh sách nhóm người dùng')}">
+            <div class="col-md-12 no-padding">
                 <collapse-box class="zb-form-common" title="">
                     <toolbar>
                         <input-text-icon icon="bowtie-icon bowtie-search"
-                                                on-click="onSearch"></input-text-icon>
+                                                on-click="onSearchTable"></input-text-icon>
                         <button class="zb-btn zb-btn-o-green" ng-click="addNewUser()">
                             <i class="bowtie-icon bowtie-math-plus"></i>
                         </button>
@@ -107,9 +107,9 @@
                             <i class="bowtie-icon bowtie-edit-remove"></i>
                         </button>
                     </toolbar>
-                        <div class="col-md-12 no-padding" style="height:49vh;">
-                            <table-data data-source="dataTable.tableListUserSource" fields="dataTable.tableListUserFields" type="MultiSelect" 
-                                paging="true" page-length="100" server-side="true" 
+                        <div class="col-md-12 no-padding" style="overflow:hidden">
+                            <table-data data-source="dataTable.tableListUserSource" fields="dataTable.tableListUserFields" type="MultiSelect"
+                                paging="true" page-length="100" server-side="true"
                                 press-enter="dataTable.onSelectTableRow" selected-items="dataTable.selectedListUserItems"
                                 current-item="dataTable.ListUserCurrentItem" search-text="dataTable.tableSearchText"
                                 refresh-row="dataTable.refreshDataListUserRow"
@@ -119,32 +119,37 @@
                 </collapse-box>
             </div>
         </tab-content>
-        <tab-content name="tab2" style="height: 49vh;" title="${get_res('function_list','Danh sách tính năng')}">
-            <div style="position: fixed; z-index: 9999; right:17px;">
-                <button class="zb-btn zb-btn-o-green pull-right" ng-click="deletePermission()">
-                    <i class="bowtie-icon bowtie-edit-remove"></i>
-                </button>
-                <button style="margin: 0 5px;" class="zb-btn zb-btn-o-red pull-right" ng-click="EditPermission()">
-                    <i class="bowtie-icon bowtie-edit-outline"></i>
-                </button>
-                <input-text-icon style="width:166px; float:right" icon="bowtie-icon bowtie-search" on-click="onSearch"></input-text-icon>
-            </div>
-            <div class="col-md-12 no-padding" style="height:46vh; margin-top:30px;">
-                <tree-table data-source="dataTableTree" data-fields="tableFields"
-                    display-field="default_name"
-                    display-name="Tên tính năng"
-                    parent-field="parent_id" key-field="function_id" 
-                    multi-select="treeMultiSelect" select-mode="treeSelectMode"
-                    on-select="selectTreeNode"
-                    current-node="treeCurrentNode"
-                    selected-nodes="treeSelectedNodes"
-                    selected-root-nodes="treeSelectedRootNodes"
-                    search-text="treeSearchText"
-                    checked-field="is_selected"
-                    disabled="treeDisabled"/>
+        <tab-content name="tab2" title="${get_res('function_list','Danh sách tính năng')}">
+            <div class="col-md-12 no-padding">
+                <collapse-box class="zb-form-common" title="">
+                    <toolbar>
+                        <input-text-icon icon="bowtie-icon bowtie-search" on-click="onSearchTableTree"></input-text-icon>
+                        <button class="zb-btn zb-btn-o-green pull-right" ng-click="deletePermission()">
+                            <i class="bowtie-icon bowtie-edit-remove"></i>
+                        </button>
+                        <button class="zb-btn zb-btn-o-red pull-right" ng-click="EditPermission()">
+                            <i class="bowtie-icon bowtie-edit-outline"></i>
+                        </button>
+                    </toolbar>
+                     <div class="col-md-12 no-padding">
+                        <tree-table data-source="dataTableTree" data-fields="tableFields"
+                            display-field="default_name"
+                            display-name="Tên tính năng"
+                            parent-field="parent_id" key-field="function_id"
+                            multi-select="treeMultiSelect" select-mode="treeSelectMode"
+                            on-select="selectTreeNode"
+                            current-node="treeCurrentNode"
+                            selected-nodes="treeSelectedNodes"
+                            selected-root-nodes="treeSelectedRootNodes"
+                            search-text="treeSearchText"
+                            checked-field="is_selected"
+                            disabled="treeDisabled"/>
+                    </div>
+                </collapse-box>
             </div>
         </tab-content>
     </nav-tabs>
+</div>
 </div>
 
 </%block>
@@ -156,10 +161,10 @@
         //Table danh sách người dùng - START
         scope.dataTable = {
             tableListUserFields : [
-                { "data": "login_account", "title": "${ get_res('table_user_login_account_table_header', 'Mã người dùng') }", "className": "text-left" },
-                { "data": "display_name", "title": "${ get_res('table_user_display_name_table_header', 'Tên hiển thị') }", "className": "text-left" },
-                { "data": "manlevel_from", "title": "${ get_res('table_user_manlevel_from_table_header', 'Mức quản lí từ') }", "className": "text-center" },
-                { "data": "manlevel_to", "title": "${ get_res('table_user_manlevel_to_table_header', 'Mức quản lí đến') }", "className": "text-center" },
+                { "data": "login_account", "title": "${ get_res('role_code_table_header', 'Mã nhóm người dùng') }", "className": "text-left" },
+                { "data": "display_name", "title": "${ get_res('role_name_table_header', 'Tên nhóm người dùng') }", "className": "text-left" },
+                { "data": "manlevel_from", "title": "${ get_res('table_user_manlevel_from_table_header', 'Mức quản lí từ') }", "className": "text-left" },
+                { "data": "manlevel_to", "title": "${ get_res('table_user_manlevel_to_table_header', 'Mức quản lí đến') }", "className": "text-left" },
                 {
                     "data": "created_on",
                     "title": "${ get_res('table_user_created_on_table_title', 'Thời điểm tạo') }",
@@ -170,9 +175,21 @@
             tableListUserSource : _loadDataListUserServerSide,
             refreshDataListUserRow : function () { /*Do nothing*/ },
             selectedListUserItems : [],
+            tableSearchText:'',
             ListUserCurrentItem : null,
             onSelectTableRow : pressEnter,
         };
+
+        scope.onSearchTable = function(val){
+            scope.dataTable.tableSearchText = val;
+            scope.$apply();
+        }
+
+        scope.onSearchTableTree = function(val){
+            scope.treeSearchText = val;
+            scope.$apply();
+        }
+
         function _loadDataListUserServerSide(fnReloadData, iPage, iPageLength, orderBy, searchText) {
             scope.$$table_List_User_Config = {
                 fnReloadData: fnReloadData,
@@ -228,6 +245,7 @@
         scope.treeSelectedRootNodes = [];
         scope.treeMultiSelect = true;
         scope.treeSelectMode = 2;
+        scope.treeSearchText = '';
         scope.treeDisabled = false;
         scope.$comboboxInit = {
             dataDomain: null

@@ -4,9 +4,9 @@ def authenticate(request):
     if request._get_request().has_key("token"):
         token=request._get_request()["token"]
         return_url = request._get_request()["retUrl"]
-        lang = request._get_request()["lang"]
+        lang = request._get_request().get("lang", "vn")
         if (lang != None and lang != ""):
-            if lang == "VN":
+            if lang.lower() == "vn":
                 lang = "vi"
             else:
                 lang = "en"
@@ -16,7 +16,7 @@ def authenticate(request):
         from api import models
         login_token = sso_authenticate(token)
         if login_token.is_success:
-            login_account = models.auth_user_info().aggregate()\
+            login_account = models.models_per.auth_user_info().aggregate()\
                 .project(login_account = 1, username = 1)\
                 .match("login_account == {0}", login_token.login_account).get_item()
             request.__setattr__("user_login", login_account['username'])
@@ -48,13 +48,6 @@ def on_begin_request(request):
 
 def on_end_request(request):
     print("time is :{0} in {1}".format((datetime.datetime.now()-request.begin_time).microseconds,request.path_info))
-
-Database=dict(
-    host="172.16.7.67",
-    name="lms",
-    port=27017,
-    user="sys",
-    password="123456"
-)
-
+import django_db
+Database=django_db.getdb_config()
 login_url="/../login"

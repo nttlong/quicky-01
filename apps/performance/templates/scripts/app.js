@@ -70,7 +70,30 @@ function controller($dialog, $scope, $filter) {
         }
         return str.join(NumberDecimalSeparator);
     };
+    $scope.$root.$formatSystem = {
+        "number": function(data){
+            if(!data){
+                return "";
+            }
+            else if(Number(data) === data && data % 1 !== 0){
+                return formatNumber(data);
+            }
+            else if(Number(data) === data && data % 1 === 0){
+                return $scope.$root.$groupingNumber(data);
+            }else{
+                return "";
+            }
+        },
+        "date": function(data){
+            return $filter('date')(data, $scope.$root.systemConfig.date_format);
+        }
+    }
 
+    window.NumberFormat = {
+        "format": function(data){
+            formatNumber(data);
+        }
+    }
     window.DateFormat = {
         "format": $filter('date')
     };
@@ -210,11 +233,36 @@ function controller($dialog, $scope, $filter) {
         }
     }
 
+    function formatNumber(data){
+        var dataFormatSeperator = $scope.$root.$groupingNumber(data);
+        var NumberDecimalSeparator = $scope.$root.systemConfig.dec_place_separator === "," ? "," : ".";
+        var leng = $scope.$root.systemConfig.dec_place_currency - dataFormatSeperator.substring(dataFormatSeperator.lastIndexOf($scope.$root.systemConfig.dec_place_separator) + 1, dataFormatSeperator.length).length;
+
+        var lenDec = dataFormatSeperator.substring(dataFormatSeperator.lastIndexOf($scope.$root.systemConfig.dec_place_separator) + 1, dataFormatSeperator.length).length;
+
+        function retData(data, len){
+            for(var i = 0; i < len; i++){
+                data += "0";
+            }
+            return data;
+        }
+
+        if(lenDec > $scope.$root.systemConfig.dec_place_currency){
+            var data = retData(dataFormatSeperator, leng);
+            return data.substring(0, data.lastIndexOf(NumberDecimalSeparator) + $scope.$root.systemConfig.dec_place_currency + 1);
+        }
+
+        return retData(dataFormatSeperator, leng);
+    }
+
     /**
      * Initialize Data
      */
     function activate() {
         $scope.$root.currentFunction = {};
+        $scope.$root.$$$authoriseFunction  = {
+            id: "HOME"
+        };
         $scope.$root.currentModule = '';
         $scope.$root.currModule = {};
         $scope.$root.logo = "${get_static('/')}css/images/logo.png";
@@ -506,4 +554,11 @@ function Calendar() {
 
 function getMeridiem() {
     return moment().locale("${get_language()}").format("a");
+}
+
+window.common_language = {
+    "notification" : "${get_global_res('notification','Thông báo')}",
+    "unauthorized" : "${get_global_res('unauthorized','Không được phép')}",
+    "internal_server_error" : "${get_global_res('Internal_Server_Error','Có lỗi từ phía máy chủ')}",
+    "please_try_again_or_contact_with_technical_department" : "${get_global_res('please_try_again_or_contact_with_technical_department','Xin vui lòng thử lại hoặc liên hệ bộ phận kỹ thuật')}"
 }

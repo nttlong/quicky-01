@@ -23,7 +23,7 @@ function ws_onAfterCall(callback) {
 function ws_get_url() {
     return _ws_url_;
 }
-function ws_call(api_path, view_path, data, cb, owner) {
+function ws_call(api_path, view_path, data, cb, owner, currentFunction) {
 
     return new Promise(function (resolve, reject) {
 
@@ -39,6 +39,9 @@ function ws_call(api_path, view_path, data, cb, owner) {
             url: ws_get_url(),
             type: "post",
             dataType: "json",
+            headers: {
+                "Function": currentFunction
+            },
             data: JSON.stringify({
                 path: api_path,
                 view: view_path,
@@ -65,7 +68,12 @@ function ws_call(api_path, view_path, data, cb, owner) {
                 while (txt.indexOf(String.fromCharCode(10)) > -1) {
                     txt = txt.replace(String.fromCharCode(10), "<br/>")
                 }
-                $msg.error("Có lỗi từ máy chủ", "Xin vui lòng thử lại hoặc liện hệ với bộ phận kỹ thuật", txt, function () { });
+                if(jqXHR.status === 401){
+                    $msg.message(window.common_language.notification, window.common_language.unauthorized, function(){});
+                }
+                else{
+                    $msg.error(window.common_language.internal_server_error, window.common_language.please_try_again_or_contact_with_technical_department, txt, function () { });
+                }
             }
         });
 
@@ -88,7 +96,7 @@ function ws(scope) {
                     if (!scope.view_path) {
                         throw ("view_path is empty")
                     }
-                    return ws_call(_me._api, scope.view_path, _me._data, cb, _me)
+                    return ws_call(_me._api, scope.view_path, _me._data, cb, _me, scope.$root.$$$authoriseFunction.id ? scope.$root.$$$authoriseFunction.id : "HOME")
 
                 }
             }

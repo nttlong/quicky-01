@@ -8,12 +8,14 @@ import threading
 logger = logging.getLogger(__name__)
 global lock
 lock = threading.Lock()
+from hcs_authorization import action_type,authorization
 
+@authorization.authorise(action=action_type.Action.READ)
 def get_tree(args):
     ret=JobWorkingGroup.get_job_working_group()
-        
     return ret.get_list()
 
+@authorization.authorise(action=action_type.Action.CREATE)
 def insert(args):
     try:
         lock.acquire()
@@ -43,6 +45,7 @@ def insert(args):
         lock.release()
         raise(ex)
 
+@authorization.authorise(action=action_type.Action.WRITE)
 def update(args):
     try:
         lock.acquire()
@@ -80,6 +83,7 @@ def update(args):
         lock.release()
         raise(ex)
 
+@authorization.authorise(action=action_type.Action.DELETE)
 def delete(args):
     try:
         lock.acquire()
@@ -136,6 +140,7 @@ def delete(args):
         lock.release()
         raise(ex)
 
+@authorization.authorise(common = True)
 def set_dict_insert_data(args):
     ret_dict = dict()
 
@@ -153,6 +158,7 @@ def set_dict_insert_data(args):
 
     return ret_dict
 
+@authorization.authorise(common = True)
 def set_dict_update_data(args):
     ret_dict = set_dict_insert_data(args)
     del ret_dict['gjw_code']

@@ -24,11 +24,12 @@ def display_list_apr_period():
 
 
 
-def get_empNotApr_by_apr_period(apr_period,apr_year ):
+def get_empNotApr_by_apr_period(apr_period,apr_year,search_text):
     ret=models.TMPER_AprPeriodEmpOut().aggregate()
     ret.left_join(models.auth_user_info(), "created_by", "username", "uc")
     ret.left_join(models.auth_user_info(), "modified_by", "username", "um")
     ret.left_join(models.HCSEM_Employees(), "employee_code", "employee_code", "ee")
+    ret.match("apr_period == {0} and apr_year == {1}", apr_period, apr_year)
     ret.project(
         _id=1,
         apr_period="apr_period",
@@ -44,7 +45,11 @@ def get_empNotApr_by_apr_period(apr_period,apr_year ):
         modified_by="switch(case(modified_by!='',um.login_account),'')",
         employee_name = "switch(case(employee_code!='',concat(ee.last_name, ' ' , ee.first_name)),'')",
     )
-    ret.match("apr_period == {0} and apr_year == {1}", apr_period, apr_year)
+    if(search_text != None and search_text!=''):
+        ret.match("contains(reason,{0})"
+                  + "or contains(job_w_code,{0}) or contains(employee_code,{0}) or contains(note,{0}) "
+                  + "or contains(department_code,{0}) or contains(job_working,{0})"
+                  ,search_text)
     ret.sort(dict(
         employee_code =1,
     ))

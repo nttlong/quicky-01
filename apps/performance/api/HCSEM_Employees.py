@@ -6,10 +6,12 @@ import logging
 import threading
 import common
 from Query import Employee
+from hcs_authorization import action_type, authorization
 logger = logging.getLogger(__name__)
 global lock
 lock = threading.Lock()
 
+@authorization.authorise(action = action_type.Action.READ)
 def get_list_with_searchtext(args):
     try:
         ret = {}
@@ -35,6 +37,7 @@ def get_list_with_searchtext(args):
     except Exception as ex:
         raise(ex)
 
+@authorization.authorise(action = action_type.Action.READ)
 def get_employee_by_emp_code(args):
     try:
         ret = {}
@@ -53,6 +56,7 @@ def get_employee_by_emp_code(args):
     except Exception as ex:
         raise(ex)
 
+@authorization.authorise(action = action_type.Action.READ)
 def get_employee_by_emp_codes(args):
     try:
         ret = {}
@@ -71,6 +75,7 @@ def get_employee_by_emp_codes(args):
     except Exception as ex:
         raise(ex)
 
+@authorization.authorise(action = action_type.Action.CREATE)
 def insert(args):
     try:
         lock.acquire()
@@ -89,6 +94,7 @@ def insert(args):
         lock.release()
         raise(ex)
 
+@authorization.authorise(action = action_type.Action.WRITE)
 def update(args):
     try:
         lock.acquire()
@@ -133,6 +139,7 @@ def update(args):
 #        lock.release()
 #        raise(ex)
 
+@authorization.authorise(common = True)
 def set_dict_insert_data(args):
     ret_dict = dict()
 
@@ -211,6 +218,7 @@ def set_dict_insert_data(args):
 
     return ret_dict
 
+@authorization.authorise(common = True)
 def set_dict_update_data(args):
     ret_dict = set_dict_insert_data(args)
     del ret_dict['employee_code']

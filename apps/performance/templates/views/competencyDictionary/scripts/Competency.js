@@ -17,7 +17,7 @@
         onSelectTableRow: function ($row) { onEdit(); },
         selectedItems: [],
         currentItem: {},
-        tableSearchText: "",
+        tableSearchText: '',
         refreshDataRow: function () { /*Do nothing*/ }
 
 
@@ -60,6 +60,7 @@
         _tableData(tableConfig.iPage,
             tableConfig.iPageLength, tableConfig.orderBy,
             tableConfig.searchText, tableConfig.fnReloadData);
+            scope.$apply();
     }
 
 

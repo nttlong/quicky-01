@@ -53,7 +53,8 @@
         }
     }, true)
 
-    scope.$watch("currentProvince", function (val, old) {        
+    scope.$watch("currentProvince", function (val, old) {
+
         if (val && Object.keys(val).length > 0) {
             var tableConfig = scope.$$tableDistrictConfig;
             scope._tableDistrictData(tableConfig.iPage,
@@ -66,6 +67,7 @@
     }, true)
 
     scope.$watch("currentDistrict", function (val, old) {
+        console.log(val);
         if (val && Object.keys(val).length > 0) {
             var tableConfig = scope.$$tableWardConfig;
             scope._tableWardData(tableConfig.iPage,
@@ -77,6 +79,7 @@
     }, true)
 
     scope.$watch("currentWard", function (val, old) {
+        console.log(val);
         if (val && Object.keys(val).length > 0) {
             var tableConfig = scope.$$tableHamletConfig;
             scope._tableHamletData(tableConfig.iPage,

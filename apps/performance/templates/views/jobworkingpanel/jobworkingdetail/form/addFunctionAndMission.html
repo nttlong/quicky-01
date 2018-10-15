@@ -7,7 +7,8 @@
 <%inherit file="../../../commons/dialog_save_close.html"/>
 
 <%block name="modal_body">
-<div class="col-xs-12 col-md-6 col-sm-6">
+<div class="hcs-modal-format">
+   <div class="col-xs-12 col-md-6 col-sm-6">
    <collapse-box class="zb-form-common" title="${get_global_res('Common_Information','Thông tin chung')}">
       <div class="col-xs-12 col-md-12 col-sm-12">
          <div class="form-group zb-form-group">
@@ -34,12 +35,12 @@
       </div>
    </collapse-box>
 </div>
-<div class="col-xs-12 col-md-6 col-sm-6">
+   <div class="col-xs-12 col-md-6 col-sm-6">
    <collapse-box class="zb-form-common" title="${get_res('standard_action','Hành động tiêu chuẩn')}">
-      <div class="form-group zb-form-group">
-         <div class="col-xs-12 col-md-12 no-padding">
-            <input-textarea rows="3" ng-model="entity.description"></input-textarea>
-         </div>
+      <div class="col-xs-12 col-md-12">
+            <div class="form-group zb-form-group">
+               <input-textarea rows="3" ng-model="entity.description"></input-textarea>
+            </div>
       </div>
       <div class="col-xs-12 col-md-12 col-sm-12">
          <div class="form-group zb-form-group">
@@ -51,6 +52,7 @@
          </div>
       </div>
    </collapse-box>
+</div>
 </div>
 </%block>
 

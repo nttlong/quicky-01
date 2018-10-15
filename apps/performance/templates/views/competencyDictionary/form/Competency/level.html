@@ -1,6 +1,8 @@
 ﻿﻿<div class="col-xs-12 col-md-6">
     <collapse-box class="zb-form-common" title="${get_res('1_level','1. Cấp độ')}">
         <toolbar>
+             <input-text-icon icon="bowtie-icon bowtie-search" on-click="onSearchTable0">
+             </input-text-icon>
             <button ng-click="event[0].add()" class="zb-btn zb-btn-o-green">
                 <i class="bowtie-icon bowtie-math-plus"></i>
             </button>
@@ -15,10 +17,16 @@
             </button>
         </toolbar>
         <div class="col-xs-12 col-md-12 no-padding" style="height:400px;">
-            <table-data data-source="$$table[0].tableSource" fields="$$table[0].tableFields" type="MultiSelect"
-                paging="true" page-length="100" server-side="true"
-                press-enter="$$table[0].onSelectTableRow" selected-items="$$table[0].selectedItems"
-                current-item="$$table[0].currentItem" search-text="$$table[0].tableSearchText"
+            <table-data data-source="$$table[0].tableSource"
+                fields="$$table[0].tableFields"
+                type="MultiSelect"
+                paging="true"
+                page-length="100"
+                server-side="true"
+                press-enter="$$table[0].onSelectTableRow"
+                selected-items="$$table[0].selectedItems"
+                current-item="$$table[0].currentItem"
+                search-text="$$table[0].tableSearchText"
                 refresh-row="$$table[0].refreshDataRow">
             </table-data>
         </div>
@@ -26,7 +34,9 @@
 </div>
 <div class="col-xs-12 col-md-6">
         <collapse-box class="zb-form-common" title="${get_res('2_standard_behavior_by_level','2. Hành vi tiêu chuẩn theo cấp độ')}">
-            <toolbar>
+            <toolbar class="sub-toolbar-dialog">
+                <input-text-icon on-chip="my-inputvxz" icon="bowtie-icon bowtie-search" on-click="onSearchTable1">
+             </input-text-icon>
                 <button ng-click="event[1].add()" class="zb-btn zb-btn-o-green">
                     <i class="bowtie-icon bowtie-math-plus"></i>
                 </button>
@@ -41,10 +51,16 @@
                 </button>
             </toolbar>
             <div class="col-xs-12 col-md-12 no-padding" style="height:400px;">
-                <table-data data-source="$$table[1].tableSource" fields="$$table[1].tableFields" type="MultiSelect" 
-                    paging="true" page-length="100" server-side="true" 
-                    press-enter="$$table[1].onSelectTableRow" selected-items="$$table[1].selectedItems" 
-                    current-item="$$table[1].currentItem" search-text="$$table[1].tableSearchText"
+                <table-data data-source="$$table[1].tableSource"
+                    fields="$$table[1].tableFields"
+                    type="MultiSelect"
+                    paging="true"
+                    page-length="100"
+                    server-side="true"
+                    press-enter="$$table[1].onSelectTableRow"
+                    selected-items="$$table[1].selectedItems"
+                    current-item="$$table[1].currentItem"
+                    search-text="$$table[1].tableSearchText"
                     refresh-row="$$table[1].refreshDataRow">
                 </table-data>
             </div>

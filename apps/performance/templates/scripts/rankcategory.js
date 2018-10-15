@@ -70,6 +70,7 @@
         scope.handleData = new handleData();
         scope.mapName = scope.handleData.mapName;
         scope.currentFunction = scope.mapName[0];
+        scope.$root.$$$authoriseFunction.id = scope.$root.currentFunction.function_id;
         _comboboxData();
     }
 

@@ -46,7 +46,7 @@
     float: left;
 }
 .hcs-tab-info .competency img {
-  width: 45px;
+  width: 35px;
   float: left;
 }
 .hcs-tab-info .competency div:last-child img {
@@ -589,3 +589,121 @@
 /*END CSS Header*/
 
 /*End sáng CSS*/
+
+
+/* LPSang Css*/
+/* Panel */
+/*Child col- in form-group*/
+.hcs-format .zb-form-common > .zb-content .form-group [class*="col-"]{
+  padding-right: 0px!important;
+}
+/*Only child in zb-content*/
+.hcs-format .zb-form-common > .zb-content > [class*="col-"]:only-child {
+  padding-right: 0px!important;
+}
+
+@media (min-width: 992px){
+    /*Multi child in zb-content*/
+    .hcs-format .zb-form-common > .zb-content > [class*="col-"]:nth-child(2) {
+    padding: 0 0 0 30px;
+    }
+}
+
+@media (max-width: 992px){
+    /*Multi child in zb-content*/
+    .hcs-format .zb-form-common > .zb-content > [class*="col-"] {
+     padding-right: 0px!important;
+    }
+}
+
+.hcs-format .zb-form-common > .zb-content > .form-group > [class*="col-"]:only-child > textarea {
+    margin-left: 5px;
+    max-width: calc(100% - 5px);
+    min-width: calc(100% - 5px);
+}
+
+/* Modal */
+/*One or Multiple in zb-content*/
+.hcs-modal-format .zb-form-common > .zb-content [class*="col-"] {
+  padding-right: 0px!important;
+}
+
+.hcs-modal-format .zb-form-common > .zb-content [class*="col-"] .form-group [class*="col-"] {
+  padding-right: 0px!important;
+}
+
+.hcs-modal-format .zb-form-common > .zb-content .form-group textarea {
+  margin-left: 5px;
+  max-width: calc(100% - 5px);
+  min-width: calc(100% - 5px);
+}
+
+
+/*Two Col in zb-content*/
+.hcs-modal-format .zb-form-common > .zb-content > [class*="col-"]:first-child:nth-last-child(2){
+      padding-right: 15px!important;
+}
+
+@media (min-width: 992px){
+
+    .hcs-modal-format .zb-form-common > .zb-content > [class*="col-"]:first-child:nth-last-child(2)
+     ~ [class^="col-"] {
+        padding-left:  30px!important;
+    }
+}
+
+
+.zb-btn-o-orange {
+    background:#fff;border:1px solid #f2942e;color:#f2942e;
+}
+.zb-btn.zb-btn-o-orange:hover {
+    background: #f2942e;
+    border: 1px solid #f2942e;
+    color: #fff;
+}
+.zb-btn-o-purple {
+    background:#fff;border:1px solid #8000da;color:#8000da;
+}
+.zb-btn.zb-btn-o-purple:hover {
+    background: #8000da;
+    border: 1px solid #8000da;
+    color: #fff;
+}
+.zb-btn-o-dark-blue {
+    background:#fff;border:1px solid #0000ff;color:#0000ff;
+}
+.zb-btn.zb-btn-o-dark-blue:hover {
+    background: #0000ff;
+    border: 1px solid #0000ff;
+    color: #fff;
+}
+
+/*Input select*/
+
+input-select:not(.size-lg) .zb-form-select {
+
+    .caret {
+        padding: 15px;
+        width: 0 !important;
+        height: 0 !important;
+        margin: 0px!important;
+        top: 0px!important;
+        right: 0!important;
+    }
+
+    .caret:hover {
+        background: rgba(222, 222, 222, 0.5) !important;
+    }
+
+    .caret:after {
+        top: 10px;
+        position: absolute;
+        left: 9px;
+    }
+
+}
+
+
+
+
+/* LPSang Css*/

@@ -268,6 +268,16 @@
         }
     }
 
+    scope.onSearchTable0 = function(val){
+        scope.$$table[0].tableSearchText = val;
+        scope.$apply();
+    }
+
+    scope.onSearchTable1 = function(val){
+        scope.$$table[1].tableSearchText = val;
+        scope.$apply();
+    }
+
     scope.$watch('$$table[0].currentItem', function(val){
         if(val && Object.keys(val).length > 0){
             _loadAction(scope.$$table[1].$$tableConfig.iPage, scope.$$table[1].$$tableConfig.iPageLength, 

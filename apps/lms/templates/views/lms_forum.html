@@ -74,7 +74,8 @@
         <!--on-search-change="onSearch"-->
             <extend-toolbar>
                 <div style="display: grid; grid-template-columns: 1fr 1fr">
-                    <input-text-icon icon="bowtie-icon bowtie-search" on-click="onSearch"></input-text-icon>
+                    <!--<input-text-icon icon="bowtie-icon bowtie-search" on-click="onSearch"></input-text-icon>-->
+                    <input-text-icon id="tableSearchText" on-click="onSearch" ></input-text-icon>
                     <div>
                         <button class="zb-btn zb-btn-o-green" ng-click="create()">
                                 <i class="bowtie-icon bowtie-math-plus"></i>

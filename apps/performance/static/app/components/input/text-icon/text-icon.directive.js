@@ -24,7 +24,7 @@
                 config.ngModel = (attr["ngModel"]) ? "ng-model='" + attr["ngModel"] + "'" : '';
                 config.iconAlign = (attr["iconAlign"]) ? attr["iconAlign"].toLowerCase() : ALIGN.RIGHT;
                 config.placeholder = attr["placeholder"] ? attr["placeholder"] : '';
-                config.icon = (attr["icon"]) ? attr["icon"] : 'glyphicon glyphicon-search';
+                config.icon = (attr["icon"]) ? attr["icon"] : 'bowtie-icon bowtie-search';
                 config.click = (attr["onClick"]) ? attr["onClick"] : null;
                 config.change = (attr["onChange"]) ? attr["onChange"] : null;
 

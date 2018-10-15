@@ -5,10 +5,12 @@ from Query import KPIGroup
 import logging
 import threading
 import common
+from hcs_authorization import action_type,authorization
 logger = logging.getLogger(__name__)
 global lock
 lock = threading.Lock()
 
+@authorization.authorise(action=action_type.Action.READ)
 def get_tree(args):
     lock = args['data']['lock']
     
@@ -16,6 +18,7 @@ def get_tree(args):
     
     return ret.get_list()
 
+@authorization.authorise(common=True)
 def get_competency_group(lock):
     if lock != None:
         if (int(lock) == 0):
@@ -51,6 +54,7 @@ def get_competency_group(lock):
 
     return ret
 
+@authorization.authorise(action=action_type.Action.CREATE)
 def insert(args):
     try:
         lock.acquire()
@@ -78,6 +82,7 @@ def insert(args):
         lock.release()
         raise(ex)
 
+@authorization.authorise(action=action_type.Action.WRITE)
 def update(args):
     try:
         lock.acquire()
@@ -110,6 +115,7 @@ def update(args):
         lock.release()
         raise(ex)
 
+@authorization.authorise(action=action_type.Action.DELETE)
 def delete(args):
     try:
         lock.acquire()
@@ -170,7 +176,7 @@ def delete(args):
         raise(ex)
 
 
-
+@authorization.authorise(common=True)
 def set_dict_insert_data(args):
     ret_dict = dict()
 
@@ -187,7 +193,7 @@ def set_dict_insert_data(args):
 
     return ret_dict
 
-
+@authorization.authorise(common = True)
 def set_dict_update_data(args):
     ret_dict = set_dict_insert_data(args)
     del ret_dict['com_group_code']

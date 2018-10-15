@@ -121,13 +121,11 @@
                                             value="3">
                             </input-select>
                         </div>
-                        <div class="col-xs-6 col-md-6">
-                            <input-text-icon id="tableSearchText" on-click="objSearch.onSearch" ng-model="objSearch.$$$modelSearch"></input-text-icon>
-                        </div>
                     </div>
                 </div>
-                <div class="zb-right-content col-xs-12 col-md-6 pull-right"
+                <div class="zb-right-content pull-right"
                     style="padding-left: 0; padding-right: 0; text-align: right;">
+                    <input-text-icon style="width:200px;float:left;margin-right:5px" id="tableSearchText" on-click="objSearch.onSearch" ng-model="objSearch.$$$modelSearch"></input-text-icon>
                     <button ng-click="button.add()" class="zb-btn zb-btn-o-green">
                         <i class="bowtie-icon bowtie-math-plus"></i>
                     </button>
@@ -143,10 +141,10 @@
                     <button ng-click="button.export()" class="zb-btn">
                         <i class="bowtie-icon bowtie-transfer-download"></i>
                     </button>
-                    <button ng-click="button.print()" class="zb-btn">
+                    <button ng-click="button.print()" class="zb-btn zb-btn-o-dark-blue">
                         <i class="bowtie-icon bowtie-print"></i>
                     </button>
-                    <button ng-click="button.refresh()" class="zb-btn" ng-click="refresh()">
+                    <button ng-click="button.refresh()" class="zb-btn zb-btn-o-purple" ng-click="refresh()">
                         <i class="bowtie-icon bowtie-navigate-refresh"></i>
                     </button>
                 </div>

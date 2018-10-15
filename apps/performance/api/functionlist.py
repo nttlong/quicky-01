@@ -3,6 +3,7 @@ import logging
 logger = logging.getLogger(__name__)
 from operator import itemgetter
 import common
+from hcs_authorization import action_type, authorization
 
 def get_function_list_by_permission(username):
     role_code = models.auth_user_info().aggregate()\
@@ -71,9 +72,10 @@ def get_function_list_by_permission(username):
         return [x['function_id'] for x in fnl]
     return []
 
+@authorization.authorise(common = True)
 def get_list(args):
     if (args["data"] == None or args["data"].has_key("language") == False or args["data"]["language"] == None):
-        return dict();
+        return dict()
 
     lang = args["data"]["language"]
 

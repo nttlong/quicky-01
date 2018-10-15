@@ -91,6 +91,13 @@
         }
     };
 
+     scope.$parent.$parent.$parent.onSearch = onSearch;
+
+    function onSearch(val) {
+        scope.tableSearchText = val;
+        scope.$applyAsync();
+    }
+
     scope.onSelectTableRow = function ($row) {
         if (scope.currentItem) {
             scope.mode = 2; // set mode chỉnh sửa

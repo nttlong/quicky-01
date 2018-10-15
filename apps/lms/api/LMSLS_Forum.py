@@ -94,7 +94,7 @@ def get_list_with_searchtext_public(args):
 
     ret = models.LMSLS_Forum().aggregate()
     ret.lookup(models.LMS_VW_Employee(), "forum_administrator", "employee_code", "emp")
-    ret.unwind("emp", False)
+    ret.unwind("emp", True)
     ret.match("(forum_type=={0})", True)
     ret.project(
         forum_id=1,
@@ -151,7 +151,7 @@ def get_list_with_searchtext_private(args):
     pageSize = (lambda pSize: pSize if pSize != None else 20)(pageSize)
     ret = models.LMSLS_Forum().aggregate()
     ret.lookup(models.LMS_VW_Employee(), "forum_administrator", "employee_code", "emp")
-    ret.unwind("emp", False)
+    ret.unwind("emp", True)
     ret.match("(forum_type=={0})", False)
     ret.project(
         forum_id=1,
@@ -208,7 +208,7 @@ def get_list_with_searchtext_all(args):
     pageSize = (lambda pSize: pSize if pSize != None else 20)(pageSize)
     ret = models.LMSLS_Forum().aggregate()
     ret.lookup(models.LMS_VW_Employee(), "forum_administrator", "employee_code", "emp")
-    ret.unwind("emp", False)
+    ret.unwind("emp", True)
     ret.project(
         forum_id=1,
         forum_name=1,
@@ -245,7 +245,7 @@ def get_list_with_searchtext_all(args):
     )
 
     if (searchText != None and searchText != ''):
-        ret.match("contains(forum_name, @name) or contains(forum_description, @name)", name=searchText)
+        ret.match("contains(forum_name, @name) or contains(description, @name)", name=searchText)
 
     if (sort != None):
         ret.sort(sort)
@@ -264,7 +264,7 @@ def get_list_with_searchtext_archived(args):
     pageSize = (lambda pSize: pSize if pSize != None else 20)(pageSize)
     ret = models.LMSLS_Forum().aggregate()
     ret.lookup(models.LMS_VW_Employee(), "forum_administrator", "employee_code", "emp")
-    ret.unwind("emp", False)
+    ret.unwind("emp", True)
     ret.match("(specific_avail.end_date<{0})", datetime.datetime.now())
     ret.project(
         forum_id=1,

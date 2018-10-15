@@ -24,8 +24,8 @@ def get_list_edit_permission(role_code):
             "copy":"$permission.copy",
             "attach":"$permission.attach",
             "download":"$permission.download",
-            "print": "$permission.print",
-            "action": "$permission.action"
+            "print": { "$ifNull": [ "$permission.print", False ] },
+            "action": {"$ifNull": ["$permission.action", False]}
             }},
         {"$lookup":{"from":common.get_collection_name_with_schema("SYS_FunctionList"), "localField":'function_id', "foreignField":'function_id', "as":'fnl'}},
         {"$unwind":{"path":"$fnl", "preserveNullAndEmptyArrays":False}},

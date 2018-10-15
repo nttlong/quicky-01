@@ -5,7 +5,8 @@
 <%inherit file="../../commons/dialog_resize_save_close.html"/>
 
 <%block name="modal_body">
-<div class="col-xs-12 col-md-{{col_group}} col-sm-{{col_group}}">
+<div class="hcs-modal-format">
+    <div class="col-xs-12 col-md-{{col_group}} col-sm-{{col_group}}">
     <collapse-box class="zb-form-common" title="${get_global_res('Common_Information','Thông tin chung')}">
         <div class="col-xs-{{col}} col-md-{{col}}">
             <div class="form-group zb-form-group">
@@ -63,24 +64,24 @@
         </div>
     </collapse-box>
 </div>
-<div class="col-xs-12 col-md-{{ 12 - col_group}} col-sm-{{ 12 - col_group}}" style="padding-bottom:20px;">
-    <collapse-box class="zb-form-common" title="</span>${get_global_res('Note','Ghi chú')}">
-        <div class="row">
-                <!--Ghi chú-->
-                <div class="col-xs-12 col-sm-12">
-                    <input-textarea rows="7" ng-model="entity.note"></input-textarea>
-                </div>
-        </div>
-        <div class="col-xs-12 col-md-12" style="padding-top: 16px;">
-            <div class="form-group zb-form-group">
-                <label for="DisplayInfo" class="col-xs-5 col-sm-3 zb-form-label">${get_global_res('create_and_modify','Tạo | Sửa')}</label>
-                <div class="col-xs-7 col-sm-9">
-                    <input-text value="{{ entity.created_on | date: $root.systemConfig.date_format}} {{entity.created_by}} | {{ entity.modified_on | date: $root.systemConfig.date_format}} {{entity.modified_by}}" ng-disabled="true">
-                </div>
-            </div>
-        </div>
-    </collapse-box>
+    <div class="col-xs-12 col-md-{{ 12 - col_group}} col-sm-{{ 12 - col_group}}" style="padding-bottom:20px;">
+        <collapse-box class="zb-form-common" title="</span>${get_global_res('Note','Ghi chú')}">
+                    <!--Ghi chú-->
+                    <div class="col-xs-12 col-sm-12">
+                        <div class="form-group zb-form-group">
+                            <input-textarea rows="7" ng-model="entity.note"></input-textarea>
+                        </div>
+                        <div class="form-group zb-form-group" style="padding-top: 16px;">
+                            <label for="DisplayInfo" class="col-xs-5 col-sm-3 zb-form-label">${get_global_res('create_and_modify','Tạo | Sửa')}</label>
+                            <div class="col-xs-7 col-sm-9">
+                                <input-text value="{{ entity.created_on | date: $root.systemConfig.date_format}} {{entity.created_by}} | {{ entity.modified_on | date: $root.systemConfig.date_format}} {{entity.modified_by}}" ng-disabled="true">
+                            </div>
+                        </div>
+                    </div>
+        </collapse-box>
+    </div>
 </div>
+
 </%block>
 
 <%block name="modal_script">

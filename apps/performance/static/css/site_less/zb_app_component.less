@@ -181,7 +181,7 @@
         width: 14px !important;
         height: 14px !important;
         margin-left: 2px;
-        right: 5px !important;
+        right: 7px !important;
         border: none !important;
         font-family: Ionicons;
         speak: none;
@@ -339,7 +339,7 @@
 .zb-form-date-picker {
     > input,
     > span > button.btn-default {
-        color: #333;
+        color: #888;
         border: 0;
         border-radius: 0;
         border-bottom: 1px solid @border_color;
@@ -348,16 +348,16 @@
         padding-bottom: 0;
         height: @h_control;
         box-shadow: none;
-        padding: 3px 5px 0 1px;
+        padding: 0 6px;
+
+        .bowtie-icon {
+            padding-right: 0 2px;
+        }
     }
 
     .zb-form-date-picker-focus {
         background: transparent;
         border-bottom: 1px solid @border_color_hover !important;
-    }
-
-    > span > button.btn-default {
-        padding-top: 5px;
     }
 
     > span > button.btn-default:active {
@@ -366,10 +366,10 @@
 
     > span > button.btn-default:hover,
     > span > button.btn-default:focus {
-        background: transparent;
+        background: rgba(222,222,222,0.5)!important;
         border-bottom: 1px solid @border_color_hover !important;
         height: @h_control !important;
-        padding-top: 5px !important;
+        padding: 0 6px !important;
         margin: 0 !important;
         outline: none;
     }
@@ -494,6 +494,7 @@
         color: @caption_color;
         font-size: @font_size;
         padding-top: 7px;
+        margin-left: 2px;
 
         span:before {
             /*:hover:before*/

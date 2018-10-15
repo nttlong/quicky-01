@@ -329,6 +329,10 @@ input[type=checkbox] .styled:checked+label::after,input[type=radio] .styled:chec
                 start_date:null,
                 class_code:""
             },
+            specific_avail:{
+                start_date:null,
+                end_date:null,
+            },
             allow_member_rate: true,
             force_moderation_post: true,
             forum_status: 1,
@@ -357,7 +361,7 @@ input[type=checkbox] .styled:checked+label::after,input[type=radio] .styled:chec
             caption: "Replies"
 
         },
-         {
+        {
             value: 4,
             caption: "Posts with Attachment Files"
 
@@ -528,12 +532,15 @@ input[type=checkbox] .styled:checked+label::after,input[type=radio] .styled:chec
                 return rs;
             }
 
-             if(scope.entity.specific_avail.start_date.setHours(0,0,0,0) == scope.entity.specific_avail.end_date.setHours(0,0,0,0) && timeToSeconds(scope.entity.specific_avail.start_time) > timeToSeconds(scope.entity.specific_avail.end_time)){
-                rs.result = true;
-                rs.errorMsg = "Thời gian bắt đầu, thời gian kết thúc không hợp lệ";
-                return rs;
+            if(scope.entity.specific_avail.start_date != null || scope.entity.specific_avail.end_date != null)
+            {
+               if(scope.entity.specific_avail.start_date.setHours(0,0,0,0) == scope.entity.specific_avail.end_date.setHours(0,0,0,0) && timeToSeconds(scope.entity.specific_avail.start_time) > timeToSeconds(scope.entity.specific_avail.end_time))
+               {
+                    rs.result = true;
+                    rs.errorMsg = "Thời gian bắt đầu, thời gian kết thúc không hợp lệ";
+                    return rs;
+                }
             }
-
             return rs;
         }
 

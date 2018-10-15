@@ -4,7 +4,7 @@ window.set_api_combobox("${get_api_key('app_main.api.common/get_dropdown_list')}
 window.get_static = "${get_static('/')}"
 window.set_static(window.get_static)
 angular
-    .module("admin", ["c-ui", 'ZebraApp.components', 'ZebraApp.widgets', 'hcs-template', 'ngclipboard', 'chart.js'])
+    .module("admin", ["c-ui", 'ZebraApp.components', 'ZebraApp.widgets', 'hcs-template', 'ngclipboard', 'chart.js', 'authenticatedModule'])
     .controller("admin", controller)
     .filter('$filterFunction', function () {
         return function (input, txtSearch) {
@@ -174,6 +174,9 @@ function controller($dialog, $scope, $filter) {
         $scope.$root.currentFunction = {};
         $scope.$root.currModule = {};
         $scope.$root.currentModule = '';
+        $scope.$root.$$$authoriseFunction  = {
+            id: "HOME"
+        };
         $scope.$root.logo = "${get_static('/')}css/images/logo.png";
 
         //Get function list
@@ -251,7 +254,7 @@ function controller($dialog, $scope, $filter) {
             })
 
         //Get HCSSYS_SystemConfig
-        services.api("${get_api_key('app_main.api.common/get_config')}")
+        services.api("${get_api_key('app_main.api.HCSSYS_SystemConfig/get_config')}")
             .data({
                 //parameter at here
             })

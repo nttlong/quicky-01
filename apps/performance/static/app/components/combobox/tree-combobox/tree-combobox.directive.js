@@ -163,7 +163,7 @@
                     $dialog.appendTo("body");
                     $dialog.modal({ backdrop: 'static', keyboard: true });
 
-                    if (!$scope.$cbbConfig) {
+                    if (!$scope.$cbbConfig || ($scope.hasOwnProperty('reload') && $scope.reload === true)) {
                         var fnLoadData = function(pgIdx, txtSearch) {
                             if (angular.isFunction($scope.loadData)) {
                                 ($scope.loadData)($scope, function(result) {

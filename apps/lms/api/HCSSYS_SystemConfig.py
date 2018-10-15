@@ -18,3 +18,10 @@ def update(args):
     except Exception as ex:
         logger.debug(ex)
         raise(ex)
+
+def get_config(args):
+    try:
+        return models.HCSSYS_SystemConfig().aggregate().get_list()[0]
+    except Exception as ex:
+        logger.debug(ex)
+        raise(ex)

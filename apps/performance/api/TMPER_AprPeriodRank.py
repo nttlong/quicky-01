@@ -4,6 +4,7 @@ import models
 import common
 import logging
 import threading
+from hcs_authorization import action_type,authorization
 from Query import TMLS_Rank
 
 logger = logging.getLogger(__name__)
@@ -16,7 +17,7 @@ from bson import SON
 
 from qmongo import qcollections
 
-
+@authorization.authorise(action=action_type.Action.READ)
 def get_tree(args):
     ret = {}
     collection = common.get_collection('TMPER_AprPeriodRank').aggregate([
@@ -54,7 +55,7 @@ def get_tree(args):
                     val[val['rank_level'][index]['rank_code']] = val['rank_level'][index]['percent']
     return ret
 
-
+@authorization.authorise(action=action_type.Action.READ)
 def get_genPreAperiodData(args):
     if (args['data'] != None):
         ret = {}
@@ -74,7 +75,7 @@ def get_genPreAperiodData(args):
         ret = list(collection)
         return ret
 
-
+@authorization.authorise(action=action_type.Action.CREATE)
 def generate(args):
     try:
         lock.acquire()
@@ -130,7 +131,7 @@ def generate(args):
         lock.release()
         raise (ex)
 
-
+@authorization.authorise(action=action_type.Action.READ)
 def get_RankDataByPeriodAndYear(args):
     if (args['data'] != None):
         ret = {}
@@ -150,7 +151,7 @@ def get_RankDataByPeriodAndYear(args):
         ret = list(collection)
         return ret
 
-
+@authorization.authorise(action=action_type.Action.READ)
 def get_parent_code_by_departCode(args):
     if (args != None):
         ret = []
@@ -164,7 +165,7 @@ def get_parent_code_by_departCode(args):
         unique = list(set(ret))
         return unique
 
-
+@authorization.authorise(action=action_type.Action.CREATE)
 def insert(args):
     try:
         lock.acquire()
@@ -257,7 +258,7 @@ def insert(args):
         lock.release()
         raise (ex)
 
-
+@authorization.authorise(action=action_type.Action.WRITE)
 def update(args):
     try:
         lock.acquire()
@@ -298,7 +299,7 @@ def update(args):
         lock.release()
         raise (ex)
 
-
+@authorization.authorise(action=action_type.Action.DELETE)
 def delete(args):
     try:
         lock.acquire()
@@ -319,7 +320,7 @@ def delete(args):
         lock.release()
         raise (ex)
 
-
+@authorization.authorise(common= True)
 def set_dict_insert_data(item):
     ret_dict = dict()
 
@@ -332,12 +333,12 @@ def set_dict_insert_data(item):
     )
     return ret_dict
 
-
+@authorization.authorise(common= True)
 def set_dict_update_data(args):
     ret_dict = set_dict_insert_data(args)
     return ret_dict
 
-
+@authorization.authorise(action=action_type.Action.READ)
 def get_all_department_by_year_month(args):
     ret = {}
     collection = common.get_collection('TMPER_AprPeriodRank').aggregate([
@@ -357,7 +358,7 @@ def get_all_department_by_year_month(args):
     ret = list(collection)
     return ret
 
-
+@authorization.authorise(action=action_type.Action.READ)
 def get_id_by_departCode(args):
     ret = {}
     collection = common.get_collection('TMPER_AprPeriodRank').aggregate([
@@ -373,7 +374,7 @@ def get_id_by_departCode(args):
     ret = list(collection)
     return (lambda x: x[0] if len(x) > 0 else None)(ret)
 
-
+@authorization.authorise(action=action_type.Action.READ)
 def get_aprAprRank_by_departCode(args):
     ret = {}
     collection = common.get_collection('TMPER_AprPeriodRank').aggregate([
@@ -394,6 +395,7 @@ def get_aprAprRank_by_departCode(args):
     ret = list(collection)
     return (lambda x: x[0] if len(x) > 0 else None)(ret)
 
+@authorization.authorise(action=action_type.Action.READ)
 def getListRankcodeWithData(args):
     ret = models.TMPER_AprPeriodRank().aggregate()
     ret.left_join(models.auth_user_info(), "created_by", "username", "uc")
@@ -424,6 +426,7 @@ def getListRankcodeWithData(args):
 
     return ret.get_item()
 
+@authorization.authorise(action=action_type.Action.READ)
 def get_list_distinct_approval_year_and_period(args):
     ret = {}
     collection = common.get_collection('TMPER_AprPeriod').aggregate([

@@ -40,7 +40,6 @@
             //templateUrl: "app/widgets/page-sidebar/page-sidebar.html",
             templateUrl: templateService.getStatic("app/widgets/header-page/header-page.html"),
             link: function ($scope, elem, attr, ctrls, $transclude) {
-                debugger
                 var left = $(elem).find(".zb-left");
                 var right = $(elem).find(".zb-right");
                 var rightContent = $(elem).find(".zb-right .zb-content");
@@ -52,6 +51,7 @@
                 $scope.$watch("selectedKey", function (v) {
                     authenticatedService.getPermissionByFunctionId(v, function(res){
                         $scope.authorise = res;
+                        $scope.$root.$$$authoriseFunction.authorisePermission = res;
                         $scope.$applyAsync();
                     });
                 });

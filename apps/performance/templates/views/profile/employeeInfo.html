@@ -24,7 +24,7 @@
                     </div>
                 </div>
             </div>
-			<div class="tab-content">
+			<div class="tab-content hcs-format">
                 <div class="tab-pane active" id="tab_default_1">
                     <div class="col-xs-12 col-md-12">
                     <collapse-box class="zb-form-common" title="${get_res('curriculum_vitae','Lý lịch cá nhân')}">
@@ -36,7 +36,7 @@
                                     <input-text required ng-model="entity.employee_code" ng-disabled="__mode === 2 ? true : false"/>
                                 </div>
                             </div>
-                            <div class="$$$department_codeform-group zb-form-group">
+                            <div class="$$$department_code form-group zb-form-group">
                                 <!--Họ-->
                                 <label for="inputLastName" class="col-xs-4 col-sm-4 zb-form-label">${get_res('last_name','Họ')}</label>
                                 <div class="col-xs-8 col-sm-8">
@@ -92,7 +92,7 @@
                                     paging="true"
                                     close-on-select="true"
                                     template-fields="$$$b_cbb_province.display_fields"
-                                    reload="false">
+                                    reload="true">
                                 </combobox>
                                 </div>
                             </div>
@@ -111,7 +111,7 @@
                                     paging="true"
                                     close-on-select="true"
                                     template-fields="$$$cbb_nation.display_fields"
-                                    reload="false">
+                                    reload="true">
                                 </combobox>
                                 </div>
                             </div>
@@ -130,7 +130,7 @@
                                     paging="true"
                                     close-on-select="true"
                                     template-fields="$$$cbb_ethnic.display_fields"
-                                    reload="false">
+                                    reload="true">
                                 </combobox>
                                 </div>
                             </div>
@@ -149,7 +149,7 @@
                                     paging="true"
                                     close-on-select="true"
                                     template-fields="$$$cbb_religion.display_fields"
-                                    reload="false">
+                                    reload="true">
                                 </combobox>
                                 </div>
                             </div>
@@ -168,7 +168,7 @@
                                     paging="true"
                                     close-on-select="true"
                                     template-fields="$$$cbb_marital.display_fields"
-                                    reload="false">
+                                    reload="true">
                                 </combobox>
                                 </div>
                             </div>
@@ -205,7 +205,7 @@
                                             paging="true"
                                             close-on-select="true"
                                             template-fields="$$$issued_place_code.display_fields"
-                                            reload="false">
+                                            reload="true">
                                     </combobox>
                                 </div>
                             </div>
@@ -266,7 +266,7 @@
                                     paging="true"
                                     close-on-select="true"
                                     template-fields="$$$cbb_acadame.display_fields"
-                                    reload="false">
+                                    reload="true">
                                 </combobox>
                                 </div>
                             </div>
@@ -298,7 +298,7 @@
                                                     paging="true"
                                                     close-on-select="true"
                                                     template-fields="$$$p_cbb_province.display_fields"
-                                                    reload="false">
+                                                    reload="true">
                                         </combobox>
                                         </div>
                                     </div>
@@ -317,7 +317,7 @@
                                                     paging="true"
                                                     close-on-select="true"
                                                     template-fields="$$$p_cbb_district.display_fields"
-                                                    reload="false">
+                                                    reload="true">
                                         </combobox>
                                         </div>
                                     </div>
@@ -336,7 +336,7 @@
                                                     paging="true"
                                                     close-on-select="true"
                                                     template-fields="$$$p_cbb_ward.display_fields"
-                                                    reload="false">
+                                                    reload="true">
                                         </combobox>
                                         </div>
                                     </div>
@@ -355,7 +355,7 @@
                                                     paging="true"
                                                     close-on-select="true"
                                                     template-fields="$$$p_cbb_hamlet.display_fields"
-                                                    reload="false">
+                                                    reload="true">
                                         </combobox>
                                         </div>
                                     </div>
@@ -387,7 +387,7 @@
                                             paging="true"
                                             close-on-select="true"
                                             template-fields="$$$t_province_code.display_fields"
-                                            reload="false">
+                                            reload="true">
                                 </combobox>
                                 </div>
                             </div>
@@ -406,7 +406,7 @@
                                             paging="true"
                                             close-on-select="true"
                                             template-fields="$$$t_district_code.display_fields"
-                                            reload="false">
+                                            reload="true">
                                 </combobox>
                                 </div>
                             </div>
@@ -425,7 +425,7 @@
                                             paging="true"
                                             close-on-select="true"
                                             template-fields="$$$t_ward_code.display_fields"
-                                            reload="false">
+                                            reload="true">
                                 </combobox>
                                 </div>
                             </div>
@@ -444,7 +444,7 @@
                                             paging="true"
                                             close-on-select="true"
                                             template-fields="$$$t_hamlet_code.display_fields"
-                                            reload="false">
+                                            reload="true">
                                 </combobox>
                                 </div>
                             </div>
@@ -507,7 +507,7 @@
                                                 paging="true"
                                                 close-on-select="true"
                                                 template-fields="$$$emp_type_code.display_fields"
-                                                reload="false">
+                                                reload="true">
                                     </combobox>
                                     </div>
                                 </div>
@@ -547,6 +547,7 @@
                                         multi-select="false"
                                         on-accept=""
                                         params="{key:'${encryptor.get_key('cbb_departments')}', value:[{ '@lock': true }]}"
+                                        reload="true"
                                         required>
                                     </tree-combobox>
                                     </div>
@@ -566,7 +567,7 @@
                                                 paging="true"
                                                 close-on-select="true"
                                                 template-fields="$$$job_pos_code.display_fields"
-                                                reload="false">
+                                                reload="true">
                                     </combobox>
                                     </div>
                                 </div>
@@ -612,7 +613,7 @@
                                                 paging="true"
                                                 close-on-select="true"
                                                 template-fields="$$$profession_code.display_fields"
-                                                reload="false">
+                                                reload="true">
                                     </combobox>
                                     </div>
                                 </div>
@@ -659,7 +660,7 @@
                                                 paging="true"
                                                 close-on-select="true"
                                                 template-fields="$$$manager_code.display_fields"
-                                                reload="false">
+                                                reload="true">
                                     </combobox>
                                     </div>
                                 </div>
@@ -678,7 +679,7 @@
                                                 paging="true"
                                                 close-on-select="true"
                                                 template-fields="$$$manager_sub_code.display_fields"
-                                                reload="false">
+                                                reload="true">
                                     </combobox>
                                     </div>
                                 </div>
@@ -697,7 +698,7 @@
                                                 paging="true"
                                                 close-on-select="true"
                                                 template-fields="$$$user_id.display_fields"
-                                                reload="false">
+                                                reload="true">
                                     </combobox>
                                     </div>
                                 </div>
@@ -723,7 +724,7 @@
                                                 paging="true"
                                                 close-on-select="true"
                                                 template-fields="$$$job_pos_hold_code.display_fields"
-                                                reload="false">
+                                                reload="true">
                                     </combobox>
                                     </div>
                                 </div>
@@ -750,7 +751,7 @@
                                                 paging="true"
                                                 close-on-select="true"
                                                 template-fields="$$$department_code_hold.display_fields"
-                                                reload="false">
+                                                reload="true">
                                     </combobox>
                                     <!-- <input-combobox id="inputEmployeeId"
                                         list-code="${encryptor.get_key('cbb_departments')}"
@@ -815,7 +816,7 @@
                                                 paging="true"
                                                 close-on-select="true"
                                                 template-fields="$$$signed_person.display_fields"
-                                                reload="false">
+                                                reload="true">
                                     </combobox>
                                 </div>
                             </div>
@@ -885,8 +886,8 @@
                     <collapse-box class="zb-form-common"
                                     title="${get_global_res('note','Ghi chú')}">
                         <div class="form-group zb-form-group">
-                            <div class="col-xs-12 col-sm-12 no-padding">
-                                <input-textarea rows="5" ng-model="entity.note"></input-textarea>
+                            <div class="col-xs-12 col-sm-12">
+                                <input-textarea rows="10" ng-model="entity.note"></input-textarea>
                             </div>
                         </div>
                     </collapse-box>

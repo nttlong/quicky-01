@@ -1,4 +1,4 @@
-VERSION = [1,0,0,0,0]
+VERSION = [1,0,0,"beta",1]
 def get_version():
     return ".".join([x.__str__() for x in VERSION])
 __db__ = None
@@ -19,3 +19,13 @@ def getdb(key = "default"):
         return __db__
     else:
         return __db__
+def getdb_config(key="default"):
+    from django.conf import settings
+    config = settings.DATABASES[key]
+    return dict(
+        host=config["HOST"],
+        name=config["NAME"],
+        port=config["PORT"],
+        user=config["USER"],
+        password=config["PASSWORD"]
+    )

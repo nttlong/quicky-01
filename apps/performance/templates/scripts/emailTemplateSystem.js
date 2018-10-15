@@ -13,7 +13,14 @@
     scope.dataSource = [];
     scope.searchText = "";
     scope.currentRow = {};
-
+    scope.$display = {
+        showDetail: false,
+        mapName: [],
+        selectedFunction: "",
+        selectFunc: function (event, f) {
+            scope.$display.selectedFunction = f;
+        }
+    };
     scope.selectRow  = function(event, item){
         scope.mode = 2;
         scope.currentRow = JSON.parse(angular.toJson(item))
@@ -74,6 +81,18 @@
         },
         attach: function () {
             
+        },
+        import: function(){
+
+        },
+        export: function(){
+
+        },
+        refresh: function(){
+
+        },
+        edit: function(){
+
         }
     }
 
@@ -151,11 +170,18 @@
     }
 
     (function _init_() {
+        debugger
+        scope.$display.mapName = scope.$root.currentFunction;
+		scope.currentFunction = scope.$display.mapName;
+
+        scope.$root.$$$authoriseFunction = scope.$root.currentFunction.function_id;
         _getList();
         _getValueList(function(res){
             scope.valueListModule = res.values;
             scope.entity.module_name = scope.valueListModule[0].value;
         });
+        scope.$applyAsync();
+
     })();
     scope.$watch('entity.module_name', function(val){
         console.log(val);

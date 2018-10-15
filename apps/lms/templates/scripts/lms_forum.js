@@ -1,4 +1,13 @@
 ﻿(function (scope) {
+
+
+    scope.filterFunctionModel = ''
+    scope.currentFunction = '';
+    scope.mapName = [];
+    scope.selectFunc = function (event, f) {
+        scope.selectedFunction = f;
+    }
+
     scope.create = function(){
      scope.mode = 1; // set mode chỉnh sửa
         openDialog("${get_res('add_pl_forum','Add Public Forum')}", 'form/addForumPublic', function () {
@@ -21,14 +30,8 @@
         }
     }
 
-    scope.$watch("selectedFunction", function (function_id) {
-        if (function_id) {
-            var $his = scope.$root.$history.data();
-            window.location.href = "#page=" + $his.page + "&f=" + function_id;
-        }
-    });
 
-    scope.$partialpage=null;
+    init();
 
      function handleData() {
 
@@ -52,10 +55,7 @@
         scope.currentFunction = scope.mapName[0];
     }
 
-    init();
-
     scope.$watch("selectedFunction", function (function_id) {
-
         if (function_id) {
             var $his = scope.$root.$history.data();
             window.location.href = "#page=" + $his.page + "&f=" + function_id;
@@ -63,7 +63,6 @@
     });
 
     scope.$root.$history.onChange(scope, function (data) {
-
         if (scope.mapName.length > 0) {
             if (data.f) {
                 var func = _.filter(scope.mapName, function (f) {
@@ -79,7 +78,7 @@
             } else {
                 scope.$partialpage = scope.mapName[0].url;
             }
-            scope.$applyAsync();
+            scope.$apply();
         } else {
             window.location.href = "#";
         }

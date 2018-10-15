@@ -5,7 +5,7 @@
 <%inherit file="../../commons/dialog_save_close.html"/>
 
 <%block name="modal_body">
-
+<div class="hcs-modal-format">
     <div class="col-md-{{col_group}} col-sm-{{col_group}}">
         <collapse-box class="zb-form-common" title="${get_global_res('Common_Information','Thông tin chung')}">
             <div class="col-md-{{col}}">
@@ -13,7 +13,7 @@
                     <!--Tài khoản đăng nhập-->
                     <label for="inputUserName" class="col-sm-5 zb-form-label">${get_res('login_account','Tài khoản đăng nhập')}</label>
                     <div class="col-sm-7">
-                        <input-text id="inputUserName" ng-model="entity.login_account" required>
+                        <input-text id="inputUserName" ng-model="entity.login_account" required/>
                     </div>
                 </div>
             </div>
@@ -22,7 +22,7 @@
                     <!--Tên hiển thị-->
                     <label for="inputDisplayName" class="col-sm-5 zb-form-label">${get_res('display_name','Tên hiển thị')}</label>
                     <div class="col-sm-7">
-                        <input-text id="inputDisplayName" ng-model="entity.display_name" required>
+                        <input-text id="inputDisplayName" ng-model="entity.display_name" required/>
                     </div>
                 </div>
             </div>
@@ -31,7 +31,7 @@
                     <!--Thuộc nhóm người dùng-->
                     <label for="inputGroupUser" class="col-sm-5 zb-form-label">${get_res('role_code','Thuộc nhóm người dùng')}</label>
                     <div class="col-sm-7">
-                        <combobox load-data="$root.$getComboboxData" 
+                        <combobox load-data="$root.$getComboboxData"
                               ng-model="entity.role_code"
                               params="{key:'${encryptor.get_key('cbb_ad_roles')}', value:[{ '@lock': true }]}"
                               on-search-change="false"
@@ -53,7 +53,7 @@
                     <!--Email-->
                     <label for="inputEmail" class="col-sm-5 zb-form-label">${get_res('email','Email')}</label>
                     <div class="col-sm-7">
-                        <input-text id="inputEmail" ng-model="entity.email">
+                        <input-text id="inputEmail" ng-model="entity.email"/>
                     </div>
                 </div>
             </div>
@@ -62,7 +62,7 @@
                     <!--Số điện thọai-->
                     <label for="inputPhoneNumber" class="col-sm-5 zb-form-label">${get_res('mobile','Số điện thọai')}</label>
                     <div class="col-sm-7">
-                        <input-text id="inputPhoneNumber" ng-model="entity.mobile">
+                        <input-text id="inputPhoneNumber" ng-model="entity.mobile"/>
                     </div>
                 </div>
             </div>
@@ -70,7 +70,7 @@
     </div>
     <div class="col-md-{{ 12 - col_group }} col-sm-{{ 12 - col_group }}">
         <collapse-box class="zb-form-common" title="${get_global_res('Note','Ghi chú')}">
-            <div class="row">
+            <div class="form-group zb-form-group">
                 <div class="col-sm-12">
                     <!--Ghi chú-->
                     <input-textarea rows="7" ng-model="entity.description"></input-textarea>
@@ -125,7 +125,7 @@
                     <!--Mật khẩu-->
                     <label for="inputUserName" class="col-sm-5 zb-form-label">${get_res('password','Mật khẩu')}</label>
                     <div class="col-sm-7">
-                        <input-password id="inputPassword" ng-model="entity.password">
+                        <input-password id="inputPassword" ng-model="entity.password"/>
                     </div>
                 </div>
             </div>
@@ -134,7 +134,7 @@
                     <!--Xác nhận mật khẩu-->
                     <label for="inputDisplayName" class="col-sm-5 zb-form-label">${get_res('repassword','Xác nhận mật khẩu')}</label>
                     <div class="col-sm-7">
-                        <input-password id="inputRePassword" ng-model="entity.repassword">
+                        <input-password id="inputRePassword" ng-model="entity.repassword"/>
                     </div>
                 </div>
             </div>
@@ -149,6 +149,7 @@
             </div>
         </collapse-box>
     </div>
+</div>
 
 </%block>
 

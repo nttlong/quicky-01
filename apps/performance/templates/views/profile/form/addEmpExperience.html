@@ -5,8 +5,9 @@
 <%inherit file="../../commons/dialog_save_close.html"/>
 
 <%block name="modal_body">
- <div class="col-xs-12 col-md-12">
-    <collapse-box class="zb-form-common" title="${get_global_res('Common_Information','Thông tin chung')}">        
+<div class="hcs-modal-format">
+    <div class="col-xs-12 col-md-12">
+    <collapse-box class="zb-form-common" title="${get_global_res('Common_Information','Thông tin chung')}">
       <div class="col-xs-12 col-md-6">
             <div class="form-group zb-form-group">
                 <label class="col-xs-5 col-sm-5 zb-form-label">${get_res('begin_date','Từ ngày')}</label>
@@ -53,14 +54,14 @@
             <div class="form-group zb-form-group">
                <label for="inputLastName" class="col-xs-5 col-sm-5 zb-form-label">${get_res('currency_code','Nguyên tệ')}</label>
                <div class="col-xs-7 col-sm-7">
-                    <combobox   load-data="$root.$getComboboxData"  
+                    <combobox   load-data="$root.$getComboboxData"
                                 ng-model="entity.currency_code"
                                 params="{key:'${encryptor.get_key('cbb_currency')}', value:[{ '@lock': true }]}"
                                 on-search-change="false"
                                 on-search-press="true"
                                 placeholder=""
                                 init-data="$$$currency_code.value"
-                                caption-field="{{$$$currency_code.caption_field}}" 
+                                caption-field="{{$$$currency_code.caption_field}}"
                                 paging="true"
                                 close-on-select="true"
                                 template-fields="$$$currency_code.display_fields"
@@ -79,14 +80,14 @@
             <div class="form-group zb-form-group">
                 <label class="col-xs-5 col-sm-5 zb-form-label">${get_res('job_pos_code','Chức vụ')}</label>
                 <div class="col-xs-7 col-sm-7">
-                    <combobox load-data="$root.$getComboboxData"  
+                    <combobox load-data="$root.$getComboboxData"
                               ng-model="entity.job_pos_code"
                               params="{key:'${encryptor.get_key('cbb_position')}', value:[{ '@lock': true }]}"
                               on-search-change="false"
                               on-search-press="true"
                               placeholder=""
                               init-data="$$$job_pos_code.value"
-                              caption-field="{{$$$job_pos_code.caption_field}}" 
+                              caption-field="{{$$$job_pos_code.caption_field}}"
                               paging="true"
                               close-on-select="true"
                               template-fields="$$$job_pos_code.display_fields"
@@ -97,14 +98,14 @@
             <div class="form-group zb-form-group">
                 <label class="col-xs-5 col-sm-5 zb-form-label">${get_res('job_w_code','Chức danh')}</label>
                 <div class="col-xs-7 col-sm-7">
-                     <!--<combobox title="{{comboboxInfo.title}}" 
-                                load-data="$combobox.loadData" 
+                     <!--<combobox title="{{comboboxInfo.title}}"
+                                load-data="$combobox.loadData"
                                 ng-model="entity.job_w_code"
                                 key-field="{{comboboxInfo.valueField}}"
                                 caption-field="{{comboboxInfo.captionField}}"
                                 on-search-change="false"
                                 on-search-press="true"
-                                placeholder=""                               
+                                placeholder=""
                                 paging="true"
                                 on-select="$combobox.selectCombobox"
                                 on-accept="$combobox.acceptCombobox"
@@ -117,14 +118,14 @@
             <div class="form-group zb-form-group">
                 <label class="col-xs-5 col-sm-5 zb-form-label">${get_res('profession_code','Chuyên môn')}</label>
                 <div class="col-xs-7 col-sm-7">
-                    <combobox load-data="$root.$getComboboxData"  
+                    <combobox load-data="$root.$getComboboxData"
                               ng-model="entity.profession_code"
                               params="{key:'${encryptor.get_key('cbb_profession')}', value:[{ '@lock': true }]}"
                               on-search-change="false"
                               on-search-press="true"
                               placeholder=""
                               init-data="$$$profession_code.value"
-                              caption-field="{{$$$profession_code.caption_field}}" 
+                              caption-field="{{$$$profession_code.caption_field}}"
                               paging="true"
                               close-on-select="true"
                               template-fields="$$$profession_code.display_fields"
@@ -135,14 +136,14 @@
             <div class="form-group zb-form-group">
                 <label class="col-xs-5 col-sm-5 zb-form-label">${get_res('emp_type_code','Loại nhân viên')}</label>
                 <div class="col-xs-7 col-sm-7">
-                    <combobox load-data="$root.$getComboboxData"  
+                    <combobox load-data="$root.$getComboboxData"
                               ng-model="entity.emp_type_code"
                               params="{key:'${encryptor.get_key('cbb_employee_type')}', value:[{ '@lock': true }]}"
                               on-search-change="false"
                               on-search-press="true"
                               placeholder=""
                               init-data="$$$emp_type_code.value"
-                              caption-field="{{$$$emp_type_code.caption_field}}" 
+                              caption-field="{{$$$emp_type_code.caption_field}}"
                               paging="true"
                               close-on-select="true"
                               template-fields="$$$emp_type_code.display_fields"
@@ -159,14 +160,14 @@
             <div class="form-group zb-form-group">
                 <label class="col-xs-5 col-sm-5 zb-form-label">${get_res('quit_job_code','Hình thức thôi việc')}</label>
                 <div class="col-xs-7 col-sm-7">
-                    <combobox load-data="$root.$getComboboxData"  
+                    <combobox load-data="$root.$getComboboxData"
                               ng-model="entity.quit_job_code"
                               params="{key:'${encryptor.get_key('cbb_quit_job')}', value:[{ '@lock': true }]}"
                               on-search-change="false"
                               on-search-press="true"
                               placeholder=""
                               init-data="$$$quit_job_code.value"
-                              caption-field="{{$$$quit_job_code.caption_field}}" 
+                              caption-field="{{$$$quit_job_code.caption_field}}"
                               paging="true"
                               close-on-select="true"
                               template-fields="$$$quit_job_code.display_fields"
@@ -186,7 +187,7 @@
                     <input-textarea rows="4" ng-model="entity.task"></input-textarea>
                 </div>
             </div>
-        </div>  
+        </div>
     </collapse-box>
 </div>
 <div class="col-xs-12 col-md-{{ 12 - col_group}} col-sm-{{ 12 - col_group}}">
@@ -206,9 +207,11 @@
                     <input-text value="{{ entity.created_on | date: $root.systemConfig.date_format}} {{entity.created_by}} | {{ entity.modified_on | date: $root.systemConfig.date_format}} {{entity.modified_by}}" ng-disabled="true">
                 </div>
             </div>
-        </div>     
+        </div>
     </collapse-box>
 </div>
+</div>
+
 </%block>
 
 <%block name="modal_script">

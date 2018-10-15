@@ -3,7 +3,7 @@
         tableFields: [
             { "data": "ordinal", "title": "${get_res('ordinal_table_header','Thứ tự')}", "className": "text-center" },
             { "data": "task_name", "title": "${get_res('task_name_table_header','Nhiệm vụ')}", "className": "text-left" },
-            { "data": "weight", "title": "${get_res('weight_table_header','Trọng số')}", "className": "text-center" }
+            { "data": "weight", "title": "${get_res('weight_table_header','Trọng số')}", "className": "text-left" }
         ],
         $$tableConfig: {},
         tableSource: _loadDataServerSide,
@@ -15,11 +15,17 @@
     };
     scope.$parent.$parent.$parent.$parent.detail.onAdd = onAdd;
     scope.$parent.$parent.$parent.$parent.detail.onEdit = onEdit;
+    scope.$parent.$parent.$parent.$parent.detail.onSearch = onSearch;
     scope.$parent.$parent.$parent.$parent.detail.onDelete = onDelete;
     scope.$parent.$parent.$parent.$parent.detail.onSave = null;
     scope.$parent.$parent.$parent.$parent.detail.onRefresh = onRefresh;
     scope.$job_w_code = scope.$parent.$parent.$parent.$parent.detail.$job_w_code;
     scope._tableData = _tableData;
+
+    function onSearch(val){
+        scope.$$table.tableSearchText = val;
+        scope.$apply();
+    }
 
     function onAdd() {
         scope.mode = 1;// set mode tạo mới

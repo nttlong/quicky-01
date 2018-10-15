@@ -1,13 +1,13 @@
 ﻿(function (scope) {
     scope.$$table = {
         tableFields: [
-            { "data": "kpi_name", "title": "${get_res('performance_name','Tên chỉ tiêu')}" },
+            { "data": "kpi_name", "title": "${get_res('performance_name','Tên chỉ tiêu')}","width":"120px" },
             { "data": "unit", "title": "${get_res('dvt','ĐVT')}" },
-            { "data": "cycle", "title": "${get_res('cycle','Chu kì')}" },
+            { "data": "cycle", "title": "${get_res('cycle','Chu kì')}","width":"100px" },
             { "data": "description", "title": "${get_res('description_table_header','Mô tả')}" },
-            { "data": "weight", "title": "${get_res('weight_table_header','Trọng số')}" },
-            { "data": "score_from", "title": "${get_res('score_from_table_header','Cho điểm từ')}" },
-            { "data": "score_to", "title": "${get_res('score_to_table_header','đến')}" }
+            { "data": "weight", "title": "${get_res('weight_table_header','Trọng số')}","width":"100px" },
+            { "data": "score_from", "title": "${get_res('score_from_table_header','Cho điểm từ')}","width":"100px" },
+            { "data": "score_to", "title": "${get_res('score_to_table_header','đến')}","width":"100px" }
         ],
         $$tableConfig: {},
         tableSource: _loadDataServerSide,
@@ -18,12 +18,18 @@
         refreshDataRow: function () { /*Do nothing*/ }
     };
     scope.$parent.$parent.$parent.$parent.detail.onAdd = onAdd;
+    scope.$parent.$parent.$parent.$parent.detail.onSearch = onSearch;
     scope.$parent.$parent.$parent.$parent.detail.onEdit = onEdit;
     scope.$parent.$parent.$parent.$parent.detail.onDelete = onDelete;
     scope.$parent.$parent.$parent.$parent.detail.onRefresh = onRefresh;
 
     scope.$job_w_code = scope.$parent.$parent.$parent.$parent.detail.$job_w_code;
     scope._tableData = _tableData;
+
+    function onSearch(val){
+        scope.$$table.tableSearchText = val;
+        scope.$apply();
+    }
 
     function _loadDataServerSide(fnReloadData, iPage, iPageLength, orderBy, searchText) {
         scope.$$table.$$tableConfig = {

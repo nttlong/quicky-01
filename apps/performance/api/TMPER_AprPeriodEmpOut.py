@@ -10,8 +10,10 @@ global lock
 lock = threading.Lock()
 import quicky
 from bson import SON
+from hcs_authorization import action_type,authorization
 from collections import OrderedDict
 
+@authorization.authorise(action=action_type.Action.READ)
 def get_list_with_searchtext(args):
     searchText = args['data'].get('search', '')
     pageSize = args['data'].get('pageSize', 0)
@@ -20,12 +22,13 @@ def get_list_with_searchtext(args):
 
     pageIndex = (lambda pIndex: pIndex if pIndex != None else 0)(pageIndex)
     pageSize = (lambda pSize: pSize if pSize != None else 20)(pageSize)
-    ret=AprPeriodEmpOut.get_empNotApr_by_apr_period(args['data']['apr_period'], args['data']['apr_year'])
+    ret=AprPeriodEmpOut.get_empNotApr_by_apr_period(args['data']['apr_period'], args['data']['apr_year'],searchText)
     ret=common.filter_lock(ret, args)
     if(sort != None):
         ret.sort(sort)
     return ret.get_page(pageIndex, pageSize)
 
+@authorization.authorise(action=action_type.Action.READ)
 def get_list_distinct_approval_year_and_period(args):
     ret = {}
     collection = common.get_collection('TMPER_AprPeriod').aggregate([
@@ -127,6 +130,7 @@ def generate(args):
         lock.release()
         raise(ex)
 
+@authorization.authorise(action=action_type.Action.WRITE)
 def update(args):
     try:
         lock.acquire()
@@ -161,6 +165,7 @@ def update(args):
         lock.release()
         raise(ex)
 
+@authorization.authorise(action=action_type.Action.DELETE)
 def delete(args):
     try:
         lock.acquire()
@@ -178,6 +183,7 @@ def delete(args):
         lock.release()
         raise(ex)
 
+@authorization.authorise(action=action_type.Action.READ)
 def get_genPreAperiodData(args):
     if(args['data']!= None):
         ret = {}

@@ -27,6 +27,7 @@
 
     scope.$parent.$parent.$parent.onGen = onGenDataGeneration;
     scope.$parent.$parent.$parent.onAdd = onAdd;
+    scope.$parent.$parent.$parent.onSearch = onSearch;
     scope.$parent.$parent.$parent.onEdit = onEdit;
     scope.$parent.$parent.$parent.onDelete = onDelete;
     scope.$parent.$parent.$parent.onImport = onImport;
@@ -36,6 +37,11 @@
     scope.onExport = onExport;
     scope.onImport = onImport;
 
+    function onSearch(val){
+        debugger
+        scope.tableSearchText = val;
+        //scope.$apply();
+    }
 
     function _loadDataServerSide(fnReloadData, iPage, iPageLength, orderBy, searchText) {
     debugger

@@ -1,14 +1,14 @@
 ﻿﻿<div view-id="${register_view()}" class="tab-pane" style="padding-right:unset; height: 100%; overflow-y:hidden; overflow:auto; background-color:#fff;">
     <!--<nav-tabs min-height="82vh" max-height="82vh">-->
-        <div class="tabbable-panel">
+        <div class="tabbable-panel hcs-format">
              <div class="col-md-12 col-sm-12 col-xs-12">
                  <div class="col-md-6 col-sm-6 col-xs-12">
                         <collapse-box class="zb-form-common" title="${get_res('aproval_period','Kỳ đánh giá')}">
                              <div class="col-md-12 col-sm-12 col-xs-12">
                                  <div class="form-group zb-form-group">
                                      <!--Kỳ-->
-                                     <label class="col-md-4 col-sm-4 col-xs-4 zb-form-label">${get_res('apr_period','Kỳ')}</label>
-                                     <div class="col-md-8 col-sm-8 col-xs-8">
+                                     <label class="col-sm-4 col-xs-4 zb-form-label">${get_res('apr_period','Kỳ')}</label>
+                                     <div class="col-sm-8 col-xs-8">
                                          <input-select
                                            data-list="cbbApprovalPeriod"
                                            ng-model="entity.apr_period"
@@ -136,7 +136,7 @@
                         <collapse-box class="zb-form-common"
                                       title="${get_global_res('note','Ghi chú')}">
                             <div class="form-group zb-form-group">
-                                <div class="col-md-12 col-sm-12 col-xs-12 no-padding">
+                                <div class="col-md-12 col-sm-12 col-xs-12">
                                     <input-textarea rows="5" ng-model="entity.note" style="padding-bottom:31px;"></input-textarea>
                                 </div>
                             </div>

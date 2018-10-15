@@ -5,9 +5,10 @@
 <%inherit file="../../commons/dialog_save_close.html"/>
 
 <%block name="modal_body">
-<div class="col-md-{{col_group}} col-sm-{{col_group}}">
+<div class="hcs-modal-format">
+    <div class="col-md-{{col_group}} col-sm-{{col_group}}">
     <collapse-box class="zb-form-common" title="${get_global_res('Common_Information','Thông tin chung')}">
-        <div class="col-md-{{col}}">
+        <div class="col-md-{{col}} col-sm-{{col}}">
                 <div class="form-group zb-form-group">
                     <!--Mã nhóm-->
                     <label class="col-sm-5 zb-form-label">${get_res('kpi_group_code','Mã nhóm')}</label>
@@ -16,7 +17,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-{{col}}">
+            <div class="col-md-{{col}} col-sm-{{col}}">
                 <div class="form-group zb-form-group">
                     <!--Tên nhóm-->
                     <label class="col-sm-5 zb-form-label">${get_res('kpi_group_name','Tên nhóm')}</label>
@@ -25,7 +26,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-{{col}}">
+            <div class="col-md-{{col}} col-sm-{{col}}">
                 <div class="form-group zb-form-group">
                     <!--Tên khác-->
                     <label class="col-sm-5 zb-form-label">${get_res('kpi_group_name2','Tên khác')}</label>
@@ -34,7 +35,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-{{col}}">
+            <div class="col-md-{{col}} col-sm-{{col}}">
                 <div class="form-group zb-form-group">
                     <!--Thuộc nhóm-->
                     <label class="col-sm-5 zb-form-label">${get_res('parent_code','Thuộc nhóm')}</label>
@@ -45,7 +46,7 @@
                                 current-item="entity.parent_code"
                                 multi-select="false">-->
                          <tree-combobox
-                            load-data="$root.$getComboboxData" 
+                            load-data="$root.$getComboboxData"
                             ng-model="entity.parent_code"
                             placeholder=""
                             init-data="$$$cbb_hcsls_kpi_group.value"
@@ -59,7 +60,7 @@
                     </div>
                 </div>
             </div>
-             <div class="col-md-{{col}}">
+             <div class="col-md-{{col}} col-sm-{{col}}">
                 <div class="form-group zb-form-group">
                     <!--Thứ tự-->
                     <label class="col-sm-5 zb-form-label">${get_res('weight','Trọng số')}</label>
@@ -68,7 +69,7 @@
                     </div>
                 </div>
             </div>
-           <div class="col-md-{{col}}">
+           <div class="col-md-{{col}} col-sm-{{col}}">
                 <div class="form-group zb-form-group">
                     <!--Thứ tự-->
                     <label class="col-sm-5 zb-form-label">${get_res('is_team','Chỉ tiêu tập thể')}</label>
@@ -77,7 +78,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-{{col}}">
+            <div class="col-md-{{col}} col-sm-{{col}}">
                 <div class="form-group zb-form-group">
                     <!--Thứ tự-->
                     <label class="col-sm-5 zb-form-label">${get_res('ordinal','Thứ tự')}</label>
@@ -86,7 +87,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-{{col}}">
+            <div class="col-md-{{col}} col-sm-{{col}}">
                 <div class="form-group zb-form-group">
                     <!--Ngưng sử dụng-->
                     <label class="col-sm-5 zb-form-label">${get_res('lock','Ngưng sử dụng')}</label>
@@ -97,16 +98,16 @@
             </div>
     </collapse-box>
 </div>
-<div class="col-md-{{ 12 - col_group}} col-sm-{{ 12 - col_group}}">
+    <div class="col-md-{{ 12 - col_group}} col-sm-{{ 12 - col_group}}">
     <collapse-box class="zb-form-common" title="${get_global_res('Note','Ghi chú')}">
-        <div class="row">
-            <!--Ghi chú-->
-            <div class="col-sm-12">
-                <input-textarea rows="6" ng-model="entity.note"></input-textarea>
-            </div>
-        </div>
-        <div class="col-md-12" style="padding-top: 16px;">
+        <!--Ghi chú-->
+        <div class="col-sm-12">
             <div class="form-group zb-form-group">
+                <div class="col-xs-12 col-sm-12 no-padding">
+                    <input-textarea rows="9" ng-model="entity.note"></input-textarea>
+                </div>
+            </div>
+            <div class="form-group zb-form-group" style="padding-top: 16px;">
                 <label for="DisplayInfo" class="col-sm-3 zb-form-label">${get_global_res('create_and_modify','Tạo | Sửa')}</label>
                 <div class="col-sm-9">
                     <input-text value="{{ entity.created_on | date: $root.systemConfig.date_format}} {{entity.created_by}} | {{ entity.modified_on | date: $root.systemConfig.date_format}} {{entity.modified_by}}" ng-disabled="true">
@@ -115,6 +116,8 @@
         </div>
     </collapse-box>
 </div>
+</div>
+
 </%block>
 
 <%block name="modal_script">

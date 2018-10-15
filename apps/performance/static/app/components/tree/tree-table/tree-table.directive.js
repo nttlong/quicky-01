@@ -16,6 +16,7 @@
                 displayName: "@",
                 parentField: "@",
                 parentValue: "=",
+                pressEnter: "=",
                 keyField: "@",
                 checkedField: "@",
                 multiSelect: "=",
@@ -354,6 +355,9 @@
                     //     //data.result = { url: "ajax-sub2.json" }
                     //     data.result = [ {"title": "New child 1"}, {"title": "New child 2"} ];
                     // },
+                    dblclick : function(event,data){
+                        if(angular.isFunction($scope.pressEnter))$scope.pressEnter(data.node.data);
+                    },
                     select: function(event, data) {
                         _setSelectedOnInit(data.tree);
                     }

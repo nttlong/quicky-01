@@ -6,7 +6,8 @@
 
 <%block name="modal_body">
     
-<div class="col-md-{{col_group}} col-sm-{{col_group}}">
+<div class="hcs-modal-format">
+    <div class="col-md-{{col_group}} col-sm-{{col_group}}">
     <collapse-box class="zb-form-common" title="${get_global_res('Common_Information','Thông tin chung')}">
         <div class="col-md-{{col}}">
             <div class="form-group zb-form-group">
@@ -32,8 +33,8 @@
                 <label for="inputAccessLimit" class="col-sm-5 zb-form-label">${get_res('access_mode','Chế độ truy cập')}</label>
                 <div class="col-sm-7" ng-disabled="true">
                     <input-select data-list="cbbAccessMode" ng-model="Item.access_mode"
-                                    placeholder="Tìm kiếm" 
-                                    data-value="value" 
+                                    placeholder="Tìm kiếm"
+                                    data-value="value"
                                     data-caption="caption"
                                     required/>
                 </div>
@@ -41,12 +42,12 @@
         </div>
     </collapse-box>
 </div>
-<div class="col-md-{{ 12 - col_group}} col-sm-{{ 12 - col_group}}">
+    <div class="col-md-{{ 12 - col_group}} col-sm-{{ 12 - col_group}}">
     <collapse-box class="zb-form-common" title="${get_global_res('Note','Ghi chú')}">
-        <div class="row">
+        <div class="form-group zb-form-group">
             <div class="col-sm-12">
             <input-textarea rows="5" ng-model="Item.description"></input-textarea>
-                <!--<div data-c-html-box 
+                <!--<div data-c-html-box
                     ng-model="Item.description"
                     style="height:49px"
                     id="inputDescription">
@@ -55,11 +56,11 @@
         </div>
     </collapse-box>
 </div>
-<div class="col-md-12 col-sm-12">
+    <div class="col-md-12 col-sm-12">
     <collapse-box class="zb-form-common" title="${get_res('Select_Domain','Chọn vùng dữ liệu')}">
         <toolbar>
-            <input-text-icon icon="bowtie-icon bowtie-search" icon-align="right" 
-                                style="width:100%;float: right" 
+            <input-text-icon icon="bowtie-icon bowtie-search" icon-align="right"
+                                style="width:100%;float: right"
                                 placeholder="" ng-model="treeSearchText">
             </input-text-icon>
             <button class="zb-btn" ng-click="$treeCollapseAll()">
@@ -73,8 +74,8 @@
             <!--Chọn vùng dữ liệu-->
             <div class="col-md-12 no-padding">
                 <tree-data data-source="treeDepartmentsDataSource" display-field="department_name"
-	                        parent-field="parent_code" key-field="department_code" 
-	                        multi-select="treeMultiSelect" select-mode="treeMode" 
+	                        parent-field="parent_code" key-field="department_code"
+	                        multi-select="treeMultiSelect" select-mode="treeMode"
                             on-select="selectTreeNode"
 	                        current-node="treeCurrentNode"
 	                        selected-nodes="treeSelectedNodes"
@@ -88,6 +89,7 @@
             </div>
         </div>
     </collapse-box>
+</div>
 </div>
 
 </%block>

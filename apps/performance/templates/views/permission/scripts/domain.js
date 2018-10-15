@@ -6,7 +6,7 @@
         { "data": "dd_name", "title": "${get_res('dd_name_table_header','Tên vùng vùng dữ liệu')}", "className": "text-left"},
         { "data": "description", "title": "${get_res('description_table_header','Mô tả chi tiết')}", "className": "text-left"},
         { "data": "display_access_mode", "title": "${get_res('display_access_mode_table_header','Phạm vi truy cập')}", "className": "text-left" },
-        { "data": "created_on", "title": "${get_res('created_on_table_header','Thời điểm tạo')}", "className": "text-center", "format": "date:" + scope.$root.systemConfig.date_format }
+        { "data": "created_on", "title": "${get_res('created_on_table_header','Thời điểm tạo')}", "className": "text-left", "format": "date:" + scope.$root.systemConfig.date_format }
     ];
     //
     scope.$$tableConfig = {};
