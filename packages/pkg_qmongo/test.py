@@ -10,39 +10,54 @@ db=qmongo.connect(
 )
 import datetime
 from bson.objectid import ObjectId
-data =[
-    {"_id": 1, "subject": "History", "score": 88},
-    {"_id": 2, "subject": "History", "score": 92},
-    {"_id": 3, "subject": "History", "score": 97},
-    {"_id": 4, "subject": "History", "score": 71},
-    {"_id": 5, "subject": "History", "score": 79},
-    {"_id": 6, "subject": "History", "score": 83}
-]
+
 from qmongo import qcollections
-scores=qcollections.queryable(db,"scores-6")
-ret,err =scores.insert(data)
+orders=qcollections.queryable(db,"orders-3")
+items=qcollections.queryable(db,"items-3")
+ret,err =orders.insert(
+    [
+        {"_id": 1, "item": "almonds", "price": 12, "quantity": 2},
+        {"_id": 2, "item": "pecans", "price": 20, "quantity": 1}
+    ]
+)
+ret,err =items.insert(
+    [
+        {"_id": 1, "item": "almonds", "description": "almond clusters", "instock": 120},
+        {"_id": 2, "item": "bread", "description": "raisin and nut bread", "instock": 80},
+        {"_id": 3, "item": "pecans", "description": "candied pecans", "instock": 60}
+    ]
+)
 """
-   db.scores.aggregate(
-  [
-    {
-      $match: {
-        score: {
-          $gt: 80
-        }
-      }
-    },
-    {
-      $count: "passing_scores"
-    }
-  ]
+    db.orders.aggregate([
+       {
+          $lookup: {
+             from: "items",
+             localField: "item",    // field in the orders collection
+             foreignField: "item",  // field in the items collection
+             as: "fromItems"
+          }
+       },
+       {
+          $replaceRoot: { newRoot: { $mergeObjects: [ { $arrayElemAt: [ "$fromItems", 0 ] }, "$$ROOT" ] } }
+       },
+       { $project: { fromItems: 0 } }
+    ])
+"""
+
+orders.lookup(
+    source = items,
+    local_field="item",
+    foreign_field="item",
+    alias="fromItems"
+).replace_root(
+    new_root = "$mergeObjects(arrayElemAt(fromItems,0),{0})",
+    params =["$$ROOT"]
+
 )
 
-"""
-
-agg=scores.limit(2)
 import pprint
-pprint.pprint(agg.__pipe_line__)
-pprint.pprint(agg.items)
+pprint.pprint(orders.__pipe_line__)
+pprint.pprint(orders.items)
 
 
 

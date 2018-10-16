@@ -539,9 +539,13 @@ class queryable(object):
         })
         return self
     def lookup(self,source,local_field,foreign_field,alias):
-        self._pipe.append({
+        _source_ = source
+        if type(source) is queryable:
+            _source_ = source.collection_name
+
+        self.__pipe_line__.append({
             "$lookup": {
-                "from": source,
+                "from": _source_,
                 "localField": local_field,
                 "foreignField": foreign_field,
                 "as": alias
