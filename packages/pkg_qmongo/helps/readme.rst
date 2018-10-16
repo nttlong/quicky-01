@@ -1,14 +1,13 @@
 Aggregation Pipeline Stages
 ----------------------------
 
-1- project:
-    - `Read the documentation <project.rst>`_
+1 - `project <project.rst>`_
 
     .. include:: project.rst
 
 
-2- out:
-    .. include:: out.rst
+2- `out <out.rst>`_:
+    .. include:: out.txt
 
 3- match:
     .. include:: match.rst
