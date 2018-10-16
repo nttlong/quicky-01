@@ -2,7 +2,7 @@ Aggregation Pipeline Stages
 ----------------------------
 
 1- project:
-    .. include:: qmongo-queryable-project.rst
+    .. include::qmongo-queryable-project.rst
 
 2- out:
     .. include:: qmongo-queryable-out.rst
