@@ -39,7 +39,7 @@ ret,err =scores.insert(data)
 
 """
 
-agg=scores.match("score>80").count("passing_scores")
+agg=scores.limit(2)
 import pprint
 pprint.pprint(agg.__pipe_line__)
 pprint.pprint(agg.items)

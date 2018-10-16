@@ -29,3 +29,9 @@ Aggregation Pipeline Stages
 
 9- count:
     .. include:: count.rst
+
+10- limit:
+    .. include:: limit.rst
+
+11- lookup:
+    .. include:: lookup.rst
