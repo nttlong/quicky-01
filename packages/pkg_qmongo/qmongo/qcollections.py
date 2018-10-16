@@ -302,6 +302,14 @@ class queryable(object):
         if args.__len__()>0:
             if type(args[0]) is list:
                 params =args[0]
+        if args.__len__()>0 and type(args[0]) is dict:
+            data=args[0]
+            for i in range(1,args.__len__(),1):
+                params.append(args[i])
+        if args.__len__()==2 and type(args[0]) is list and type(args[1]) is dict:
+            data = args[1]
+            params =args[0]
+
         for k,v in data.items():
             if v in [0,1]:
                 _project_.update({k:v})
@@ -310,8 +318,176 @@ class queryable(object):
             elif type(v) is dict:
                 from . import q_dic_parse
                 x= q_dic_parse.parse_to_mongo_dict(v,*params)
-                _project_.update({k:x})
+                if type(x) is dict:
+                    for k1,v1 in x.items():
+                        _project_.update({k+"."+k1:v1})
+                else:
+                    _project_.update({k: x})
+            else:
+                _project_.update({k: v})
         self.__pipe_line__.append({"$project":_project_})
+        return self
+    def add_fields(self,*args,**kwargs):
+        from . import helpers
+        _add_fields_ = {}
+        data = kwargs
+        params = []
+        if args.__len__() > 0:
+            if type(args[0]) is list:
+                params = args[0]
+        if args.__len__() > 0 and type(args[0]) is dict:
+            data = args[0]
+            for i in range(1, args.__len__(), 1):
+                params.append(args[i])
+        if args.__len__() == 2 and type(args[0]) is list and type(args[1]) is dict:
+            data = args[1]
+            params = args[0]
+
+        for k, v in data.items():
+            if v in [0, 1]:
+                _add_fields_.update({k: v})
+            elif type(v) in [str, unicode]:
+                _add_fields_.update({k: helpers.expr.get_calc_expr(v, *params)})
+            elif type(v) is dict:
+                from . import q_dic_parse
+                x = q_dic_parse.parse_to_mongo_dict(v, *params)
+                if type(x) is dict:
+                    for k1, v1 in x.items():
+                        _add_fields_.update({k + "." + k1: v1})
+                else:
+                    _add_fields_.update({k: x})
+            else:
+                _add_fields_.update({k: v})
+        self.__pipe_line__.append({"$addFields": _add_fields_})
+        return self
+    def create(self):
+        ret= queryable({})
+        return ret
+    def coll_stats(self):
+        self.__pipe_line__.append(
+            { "$collStats": {"latencyStats": {"histograms": True}}}
+        )
+        return self
+    def bucket_auto(self,group_by,buckets,ouput=None,params=[]):
+        _output_ ={}
+        if type(ouput) in [str,unicode]:
+            _output_ = helpers.expr.get_calc_expr(_output_,*params)
+        elif type(ouput) is dict:
+            for k,v in ouput.items():
+                if type(v) in [str,unicode]:
+                    x = helpers.expr.get_calc_expr(v,*params)
+                    _output_.update({
+                        k: x
+                    })
+                elif type(v) is dict:
+                    for k1,v1 in v.items():
+                        _output_.update({
+                            k + "." + k1: helpers.expr.get_calc_expr(v1,*params)
+                        })
+                else:
+                    _output_.update({
+                        k:v
+                    })
+
+
+        if ouput == None:
+            self.__pipe_line__.append({
+                "$bucketAuto":{
+                    "groupBy":helpers.expr.get_calc_expr(group_by,params),
+                    "buckets":buckets
+                }
+            })
+        else:
+            self.__pipe_line__.append({
+                "$bucketAuto":{
+                    "groupBy":helpers.expr.get_calc_expr(group_by,params),
+                    "buckets":buckets,
+                    "output":_output_
+                }
+            })
+
+
+        return self
+
+    def sort_by_count(self,field):
+        self.__pipe_line__.append({
+            "$sortByCount":"$"+field
+        })
+        return self
+
+    def bucket(self,group_by,boundaries,default,output,params=[]):
+        """
+        groupBy: "$price",
+                boundaries: [  0, 150, 200, 300, 400 ],
+                default: "Other",
+                output: {
+                  "count": { $sum: 1 },
+                  "titles": { $push: "$title" }
+                }
+        :return:
+        """
+
+        from . import q_dic_parse
+        _output_ = {}
+        for k,v in output.items():
+            if type(v) in [str,unicode]:
+                x=helpers.expr.get_calc_expr(v,params)
+                _output_.update({
+                    k: x
+                })
+            elif type(v) is dict:
+                x = q_dic_parse.parse_to_mongo_dict(v,params)
+                for k1,v1 in x.items():
+                    _output_.update({
+                        k+"."+k1: v1
+                    })
+            else:
+                _output_.update({
+                    k:v
+                })
+        _default_ = default
+        if type(default) is dict:
+            _default_ ={}
+            for k,v in default.items():
+                if type(v) is dict:
+                    x= q_dic_parse.parse_to_mongo_dict(v,params)
+                    for k1,v1 in x.items():
+                        _default_.update({
+                            k+"."+k1:v1
+                        })
+                else:
+                    _default_.update(
+                        {
+                            k:v
+                        }
+                    )
+        self.__pipe_line__.append({
+            "$bucket":dict(
+                groupBy="$"+group_by,
+                boundaries =boundaries,
+                default=_default_,
+                output=_output_
+
+            )
+        })
+        return self
+    def facet(self,*args,**kwargs):
+        data=kwargs
+        if args.__len__() >0:
+            data = args[0]
+        _facet_ = {}
+        for k,v in data.items():
+            if type(v) is queryable:
+                _facet_.update({
+                    k:v.pipe_line
+                })
+            else:
+                _facet_.update({
+                    k:v
+                })
+        self.__pipe_line__.append({
+            "$facet":_facet_
+        })
         return self
     def redact(self,expression,*args,**kwargs):
         params= list(args)
@@ -323,7 +499,11 @@ class queryable(object):
     def out(self,to_collection_name):
         self.__pipe_line__.append({"$out": to_collection_name})
         return self
-
+    def count(self,field):
+        self.__pipe_line__.append({
+            "$count":field
+        })
+        return self
     def match(self,expression,*args,**kwargs):
         from . import helpers
         if type(expression) is dict:

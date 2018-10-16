@@ -470,7 +470,7 @@ def get_tree(expr,*params,**kwargs):
             return {
                 "left":__trim_first_charator("$",fx['params'][0]),
                 "operator":"$exists",
-                "right":True
+                "right":1
             }
 
         elif cmp.value.func.id == "notExists":
@@ -1177,6 +1177,29 @@ def extract_json(fx,*params):
         return fx.s
 
     if type(fx) is _ast.Call:
+        if fx.func.id =="push":
+            right = extract_json(fx.args[0],*params)
+            if type(right) in [unicode,str]:
+                return {
+                    "$push":right
+                }
+            elif type(right) is list and right.__len__()>0:
+                obj_right = extract_json(fx.args[0],*params)[0]
+                ret_right = obj_right
+                if type(obj_right) is dict:
+                    ret_right = {}
+                    for k,v in obj_right.items():
+                        if type(v) in [unicode,str]:
+                            ret_right.update({
+                                k: get_calc_expr(v,*params)
+                            })
+                        else:
+                            ret_right.update({
+                                k:v
+                            })
+                return {
+                    "$push":ret_right
+                }
         if fx.func.id=="expr":
             return {
                 "$expr":extract_json(fx.args[0],*params)
@@ -1193,7 +1216,7 @@ def extract_json(fx,*params):
             }
         if  _avg_funcs.find(fx.func.id)>-1:
             return {
-                "$"+fx.func.id:extract_json(fx.args[0])
+                "$"+fx.func.id:extract_json(fx.args[0],*params)
             }
         elif fx.func.id=="dateToString":
             p_left = get_left(fx.args[0],*params)

@@ -1,3 +1,5 @@
+from networkx.algorithms import boundary
+
 import qmongo
 db=qmongo.connect(
     host="localhost",
@@ -9,59 +11,35 @@ db=qmongo.connect(
 import datetime
 from bson.objectid import ObjectId
 data =[
-    {
-        "_id": 1,
-        "level": 1,
-        "acct_id": "xyz123",
-        "cc": {
-            "level": 5,
-            "type": "yy",
-            "num": 000000000000,
-            "exp_date": datetime.datetime(2015,11,1,0,0),
-            "billing_addr": {
-                "level": 5,
-                "addr1": "123 ABC Street",
-                "city": "Some City"
-            },
-            "shipping_addr": [
-                {
-                    "level": 3,
-                    "addr1": "987 XYZ Ave",
-                    "city": "Some City"
-                },
-                {
-                    "level": 3,
-                    "addr1": "PO Box 0123",
-                    "city": "Some City"
-                }
-            ]
-        },
-        "status": "A"
-    }
+    {"_id": 1, "subject": "History", "score": 88},
+    {"_id": 2, "subject": "History", "score": 92},
+    {"_id": 3, "subject": "History", "score": 97},
+    {"_id": 4, "subject": "History", "score": 71},
+    {"_id": 5, "subject": "History", "score": 79},
+    {"_id": 6, "subject": "History", "score": 83}
 ]
 from qmongo import qcollections
-accounts=qcollections.queryable(db,"accounts-4")
-ret,err =accounts.insert(data)
+scores=qcollections.queryable(db,"scores-6")
+ret,err =scores.insert(data)
 """
-    db.accounts.aggregate(
-      [
-        { $match: { status: "A" } },
-        {
-          $redact: {
-            $cond: {
-              if: { $eq: [ "$level", 5 ] },
-              then: "$$PRUNE",
-              else: "$$DESCEND"
-            }
-          }
+   db.scores.aggregate(
+  [
+    {
+      $match: {
+        score: {
+          $gt: 80
         }
-      ]
-    );
+      }
+    },
+    {
+      $count: "passing_scores"
+    }
+  ]
+)
+
 """
 
-agg=accounts.match("status=={0}","A")
-agg.redact("iif(level=={0},{1},{2})",5,"$$PRUNE","$$DESCEND")
-
+agg=scores.match("score>80").count("passing_scores")
 import pprint
 pprint.pprint(agg.__pipe_line__)
 pprint.pprint(agg.items)
