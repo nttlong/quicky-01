@@ -7,7 +7,7 @@ Aggregation Pipeline Stages
 
 
 2- `out <out.rst>`_:
-    .. include:: out.txt
+    .. include:: out.rst
 
 3- match:
     .. include:: match.rst
