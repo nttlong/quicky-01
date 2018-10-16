@@ -2,7 +2,10 @@ Aggregation Pipeline Stages
 ----------------------------
 
 1- project:
+    - `Read the documentation <project.rst>`_
+
     .. include:: project.rst
+
 
 2- out:
     .. include:: out.rst
