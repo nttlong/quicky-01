@@ -1400,6 +1400,76 @@ def extract_json(fx,*params):
                     ords[i]:data[i]
                 })
             return  ret
+        elif fx.func.id == "dayOfMonth":
+            ords = ["date", 'timezone']
+            ret = {
+                "$dayOfMonth": {}
+            }
+            data = [extract_json(x, *params) for x in fx.args]
+            for i in range(0, data.__len__(), 1):
+                ret["$dayOfMonth"].update({
+                    ords[i]: data[i]
+                })
+            return ret
+        elif fx.func.id == "dayOfWeek":
+            ords = ["date", 'timezone']
+            ret = {
+                "$dayOfWeek": {}
+            }
+            data = [extract_json(x, *params) for x in fx.args]
+            for i in range(0, data.__len__(), 1):
+                ret["$dayOfWeek"].update({
+                    ords[i]: data[i]
+                })
+            return ret
+        elif fx.func.id == "filter":
+            """
+            $filter: {
+               input: "$items",
+               as: "item",
+               cond: { $gte: [ "$$item.price", 100 ] }
+            }
+            """
+            cond = extract_json(fx.args[2],*params)
+            input = extract_json(fx.args[0],*params)
+            _as = extract_json(fx.args[1],*params)
+            def set_perfix(key,obj):
+                if not type(obj) in [dict,list] :
+                    return  obj
+
+                if type(obj) is dict:
+                    ret = {
+
+                    }
+                    for k,v in obj.items():
+                        if k.__len__()>key.__len__() and k[0:key.__len__()+1]== key +".":
+                            ret.update({
+                                "$"+k:set_perfix(key,v)
+                            })
+                        else:
+                            ret.update({
+                                k: set_perfix(key, v)
+                            })
+                        return ret
+                elif type(obj) is list:
+                    ret =[]
+                    for k in obj:
+                        if type(k) in [str,unicode] and k.__len__()>key.__len__() and k[0:key.__len__()+1]== key +".":
+                            ret.append("$"+k)
+                        else:
+                            ret.append(k)
+                    return ret
+
+
+            _cond = set_perfix(_as,cond)
+            ret = {
+                "$filter":{
+                    "input":input,
+                    "as":_as[1:_as.__len__()],
+                    "cond":_cond
+                }
+            }
+            return  ret
 
 
         else:

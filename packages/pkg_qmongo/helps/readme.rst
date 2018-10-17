@@ -82,6 +82,11 @@ Aggregation Pipeline Operators
     .. include:: dateFromString.rst
 20- `dateToString <dateToString.rst>`_
     .. include:: dateToString.rst
+21- `dayOfMonth and dayOfWeek <dayOfMonth.rst>`_
+    .. include:: dayOfMonth.rst
+22- `filter <filter.rst>`_
+    .. include:: filter.rst
+
 
 
 
