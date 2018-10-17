@@ -1470,6 +1470,13 @@ def extract_json(fx,*params):
                 }
             }
             return  ret
+        elif fx.func.id == "_in":
+
+            return {
+                "$in":[
+                    extract_json(x,*params) for x in fx.args
+                ]
+            }
 
 
         else:

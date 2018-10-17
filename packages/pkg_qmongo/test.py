@@ -12,58 +12,40 @@ import datetime
 from bson.objectid import ObjectId
 
 from qmongo import qcollections
-sales=qcollections.queryable(db,"sales-21")
-ret,err =sales.insert(
+fruit=qcollections.queryable(db,"fruit-22")
+ret,err =fruit.insert(
     [
-        dict(
-            _id=0,
-            items= [
-                dict(item_id= 43, quantity= 2, price= 10),
-                dict(item_id =2, quantity = 1, price =240)
-            ]
-        ),
-        dict(
-             _id = 1,
-            items= [
-                dict(item_id = 23, quantity = 3, price = 110),
-                dict(item_id = 103, quantity = 4, price = 5),
-                dict(item_id = 38, quantity = 1, price = 300)
-            ]
-        ),
-        dict(
-            _id = 2,
-            items = [
-                dict(item_id = 4, quantity = 1, price = 23)
-            ]
-        )
-
+        {"_id": 1, "location": "24th Street",
+         "in_stock": ["apples", "oranges", "bananas"]},
+        {"_id": 2, "location": "36th Street",
+         "in_stock": ["bananas", "pears", "grapes"]},
+        {"_id": 3, "location": "82nd Street",
+         "in_stock": ["cantaloupes", "watermelons", "apples"]}
     ]
 )
 
 """
-db.sales.aggregate([
-   {
-      $project: {
-         items: {
-            $filter: {
-               input: "$items",
-               as: "item",
-               cond: { $gte: [ "$$item.price", 100 ] }
-            }
-         }
+db.fruit.aggregate([
+  {
+    $project: {
+      "store location" : "$location",
+      "has bananas" : {
+        $in: [ "bananas", "$in_stock" ]
       }
-   }
+    }
+  }
 ])
-
 """
-sales.project(
-    items="filter(items,item,item.price>=100)"
+fruit.project(
+    store_location="location",
+    has_bananas = "_in('bananas',in_stock)"
+
 )
 
 import pprint
 
-pprint.pprint(sales.__pipe_line__)
-pprint.pprint(sales.items)
+pprint.pprint(fruit.__pipe_line__)
+pprint.pprint(fruit.items)
 
 
 

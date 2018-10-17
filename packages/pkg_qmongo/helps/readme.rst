@@ -86,6 +86,8 @@ Aggregation Pipeline Operators
     .. include:: dayOfMonth.rst
 22- `filter <filter.rst>`_
     .. include:: filter.rst
+23- `in <in.rst>`_
+    .. include:: in.rst
 
 
 
