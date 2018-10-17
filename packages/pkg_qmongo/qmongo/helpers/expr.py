@@ -1092,7 +1092,7 @@ def get_calc_exprt_boolean_expression(fx,*params):
     _get_val_ = lambda x,y:x if y ==() else y[x]
 
     if type(fx) is _ast.Num:
-        return _get_val_(fx.n,*params)
+        return _get_val_(fx.n,params)
 
     p=get_right(fx,*params)
     if fx._fields.count("left")>0 and type(fx.left) is _ast.Call:
@@ -1162,6 +1162,8 @@ def extract_json(fx,*params):
     :param params:
     :return:
     """
+    if type(params) is tuple and params.__len__()==1 and type(params[0]) is list:
+                params = params[0]
     if type(fx) is _ast.BoolOp:
         return {
             find_operator(fx.op):[  extract_json(x, *params)  for x in fx.values ]
@@ -1206,6 +1208,7 @@ def extract_json(fx,*params):
             }
 
         if fx.func.id=="get_params":
+
             return params[fx.args[0].n]
 
         if fx.func.id=="iif":
@@ -1214,38 +1217,21 @@ def extract_json(fx,*params):
                            "then": extract_json(fx.args[1],*params),
                             "else": extract_json(fx.args[2],*params) }
             }
+        if fx.func.id=="avg":
+            if fx.args.__len__()==1:
+                return {
+                    "$" + fx.func.id: extract_json(fx.args[0], *params)
+                }
+            else:
+                return {
+                    "$" + fx.func.id:[extract_json(x, *params) for x in fx.args]
+                }
         if  _avg_funcs.find(fx.func.id)>-1:
             return {
                 "$"+fx.func.id:extract_json(fx.args[0],*params)
             }
-        elif fx.func.id=="dateToString":
-            p_left = get_left(fx.args[0],*params)
-            p_right = get_left(fx.args[1],*params)
-            val=p_right["value"]
-            if p_right["type"]=="function" and p_right["id"]=="get_params":
-                val=params[val]
-            # return { $dateToString: { format: "%Y-%m-%d", date: "$date" } }
-            return {
-                "$dateToString":{
-                    "format":val,
-                    "date":"$"+p_left["id"]
 
-                }
-            }
-        elif fx.func.id=="dateFromString":
-            p_left = get_left(fx.args[0], *params)
-            p_right = get_left(fx.args[1], *params)
-            val = p_right["value"]
-            if p_right["type"] == "function" and p_right["id"] == "get_params":
-                val = params[val]
-            # return { $dateToString: { format: "%Y-%m-%d", date: "$date" } }
-            return {
-                "$dateToString": {
-                    "timezone": val,
-                    "dateString": "$" + p_left["id"]
 
-                }
-            }
         elif fx.func.id=="switch":
             branches=[]
             for item in fx.args:
@@ -1266,6 +1252,156 @@ def extract_json(fx,*params):
             k=cmp
             pass
 
+        elif fx.func.id == "toString":
+            return {
+                "$toString":extract_json(fx.args[0],*params)
+            }
+        elif fx.func.id == "convert":
+            if fx.args.__len__()==2:
+                return {
+                    "$" + fx.func.id:{
+                        "input":extract_json(fx.args[0],*params),
+                        "to":extract_json(fx.args[1],*params)
+                    }
+                }
+            elif fx.args.__len__()==3:
+                return {
+                    "$" + fx.func.id: {
+                        "input": extract_json(fx.args[0], *params),
+                        "to": extract_json(fx.args[1], *params),
+                        "onNull":extract_json(fx.args[2], *params)
+                    }
+                }
+            elif fx.args.__len__()==4:
+                return {
+                    "$" + fx.func.id: {
+                        "input": extract_json(fx.args[0], *params),
+                        "to": extract_json(fx.args[1], *params),
+                        "onNull": extract_json(fx.args[2], *params),
+                        "onError": extract_json(fx.args[3], *params)
+                    }
+                }
+        elif fx.func.id in ["hour","minute","second"]:
+            if fx.args.__len__()==1:
+                return {
+                    "$" + fx.func.id: extract_json(fx.args[0], *params)
+                }
+            elif fx.args.__len__()==2:
+                return {
+                    "$" + fx.func.id: {
+                        'date':extract_json(fx.args[0], *params),
+                        'timezone':extract_json(fx.args[1], *params)
+                    }
+                }
+            else:
+                raise Exception("{0} need at least one param".format(fx.func.id))
+        elif fx.func.id =="dateFromParts":
+            data_params =[extract_json(x, *params) for x in fx.args]
+            _data_part =["year","month",'day','hour','minute','second']
+
+            ret = {
+                "$dateFromParts":{}
+            }
+            for i in range(0,data_params.__len__(),1):
+                ret["$dateFromParts"].update({
+                    _data_part[i]:data_params[i]
+                })
+            return ret
+        elif fx.func.id=="dateFromPartsWithISO":
+            data_params = [extract_json(x, *params) for x in fx.args]
+            _data_part = ['isoWeekYear','isoWeek','isoDayOfWeek' , 'hour' ,'minute', 'second']
+
+            ret = {
+                "$dateFromParts": {}
+            }
+            for i in range(0, data_params.__len__(), 1):
+                ret["$dateFromParts"].update({
+                    _data_part[i]: data_params[i]
+                })
+            return ret
+        elif fx.func.id =="dateFromPartsWithTimeZone":
+            data_params = [extract_json(x, *params) for x in fx.args]
+            _data_part = ['timezone','isoWeekYear', 'isoWeek', 'isoDayOfWeek', 'hour', 'minute', 'second']
+
+            ret = {
+                "$dateFromParts": {
+
+                }
+            }
+            for i in range(0, data_params.__len__(), 1):
+                ret["$dateFromParts"].update({
+                    _data_part[i]: data_params[i]
+                })
+            return ret
+
+        elif fx.func.id == 'dateToParts':
+            # $dateToParts: { date: "$date" }
+            return {
+                "$dateToParts":{
+                    "date":extract_json(fx.args[0], *params)
+                }
+            }
+        elif fx.func.id=="dateToPartsWithISO8601":
+            return {
+                "$dateToParts": {
+                    "date": extract_json(fx.args[0], *params),
+                    "iso8601": True
+                }
+            }
+        elif fx.func.id == "dateToPartsWithTimeZone":
+            return {
+                "$dateToParts":{
+                    "date":extract_json(fx.args[0], *params),
+                    "timezone": extract_json(fx.args[1], *params)
+                }
+
+            }
+        elif fx.func.id =='dateFromString':
+            if fx.args.__len__() == 2:
+                return {
+                    "$dateFromString":{
+                        "dateString": extract_json(fx.args[0], *params),
+                        "timezone": extract_json(fx.args[1], *params)
+                    }
+
+                }
+            elif fx.args.__len__() == 3:
+                return {
+                    "$dateFromString": {
+                        "dateString": extract_json(fx.args[0], *params),
+                        "timezone": extract_json(fx.args[1], *params),
+                        "onNull":extract_json(fx.args[2], *params)
+                    }
+
+                }
+            elif fx.args.__len__() == 4:
+                return {
+                    "$dateFromString": {
+                        "dateString": extract_json(fx.args[0], *params),
+                        "timezone": extract_json(fx.args[1], *params),
+                        "onNull":extract_json(fx.args[2], *params),
+                        "onError":extract_json(fx.args[3], *params)
+                    }
+
+                }
+            else:
+                raise (Exception("missing params in '{0}'".format("dateFromString")))
+
+
+
+        elif fx.func.id=="dateToString":
+            ords = ["date","format",'timezone']
+            ret = {
+                "$dateToString":{}
+            }
+            data = [ extract_json(x,*params) for x in fx.args]
+            for i in range(0,data.__len__(),1):
+                ret["$dateToString"].update({
+                    ords[i]:data[i]
+                })
+            return  ret
+
+
         else:
             return {
                 "$"+fx.func.id:[
@@ -1273,6 +1409,7 @@ def extract_json(fx,*params):
 
                 ]
             }
+
     if type(fx) is _ast.BinOp:
         return {
             find_operator(fx.op):[

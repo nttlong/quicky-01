@@ -702,4 +702,8 @@ class queryable(object):
         ret= self.object
         self.__pipe_line__ = tmp
         return ret.count_items
+    def add_stages(self,*args,**kwargs):
+        for item in args:
+            self.__pipe_line__.extend(item)
+        return self
 

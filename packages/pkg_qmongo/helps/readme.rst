@@ -60,3 +60,28 @@ Aggregation Pipeline Operators
     .. include:: arrayElemAt.rst
 9- `arrayToObject <arrayToObject.rst>`_
     .. include:: arrayToObject.rst
+10- `avg <avg.rst>`_
+    .. include:: avg.rst
+11- `ceil <ceil.rst>`_
+    .. include:: ceil.rst
+12- `cmp <cmp.rst>`_
+    .. include:: cmp.rst
+13- `concat <concat.rst>`_
+    .. include:: concat.rst
+14- `concatArrays <concatArrays.rst>`_
+    .. include:: concatArrays.rst
+15- `cond <cond.rst>`_
+    .. include:: cond.rst
+16- `convert <convert.rst>`_
+    .. include:: convert.rst
+17- `dateFromParts <dateFromParts.rst>`_
+    .. include:: dateFromParts.rst
+18- `dateToParts <dateToParts.rst>`_
+    .. include:: dateToParts.rst
+19- `dateFromString <dateFromString.rst>`_
+    .. include:: dateFromString.rst
+20- `dateToString <dateToString.rst>`_
+    .. include:: dateToString.rst
+
+
+

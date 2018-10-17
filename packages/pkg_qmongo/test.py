@@ -12,39 +12,49 @@ import datetime
 from bson.objectid import ObjectId
 
 from qmongo import qcollections
-inventory=qcollections.queryable(db,"inventory-12")
-ret,err =inventory.insert(
+sales=qcollections.queryable(db,"sales-20")
+ret,err =sales.insert(
     [
-        {"_id": 1, "item": "ABC1", "instock": {"warehouse1": 2500, "warehouse2": 500}},
-        {"_id": 2, "item": "ABC2", "instock": {"warehouse2": 500, "warehouse3": 200}}
+        {
+            "_id": 1,
+            "item": "abc",
+            "price": 10,
+            "quantity": 2,
+            "date": datetime.datetime(2014,01,01,8,15,39,736)
+        }
+
     ]
 )
 
 """
-   db.inventory.aggregate( [
-       { $addFields: { instock: { $objectToArray: "$instock" } } },
-       { $addFields: { instock: { $concatArrays: [ "$instock", [ { "k": "total", "v": { $sum: "$instock.v" } } ] ] } } } ,
-       { $addFields: { instock: { $arrayToObject: "$instock" } } }
-    ] )
-"""
+db.sales.aggregate(
+   [
+     {
+       $project: {
+          yearMonthDayUTC: { $dateToString: { format: "%Y-%m-%d", date: "$date" } },
+          timewithOffsetNY: { $dateToString: { format: "%H:%M:%S:%L%z", date: "$date", timezone: "America/New_York"} },
+          timewithOffset430: { $dateToString: { format: "%H:%M:%S:%L%z", date: "$date", timezone: "+04:30" } },
+          minutesOffsetNY: { $dateToString: { format: "%Z", date: "$date", timezone: "America/New_York" } },
+          minutesOffset430: { $dateToString: { format: "%Z", date: "$date", timezone: "+04:30" } }
+       }
+     }
+   ]
+)
 
-inventory.add_fields(
-    instock="objectToArray(instock)"
-).add_fields(
-    [ inventory.compile(
-        dict(
-            k="{0}",
-            v="sum(instock.v)"
-        ),"total"
-    )],
-    instock="concatArrays(instock,{0})",
-).add_fields(
-    instock = "arrayToObject(instock)"
+"""
+sales.project(
+    ['$timezone','new Date(0)'],
+    yearMonthDayUTC="dateToString(date,'%Y-%m-%d')",
+    timewithOffsetNY="dateToString(date,'%H:%M:%S:%L%z','America/New_York')",
+    timewithOffset430='dateToString(data,"%H:%M:%S:%L%z","+04:30")' ,
+    minutesOffsetNY="dateToString(date,'%Z','America/New_York')",
+    minutesOffset430="dateToString(data,'%Z','+04:30')",
 )
 
 import pprint
-pprint.pprint(inventory.__pipe_line__)
-pprint.pprint(inventory.items)
+
+pprint.pprint(sales.__pipe_line__)
+pprint.pprint(sales.items)
 
 
 
