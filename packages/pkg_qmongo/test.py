@@ -12,52 +12,39 @@ import datetime
 from bson.objectid import ObjectId
 
 from qmongo import qcollections
-orders=qcollections.queryable(db,"orders-3")
-items=qcollections.queryable(db,"items-3")
-ret,err =orders.insert(
+inventory=qcollections.queryable(db,"inventory-12")
+ret,err =inventory.insert(
     [
-        {"_id": 1, "item": "almonds", "price": 12, "quantity": 2},
-        {"_id": 2, "item": "pecans", "price": 20, "quantity": 1}
+        {"_id": 1, "item": "ABC1", "instock": {"warehouse1": 2500, "warehouse2": 500}},
+        {"_id": 2, "item": "ABC2", "instock": {"warehouse2": 500, "warehouse3": 200}}
     ]
 )
-ret,err =items.insert(
-    [
-        {"_id": 1, "item": "almonds", "description": "almond clusters", "instock": 120},
-        {"_id": 2, "item": "bread", "description": "raisin and nut bread", "instock": 80},
-        {"_id": 3, "item": "pecans", "description": "candied pecans", "instock": 60}
-    ]
-)
+
 """
-    db.orders.aggregate([
-       {
-          $lookup: {
-             from: "items",
-             localField: "item",    // field in the orders collection
-             foreignField: "item",  // field in the items collection
-             as: "fromItems"
-          }
-       },
-       {
-          $replaceRoot: { newRoot: { $mergeObjects: [ { $arrayElemAt: [ "$fromItems", 0 ] }, "$$ROOT" ] } }
-       },
-       { $project: { fromItems: 0 } }
-    ])
+   db.inventory.aggregate( [
+       { $addFields: { instock: { $objectToArray: "$instock" } } },
+       { $addFields: { instock: { $concatArrays: [ "$instock", [ { "k": "total", "v": { $sum: "$instock.v" } } ] ] } } } ,
+       { $addFields: { instock: { $arrayToObject: "$instock" } } }
+    ] )
 """
 
-orders.lookup(
-    source = items,
-    local_field="item",
-    foreign_field="item",
-    alias="fromItems"
-).replace_root(
-    new_root = "$mergeObjects(arrayElemAt(fromItems,0),{0})",
-    params =["$$ROOT"]
-
+inventory.add_fields(
+    instock="objectToArray(instock)"
+).add_fields(
+    [ inventory.compile(
+        dict(
+            k="{0}",
+            v="sum(instock.v)"
+        ),"total"
+    )],
+    instock="concatArrays(instock,{0})",
+).add_fields(
+    instock = "arrayToObject(instock)"
 )
 
 import pprint
-pprint.pprint(orders.__pipe_line__)
-pprint.pprint(orders.items)
+pprint.pprint(inventory.__pipe_line__)
+pprint.pprint(inventory.items)
 
 
 

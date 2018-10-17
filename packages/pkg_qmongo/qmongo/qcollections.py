@@ -9,6 +9,8 @@
 """
 from __builtin__ import property
 
+from samba.dcerpc.irpc import kdc_check_generic_kerberos
+
 from . fx_model import s_obj
 from . import helpers
 from pymongo.database import Database
@@ -294,6 +296,33 @@ class queryable(object):
         self.__modifiers__ = {}
         self.__session__ = None
         return self
+    def compile(self,data,*args,**kwargs):
+        if type(data) in [str,unicode]:
+            return helpers.expr.get_calc_expr(data,*args,**kwargs)
+        else:
+            ret={}
+            for k,v in data.items():
+                if type(v) in [str,unicode]:
+                    ret.update(
+                        {
+                            k:helpers.expr.get_calc_expr(v,*args,**kwargs)
+                        }
+                    )
+                elif type(v) is dict:
+                    ret.update(
+                        {
+                            k: self.compile(v, *args, **kwargs)
+                        }
+                    )
+                else:
+                    ret.update(
+                        {
+                            k: v
+                        }
+                    )
+        return ret
+
+
     def project(self,*args,**kwargs):
         from . import helpers
         _project_={}
@@ -347,10 +376,10 @@ class queryable(object):
             if v in [0, 1]:
                 _add_fields_.update({k: v})
             elif type(v) in [str, unicode]:
-                _add_fields_.update({k: helpers.expr.get_calc_expr(v, *params)})
+                _add_fields_.update({k: helpers.expr.get_calc_expr(v, params)})
             elif type(v) is dict:
                 from . import q_dic_parse
-                x = q_dic_parse.parse_to_mongo_dict(v, *params)
+                x = q_dic_parse.parse_to_mongo_dict(v, params)
                 if type(x) is dict:
                     for k1, v1 in x.items():
                         _add_fields_.update({k + "." + k1: v1})
@@ -526,31 +555,97 @@ class queryable(object):
         return self
     def __iter__(self):
         return self.objects
-    def replace_root(self,field):
-        self.__pipe_line__.append({
-            "$replaceRoot": {"newRoot": (lambda x: "$" + x if x[0] != "$" else x)(field)}
-        })
+    def replace_root(self,field,*args,**kwargs):
+        params = kwargs
+        if args.__len__()>0 and kwargs == {}:
+            params = list(args)
+        if type(field) in [str,unicode]:
+            self.__pipe_line__.append({
+                "$replaceRoot": {"newRoot": helpers.expr.get_calc_expr(field,*params)}
+            })
+        elif type(field) is dict:
+            _new_root_= {}
+            for k,v in field.items():
+                if type(v) in [str,unicode]:
+                    _new_root_.update({
+                        k:helpers.expr.get_calc_expr(v,*params)
+                    })
+                elif type(v) is dict:
+                    from . import q_dic_parse
+                    x= q_dic_parse.parse_to_mongo_dict(v)
+                    for k1,v1 in x.items():
+                        _new_root_.update({
+                            k+"."+k1:v1
+                        })
+                else:
+                    _new_root_.update({
+                        k:v
+                    })
+            self.__pipe_line__.append({
+                "$replaceRoot": {"newRoot": _new_root_}
+            })
+
         return self
-    def unwind(self,field,preserve_null_and_empty_arrays=True):
-        self.__pipe_line__.append({
-            "$unwind": {"path":(lambda x: "$" + x if x[0] != "$" else x)(field),
-                        "preserveNullAndEmptyArrays":preserve_null_and_empty_arrays
-                     }
-        })
+    def unwind(self,field,preserve_null_and_empty_arrays=True,include_array_index=None):
+        if include_array_index== None:
+            self.__pipe_line__.append({
+                "$unwind": {"path":(lambda x: "$" + x if x[0] != "$" else x)(field),
+                            "preserveNullAndEmptyArrays":preserve_null_and_empty_arrays
+                         }
+            })
+        else:
+            self.__pipe_line__.append({
+                "$unwind": {"path": (lambda x: "$" + x if x[0] != "$" else x)(field),
+                            "preserveNullAndEmptyArrays": preserve_null_and_empty_arrays,
+                            "includeArrayIndex":include_array_index
+                            }
+            })
         return self
-    def lookup(self,source,local_field,foreign_field,alias):
+    def lookup(self,source,alias,pipeline=None,local_field=None,foreign_field=None,let=None,params=[]):
         _source_ = source
         if type(source) is queryable:
             _source_ = source.collection_name
 
-        self.__pipe_line__.append({
-            "$lookup": {
-                "from": _source_,
-                "localField": local_field,
-                "foreignField": foreign_field,
-                "as": alias
-            }
-        })
+        if local_field != None and foreign_field!=None:
+            self.__pipe_line__.append({
+                "$lookup": {
+                    "from": _source_,
+                    "localField": local_field,
+                    "foreignField": foreign_field,
+                    "as": alias
+                }
+            })
+        elif let!=None and pipeline!=None and type(pipeline) is queryable:
+            _let_ = {}
+            if type(let) is [str,unicode]:
+                _let_ = helpers.expr.get_calc_expr(let,*params)
+            elif type(let) is dict:
+                for k,v in let.items():
+                    if type(v) in [str,unicode]:
+                        _let_.update({
+                            k:helpers.expr.get_calc_expr(v,*params)
+                        })
+                    elif type(v) is dict:
+                        from  . import q_dic_parse
+                        x = q_dic_parse.parse_to_mongo_dict(v)
+                        for k1,v1 in x.items():
+                            if type(v1) in [str,unicode]:
+                                _let_.update({
+                                    k+"."+k1:helpers.expr.get_calc_expr(v1)
+                                })
+                            else:
+                                _let_.update({
+                                    k+"."+k1:v1
+                                })
+
+            self.__pipe_line__.append({
+                "$lookup": {
+                    "from": _source_,
+                    "let": _let_,
+                    "pipeline": pipeline.pipe_line,
+                    "as": alias
+                }
+            })
         return self
     def group(self,_id,selectors,*args,**kwargs):
         from helpers import expr

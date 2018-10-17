@@ -37,3 +37,26 @@ Aggregation Pipeline Stages
 
 11- `lookup <lookup.rst>`_
     .. include:: lookup.rst
+
+12- `lookup <unwind.rst>`_
+    .. include:: unwind.rst
+
+Aggregation Pipeline Operators
+------------------------------
+
+1- `abs <abs.rst>`_
+    .. include:: abs.rst
+2- `add <add.rst>`_
+    .. include:: add.rst
+3- `addToSet <addToSet.rst>`_
+    .. include:: addToSet.rst
+5- `allElementsTrue <allElementsTrue.rst>`_
+    .. include:: allElementsTrue.rst
+6- `and <and.rst>`_
+    .. include:: and.rst
+7- `anyElementTrue <anyElementTrue.rst>`_
+    .. include:: anyElementTrue.rst
+8- `arrayElemAt <arrayElemAt.rst>`_
+    .. include:: arrayElemAt.rst
+9- `arrayToObject <arrayToObject.rst>`_
+    .. include:: arrayToObject.rst
