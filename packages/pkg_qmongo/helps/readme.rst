@@ -88,6 +88,8 @@ Aggregation Pipeline Operators
     .. include:: filter.rst
 23- `in <in.rst>`_
     .. include:: in.rst
+24- `indexOfArray, indexOfBytes, indexOfCP <indexOfArray.rst>`_
+    .. include:: indexOfArray.rst
 
 
 
