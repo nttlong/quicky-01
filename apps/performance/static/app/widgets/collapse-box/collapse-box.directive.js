@@ -37,10 +37,14 @@
                     txtTitle: attr["title"],
                     txtDescription: attr["description"],
                     txtNumber: attr["number"],
+                    icon: attr["icon"],
+                    underline: attr["underline"]
                 };
 
+                var header  = $(elem).find('.zb-header.hcs-zb-header-custom');
                 var headerIcon = $(elem).find(".zb-header-icon");
                 var headerTitle = $(elem).find(".zb-header-title");
+                var collapseIcon = $config.icon ? '<i style="font-size: 20px; padding: 0px 10px 0px 0px;" class="' + $config.icon + '"></i>' : '';
                 var headerNumber = $(elem).find(".zb-header-number");
                 var headerDescription = $(elem).find(".zb-header-description");
                 var content = $(elem).find(".zb-content");
@@ -55,7 +59,10 @@
                     });
                 })
 
-                headerTitle.html($config.txtTitle);
+                if($config.underline === 'false'){
+                    header.addClass('no-underline');
+                }
+                headerTitle.html(collapseIcon + $config.txtTitle);
                 headerNumber.html($config.txtNumber);
                 headerDescription.html($config.txtDescription);
                 if (!$config.txtDescription) {

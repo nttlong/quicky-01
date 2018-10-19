@@ -1,0 +1,223 @@
+<%!
+    #_style="width:200px;"
+%>
+
+<%inherit file="../commons/dialog_save_close.html"/>
+
+<%block name="modal_body">
+        
+<div class="col-xs-12 col-md-6">
+    <collapse-box class="zb-form-common" title="${get_res('general_information','Thông tin chung')}">
+        <div class="col-xs-12 col-md-12 col-sm-12">
+            <div class="form-group zb-form-group">
+                <label class="col-sm-5 zb-form-label">${get_res('question_category_id','Mã danh mục câu hỏi')}</label>
+                <div class="col-sm-7"> 
+                    <input-text ng-model="entity.category_id" ng-disabled="__mode !== 1 ? true : false" required>
+                </div>
+            </div>
+            <div class="form-group zb-form-group">
+                <label class="col-sm-5 zb-form-label">${get_res('question_category_name','Tên danh mục câu hỏi')}</label>
+                <div class="col-sm-7"> 
+                    <input-text ng-model="entity.category_name" required>
+                </div>
+            </div>
+            <div class="form-group zb-form-group">
+                <label class="col-sm-5 zb-form-label">${get_res('question_category_name2','Tên khác')}</label>
+                <div class="col-sm-7"> 
+                    <input-text ng-model="entity.category_name2" >
+                </div>
+            </div>
+            <div class="form-group zb-form-group">
+                <label class="col-sm-5 zb-form-label">${get_res('category_group','Nhóm danh mục câu hỏi')}</label>
+                <div class="col-sm-7"> 
+                    <input-select list="LLMS_QuestGroupType" value="value" caption="caption" ng-model="entity.category_group" required>
+                </div>
+            </div>
+            <div class="form-group zb-form-group">
+                <label class="col-sm-5 zb-form-label">${get_res('ordinal','Thứ tự')}</label>
+                <div class="col-sm-7"> 
+                    <input-number ng-model="entity.order" type="int">
+                </div>
+            </div>
+            <div class="form-group zb-form-group">
+                <label class="col-sm-5 zb-form-label">${get_res('disable','Ngưng sử dụng')}</label>
+                <div class="col-sm-7"> 
+                    <input-checkbox ng-model="entity.active">
+                </div>
+            </div>
+        </div>
+    </collapse-box>
+</div>
+<div class="col-xs-12 col-md-6">
+    <collapse-box class="zb-form-common" title="${get_global_res('note','Ghi chú')}">
+        <div class="col-xs-12 col-md-12 col-sm-12">
+            <div class="form-group zb-form-group">
+                <div class="col-sm-12" style="padding: 0;">
+                    <input-textarea rows="7" ng-model="entity.note" ></input-textarea>
+                </div>
+            </div>
+            <div class="form-group zb-form-group">
+                <label class="col-sm-3 zb-form-label">${get_global_res('created_and_modified','Tạo | Sửa')}</label>
+                <div class="col-sm-9" style="padding: 0;"> 
+                    <input-text value="{{ entity.created_on | date: $root.systemConfig.date_format}} {{entity.created_by}} | {{ entity.modified_on | date: $root.systemConfig.date_format}} {{entity.modified_by}}" ng-disabled="true">
+                </div>
+            </div>
+
+        </div>
+    </collapse-box>
+</div>
+
+</%block>
+
+<%block name="modal_script">
+<script>
+    (function (scope) {
+        var __model__ = {
+            category_id: null,
+            category_name: null,
+            category_name2: null,
+            category_group: null,
+            ordinal: null,
+            active: false,
+            note: null
+        }
+        scope.__mode = scope.$parent.mode;
+        scope.onResizeDialog = onResizeDialog;
+        scope.title = scope.$parent.headerTitle;
+
+        //Nút lưu và thêm
+        scope.saveNNext = saveNNext;
+        //Nút lưu
+        scope.saveNClose = saveNClose;
+
+        function onResizeDialog() {
+            $dialog.fullScreen();
+        }
+
+        function saveNClose() {
+            if (scope.entity != null) {
+                var rsCheck = checkError();
+                if (rsCheck.result) {
+                    $msg.message("${get_global_res('Input_Error','Nhập liệu sai')}", rsCheck.errorMsg, function () { });
+                    return;
+                }
+                editData(function (res) {
+                    if (res.error == null) {
+                        $dialog.closeDialog();
+                        $msg.alert("${get_global_res('Handle_Success','Thao tác thành công')}", $type_alert.INFO);
+                        if (scope.__mode == 1 || scope.__mode == 3) {
+                            scope.$parent.reloadData();
+                        } else if (scope.__mode == 2) {
+                            scope.$parent.reloadData();
+                        }
+                    } else {
+                        $msg.message("${get_global_res('Internal_Server_Error','Có lỗi từ phía máy chủ')}", "${get_global_res('Please_Try_Again','Xin thử vui lòng thử lại')}", function () { });
+                    }
+                });
+            }
+        }
+
+        function saveNNext() {
+            if (scope.entity != null) {
+                var rsCheck = checkError();
+                if (rsCheck.result) {
+                    $msg.message("${get_global_res('Input_Error','Nhập liệu sai')}", rsCheck.errorMsg, function () { });
+                    return;
+                }
+                editData(function (res) {
+                    if (res.error == null) {
+                        if (scope.__mode == 1 || scope.__mode == 3)
+                            scope.$parent.reloadData();
+                        else {
+                            scope.$parent.reloadData();
+                        }
+                        $msg.alert("${get_global_res('Handle_Success','Thao tác thành công')}", $type_alert.INFO);
+                        scope.entity = __model__;
+                        scope.__mode = 1;
+                        scope.$applyAsync();
+                    } else {
+                        $msg.message("${get_global_res('Notification','Thông báo')}", "${get_global_res('Internal_Server_Error','Có lỗi từ phía máy chủ')}", function () { });
+                    }
+                })
+            } else {
+                $msg.message("${get_global_res('Input_Error','Nhập liệu sai')}", rsCheck.errorMsg, function () { });
+            }
+        }
+
+        function editData(callback) {
+            var url = getUrl();
+
+            var param = _.mapObject(__model__, function(val, key) { 
+                return val = scope.entity[key] ? scope.entity[key] : null
+            });
+           
+            services.api(url)
+                .data(param)
+                .done()
+                .then(function (res) {
+                    callback(res);
+                })
+        }
+
+        function getUrl() {
+            return scope.__mode == 1 ? "${get_api_key('app_main.api.LMS_SurQuestionCategoryController/insert')}"
+                    : "${get_api_key('app_main.api.LMS_SurQuestionCategoryController/update')}"
+        }
+
+        function reloadData() {
+            var tableConfig = scope.$root.$$tableConfig;
+            scope.$root._tableData(tableConfig.iPage,
+            tableConfig.iPageLength, tableConfig.orderBy,
+                tableConfig.searchText, tableConfig.fnReloadData);
+        }
+
+        function checkError() {
+            var errMsg;
+            var valid = null;
+            var rs = {
+                "result": false,
+                "errorMsg": ''
+            };
+            valid = lv.Validate(scope.entity.category_id);
+            rs.result = valid.isNullOrWhiteSpace();
+            rs.errorMsg = rs.result === true ? "${get_res('category_id_is_not_null','Mã danh mục câu hỏi không được để trống')}" + '\n' : "" ;
+            if(rs.result === true){
+                return rs;
+            }
+            valid = lv.Validate(scope.entity.category_name);
+            rs.result = valid.isNullOrWhiteSpace();
+            rs.errorMsg = rs.result === true ? "${get_res('category_name_not_null','Tên danh mục câu hỏi được để trống')}" + '\n' : "" ;
+            if(rs.result === true){
+                return rs;
+            }
+            valid = lv.Validate(scope.entity.category_group);
+            rs.result = valid.isNumber();
+            rs.errorMsg = rs.result === false ? "${get_res('category_group_not_null','Nhóm câu hỏi không được để trống')}" + '\n' : "" ;
+            if(rs.result === false){
+                rs.result = true;
+                return rs;
+            }else{
+                rs.result = false;
+            }
+            return rs;
+        }
+
+        
+
+        (function _getDataValueList() {
+            services.api("${get_api_key('app_main.api.SYS_ValueList/get_list')}")
+            .data({
+                "name": "LLMS_QuestGroupType"
+            })
+            .done()
+            .then(function (res) {
+                scope.LLMS_QuestGroupType = res.values;
+                scope.entity = JSON.parse(JSON.stringify(scope.__mode == 2 ? scope.$parent.$$table.currentItem : __model__));
+                scope.$applyAsync();
+            })
+        })();
+
+    });
+</script>
+
+</%block>

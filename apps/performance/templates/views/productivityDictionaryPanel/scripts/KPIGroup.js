@@ -77,7 +77,7 @@
                     .done()
                     .then(function (res) {
                         if (res.deleted > 0) {
-                            scope._reloadpage();
+                            scope._kpiGroup();
                             $msg.alert("${get_global_res('Handle_Success','Thao tác thành công')}", $type_alert.SUCCESS);
                         }
                         else if (res['error'] == "KPIGroup is using another PG") {

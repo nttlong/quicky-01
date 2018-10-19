@@ -70,7 +70,7 @@
                     })[0];//.custom_name.replace("/", " ");
                     scope.$root.currentFunction = child;
                 }
-                location.href = '#page=' + child.function_id;
+                location.href = '#page=' + scope.$root.$extension.TripleDES.encrypt(child.function_id);
             }
         }
     }

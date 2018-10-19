@@ -1,27 +1,38 @@
-﻿﻿
-<%!
-    #_style="width:300px;"
+﻿<%!
+    #_modal_content_style="width:138vh;"
+    #_style=""
 %>
 <%inherit file="../../commons/dialog_save.html"/>
-
+<style>
+    .modal-dialog{
+        width:100% !important;
+    }
+</style>
 <%block name="modal_body">
-
-<div class="hcs-tab-info">
+<div class="hcs-tab-info hcs-modal-format">
     <div class="col-xs-12 col-md-12 competency no-padding">
-        <div class="col-xs-12 col-md-4 active" ng-click="openTab($event, 0)">
-            <img src="${get_static('assets/images/General.png')}"/>
+        <div class="hcs-tab-info-box active" ng-click="openTab($event, 0)">
+            <span class="sap-icon sap-activity-items"></span>
             <label>
                 ${get_global_res('common_information','Thông tin chung')}
             </label>
         </div>
-        <div class="col-xs-12 col-md-4" ng-class="{disabled: mode === 1}" ng-click="openTab($event, 1)">
-            <img src="${get_static('assets/images/Level.png')}"/>
+        <div style="float: left;
+                        border-right: 1px solid #E2E2E2;
+                        height: 35px;
+                        margin-top: 7px;"></div>
+        <div class="hcs-tab-info-box" ng-class="{disabled: mode === 1}" ng-click="openTab($event, 1)">
+            <span class="bowtie-icon bowtie-icon bowtie-step"></span>
             <label style="padding-left:5px;">
                 ${get_global_res('level','Cấp độ')}
             </label>
         </div>
-        <div class="col-xs-12 col-md-4" ng-class="{disabled: mode === 1}" ng-click="openTab($event, 2)" ng-disabled="mode != 1">
-            <img src="${get_static('assets/images/Factor1.png')}"/>
+        <div style="float: left;
+                        border-right: 1px solid #E2E2E2;
+                        height: 35px;
+                        margin-top: 7px;"></div>
+        <div class="hcs-tab-info-box" ng-class="{disabled: mode === 1}" ng-click="openTab($event, 2)" ng-disabled="mode != 1">
+            <span class="sap-icon sap-enter-more"></span>
             <label>
                 ${get_global_res('evaluation_factor','Yếu tố đánh giá')}
             </label>
@@ -58,7 +69,13 @@
                 }
             }
         }
+
+        var isFullSize = false;
+        scope.maxHeightDialog = "80vh";
+        scope.resizeDialogWidth = "138vh";
         scope.onResizeDialog = function() {
+            isFullSize = !isFullSize //toggle variable
+            scope.maxHeightDialog = isFullSize ? "100vh" : "80vh";
             $dialog.fullScreen();
         };
         scope.saveNNext = null

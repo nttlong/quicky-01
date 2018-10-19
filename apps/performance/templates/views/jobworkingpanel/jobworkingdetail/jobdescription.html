@@ -161,7 +161,7 @@
                     <!--Thứ tự-->
                     <label class="col-xs-5 col-sm-5 zb-form-label">${get_res('ordinal','Thứ tự')}</label>
                     <div class="col-xs-7 col-sm-7">
-                        <input-number ng-model="entity.ordinal"/>
+                        <input-number ng-model="entity.ordinal" type="int"/>
                     </div>
                 </div>
                 <div class="form-group zb-form-group">
@@ -180,13 +180,17 @@
             </div>
         </collapse-box>
         <collapse-box class="zb-form-common" title="${get_global_res('job_goals','Mục tiêu công việc')}">
-            <div class="col-sm-12">
-                <input-textarea rows="4" ng-model="entity.description"></input-textarea>
+            <div class="form-group zb-form-group">
+                <div class="col-sm-12">
+                    <input-textarea rows="4" ng-model="entity.description"></input-textarea>
+                </div>
             </div>
         </collapse-box>
         <collapse-box class="zb-form-common" title="${get_global_res('permissions_and_responsibilities','Quyền hạn và trách nhiệm')}">
-            <div class="col-sm-12">
-                <input-textarea rows="4" ng-model="entity.job_w_duty"></input-textarea>
+            <div class="form-group zb-form-group">
+                <div class="col-sm-12">
+                    <input-textarea rows="4" ng-model="entity.job_w_duty"></input-textarea>
+                </div>
             </div>
         </collapse-box>
     </div>

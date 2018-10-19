@@ -1,0 +1,50 @@
+<style>
+.app-content {
+    overflow: unset !important;
+}
+</style>
+<div class="hcs-container" view-id="${register_view()}" style="height: 100%">
+    <div style="height: 100%;">
+        <div class="tab-pane" style="padding-right:unset; height: 100%; ">
+            <div>
+                <header-page  on-add="onAdd" 
+                              on-edit="onEdit" 
+                              on-delete="onDelete" 
+                              on-import="onImport" 
+                              on-export="onExport"
+                              on-refresh="onRefresh"
+                              on-search-press="onSearch"
+                              key-field="function_id" 
+                              display-field="default_name" 
+                              icon-field="icon" 
+                              selected-key="$root.currentFunction.function_id"
+                              reload-on-change="false">
+                    <site-map>
+                        <span>{{$root.currentFunction.default_name}}</span>
+                        <div class="hcs-resp-action-zb-left-content" style="float: right;">
+                            <button class="zb-btn zb-btn-o-green ng-scope"
+                                    ng-click="$root.doToggle('.zb-right-content')">
+                                <i class="bowtie-icon bowtie-menu"></i>
+                            </button>
+                        </div>
+                    </site-map>
+                </header-page>
+            </div>
+            <div class="hcs-right-side-department-list" style="height: calc(100% - 40px);">
+                <collapse-box class="zb-datatable" title="">
+                    <table-data data-source="$$table.tableSource" fields="$$table.tableFields" type="MultiSelect" 
+                                paging="true" page-length="100" server-side="true" 
+                                press-enter="$$table.onSelectTableRow" selected-items="$$table.selectedItems" 
+                                current-item="$$table.currentItem" search-text="$$table.tableSearchText"
+                                refresh-row="$$table.refreshDataRow"
+                                selected-field="">
+                    </table-data>
+                </collapse-box>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+    </div>
+</div>
+<script>
+    <%include file="../scripts/survey_management_quest_category_list.js"/>
+</script>

@@ -1,0 +1,283 @@
+<style>
+.tab-pane{
+    background-color: #fff;
+}
+</style>
+<div class="hcs-container" view-id="${register_view()}" style="height: 100%">
+    <div style="height: 100%;">
+        <div class="tab-pane" style="padding-right:unset; height: 100%; ">
+            <div>
+                <header-page  on-save="onSave" 
+                              on-import="onImport" 
+                              on-export="onExport"
+                              on-refresh="onRefresh"
+                              on-search-press="onSearch"
+                              key-field="function_id" 
+                              display-field="default_name" 
+                              icon-field="icon" 
+                              selected-key="$root.currentFunction.function_id"
+                              reload-on-change="false">
+                    <site-map>
+                        <span>{{$root.currentFunction.default_name}}</span>
+                        <div class="hcs-resp-action-zb-left-content" style="float: right;">
+                            <button class="zb-btn zb-btn-o-green"
+                                    ng-click="$root.doToggle('.zb-right-content')">
+                                <i class="bowtie-icon bowtie-menu"></i>
+                            </button>
+                        </div>
+                    </site-map>
+                </header-page>
+            </div>
+            <div class="hcs-right-side-department-list" style="height: calc(100% - 40px);">
+               <div class="col-xs-12 col-md-12">
+                     <collapse-box class="zb-form-common" icon="bowtie-icon bowtie-settings-gear-outline" underline='false' title="${get_res('general_settings','General Settings')}">
+                         <div class="col-xs-6 col-md-6 col-sm-6">
+                             <div class="form-group zb-form-group">
+                                <label class="col-sm-6 zb-form-label">${get_res('question_order','Question Order')}</label>
+                                <div class="col-sm-6"> 
+                                    <input-select></input-select>
+                                </div>
+                            </div>
+                            <div class="form-group zb-form-group">
+                                <label class="col-sm-6 zb-form-label">${get_res('allow_pause_&_resume','Allow Pause & Resumse')}</label>
+                                <div class="col-sm-6"> 
+                                    <input-checkbox ng-model=""></input-checkbox>
+                                </div>
+                            </div>
+                            <div class="form-group zb-form-group">
+                                <label class="col-sm-6 zb-form-label">${get_res('allow_anonymous_survey','Allow Anonymous Survey')}</label>
+                                <div class="col-sm-6"> 
+                                    <input-checkbox ng-model=""></input-checkbox>
+                                </div>
+                            </div>
+                            <div class="form-group zb-form-group">
+                                <label class="col-sm-6 zb-form-label">${get_res('prevent_numerous_response_from_1_pc','Prevent Numerous Response From 1 PC')}</label>
+                                <div class="col-sm-6"> 
+                                    <input-checkbox ng-model=""></input-checkbox>
+                                </div>
+                            </div>
+                            <div class="form-group zb-form-group">
+                                <label class="col-sm-6 zb-form-label">${get_res('question_navigation_during_the_survey','Question Navigation During The Survey')}</label>
+                                <div class="col-sm-6"> 
+                                    <input-checkbox ng-model=""></input-checkbox>
+                                </div>
+                            </div>
+                         </div>
+                         <div class="col-xs-6 col-md-6 col-sm-6" style="padding-left: 30px;">
+                             <div class="form-group zb-form-group">
+                                <label class="col-sm-6 zb-form-label">${get_res('set_time_limit','Set time limit')}</label>
+                                <div class="col-sm-6"> 
+                                    <input-select></input-select>
+                                </div>
+                            </div>
+                            <div class="form-group zb-form-group">
+                                <label class="col-sm-6 zb-form-label">${get_res('Set_reponse_limit','Set responses limit')}</label>
+                                <div class="col-sm-6"> 
+                                    <input-select ng-model=""></input-select>
+                                </div>
+                            </div>
+                            <div class="form-group zb-form-group">
+                                <label class="col-sm-6 zb-form-label">${get_res('Show_process_bar','Show process bar')}</label>
+                                <div class="col-sm-6"> 
+                                    <input-checkbox ng-model=""></input-checkbox>
+                                </div>
+                            </div>
+                            <div class="form-group zb-form-group">
+                                <label class="col-sm-6 zb-form-label">${get_res('show_question_numbering','Show questions numbering')}</label>
+                                <div class="col-sm-6"> 
+                                    <input-checkbox ng-model=""></input-checkbox>
+                                </div>
+                            </div>
+                            <div class="form-group zb-form-group">
+                                <label class="col-sm-6 zb-form-label">${get_res('Allow_responses_to_be_edited_after_submissions','Allow responses to be edited after submissions')}</label>
+                                <div class="col-sm-6"> 
+                                    <input-checkbox ng-model=""></input-checkbox>
+                                </div>
+                            </div>
+                         </div>
+                     </collapse-box>
+               </div>
+               <div class="col-xs-12 col-md-12">
+                    <collapse-box class="zb-form-common" icon="sap-icon sap-email-read" underline='false' title="${get_res('email_settings','E-Mail Settings')}">
+                        <div class="row">
+                            <div class="col-xs-12 col-md-6">
+                                <div id="tabNotification" class="zb-form-common zb-collapse-box" title="${get_res('notification_emails','Notification Emails')}">
+                                    <div class="zb-header hcs-zb-header-custom" style="padding-top: unset;">
+                                        <div class="zb-header-left hcs-zb-header-left-custom">
+                                            <div class="zb-header-content hcs-zb-header-content-custom">
+                                                <span class="zb-header-icon hcs-zb-header-icon-custom">
+                                                    <i class="bowtie-icon bowtie-chevron-left-light zb-icon-up hcs-zb-icon-up-custom"></i>
+                                                </span>
+                                                <span class="zb-header-number hcs-zb-header-number-custom"></span>
+                                                <span class="zb-header-title hcs-zb-header-title-custom" style="text-transform: unset;">${get_res('notification_emails','Notification Emails')}</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="zb-content hcs-zb-content-custom">
+                                        <div class="col-xs-12 col-md-12 col-sm-12" style="padding-right:unset;">
+                                            <div class="form-group zb-form-group">
+                                                <label class="col-sm-6 zb-form-label">${get_res('email_template','Email Template')}</label>
+                                                <div class="col-sm-6">
+                                                    <combobox></combobox>
+                                                </div>
+                                            </div>
+                                            <div class="form-group zb-form-group">
+                                                <label class="col-sm-6 zb-form-label">${get_res('send_to','Send to')}</label>
+                                                <div class="col-sm-6">
+                                                    <input-select></input-select>
+                                                </div>
+                                            </div>
+                                            <div class="form-group zb-form-group">
+                                                <label class="col-sm-6 zb-form-label">${get_res('CC','CC')}</label>
+                                                <div class="col-sm-6">
+                                                   <input-select></input-select>
+                                                </div>
+                                            </div>
+                                            <div class="form-group zb-form-group">
+                                                <label class="col-sm-6 zb-form-label">${get_res('BCC','BCC')}</label>
+                                                <div class="col-sm-6">
+                                                    <input-select></input-select>
+                                                </div>
+                                            </div>
+                                            <div class="form-group zb-form-group">
+                                                <label class="col-sm-6 zb-form-label">${get_res('when_to_send_mail','When to send mail')}</label>
+                                                <div class="col-sm-6">
+                                                    <label class="radio">
+                                                        <input type="radio">
+                                                        <span class="checkround"></span>
+                                                            ${get_res('right_after_finishing_course','Right after finishing Course')}
+                                                    </label>
+                                                    <label class="radio">
+                                                        <input type="radio">
+                                                        <span class="checkround"></span>
+                                                            ${get_res('at_a_specific_time','At a specific time')}
+                                                    </label>
+                                                </div>
+                                            </div>
+                                            <div class="form-group zb-form-group">
+                                                <label class="col-sm-6 zb-form-label">${get_res('from_date','From Date')}</label>
+                                                <div class="col-sm-6">
+                                                    <date-picker></date-picker>
+                                                </div>
+                                            </div>
+                                            <div class="form-group zb-form-group">
+                                                <label class="col-sm-6 zb-form-label">${get_res('to_date','To Date')}</label>
+                                                <div class="col-sm-6">
+                                                    <date-picker></date-picker>
+                                                </div>
+                                            </div>
+                                             <div class="form-group zb-form-group">
+                                                <label class="col-sm-6 zb-form-label">${get_res('from_time','From Time')}</label>
+                                                <div class="col-sm-6">
+                                                    <time-picker></time-picker>
+                                                </div>
+                                            </div>
+                                            <div class="form-group zb-form-group">
+                                                <label class="col-sm-6 zb-form-label">${get_res('to_time','To Time')}</label>
+                                                <div class="col-sm-6">
+                                                    <time-picker></time-picker>
+                                                </div>
+                                            </div>
+                                            <div class="form-group zb-form-group">
+                                                <label class="col-sm-6 zb-form-label">${get_res('send_email_again_after','Send email again after')}</label>
+                                                <div class="col-sm-6">
+                                                    <input-select></input-select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-md-6">
+                                <div id="tabConfirmation" class="zb-form-common zb-collapse-box" title="${get_res('confirmation_emails','Confirmation Emails')}">
+                                    <div class="zb-header hcs-zb-header-custom" style="padding-top:unset;">
+                                        <div class="zb-header-left hcs-zb-header-left-custom">
+                                            <div class="zb-header-content hcs-zb-header-content-custom">
+                                                <span class="zb-header-icon hcs-zb-header-icon-custom">
+                                                    <i class="bowtie-icon bowtie-chevron-left-light zb-icon-up hcs-zb-icon-up-custom"></i>
+                                                </span>
+                                                <span class="zb-header-number hcs-zb-header-number-custom"></span>
+                                                <span class="zb-header-title hcs-zb-header-title-custom" style="text-transform: unset;">${get_res('confirmation_emails','Confirmation Emails')}</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="zb-content hcs-zb-content-custom">
+                                        <div class="col-xs-12 col-md-12 col-sm-12" style="padding-right:unset;">
+                                            <div class="form-group zb-form-group">
+                                                <label class="col-sm-6 zb-form-label">${get_res('email_template','Email Template')}</label>
+                                                <div class="col-sm-6">
+                                                    <combobox></combobox>
+                                                </div>
+                                            </div>
+                                            <div class="form-group zb-form-group">
+                                                <label class="col-sm-6 zb-form-label">${get_res('send_to','Send to')}</label>
+                                                <div class="col-sm-6">
+                                                    <input-select></input-select>
+                                                </div>
+                                            </div>
+                                            <div class="form-group zb-form-group">
+                                                <label class="col-sm-6 zb-form-label">${get_res('CC','CC')}</label>
+                                                <div class="col-sm-6">
+                                                   <input-select></input-select>
+                                                </div>
+                                            </div>
+                                            <div class="form-group zb-form-group">
+                                                <label class="col-sm-6 zb-form-label">${get_res('BCC','BCC')}</label>
+                                                <div class="col-sm-6">
+                                                    <input-select></input-select>
+                                                </div>
+                                            </div>
+                                            <div class="form-group zb-form-group">
+                                                <label class="col-sm-6 zb-form-label">${get_res('when_to_send_mail','When to send mail')}</label>
+                                                <div class="col-sm-6">
+                                                    <label class="radio">
+                                                        <input type="radio">
+                                                        <span class="checkround"></span>
+                                                            ${get_res('right_after_finishing_course','Right after finishing Course')}
+                                                    </label>
+                                                    <label class="radio">
+                                                        <input type="radio">
+                                                        <span class="checkround"></span>
+                                                            ${get_res('at_a_specific_time','At a specific time')}
+                                                    </label>
+                                                </div>
+                                            </div>
+                                            <div class="form-group zb-form-group">
+                                                <label class="col-sm-6 zb-form-label">${get_res('from_date','From Date')}</label>
+                                                <div class="col-sm-6">
+                                                    <date-picker></date-picker>
+                                                </div>
+                                            </div>
+                                            <div class="form-group zb-form-group">
+                                                <label class="col-sm-6 zb-form-label">${get_res('to_date','To Date')}</label>
+                                                <div class="col-sm-6">
+                                                    <date-picker></date-picker>
+                                                </div>
+                                            </div>
+                                             <div class="form-group zb-form-group">
+                                                <label class="col-sm-6 zb-form-label">${get_res('from_time','From Time')}</label>
+                                                <div class="col-sm-6">
+                                                    <time-picker></time-picker>
+                                                </div>
+                                            </div>
+                                            <div class="form-group zb-form-group">
+                                                <label class="col-sm-6 zb-form-label">${get_res('to_time','To Time')}</label>
+                                                <div class="col-sm-6">
+                                                    <time-picker></time-picker>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                     </collapse-box>
+               </div>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+    </div>
+</div>
+<script>
+    <%include file="../scripts/survey_management_survey_settings.js"/>
+</script>

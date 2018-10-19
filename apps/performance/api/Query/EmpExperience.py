@@ -1,5 +1,5 @@
 from .. import models
-def get_emp_experience_by_emp_code(emp_code):
+def get_emp_experience_by_emp_code(emp_code, search):
     ret=models.HCSEM_EmpExperience().aggregate()
     ret.match("employee_code == {0}", emp_code)
     ret.left_join(models.HCSLS_Position(), "job_pos_code", "job_pos_code", "pos")
@@ -32,6 +32,11 @@ def get_emp_experience_by_emp_code(emp_code):
         modified_on="switch(case(modified_on!='',modified_on),'')",
         modified_by="switch(case(modified_by!='',um.login_account),'')",
         )
+    if(search != None):
+        ret.match("contains(working_location, @name) or " + \
+                  "contains(job_pos_name, @name) or " + \
+                  "contains(job_w_name, @name)", name=search.strip())
+
     ret.sort(dict(
         begin_date = 1
         ))

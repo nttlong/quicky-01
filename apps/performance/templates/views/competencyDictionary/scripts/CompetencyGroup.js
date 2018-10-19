@@ -4,7 +4,7 @@
         "dataTableTree": [],
         "tableFields": [
             { "data": "com_group_code", "title": "${get_res('com_group_code','Mã nhóm')}", width: "100px", className: "text-left" },
-            { "data": "ordinal", "title": "${get_res('ordinal','Thứ tự')}", width: "100px", className: "text-center" },
+            { "data": "ordinal", "title": "${get_res('ordinal','Thứ tự')}",format:"number", width: "100px", className: "text-center" },
             { "data": "lock", "title": "${get_res('lock','Ngưng sử dụng')}", format: "checkbox", width: "100px", className: "text-center" }
         ],
         "selectTreeNode": function (node) {

@@ -22,7 +22,7 @@
                                      <!--Năm-->
                                      <label for="inputLastName" class="col-md-4 col-sm-4 col-xs-4 zb-form-label">${get_res('apr_year','Năm')}</label>
                                      <div class="col-md-8 col-sm-8 col-xs-8">
-                                         <year-picker ng-model="entity.apr_year" ng-disabled="__mode === 2 ? true : false" required>
+                                         <year-picker ng-model="entity.apr_year" ng-disabled="__mode === 2 ? true : false" required/>
                                      </div>
                                  </div>
                              </div>
@@ -140,12 +140,14 @@
                                     <input-textarea rows="5" ng-model="entity.note" style="padding-bottom:31px;"></input-textarea>
                                 </div>
                             </div>
-                                <div class="form-group zb-form-group">
+                            <div class="form-group zb-form-group">
+                                <div class="col-md-12 col-sm-12 col-xs-12">
                                     <label for="DisplayInfo" class="col-md-3 col-sm-3 col-xs-3 zb-form-label">${get_global_res('create_and_modify','Tạo | Sửa')}</label>
                                     <div class="col-md-9 col-sm-9 col-xs-9">
-                                        <input-text value="{{ entity.created_on | date: $root.systemConfig.date_format}} {{entity.created_by}} | {{ entity.modified_on | date: $root.systemConfig.date_format}} {{entity.modified_by}}" ng-disabled="true">
+                                        <input-text value="{{ entity.created_on | date: $root.systemConfig.date_format}} {{entity.created_by}} | {{ entity.modified_on | date: $root.systemConfig.date_format}} {{entity.modified_by}}" ng-disabled="true"/>
                                     </div>
                                 </div>
+                            </div>
                         </collapse-box>
                     </div>
              </div>

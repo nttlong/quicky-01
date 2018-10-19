@@ -1,5 +1,4 @@
-﻿<div class="hcs-modal-format">
-    ﻿<div class="col-xs-12 col-md-6">
+﻿<div class="col-xs-12 col-md-6">
         <collapse-box class="zb-form-common" title="${get_global_res('Common_Information','Thông tin chung')}">
             <div class="col-xs-12 col-md-12 col-sm-12">
                 <div class="form-group zb-form-group">
@@ -85,7 +84,7 @@
                          <label class="col-xs-6 col-sm-4 col-md-5 zb-form-label">${get_global_res('ordinal','Thứ tự')}</label>
                          <div class="col-xs-6 col-sm-8 col-md-7">
                              <div style="grid-area: 1 / 1 / 2 / 2;">
-                                <input-number ng-model="entity.ordinal" type="float">
+                                <input-number ng-model="entity.ordinal" type="int">
                              </div>
                          </div>
                      </div>
@@ -100,7 +99,7 @@
             </div>
         </collapse-box>
     </div>
-    <div class="col-xs-12 col-md-6">
+<div class="col-xs-12 col-md-6">
         <collapse-box class="zb-form-common" title="${get_global_res('apply_for','Áp dụng cho')}">
             <div class="col-xs-12 col-md-12 col-sm-12">
                 <div class="form-group zb-form-group">
@@ -150,7 +149,6 @@
             </div>
         </collapse-box>
     </div>
-</div>
 <script>
     <%include file="scripts/common.js"/>
 </script>

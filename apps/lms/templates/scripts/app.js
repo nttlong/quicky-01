@@ -1,6 +1,7 @@
 ﻿﻿window.set_component_template_url('${get_static("app/directives/")}')
 window.set_component_url('${get_static("app/components/")}')
 window.set_api_combobox("${get_api_key('app_main.api.common/get_dropdown_list')}")
+window.set_authenticated_permission_service("${get_api_key('app_main.api.authenticate_permission/get_permission')}")
 window.get_static = "${get_static('/')}"
 window.set_static(window.get_static)
 angular
@@ -52,6 +53,7 @@ function controller($dialog, $scope, $filter) {
     $scope.services = services = ws($scope);
     $scope.$root.$getComboboxData = extension().getComboboxData;
     $scope.$root.$getInitComboboxData = extension().getInitComboboxData;
+    $scope.$root.$extension = extension();
     $scope.$root.$formatSystem = {
         "number": function(data){
             if(!data){
@@ -257,6 +259,12 @@ function controller($dialog, $scope, $filter) {
                 $scope.$root.$history.change(function (data) {
                     $scope.$root.$$absUrl = window.location.href;
                     if (data.page) {
+                        if(!_.findWhere($scope.$root.$function_list, {function_id:data.page}))
+                        {
+                            data.page = $scope.$root.$extension.TripleDES.decrypt(data.page);
+                            if(data.f)
+                                data.f = $scope.$root.$extension.TripleDES.decrypt(data.f);
+                        }
                         $scope.isHomePage = false;
                         var currentFunction = _.filter(functions, function (d) {
                             return d["function_id"] == data.page;
@@ -350,6 +358,40 @@ function extension() {
 
     fac.getComboboxData = getComboboxData;
     fac.getInitComboboxData = getInitComboboxData;
+    fac.TripleDES = {
+        _password: CryptoJS.MD5("lv"),
+        setPassword: function(password){
+            fac.TripleDES._password = CryptoJS.MD5(password);
+        },
+        encrypt: function(val){
+            try {
+                fac.TripleDES._password.words[4] = fac.TripleDES._password.words[0];
+                fac.TripleDES._password.words[5] = fac.TripleDES._password.words[1];
+
+                // create a 64-bit zero filled
+                var iv = CryptoJS.lib.WordArray.create(64/8);
+                return CryptoJS.TripleDES.encrypt(val, fac.TripleDES._password, {iv: iv}).toString();
+            }
+            catch(err) {
+                throw err
+            }
+        },
+        decrypt: function(val){
+            try {
+                fac.TripleDES._password.words[4] = fac.TripleDES._password.words[0];
+                fac.TripleDES._password.words[5] = fac.TripleDES._password.words[1];
+                var ct = {
+                    ciphertext: CryptoJS.enc.Base64.parse(val)
+                };
+                var iv = CryptoJS.lib.WordArray.create(64/8);
+                var decrypted = CryptoJS.TripleDES.decrypt(ct, fac.TripleDES._password, {iv: iv});
+                return decrypted.toString(CryptoJS.enc.Utf8);
+            }
+            catch(err) {
+                throw err
+            }
+        }
+    };
 
     /**
      * Hàm get combobox data
@@ -373,10 +415,16 @@ function extension() {
                 scope.keyField = res.value_field;
                 scope.title = res.display_name;
                 scope.templateFields = res.display_fields;
-                var data = {
-                    recordsTotal: res.data.total_items,
-                    data: res.data.items
-                };
+                var data = {};
+                if (res.hasOwnProperty('parent_field') && res['parent_field']) {
+                    data = res.data.items;
+                }
+                else {
+                    data = {
+                        recordsTotal: res.data.total_items,
+                        data: res.data.items
+                    };
+                }
                 cbSetData(data);
             });
     }
@@ -389,7 +437,7 @@ function extension() {
      * Trường hợp get đơn lẻ truyền tham số là object
      * example:{key:xxx, code:xxx}
      */
-    function getInitComboboxData(scope, key) {
+    function getInitComboboxData(scope, key, callback) {
         services.api("${get_api_key('app_main.api.common/get_init_data_combobox')}")
             .data({
                 name: key
@@ -403,7 +451,8 @@ function extension() {
                 } else {
                     scope[res.alias] = res;
                 }
-                scope.$apply();
+                if(callback) callback();
+                scope.$applyAsync();
             })
     }
 
@@ -431,4 +480,11 @@ function Calendar() {
 
 function getMeridiem() {
     return moment().locale("${get_language()}").format("a");
+}
+
+window.common_language = {
+    "notification" : "${get_global_res('notification','Thông báo')}",
+    "unauthorized" : "${get_global_res('unauthorized','Không được phép')}",
+    "internal_server_error" : "${get_global_res('Internal_Server_Error','Có lỗi từ phía máy chủ')}",
+    "please_try_again_or_contact_with_technical_department" : "${get_global_res('please_try_again_or_contact_with_technical_department','Xin vui lòng thử lại hoặc liên hệ bộ phận kỹ thuật')}"
 }

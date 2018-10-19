@@ -2,9 +2,10 @@
     _style = ""
     _height = ""
     _maximize = "true"
+    _modal_content_style = ""
 %>
-<div class="modal-dialog" style="${self.attr._style}">
-    <div class="modal-content">
+<div class="modal-dialog" style="${self.attr._style};">
+    <div class="modal-content" style="${self.attr._modal_content_style}">
         <div class="modal-header">
             <div class="left-content pull-left">
                 <!--<img src="{{$root.logo}}">-->
@@ -15,7 +16,7 @@
                 <button type="button" style="display:{{ ${self.attr._maximize} == true ? '' : 'none' }};" class="close" ng-click="onResizeDialog()"><i class="bowtie-icon bowtie-view-full-screen"></i></button>
             </div>
         </div>
-        <div class="modal-body modal-body-resize" style="height:${self.attr._height};">
+        <div class="modal-body modal-body-resize" style="height:${self.attr._height};max-height:{{maxHeightDialog}}">
             <%block name="modal_body"/>
         </div>
         <div class="modal-footer">

@@ -2,8 +2,10 @@
 from bson import ObjectId
 import models
 import logging
+from hcs_authorization import action_type, authorization
 logger = logging.getLogger(__name__)
 
+@authorization.authorise(action = action_type.Action.WRITE)
 def update(args):
     try:
         if args['data'] != None:

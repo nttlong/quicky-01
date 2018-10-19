@@ -9,7 +9,7 @@
             { "data": "com_name", "title": "${get_global_res('name','Tên')}", "className": "text-left" },
             { "data": "apr_form_type", "title": "${get_res('apr_form_type_table_header','Hình thức đánh giá')}", "className": "text-left" },
             { "data": "point_scale_type", "title": "${get_res('point_scale_type_table_header','Thang điểm')}", "className": "text-left" },
-            { "data": "ordinal", "title": "${get_res('ordinal_table_header','Thứ tự')}", "className": "text-center" },
+            { "data": "ordinal", "title": "${get_res('ordinal_table_header','Thứ tự')}","format":"number: system", "className": "text-center" },
             { "data": "lock", "title": "${get_res('lock_table_header','Toàn cty')}", "className": "text-center", "format": "checkbox" }
         ],
         $$tableConfig: {},

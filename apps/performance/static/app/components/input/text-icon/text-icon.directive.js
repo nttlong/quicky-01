@@ -27,7 +27,7 @@
                 config.icon = (attr["icon"]) ? attr["icon"] : 'bowtie-icon bowtie-search';
                 config.click = (attr["onClick"]) ? attr["onClick"] : null;
                 config.change = (attr["onChange"]) ? attr["onChange"] : null;
-
+                config.classbtn = (attr["classBtn"]) ? attr["classBtn"] : '';
                 if (attr["required"]) {
                     $(elem).wrap("<span zb-required></span>")
                 }
@@ -36,9 +36,9 @@
                 sInput = sInput.replace("<<placeholder>>", config.placeholder).replace("<<ngModel>>", config.ngModel);
                 var sIcon = '' +
                     '<div class="input-group-btn">' +
-                    '   <button class="btn btn-default"><i class="<<icon>>"></i></button>' +
+                    '   <button class="btn btn-default <<classbtn>>"><i class="<<icon>>"></i></button>' +
                     '</div>';
-                sIcon = sIcon.replace("<<icon>>", config.icon);
+                sIcon = sIcon.replace("<<icon>>", config.icon).replace("<<classbtn>>",config.classbtn);
 
                 if (config.iconAlign === ALIGN.LEFT) {
                     $(elem).append(sIcon).append(sInput);

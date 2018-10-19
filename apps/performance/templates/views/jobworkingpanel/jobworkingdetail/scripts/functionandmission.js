@@ -1,9 +1,9 @@
 ﻿(function (scope) {
     scope.$$table = {
         tableFields: [
-            { "data": "ordinal", "title": "${get_res('ordinal_table_header','Thứ tự')}", "className": "text-center" },
+            { "data": "ordinal", "title": "${get_res('ordinal_table_header','Thứ tự')}",format:"number", "className": "text-center" },
             { "data": "task_name", "title": "${get_res('task_name_table_header','Nhiệm vụ')}", "className": "text-left" },
-            { "data": "weight", "title": "${get_res('weight_table_header','Trọng số')}", "className": "text-left" }
+            { "data": "weight", "title": "${get_res('weight_table_header','Trọng số')}",format:"number", "className": "text-left" }
         ],
         $$tableConfig: {},
         tableSource: _loadDataServerSide,

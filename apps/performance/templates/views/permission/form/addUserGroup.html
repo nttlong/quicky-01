@@ -1,7 +1,7 @@
 ﻿
 <%!
     #_style="width:300px;"
-    _height=";padding:0px;"
+    #_height=";overflow:hidden"
 %>
 <%inherit file="../../commons/dialog_save_close.html"/>
 
@@ -18,13 +18,13 @@
     }
 </style>
 <div class="hcs-modal-format">
-    <div class="col-md-{{col_group}} col-sm-{{col_group}}">
+    <div class="col-md-{{col_group}} col-sm-{{col_group}}" style="max-height:{{resizeMaxHeight}}">
     <collapse-box class="zb-form-common" title="${get_global_res('Common_Information','Thông tin chung')}">
         <div class="col-md-{{col}}">
             <div class="form-group zb-form-group">
                 <!--Mã nhóm người dùng-->
-                <label for="inputUserName" class="col-sm-5 col-md-5 col-xs-3 zb-form-label">${get_res('role_code','Mã nhóm người dùng')}</label>
-                <div class="col-sm-7 col-md-7 col-xs-9">
+                <label for="inputUserName" class="col-sm-5 col-md-5 col-xs-6 zb-form-label">${get_res('role_code','Mã nhóm người dùng')}</label>
+                <div class="col-sm-7 col-md-7 col-xs-6">
                     <input-text id="inputUserName" ng-model="entity.role_code" ng-disabled="{{ __mode === 2 ? 'true' : 'false' }}" required>
                 </div>
             </div>
@@ -32,8 +32,8 @@
         <div class="col-md-{{col}}">
             <div class="form-group zb-form-group">
                 <!--Tên nhóm người dùng-->
-                <label for="inputDisplayName" class="col-sm-5 col-md-5 col-xs-3 zb-form-label">${get_res('role_name','Tên nhóm người dùng')}</label>
-                <div class="col-sm-7 col-md-7 col-xs-9">
+                <label for="inputDisplayName" class="col-sm-5 col-md-5 col-xs-6 zb-form-label">${get_res('role_name','Tên nhóm người dùng')}</label>
+                <div class="col-sm-7 col-md-7 col-xs-6">
                     <input-text id="inputDisplayName" ng-model="entity.role_name" required>
                 </div>
             </div>
@@ -41,8 +41,8 @@
         <div class="col-md-{{col}}">
             <div class="form-group zb-form-group">
                 <!--Vùng dữ liệu truy cập-->
-                <label for="inputGroupUser" class="col-sm-5 col-md-5 col-xs-3 zb-form-label">${get_res('dd_code','Vùng dữ liệu truy cập')}</label>
-                <div class="col-sm-7 col-md-7 col-xs-9">
+                <label for="inputGroupUser" class="col-sm-5 col-md-5 col-xs-6 zb-form-label">${get_res('dd_code','Vùng dữ liệu truy cập')}</label>
+                <div class="col-sm-7 col-md-7 col-xs-6">
                     <!--<input-combobox id="inputEmployeeId" required
                         list-code="${encryptor.get_key('cbb_data_domain')}"
                         list-value="[{ '@dd_code': '' }]"
@@ -68,8 +68,8 @@
         <div class="col-md-{{col}}">
             <div class="form-group zb-form-group">
                 <!--Ngưng sử dụng-->
-                <label for="inputGroupUser" class="col-sm-5 col-md-5 col-xs-3 zb-form-label">${get_res('stop','Ngưng sử dụng')}</label>
-                <div class="col-md-7 col-sm-7 col-xs-9">
+                <label for="inputGroupUser" class="col-sm-5 col-md-5 col-xs-6 zb-form-label">${get_res('stop','Ngưng sử dụng')}</label>
+                <div class="col-md-7 col-sm-7 col-xs-6">
                     <input-checkbox ng-model="entity.stop"/>
                 </div>
             </div>
@@ -80,8 +80,8 @@
 
         <collapse-box class="zb-form-common" title="${get_global_res('Note','Ghi chú')}">
             <!--Ghi chú-->
-            <div class="form-group zb-form-group">
-                <div class="col-xs-12 col-md-12">
+            <div class="col-xs-12 col-md-12">
+                <div class="form-group zb-form-group">
                     <input-textarea rows="6" ng-model="entity.description"></input-textarea>
                 </div>
           </div>
@@ -341,11 +341,16 @@
         scope.selectedItems = [];
 
         scope.$applyAsync();
-
+        var isFullSize = false;
+        scope.maxHeightDialog = "80vh";//default init
+        scope.minHeightDialog = "80vh";
         function onResizeDialog() {
             $dialog.fullScreen();
             scope.col_group = scope.col_group == 6 ? 8 : 6;
             scope.col = scope.col == 12 ? 6 : 12;
+            isFullSize = !isFullSize;
+            scope.maxHeightDialog = isFullSize ? "100%" : "80vh";
+            scope.minHeightDialog = isFullSize ? "100%" : "80vh";
             setTimeout(function () {
                 $(window).trigger('resize');
             }, 100);

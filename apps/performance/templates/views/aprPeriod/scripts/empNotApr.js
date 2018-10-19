@@ -40,7 +40,7 @@
     function onSearch(val){
         debugger
         scope.tableSearchText = val;
-        //scope.$apply();
+        scope.$apply();
     }
 
     function _loadDataServerSide(fnReloadData, iPage, iPageLength, orderBy, searchText) {

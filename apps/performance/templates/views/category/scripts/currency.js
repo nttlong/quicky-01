@@ -8,7 +8,7 @@
 		{ "data": "temp_rate", "title": "${get_res('temp_rate_table_header','Tỷ lệ mẫu')}", "className": "text-right" },
 		{ "data": "multiply", "title": "${get_res('multiply_table_header','Nhân hệ số')}", "className": "text-center", "format": "checkbox" },
 		{ "data": "cons_code", "title": "${get_res('cons_code_table_header','Mã tổng hợp')}", "className": "text-left" },
-		{ "data": "dec_place", "title": "${get_res('dec_place_table_header','Số lẻ làm tròn')}", "className": "text-center" },
+		{ "data": "dec_place", "title": "${get_res('dec_place_table_header','Số lẻ làm tròn')}", "className": "text-right" },
 		{ "data": "note", "title": "${get_res('note_table_header','Ghi chú')}", "className": "text-left" },
         { "data": "ordinal", "title": "${get_res('ordinal_table_header','Thứ tự')}", "className": "text-center" },
         { "data": "lock", "title": "${get_res('lock_table_header','Ngưng SD')}", "format": "checkbox", "className": "text-center" }

@@ -28,28 +28,28 @@
                 <button class="zb-btn" ng-if="fnGen && authorise.create === true" ng-click="fnGen()">
                     <i class="bowtie-icon bowtie-dictionary-add"></i>
                 </button>
-                <button class="zb-btn zb-btn-o-green" ng-if="fnAdd && authorise.create === true" ng-click="fnAdd()">
+                <button class="zb-btn zb-btn-o-green" ng-if="fnAdd && (!authorise || authorise.create === true)" ng-click="fnAdd()">
                     <i class="bowtie-icon bowtie-math-plus"></i>
                 </button>
-                <button class="zb-btn zb-btn-o-blue" ng-if="fnEdit && authorise.write === true" ng-click="fnEdit()">
+                <button class="zb-btn zb-btn-o-blue" ng-if="fnEdit && (!authorise || authorise.write === true)" ng-click="fnEdit()">
                     <i class="bowtie-icon bowtie-edit-outline"></i>
                 </button>
-                <button class="zb-btn zb-btn-o-red" ng-if="fnDelete && authorise.delete === true" ng-click="fnDelete()">
+                <button class="zb-btn zb-btn-o-red" ng-if="fnDelete && (!authorise || authorise.delete === true)" ng-click="fnDelete()">
                     <i class="bowtie-icon bowtie-trash"></i>
                 </button>
-                <button class="zb-btn zb-btn-o-red" ng-if="fnSave && authorise.write === true" ng-click="fnSave()">
+                <button class="zb-btn zb-btn-o-red" ng-if="fnSave && (!authorise || authorise.write === true)" ng-click="fnSave()">
                     <i class="bowtie-icon bowtie-save"></i>
                 </button>
-                <button class="zb-btn" ng-if="fnCopy && authorise.copy === true" ng-click="fnCopy()">
+                <button class="zb-btn" ng-if="fnCopy && (!authorise || authorise.copy === true)" ng-click="fnCopy()">
                     <i class="bowtie-icon bowtie-edit-copy"></i>
                 </button>
-                <button class="zb-btn" ng-if="fnImport && authorise.import === true" ng-click="fnImport()">
+                <button class="zb-btn" ng-if="fnImport && (!authorise || authorise.import === true)" ng-click="fnImport()">
                     <i class="bowtie-icon bowtie-transfer-upload"></i>
                 </button>
-                <button class="zb-btn" ng-if="fnExport && authorise.export === true" ng-click="fnExport()">
+                <button class="zb-btn" ng-if="fnExport &&(!authorise || authorise.export === true)" ng-click="fnExport()">
                     <i class="bowtie-icon bowtie-transfer-download"></i>
                 </button>
-                <button class="zb-btn zb-btn-o-purple" ng-if="fnRefresh && authorise.read === true" ng-click="fnRefresh()">
+                <button class="zb-btn zb-btn-o-purple" ng-if="fnRefresh && (!authorise || authorise.read === true)" ng-click="fnRefresh()">
                     <i class="bowtie-icon bowtie-navigate-refresh"></i>
                 </button>
             </div>

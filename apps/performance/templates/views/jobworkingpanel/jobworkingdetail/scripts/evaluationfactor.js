@@ -3,7 +3,7 @@
         tableFields: [
             { "data": "factor_group_name", "title": "${get_res('task_name_table_header','Nhóm yếu tố đánh giá')}", "className": "text-left" },
             { "data": "factor_name", "title": "${get_res('factor_name_table_header','Yếu tố đánh giá')}", "className": "text-left" },
-            { "data": "weight", "title": "${get_res('weight_table_header','Trọng số')}", "className": "text-center" }
+            { "data": "weight", "title": "${get_res('weight_table_header','Trọng số')}",,"className": "text-center" }
         ],
         $$tableConfig: {},
         tableSource: _loadDataServerSide,

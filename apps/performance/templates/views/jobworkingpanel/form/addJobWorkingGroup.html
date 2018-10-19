@@ -65,7 +65,7 @@
                         <!--Thứ tự-->
                         <label class="col-sm-5 col-md-4 col-xs-5 zb-form-label">${get_res('ordinal','Thứ tự')}</label>
                         <div class="col-sm-7 col-md-8 col-xs-7">
-                            <input-number ng-model="entity.ordinal">
+                            <input-number ng-model="entity.ordinal" max="1000" min="0">
                         </div>
                     </div>
         </div>

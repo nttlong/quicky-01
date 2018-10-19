@@ -1,11 +1,12 @@
 ﻿(function (scope) {
     scope.$currentEmployeeCode = (scope.$root.$commons) ? scope.$root.$commons.$current_employee_code : null
-    console.log(scope.$currentEmployeeCode);
 
     scope.$active = (scope.$root.$commons) ? scope.$root.$commons.$active : null
 
     scope.$parent.$parent.$parent.onSave = null;
     scope.$parent.$parent.$parent.onRefresh = null;
+    scope.onSearch = onSearch;
+    scope.onSearchExperience = onSearchExperience;
 
     scope.$tableEmpWorking = {
         tableField: [
@@ -124,7 +125,6 @@
                         recordsFiltered: res.total_items,
                         data: res.items
                     };
-                    console.log("data", data.data);
                     //lấy giá trị mặc định của nhân viên nếu chưa có quyết định bn-dc
                     services.api("${get_api_key('app_main.api.HCSEM_EmpWorking/get_default_value_curent_employee')}")
                         .data({
@@ -312,10 +312,11 @@
 
     function onSearch(val) {
         scope.$tableEmpWorking.tableSearchText = val;
+
     }
 
     function onSearchExperience(val) {
-        scope.$tableEmpExperience = val;
+        scope.$tableEmpExperience.tableSearchText = val;
     }
 
     function onRefresh() {

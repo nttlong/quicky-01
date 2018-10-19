@@ -27,7 +27,7 @@
     padding-bottom: 0;
     box-shadow: none;
     height: @h_control;
-    padding: 0 5px 0 1px;
+    padding: 10px 5px 0px 1px;
     vertical-align: bottom;
 }
 
@@ -64,7 +64,7 @@
     font-size: @font_size_label !important;
     margin-top: 0px !important;
     margin-bottom: 0px !important;
-    line-height: @h_control !important;
+    line-height: 39px !important;
     text-align: left !important;
     padding: 0 0px 0px 5px;
     font-weight: normal;
@@ -124,7 +124,7 @@
                 text-overflow: ellipsis;
                 white-space: nowrap;
                 overflow: hidden;
-                padding-bottom: 5px
+                padding-bottom: 0px
             }
         }
     }
@@ -247,7 +247,7 @@
 
             > span {
                 position: absolute;
-                bottom: -3px;
+                bottom: 0px;
                 left: 1px;
             }
         }
@@ -332,8 +332,6 @@
     }
 }
 
-
-
 /*FORM DATEPICKER*/
 
 .zb-form-date-picker {
@@ -353,6 +351,10 @@
         .bowtie-icon {
             padding-right: 0 2px;
         }
+    }
+
+    > input {
+        padding: 8px 5px 0 1px;
     }
 
     .zb-form-date-picker-focus {
@@ -666,7 +668,7 @@ textarea.zb-form-textarea[disabled] {
 [zb-required]::before {
     content: "(*)";
     color: red;
-    top: 7px;
+    top: 12px;
     position: absolute;
     left: 0;
     font-size: 10px;
@@ -706,7 +708,7 @@ input[disabled] {
 .zb-list-view {
     height: 100%;
     width: 100%;
-    border: 1px solid @border_color;
+    /*border: 1px solid @border_color*/;
     overflow: auto;
     margin-bottom: unset;
 }
@@ -752,7 +754,7 @@ input[disabled] {
     padding-bottom: 0;
     height: 30px;
     box-shadow: none;
-    padding: 3px 5px 0 1px;
+    padding: 8px 5px 0 1px;
     width: 100%;
 }
 

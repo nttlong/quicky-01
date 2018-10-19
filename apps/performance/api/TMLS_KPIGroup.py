@@ -2,6 +2,7 @@
 from bson import ObjectId
 import models
 from Query import KPIGroup
+from hcs_authorization import action_type, authorization
 import logging
 import threading
 import common
@@ -9,11 +10,13 @@ logger = logging.getLogger(__name__)
 global lock
 lock = threading.Lock()
 
+@authorization.authorise(action = action_type.Action.READ)
 def get_tree(args):
     ret=KPIGroup.get_kpi_group(args["data"]["lock"]);
     
     return ret.get_list()
 
+@authorization.authorise(action = action_type.Action.CREATE)
 def insert(args):
     try:
         lock.acquire()
@@ -40,10 +43,7 @@ def insert(args):
         lock.release()
         raise(ex)
 
-
-
-
-
+@authorization.authorise(action = action_type.Action.WRITE)
 def update(args):
     try:
         lock.acquire()
@@ -96,6 +96,7 @@ def update(args):
 #    except Exception as ex:
 #        lock.release()
 #        raise(ex)
+@authorization.authorise(action = action_type.Action.DELETE)
 def delete(args):
     try:
         lock.acquire()
@@ -156,7 +157,7 @@ def delete(args):
         raise(ex)
 
 
-
+@authorization.authorise(common = True)
 def set_dict_insert_data(args):
     ret_dict = dict()
 
@@ -175,7 +176,7 @@ def set_dict_insert_data(args):
 
     return ret_dict
 
-
+@authorization.authorise(common = True)
 def set_dict_update_data(args):
     ret_dict = set_dict_insert_data(args)
     del ret_dict['kpi_group_code']

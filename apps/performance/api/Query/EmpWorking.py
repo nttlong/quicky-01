@@ -78,6 +78,16 @@ def get_empworking_by_employee_code(emp_code, page_index, page_size, sort, searc
             #"modified_by"               :"switch(case(modified_by!='',um.login_account),'')",
 
          }},
+         {
+             "$match": {
+                 "$or": [{"appoint_name": {"$regex": search, "$options": 'i'}},
+                         {"decision_no": {"$regex": search, "$options": 'i'}},
+                         {"department_name": {"$regex": search, "$options": 'i'}},
+                         {"job_pos_name": {"$regex": search, "$options": 'i'}},
+                         {"job_w_name": {"$regex": search, "$options": 'i'}},
+                         {"region_name": {"$regex": search, "$options": 'i'}}]
+             }
+         },
          { "$sort": sort },
             {
             "$facet": {

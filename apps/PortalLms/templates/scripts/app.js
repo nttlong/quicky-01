@@ -1,6 +1,7 @@
 ﻿﻿window.set_component_template_url('${get_static("app/directives/")}')
 window.set_component_url('${get_static("app/components/")}')
 window.set_api_combobox("${get_api_key('app_main.api.common/get_dropdown_list')}")
+window.set_authenticated_permission_service("${get_api_key('app_main.api.authenticate_permission/get_permission')}")
 window.get_static = "${get_static('/')}"
 window.set_static(window.get_static)
 angular
@@ -407,4 +408,11 @@ function Calendar() {
 
 function getMeridiem() {
     return moment().locale("${get_language()}").format("a");
+}
+
+window.common_language = {
+    "notification" : "${get_global_res('notification','Thông báo')}",
+    "unauthorized" : "${get_global_res('unauthorized','Không được phép')}",
+    "internal_server_error" : "${get_global_res('Internal_Server_Error','Có lỗi từ phía máy chủ')}",
+    "please_try_again_or_contact_with_technical_department" : "${get_global_res('please_try_again_or_contact_with_technical_department','Xin vui lòng thử lại hoặc liên hệ bộ phận kỹ thuật')}"
 }

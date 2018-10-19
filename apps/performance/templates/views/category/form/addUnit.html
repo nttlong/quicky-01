@@ -62,10 +62,10 @@
                     <div class="form-group zb-form-group">
                         <input-textarea rows="6" ng-model="entity.note"></input-textarea>
                     </div>
-                    <div class="form-group zb-form-group" style="padding-top: 16px;">
+                    <div class="form-group zb-form-group">
                     <label for="DisplayInfo" class="col-xs-5 col-sm-3 zb-form-label">${get_global_res('create_and_modify','Tạo | Sửa')}</label>
                     <div class="col-xs-7 col-sm-9">
-                        <input-text value="{{ entity.created_on | date: $root.systemConfig.date_format}} {{entity.created_by}} | {{ entity.modified_on | date: $root.systemConfig.date_format}} {{entity.modified_by}}" ng-disabled="true">
+                        <input-text style="text-align: right;" value="{{ entity.created_on | date: $root.systemConfig.date_format}} {{entity.created_by}} | {{ entity.modified_on | date: $root.systemConfig.date_format}} {{entity.modified_by}}" ng-disabled="true">
                     </div>
                 </div>
                 </div>

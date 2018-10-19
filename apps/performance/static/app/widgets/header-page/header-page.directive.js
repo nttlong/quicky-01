@@ -49,11 +49,13 @@
                 var btnAdvancedSearch = $(elem).find("#btnAdvancedSearch");
 
                 $scope.$watch("selectedKey", function (v) {
-                    authenticatedService.getPermissionByFunctionId(v, function(res){
-                        $scope.authorise = res;
-                        $scope.$root.$$$authoriseFunction.authorisePermission = res;
-                        $scope.$applyAsync();
-                    });
+                    if(v){
+                        authenticatedService.getPermissionByFunctionId(v, function(res){
+                            $scope.authorise = res;
+                            $scope.$root.$$$authoriseFunction.authorisePermission = res;
+                            $scope.$applyAsync();
+                        });
+                    }
                 });
 
                 $scope.isAdvancedSearch = $transclude.isSlotFilled('advancedSearch');

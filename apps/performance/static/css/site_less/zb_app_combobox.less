@@ -16,7 +16,7 @@
 .zb-form-combobox {
     > div.form-control {
         height: @h_control;
-        line-height: 28px;
+        line-height: 19px;
         padding: 0 2px !important;
         cursor: text;
         display: inherit;
@@ -27,6 +27,17 @@
 
         > .placeholder {
             color: #c0c0c0;
+        }
+
+        > input, .placeholder {
+            padding-top: 9px;
+            padding-bottom: 0px;
+        }
+
+         .display-value {
+            padding-top: 9px;
+            padding-bottom: 0px;
+            display: block;
         }
     }
 
@@ -47,7 +58,7 @@
             border-radius: 0 !important;
             color: #999;
             font-size: 18px;
-            transition: all ease 0.5s;
+            transition: background ease 0.5s, color ease 0.5s;
             outline: none;
             background: #fff;
             box-shadow: none;

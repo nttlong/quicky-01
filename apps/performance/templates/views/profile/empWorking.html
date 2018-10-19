@@ -9,13 +9,17 @@
             <div class="hcs-tab-info">
                 <div class="col-xs-12 col-md-12 competency no-padding">
                     <div class="hcs-tab-info-box active" href="#tab_default_1" data-toggle="tab" ng-click="changeActive($event, 1)">
-                        <img src="${get_static('assets/images/General.png')}"/>
+                        <span class="bowtie-icon bowtie-timeline-delivery"></span>
                         <label>
                             ${get_res('emp_working','Bổ nhiệm - điều chuyển')}
                         </label>
                     </div>
+                    <div style="float: left;
+                        border-right: 1px solid #E2E2E2;
+                        height: 35px;
+                        margin-top: 7px;"></div>
                     <div class="hcs-tab-info-box" href="#tab_default_2" data-toggle="tab" ng-click="changeActive($event, 2)">
-                        <img src="${get_static('assets/images/Level.png')}"/>
+                        <span class="sap-icon sap-employee-pane"></span>
                         <label style="padding-left:5px;">
                             ${get_res('emp_experience','Kinh nghiệm trước đây')}
                         </label>
@@ -30,7 +34,7 @@
                                 <i class="bowtie-icon bowtie-menu"></i>
                             </button>
                         </toolbar>
-                        <toolbar class="hcs-action-collapse-box-large">
+                        <toolbar class="hcs-action-collapse-box-large zb-toolbar-small-control">
                             <input-text-icon icon="bowtie-icon bowtie-search"
                                                 on-click="onSearch"></input-text-icon>
                             <button ng-if="$active" ng-click="event.empWorking.onAdd()" class="zb-btn zb-btn-o-green">
@@ -65,8 +69,8 @@
 		        </div>
 		        <div class="tab-pane col-xs-12 col-md-12" id="tab_default_2" ng-if="tabIdx == 2" style="height: calc(100% - 8px);">
 	                    <collapse-box class="zb-form-common"  title="${get_res('emp_experience','Kinh nghiệm trước đây')}">
-                        <toolbar class="eeeeee">
-                            <input-text-icon icon="bowtie-icon bowtie-search" style="width:200px;float:left;margin: 0 2.5px;"
+                        <toolbar class="hcs-action-collapse-box-large zb-toolbar-small-control">
+                            <input-text-icon icon="bowtie-icon bowtie-search"
                                                 on-click="onSearchExperience"></input-text-icon>
                             <button ng-if="$active" ng-click="event.empExperience.onAdd()" class="zb-btn zb-btn-o-green">
                                 <i class="bowtie-icon bowtie-math-plus"></i>

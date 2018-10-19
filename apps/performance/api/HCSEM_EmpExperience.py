@@ -24,7 +24,7 @@ def get_list_with_searchtext(args):
             pageSize = (lambda pSize: pSize if pSize != None else 20)(pageSize)
 
             if args['data'].has_key('employee_code'):
-                ret = EmpExperience.get_emp_experience_by_emp_code(args['data']['employee_code'])
+                ret = EmpExperience.get_emp_experience_by_emp_code(args['data']['employee_code'], searchText)
             else:
                 return dict(
                     error = "parameter 'employee_code' is not exist"

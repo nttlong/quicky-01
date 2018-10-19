@@ -1,31 +1,189 @@
 ﻿    <div id="collapseTableAwardLevel" class="row">
         <div class="col-md-12" style="height: 42.5vh;">
         <collapse-box class="zb-form-common" title="${get_res('award_level_caption_toolbar','Cấp khen thưởng')}">
-            <toolbar>
+            <toolbar class="zb-toolbar-small-control">
                 <input-text-icon icon="bowtie-icon bowtie-search"
-                                 on-click="onSearch"></input-text-icon>
-                <button class="zb-btn zb-btn-o-green" ng-click="onAdd()">
+                                 on-click="onSearchAwardLevel"></input-text-icon>
+                <button class="zb-btn zb-btn-o-green" ng-click="onAddAwardLevel()">
                     <i class="bowtie-icon bowtie-math-plus"></i>
                 </button>
-                <button class="zb-btn zb-btn-o-blue" ng-click="onEdit()">
+                <button class="zb-btn zb-btn-o-blue" ng-click="onEditAwardLevel()">
                     <i class="bowtie-icon bowtie-edit-outline"></i>
                 </button>
-                <button class="zb-btn zb-btn-o-red" ng-click="onDelete()">
+                <button class="zb-btn zb-btn-o-red" ng-click="onDeleteAwardLevel()">
                     <i class="bowtie-icon bowtie-trash"></i>
                 </button>
-                <button class="zb-btn" ng-click="onReload()">
+                <button class="zb-btn" ng-click="onReloadAwardLevel()">
                     <i class="bowtie-icon bowtie-navigate-refresh"></i>
                 </button>
             </toolbar>
-            <table-data data-source="tableSource" fields="tableFields" type="MultiSelect" 
+            <table-data data-source="tableAwardLevelSource" fields="tableAwardLevelFields" type="MultiSelect"
             server-side="true" page-length="100" paging="true" 
-            selected-items="selectedItems"
-            current-item="currentItem" search-text="tableSearchText"
-            refresh-row="refreshDataRow">
+            selected-items="selectedAwardLevel"
+            current-item="currentAwardLevel" search-text="tableAwardLevelSearchText"
+            refresh-row="refreshDataAwardLevelRow">
             </table-data>
         </collapse-box>
         </div>
     </div>
 <script>
-    <%include file = "./scripts/awardlevel.js" />
+    (function (scope) {
+        //Cấu hình tên field và caption hiển thị trên UI
+        scope.tableAwardLevelFields = [
+        { "data": "award_level_code", "title": "${get_res('award_level_code_table_header','Mã')}", "className": "text-left" },
+        { "data": "award_level_name", "title": "${get_res('award_level_name_table_header','Tên')}", "className": "text-left" },
+        { "data": "max_times_per_year", "title": "${get_res('max_times_per_year_table_header','Số lần tối đa/năm')}", "className": "text-center" },
+        { "data": "ordinal", "title": "${get_res('ordinal_table_header','Thứ tự')}", "className": "text-center" }
+        ];
+        //
+        scope.$$tableAwardLevelConfig = {};
+        //Dữ liệu cho table
+
+        scope.tableAwardLevelSource = _loadAwardLevelDataServerSide;
+        function _loadAwardLevelDataServerSide(fnReloadData, iPage, iPageLength, orderBy, searchText) {
+            scope.$$tableAwardLevelConfig = {
+                fnReloadData: fnReloadData,
+                iPage: iPage,
+                iPageLength: iPageLength,
+                orderBy: orderBy,
+                searchText: searchText
+            };
+            //setTimeout(function () {
+            if (fnReloadData) {
+                if (searchText) {
+                    _tableAwardLevelData(iPage, iPageLength, orderBy, searchText, function (data) {
+                        fnReloadData(data);
+                    });
+                } else {
+                    _tableAwardLevelData(iPage, iPageLength, orderBy, null, function (data) {
+                        fnReloadData(data);
+                    });
+                }
+            }
+            //}, 1000);
+        };
+        //Danh sách các dòng đc chọn (nếu là table MultiSelect)
+        scope.selectedAwardLevel = [];
+        //Dòng hiện tại đang được focus (nếu table là SingleSelect hoặc MultiSelect)
+        scope.currentAwardLevel = null;
+        scope.tableAwardLevelSearchText = '';
+        //Refesh table
+        scope.refreshDataAwardLevelRow = function () { /*Do nothing*/ };
+        //Mode 1: tạo mới, Mode 2: chỉnh sửa, Mode 3: sao chép
+        scope.awardlevel_mode = 0;
+        scope.onEditAwardLevel = onEditAwardLevel;
+        scope.onAddAwardLevel = onAddAwardLevel;
+        scope.onDeleteAwardLevel = onDeleteAwardLevel;
+        scope.onReloadAwardLevel = onReloadAwardLevel;
+        scope._tableAwardLevelData = _tableAwardLevelData;
+
+        scope.onSearchAwardLevel = function (txt) {
+            scope.tableAwardLevelSearchText = txt;
+            scope.$applyAsync();
+        }
+
+        /**
+         * Hàm mở form chỉnh sửa
+         */
+        function onEditAwardLevel() {
+            if (scope.currentAwardLevel) {
+                scope.awardlevel_mode = 2; // set mode chỉnh sửa
+                openDialog("${get_res('Detail_Award_Level','Chi tiết cấp khen thưởng')}", 'category/form/addAwardLevel', function () { }, "addAwardLevel");
+            } else {
+                $msg.message("${get_global_res('Notification','Thông báo')}", "${get_app_res('No_Row_Selected','Không có dòng được chọn')}", function () { });
+            }
+        }
+
+        /**
+         * Hàm mở form tạo moi
+         */
+        function onAddAwardLevel() {
+            scope.awardlevel_mode = 1;// set mode tạo mới
+            openDialog("${get_res('Detail_Award_Level','Chi tiết cấp khen thưởng')}", 'category/form/addAwardLevel', function () { }, "addAwardLevel");
+        }
+        function onDeleteAwardLevel() {
+            if (!scope.selectedAwardLevel || scope.selectedAwardLevel.length === 0) {
+                $msg.message("${get_global_res('Notification','Thông báo')}", "${get_global_res('No_Row_Selected','Không có dòng được chọn')}", function () { });
+            } else {
+                $msg.confirm("${get_global_res('Notification','Thông báo')}", "${get_global_res('Do_You_Want_Delete','Bạn có muốn xóa không?')}", function () {
+                    services.api("${get_api_key('app_main.api.HCSLS_AwardLevel/delete')}")
+                        .data(scope.selectedAwardLevel)
+                        .done()
+                        .then(function (res) {
+                            if (res.deleted > 0) {
+                                _tableAwardLevelData(scope.$$tableAwardLevelConfig.iPage, scope.$$tableAwardLevelConfig.iPageLength, scope.$$tableAwardLevelConfig.orderBy, scope.$$tableAwardLevelConfig.SearchText, scope.$$tableAwardLevelConfig.fnReloadData);
+                                $msg.alert("${get_global_res('Handle_Success','Thao tác thành công')}", $type_alert.INFO);
+                                scope.currentAwardLevel = null;
+                                scope.selectedAwardLevel = [];
+                            }
+                        })
+                });
+            }
+        }
+        function onReloadAwardLevel() {
+            var tableConfig = scope.$$tableAwardLevelConfig;
+            _tableAwardLevelData(tableConfig.iPage,
+                tableConfig.iPageLength, tableConfig.orderBy,
+                tableConfig.searchText, tableConfig.fnReloadData);
+        }
+
+        /**
+         * Hàm mở dialog
+         * @param {string} title Tittle của dialog
+         * @param {string} path Đường dẫn file template
+         * @param {function} callback Xử lí sau khi gọi dialog
+         * @param {string} id Id của form dialog, default = 'myModal'
+         */
+        function openDialog(title, path, callback, id = 'myModal') {
+
+            //check tồn tại của form dialog theo id
+            if ($('#' + id).length === 0) {
+                scope.headerTitle = title;
+                //Đặt ID cho form dialog
+                dialog(scope, id).url(path).done(function () {
+                    callback();
+                    //Set draggable cho form dialog
+                    $dialog.draggable();
+                });
+            }
+        }
+
+        function _tableAwardLevelData(iPage, iPageLength, orderBy, searchText, callback) {
+            var sort = {};
+            $.each(orderBy, function (i, v) {
+                sort[v.columns] = (v.type === "asc") ? 1 : -1;
+            });
+            sort[orderBy[0].columns] =
+                services.api("${get_api_key('app_main.api.HCSLS_AwardLevel/get_list_with_searchtext')}")
+                    .data({
+                        //parameter at here
+                        "pageIndex": iPage - 1,
+                        "pageSize": iPageLength,
+                        "search": searchText,
+                        "lock": scope.$parent.$parent.$parent.advancedSearch.data_lock,
+                        "sort": sort
+                    })
+                    .done()
+                    .then(function (res) {
+                        var data = {
+                            recordsTotal: res.total_items,
+                            recordsFiltered: res.total_items,
+                            data: res.items
+                        };
+                        callback(data);
+                        scope.currentAwardLevel = null;
+                        scope.$apply();
+                    })
+        }
+
+        $(document).ready(function () {
+            $('#tableAwardLevelSearchText').on('keypress', function (e) {
+                var code = e.keyCode || e.which;
+                if (code == 13) {
+                    scope.tableAwardLevelSearchText = $('#tableAwardLevelSearchText').val();
+                    scope.$applyAsync();
+                }
+            });
+        })
+    });
 </script>

@@ -1,7 +1,12 @@
 import datetime
 from hcs_authorization import authorization
-import django_db
-Database=django_db.getdb_config()
+Database=dict(
+    host="172.16.7.67",
+    name="lms",
+    port=27017,
+    user="sys",
+    password="123456"
+)
 login_url="login"
 authorization.set_db_context_authorization(Database)
 def authenticate(request):

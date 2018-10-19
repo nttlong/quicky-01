@@ -5,9 +5,9 @@
             { "data": "unit", "title": "${get_res('dvt','ĐVT')}" },
             { "data": "cycle", "title": "${get_res('cycle','Chu kì')}","width":"100px" },
             { "data": "description", "title": "${get_res('description_table_header','Mô tả')}" },
-            { "data": "weight", "title": "${get_res('weight_table_header','Trọng số')}","width":"100px" },
-            { "data": "score_from", "title": "${get_res('score_from_table_header','Cho điểm từ')}","width":"100px" },
-            { "data": "score_to", "title": "${get_res('score_to_table_header','đến')}","width":"100px" }
+            { "data": "weight", "title": "${get_res('weight_table_header','Trọng số')}","format":"number","width":"100px" },
+            { "data": "score_from", "title": "${get_res('score_from_table_header','Cho điểm từ')}","format":"number","width":"100px" },
+            { "data": "score_to", "title": "${get_res('score_to_table_header','đến')}","format":"number","width":"100px" }
         ],
         $$tableConfig: {},
         tableSource: _loadDataServerSide,

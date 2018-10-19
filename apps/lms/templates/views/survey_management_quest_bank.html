@@ -1,0 +1,96 @@
+﻿<div class="hcs-container" view-id="${register_view()}">
+    <header-page  on-add="onAdd" 
+                  on-edit="onEdit" 
+                  on-delete="onDelete" 
+                  on-import="onImport" 
+                  on-export="onExport"
+                  on-refresh="onRefresh"
+                  on-search-press="onSearch"
+                  key-field="function_id" 
+                  display-field="default_name" 
+                  icon-field="icon" 
+                  selected-key="$root.currentFunction.function_id"
+                  reload-on-change="false">
+        <site-map>
+            <span>{{$root.currentFunction.default_name}}</span>
+            <div class="hcs-resp-action-zb-left-content" style="float: right;">
+                <button class="zb-btn zb-btn-o-green ng-scope"
+                        ng-click="$root.doToggle('.zb-right-content')">
+                    <i class="bowtie-icon bowtie-menu"></i>
+                </button>
+            </div>
+        </site-map>
+        <extend-toolbar>
+            <button class="zb-btn zb-btn-o-orange">
+                <i class="bowtie-icon bowtie-search-filter"></i>
+            </button>
+        </extend-toolbar>
+    </header-page>
+    <div class="row hcs-profile-list" style="height: calc(100% - 40px);">
+        <div class="hcs-left-side-department-content">
+            <div>
+                <div class="hcs-left-side-department-tree-tool-bar">
+                <div class="pull-left" style="padding-left:10px;">
+                    <div class="hcs-left-side-department-tree-tool-bar-div-search">
+                       <input class="hcs-left-side-department-tree-tool-bar-input-search" 
+                              placeholder="Filter" ng-model="$$tree.treeSearchText">
+                       <div class="hcs-left-side-department-tree-tool-bar-input-search-bot"></div>
+                       <div class="hcs-left-side-department-tree-tool-bar-input-search-bot-icon">
+                           <i class="glyphicon glyphicon-search"></i>
+                       </div>
+                    </div>
+                </div>
+                <div class="pull-left" style="padding-left:10px;">
+                    <button class="zb-btn hcs-left-side-department-tree-tool-bar-btn-custom-icon" ng-click="$treeCollapseAll()" style="text-align: center;">
+                        <span>
+                        <i class="bowtie-icon bowtie-chevron-up-all"></i>
+                        </span>
+                    </button>
+                </div>
+                <div class="pull-left" style="padding-left:5px;">
+                    <button class="zb-btn hcs-left-side-department-tree-tool-bar-btn-custom-icon" ng-click="$treeExpandAll()" style="text-align: center;">
+                        <span>
+                        <i class="bowtie-icon bowtie-chevron-down-all"></i>
+                        </span>
+                    </button>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+                <div class="hcs-left-side-department-tree" style="height: calc(100% - 38px); padding: unset;">
+                    <style>
+                        .zb-list-view {
+                            border: unset;
+                            border-bottom: 1px solid #cbcbcb;
+                        }
+                    </style>
+                    <list-view caption-field="category_name"
+                               value-field="category_id"
+                               source="__valueList"
+                               ng-model="groupCategory"
+                               multi="false"
+                               />
+                </div>
+            </div>
+        </div>
+        <div class="hcs-right-side-department-content">
+                <div class="hcs-right-side-department-list" style="height:calc(100% + 1px);">
+                    <table-data data-source="$$table.tableSource" 
+                                fields="$$table.tableFields" 
+                                type="MultiSelect" 
+                                paging="true" 
+                                page-length="100" 
+                                server-side="true" 
+                                press-enter="$$table.onSelectTableRow" 
+                                selected-items="$$table.selectedItems" 
+                                current-item="$$table.currentItem" 
+                                search-text="$$table.tableSearchText"
+                                refresh-row="$$table.refreshDataRow">
+                    </table-data>
+                </div>
+    </div>
+    </div>
+</div>
+<div class="clearfix"></div>
+<script>
+    <%include file="../scripts/survey_management_quest_bank.js"/>
+</script>

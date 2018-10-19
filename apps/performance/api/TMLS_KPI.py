@@ -6,10 +6,12 @@ import logging
 import datetime
 import threading
 import common
+from hcs_authorization import action_type, authorization
 logger = logging.getLogger(__name__)
 global lock
 lock = threading.Lock()
 
+@authorization.authorise(action = action_type.Action.READ)
 def get_list_with_searchtext(args):
     searchText = args['data'].get('search', '')
     pageSize = args['data'].get('pageSize', 0)
@@ -18,6 +20,7 @@ def get_list_with_searchtext(args):
 
     pageIndex = (lambda pIndex: pIndex if pIndex != None else 0)(pageIndex)
     pageSize = (lambda pSize: pSize if pSize != None else 20)(pageSize)
+    search = (lambda x: x.strip() if searchText != None else "")(searchText)
 
     collection = common.get_collection('TMLS_KPI')
     ret = collection.aggregate([
@@ -83,7 +86,16 @@ def get_list_with_searchtext(args):
         'score_to': { '$ifNull': [ '$score_to', '' ] }
         }
     }, 
-    {'$match': {'lock': common.aggregate_filter_lock(args['data']['lock']), 'level_code':{'$eq':args['data']['kpi_group_code']}}}, 
+    {'$match': {'lock': common.aggregate_filter_lock(args['data']['lock']), 'level_code':{'$eq':args['data']['kpi_group_code']}}},
+    {
+        "$match": {
+            "$or": [{"kpi_code": {"$regex": search, "$options": 'i'}},
+                    {"kpi_name": {"$regex": search, "$options": 'i'}},
+                    {"unit_code": {"$regex": search, "$options": 'i'}},
+                    {"cycle_type": {"$regex": search, "$options": 'i'}},
+                    {"kpi_desc": {"$regex": search, "$options": 'i'}}]
+        }
+    },
     {'$sort': common.aggregate_sort(sort)},
     {"$facet": {
            "metadata": [{ "$count": "total" }, { "$addFields": { "page_index": pageIndex, "page_size": pageSize } }],
@@ -106,6 +118,7 @@ def get_list_with_searchtext(args):
         'items': []
         })(list(ret))
 
+@authorization.authorise(action = action_type.Action.READ)
 def get_by_kpi_code(args):
     try:
         ret = models.TMLS_KPI().aggregate()
@@ -144,6 +157,7 @@ def get_by_kpi_code(args):
     except Exception as ex:
         raise(ex)
 
+@authorization.authorise(common = True)
 def remove_job_working_kpi_by_kpi_code(args):
     try:
         ret = common.get_collection('HCSLS_JobWorking').update_many({
@@ -166,6 +180,7 @@ def remove_job_working_kpi_by_kpi_code(args):
     except Exception as ex:
         raise(ex)
 
+@authorization.authorise(action = action_type.Action.READ)
 def get_kpi_by_kpi_code(args):
     try:
         collection = common.get_collection('TMLS_KPI')
@@ -225,6 +240,7 @@ def get_kpi_by_kpi_code(args):
     except Exception as ex:
         raise(ex)
 
+@authorization.authorise(action = action_type.Action.CREATE)
 def insert(args):
     try:
         lock.acquire()
@@ -245,6 +261,7 @@ def insert(args):
         lock.release()
         raise(ex)
 
+@authorization.authorise(action = action_type.Action.WRITE)
 def update(args):
     try:
         lock.acquire()
@@ -273,6 +290,7 @@ def update(args):
         lock.release()
         raise(ex)
 
+@authorization.authorise(action = action_type.Action.DELETE)
 def delete(args):
     try:
         lock.acquire()
@@ -363,6 +381,7 @@ def insert_job_working_kpi(job_w_code, kpi):
     except Exception as ex:
         raise(ex)
 
+@authorization.authorise(common = True)
 def set_dict_insert_data(args):
     ret_dict = dict()
 
@@ -390,6 +409,7 @@ def set_dict_insert_data(args):
 
     return ret_dict
 
+@authorization.authorise(common = True)
 def set_dict_update_data(args):
     ret_dict = set_dict_insert_data(args)
     del ret_dict['kpi_code']

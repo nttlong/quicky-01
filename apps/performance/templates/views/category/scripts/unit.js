@@ -2,12 +2,12 @@
     //("===============BEGIN TABLE==================")
     //Cấu hình tên field và caption hiển thị trên UI
     scope.tableFields = [
-		{ "data": "unit_code", "title": "${get_res('unit_code_table_header','Mã')}", "className":"text-left" },
+		{ "data": "unit_code", "title": "${get_res('unit_code_table_header','Mã')}", "className":"text-left", width: "170px" },
 		{ "data": "unit_name", "title": "${get_res('unit_name_table_header','Tên')}", "className": "text-left" },
 		{ "data": "unit_name2", "title": "${get_res('unit_name2_table_header','Tên khác')}", "className": "text-left" },
 		{ "data": "note", "title": "${get_res('note_table_header','Ghi chú')}", "className": "text-left" },
-        { "data": "ordinal", "title": "${get_res('ordinal_table_header','Thứ tự')}", "className": "text-center" },
-        { "data": "lock", "title": "${get_res('lock_table_header','Ngưng SD')}", "format": "checkbox", "className": "text-center" }
+        { "data": "ordinal", "title": "${get_res('ordinal_table_header','Thứ tự')}", "className": "text-center", width: "100px" },
+        { "data": "lock", "title": "${get_res('lock_table_header','Ngưng SD')}", "format": "checkbox", "className": "text-center", width: "100px" },
     ];
     //
     scope.$$tableConfig = {};

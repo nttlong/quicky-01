@@ -284,6 +284,7 @@
         scope.$partialpage = scope.mapName[0].url;
         scope.currentFunction = scope.mapName[0];
         scope.obj.selectedFunction = (scope.mapName.length > 0) ? scope.mapName[0].function_id : null;
+        scope.$root.$$$authoriseFunction.id = scope.$root.currentFunction.function_id;
         scope.$applyAsync();
     };
 

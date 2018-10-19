@@ -2,19 +2,19 @@
     <div id="collapseTableDistrict" class="row">
         <div class="col-md-12" style="height: calc((100vh - 120px)/2)">
             <collapse-box class="zb-form-common" title="${get_res('district_caption_toolbar','2. Quận/Huyện')}">
-                <toolbar>
-                    <input-text-icon icon="bowtie-icon bowtie-search"
+                <toolbar class="zb-toolbar-small-control">
+                    <input-text-icon class-btn="zb-small-btn"  icon="bowtie-icon bowtie-search"
                                      on-click="onSearchDistinct"></input-text-icon>
-                    <button ng-click="onAddDistrict()" class="zb-btn zb-btn-o-green">
+                    <button ng-click="onAddDistrict()" class="zb-btn zb-btn-o-green zb-small-btn">
                         <i class="bowtie-icon bowtie-math-plus"></i>
                     </button>
-                    <button ng-click="onEditDistrict()" class="zb-btn zb-btn-o-blue">
+                    <button ng-click="onEditDistrict()" class="zb-btn zb-btn-o-blue zb-small-btn">
                         <i class="bowtie-icon bowtie-edit-outline"></i>
                     </button>
-                    <button ng-click="onDeleteDistrict()" class="zb-btn zb-btn-o-red">
+                    <button ng-click="onDeleteDistrict()" class="zb-btn zb-btn-o-red zb-small-btn">
                         <i class="bowtie-icon bowtie-trash"></i>
                     </button>
-                    <button ng-click="onReloadDistrict()" class="zb-btn">
+                    <button ng-click="onReloadDistrict()" class="zb-btn zb-small-btn">
                         <i class="bowtie-icon bowtie-navigate-refresh"></i>
                     </button>
                 </toolbar>

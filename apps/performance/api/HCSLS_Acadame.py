@@ -6,10 +6,12 @@ import datetime
 from Query import Acadame
 import logging
 import threading
+from hcs_authorization import action_type, authorization
 logger = logging.getLogger(__name__)
 global lock
 lock = threading.Lock()
 
+@authorization.authorise(action = action_type.Action.READ)
 def get_list_with_searchtext(args):
     searchText = args['data'].get('search', '')
     pageSize = args['data'].get('pageSize', 0)
@@ -33,6 +35,7 @@ def get_list_with_searchtext(args):
         
     return ret.get_page(pageIndex, pageSize)
 
+@authorization.authorise(action = action_type.Action.READ)
 def get_list_details_with_searchtext(args):
 
     if args['data'].has_key('train_level_code'):
@@ -59,6 +62,7 @@ def get_list_details_with_searchtext(args):
             error = "train_level_code is not exist"
         )
 
+@authorization.authorise(action = action_type.Action.CREATE)
 def insert(args):
     try:
         lock.acquire()
@@ -82,6 +86,7 @@ def insert(args):
         lock.release()
         raise(ex)
 
+@authorization.authorise(action = action_type.Action.WRITE)
 def update(args):
     try:
         lock.acquire()
@@ -107,6 +112,7 @@ def update(args):
         lock.release()
         raise(ex)
 
+@authorization.authorise(action = action_type.Action.DELETE)
 def delete(args):
     try:
         lock.acquire()
@@ -124,6 +130,7 @@ def delete(args):
         lock.release()
         raise(ex)
 
+@authorization.authorise(action = action_type.Action.CREATE)
 def insert_details(args):
     try:
         lock.acquire()
@@ -150,6 +157,7 @@ def insert_details(args):
         lock.release()
         raise(ex)
 
+@authorization.authorise(action = action_type.Action.WRITE)
 def update_details(args):
     try:
         lock.acquire()
@@ -181,6 +189,7 @@ def update_details(args):
         lock.release()
         raise(ex)
 
+@authorization.authorise(action = action_type.Action.DELETE)
 def delete_detail(args):
     try:
         lock.acquire()
@@ -212,6 +221,7 @@ def delete_detail(args):
         lock.release()
         raise(ex)
 
+@authorization.authorise(common = True)
 def set_dict_insert_data(args):
     ret_dict = dict()
 
@@ -246,6 +256,7 @@ def set_dict_insert_data(args):
 
     return ret_dict
 
+@authorization.authorise(common = True)
 def set_dict_update_data(args):
     ret_dict = set_dict_insert_data(args)
     del ret_dict['train_level_code']
@@ -256,6 +267,7 @@ def set_dict_update_data(args):
     #ret_dict['details']['modified_on'] = common.get_user_id
     return ret_dict
 
+@authorization.authorise(common = True)
 def set_dict_detail_insert_data(args):
     ret_dict = dict()
     ret_dict.update(
@@ -271,6 +283,7 @@ def set_dict_detail_insert_data(args):
             )
     return ret_dict
 
+@authorization.authorise(common = True)
 def set_dict_detail_update_data(args):
     ret_dict = set_dict_detail_insert_data(args)
     del ret_dict['rec_id']

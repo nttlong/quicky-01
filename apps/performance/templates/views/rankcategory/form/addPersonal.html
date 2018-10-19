@@ -5,27 +5,8 @@
 <%inherit file="../../commons/dialog_save_close.html"/>
 
 <%block name="modal_body">
-<style>
-    .outer{
-        height: 100%;
-        display: table;
-        width:100%
-    }
-    .inner-title{
-
-        display:table-row;
-        width:100%
-    }
-    .inner-content{
-
-        display:table-row;
-        width:100%;
-        height:100%
-    }
-</style>
-<div class="outer hcs-modal-format" style="float: left; height: 100%;">
-   <div class="inner-title">
-      <div class="col-xs-12 col-md-{{col_group}} col-sm-{{col_group}}" style="padding-bottom:20px;">
+<div class="hcs-modal-format">
+   <div class="col-xs-12 col-md-{{col_group}} col-sm-{{col_group}}" style="padding-bottom:20px;">
          <collapse-box class="zb-form-common" title="${get_global_res('Common_Information','Thông tin chung')}">
             <div class="col-xs-{{col}} col-md-{{col}}">
                <div class="form-group zb-form-group">
@@ -59,7 +40,7 @@
                   <!--Tổng điểm từ-->
                   <label class="col-xs-5 col-sm-5 zb-form-label">${get_res('total_from','Tổng điểm từ')}</label>
                   <div class="col-xs-7 col-sm-7">
-                     <input-number ng-model="entity.total_from" type="float"/>
+                     <input-number ng-model="entity.total_from" type="int"/>
                   </div>
                </div>
             </div>
@@ -68,7 +49,7 @@
                   <!--Tổng điểm đến-->
                   <label class="col-xs-5 col-sm-5 zb-form-label">${get_res('total_to','Tổng điểm đến')}</label>
                   <div class="col-xs-7 col-sm-7">
-                     <input-number ng-model="entity.total_to" type="float"/>
+                     <input-number ng-model="entity.total_to" type="int"/>
                   </div>
                </div>
             </div>
@@ -101,15 +82,15 @@
             </div>
          </collapse-box>
       </div>
-      <div class="col-xs-12 col-md-{{ 12 - col_group}} col-sm-{{ 12 - col_group}}" style="padding-bottom:20px;">
+   <div class="col-xs-12 col-md-{{ 12 - col_group}} col-sm-{{ 12 - col_group}}" style="padding-bottom:20px;">
          <collapse-box class="zb-form-common" title="${get_global_res('general_assessment','Đánh giá chung')}">
-            <div class="form-group zb-form-group">
+            <div class="col-md-12 col-xs-12 col-sm-12">
                <!--Đánh giá chung-->
-               <div class="col-sm-12">
+               <div class="form-group zb-form-group">
                   <input-textarea rows="7" ng-model="entity.rank_content"></input-textarea>
                </div>
             </div>
-            <div class="col-md-12" style="padding-top: 16px;">
+            <div class="col-md-12 col-xs-12 col-sm-12">
                <div class="form-group zb-form-group">
                   <label for="DisplayInfo" class="col-xs-3 col-sm-3 zb-form-label">${get_global_res('create_and_modify','Tạo | Sửa')}</label>
                   <div class="col-xs-9 col-sm-9">
@@ -120,9 +101,7 @@
             </div>
          </collapse-box>
       </div>
-   </div>
-   <div class="inner-content">
-      <div class="col-xs-12 col-md-12" ng-show="(__mode === 2 || __mode === 3) && entity.is_change_object === true">
+   <div class="col-xs-12 col-md-12" ng-show="(__mode === 2 || __mode === 3) && entity.is_change_object === true">
          <collapse-box class="zb-form-common" title="${get_res('is_change_object','Thiết lập riêng')}">
             <toolbar>
                <input-text-icon icon="bowtie-icon bowtie-search"
@@ -140,18 +119,22 @@
                <i class="bowtie-icon bowtie-navigate-refresh"></i>
                </button>
             </toolbar>
-            <div class="col-xs-12 col-md-12 no-padding" style="height: 0;">
-               <table-data data-source="$$table.tableSource" fields="$$table.tableFields" type="MultiSelect"
-                  paging="true" page-length="100" server-side="true"
-                  press-enter="$$table.onSelectTableRow" selected-items="$$table.selectedItems"
-                  current-item="$$table.currentItem" search-text="$$table.tableSearchText"
+            <div class="col-xs-12 col-md-12 no-padding">
+               <table-data data-source="$$table.tableSource"
+                  fields="$$table.tableFields"
+                  type="MultiSelect"
+                  paging="true" page-length="100"
+                  server-side="true"
+                  press-enter="$$table.onSelectTableRow"
+                  selected-items="$$table.selectedItems"
+                  current-item="$$table.currentItem"
+                  search-text="$$table.tableSearchText"
                   refresh-row="$$table.refreshDataRow"
                   selected-field="">
                </table-data>
             </div>
          </collapse-box>
       </div>
-   </div>
 </div>
 </%block>
 
@@ -220,10 +203,16 @@
         /**
          * Thay đỗi kích thước form Dialog và các control trên form dialog
          */
+        var isFullSize = false;
+        scope.maxHeightDialog = "85vh";//default init
+        scope.minHeightDialog = "85vh";
         function onResizeDialog() {
             $dialog.fullScreen();
             scope.col = scope.col == 12 ? 6 : 12;
             scope.col_group = scope.col_group == 6 ? 8 : 6;
+            isFullSize = !isFullSize //toggle fullsize
+            scope.maxHeightDialog = isFullSize ? "100%" : "85vh";
+            scope.minHeightDialog = isFullSize ? "100%" : "85vh";
         }
 
         function editRankSub() {
@@ -237,6 +226,7 @@
         }
 
         function _loadDataServerSide(fnReloadData, iPage, iPageLength, orderBy, searchText) {
+
             scope.$$table.$$tableConfig = {
                 fnReloadData: fnReloadData,
                 iPage: iPage,
@@ -244,19 +234,19 @@
                 orderBy: orderBy,
                 searchText: searchText
             };
-            //setTimeout(function () {
-            if (fnReloadData) {
-                if (searchText) {
-                    _tableData(iPage, iPageLength, orderBy, searchText, function (data) {
-                        fnReloadData(data);
-                    });
-                } else {
-                    _tableData(iPage, iPageLength, orderBy, null, function (data) {
-                        fnReloadData(data);
-                    });
-                }
-            }
-            //}, 1000);
+            setTimeout(function () {
+               if (fnReloadData) {
+                   if (searchText) {
+                       _tableData(iPage, iPageLength, orderBy, searchText, function (data) {
+                           fnReloadData(data);
+                       });
+                   } else {
+                       _tableData(iPage, iPageLength, orderBy, null, function (data) {
+                           fnReloadData(data);
+                       });
+                   }
+               }
+            }, 300);
         };
 
         function _tableData(iPage, iPageLength, orderBy, searchText, callback) {

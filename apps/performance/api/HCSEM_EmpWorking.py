@@ -8,6 +8,7 @@ import common
 from Query import EmpWorking
 from Query import Employee
 import views
+from hcs_authorization import action_type, authorization
 logger = logging.getLogger(__name__)
 global lock
 lock = threading.Lock()
@@ -38,6 +39,7 @@ lock = threading.Lock()
 #    except Exception as ex:
 #        raise(ex)
 
+@authorization.authorise(action = action_type.Action.READ)
 def get_empworking_by_emp_code(args):
     try:
         ret = {}
@@ -51,7 +53,7 @@ def get_empworking_by_emp_code(args):
                 pageIndex = (lambda pIndex: pIndex if pIndex != None else 0)(pageIndex)
                 pageSize = (lambda pSize: pSize if pSize != None else 20)(pageSize)
 
-                ret = EmpWorking.get_empworking_by_employee_code(args['data']['employee_code'], pageIndex, pageSize, sort, searchText)
+                ret = EmpWorking.get_empworking_by_employee_code(args['data']['employee_code'], pageIndex, pageSize, sort, (lambda x: x.strip() if x != None else "")(searchText))
                 if len(ret) > 0:
                     return ret[0]
                 else:
@@ -76,6 +78,7 @@ def get_empworking_by_emp_code(args):
     except Exception as ex:
         raise(ex)
 
+@authorization.authorise(action = action_type.Action.READ)
 def get_default_value_curent_employee(args):
     try:
         ret = {}
@@ -100,6 +103,7 @@ def get_default_value_curent_employee(args):
     except Exception as ex:
         raise(ex)
 
+@authorization.authorise(action = action_type.Action.CREATE)
 def insert(args):
     try:
         lock.acquire()
@@ -118,6 +122,7 @@ def insert(args):
         lock.release()
         raise(ex)
 
+@authorization.authorise(action = action_type.Action.WRITE)
 def update(args):
     try:
         lock.acquire()
@@ -145,6 +150,7 @@ def update(args):
         lock.release()
         raise(ex)
 
+@authorization.authorise(action = action_type.Action.DELETE)
 def delete(args):
     try:
         lock.acquire()
@@ -162,6 +168,7 @@ def delete(args):
         lock.release()
         raise(ex)
 
+@authorization.authorise(common = True)
 def set_dict_insert_data(args):
     ret_dict = dict()
 
@@ -193,6 +200,7 @@ def set_dict_insert_data(args):
 
     return ret_dict
 
+@authorization.authorise(common = True)
 def set_dict_update_data(args):
     ret_dict = set_dict_insert_data(args)
     #del ret_dict['_id']
@@ -220,6 +228,7 @@ def update_employee(args):
         lock.release()
         raise(ex)
 
+@authorization.authorise(common = True)
 def set_dict_update_employee(args):
     ret_dict = dict()
 

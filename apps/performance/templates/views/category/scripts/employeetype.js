@@ -2,14 +2,14 @@
     //("===============BEGIN TABLE==================")
     //Cấu hình tên field và caption hiển thị trên UI
     scope.tableFields = [
-        { "data": "emp_type_code", "title": "${get_res('emp_type_code_table_header','Mã')}", "className":"text-left" },
+        { "data": "emp_type_code", "title": "${get_res('emp_type_code_table_header','Mã')}", "className":"text-left"},
         { "data": "emp_type_name", "title": "${get_res('emp_type_name_table_header','Tên')}", "className": "text-left" },
         { "data": "display_true_type", "title": "${get_res('true_type_table_header','Phân loại')}", "className": "text-left" },
-        { "data": "rate_main_sal", "title": "${get_res('rate_main_sal_table_header','% Chế độ lương')}", "className": "text-right" },
-        { "data": "rate_soft_sal", "title": "${get_res('rate_soft_sal_table_header','% Lương mềm')}", "className": "text-right" },
+        { "data": "rate_main_sal", "format":"number: system", "title": "${get_res('rate_main_sal_table_header','% Chế độ lương')}", "className": "text-right" },
+        { "data": "rate_soft_sal", "format":"number: system", "title": "${get_res('rate_soft_sal_table_header','% Lương mềm')}", "className": "text-right" },
         { "data": "ordinal", "title": "${get_res('ordinal_table_header','Thứ tự')}", "className": "text-center" },
         { "data": "created_on", "title": "${get_res('created_on_table_header','Ngày tạo')}", "className": "text-center", "format": "date:" + scope.$root.systemConfig.date_format },
-        { "data": "lock", "title": "${get_res('lock_table_header','Ngưng SD')}", "format": "checkbox", "className": "text-center" }
+        { "data": "lock", "title": "${get_res('lock_table_header','Ngưng SD')}", "format": "checkbox", "className": "text-center", width: "80px" }
     ];
     //
     scope.$$tableConfig = {};

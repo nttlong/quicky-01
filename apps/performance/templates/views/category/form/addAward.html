@@ -135,11 +135,11 @@
                 <input-textarea rows="10" ng-model="entity.note"></input-textarea>
             </div>
         </div>
-        <div class="col-xs-12 col-md-12" style="padding-top: 16px;">
+        <div class="col-xs-12 col-md-12">
             <div class="form-group zb-form-group">
                 <label for="DisplayInfo" class="col-xs-5 col-sm-3 zb-form-label">${get_global_res('create_and_modify','Tạo | Sửa')}</label>
                 <div class="col-xs-7 col-sm-9">
-                    <input-text value="{{ entity.created_on | date: $root.systemConfig.date_format}} {{entity.created_by}} | {{ entity.modified_on | date: $root.systemConfig.date_format}} {{entity.modified_by}}" ng-disabled="true">
+                    <input-text style="text-align: right;" value="{{ entity.created_on | date: $root.systemConfig.date_format}} {{entity.created_by}} | {{ entity.modified_on | date: $root.systemConfig.date_format}} {{entity.modified_by}}" ng-disabled="true">
                 </div>
             </div>
         </div>
@@ -150,12 +150,12 @@
 <%block name="modal_script">
 <script>
     (function (scope) {
-        scope.__mode = scope.$parent.mode;
+        scope.__mode = scope.$parent.award_mode;
         scope.onResizeDialog = onResizeDialog;
         scope.col = 12;
         scope.col_group = 6;
         scope.title = scope.$parent.headerTitle;
-        var __entity = JSON.parse(JSON.stringify(scope.$parent.currentItem));
+        var __entity = JSON.parse(JSON.stringify(scope.$parent.currentAward));
         //Mode 1: tạo mới, Mode 2: chỉnh sửa, Mode 3: sao chép
         scope.entity = scope.__mode == 2 ? __entity : null;
 
@@ -192,12 +192,12 @@
                             //Reload table data
                             reloadData();
                         } else if (scope.__mode == 2) {
-                            scope.$parent.currentItem = scope.entity;
-                            scope.$parent.currentItem.modified_on = res.item.modified_on;
-                            scope.$parent.currentItem.modified_by = res.item.modified_by;
+                            scope.$parent.currentAward = scope.entity;
+                            scope.$parent.currentAward.modified_on = res.item.modified_on;
+                            scope.$parent.currentAward.modified_by = res.item.modified_by;
                             scope.$parent.$apply();
                             //Refesh datatable
-                            scope.$parent.refreshDataRow();
+                            scope.$parent.refreshDataAwardRow();
                         }
                     } else {
                         $msg.message("${get_global_res('Internal_Server_Error','Có lỗi từ phía máy chủ')}", "${get_global_res('Please_Try_Again','Xin thử vui lòng thử lại')}", function () { });
@@ -222,11 +222,11 @@
                         if (scope.__mode == 1 || scope.__mode == 3)
                             reloadData();
                         else {
-                            scope.$parent.currentItem = scope.entity;
-                            scope.$parent.currentItem.modified_on = res.item.modified_on;
-                            scope.$parent.currentItem.modified_by = res.item.modified_by;
+                            scope.$parent.currentAward = scope.entity;
+                            scope.$parent.currentAward.modified_on = res.item.modified_on;
+                            scope.$parent.currentAward.modified_by = res.item.modified_by;
                             //Refesh datatable
-                            scope.$parent.refreshDataRow();
+                            scope.$parent.refreshDataAwardRow();
                         }
                         $msg.alert("${get_global_res('Handle_Success','Thao tác thành công')}", $type_alert.INFO);
                         scope.entity = null;
@@ -264,8 +264,8 @@
         }
 
         function reloadData() {
-            var tableConfig = scope.$parent.$$tableConfig;
-            scope.$parent._tableData(tableConfig.iPage,
+            var tableConfig = scope.$parent.$$tableAwardConfig;
+            scope.$parent._tableAwardData(tableConfig.iPage,
             tableConfig.iPageLength, tableConfig.orderBy,
             tableConfig.searchText, tableConfig.fnReloadData);
         }

@@ -36,7 +36,8 @@
                 reloadOnChange: "=",
                 advancedSearch: "=",
                 extendToolbar: "=",
-                disabled: "="
+                disabled: "=",
+                initAuthen: "="
             },
             templateUrl: templateService.getStatic("app/widgets/page-sidebar/page-sidebar.html"),
             link: function ($scope, elem, attr, ctrls, $transclude) {
@@ -48,23 +49,46 @@
                 var advancedSearch = $(elem).find(".zb-advanced-search");
                 var btnAdvancedSearch = $(elem).find("#btnAdvancedSearch");
 
+                left.on( "mouseenter", function() {
+                    $(this).css({
+                        "overflow-y": "auto",
+                    })
+                  })
+                  .on( "mouseleave", function() {
+                    $(this).css({
+                        "overflow-y": "unset"
+                    })
+                });
+
+                if($scope.initAuthen === true){
+                    authenticatedService.getPermissionByFunctionId($scope.$root.$$$authoriseFunction.id, function(res){
+                        $scope.authorise = res;
+                        $scope.$root.$$$authoriseFunction.authorisePermission = res;
+                        $scope.$applyAsync();
+                    });
+                }
+
                 $scope.$watch("listItem", function (v) {
                     if(v && v.length != 0){
-                        $scope.$root.$$$authoriseFunction.id = v[0].function_id;
-                        authenticatedService.getPermissionByFunctionId(v[0].function_id, function(res){
-                            $scope.authorise = res;
-                            $scope.$root.$$$authoriseFunction.authorisePermission = res;
-                            $scope.$applyAsync();
-                        });
+                        if(!attr.hasOwnProperty("notAuthentication")){
+                            $scope.$root.$$$authoriseFunction.id = v[0].function_id;
+                            authenticatedService.getPermissionByFunctionId(v[0].function_id, function(res){
+                                $scope.authorise = res;
+                                $scope.$root.$$$authoriseFunction.authorisePermission = res;
+                                $scope.$applyAsync();
+                            });
+                        }
                     }
                     if (!$scope.selectedKey && angular.isArray($scope.listItem) && $scope.listItem.length > 0) {
                         $scope.selectedKey = $scope.listItem[0][$scope.keyField];
-                        $scope.$root.$$$authoriseFunction.id = $scope.selectedKey;
-                        authenticatedService.getPermissionByFunctionId($scope.selectedKey, function(res){
-                            $scope.authorise = res;
-                            $scope.$root.$$$authoriseFunction.authorisePermission = res;
-                            $scope.$applyAsync();
-                        });
+                        if(!attr.hasOwnProperty("notAuthentication")){
+                            $scope.$root.$$$authoriseFunction.id = $scope.selectedKey;
+                            authenticatedService.getPermissionByFunctionId($scope.selectedKey, function(res){
+                                $scope.authorise = res;
+                                $scope.$root.$$$authoriseFunction.authorisePermission = res;
+                                $scope.$applyAsync();
+                            });
+                        }
                     }
                 });
 
@@ -97,15 +121,20 @@
                 function $onSelectItem(key) {
                     if(!$scope.disabled || ($scope.disabled && !$scope.disabled.includes(key))){
                         $scope.selectedKey = key;
-                        $scope.$root.$$$authoriseFunction.id = $scope.selectedKey;
+                        if(!attr.hasOwnProperty("notAuthentication")){
+                            $scope.$root.$$$authoriseFunction.id = $scope.selectedKey;
+                        }
                     }
 
                     if($scope.selectedKey){
-                        authenticatedService.getPermissionByFunctionId($scope.selectedKey, function(res){
-                            $scope.authorise = res;
-                            $scope.$root.$$$authoriseFunction.authorisePermission = res;
-                            $scope.$applyAsync();
-                        });
+                        if(!attr.hasOwnProperty("notAuthentication")){
+                            $scope.$root.$$$authoriseFunction.id = $scope.selectedKey;
+                            authenticatedService.getPermissionByFunctionId($scope.selectedKey, function(res){
+                                $scope.authorise = res;
+                                $scope.$root.$$$authoriseFunction.authorisePermission = res;
+                                $scope.$applyAsync();
+                            });
+                        }
                     }else{
                         $scope.fnGen = null;
                         $scope.fnAdd = null;

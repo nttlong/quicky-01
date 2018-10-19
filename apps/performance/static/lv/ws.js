@@ -96,7 +96,7 @@ function ws(scope) {
                     if (!scope.view_path) {
                         throw ("view_path is empty")
                     }
-                    return ws_call(_me._api, scope.view_path, _me._data, cb, _me, scope.$root.$$$authoriseFunction.id ? scope.$root.$$$authoriseFunction.id : "HOME")
+                    return ws_call(_me._api, scope.view_path, _me._data, cb, _me, scope.$root.$$$authoriseFunction.id)
 
                 }
             }

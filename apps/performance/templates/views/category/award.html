@@ -1,32 +1,191 @@
 ﻿    <div id="collapseTableAward" class="row">
         <div class="col-md-12" style="height: 85vh;">
         <collapse-box class="zb-form-common"  title="${get_res('award_caption_toolbar','Hình thức khen thưởng')}">
-            <toolbar>
+            <toolbar class="zb-toolbar-small-control">
                 <input-text-icon icon="bowtie-icon bowtie-search"
-                                 on-click="onSearch"></input-text-icon>
-                <button class="zb-btn zb-btn-o-green" ng-click="onAdd()">
+                                 on-click="onSearchAward"></input-text-icon>
+                <button class="zb-btn zb-btn-o-green" ng-click="onAddAward()">
                     <i class="bowtie-icon bowtie-math-plus"></i>
                 </button>
-                <button class="zb-btn zb-btn-o-blue" ng-click="onEdit()">
+                <button class="zb-btn zb-btn-o-blue" ng-click="onEditAward()">
                     <i class="bowtie-icon bowtie-edit-outline"></i>
                 </button>
-                <button class="zb-btn zb-btn-o-red" ng-click="onDelete()">
+                <button class="zb-btn zb-btn-o-red" ng-click="onDeleteAward()">
                     <i class="bowtie-icon bowtie-trash"></i>
                 </button>
-                <button class="zb-btn" ng-click="onReload()">
+                <button class="zb-btn" ng-click="onReloadAward()">
                     <i class="bowtie-icon bowtie-navigate-refresh"></i>
                 </button>
             </toolbar>
-            <table-data data-source="tableSource" fields="tableFields" type="MultiSelect" 
+            <table-data data-source="tableAwardSource" fields="tableAwardFields" type="MultiSelect"
             server-side="true" page-length="100" paging="true" 
-            selected-items="selectedItems"
-            current-item="currentItem" search-text="tableSearchText"
-            refresh-row="refreshDataRow">
+            selected-items="selectedAward"
+            current-item="currentAward" search-text="tableAwardSearchText"
+            refresh-row="refreshDataAwardRow">
             </table-data>
         </collapse-box>
         </div>
     </div>
 
 <script>
-    <%include file = "./scripts/award.js" />
+    (function (scope) {
+        //Cấu hình tên field và caption hiển thị trên UI
+        scope.tableAwardFields = [
+         { "data": "award_code", "title": "${get_res('job_pos_code_table_header','Mã')}", "className": "text-left" },
+        { "data": "award_name", "title": "${get_res('job_pos_name_table_header','Tên')}", "className": "text-left" },
+        { "data": "display_award_type", "title": "${get_res('note_table_header','Phân loại')}", "className": "text-left" },
+        { "data": "display_award_level_code", "title": "${get_res('ordinal_table_header','Cấp')}", "className": "text-left" },
+        { "data": "is_team", "title": "${get_res('is_team_table_header','Tập thể')}", "className": "text-center", "format": "checkbox" }
+        ];
+        //
+        scope.$$tableAwardConfig = {};
+        //Dữ liệu cho table
+
+        scope.tableAwardSource = _loadAwardDataServerSide;
+        function _loadAwardDataServerSide(fnReloadData, iPage, iPageLength, orderBy, searchText) {
+            scope.$$tableAwardConfig = {
+                fnReloadData: fnReloadData,
+                iPage: iPage,
+                iPageLength: iPageLength,
+                orderBy: orderBy,
+                searchText: searchText
+            };
+            //setTimeout(function () {
+            if (fnReloadData) {
+                if (searchText) {
+                    _tableAwardData(iPage, iPageLength, orderBy, searchText, function (data) {
+                        fnReloadData(data);
+                    });
+                } else {
+                    _tableAwardData(iPage, iPageLength, orderBy, null, function (data) {
+                        fnReloadData(data);
+                    });
+                }
+            }
+            //}, 1000);
+        };
+        //Danh sách các dòng đc chọn (nếu là table MultiSelect)
+        scope.selectedAward = [];
+        //Dòng hiện tại đang được focus (nếu table là SingleSelect hoặc MultiSelect)
+        scope.currentAward = null;
+        scope.tableAwardSearchText = '';
+        //Refesh table
+        scope.refreshDataAwardRow = function () { /*Do nothing*/ };
+        //Mode 1: tạo mới, Mode 2: chỉnh sửa, Mode 3: sao chép
+        scope.award_mode = 0;
+        scope.onEditAward = onEditAward;
+        scope.onAddAward = onAddAward;
+        scope.onDeleteAward = onDeleteAward;
+        scope.onReloadAward = onReloadAward;
+        scope._tableAwardData = _tableAwardData;
+
+        scope.onSearchAward = function (txt) {
+            scope.tableAwardSearchText = txt;
+            scope.$applyAsync();
+        }
+
+        /**
+         * Hàm mở form chỉnh sửa
+         */
+        function onEditAward() {
+            if (scope.currentAward) {
+                scope.award_mode = 2; // set mode chỉnh sửa
+                openDialog("${get_res('Detail_Award_Level','Chi tiết cấp khen thưởng')}", 'category/form/addAward', function () { }, "addAward");
+            } else {
+                $msg.message("${get_global_res('Notification','Thông báo')}", "${get_app_res('No_Row_Selected','Không có dòng được chọn')}", function () { });
+            }
+        }
+
+        /**
+         * Hàm mở form tạo moi
+         */
+        function onAddAward() {
+            scope.award_mode = 1;// set mode tạo mới
+            openDialog("${get_res('Detail_Award_Level','Chi tiết cấp khen thưởng')}", 'category/form/addAward', function () { }, "addAward");
+        }
+        function onDeleteAward() {
+            if (!scope.selectedAward || scope.selectedAward.length === 0) {
+                $msg.message("${get_global_res('Notification','Thông báo')}", "${get_global_res('No_Row_Selected','Không có dòng được chọn')}", function () { });
+            } else {
+                $msg.confirm("${get_global_res('Notification','Thông báo')}", "${get_global_res('Do_You_Want_Delete','Bạn có muốn xóa không?')}", function () {
+                    services.api("${get_api_key('app_main.api.HCSLS_Award/delete')}")
+                        .data(scope.selectedAward)
+                        .done()
+                        .then(function (res) {
+                            if (res.deleted > 0) {
+                                _tableAwardData(scope.$$tableAwardConfig.iPage, scope.$$tableAwardConfig.iPageLength, scope.$$tableAwardConfig.orderBy, scope.$$tableAwardConfig.SearchText, scope.$$tableAwardLevelConfig.fnReloadData);
+                                $msg.alert("${get_global_res('Handle_Success','Thao tác thành công')}", $type_alert.INFO);
+                                scope.currentAward = null;
+                                scope.selectedAward = [];
+                            }
+                        })
+                });
+            }
+        }
+        function onReloadAward() {
+            var tableConfig = scope.$$tableAwardConfig;
+            _tableAwardData(tableConfig.iPage,
+                tableConfig.iPageLength, tableConfig.orderBy,
+                tableConfig.searchText, tableConfig.fnReloadData);
+        }
+
+        /**
+         * Hàm mở dialog
+         * @param {string} title Tittle của dialog
+         * @param {string} path Đường dẫn file template
+         * @param {function} callback Xử lí sau khi gọi dialog
+         * @param {string} id Id của form dialog, default = 'myModal'
+         */
+        function openDialog(title, path, callback, id = 'myModal') {
+
+            //check tồn tại của form dialog theo id
+            if ($('#' + id).length === 0) {
+                scope.headerTitle = title;
+                //Đặt ID cho form dialog
+                dialog(scope, id).url(path).done(function () {
+                    callback();
+                    //Set draggable cho form dialog
+                    $dialog.draggable();
+                });
+            }
+        }
+
+        function _tableAwardData(iPage, iPageLength, orderBy, searchText, callback) {
+            var sort = {};
+            $.each(orderBy, function (i, v) {
+                sort[v.columns] = (v.type === "asc") ? 1 : -1;
+            });
+            sort[orderBy[0].columns] =
+                services.api("${get_api_key('app_main.api.HCSLS_Award/get_list_with_searchtext')}")
+                    .data({
+                        //parameter at here
+                        "pageIndex": iPage - 1,
+                        "pageSize": iPageLength,
+                        "search": searchText,
+                        "lock": scope.$parent.$parent.$parent.advancedSearch.data_lock,
+                        "sort": sort
+                    })
+                    .done()
+                    .then(function (res) {
+                        var data = {
+                            recordsTotal: res.total_items,
+                            recordsFiltered: res.total_items,
+                            data: res.items
+                        };
+                        callback(data);
+                        scope.currentAward = null;
+                        scope.$apply();
+                    })
+        }
+
+        $(document).ready(function () {
+            $('#tableAwardSearchText').on('keypress', function (e) {
+                var code = e.keyCode || e.which;
+                if (code == 13) {
+                    scope.tableAwardSearchText = $('#tableAwardSearchText').val();
+                    scope.$applyAsync();
+                }
+            });
+        })
+    });
 </script>

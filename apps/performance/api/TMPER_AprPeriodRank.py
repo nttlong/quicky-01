@@ -6,6 +6,7 @@ import logging
 import threading
 from hcs_authorization import action_type,authorization
 from Query import TMLS_Rank
+from services import TMPER_AprPeriodRankService as service
 
 logger = logging.getLogger(__name__)
 global lock
@@ -174,7 +175,7 @@ def insert(args):
                 'list_rating' and 'departments' and 'apr_period' and 'apr_year'):
             if (len(args['data']['list_rating']) > 0 and len(args['data']['departments']['department_code']) > 0):
                 tmp_depart = []
-                dbs = get_all_department_by_year_month(args['data'])
+                dbs = service.get_all_department_by_year_month(args['data'])
                 if (len(dbs) > 0):
                     for x in dbs:
                         tmp_depart.append(x['department_code'])
@@ -233,7 +234,7 @@ def insert(args):
                 # get parent_code from department in Department,
                 arr = args['data']['departments']['department_code']
                 while (all(y is None for y in arr) == False):
-                    arr_calback = get_parent_code_by_departCode(arr)
+                    arr_calback = service.get_parent_code_by_departCode(arr)
                     for dep_code in arr_calback:
                         if dep_code is None:
                             continue
@@ -266,7 +267,7 @@ def update(args):
         if args['data'] != None and args['data'].has_key(
                 'list_rating' and 'departments' and 'apr_period' and 'apr_year'):
             if (len(args['data']['list_rating']) > 0 and len(args['data']['departments']['department_code']) > 0):
-                x = get_aprAprRank_by_departCode(args['data'])
+                x = service.get_aprAprRank_by_departCode(args['data'])
                 if (x != None):
                     ite = {}
                     ite['rank_level'] = []

@@ -48,6 +48,13 @@ def on_begin_request(request):
 
 def on_end_request(request):
     print("time is :{0} in {1}".format((datetime.datetime.now()-request.begin_time).microseconds,request.path_info))
-import django_db
-Database=django_db.getdb_config()
+
+Database=dict(
+    host="172.16.7.67",
+    name="lms",
+    port=27017,
+    user="sys",
+    password="123456"
+)
+
 login_url="/../login"

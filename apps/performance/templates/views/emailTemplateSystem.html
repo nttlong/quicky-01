@@ -19,8 +19,8 @@
 <div class="hcs-container">
     <div class="row hcs-profile-list">
         <div class="hcs-left-side-department-content">
-            <div class="hcs-left-side-department-tree-tool-bar">
-                <div class="pull-left" style="padding:0px 10px 0px 10px;width:100%;">
+            <div class="hcs-left-side-department-tree-tool-bar" style="height:40px;">
+                <div class="pull-left" style="padding:5px 5px 5px 5px;width:100%;">
                     <div class="hcs-left-side-department-tree-tool-bar-div-search" style="width:100%;">
                        <input class="hcs-left-side-department-tree-tool-bar-input-search"
                               placeholder="Filter" ng-model="searchText">
@@ -32,9 +32,9 @@
                 </div>
                 <div class="clearfix"></div>
             </div>
-            <div class="hcs-left-side-department-tree" style="overflow: auto;">
+            <div class="hcs-left-side-department-tree" style="overflow: auto;padding:unset;">
                 <div class="hcs-search-function-list" ng-repeat="ele in valueListModule track by $index">
-                    <p style="margin:5px 0px;">
+                    <p>
                         {{ele.caption}}
                     </p>
                     <div class ="zb-list-view">
@@ -84,35 +84,35 @@
                 </header-page>
             </div>
             <div class="hcs-right-side-department-list hcs-background-email-template-system" style="height:calc(100% - 37px);">
-                <div class="col-md-10 col-md-offset-1">
+                <div class="col-md-10" style="margin-left:35px;margin-top:6px;">
                     <div class="form-group zb-form-group">
                         <label class="col-sm-3 col-xs-6 col-md-3 zb-form-label">${get_res('email_template_code','Mã mẫu email')}</label>
                         <div class="col-sm-9 col-xs-6 col-md-9">
-                            <input-text ng-model="entity.email_template_code" ng-disabled="mode == 2 ? true : false" required>
+                            <input-text ng-model="entity.email_template_code" ng-disabled="mode == 2 ? true : false" required/>
                         </div>
                     </div>
                     <div class="form-group zb-form-group">
                         <label class="col-sm-3 col-xs-6 col-md-3 zb-form-label">${get_res('email_template_name','Tên mẫu email')}</label>
                         <div class="col-sm-9 col-xs-6 col-md-9">
-                            <input-text ng-model="entity.email_template_name" required>
+                            <input-text ng-model="entity.email_template_name" required/>
                         </div>
                     </div>
                     <div class="form-group zb-form-group">
                         <label class="col-sm-3 col-xs-6 col-md-3 zb-form-label">${get_global_res('description','Mô tả')}</label>
                         <div class="col-sm-9 col-xs-6 col-md-9">
-                            <input-text ng-model="entity.description">
+                            <input-text ng-model="entity.description"/>
                         </div>
                     </div>
                     <div class="form-group zb-form-group">
                         <label class="col-sm-3 col-xs-6 col-md-3 zb-form-label">${get_res('module_name','Thuộc phân hệ')}</label>
                         <div class="col-sm-9 col-xs-6 col-md-9">
-                            <input-select data-list="valueListModule" data-value="value" data-caption="caption" ng-model="entity.module_name" required>
+                            <input-select data-list="valueListModule" data-value="value" data-caption="caption" ng-model="entity.module_name" required/>
                         </div>
                     </div>
                     <div class="form-group zb-form-group" style="margin-bottom:25px;">
                         <label class="col-sm-3 col-xs-6 col-md-3 zb-form-label">${get_res('subject','Tiêu đề')}</label>
                         <div class="col-sm-9 col-xs-6 col-md-9">
-                            <input-text ng-model="entity.subject" required>
+                            <input-text ng-model="entity.subject" required/>
                         </div>
                     </div>
                     <div class="col-md-12" style="padding: 0px 15px 0px 7px;">

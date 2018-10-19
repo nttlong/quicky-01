@@ -173,8 +173,8 @@
         debugger
         scope.$display.mapName = scope.$root.currentFunction;
 		scope.currentFunction = scope.$display.mapName;
-
-        scope.$root.$$$authoriseFunction = scope.$root.currentFunction.function_id;
+        scope.$display.selectedFunction = scope.$display.mapName.function_id ? scope.$display.mapName.function_id : null;
+        scope.$root.$$$authoriseFunction.id = scope.$root.currentFunction.function_id;
         _getList();
         _getValueList(function(res){
             scope.valueListModule = res.values;
@@ -186,4 +186,45 @@
     scope.$watch('entity.module_name', function(val){
         console.log(val);
     })
+
+    scope.$watch("$display.selectedFunction", function (function_id) {
+        debugger
+        if(function_id){
+            var $his = scope.$root.$history.data();
+        //if (scope.currentItem) {
+            if(scope.$display.mapName.function_id === function_id){
+                scope.currentFunction = scope.$display.mapName;
+            if($his && $his.hasOwnProperty('page') && _.findWhere(scope.$root.$function_list, {'function_id': $his.page}))
+                window.location.href = "#page=" + scope.$root.$extension.TripleDES.encrypt($his.page) + "&f=" + scope.$root.$extension.TripleDES.encrypt(function_id);
+            else
+                window.location.href = "#page=" + scope.$root.$extension.TripleDES.encrypt(scope.$root.$extension.TripleDES.decrypt($his.page)) + "&f=" + scope.$root.$extension.TripleDES.encrypt(function_id);
+            }
+        }
+        //}
+        //window.location.href = "#page=" + $his.page + "&f=" + function_id;
+    });
+
+    scope.$root.$history.onChange(scope, function (data) {
+    debugger
+        if(!_.findWhere(scope.$root.$function_list, {function_id:data['page']}))
+            data = {
+                page: data.hasOwnProperty('page') ? scope.$root.$extension.TripleDES.decrypt(data.page) : null,
+                f: data.hasOwnProperty('f') ? scope.$root.$extension.TripleDES.decrypt(data.f) : null,
+            }
+        if (scope.$display.mapName) {
+            if (data.f) {
+                if (scope.$display.mapName.function_id === data.f) {
+                    scope.currentFunction = scope.$display.mapName;
+                    scope.$display.selectedFunction = scope.$display.mapName.function_id;
+                } else {
+                    window.location.href = "#";
+                }
+            } else {
+
+            }
+            scope.$apply();
+        } else {
+            window.location.href = "#";
+        }
+    });
 });

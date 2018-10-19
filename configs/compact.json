@@ -67,14 +67,22 @@
   "SESSION_ENGINE_1":"django.contrib.sessions.backends.cache",
   "SESSION_EXPIRE_AT_BROWSER_CLOSE":true,
   "DATABASES": {
-       "default" : {
+       "default_" : {
            "ENGINE": "django_mongodb_engine",
            "NAME": "hrm",
            "HOST": "localhost",
            "PORT": 27017,
            "USER": "root",
            "PASSWORD": "123456"
-       }
+       },
+      "default" : {
+             "ENGINE": "django_mongodb_engine",
+             "NAME": "lms",
+             "HOST": "172.16.7.67",
+             "PORT": 27017,
+             "USER": "sys",
+             "PASSWORD": "123456"
+      }
 
     },
   "LANGUAGE_CODE":"en-us",

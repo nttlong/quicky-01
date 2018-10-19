@@ -1,6 +1,6 @@
 <%page cached="True"/>
 <!DOCTYPE html>
-<html lang="en" ng-app="admin" ng-cloak>
+<html lang="en" ng-app="admin" ng-cloak view-id="${register_view()}">
 	<head>
         <!--<title>Admin</title>-->
         <meta charset="utf-8">
@@ -19,6 +19,9 @@
         <script src="${get_static('js/underscore-min.js')}"></script>
         <script src="${get_static('js/moment-with-locales.js')}"></script>
         <script src="${get_static('js/moment-precise-range.js')}"></script>
+        <script src="${get_static('js/crypto/aes.js')}"></script>
+        <script src="${get_static('js/crypto/md5.js')}"></script>
+        <script src="${get_static('js/crypto/tripledes.js')}"></script>
 
         <script src="${get_static('app/libs/jquery-ui.min.js')}"></script>
         <script src="${get_static('js/datatables/datatables.min.js')}"></script>

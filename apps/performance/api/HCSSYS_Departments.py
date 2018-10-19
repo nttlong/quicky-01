@@ -9,7 +9,9 @@ logger = logging.getLogger(__name__)
 global lock
 lock = threading.Lock()
 from Query import DepartmentGroup
+from hcs_authorization import action_type, authorization
 
+@authorization.authorise(common = True)
 def get_list(args):
     items = models.HCSSYS_Departments().aggregate().project(
         department_code = 1,
@@ -19,6 +21,7 @@ def get_list(args):
     
     return items.get_list()
 
+@authorization.authorise(action = action_type.Action.READ)
 def get_department_by_dept_code(args):
     try:
         if args['data'] != None and args['data'].has_key('department_code'):
@@ -91,12 +94,12 @@ def get_list_department_by_parent_code(args):
         
     return ret.get_page(pageIndex, pageSize)
 
+@authorization.authorise(action = action_type.Action.READ)
 def get_tree(args):
     ret=DepartmentGroup.get_department_group()
     return ret.get_list()
 
-
-
+@authorization.authorise(common = True)
 def get_department_group():
     ret=models.HCSSYS_Departments().aggregate()
     ret.left_join(models.auth_user_info(), "created_by", "username", "uc")
@@ -121,6 +124,8 @@ def get_department_group():
         ordinal = 1
     )) 
     return ret
+
+@authorization.authorise(action = action_type.Action.CREATE)
 def insert(args):
     try:
         lock.acquire()
@@ -161,6 +166,7 @@ def insert(args):
         lock.release()
         raise(ex)
 
+@authorization.authorise(action = action_type.Action.WRITE)
 def update(args):
     try:
         lock.acquire()
@@ -179,6 +185,7 @@ def update(args):
         lock.release()
         raise(ex)
 
+@authorization.authorise(action = action_type.Action.DELETE)
 def delete(args):
     try:
         lock.acquire()
@@ -196,6 +203,7 @@ def delete(args):
         lock.release()
         raise(ex)
 
+@authorization.authorise(common = True)
 def set_dict_data(args):
     data = dict(
         department_code     =     args['data']['department_code'],

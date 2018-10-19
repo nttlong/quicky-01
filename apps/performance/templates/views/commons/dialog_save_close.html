@@ -15,7 +15,7 @@
                 <button type="button" style="display:{{ ${self.attr._maximize} == true ? '' : 'none' }};" class="close" ng-click="onResizeDialog()"><i class="bowtie-icon bowtie-view-full-screen"></i></button>
             </div>
         </div>
-        <div class="modal-body modal-body-resize" style="height:${self.attr._height};">
+        <div class="modal-body modal-body-resize" style="height:${self.attr._height};max-height:{{maxHeightDialog}};min-height:{{minHeightDialog}}">
             <%block name="modal_body"/>
         </div>
         <div class="modal-footer">

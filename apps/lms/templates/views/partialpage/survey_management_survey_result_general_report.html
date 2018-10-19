@@ -1,0 +1,247 @@
+<style type="text/css">
+    .zb-list-view .list-group-item ul{
+        list-style-type: none;
+        display: inline-flex;
+        padding: unset;
+        margin: unset;
+        height: 50px;
+        width: 100%;
+    }
+
+    .zb-list-view .list-group-item ul li{
+        padding-top: 28px;
+        width: 50%;
+        color: #1520C2;
+        font-size: 12px;
+        font-weight: bold;
+    }
+    .zb-list-view .list-group-item ul li:last-child{
+        text-align: right;
+    }
+    .hcs-card .panel-heading{
+        background-color: unset;
+    }
+    .hcs-card .panel-heading .progress{
+        margin-bottom: unset;
+    }
+    .hcs-card .panel-body{
+        padding: unset;
+    }
+    .hcs-card .panel-body ul{
+        list-style-type: none;
+        display: inline-flex;
+        padding: unset;
+        margin: unset;
+        width: 100%;
+    }
+    .hcs-card .panel-body ul li{
+        width: 25%;
+        padding: 5px 0px 5px 15px;
+        border-right: 1px solid #ddd;
+    }
+    .hcs-card .panel-body ul li:last-child{
+        border-right: unset;
+    }
+    .hcs-card .panel-body ul li span{
+        font-size: 30px;
+    }
+
+    .hcs-card .panel-body ul li p{
+        margin-bottom: unset;
+    }
+
+    .hcs-right-side-department-content .table tbody tr td .progress{
+        margin-bottom: unset;
+    }
+</style>
+<div class="tab-pane" style="padding-right:unset; height: 100%; display: none;">
+    <table-data data-source="$$table.tableSource" fields="$$table.tableFields" type="MultiSelect" 
+        paging="true" page-length="100" server-side="true" 
+        press-enter="$$table.onSelectTableRow" selected-items="$$table.selectedItems" 
+        current-item="$$table.currentItem" search-text="$$table.tableSearchText"
+        refresh-row="$$table.refreshDataRow">
+    </table-data>
+</div>
+<div class="tab-pane" style="padding-right:unset; height: 100%;" ng-if="$$display.detail">
+    <div class="row hcs-profile-list" style="height: 100%;">
+        <div class="hcs-left-side-department-content" style="width: 270px;">
+            <div class="hcs-left-side-department-tree" style="height: calc(100% - 0px); padding: unset;width: 100%;">
+                <div class="list-group zb-list-view">
+                        <a ng-class="{active:_equal(ngModel, elm)}" 
+                           class="list-group-item ng-binding ng-scope active" 
+                           ng-click="selectItem($event, elm)">
+                            Course evaluation by students
+                            <ul>
+                                <li>Total: 30</li>
+                                <li>Response: 28</li>
+                            </ul>
+                        </a>
+                        <a ng-class="{active:_equal(ngModel, elm)}" 
+                           class="list-group-item ng-binding ng-scope"
+                           ng-click="selectItem($event, elm)">
+                            Course evaluation by teachers
+                            <ul>
+                                <li>Total: 05</li>
+                                <li>Response: 04</li>
+                            </ul>
+                        </a>
+                        <a ng-class="{active:_equal(ngModel, elm)}" 
+                           class="list-group-item ng-binding ng-scope" 
+                           ng-click="selectItem($event, elm)">
+                            Course evaluation by training dept
+                            <ul>
+                                <li>Total: 04</li>
+                                <li>Response: 04</li>
+                            </ul>
+                        </a>
+                        aaaaaaaaaa
+                <list-view multi="false">
+                    <template>
+                        <div>
+                            <ul>
+                                <li>
+                                    {{item.A}}
+                                </li>
+                                <li>
+                                    {{item.B}}
+                                </li>
+                                <li>
+                                    {{item.C}}
+                                </li>
+                                <li>
+                                    {{item.D}}
+                                </li>
+                            </ul>
+                        </div>
+                    </template>
+                </list-view>
+                </div>
+            </div>
+        </div>
+        <div class="hcs-right-side-department-content" style="overflow: auto; width: calc(100% - 270px);">
+            <div class="col-xs-12 col-md-6">
+                <h4>Activity</h4>
+                <div class="panel panel-default hcs-card">
+                    <div class="panel-heading">
+                        100% Complete rate
+                        <div class="progress">
+                            <div class="progress-bar" role="progressbar" aria-valuenow="100"
+                          aria-valuemin="0" aria-valuemax="100" style="width:100%">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel-body">
+                        <ul>
+                            <li>
+                                <span>4</span>
+                                <p>Visits</p>
+                            </li>
+                            <li>
+                                <span>2</span>
+                                <p>Responses</p>
+                            </li>
+                            <li>
+                                <span>2</span>
+                                <p>Complete</p>
+                            </li>
+                            <li>
+                                <span>0</span>
+                                <p>Incomplete</p>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-12 col-md-6">
+                <h4>Responses</h4>
+                <div class="panel panel-default hcs-card">
+                    <chart height-chart="300"
+                           chart-data-set="dataSetChart"
+                           chart-label-set="labelSetChart"
+                           title-chart="">
+                    </chart>
+                </div>
+            </div>
+            <div class="col-xs-12 col-md-12">
+                <h4>1. Overall satisfied are you with your educational experience at our school ?</h4>
+                <table class="table table-bordered">
+                    <tbody>
+                        <tr>
+                            <td style="width: 60%;">Very satisfied</td>
+                            <td style="width: 5%;">0%</td>
+                            <td>
+                                <div class="progress">
+                                    <div class="progress-bar" role="progressbar" aria-valuenow="0"
+                                  aria-valuemin="0" aria-valuemax="0" style="width:0%">
+                                    </div>
+                                </div>
+                            </td>
+                            <td style="width: 5%;">0</td>
+                        </tr>
+                        <tr>
+                            <td>Satisfied</td>
+                            <td>50%</td>
+                            <td>
+                                <div class="progress">
+                                    <div class="progress-bar" role="progressbar" aria-valuenow="50"
+                                  aria-valuemin="0" aria-valuemax="0" style="width:50%">
+                                    </div>
+                                </div>
+                            </td>
+                            <td>1</td>
+                        </tr>
+                        <tr>
+                            <td>Neutral</td>
+                            <td>0%</td>
+                            <td>
+                                <div class="progress">
+                                    <div class="progress-bar" role="progressbar" aria-valuenow="0"
+                                  aria-valuemin="0" aria-valuemax="0" style="width:0%">
+                                    </div>
+                                </div>
+                            </td>
+                            <td>0</td>
+                        </tr>
+                        <tr>
+                            <td>Disatisfied</td>
+                            <td>50%</td>
+                            <td>
+                                <div class="progress">
+                                    <div class="progress-bar" role="progressbar" aria-valuenow="50"
+                                  aria-valuemin="0" aria-valuemax="0" style="width:50%">
+                                    </div>
+                                </div>
+                            </td>
+                            <td>1</td>
+                        </tr>
+                        <tr>
+                            <td>Very disatisfied</td>
+                            <td>0%</td>
+                            <td>
+                                <div class="progress">
+                                    <div class="progress-bar" role="progressbar" aria-valuenow="0"
+                                  aria-valuemin="0" aria-valuemax="0" style="width:0%">
+                                    </div>
+                                </div>
+                            </td>
+                            <td>0</td>
+                        </tr>
+                    </tbody>
+                    <tr>
+                        <td colspan="3" style="text-align: right;">Total Respondents</td>
+                        <td>2</td>
+                    </tr>
+                    <tr>
+                        <td colspan="3" style="text-align: right;">Respondents who skipped this question</td>
+                        <td>0</td>
+                    </tr>
+                </table>
+            </div>
+            <div class="col-xs-12 col-md-12">
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    <%include file="../../scripts/partialscript/survey_management_survey_result_general_report.js"/>
+</script>

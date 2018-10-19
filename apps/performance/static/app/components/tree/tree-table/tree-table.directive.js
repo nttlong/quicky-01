@@ -2,10 +2,10 @@
     'use strict';
 
     angular.module('ZebraApp.components.trees')
-        .directive('treeTable', ["$parse", "$getDataTree", treeTable]);
+        .directive('treeTable', ["$parse", "$getDataTree", "$filter", treeTable]);
 
     /** @ngInject */
-    function treeTable($parse, $getDataTree) {
+    function treeTable($parse, $getDataTree, $filter) {
         return {
             restrict: 'E',
             replace: true,
@@ -33,7 +33,7 @@
             },
             templateUrl: "app/components/tree/tree-table/tree-table.html",
             link: function($scope, elem, attr) {
-                compileTree($scope, elem, attr, $parse, $getDataTree);
+                compileTree($scope, elem, attr, $parse, $getDataTree, $filter);
             }
         };
     }
@@ -110,7 +110,7 @@
         // }
     }
 
-    function compileTree($scope, elem, attr, $parse, $getDataTree) {
+    function compileTree($scope, elem, attr, $parse, $getDataTree, $filter) {
         var _tree = null;
         var idx_row = 0;
         function _initLayout() {

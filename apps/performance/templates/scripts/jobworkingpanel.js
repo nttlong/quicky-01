@@ -119,6 +119,7 @@
     }
 
     function init() {
+    debugger
         scope.handleData = new handleData();
         scope.mapName = scope.handleData.mapName;
         scope.detail.mapName = scope.handleData.detail.mapName;
@@ -132,21 +133,51 @@
     /*                                                                                          */
 
     scope.$watch("selectedFunction", function (function_id) {
+    debugger
         if (function_id) {
             var $his = scope.$root.$history.data();
-            window.location.href = "#page=" + $his.page + "&f=" + function_id;
+            //window.location.href = "#page=" + $his.page + "&f=" + function_id;
+            var func = _.filter(scope.mapName, function (f) {
+                return f["function_id"] == function_id;
+            });
+            if (func.length > 0) {
+                scope.$partialpage = func[0].url;
+                scope.currentFunction = func[0];
+                scope.detail.$gjw_code= "";//reset gjw_code when user click back
+            if($his && $his.hasOwnProperty('page') && _.findWhere(scope.$root.$function_list, {'function_id': $his.page}))
+                window.location.href = "#page=" + scope.$root.$extension.TripleDES.encrypt($his.page) + "&f=" + scope.$root.$extension.TripleDES.encrypt(function_id);
+            else
+                window.location.href = "#page=" + scope.$root.$extension.TripleDES.encrypt(scope.$root.$extension.TripleDES.decrypt($his.page)) + "&f=" + scope.$root.$extension.TripleDES.encrypt(function_id);
+            }
         }
     });
 
     scope.$watch("detail.selectedFunction", function (function_id) {
+    debugger
         if (function_id) {
-            var fn = _.findWhere(scope.detail.mapName, { "function_id": function_id });
-            scope.detail.$partialpage = fn.url;
-            scope.detail.currentFunction = fn;
+            var $his = scope.$root.$history.data();
+            //var fn = _.findWhere(scope.detail.mapName, { "function_id": function_id });
+            var func = _.filter(scope.detail.mapName, function (f) {
+                return f["function_id"] == function_id;
+            });
+            if (func.length > 0) {
+                scope.detail.$partialpage = func[0].url;
+                scope.detail.currentFunction = func[0];
+            if($his && $his.hasOwnProperty('page') && _.findWhere(scope.$root.$function_list, {'function_id': $his.page}))
+                window.location.href = "#page=" + scope.$root.$extension.TripleDES.encrypt($his.page) + "&f=" + scope.$root.$extension.TripleDES.encrypt(function_id);
+            else
+                window.location.href = "#page=" + scope.$root.$extension.TripleDES.encrypt(scope.$root.$extension.TripleDES.decrypt($his.page)) + "&f=" + scope.$root.$extension.TripleDES.encrypt(function_id);
+            }
         }
     });
 
     scope.$root.$history.onChange(scope, function (data) {
+    debugger
+        if(!_.findWhere(scope.$root.$function_list, {function_id:data['page']}))
+            data = {
+                page: data.hasOwnProperty('page') ? scope.$root.$extension.TripleDES.decrypt(data.page) : null,
+                f: data.hasOwnProperty('f') ? scope.$root.$extension.TripleDES.decrypt(data.f) : null,
+            }
         //Job working panel
         if (scope.mapName.length > 0) {
             if (data.f) {
@@ -158,8 +189,17 @@
                     scope.currentFunction = func[0];
                     scope.selectedFunction = func[0].function_id;
                 } else {
+                    data.gjw_code = (scope.detail.$gjw_code && scope.detail.$gjw_code !== "") ? scope.detail.$gjw_code : null;
                     if (!data.hasOwnProperty('gjw_code'))
                         window.location.href = "#";
+                    else{
+                        var detailfunc = _.filter(scope.detail.mapName, function (f) {
+                            return f["function_id"] == data.f;
+                        });
+                        scope.detail.$partialPage = detailfunc[0].url;
+                        scope.detail.currentFunction = detailfunc[0];
+                        scope.detail.selectedFunction = detailfunc[0].function_id;
+                    }
                 }
             } else {
                 scope.$partialpage = scope.mapName[0].url;

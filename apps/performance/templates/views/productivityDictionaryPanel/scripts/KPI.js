@@ -5,13 +5,13 @@
      scope.$parent.$parent.$parent.isChangeFunc = true;
     scope.$$table = {
         tableFields: [
-            { "data": "kpi_code", "title": "${get_res('kpi_code_table_header','Mã')}", "className":"text-left" },
+            { "data": "kpi_code", "title": "${get_res('kpi_code_table_header','Mã')}", "className":"text-left", width: "100px" },
             { "data": "kpi_name", "title": "${get_res('kpi_name_table_header','Tên')}", "className": "text-left" },
             { "data": "unit_code", "title": "${get_res('unit_code_table_header','ĐVT')}", "className": "text-left" },
             { "data": "cycle_type", "title": "${get_res('cycle_type_table_header','Chu kỳ')}", "className": "text-left" },
             { "data": "kpi_desc", "title": "${get_res('kpi_desc_table_header','Mô tả')}", "className": "text-left" },
-            { "data": "weight", "title": "${get_res('weight_table_header','Trọng số')}", "className": "text-right" },
-            { "data": "lock", "title": "${get_res('lock_table_header','Toàn cty')}", "className": "text-center", "format": "checkbox" }
+            { "data": "weight", "format":"number: system", "title": "${get_res('weight_table_header','Trọng số')}", "className": "text-right", width: "80px" },
+            { "data": "lock", "title": "${get_res('lock_table_header','Toàn cty')}", "className": "text-center", "format": "checkbox", width: "100px" }
         ],
         $$tableConfig: {},
         tableSource: _loadDataServerSide,

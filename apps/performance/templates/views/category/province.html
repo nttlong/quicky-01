@@ -1,19 +1,19 @@
 ﻿<div id="collapseTableProvince" class="row">
     <div class="col-md-12" style="height: calc((100vh - 140px)/2)">
         <collapse-box class="zb-form-common" title="${get_res('province_caption_toolbar','1. Tỉnh/Thành')}">
-            <toolbar>
-                <input-text-icon icon="bowtie-icon bowtie-search"
+            <toolbar class="zb-toolbar-small-control">
+                <input-text-icon class-btn="zb-small-btn" icon="bowtie-icon bowtie-search"
                                  on-click="onSearchProvince"></input-text-icon>
-                <button ng-click="onAddProvince()" class="zb-btn zb-btn-o-green">
+                <button ng-click="onAddProvince()" class="zb-btn zb-btn-o-green zb-small-btn">
                     <i class="bowtie-icon bowtie-math-plus"></i>
                 </button>
-                <button ng-click="onEditProvince()" class="zb-btn zb-btn-o-blue">
+                <button ng-click="onEditProvince()" class="zb-btn zb-btn-o-blue zb-small-btn">
                     <i class="bowtie-icon bowtie-edit-outline"></i>
                 </button>
-                <button ng-click="onDeleteProvince()" class="zb-btn zb-btn-o-red">
+                <button ng-click="onDeleteProvince()" class="zb-btn zb-btn-o-red zb-small-btn">
                     <i class="bowtie-icon bowtie-trash"></i>
                 </button>
-                <button ng-click="onReloadProvince()" class="zb-btn">
+                <button ng-click="onReloadProvince()" class="zb-btn zb-small-btn">
                     <i class="bowtie-icon bowtie-navigate-refresh"></i>
                 </button>
             </toolbar>
