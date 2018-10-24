@@ -24,3 +24,4 @@ apps/hrm/xml/
 apps/sys_admin/templates/pages/
 .gitignore
 /logs/
+/wvenv1/
