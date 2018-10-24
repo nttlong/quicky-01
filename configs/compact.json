@@ -101,5 +101,6 @@
     "USER":"jasperadmin",
     "PASSWORD":"jasperadmin"
   },
-  "APPS": "compact_apps"
+  "APPS": [],
+  "APPS_": "compact_apps"
 }
