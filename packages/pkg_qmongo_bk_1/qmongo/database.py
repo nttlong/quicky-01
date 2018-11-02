@@ -1595,8 +1595,6 @@ class AGGREGATE():
             _source=source
             if source.__class__ is COLL:
                 _source=source.get_collection_name()
-            if hasattr(source,"coll"):
-                _source = source.coll.get_collection_name()
 
             kwargs.update(source=_source,
                           local_field=local_field,

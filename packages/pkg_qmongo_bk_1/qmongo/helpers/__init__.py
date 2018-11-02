@@ -7,7 +7,6 @@ from . import  aggregate_validators as query_validator
 from . import validators
 from .. import dict_utils
 from .. fx_model import __obj_model__
-from datetime import datetime
 class _obj(object):
     pass
 
@@ -15,41 +14,6 @@ class _obj(object):
 
 global models
 models=_obj()
-__py_types_map__={
-    str:"string",
-    float:"numeric",
-    datetime:"date",
-    bool:"bool",
-    list:"array",
-    object:"object",
-    int:"int",
-    "text":"text",
-    "string":"text",
-    "numeric":"numeric",
-    "date":"date",
-    "bool":"bool",
-    "list":"list",
-    "object":"object",
-    "int":"int"
-}
-__mongodb_types_map__={
-    str: "text",
-    float: "numeric",
-    datetime: "date",
-    bool: "bool",
-    list: "list",
-    object: "object",
-    int: "int",
-    "text":"text",
-    "string":"text",
-    "numeric":"numeric",
-    "date":"date",
-    "bool":"bool",
-    "list":"list",
-    "object":"object",
-    "int":"int"
-
-}
 from . model_events import model_event
 _model_caching_={}
 _model_index_={}
@@ -72,10 +36,7 @@ class data_field():
         :param detail:
         """
         self.is_require=is_require
-        if __mongodb_types_map__.has_key(data_type):
-            self.data_type=__mongodb_types_map__[data_type]
-        else:
-            raise (Exception("'{0}' is not support ".format(data_type.__str__())))
+        self.data_type=data_type
         self.details=detail
 def convert_tuple_declare_into_fields(data):
     if data == None:
@@ -89,17 +50,6 @@ def convert_tuple_declare_into_fields(data):
             _data.update({
                 k: data_field(v)
             })
-        elif v is dict:
-            c=v
-        elif not (type(v) is dict) and not (type(v) is tuple) and __py_types_map__.has_key(v):
-            try:
-                _data.update({
-                    k: data_field(__py_types_map__[v])
-                })
-            except Exception as ex:
-                x=ex
-
-
         elif type(v) is tuple:
             data_type = v[0]
             is_require = False
