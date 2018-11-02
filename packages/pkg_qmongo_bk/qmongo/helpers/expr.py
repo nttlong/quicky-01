@@ -713,13 +713,7 @@ def get_str_value_of_text_function(cmp, params):
         val = cmp.value.args[1].__reduce__()[2]['s']
     return val
 
-def __compile_right_params__(x,y):
-    if type(y.get('right')) in [str,unicode] :
-        return y.get('right')
-    if y.get('right', {}).get('type', None) == "params":
-        return x[y["right"]["value"]]
-    else:
-        return y["right"]["value"]
+__compile_right_params__ = lambda x,y: x[y["right"]["value"]] if y.get('right',{}).get('type',None) == "params" else y["right"]["value"]
 def raw_string(s):
     if not type(s) in [str,unicode]:
         return s

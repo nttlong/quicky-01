@@ -9,6 +9,7 @@
 """
 from __builtin__ import property
 
+from samba.dcerpc.irpc import kdc_check_generic_kerberos
 
 from . fx_model import s_obj
 from . import helpers

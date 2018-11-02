@@ -858,25 +858,17 @@ class COLL():
         :return:
         """
         context = self.qr.db
-
         if context == None:
-            try:
-                import django_db
-                self.qr.db = django_db.getdb()
-
-            except Exception as ex:
-                from . import db_context
-                context = db_context.get_db_context()
-                if context == None:
-                    raise (Exception("Please use:\n"
-                                     "import qmongo\n"
-                                     "qmongo.set_db_context(host=..,port=..,user=..,password=..,name=...)\n"
-                                     "or you can use bellow statement:\n"
-                                     "qmongo.set_db_context(\"mongodb://{username}:{password}@{host}:{port}/{database name}[:{schema}]\")"))
-        elif type(context) is pymongo.database.Database:
-            self.qr.db = context
-        else:
-            self.qr.db = context.db
+            from . import db_context
+            context = db_context.get_db_context()
+            if context == None:
+                raise (Exception("Please use:\n"
+                                 "import qmongo\n"
+                                 "qmongo.set_db_context(host=..,port=..,user=..,password=..,name=...)\n"
+                                 "or you can use bellow statement:\n"
+                                 "qmongo.set_db_context(\"mongodb://{username}:{password}@{host}:{port}/{database name}[:{schema}]\")"))
+            else:
+                self.qr.db = context.db
         if self.schema == None:
             from . db_context import get_schema
             self.schema = get_schema()
@@ -1612,9 +1604,6 @@ class AGGREGATE():
         source_model=None
         if isinstance(source,COLL):
             source_model =source._model
-        elif hasattr(source,"coll"):
-            source_model = source.coll._model
-
         else:
             source_model = get_model(source)
 

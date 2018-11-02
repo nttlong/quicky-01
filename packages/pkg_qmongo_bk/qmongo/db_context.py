@@ -88,6 +88,8 @@ def get_db_context():
         return threading.currentThread().__qmongo_db_context_current_db
     else:
         return None
+
+
 class dbcontext():
     def __init__(self,*args,**kwargs):
         if args == () and kwargs == {}:

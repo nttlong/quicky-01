@@ -2,7 +2,6 @@ import threading
 from . import json_parser
 class caller:
     def __init__(self,functionName):
-        self.__params__ = None
         self.__functionName__=functionName
         self.__db__= None
     def params(self,*args,**kwargs):
@@ -19,14 +18,9 @@ class caller:
         self.__params__=_param
         return self
     def get_command(self):
-        if self.__params__!=None:
-            ret = self.__functionName__
-            ret=ret+"("+",".join(self.__params__)+")"
-            return ret
-        else:
-            ret = self.__functionName__
-            ret = ret + "()"
-            return ret
+        ret = self.__functionName__
+        ret=ret+"("+",".join(self.__params__)+")"
+        return ret
 
     def set_database(self,db):
         self.__db__=db

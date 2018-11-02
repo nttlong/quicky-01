@@ -242,9 +242,9 @@ class __obj_model__(object):
         return self
     @property
     def aggregate(self):
-        # if self.__aggregate__ == None or self.__aggregate__.get_selected_fields() == [] :
-        #     self.__aggregate__ =self.coll.aggregate()
-        return self.coll.aggregate()
+        if self.__aggregate__ == None or self.__aggregate__.get_selected_fields() == [] :
+            self.__aggregate__ =self.coll.aggregate()
+        return self.__aggregate__
     def project(self,*args,**kwargs):
         self.aggregate.project(*args,**kwargs)
         return self
