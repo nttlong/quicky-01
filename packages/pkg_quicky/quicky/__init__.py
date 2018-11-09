@@ -1,7 +1,10 @@
-from . import versions
-VERSION = versions.VERSION
+VERSION = [1,0,0,"beta",4]
 def get_version():
-    return versions.get_version()
+    return VERSION[0].__str__()+\
+           "."+VERSION[1].__str__()+\
+           "."+VERSION[2].__str__()+\
+           "."+VERSION[3].__str__()+\
+           "."+VERSION[4].__str__()
 """
 This package is the core package support for multi purpose in project
 """
@@ -19,10 +22,9 @@ from . import layout_view #use for boostrap layout definition
 from . import url
 import datetime
 import threading
-
 from . import dynamic_views
-
 load_controllers=dynamic_views.load_controllers
+
 system_settings=None
 _db_multi_tenancy=None
 _cache_multi_tenancy={}
@@ -39,7 +41,7 @@ def get_tenancy_code_regex():
     # return "\(w{0,24})"
 def validate_tenancy_code(code):
     """
-    Validate tenancy code
+    Validate tenancy code 
     :param code:
     :return:
     """
@@ -62,10 +64,43 @@ def get_django_settings_module():
 
     :return:
     """
-    from django.conf import settings
-    # return settings
+    global system_settings
+    if system_settings!=None:
+        return system_settings
+    "get all settings of current project"
+    setting_name=os.environ.get("DJANGO_SETTINGS_MODULE",None)
+    ret=None
+    if setting_name==None:
+        return None
+    else:
+        if not dic_has_key(sys.modules,setting_name):
+            return None
+        else:
+            system_settings=sys.modules[setting_name]
+            if hasattr(system_settings,"USE_MULTI_TENANCY") and system_settings.USE_MULTI_TENANCY:
+                if not hasattr(system_settings,"MULTI_TENANCY_DEFAULT_SCHEMA"):
+                    raise (Exception("It look like you have used 'USE_MULTI_TENANCY'.\n"
+                                     "But you forgot set 'MULTI_TENANCY_DEFAULT_SCHEMA' in '{0}'.\n"
+                                     "What is default schema?\n"
+                                     "Serving multiple tenants under same database,\n"
+                                     "where each tenant has its own sets of tables grouped with schema as required by tenant.\n"
+                                     "default schema will be used, if the system can not determine schema of user transaction".format(
+                        system_settings.__file__
+                    )))
+                if not hasattr(system_settings,"MULTI_TENANCY_CONFIGURATION"):
+                    raise (Exception("It look like you have used 'USE_MULTI_TENANCY'.\n"
+                                     "But you forgot set 'MULTI_TENANCY_CONFIGURATION' in '{0}'.\n"
+                                     "What is 'MULTI_TENANCY_CONFIGURATION'?\n"
+                                     "'MULTI_TENANCY_CONFIGURATION' is include bellow information:\n"
+                                     "host=[host data base name]\n"
+                                     "port=[mongodb port]\n"
+                                     "user=[user name]\n"
+                                     "password=[password]\n"
+                                     "name=[database name]\n"
+                                     "collection=[manage muti tenant collection name]".format(
+                        system_settings.__file__
+                    )))
     return system_settings
-
 def to_server_local_time(val):
     # type: (datetime) -> datetime
     """
@@ -96,24 +131,11 @@ def get_tenancy_collection():
     Get tenancy collection refer 'MULTI_TENANCY_CONFIGURATION' in settings.py
     :return:
     """
-    from django.conf import settings
-    config = None
-    try:
-        config = settings.MULTI_TENANCY_CONFIGURATION
-    except Exception as ex:
-        pass
-    if config== None:
-        config=dict(
-            host = settings.DATABASES["default"]["HOST"],
-            port = settings.DATABASES["default"]["PORT"],
-            name = settings.DATABASES["default"]["NAME"],
-            user = settings.DATABASES["default"]["USER"],
-            password=settings.DATABASES["default"]["PASSWORD"],
-            collection="sys_customers"
-        )
     global _db_multi_tenancy
     if _db_multi_tenancy==None:
         import pymongo
+
+        config=get_django_settings_module().MULTI_TENANCY_CONFIGURATION
         cnn=pymongo.MongoClient(
             host=config["host"],
             port=config["port"]
@@ -130,17 +152,10 @@ def get_tenancy_schema(code):
     :param code:
     :return:
     """
-    from django.conf import settings
-    # from . import get_django_settings_module
+    from . import get_django_settings_module
     import re
     # cmp=re.compile(r"[a-zA-Z_0-9-]+\z",re.IGNORECASE)
-    try:
-        default_schema=settings.MULTI_TENANCY_DEFAULT_SCHEMA
-    except Exception as ex:
-        raise Exception("It looks like you forgot set 'MULTI_TENANCY_DEFAULT_SCHEMA' on settings\r\n"
-                        "Why? Yoh have set 'USE_MULTI_TENANCY' is true in settings.")
-
-    if default_schema==code:
+    if get_django_settings_module().MULTI_TENANCY_DEFAULT_SCHEMA==code:
         return code
 
     global _cache_multi_tenancy

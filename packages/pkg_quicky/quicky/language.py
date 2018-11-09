@@ -47,26 +47,18 @@ def set_config(*args,**kwargs):
                 _db.authenticate(args["user"],args["password"])
             _coll=_db.get_collection(args["collection"])
             _collection_name=args["collection"]
-def load_config_from_django_settings():
-    from django.conf import settings
-    LANGUAGE_COLLECTION="lang_res"
-    try:
-        LANGUAGE_COLLECTION = settings.LANGUAGE_COLLECTION
-    except Exception as ex:
-        pass
-    set_config(dict(
-        host= settings.DATABASES["default"]["HOST"],
-        port = settings.DATABASES["default"]["PORT"],
-        user =settings.DATABASES["default"]["USER"],
-        password =settings.DATABASES["default"]["PASSWORD"],
-        name = settings.DATABASES["default"]["NAME"],
-        collection = LANGUAGE_COLLECTION
-    ))
+
 def get_language_item(schema,lan,app,view,key,value):
 
     coll=_coll
     if _collection_name == None:
-        load_config_from_django_settings()
+        from django.conf import settings
+        if not hasattr(settings,"LANGUAGE_COLLECTION"):
+            raise (Exception("It looks like you forgot put 'LANGUAGE_COLLECTION' point to storage of language resoucre"))
+        dbconfig = settings.DATABASES["default"]
+
+
+
 
     if schema!=None:
         coll=_db.get_collection(schema+"."+_collection_name)
@@ -106,11 +98,10 @@ def get_language():
 
 def set_language(lan_code):
     "Set language code"
-    if not hasattr(threading.currentThread(),"language_code"):
-        if lan_code != None and lan_code != "":
-            setattr(threading.currentThread(),"language_code",lan_code)
-            setattr(threading.current_thread(), "language_code", lan_code)
-        else:
-            language = applications.get_settings().LANGUAGE_CODE
-            setattr(threading.currentThread(),"language_code", language)
-            setattr(threading.current_thread(), "language_code", language)
+    if lan_code != None and lan_code != "":
+        setattr(threading.currentThread(),"language_code",lan_code)
+        setattr(threading.current_thread(), "language_code", lan_code)
+    else:
+        language = applications.get_settings().LANGUAGE_CODE
+        setattr(threading.currentThread(),"language_code", language)
+        setattr(threading.current_thread(), "language_code", language)

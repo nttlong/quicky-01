@@ -27,7 +27,6 @@ def load_config(file_name,none_params=False):
                 config_from_file.update({
                     "APPS":APPS["APPS"]
                 })
-
         for x in config_from_file.get("PACKAGES", []):
             try:
                 sys.path.append(BASE_DIR + os.sep + x.replace("/", os.sep))
@@ -68,6 +67,18 @@ def load_config(file_name,none_params=False):
 
                     language.set_config(config_from_file[key])
                     setattr(settings, key, config_from_file[key])
+                elif key == "DB_TRACKING":
+                    import qtracking
+                    qtracking.set_config(config_from_file[key])
+                    setattr(settings,key,config_from_file[key])
+                elif key=="JASPER":
+                    import qjasper
+                    qjasper.set_config(
+                        url=config_from_file[key]["URL"],
+                        user=config_from_file[key]["USER"],
+                        password=config_from_file[key]["PASSWORD"]
+
+                    )
                 elif key == "APPS":
                     pass
                 else:
@@ -111,12 +122,11 @@ def load_config(file_name,none_params=False):
     sys.modules.update({file_name: {"settings": settings}})
     sys.modules.update({file_name + ".settings": settings})
     os.environ.setdefault("DJANGO_SETTINGS_MODULE", file_name + ".settings")
-    # from . import api
-    # api.connect(config_from_file["DB_API_CACHE"])
-    # from . import backends
-    # backends.set_config(config_from_file["DB_BACK_END"])
-    from . import url
-    url.build_urls(settings.ROOT_URLCONF, [x for x in config_from_file["APPS"] if not x.get("disable", False)])
+    from . import api
+    api.connect(config_from_file["DB_API_CACHE"])
+    from . import backends
+    backends.set_config(config_from_file["DB_BACK_END"])
+    quicky.url.build_urls(settings.ROOT_URLCONF, [x for x in config_from_file["APPS"] if not x.get("disable", False)])
     from django.core.management import execute_from_command_line
     args = [x for x in sys.argv if x[0:2] != "--"]
     log = logging.getLogger(__file__)

@@ -92,34 +92,36 @@ class extension(object):
         while _str_.__len__()>0 and _str_.count("//") > 0:
             _str_ = _str_.replace("//", "/")
         return _str_
-    def init_app(self,request):
-        """
-        find app acording to request.path
-        :param request:
-        :return:
-        """
-        from .. import applications
-        from django.conf import settings
-        if hasattr(request,"__app__") and request.__app__ !=-1:
-            return
+    def init_app(self,request,app):
+        if app == None:
+            from .. import applications
+            from django.conf import settings
+            if hasattr(request,"__app__") and request.__app__ !=-1:
+                return
 
-        if __apps_cache__.has_key(request.path):
-            setattr(request,"__app__",__apps_cache__[request.path])
-        path = self.__str_trim__(request.path)
+            if __apps_cache__.has_key(request.path):
+                setattr(request,"__app__",__apps_cache__[request.path])
+            path = request.path
+            path = path[1:path.__len__()]
+            if hasattr(settings,"HOST_DIR") and settings.HOST_DIR!="":
+                path = path[settings.HOST_DIR.__len__():path.__len__()]
+            if path == "api":
+                setattr(request,"__app__",applications.get_app_by_host_dir(""))
+                __apps_cache__.update({request.path: request.__app__})
+                return
+            elif path[path.__len__()-4:path.__len__()] == "/api":
+                path = path[0:path.__len__() - 4]
+            items = path.split('/')
 
-        if hasattr(settings,"HOST_DIR") and settings.HOST_DIR!="":
-            path = path[settings.HOST_DIR.__len__():path.__len__()]
-        if path == "api":
-            setattr(request,"__app__",applications.get_app_by_host_dir(""))
-            __apps_cache__.update({request.path: request.__app__})
-            return
-        elif path[path.__len__()-4:path.__len__()] == "/api":
-            path = path[0:path.__len__() - 4]
-        items = path.split('/')
-        app= applications.find_app_from_url(path)
+            if items.__len__()>1:
+                app = applications.get_app_by_host_dir(items[1])
+            else:
+                app = applications.get_app_by_host_dir(items[0])
+            if app ==-1:
+                app = applications.get_app_by_host_dir("")
+
         setattr(request,"__app__",app)
-        if app!=-1:
-            __apps_cache__.update({request.path: app})
+        __apps_cache__.update({request.path: app})
     def init_customer_code(self,request):
         from django.conf import settings
         _path_ =__remove_last__('/', __remove_first__('/',request.path))
@@ -561,8 +563,8 @@ class extension(object):
                 fn.func_name:fn
             })
 
-    def process_request(self,request):
-        self.init_app(request)
+    def process_request(self,request,app):
+        self.init_app(request,app)
         self.init_customer_code(request)
         setattr(request,"__customer_code__",__customer__code__[request.path])
         self.init_schema(request)

@@ -28,12 +28,17 @@ class executor(object):
             if hasattr(self.__app__.settings, "DEFAULT_DB_SCHEMA") and not has_set_schema:
                 tenancy.set_schema(self.__app__.settings.DEFAULT_DB_SCHEMA)
     def exec_request(self, request, **kwargs):
-        print "resolve request {0} with source file {1}".format(request.path,self.__fn__.func_code.co_filename)
-        # try:
-        return self.run_request(request,**kwargs)
-        # except Exception as ex:
-        #     __log__.debug(ex.message,ex)
-        #     raise ex
+        try:
+
+            if self.__app__!=None and self.__app__.is_persistent_schema():
+                import threading
+                setattr(threading.currentThread(), "tenancy_code", self.__app__.get_persistent_schema())
+                setattr(threading.current_thread(), "tenancy_code", self.__app__.get_persistent_schema())
+
+            return self.run_request(request,**kwargs)
+        except Exception as ex:
+            __log__.debug(ex.message,ex)
+            raise ex
 
 
     def run_request(self, request, **kwargs):
@@ -42,7 +47,7 @@ class executor(object):
             from . import middleware
             __mdl__ =  middleware.extension()
 
-        __mdl__.process_request(request)
+        __mdl__.process_request(request,self.__app__)
 
         schema =request.get_schema()
         tenancy.set_schema(schema)
@@ -86,9 +91,14 @@ class executor(object):
                     login_url = "/" + self.__path_fn__["login_url"]
         if hasattr(request.get_app().settings, "authenticate"):
             from django.http.response import HttpResponseRedirect
+            from django.http import HttpResponse
             ret_auth=request.get_app().settings.authenticate(request)
             login_url = request.get_login_url()
-            if ret_auth != True:
+            if type(ret_auth) is HttpResponseRedirect:
+                return ret_auth
+            if type(ret_auth) is HttpResponse:
+                return ret_auth
+            elif ret_auth != True:
                 if ret_auth == False:
                     if login_url==None:
                         raise (Exception("it look like you forgot set 'login_url' in {0}/settings.py".format(app.path)))
@@ -112,8 +122,7 @@ class executor(object):
 
                     url += "?next=" + urllib.quote_plus(request.get_abs_url() + ("/"+_request_path).replace("//","/"))
                     return redirect(url)
-            elif type(ret_auth) is HttpResponseRedirect:
-                return ret_auth
+
         from django.conf import settings as st
         # lang = request.session.get('language', st.LANGUAGE_CODE)
         from . import language
@@ -122,7 +131,6 @@ class executor(object):
         import qtracking
         if request.get_view_path()!="api":
             qtracking.track_load_page(request.get_app().name,tenancy.get_schema(),request.get_view_path(),request.user.username)
-            print "exec {0} for {1}".format(self.__fn__.func_code.co_filename,request.path)
             return self.__fn__ (request, **kwargs)
         else:
             ret_id=qtracking.track_call_api_before(request.get_app().name,tenancy.get_schema(), request.body, request.user.username)
@@ -138,7 +146,7 @@ class executor(object):
             from . import middleware
             __mdl__ = middleware.extension()
 
-        __mdl__.process_request(request)
+        __mdl__.process_request(request,self.__app__)
         from . import get_tenancy_schema
         code=request.get_schema()
         if code==None:

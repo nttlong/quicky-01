@@ -2,8 +2,8 @@
 import os
 import sys
 import importlib
-# from django.conf.urls.static import static
-# from django.conf.urls import include,url
+from django.conf.urls.static import static
+from django.conf.urls import include,url
 from . import dict_utils
 settings=None
 class app_config():
@@ -81,8 +81,6 @@ class app_config():
         get static url of application for client
         :return:
         """
-        from django.conf.urls.static import static
-        from django.conf.urls import include,url
         if self.host_dir == "":
             return url(r'^' + self.name + '/static/(?P<path>.*)$', 'django.views.static.serve',
                        {'document_root': self.get_server_static(), 'show_indexes': True})
