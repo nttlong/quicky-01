@@ -5,7 +5,8 @@
 <%inherit file="../../commons/dialog_resize_save_close.html"/>
 
 <%block name="modal_body">
-<div class="col-xs-12 col-md-{{col_group}} col-sm-{{col_group}}" style="padding-bottom:20px;">
+<div class="hcs-modal-format">
+    <div class="col-xs-12 col-md-{{col_group}} col-sm-{{col_group}}" style="padding-bottom:20px;">
     <collapse-box class="zb-form-common" title="${get_global_res('Common_Information','Thông tin chung')}">
         <div class="col-xs-{{col}} col-md-{{col}}">
             <div class="form-group zb-form-group">
@@ -48,7 +49,7 @@
                 <!--Thứ tự-->
                 <label for="inputOrdinal" class="col-xs-5 col-sm-5 zb-form-label">${get_res('ordinal','Thứ tự')}</label>
                 <div class="col-xs-7 col-sm-7">
-                    <input-number id="inputOrdinal" ng-model="entity.ordinal">
+                    <input-number id="inputOrdinal" ng-model="entity.ordinal" type="int" >
                 </div>
             </div>
         </div>
@@ -63,15 +64,12 @@
         </div>
     </collapse-box>
 </div>
-<div class="col-xs-12 col-md-{{ 12 - col_group}} col-sm-{{ 12 - col_group}}" style="padding-bottom:20px;">
+    <div class="col-xs-12 col-md-{{ 12 - col_group}} col-sm-{{ 12 - col_group}}" style="padding-bottom:20px;">
     <collapse-box class="zb-form-common" title="${get_global_res('Note','Ghi chú')}">
-        <div class="row">
-            <!--Ghi chú-->
-            <div class="col-xs-12 col-md-12">
+        <div class="col-xs-12 col-md-12">
+            <div class="form-group zb-form-group">
                 <input-textarea rows="6" ng-model="entity.note"></input-textarea>
             </div>
-        </div>
-        <div class="col-xs-12 col-md-12">
             <div class="form-group zb-form-group">
                 <label for="DisplayInfo" class="col-xs-3 col-sm-3 zb-form-label">${get_global_res('create_and_modify','Tạo | Sửa')}</label>
                 <div class="col-xs-9 col-sm-9">
@@ -79,11 +77,11 @@
                                 value="{{ entity.created_on | date: $root.systemConfig.date_format}} {{entity.created_by}} | {{ entity.modified_on | date: $root.systemConfig.date_format}} {{entity.modified_by}}" ng-disabled="true">
                 </div>
             </div>
-        </div>
+            </div>
     </collapse-box>
 </div>
-<div class="col-xs-12 col-md-12 col-sm-12" style="padding-bottom:20px;">
-    <collapse-box class="zb-form-common" title="${get_global_res('coeff_salary','Thiết lập theo hệ số lương')}">
+    <div class="col-xs-12 col-md-12 col-sm-12" style="padding-bottom:20px;">
+    <collapse-box class="zb-form-common format-multi-col" title="${get_global_res('coeff_salary','Thiết lập theo hệ số lương')}">
         <div class="col-xs-12 col-md-{{col_coeff}}">
             <div class="form-group zb-form-group">
                 <!--Thiết lập theo-->
@@ -118,9 +116,9 @@
         </div>
     </collapse-box>
 </div>
-<div class="col-xs-12 col-md-12 col-sm-12" ng-hide="__mode === 1 || entity.coeff !== 2">
+    <div class="col-xs-12 col-md-12 col-sm-12" ng-hide="__mode === 1 || entity.coeff !== 2">
     <collapse-box class="zb-form-common" title="${get_res('config_position_detail','Thiết lập chi tiết chức vụ')}">
-        <toolbar>
+        <toolbar class="zb-toolbar-small-control">
             <input-text-icon icon="bowtie-icon bowtie-search"
                              on-click="onSearch"></input-text-icon>
             <button ng-click="addDetail()" class="zb-btn zb-btn-o-green">
@@ -146,6 +144,8 @@
         </div>
     </collapse-box>
 </div>
+</div>
+
 </%block>
 
 <%block name="modal_script">

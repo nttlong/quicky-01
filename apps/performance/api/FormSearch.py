@@ -7,9 +7,9 @@ import threading
 import quicky
 import bson
 logger = logging.getLogger(__name__)
-
+import qmongo
 def get_tree_kpi(args):
-    ret=models.TMLS_KPIGroup().aggregate().project(
+    ret=qmongo.models.TMLS_KPIGroup.aggregate.project(
         kpi_group_code = 1,
         kpi_group_name = 1,
         parent_code = 1,

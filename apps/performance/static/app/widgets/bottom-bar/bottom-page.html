@@ -1,0 +1,48 @@
+<div class="zb-page-sidebar hcs-page-sidebar-custom">
+    <div class="zb-right hcs-right-custom">
+        <div class="zb-top">
+            <div class="zb-left-content">
+                <button ng-click="toggleCollapseMenu()" class="zb-btn zb-btn-blue zb-btn-collapse"
+                    style="background: transparent; color: #8c8c8c; border: 0;">
+                    <i class="bowtie-icon bowtie-view-grid"></i>
+                </button>
+                <div ng-transclude="siteMap" class="zb-sitemap"></div>
+            </div>
+            <div class="zb-right-content">
+                <div ng-transclude="extendToolbar" class="zb-extend-toolbar"></div>
+                <input-text-icon icon="bowtie-icon bowtie-search" icon-align="right" placeholder="" ng-model="texticon2" on-click="fnSearchPress" on-change="fnSearchChange" ng-show="fnSearchPress || fnSearchChange">
+                </input-text-icon>
+                <button ng-click="showAdvancedSearch()" class="zb-btn" ng-if="isAdvancedSearch">
+                    <i class="bowtie-icon bowtie-search-filter"></i>
+                </button>
+                <button class="zb-btn" ng-if="fnGen && authorise.create === true" ng-click="fnGen()">
+                    <i class="bowtie-icon bowtie-dictionary-add"></i>
+                </button>
+                <button class="zb-btn zb-btn-o-green" ng-if="fnAdd && authorise.create === true" ng-click="fnAdd()">
+                    <i class="bowtie-icon bowtie-math-plus"></i>
+                </button>
+                <button class="zb-btn zb-btn-o-blue" ng-if="fnEdit && authorise.write === true" ng-click="fnEdit()">
+                    <i class="bowtie-icon bowtie-edit-outline"></i>
+                </button>
+                <button class="zb-btn zb-btn-o-red" ng-if="fnDelete && authorise.delete === true" ng-click="fnDelete()">
+                    <i class="bowtie-icon bowtie-trash"></i>
+                </button>
+                <button class="zb-btn" ng-if="fnSave && authorise.write === true" ng-click="fnSave()">
+                    <i class="bowtie-icon bowtie-save"></i>
+                </button>
+                <button class="zb-btn" ng-if="fnCopy && authorise.copy === true" ng-click="fnCopy()">
+                    <i class="bowtie-icon bowtie-edit-copy"></i>
+                </button>
+                <button class="zb-btn" ng-if="fnImport && authorise.import === true" ng-click="fnImport()">
+                    <i class="bowtie-icon bowtie-transfer-upload"></i>
+                </button>
+                <button class="zb-btn" ng-if="fnExport && authorise.export === true" ng-click="fnExport()">
+                    <i class="bowtie-icon bowtie-transfer-download"></i>
+                </button>
+                <button class="zb-btn" ng-if="fnSend && authorise.action === true" ng-click="fnSend()">
+                    <i class="sap-icon sap-paper-plane"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

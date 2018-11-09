@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 from bson import ObjectId
+import qmongo
 import models
 import logging
 import threading
@@ -10,11 +11,11 @@ from bson import json_util
 logger = logging.getLogger(__name__)
 global lock
 lock = threading.Lock()
-
+import qmongo
 def get_list_data():
-    items = models.LMSLS_MaterialManagement().aggregate()
-    items.left_join(models.models.auth_user_info(), "created_by", "username", "uc")
-    items.left_join(models.models.auth_user_info(), "modified_by", "username", "um")
+    items = qmongo.models.LMSLS_MaterialManagement.aggregate
+    items.left_join(qmongo.models.auth_user_info, "created_by", "username", "uc")
+    items.left_join(qmongo.models.auth_user_info, "modified_by", "username", "um")
     items.project(
             material_id=1,
             material_name=1,
@@ -33,6 +34,7 @@ def get_list_data():
             size=1,
             creator=1,
             category=1,
+            sub_category=1,
             level_code=1,
             description=1,
             publisher_name=1,
@@ -56,7 +58,7 @@ def get_list_data():
     return items
 
 def get_list(args):
-    items = models.LMSLS_MaterialManagement().aggregate().project(
+    items = qmongo.models.LMSLS_MaterialManagement.aggregate.project(
         folder_id = 1,
         folder_name = 1,
         parent_code = 1
@@ -73,7 +75,7 @@ def get_list_user_with_searchtext(args):
             pageIndex       = (lambda pIndex: pIndex if pIndex != None else 0)(pageIndex)
             pageSize        = (lambda pSize: pSize if pSize != None else 20)(pageSize)
 
-            items = models.extend.auth_user_info().aggregate().project(
+            items = qmongo.models.auth_user_info.aggregate.project(
                     login_account       = 1,
                     username            = 1,
                     display_name        = 1,
@@ -120,7 +122,7 @@ def get_list_with_searchtext(args):
 
     pageIndex = (lambda pIndex: pIndex if pIndex != None else 0)(pageIndex)
     pageSize = (lambda pSize: pSize if pSize != None else 20)(pageSize)
-    ret=models.LMSLS_MaterialManagement().aggregate()
+    ret=qmongo.models.LMSLS_MaterialManagement.aggregate
     # Tìm kiếm theo advance search
     # nếu không có advance search thì bỏ qua
     isWhereAdvance = False
@@ -142,19 +144,26 @@ def get_list_with_searchtext(args):
 
     if(isWhereAdvance == True):
         # search theo Date Contributed from - Date Contributed to
-        if(where["searchAdvance"].has_key('date_contributed_from') and where["searchAdvance"]["date_contributed_from"] != None
-           and where["searchAdvance"].has_key('date_contributed_to') and where["searchAdvance"]["date_contributed_to"] != None): 
-            ret.match("(submit_date <= @date_contributed_to) and (submit_date >= @date_contributed_from)"
-                          ,date_contributed_to=where["searchAdvance"]['date_contributed_to']
-                          ,date_contributed_from=where["searchAdvance"]['date_contributed_from'])
+        # if(where["searchAdvance"].has_key('date_contributed_from') and where["searchAdvance"]["date_contributed_from"] != None
+        #    and where["searchAdvance"].has_key('date_contributed_to') and where["searchAdvance"]["date_contributed_to"] != None):
+        #     ret.match("(submit_date <= @date_contributed_to) and (submit_date >= @date_contributed_from)"
+        #                   ,date_contributed_to=where["searchAdvance"]['date_contributed_to']
+        #                   ,date_contributed_from=where["searchAdvance"]['date_contributed_from'])
 
         # search theo Date Created from - Date Created to
-        if (where["searchAdvance"].has_key('date_created_from') and where["searchAdvance"]["date_created_from"] != None
-                and where["searchAdvance"].has_key('date_created_to') and where["searchAdvance"][
-                    "date_created_to"] != None):
-            ret.match("(publisher_date <= @date_created_to) and (publisher_date >= @date_created_from)"
-                      , date_created_to=where["searchAdvance"]['date_created_to']
-                      , date_created_from=where["searchAdvance"]['date_created_from'])
+        # if (where["searchAdvance"].has_key('date_created_from') and where["searchAdvance"]["date_created_from"] != None
+        #         and where["searchAdvance"].has_key('date_created_to') and where["searchAdvance"][
+        #             "date_created_to"] != None):
+        #     ret.match("(publisher_date <= @date_created_to) and (publisher_date >= @date_created_from)"
+        #               , date_created_to=where["searchAdvance"]['date_created_to']
+        #               , date_created_from=where["searchAdvance"]['date_created_from'])
+
+        if (where["searchAdvance"].has_key('date_valid_from') and where["searchAdvance"]["date_valid_from"] != None
+                and where["searchAdvance"].has_key('date_valid_to') and where["searchAdvance"][
+                    "date_valid_to"] != None):
+            ret.match("((date_valid_from >= @date_valid_from and date_valid_from <= @date_valid_to) and (date_valid_to <= @date_valid_to and date_valid_to >= @date_valid_from))"
+                      , date_valid_to=where["searchAdvance"]['date_valid_to']
+                      , date_valid_from=where["searchAdvance"]['date_valid_from'])
 
         # search theo size của file
         if (where["searchAdvance"].has_key('size_from') and where["searchAdvance"]["size_from"] != None
@@ -170,6 +179,13 @@ def get_list_with_searchtext(args):
             else:
                 ret.match("level_code in @level_code", level_code=[where["searchAdvance"]['category_id']])
 
+        # search theo sub category
+        if (where["searchAdvance"].has_key('sub_category_id') and where["searchAdvance"]["category_id"] != None):
+            if (isinstance(where["searchAdvance"]['sub_category_id'], list) == True):
+                ret.match("level_code in @level_code", level_code=where["searchAdvance"]['sub_category_id'])
+            else:
+                ret.match("level_code in @level_code", level_code=[where["searchAdvance"]['sub_category_id']])
+
         # search theo Create By -> Author
         if (where["searchAdvance"].has_key('created_by') and where["searchAdvance"]["created_by"] != None):
             ret.match("author_name == @author_name", author_name=where["searchAdvance"]['created_by'])
@@ -178,7 +194,7 @@ def get_list_with_searchtext(args):
         if (where["searchAdvance"].has_key('contributed_by') and where["searchAdvance"]["contributed_by"] != None):
             ret.match("created_by == @contributed_by", contributed_by=where["searchAdvance"]['contributed_by'])
 
-        # search star form - star to
+        # search star from - star to
         if (where["searchAdvance"].has_key('star_rating_from') and where["searchAdvance"][
             "star_rating_from"] != None and
                 where["searchAdvance"].has_key('star_rating_to') and where["searchAdvance"][
@@ -197,6 +213,11 @@ def get_list_with_searchtext(args):
             material_id=1,
             material_name=1,
             approve_user_id=1,
+            author_name=1,
+            course_name=1,
+            category=1,
+            sub_category=1,
+            level_code=1,
             creator=1,
             version=1,
             files=1,
@@ -224,7 +245,7 @@ def get_list_with_searchtext(args):
 def get_data_with_edit(args):
     if args['data']!= None:
         where = args['data'].get('where')
-        ret = models.LMSLS_MaterialManagement().aggregate()
+        ret = qmongo.models.LMSLS_MaterialManagement.aggregate
         if (where != None):
             ret.match("(_id==@id)", id=ObjectId(where['id']))
         ret.project(
@@ -244,6 +265,7 @@ def get_data_with_edit(args):
             size=1,
             creator=1,
             category=1,
+            sub_category=1,
             level_code=1,
             description=1,
             publisher_name=1,
@@ -272,12 +294,12 @@ def get_data_with_edit(args):
 def get_data_info_details(args):
     where = args['data'].get('where')
 
-    ret=models.LMSLS_MaterialManagement().aggregate()
+    ret=qmongo.models.LMSLS_MaterialManagement.aggregate
     if(where != None):
         ret.match("(_id==@id)",id=ObjectId(where['id']))
-    ret.left_join(models.LMSLS_MaterialFolder(), "category", "folder_id", "mf")
-    ret.left_join(models.models.auth_user_info(), "created_by", "username", "uc")
-    ret.left_join(models.models.auth_user_info(), "created_by", "username", "um")
+    ret.left_join(qmongo.models.LMSLS_MaterialFolder, "category", "folder_id", "mf")
+    ret.left_join(qmongo.models.auth_user_info, "created_by", "username", "uc")
+    ret.left_join(qmongo.models.auth_user_info, "created_by", "username", "um")
     ret.project(
             material_id=1,
             material_name=1,
@@ -296,6 +318,7 @@ def get_data_info_details(args):
             size=1,
             creator=1,
             category=1,
+            sub_category=1,
             level_code=1,
             description=1,
             publisher_name=1,
@@ -326,8 +349,8 @@ def get_data_info_details(args):
 def get_data_info_comment(args):
     where = args['data'].get('where')
 
-    ret=models.LMSLS_MaterialManagement().aggregate()
-    data_rating=models.LMSLS_MaterialManagement().aggregate()
+    ret=qmongo.models.LMSLS_MaterialManagement.aggregate
+    data_rating=qmongo.models.LMSLS_MaterialManagement.aggregate
     data_total_rating=sum_star_on_comment(args)
     if(where != None):
         ret.match("(_id==@id)",id=ObjectId(where['id']))
@@ -358,7 +381,7 @@ def get_data_info_comment(args):
 def get_data_info_link_share(args):
     where = args['data'].get('where')
 
-    ret=models.LMSLS_MaterialManagement().aggregate()
+    ret=qmongo.models.LMSLS_MaterialManagement.aggregate
     if(where != None):
         ret.match("(_id==@id)",id=ObjectId(where['id']))
     ret.project(
@@ -368,7 +391,7 @@ def get_data_info_link_share(args):
 def get_data_info_history_share_social(args):
     where = args['data'].get('where')
 
-    ret=models.LMSLS_MaterialManagement().aggregate()
+    ret=qmongo.models.LMSLS_MaterialManagement.aggregate
     if(where != None):
         ret.match("(_id==@id)",id=ObjectId(where['id']))
     ret.project(
@@ -378,7 +401,7 @@ def get_data_info_history_share_social(args):
 def get_data_info_history_version(args):
     where = args['data'].get('where')
 
-    ret=models.LMSLS_MaterialManagement().aggregate()
+    ret=qmongo.models.LMSLS_MaterialManagement.aggregate
     if(where != None):
         ret.match("(_id==@id)",id=ObjectId(where['id']))
     ret.project(
@@ -388,7 +411,7 @@ def get_data_info_history_version(args):
 def get_data_info_history_version(args):
     where = args['data'].get('where')
 
-    ret=models.LMSLS_MaterialManagement().aggregate()
+    ret=qmongo.models.LMSLS_MaterialManagement.aggregate
     if(where != None):
         ret.match("(_id==@id)",id=ObjectId(where['id']))
     ret.project(
@@ -402,7 +425,7 @@ def get_data_info_history_version(args):
 def get_data_info_history_download(args):
     where = args['data'].get('where')
 
-    ret=models.LMSLS_MaterialManagement().aggregate()
+    ret=qmongo.models.LMSLS_MaterialManagement.aggregate
     if(where != None):
         ret.match("(_id==@id)",id=ObjectId(where['id']))
     ret.project(
@@ -426,7 +449,7 @@ def insert(args):
             }
             data["material_version"] = [dat]
             data["version"]="v01.0.0"
-            ret  =  models.LMSLS_MaterialManagement().insert(data)
+            ret  =  qmongo.models.LMSLS_MaterialManagement.insert(data)
             lock.release()
             return ret
 
@@ -437,6 +460,7 @@ def insert(args):
     except Exception as ex:
         lock.release()
         raise(ex)
+
 def post_comment(args):
     
     try:
@@ -464,6 +488,7 @@ def post_comment(args):
     except Exception as ex:
         lock.release()
         raise(ex)
+
 def post_reply(args):
     
     try:
@@ -493,6 +518,7 @@ def post_reply(args):
     except Exception as ex:
         lock.release()
         raise(ex)
+
 def update_info_sharing_file(args):
     
     try:
@@ -520,6 +546,7 @@ def update_info_sharing_file(args):
     except Exception as ex:
         lock.release()
         raise(ex)
+
 def update_info_permission(args):
     try:
         lock.acquire()
@@ -561,6 +588,7 @@ def update_info_permission(args):
     except Exception as ex:
         lock.release()
         raise(ex)
+
 def update_info_public_sharing_social(args):
     
     try:
@@ -588,6 +616,7 @@ def update_info_public_sharing_social(args):
     except Exception as ex:
         lock.release()
         raise(ex)
+
 def update(args):
     try:
         lock.acquire()
@@ -603,7 +632,8 @@ def update(args):
             }
             data["material_version"].append(dat)
             data["version"]=process_version_material(data['version'])
-            ret  =  models.LMSLS_MaterialManagement().update(
+
+            ret  =  qmongo.models.LMSLS_MaterialManagement.update(
                 data, 
                 "_id == {0}", 
                 ObjectId(args['data']['_id']))
@@ -621,6 +651,7 @@ def update(args):
     except Exception as ex:
         lock.release()
         raise(ex)
+
 def process_version_material(args):
     version =args.lstrip('v')
     a,b,c=version.split('.')
@@ -642,15 +673,12 @@ def process_version_material(args):
         str1 = "v"+str(a)+"."+str(b) +"." +str(c)
     return str1
 
-    
-
-
 def delete(args):
     try:
         lock.acquire()
         ret = {}
         if args['data'] != None:
-            ret  =  models.LMSLS_MaterialManagement().delete("_id in {0}",[ObjectId(x["_id"])for x in args['data']])
+            ret  =  qmongo.models.LMSLS_MaterialManagement.delete("_id in {0}",[ObjectId(x["_id"])for x in args['data']])
             lock.release()
             return ret
 
@@ -667,7 +695,7 @@ def delete_one(id):
         lock.acquire()
         ret = {}
         if id['data'] != '':
-            ret  =  models.LMSLS_MaterialManagement().delete("_id == {0}", ObjectId(id['data']))
+            ret  =  qmongo.models.LMSLS_MaterialManagement.delete("_id == {0}", ObjectId(id['data']))
             lock.release()
             return ret
 
@@ -700,6 +728,7 @@ def set_dict_insert_data(args):
         size                    = (lambda x: x['size']                  if x.has_key('size')                    else None)(args['data']),
         creator                 = (lambda x: x['creator']               if x.has_key('creator')                 else None)(args['data']),
         category                = (lambda x: x['category']              if x.has_key('category')                else None)(args['data']),
+        sub_category            = (lambda x: x['sub_category']          if x.has_key('sub_category')            else None)(args['data']),
         level_code              = (lambda x: x['level_code']            if x.has_key('level_code')              else None)(args['data']),
         description             = (lambda x: x['description']           if x.has_key('description')             else None)(args['data']),
         publisher_name          = (lambda x: x['publisher_name']        if x.has_key('publisher_name')          else None)(args['data']),
@@ -719,7 +748,6 @@ def set_dict_insert_data(args):
         source                  = (lambda x: x['source']                if x.has_key('source')                  else None)(args['data']),
         material_format         = (lambda x: x['material_format']       if x.has_key('material_format')         else None)(args['data']),
     )
-
     return ret_dict
 
 def set_dict_insert_data_comment(args):
@@ -749,6 +777,7 @@ def get_data_info_login_account(args):
         user = threading.current_thread().user.username
         login_account = get_login_account(user)      
     return dict(login_account=login_account)
+
 def set_dict_insert_data_reply(args):
     ret_dict = dict()
     login_account= ""
@@ -783,12 +812,12 @@ def set_dict_update_data_reply(args):
 
 
 def get_login_account(args):
-    ret=models.models.auth_user_info().aggregate()
+    ret=qmongo.models.auth_user_info.aggregate
     ret.match("(username==@username)",username=args)
     return ret.get_item()["login_account"]
 
 def get_list_employees(args):
-    ret = models.models.HCSEM_Employees().aggregate()
+    ret = qmongo.models.HCSEM_Employees.aggregate
     return ret.get_list()
 
 def set_dict_rating_comment(args):
@@ -920,7 +949,7 @@ def sum_star_on_comment(args):
     for x in range(5, 0, -1):
         obj = {}
         where = args['data'].get('where')
-        ret=models.LMSLS_MaterialManagement().aggregate()
+        ret=qmongo.models.LMSLS_MaterialManagement.aggregate
         if(where != None):
             ret.match("(_id==@id)", id=ObjectId(where['id']))
         ret.unwind("comments", True)
@@ -940,7 +969,7 @@ def sum_star_on_comment(args):
 def get_data_info_ratings(args):
     where = args['data'].get('where')
 
-    data_rating=models.LMSLS_MaterialManagement().aggregate()
+    data_rating=qmongo.models.LMSLS_MaterialManagement.aggregate
     data_check_user_rating=check_user_rating(ObjectId(where['id']))
     if(len(data_check_user_rating) > 0):
         data_check_user_rating = True
@@ -1071,7 +1100,7 @@ def get_reply_by_id_comment(id, id_comment):
 def get_file_by_master_id (args):
     try:
         if(args != None):
-            collection = models.LMSLS_MaterialManagement().aggregate()
+            collection = qmongo.models.LMSLS_MaterialManagement.aggregate
             ret = collection.match("(material_id==@material_id)",material_id=args)
             ret.project(
                 files=1
@@ -1128,8 +1157,8 @@ def get_list_group_user(args):
                 pageIndex       = (lambda pIndex: pIndex if pIndex != None else 0)(pageIndex)
                 pageSize        = (lambda pSize: pSize if pSize != None else 20)(pageSize)
 
-                items = models.extend.AD_Roles().aggregate()
-                items.join(models.HCSSYS_DataDomain(), "dd_code", "dd_code", "domain")
+                items =qmongo.models.AD_Roles.aggregate
+                items.join(qmongo.models.HCSSYS_DataDomain, "dd_code", "dd_code", "domain")
                 items.project(
                         role_code       = 1,
                         role_name       = 1,
@@ -1159,7 +1188,7 @@ def get_list_group_user(args):
         raise(ex)
 def get_data_permission(args):
     where = args['data'].get('where')
-    ret=models.LMSLS_MaterialManagement().aggregate()
+    ret=qmongo.models.LMSLS_MaterialManagement.aggregate
     if(where != None):
         ret.match("(_id==@id)",id=ObjectId(where['id']))
     ret.project(
@@ -1169,7 +1198,7 @@ def get_data_permission(args):
 
 def get_data_dash_board_page(args):
         
-    ret=models.LMSLS_MaterialManagement().aggregate().project(
+    ret=qmongo.models.LMSLS_MaterialManagement.aggregate.project(
         material_id =1,
         downloads =1,
         sharing_info =1,
@@ -1179,7 +1208,7 @@ def get_data_dash_board_page(args):
     )
     ret_list = ret.get_list()
     len_ret =len(ret_list)
-    ret_fold=models.LMSLS_MaterialFolder().aggregate().project(
+    ret_fold=qmongo.models.LMSLS_MaterialFolder.aggregate.project(
         folder_id =1,
     )
     ret_folder = ret_fold.get_list()
@@ -1288,7 +1317,7 @@ def update_view_file(args):
         lock.release()
         raise(ex)
 def get_list_down_share_view():
-    ret=models.LMSLS_MaterialManagement().aggregate()
+    ret=qmongo.models.LMSLS_MaterialManagement.aggregate
     ret.project(
             views=1,
             downloads=1,
@@ -1384,7 +1413,7 @@ def get_list_download_history(args):
         )
 def get_material_relation(args):
     where = args['data'].get('where')
-    ret=models.LMSLS_MaterialManagement().aggregate()
+    ret=qmongo.models.LMSLS_MaterialManagement.aggregate
     if(where != None):
         ret.match("(_id==@id)",id=ObjectId(where['id']))
     ret.project(
@@ -1393,7 +1422,7 @@ def get_material_relation(args):
     return ret.get_item()
 
 def get_number_master_pending():
-    ret=models.LMSLS_MaterialManagement().aggregate()
+    ret=qmongo.models.LMSLS_MaterialManagement.aggregate
     ret.match("(status==@status)",status=1)
     ret.project(
             status=1, 

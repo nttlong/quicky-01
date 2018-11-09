@@ -1,8 +1,9 @@
 from .. import models
+import qmongo
 def display_list_group_cer():
-    ret=models.HCSLS_GroupCertificate().aggregate()
-    ret.left_join(models.auth_user_info(), "created_by", "username", "uc")
-    ret.left_join(models.auth_user_info(), "modified_by", "username", "um")
+    ret=qmongo.models.HCSLS_GroupCertificate.aggregate
+    ret.left_join(qmongo.models.auth_user_info, "created_by", "username", "uc")
+    ret.left_join(qmongo.models.auth_user_info, "modified_by", "username", "um")
     ret.project(
         _id = "_id",
         group_cer_code="group_cer_code",

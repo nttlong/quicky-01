@@ -1,9 +1,9 @@
 from .. import models, common
-
+import qmongo
 def display_list_apr_period():
-    ret=models.TMPER_AprPeriod().aggregate()
-    ret.left_join(models.auth_user_info(), "created_by", "username", "uc")
-    ret.left_join(models.auth_user_info(), "modified_by", "username", "um")
+    ret=qmongo.models.TMPER_AprPeriod.aggregate
+    ret.left_join(qmongo.models.auth_user_info, "created_by", "username", "uc")
+    ret.left_join(qmongo.models.auth_user_info, "modified_by", "username", "um")
     ret.project(
         apr_period="apr_period",
         apr_year="apr_year",
@@ -24,9 +24,9 @@ def display_list_apr_period():
 
 
 def get_period_by_apr_period(apr_period):
-    ret=models.TMPER_AprPeriod().aggregate()
-    ret.left_join(models.auth_user_info(), "created_by", "username", "uc")
-    ret.left_join(models.auth_user_info(), "modified_by", "username", "um")
+    ret=qmongo.models.TMPER_AprPeriod.aggregate
+    ret.left_join(qmongo.models.auth_user_info, "created_by", "username", "uc")
+    ret.left_join(qmongo.models.auth_user_info, "modified_by", "username", "um")
     ret.project(
         apr_period="apr_period",
         apr_year="apr_year",

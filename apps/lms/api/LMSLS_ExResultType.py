@@ -7,7 +7,7 @@ import common
 logger = logging.getLogger(__name__)
 global lock
 lock = threading.Lock()
-
+import qmongo
 #def get_list_data():
 #    items = models.LMSLS_ExResultType().aggregate()
 #    items.left_join(models.auth_user_info(), "created_by", "username", "uc")
@@ -44,7 +44,7 @@ def get_list_with_searchtext(args):
 
     pageIndex = (lambda pIndex: pIndex if pIndex != None else 0)(pageIndex)
     pageSize = (lambda pSize: pSize if pSize != None else 20)(pageSize)
-    ret=models.LMSLS_ExResultType().aggregate()
+    ret=qmongo.models.LMSLS_ExResultType.aggregate
     ret.project(
             result_type_id=1,
             result_type1=1,
@@ -64,7 +64,7 @@ def insert(args):
         ret = {}
         if args['data'] != None:
             data =  set_dict_insert_data(args)
-            ret  =  models.LMSLS_ExResultType().insert(data)
+            ret  = qmongo.models.LMSLS_ExResultType.insert(data)
             lock.release()
             return ret
 
@@ -82,7 +82,7 @@ def update(args):
         ret = {}
         if args['data'] != None:
             data =  set_dict_update_data(args)
-            ret  =  models.LMSLS_ExResultType().update(
+            ret  = qmongo.models.LMSLS_ExResultType.update(
                 data, 
                 "_id == {0}", 
                 ObjectId(args['data']['_id']))
@@ -106,7 +106,7 @@ def delete(args):
         lock.acquire()
         ret = {}
         if args['data'] != None:
-            ret  =  models.LMSLS_ExResultType().delete("_id in {0}",[ObjectId(x["_id"])for x in args['data']])
+            ret  = qmongo.models.LMSLS_ExResultType.delete("_id in {0}",[ObjectId(x["_id"])for x in args['data']])
             lock.release()
             return ret
 

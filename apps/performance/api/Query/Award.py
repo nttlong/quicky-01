@@ -1,13 +1,13 @@
 from .. import models
-
+import qmongo
 def get_award():
-    ret=models.SYS_ValueList().aggregate()
-    ret=models.SYS_ValueList().aggregate().match("list_name == {0}", "LAwardType")
+    ret=qmongo.models.SYS_ValueList.aggregate
+    ret=qmongo.models.SYS_ValueList.aggregate.match("list_name == {0}", "LAwardType")
     ret.unwind("values")
-    ret.join(models.HCSLS_Award(),"values.value","award_type","aw")
-    ret.left_join(models.HCSLS_AwardLevel(), "aw.award_level_code", "award_level_code", "awl")
-    ret.left_join(models.auth_user_info(), "aw.created_by", "username", "uc")
-    ret.left_join(models.auth_user_info(), "aw.modified_by", "username", "um")
+    ret.join(qmongo.models.HCSLS_Award,"values.value","award_type","aw")
+    ret.left_join(qmongo.models.HCSLS_AwardLevel, "aw.award_level_code", "award_level_code", "awl")
+    ret.left_join(qmongo.models.auth_user_info, "aw.created_by", "username", "uc")
+    ret.left_join(qmongo.models.auth_user_info, "aw.modified_by", "username", "um")
     ret.project(
         _id = "aw._id",
         award_code="aw.award_code",
@@ -34,9 +34,9 @@ def get_award():
     return ret
 
 def get_award_level():
-    ret=models.HCSLS_AwardLevel().aggregate()
-    ret.left_join(models.auth_user_info(), "created_by", "username", "uc")
-    ret.left_join(models.auth_user_info(), "modified_by", "username", "um")
+    ret=qmongo.models.HCSLS_AwardLevel.aggregate
+    ret.left_join(qmongo.models.auth_user_info, "created_by", "username", "uc")
+    ret.left_join(qmongo.models.auth_user_info, "modified_by", "username", "um")
     ret.project(
         _id = "_id",
         award_level_code="award_level_code",
@@ -58,9 +58,9 @@ def get_award_level():
     return ret
 
 def get_award_place():
-    ret=models.HCSLS_AwardPlace().aggregate()
-    ret.left_join(models.auth_user_info(), "created_by", "username", "uc")
-    ret.left_join(models.auth_user_info(), "modified_by", "username", "um")
+    ret=qmongo.models.HCSLS_AwardPlace.aggregate
+    ret.left_join(qmongo.models.auth_user_info, "created_by", "username", "uc")
+    ret.left_join(qmongo.models.auth_user_info, "modified_by", "username", "um")
     ret.project(
         _id = "_id",
         award_place_code="award_place_code",

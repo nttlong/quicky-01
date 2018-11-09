@@ -11,8 +11,8 @@
         { "data": "kind", "title": "${get_res('train_kind_table_header','Phân loại')}", "className": "text-left" },
 
         { "data": "note", "title": "${get_res('note_table_header','Ghi chú')}", "className": "text-left" },
-        { "data": "ordinal", "title": "${get_res('ordinal_table_header','Thứ tự')}", "className": "text-center" },
-        { "data": "created_on", "title": "${get_res('created_on_table_header','Ngày tạo')}", "className": "text-center", "format": "date:" + scope.$root.systemConfig.date_format },
+        { "data": "ordinal", "format":"number: system", "title": "${get_res('ordinal_table_header','Thứ tự')}", "className": "text-center" },
+        { "data": "created_on", "title": "${get_res('created_on_table_header','Ngày tạo')}", "className": "text-left", "format": "date:" + scope.$root.systemConfig.date_format },
         { "data": "lock", "title": "${get_res('lock_table_header','Ngưng SD')}", "className": "text-center", "format": "checkbox" }
     ];
     //

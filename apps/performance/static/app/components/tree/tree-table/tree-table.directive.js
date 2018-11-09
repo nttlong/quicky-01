@@ -185,6 +185,7 @@
                     quicksearch: true,
                     checkbox: $scope.multiSelect,
                     selectMode: $scope.selectMode, // 1 (radiobutton: single-selection), 2 (multi-selection) , 3 (hierarchical multi-selection)
+                    scrollParent: $("#scrolling_table"),
                     icon: false, //hide icon => hide counter
                     source: _dataSourceTree,
                     filter: {
@@ -236,7 +237,8 @@
                                             let $r;
                                             switch ($s.length) {
                                                 case 2:
-                                                    $r = $filter('number')(data, $s[1]);
+                                                    //$r = $filter('number')(data, $s[1]);
+                                                    $r = $scope.$root.$formatSystem.number(data ? data : null);
                                                     break;
                                                 default:
                                                     $r = $filter('number')(data);
@@ -360,15 +362,32 @@
                     },
                     select: function(event, data) {
                         _setSelectedOnInit(data.tree);
+                    },
+                    init: function(event, data, flag){
+                        $(window).resize(function(){
+                            var zb_content = $(elem).closest(".zb-content");
+                            var hcs_modal_format = $(elem).closest(".hcs-modal-format");
+                            console.log(hcs_modal_format);
+                            if(hcs_modal_format && hcs_modal_format.length>0){
+                                if(zb_content.height() === 0 || zb_content.height()<100){
+                                    $('#scrolling_table').height("20vh");
+                                }else{
+                                    $('#scrolling_table').height(zb_content.height() - 40);
+                                }
+                            }else{
+                                $('#scrolling_table').height(zb_content.height());
+                            }
+                        })
+                        $(window).trigger('resize');
                     }
+
                     // }).on("keydown", function(e){
                     //  var c = String.fromCharCode(e.which);
                     //  if( c === "F" && e.ctrlKey ) {
                     //      elem.find("input#txtSearch").focus();
                     //  }
                 });
-                //// 
-
+                ////
                 //elem.find("input.zb-tree-table-checkall").unbind("change");
                 //elem.find("input.zb-tree-table-checkall").bind("change", function() {
                 //    if ($(this).prop("checked") == true) {
@@ -382,7 +401,21 @@
                 //    }
                 //});
 
-                //// 
+                ////
+                $(window).resize(function(){
+                    var zb_content = $(elem).closest(".zb-content");
+                    var hcs_modal_format = $(elem).closest(".hcs-modal-format");
+                    console.log(hcs_modal_format);
+                    if(hcs_modal_format && hcs_modal_format.length>0){
+                        if(zb_content.height() === 0 || zb_content.height()<100){
+                            $('#scrolling_table').height("20vh");
+                        }else{
+                            $('#scrolling_table').height(zb_content.height() - 40);
+                        }
+                    }else{
+                        $('#scrolling_table').height(zb_content.height());
+                    }
+                })
                 elem.find("span.zb-tree-table-checkall").unbind("click");
                 elem.find("span.zb-tree-table-checkall").bind("click", function () {
                     var me = $(this);

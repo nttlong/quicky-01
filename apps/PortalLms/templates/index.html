@@ -137,6 +137,40 @@
         padding: 0 calc((100% - 340px)/2);
     }
 }
+
+
+.custom-menu {
+    display: none;
+    z-index:1000;
+    position: fixed;
+    background-color:#fff;
+    border: 1px solid #ddd;
+    overflow: hidden;
+    width: 120px;
+    white-space:nowrap;
+    font-family: sans-serif;
+    -webkit-box-shadow: 2px 2px 7px 0px rgba(50, 50, 50, 0.5);
+    -moz-box-shadow:    2px 2px 7px 0px rgba(50, 50, 50, 0.5);
+    box-shadow:         2px 2px 7px 0px rgba(50, 50, 50, 0.5);
+        padding-left: 0;
+
+}
+
+.custom-menu ul {
+    list-style: none;
+}
+
+.custom-menu li {
+    padding: 3px 10px;
+    margin: 2px 3px;
+    list-style: none;
+}
+
+.custom-menu li:hover {
+    background-color: #e0e0e0;
+    color: #000;
+    cursor: pointer;
+}
 </style>
 
 <main class="app-content">
@@ -163,6 +197,15 @@
 
     <div c-template url="{{$root.getPage()}}" style="height: 100%">
     </div>
+
+    <ul class='custom-menu'>
+        <li ng-click="$root.PinTab()" ng-if="!$root.$dataPin.favorites">
+          <span class="sap-icon sap-pushpin-on"></span> Pin
+        </li>
+        <li ng-click="$root.UnPinTab()" ng-if="$root.$dataPin.favorites">
+          <span class="sap-icon sap-pushpin-off"></span> UnPin
+        </li>
+    </ul>
 
     <%include file="footer.html"/>
 </main>

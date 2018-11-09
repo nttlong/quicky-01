@@ -233,35 +233,27 @@ input[type=checkbox] .styled:checked+label::after,input[type=radio] .styled:chec
 			<div class="hcs-tab-info">
             <div class="col-xs-12 col-md-12 competency no-padding">
                     <div class="hcs-tab-info-box active" href="#tab_default_1" data-toggle="tab" ng-click="changeActive($event)">
-                        <img src="${get_static('assets/images/01.png')}"/>
+                        <span class="sap-icon sap-activity-items"></span>
                         <label style="padding: 12px 0 0 10px;">
                             ${get_res('forum_information','Forum Information')}
                         </label>
                     </div>
+                    <div class="hcs-tab-info-line"></div>
                     <div class="hcs-tab-info-box" href="#tab_default_2" data-toggle="tab" ng-click="changeActive($event)">
-                        <img src="${get_static('assets/images/2.png')}"/>
+                        <span class="sap-icon sap-action-settings"></span>
                         <label style="padding: 12px 0 0 10px;">
                             ${get_res('forum_setting','Forum Setting')}
                         </label>
                     </div>
-                    <div class="hcs-tab-info-box" href="#tab_default_3" data-toggle="tab" ng-click="changeActive($event)">
-                        <img style="margin:0" src="${get_static('assets/images/3.png')}"/>
-                        <label style="padding: 12px 0 0 10px;">
-                            ${get_res('forum_moderations','Forum Moderation')}
-                        </label>
-                    </div>
                 </div>
             </div>
-			<div class="tab-content">
+			<div class="col-md-12 tab-content hcs-modal-format no-padding">
                 <div class="tab-pane active" id="tab_default_1">
                      <%include file = "addForumPublicTabOne.html" />
                 </div>
                 <div class="tab-pane" id="tab_default_2">
                      <%include file = "addForumPublicTabTwo.html" />
                 </div>
-                <div class="tab-pane" id="tab_default_3">
-                     <%include file = "addForumPublicTabThree.html" />
-			    </div>
 			</div>
 		</div>
 	</div>
@@ -318,63 +310,24 @@ input[type=checkbox] .styled:checked+label::after,input[type=radio] .styled:chec
 
             allow_anonymous_posts: false,
             allow_attachment_files: true,
-            allow_author_delete: true,
             allow_author_edit: true,
             allow_post_tagging: true,
             allow_user_reply: true,
-            allow_subscription:"1",
+            subscription_type:true,
             allow_member_thread: true,
-            forum_info:{
-                course_name:"",
-                start_date:null,
-                class_code:""
-            },
-            specific_avail:{
-                start_date:null,
-                end_date:null,
-            },
             allow_member_rate: true,
             force_moderation_post: true,
             forum_status: 1,
-
-            type_moderation: 1,
+            avail: {
+                start_time: null,
+                end_time: null
+            },
         };
 
         scope.col = 12;
-        scope.col_group = 12;
+        scope.col_group = 6;
         scope.dt_true = true;
         scope.dt_false = false;
-
-        scope.ListModeration = [
-        {
-            value: 1,
-            caption: "All Posts"
-
-        },
-         {
-            value: 2,
-            caption: "Topics"
-
-        },
-        {
-            value: 3,
-            caption: "Replies"
-
-        },
-        {
-            value: 4,
-            caption: "Posts with Attachment Files"
-
-        },
-        {
-            value: 5,
-            caption: "Posts with External Links"
-
-        },
-        {
-            value: 6,
-            caption: "Posts containing these words"
-        }];
 
         scope.changeActive = function(event){
         $('.hcs-tab-info').find('.active').removeClass('active');
@@ -520,26 +473,28 @@ input[type=checkbox] .styled:checked+label::after,input[type=radio] .styled:chec
                 return rs;
             }
 
-             if(scope.entity.forum_type === false && (scope.entity.forum_info.course_name === "" || scope.entity.forum_info.class_code === "")){
+             if(scope.entity.forum_type === false && (scope.entity.info_course_name === null || scope.entity.info_class_code === null || scope.entity.info_start_date === null)){
                 rs.result = true;
                 rs.errorMsg = "Vui lòng điền đầy đủ thông tin khóa học";
                 return rs;
             }
 
-             if(scope.entity.specific_avail.start_date > scope.entity.specific_avail.end_date){
-                rs.result = true;
-                rs.errorMsg = "Thời gian bắt đầu, thời gian kết thúc không hợp lệ";
-                return rs;
-            }
-
-            if(scope.entity.specific_avail.start_date != null || scope.entity.specific_avail.end_date != null)
+            if(scope.entity.avail_start_date != null && scope.entity.avail_end_date != null)
             {
-               if(scope.entity.specific_avail.start_date.setHours(0,0,0,0) == scope.entity.specific_avail.end_date.setHours(0,0,0,0) && timeToSeconds(scope.entity.specific_avail.start_time) > timeToSeconds(scope.entity.specific_avail.end_time))
-               {
+               if(scope.entity.avail_start_date > scope.entity.avail_end_date){
                     rs.result = true;
                     rs.errorMsg = "Thời gian bắt đầu, thời gian kết thúc không hợp lệ";
                     return rs;
-                }
+               }
+
+               if(scope.entity.avail.start_time != null && scope.entity.avail.end_time != null) {
+                    if(scope.entity.avail_start_date.setHours(0,0,0,0) == scope.entity.avail_end_date.setHours(0,0,0,0) && timeToSeconds(scope.entity.avail.start_time) > timeToSeconds(scope.entity.avail.end_time))
+                    {
+                         rs.result = true;
+                         rs.errorMsg = "Thời gian bắt đầu, thời gian kết thúc không hợp lệ";
+                         return rs;
+                     }
+               }
             }
             return rs;
         }
@@ -552,7 +507,10 @@ input[type=checkbox] .styled:checked+label::after,input[type=radio] .styled:chec
                 "name": [
                     "LMS_Ex_Temp_negative_marks",
                     "LMS_Ex_Temp_ques_pick",
-                    "LMSLSStatusForum"
+                    "LMSLSStatusForum",
+                    "LMS_Fr_allow_author_delete",
+                    "LMS_Fr_forum_status",
+                    "LMS_Fr_type_moderation",
                 ]
             })
             .done()
@@ -560,6 +518,9 @@ input[type=checkbox] .styled:checked+label::after,input[type=radio] .styled:chec
                 scope.cbbNegativeMarks = getValue(res.values, "LMS_Ex_Temp_negative_marks");
                 scope.cbbQuestionPicking = getValue(res.values, "LMS_Ex_Temp_ques_pick");
                 scope.rdStatusForum = getValue(res.values, "LMSLSStatusForum");
+                scope.vllLMSAllowAuthorDelete = getValue(res.values, "LMS_Fr_allow_author_delete");
+                scope.vllLMSForumStatus = getValue(res.values, "LMS_Fr_forum_status");
+                scope.vllLMSModerationType = getValue(res.values, "LMS_Fr_type_moderation");
                 scope.$applyAsync();
                 function getValue(response, listName) {
                     return _.findWhere(response, { "list_name": listName }) ? _.findWhere(response, { "list_name": listName }).values : [];
@@ -589,12 +550,12 @@ input[type=checkbox] .styled:checked+label::after,input[type=radio] .styled:chec
                 },
                 {
                     "key": "${encryptor.get_key('cbb_lmsls_materialfolder')}",
-                    "code": scope.entity && scope.entity.hasOwnProperty('forum_info.course_name')? scope.entity.forum_info.course_name: null,
+                    "code": scope.entity && scope.entity.hasOwnProperty('info_course_name')? scope.entity.info_course_name: null,
                     "alias": "$$$course_name"
                 },
                 {
                     "key": "${encryptor.get_key('cbb_lmsls_materialfolder')}",
-                    "code": scope.entity && scope.entity.hasOwnProperty('forum_info.class_code')? scope.entity.forum_info.class_code: null,
+                    "code": scope.entity && scope.entity.hasOwnProperty('info_class_code')? scope.entity.info_class_code: null,
                     "alias": "$$$class_code"
                 }
                 ]

@@ -150,8 +150,8 @@
         }
         
     }
-
-    scope.objSearch = {
+    debugger
+    scope.$parent.$parent.$parent.objSearch = {
         $$$modelSearch: null,
         onSearch: onSearch
     }
@@ -366,12 +366,12 @@
 					"sort": sort,
                 })
                 .done()
-            .then(function (res) {
-                    var data = {
-                        recordsTotal: res.total_items,
-                        recordsFiltered: res.total_items,
-                        data: res.items
-                    };
+                .then(function (res) {
+                        var data = {
+                            recordsTotal: res.total_items,
+                            recordsFiltered: res.total_items,
+                            data: res.items
+                        };
 
                     //scope.__tableSource = JSON.parse(JSON.stringify(res.items));
 					//scope.ItemTables = JSON.parse(JSON.stringify(res.items));

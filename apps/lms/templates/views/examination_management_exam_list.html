@@ -1,11 +1,24 @@
-﻿<div class="hcs-container" style="height: 100%">
+﻿<style>
+    .dataTables_wrapper.form-inline.dt-bootstrap.no-footer,.dataTables_scroll{
+        height: 100%;
+      }
+      .dataTables_wrapper.form-inline.dt-bootstrap.no-footer > .row:nth-child(2){
+        height:calc(100% - 35px);
+      }
+      .dataTables_wrapper.form-inline.dt-bootstrap.no-footer > .row:nth-child(2) > [class*="col-"]{
+        height:100%;
+      }
+      .dataTables_scrollBody{
+        height:calc(100% - 35px);
+      }
+</style>
+<div class="hcs-container" style="height: 100%">
     <page-sidebar on-add="onAdd" 
                   on-edit="onEdit" 
                   on-delete="onDelete" 
                   on-save="onSave" 
                   on-import="onImport" 
                   on-export="onExport"
-                  on-search-press="onSearch"
                   source="mapName" 
                   key-field="function_id" 
                   display-field="default_name" 
@@ -14,9 +27,22 @@
                   reload-on-change="true"
                   >
         <site-map>
-            <a><span>{{$root.currentFunction.default_name}}</span></a>
+            <span>{{$root.currentFunction.default_name}}</span>
             <span><i class="bowtie-icon bowtie-chevron-right"></i></span>
-            <span>{{currentFunction.default_name}}</span></site-map>
+            <a data-target="#dropdownFunction" data-toggle="collapse">
+                <span>{{currentFunction.default_name}}</span>
+                <span><i class="bowtie-icon bowtie-chevron-down"></i></span>
+            </a>
+            <div id="dropdownFunction" class="dropdown-content">
+                <div class="filter">
+                    <input-text-icon ng-model="search" style="padding:3px;">
+                </div>
+                <div class="dropdown">
+                    <p ng-repeat="f in mapName | filter : search" ng-class="{focus : selectedFunction === f.function_id}" ng-click="selectFunc($event, f.function_id)">{{f.custom_name ? f.default_name : f.custom_name}}</p>
+                </div>
+            </div>
+        </site-map>
+
         <extend-toolbar>
             <div style="display: grid; grid-template-columns: auto 1fr">
                 <!--<div class="col-md-6" style="padding-right: 0; top: 2px;">-->
@@ -28,13 +54,13 @@
                         <!--</div>-->
                     <!--</div>-->
                 <!--</div>-->
-                <input-text-icon id="tableSearchText" on-click="objSearch.onSearch" ng-model="objSearch.$$$modelSearch"></input-text-icon>
-                <div style="margin-left: 12px;">
+                <input-text-icon id="tableSearchText" on-click="onSearch" ng-model="objSearch.$$$modelSearch"></input-text-icon>
+                <div>
                     <div class="dropdown ng-scope">
                         <button class="zb-btn dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false">
                             <i class="bowtie-ellipsis bowtie-icon"></i>
                         </button>
-                        <ul class="dropdown-menu">
+                        <ul class="dropdown-menu btn-menu">
                             <li>
                                 <button class="zb-btn border-0" ng-click="viewHistoryLearningMaterial()">
                                     <i class="bowtie-icon bowtie-file-preview"></i>

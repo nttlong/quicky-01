@@ -12,9 +12,10 @@
     scope.isGrid = false;
     scope.objSearch = {};
     scope.onSearchText = function () {
-
         scope.searchText = scope.objSearch.$$$modelSearch
-
+    }
+    scope.selectFunc = function (event, f) {
+        scope.selectedFunction = f;
     }
     scope.advancedSearch = {
         main_region_code: null,

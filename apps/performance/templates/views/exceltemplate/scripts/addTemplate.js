@@ -82,15 +82,18 @@
                     })
                     .done()
                     .then(function (res) {
-                        _.each(res.items, function (val) { val.user_group = 1; })
-                        var data = {
-                            recordsTotal: res.total_items,
-                            recordsFiltered: res.total_items,
-                            data: res.items
-                        };
-                        callback(data);
-                        scope.currentItem = null;
-                        scope.$apply();
+                    debugger
+                        setTimeout(function(){
+                            _.each(res.items, function (val) { val.user_group = 1; })
+                            var data = {
+                                recordsTotal: res.total_items,
+                                recordsFiltered: res.total_items,
+                                data: res.items
+                            };
+                            callback(data);
+                            scope.currentItem = null;
+                            scope.$apply();
+                        },200)
                     })
         }
     }
@@ -115,10 +118,16 @@
     scope.selectedItems = [];
 
     scope.$applyAsync();
-
+    var isFullSize = false;
+    scope.maxHeightDialog = "80vh";
+    scope.maxHeightTableScrollDialog = "400px";
     function onResizeDialog() {
-        $('.modal-dialog').toggleClass('resize-width');
+        //$('.modal-dialog').toggleClass('resize-width');
         //scope.col = scope.col == 4 ? 6 : 4;
+        $dialog.fullScreen();
+        isFullSize = !isFullSize;
+        scope.maxHeightTableScrollDialog = isFullSize ? "" : "400px";
+        scope.maxHeightDialog = isFullSize ? "100%" : "80vh";
         setTimeout(function () {
             $(window).trigger('resize');
         }, 100);

@@ -466,6 +466,7 @@
                                         _heightOuterTable = Math.round(_tableWrapper.height() - _tableScrollBody.height());
                                     }
                                     let _tableScrollBodyWidth = $(elem).width() + 5;
+
                                     if (_tableScrollBodyWidth > _tableWrapper.parent().width()) {
                                         _tableScrollBodyWidth = "100%";
                                     }
@@ -473,11 +474,11 @@
                                     //console.log(_heightTableWrapperParent, _heightOuterTable, _tableScrollBodyWidth);
                                     //console.log(_tableWrapper, _tableWrapper.parent())
                                     //console.log("========");
-
                                     _tableScrollBody.css({
-                                        "height": (Math.round(_heightTableWrapperParent - _heightOuterTable)) + 3 + "px",
-                                        "width": _tableScrollBodyWidth
-                                    });
+                                            "height": (Math.round(_heightTableWrapperParent - _heightOuterTable)) + 3 + "px",
+                                            "width": _tableScrollBodyWidth
+                                        });
+
                                 });
                             }
                             $(window).trigger("resize");

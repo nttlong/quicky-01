@@ -54,6 +54,19 @@ function controller($dialog, $scope, $filter) {
     $scope.$root.$getComboboxData = extension().getComboboxData;
     $scope.$root.$getInitComboboxData = extension().getInitComboboxData;
     $scope.$root.$extension = extension();
+    $scope.$root.$groupingNumber = function (num){
+        var info = $scope.$root.systemConfig;
+        var NumberGroupSeparator = info.dec_place_separator === "," ? "." : ",";
+        var NumberDecimalSeparator = info.dec_place_separator === "," ? "," : ".";
+        var str = num.toString().split('.');
+        if(str[0].length >= 4) {
+            str[0] = str[0].replace(/(\d)(?=(\d{3})+$)/g, '$1' + NumberGroupSeparator);
+        }
+        if(str[1] && str[1].length >= 4) {
+            str[1] = str[1].replace(/(\d{3})/g, '$1');
+        }
+        return str.join(NumberDecimalSeparator);
+    };
     $scope.$root.$formatSystem = {
         "number": function(data){
             if(!data){
@@ -259,6 +272,7 @@ function controller($dialog, $scope, $filter) {
                 $scope.$root.$history.change(function (data) {
                     $scope.$root.$$absUrl = window.location.href;
                     if (data.page) {
+                        debugger
                         if(!_.findWhere($scope.$root.$function_list, {function_id:data.page}))
                         {
                             data.page = $scope.$root.$extension.TripleDES.decrypt(data.page);

@@ -1,9 +1,10 @@
 from .. import models
 from .. import common
+import qmongo
 def display_list_position():
-    ret=models.HCSLS_Position().aggregate()
-    ret.left_join(models.auth_user_info(), "created_by", "username", "uc")
-    ret.left_join(models.auth_user_info(), "modified_by", "username", "um")
+    ret=qmongo.models.HCSLS_Position.aggregate
+    ret.left_join(qmongo.models.auth_user_info, "created_by", "username", "uc")
+    ret.left_join(qmongo.models.auth_user_info, "modified_by", "username", "um")
     ret.project(
         _id = "_id",
         job_pos_code="job_pos_code",
@@ -29,10 +30,10 @@ def display_list_position():
     return ret
 
 def display_list_postion_detail(pos_code):
-    col=models.HCSLS_Position().aggregate().match("job_pos_code == {0}", pos_code)
+    col=qmongo.models.HCSLS_Position.aggregate.match("job_pos_code == {0}", pos_code)
     col.unwind("details", False)
-    col.join(models.auth_user_info(), "created_by", "username", "uc")
-    col.left_join(models.auth_user_info(), "modified_by", "username", "um")
+    col.join(qmongo.models.auth_user_info, "created_by", "username", "uc")
+    col.left_join(qmongo.models.auth_user_info, "modified_by", "username", "um")
     col.project(
         rec_id = "details.rec_id",
         seniority_from = "details.seniority_from",

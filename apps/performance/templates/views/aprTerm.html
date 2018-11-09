@@ -1,0 +1,310 @@
+﻿﻿<style>
+    .hcs-navigation-panel-button {
+        list-style-type:none;
+        display:inline-flex;
+    }
+    .hcs-navigation-panel-button li {
+        float:left;
+    }
+
+    .zb-content {
+        background-color:transparent !important;
+    }
+
+    .app-content {
+        overflow: unset !important;
+    }
+    .label_style {
+        float:right !important;
+        font-size:16px;
+        margin-top:-7px !important;
+        font-weight:bold !important;
+    }
+
+</style>
+<div class="hcs-container" view-id="${register_view()}">
+    <div ng-show="!$display.showDetail" class="hcs-right-side-department-content" style="width:100%; height:100%; background-color: white;">
+        <div>
+            <header-page on-edit="onEdit" on-delete="onDelete" on-search="onSearch" on-search-press="onSearchTable" key-field="function_id" display-field="currentFunction.default_name" icon-field="icon" reload-on-change="false" selected-key="$root.currentFunction.function_id">
+                <site-map>
+                    <span>{{$root.currentFunction.default_name}}</span>
+                    <div class="hcs-resp-action-zb-left-content" style="float: right;">
+                        <button class="zb-btn zb-btn-o-green ng-scope" ng-click="$root.doToggle('.zb-right-content')">
+                            <i class="bowtie-icon bowtie-menu"></i>
+                        </button>
+                    </div>
+                </site-map>
+                <extend-toolbar>
+                    <input-text-icon icon="bowtie-icon bowtie-search" on-click="onSearchTable"></input-text-icon>
+                </extend-toolbar>
+            </header-page>
+        </div>
+        <div class="col-md-8 no-padding" style="border-right:1px solid #cbcbcb;">
+            <div class="hcs-right-side-department-list">
+                <table-data data-source="tableSource" fields="tableFields" type="MultiSelect" paging="true" page-length="5" server-side="true" press-enter="onSelectTableRow" selected-items="selectedItems" current-item="currentItem" search-text="tableSearchText" refresh-row="refreshDataRow">
+                </table-data>
+            </div>
+        </div>
+        <div class="col-md-4 no-padding">
+            <div class="hcs-tab-info" id='tab_dashboard'>
+                <div class="col-xs-12 col-md-12 competency no-padding">
+                    <div class="hcs-tab-info-box active" href="#tab_dashboard_1" data-toggle="tab" ng-click="changeTab($event)">
+                        <label style="padding-top:10px!important">
+                            ${get_res('response_level','Mức độ đáp ứng')}
+                        </label>
+                    </div>
+                    <div class="hcs-tab-info-line"></div>
+                    <div class="hcs-tab-info-box" href="#tab_dashboard_2" data-toggle="tab" ng-click="changeTab($event)">
+                        <label style="padding-left:5px;padding-top:10px!important">
+                            ${get_res('perfectness','Mức độ hài lòng')}
+                        </label>
+                    </div>
+                </div>
+            </div>
+			<div class="tab-content hcs-format">
+                <div class="tab-pane active" id="tab_dashboard_1">
+                    <div class="col-xs-12 col-md-12">
+                        <div class="col-md-7">
+                    <div class="lms-dashboard-chart"><br/>
+                        <canvas id="pie" class="chart chart-pie"
+                          chart-data="dataPie" chart-labels="labelsPie"  chart-colors="colorsPie" chart-options="options" >
+                        </canvas>
+                    </div>
+                </div>
+                <div class="col-md-5" style="padding-top: 35px;">
+                    <table>
+                            <tr ng-repeat="elem in labelsPie track by $index" style="margin-bottom:3px">
+                                <td style="background-color: {{colorsPie[$index]}}; width:50px;border:4px solid white" ></td>
+                                <td style="padding-left: 10px;">{{elem}}</td>
+                            </tr>
+                    </table>
+                </div>
+                    </div>
+                </div>
+                <div class="tab-pane" id="tab_dashboard_2">
+                    <div class="col-xs-12 col-md-12">
+                        <div class="col-md-7">
+                    <div class="lms-dashboard-chart"><br/>
+                        <canvas id="perfectness" class="chart chart-pie"
+                          chart-data="dataPie2" chart-labels="labelsPie2"  chart-colors="colorsPie" chart-options="options" >
+                        </canvas>
+                    </div>
+                </div>
+                        <div class="col-md-5" style="padding-top: 35px;">
+                        <table >
+                            <tr ng-repeat="elem in labelsPie2 track by $index" style="margin-bottom:3px">
+                                <td style="background-color: {{colorsPie[$index]}}; width:50px;border:4px solid white" ></td>
+                                <td style="padding-left: 10px;">{{elem}}</td>
+                            </tr>
+                    </table>
+                </div>
+                    </div>
+                </div>
+			</div>
+        </div>
+        <div class="hcs-tab-info" id="tab_table">
+            <div class="col-xs-12 col-md-12 competency" style="border-top:1px solid #cbcbcb; margin:0;padding:5px 0 0 0">
+                <div class="hcs-tab-info-box active" href="#tab_default_1" data-toggle="tab" ng-click="changeActive($event, 1)">
+                    <span>
+                        <label style="padding-left:5px !important;">
+                        250
+                        </label>
+                    </span>
+                    <label>
+                        ${get_res('tong_dg','Tổng ĐG')}
+                    </label>
+                </div>
+                <div class="hcs-tab-info-line"></div>
+                <div class="hcs-tab-info-box" href="#tab_default_2" data-toggle="tab" ng-click="changeActive($event, 2)">
+                    <span class="bowtie-icon bowtie-icon bowtie-status-success-outline">
+                        <label class="label_style">
+                        180
+                        </label>
+                    </span>
+                    <label style="padding-left:5px;">
+                        ${get_res('dadanhgia','Đã đánh giá')}
+                    </label>
+                </div>
+                <div class="hcs-tab-info-line"></div>
+                <div class="hcs-tab-info-box" href="#tab_default_3" data-toggle="tab" ng-click="changeActive($event, 3)">
+                    <span class="bowtie-icon bowtie-icon bowtie-status-pause-outline">
+                        <label class="label_style">
+                        40
+                        </label>
+                    </span>
+                    <label>
+                        ${get_res('dangdanhgia','Đang đánh giá')}
+                    </label>
+                </div>
+                <div class="hcs-tab-info-line"></div>
+                <div class="hcs-tab-info-box" href="#tab_default_4" data-toggle="tab" ng-click="changeActive($event, 4)">
+                    <span class="bowtie-icon bowtie-icon bowtie-status-info-outline">
+                        <label class="label_style">
+                        30
+                        </label>
+                    </span>
+                    <label>
+                        ${get_res('chuadanhgia','Chưa đánh giá')}
+                    </label>
+                </div>
+                <div class="hcs-tab-info-box" style="display: inline-flex;bottom: 7px;position: absolute;right: 0;padding-right: 5px;height: 26px;" href="#tab_default_3">
+                    <div class="zb-form-text-icon input-group">
+                        <input type="text" class="form-control" ng-model="a"/>
+                        <div class="input-group-btn" style="top: -5px;padding: unset;padding-right: 4px;">
+                            <button class="btn btn-default">
+                                <i class="bowtie-icon bowtie-search"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <button class="zb-btn" ng-click="fnExport()">
+                        <i class="bowtie-icon bowtie-transfer-download"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="tab-content hcs-format" style="margin-top: 80px;">
+            <div class="tab-pane active" id="tab_default_1">
+                <table class="display zb-data-table responsive nowrap dataTable no-footer">
+                    <thead>
+                        <th class="text-left">${get_res('employee_code', 'Nã nhân viên')}</th>
+                        <th class="text-left">${get_res('full_name', 'Họ tên')}</th>
+                        <th class="text-left">${get_res('job_working', 'Chức danh')}</th>
+                        <th class="text-left">${get_res('join_date', 'Ngày vào làm')}</th>
+                        <th class="text-left">${get_res('number_of_target', 'Số mục tiêu')}</th>
+                        <th class="text-left">${get_res('status', 'Trạng thái')}</th>
+                        <th class="text-left">${get_res('create_modified_give', 'Ngày | Người giao')}</th>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td role="row" class="text-left">NV001</td>
+                            <td role="row" class="text-left">Nguyễn Văn A</td>
+                            <td role="row" class="text-left">Kinh doanh tại chỗ</td>
+                            <td role="row" class="text-left">01/01/2018</td>
+                            <td role="row" class="text-left">10</td>
+                            <td role="row" class="text-left"><span class="hcs-circle-icon yellow"></span>Đang cập nhật</td>
+                            <td role="row" class="text-left"></td>
+                        </tr>
+                        <tr>
+                            <td role="row" class="text-left"></td>
+                            <td role="row" class="text-left"></td>
+                            <td role="row" class="text-left"></td>
+                            <td role="row" class="text-left"></td>
+                            <td role="row" class="text-left"></td>
+                            <td role="row" class="text-left"><span class="hcs-circle-icon success"></span>Đã cập nhật</td>
+                            <td role="row" class="text-left"></td>
+                        </tr>
+                        <tr>
+                            <td role="row" class="text-left"></td>
+                            <td role="row" class="text-left"></td>
+                            <td role="row" class="text-left"></td>
+                            <td role="row" class="text-left"></td>
+                            <td role="row" class="text-left"></td>
+                            <td role="row" class="text-left"><span class="hcs-circle-icon red"></span>Chưa cập nhật</td>
+                            <td role="row" class="text-left"></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="tab-pane" id="tab_default_2">
+                <table class="display zb-data-table responsive nowrap dataTable no-footer">
+                    <thead>
+                        <th class="text-left">${get_res('employee_code', 'Mã nhân viên')}</th>
+                        <th class="text-left">${get_res('full_name', 'Họ tên')}</th>
+                        <th class="text-left">${get_res('job_working', 'Chức danh')}</th>
+                        <th class="text-left">${get_res('join_date', 'Ngày vào làm')}</th>
+                        <th class="text-left">${get_res('number_of_target', 'Số mục tiêu')}</th>
+                        <th class="text-left">${get_res('give_status', 'Trạng thái giao')}</th>
+                        <th class="text-left">${get_res('approve_status', 'Trạng thái duyệt')}</th>
+                        <th class="text-left">${get_res('date_and_approver', 'Ngày | Người duyệt')}</th>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td role="row" class="text-left">NV001</td>
+                            <td role="row" class="text-left">Nguyễn Văn A</td>
+                            <td role="row" class="text-left">Kinh doanh tại chỗ</td>
+                            <td role="row" class="text-left">01/01/2018</td>
+                            <td role="row" class="text-left">10</td>
+                            <td role="row" class="text-left"><span class="hcs-square-icon grey"></span>Chưa giao</td>
+                            <td role="row" class="text-left"><span class="hcs-circle-icon yellow"></span>Chờ duyệt</td>
+                            <td role="row" class="text-left"></td>
+                        </tr>
+                        <tr>
+                            <td role="row" class="text-left"></td>
+                            <td role="row" class="text-left"></td>
+                            <td role="row" class="text-left"></td>
+                            <td role="row" class="text-left"></td>
+                            <td role="row" class="text-left"></td>
+                            <td role="row" class="text-left"><span class="hcs-square-icon cyan"></span>Đúng hạn</td>
+                            <td role="row" class="text-left"><span class="hcs-circle-icon green"></span>Đã duyệt</td>
+                            <td role="row" class="text-left"></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="tab-pane" id="tab_default_3">
+                <table class="display zb-data-table responsive nowrap dataTable no-footer">
+                    <thead>
+                        <th class="text-left">${get_res('employee_code', 'Nã nhân viên')}</th>
+                        <th class="text-left">${get_res('full_name', 'Họ tên')}</th>
+                        <th class="text-left">${get_res('job_working', 'Chức danh')}</th>
+                        <th class="text-left">${get_res('join_date', 'Ngày vào làm')}</th>
+                        <th class="text-left">${get_res('number_of_target', 'Số mục tiêu')}</th>
+                        <th class="text-left">${get_res('give_status', 'Trạng thái giao')}</th>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td role="row" class="text-left">NV001</td>
+                            <td role="row" class="text-left">Nguyễn Văn A</td>
+                            <td role="row" class="text-left">Kinh doanh tại chỗ</td>
+                            <td role="row" class="text-left">01/01/2018</td>
+                            <td role="row" class="text-left">10</td>
+                            <td role="row" class="text-left"><span class="hcs-square-icon grey"></span>Chưa giao</td>
+                        </tr>
+                        <tr>
+                            <td role="row" class="text-left"></td>
+                            <td role="row" class="text-left"></td>
+                            <td role="row" class="text-left"></td>
+                            <td role="row" class="text-left"></td>
+                            <td role="row" class="text-left"></td>
+                            <td role="row" class="text-left"><span class="hcs-square-icon cyan"></span>Đúng hạn</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="tab-pane" id="tab_default_4">
+                <table class="display zb-data-table responsive nowrap dataTable no-footer">
+                    <thead>
+                        <th class="text-left">${get_res('employee_code', 'Nã nhân viên')}</th>
+                        <th class="text-left">${get_res('full_name', 'Họ tên')}</th>
+                        <th class="text-left">${get_res('job_working', 'Chức danh')}</th>
+                        <th class="text-left">${get_res('join_date', 'Ngày vào làm')}</th>
+                        <th class="text-left">${get_res('number_of_target', 'Số mục tiêu')}</th>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td role="row" class="text-left">NV001</td>
+                            <td role="row" class="text-left">Nguyễn Văn A</td>
+                            <td role="row" class="text-left">Kinh doanh tại chỗ</td>
+                            <td role="row" class="text-left">01/01/2018</td>
+                            <td role="row" class="text-left">10</td>
+                        </tr>
+                        <tr>
+                            <td role="row" class="text-left"></td>
+                            <td role="row" class="text-left"></td>
+                            <td role="row" class="text-left"></td>
+                            <td role="row" class="text-left"></td>
+                            <td role="row" class="text-left"></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div ng-if="$display.showDetail" class="hcs-right-side-department-content" style="width:100%; height:100%; background-color: white;">
+        <div c-template url="${get_app_url('')}/pages/aprTerm/aprTermDetail" style="top: 0; bottom: 0; left: 0; right: 0; height: 100%;"></div>
+    </div>
+</div>
+<div class="clearfix"></div>
+<script>
+<%include file = "../scripts/aprTerm.js"/>
+</script>

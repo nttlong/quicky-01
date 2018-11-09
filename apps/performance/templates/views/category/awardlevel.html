@@ -13,7 +13,7 @@
                 <button class="zb-btn zb-btn-o-red" ng-click="onDeleteAwardLevel()">
                     <i class="bowtie-icon bowtie-trash"></i>
                 </button>
-                <button class="zb-btn" ng-click="onReloadAwardLevel()">
+                <button class="zb-btn zb-btn-o-purple" ng-click="onReloadAwardLevel()">
                     <i class="bowtie-icon bowtie-navigate-refresh"></i>
                 </button>
             </toolbar>
@@ -32,8 +32,8 @@
         scope.tableAwardLevelFields = [
         { "data": "award_level_code", "title": "${get_res('award_level_code_table_header','Mã')}", "className": "text-left" },
         { "data": "award_level_name", "title": "${get_res('award_level_name_table_header','Tên')}", "className": "text-left" },
-        { "data": "max_times_per_year", "title": "${get_res('max_times_per_year_table_header','Số lần tối đa/năm')}", "className": "text-center" },
-        { "data": "ordinal", "title": "${get_res('ordinal_table_header','Thứ tự')}", "className": "text-center" }
+        { "data": "max_times_per_year", "title": "${get_res('max_times_per_year_table_header','Số lần tối đa/năm')}", "className": "text-right" },
+        { "data": "ordinal", "format":"number: system", "title": "${get_res('ordinal_table_header','Thứ tự')}", "className": "text-center" }
         ];
         //
         scope.$$tableAwardLevelConfig = {};

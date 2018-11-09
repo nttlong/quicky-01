@@ -7,8 +7,8 @@
         { "data": "display_true_type", "title": "${get_res('true_type_table_header','Phân loại')}", "className": "text-left" },
         { "data": "rate_main_sal", "format":"number: system", "title": "${get_res('rate_main_sal_table_header','% Chế độ lương')}", "className": "text-right" },
         { "data": "rate_soft_sal", "format":"number: system", "title": "${get_res('rate_soft_sal_table_header','% Lương mềm')}", "className": "text-right" },
-        { "data": "ordinal", "title": "${get_res('ordinal_table_header','Thứ tự')}", "className": "text-center" },
-        { "data": "created_on", "title": "${get_res('created_on_table_header','Ngày tạo')}", "className": "text-center", "format": "date:" + scope.$root.systemConfig.date_format },
+        { "data": "ordinal", "format":"number: system", "title": "${get_res('ordinal_table_header','Thứ tự')}", "className": "text-center" },
+        { "data": "created_on", "title": "${get_res('created_on_table_header','Ngày tạo')}", "className": "text-left", "format": "date:" + scope.$root.systemConfig.date_format },
         { "data": "lock", "title": "${get_res('lock_table_header','Ngưng SD')}", "format": "checkbox", "className": "text-center", width: "80px" }
     ];
     //
@@ -95,7 +95,7 @@
             $msg.message("${get_global_res('Notification','Thông báo')}", "${get_global_res('No_Row_Selected','Không có dòng được chọn')}", function () { });
         } else {
             $msg.confirm("${get_global_res('Notification','Thông báo')}", "${get_global_res('Do_You_Want_Delete','Bạn có muốn xóa không?')}", function () {
-                services.api("${get_api_key('app_main.api.HCSLS_EmployeeType/delete')}")
+                services.api("${get_api_key('app_main.api.HCSLS_EmployeeTypeController/delete')}")
                     .data(scope.selectedItems)
                     .done()
                     .then(function (res) {
@@ -165,7 +165,7 @@
             sort[v.columns] = (v.type === "asc") ? 1 : -1;
         });
         sort[orderBy[0].columns] =
-            services.api("${get_api_key('app_main.api.HCSLS_EmployeeType/get_list_with_searchtext')}")
+            services.api("${get_api_key('app_main.api.HCSLS_EmployeeTypeController/get_list_with_searchtext')}")
                 .data({
                     //parameter at here
                     "pageIndex": iPage - 1,

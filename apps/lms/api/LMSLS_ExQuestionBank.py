@@ -8,11 +8,11 @@ import random
 logger = logging.getLogger(__name__)
 global lock
 lock = threading.Lock()
-
+import qmongo
 def get_list_data():
-    items = models.LMSLS_ExQuestionBank().aggregate()
-    items.left_join(models.auth_user_info(), "created_by", "username", "uc")
-    items.left_join(models.auth_user_info(), "modified_by", "username", "um")
+    items = qmongo.models.LMSLS_ExQuestionBank.aggregate
+    items.left_join(qmongo.models.auth_user_info, "created_by", "username", "uc")
+    items.left_join(qmongo.models.auth_user_info, "modified_by", "username", "um")
     items.project(
         ques_id=1,
         ques_category=1,
@@ -49,7 +49,7 @@ def get_list_with_searchtext(args):
 
     pageIndex = (lambda pIndex: pIndex if pIndex != None else 0)(pageIndex)
     pageSize = (lambda pSize: pSize if pSize != None else 20)(pageSize)
-    ret=models.LMSLS_ExQuestionBank().aggregate()
+    ret=qmongo.models.LMSLS_ExQuestionBank.aggregate
     ret.project(
             ques_id=1,
             ques_category=1,
@@ -92,7 +92,7 @@ def get_list_with_list_ques_id(args):
     where = args['data'].get('where')
     pageIndex = (lambda pIndex: pIndex if pIndex != None else 0)(pageIndex)
     pageSize = (lambda pSize: pSize if pSize != None else 20)(pageSize)
-    ret=models.LMSLS_ExQuestionBank().aggregate()
+    ret=qmongo.models.LMSLS_ExQuestionBank.aggregate
 
     ret.project(
             ques_id=1,
@@ -128,7 +128,7 @@ def get_list_with_list_ques_id(args):
     return  data
 def get_list_with_random_ques_id(args):
     where = args['data'].get('where')
-    ret=models.LMSLS_ExQuestionBank().aggregate()
+    ret= qmongo.models.LMSLS_ExQuestionBank.aggregate
     if(where != None):
         ret.match("(ques_category==@ques_category)",ques_category=where['assign']['category'])
     ret.project(
@@ -165,7 +165,50 @@ def insert(args):
         ret = {}
         if args['data'] != None:
             data =  set_dict_insert_data(args)
-            ret  =  models.LMSLS_ExQuestionBank().insert(data)
+            ret  = qmongo.models.LMSLS_ExQuestionBank.insert(data)
+            lock.release()
+            return ret
+
+        lock.release()
+        return dict(
+            error = "request parameter is not exist"
+        )
+    except Exception as ex:
+        lock.release()
+        raise(ex)
+
+def insertanswer(args):
+    try:
+        lock.acquire()
+        ret = {}
+        if args['data'] != None:
+            data =  set_dict_insert_data(args)
+            ret  = qmongo.models.LMSLS_ExQuestionBank.aggregate
+            lock.release()
+            return ret
+
+        lock.release()
+        return dict(
+            error = "request parameter is not exist"
+        )
+    except Exception as ex:
+        lock.release()
+        raise(ex)
+
+def updateanswer(args):
+    try:
+        lock.acquire()
+        ret = {}
+        if args['data'] != None:
+            data =  set_dict_update_data(args)
+            ret  =  qmongo.models.LMSLS_MaterialFolder.update(
+                data,
+                "_id == {0}",
+                ObjectId(args['data']['_id']))
+            if ret['data'].raw_result['updatedExisting'] == True:
+                ret.update(
+                    item = get_list_data().match("_id == {0}", ObjectId(args['data']['_id'])).get_item()
+                    )
             lock.release()
             return ret
 
@@ -183,7 +226,7 @@ def update(args):
         ret = {}
         if args['data'] != None:
             data =  set_dict_update_data(args)
-            ret  =  models.LMSLS_MaterialFolder().update(
+            ret  =  qmongo.models.LMSLS_MaterialFolder.update(
                 data, 
                 "_id == {0}", 
                 ObjectId(args['data']['_id']))
@@ -207,7 +250,7 @@ def delete(args):
         lock.acquire()
         ret = {}
         if args['data'] != None:
-            ret  =  models.LMSLS_ExQuestionBank().delete("_id in {0}",[ObjectId(x["_id"])for x in args['data']])
+            ret  = qmongo.models.LMSLS_ExQuestionBank.delete("_id in {0}",[ObjectId(x["_id"])for x in args['data']])
             lock.release()
             return ret
 
@@ -218,6 +261,13 @@ def delete(args):
     except Exception as ex:
         lock.release()
         raise(ex)
+
+def set_dict_answer_insert_data():
+    ret_dict = dict()
+    ret_dict.update(
+
+
+    )
 
 def set_dict_insert_data(args):
     ret_dict = dict()
@@ -251,7 +301,7 @@ def set_dict_update_data(args):
     return ret_dict
 def get_level_code_by_folder_id(args):
     where = args['data'].get('where')
-    ret=models.LMSLS_MaterialFolder().aggregate()
+    ret=qmongo.models.LMSLS_MaterialFolder.aggregate
     if(where != None):
         ret.match("(folder_id==@folder_id)",folder_id=where['folder_id'])
     ret.project(

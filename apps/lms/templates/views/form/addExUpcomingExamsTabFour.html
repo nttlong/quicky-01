@@ -1,6 +1,88 @@
-﻿<div>
-  
-<div class="col-md-{{col}}" style="padding-bottom: 20px;">
+﻿
+ <div class="col-xs-12 col-md-{{ 12 - col_group}} col-sm-{{ 12 - col_group}}">
+        <collapse-box class="zb-form-common" title="${get_global_res('Special_Instruction','Special Instruction')}">
+            <div class="col-xs-12 col-sm-12">
+                <div class="form-group zb-form-group">
+                    <label class="col-xs-5 col-sm-5 zb-form-label">${get_global_res('allow_retaking_examination','Allow Retaking Examination')}</label>
+                    <div class="col-xs-7 col-sm-7">
+                        <input-checkbox ng-model="entity.retake_exam">
+                    </div>
+                </div>
+                <ng-container ng-if="entity.retake_exam">
+                    <div class="form-group zb-form-group">
+                    <label class="col-xs-5 col-sm-5 zb-form-label">${get_global_res('allow_retaking_all_conditions','Allow Retaking in all conditions')}</label>
+                    <div class="col-xs-7 col-sm-7">
+                        <input-checkbox ng-model="entity.retake_all">
+                    </div>
+                </div>
+                    <div class="form-group zb-form-group" ng-if="!entity.retake_all">
+                        <label class="col-xs-5 col-sm-5 zb-form-label">${get_global_res('allow_retaking_less_than','Allow Retaking if the result is less than')}</label>
+                        <div class="col-xs-7 col-sm-7">
+                            <input-select ng-model="entity.result_less" data-list="cbbNegativeMarks" data-value="value" data-caption="caption" />
+                        </div>
+                    </div>
+                    <div class="form-group zb-form-group">
+                        <label class="col-xs-5 col-sm-5 zb-form-label">${get_global_res('define_number_retaking_times','Define Number of retaking times')}</label>
+                        <div class="col-xs-7 col-sm-7">
+                            <input-select ng-model="entity.retake_time" data-list="vllRetakeTimes" data-value="value" data-caption="caption" />
+                        </div>
+                    </div>
+                    <div class="form-group zb-form-group">
+                        <label class="col-xs-5 col-sm-5 zb-form-label">${get_res('choose_scoring_method','Choose Scoring Method')}</label>
+                        <div class="col-xs-7 col-sm-7">
+                            <input-select ng-model="entity.scoring_method" data-list="cbbScoringMethod" data-value="value" data-caption="caption" />
+                        </div>
+                    </div>
+                </ng-container>
+            </div>
+        </collapse-box>
+    </div>
+ <div class="col-xs-12 col-md-{{ 12 - col_group}} col-sm-{{ 12 - col_group}}" style="height: 500px">
+    <collapse-box class="zb-form-common" title="${get_global_res('Retaking_Times','Retaking Times')}">
+        <div class="form-group zb-form-group">
+            <label class="col-xs-5 col-sm-5 zb-form-label">${get_global_res('different_time','Different Time')}</label>
+            <div class="col-xs-7 col-sm-7">
+                <input-checkbox ng-model="entity.different_time">
+            </div>
+        </div>
+
+        <table class="display zb-data-table responsive nowrap dataTable no-footer">
+            <thead>
+                <tr>
+                    <th style="text-align:center">No.</th>
+                    <th style="text-align:center">Start Date</th>
+                    <th style="text-align:center">Start Time</th>
+                    <th style="text-align:center">End Date</th>
+                    <th style="text-align:center">End Time</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr role= "row"  ng-repeat="item in retake_time_list track by $index" ng-click="selectRow(item)">
+                    <td>{{$index + 1}}</td>
+                    <td>{{item.start_date | date: +  scope.$root.systemConfig.date_format}}</td>
+                    <td>{{item.start_time}}</td>
+                    <td>{{item.end_date | date: +  scope.$root.systemConfig.date_format}}</td>
+                    <td>{{item.end_time}}</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <toolbar>
+            <button ng-click="editRetakingTimes()" class="zb-btn zb-btn-o-blue">
+                <i class="bowtie-icon bowtie-edit-outline"></i>
+            </button>
+            <button ng-click="delRetakingTimes()" class="zb-btn zb-btn-o-red">
+                <i class="bowtie-icon bowtie-trash"></i>
+            </button>
+            <button ng-click="refreshRetakingTimes()" class="zb-btn">
+                <i class="bowtie-icon bowtie-navigate-refresh"></i>
+            </button>
+        </toolbar>
+    </collapse-box>
+</div>
+
+
+<!--<div class="col-md-{{col}}" style="padding-bottom: 20px;">
                     <div class="col-md-2 col-sm-2">
                      </div>
                    <div class="col-md-10 col-sm-10">
@@ -93,7 +175,7 @@
                             <label for="inputEmp_Train_Mode_Name" class="col-sm-2 zb-form-label">{{elem.name}}</label>
                             <div class="col-md-{{col}}">
                                         <div class="form-group zb-form-group">
-                                            <!--Mô tả tài liệu-->
+                                            &lt;!&ndash;Mô tả tài liệu&ndash;&gt;
                                             <label for="inputEmp_Train_Mode_Name" class="col-sm-2 zb-form-label">${get_res('start_date','Start Date')}</label>
                                              <div class="col-sm-4"> 
                                                 <date-picker ng-model="elem.start_date" data-format="{{$root.systemConfig.date_format}}" />
@@ -104,7 +186,7 @@
                                             </div>
                                         </div>
                                         <div class="form-group zb-form-group">
-                                            <!--Mô tả tài liệu-->
+                                            &lt;!&ndash;Mô tả tài liệu&ndash;&gt;
                                             <label for="inputEmp_Train_Mode_Name" class="col-sm-2 zb-form-label">${get_res('end_date','End Date')}</label>
                                              <div class="col-sm-4"> 
                                                 <date-picker ng-model="elem.end_date" data-format="{{$root.systemConfig.date_format}}" />
@@ -121,7 +203,7 @@
                             <label for="inputEmp_Train_Mode_Name" class="col-sm-2"></label>
                             <div class="col-md-{{col}}">
                                         <div class="form-group zb-form-group">
-                                            <!--Mô tả tài liệu-->
+                                            &lt;!&ndash;Mô tả tài liệu&ndash;&gt;
                                             <label for="inputEmp_Train_Mode_Name" class="col-sm-2 zb-form-label">${get_res('start_date','Start Date')}</label>
                                              <div class="col-sm-4"> 
                                                 <date-picker ng-model="entity.range_time.start_date" data-format="{{$root.systemConfig.date_format}}" />
@@ -132,7 +214,7 @@
                                             </div>
                                         </div>
                                         <div class="form-group zb-form-group">
-                                            <!--Mô tả tài liệu-->
+                                            &lt;!&ndash;Mô tả tài liệu&ndash;&gt;
                                             <label for="inputEmp_Train_Mode_Name" class="col-sm-2 zb-form-label">${get_res('end_date','End Date')}</label>
                                              <div class="col-sm-4"> 
                                                 <date-picker ng-model="entity.range_time.end_date" data-format="{{$root.systemConfig.date_format}}" />
@@ -148,7 +230,7 @@
                          </div>
                        <div class="col-md-{{col}}" style="padding-bottom: 20px;" ng-if="entity.retake_exam ==2 || entity.retake_exam ==3">
                                         <div class="form-group zb-form-group">
-                                            <!--Mã Tài liệu, ID-->
+                                            &lt;!&ndash;Mã Tài liệu, ID&ndash;&gt;
                                             <label for="inputEmp_Train_Mode_Name" class="col-sm-4 zb-form-label">${get_res('scoring_method','Scoring Method')}</label>
                                             <div class="col-sm-6"> 
                                                  <input-select ng-model="entity.scoring_method" data-list="cbbScoringMethod" data-value="value" data-caption="caption" required />
@@ -156,53 +238,98 @@
                                         </div>
                                     </div>
                      </div> 
-                </div>                       
+                </div>          -->
    
-</div>
+
 <script>
     (function (scope) {
-        
+
+        scope.systemConfig = scope.$root.systemConfig
         scope.entity = scope.entity ? scope.entity : {};
-        scope.entity.list_time_retake = [];
-        const list_time = [{ 'name': '1st time' }, { 'name': '2nd time' }, { 'name': '3rd time' }, { 'name': '4th time' }, { 'name': '5th time' }]
 
-        scope.checkTimes = function () {
+
+        scope.editRetakingTimes = function(){
+            if (scope.currentReTake) {
                 debugger
-                if (scope.entity.retake_time) {
-                    
-                    var time =[]
-                    var check = '';
-                    if (scope.entity.retake_exam ==2 && scope.entity.retake_all) {
-                           time = JSON.parse(JSON.stringify(list_time));
-                           check = scope.entity.retake_all
-                    }
-                    else if (scope.entity.retake_exam ==3 && scope.entity.retake_condition) {
-                          time = JSON.parse(JSON.stringify(list_time));
-                          check = scope.entity.retake_condition
-
-                    }
-                    else { }
-                    
-                    switch (check) {
-                        case '1 times':
-                            time.splice(1)
-                            break;
-                        case '2 times':
-                            time.splice(2)
-                            break;
-                        case '3 times':
-                            time.splice(3)
-                            break;
-                        case '4 times':
-                            time.splice(4)
-                            break;
-                        default:
-                            null
-                    }
-
-                }
-                scope.entity.list_time_retake = time;
+                scope.__detailMode = 2; // set mode chỉnh sửa
+                openDialog("${get_res('add_retaking_time','Add Retaking Time')}", 'form/dialog/AddRetakingTime', function () { }, "dialogInputRetakingTime");
+            } else {
+                $msg.message("${get_global_res('Notification','Thông báo')}", "${get_app_res('No_Row_Selected','Không có dòng được chọn')}", function () { });
             }
+        }
+
+        scope.delRetakingTimes = function(){
+            if (!scope.currentReTake) {
+            $msg.message("${get_global_res('Notification','Thông báo')}", "${get_global_res('No_Row_Selected','Không có dòng được chọn')}", function () { });
+            } else {
+                $msg.confirm("${get_global_res('Notification','Thông báo')}", "${get_global_res('Do_You_Want_Delete','Bạn có muốn xóa không?')}", function () {
+                    scope.retake_time_list[scope.currentReTake.no-1] = {no: scope.currentReTake.no, start_date: null, start_time: null, end_date: null, end_time: null }
+                    $msg.alert("${get_global_res('Handle_Success','Thao tác thành công')}", $type_alert.INFO);
+                    scope.currentReTake = null;
+                    scope.selectedReTake = [];
+                });
+            }
+        }
+
+        function openDialog(title, path, callback, id = 'myModal') {
+
+            //check tồn tại của form dialog theo id
+            if ($('#' + id).length === 0) {
+                scope.headerTitle = title;
+                //Đặt ID cho form dialog
+                dialog(scope, id).url(path).done(function () {
+                    callback();
+                    //Set draggable cho form dialog
+                    $dialog.draggable();
+                });
+            }
+        }
+
+         scope.$watch("entity.retake_time", function (val, old) {
+            scope.loadDataRetake();
+        }, true)
+
+        scope.$watch("entity.different_time", function (val, old) {
+            scope.loadDataRetake();
+        }, true)
+
+        scope.selectRow = function (item) {
+            scope.currentReTake = JSON.parse(JSON.stringify(item));
+        }
+
+
+        scope.loadDataRetake = function () {
+
+            scope.retake_time_list = scope.$parent.currentItem.retake_time_list ? JSON.parse(JSON.stringify(scope.$parent.currentItem.retake_time_list)) : [];
+
+            var length = scope.retake_time_list ? scope.retake_time_list.length : 0;
+
+            if(scope.entity.different_time)
+            {
+                if(length < scope.entity.retake_time)
+                {
+                    for (i = length + 1; i <= scope.entity.retake_time; i++) {
+                        scope.retake_time_list.push({no: i, start_date: null, start_time: null, end_date: null, end_time: null })
+                    }
+                }
+                else if(length > scope.entity.retake_time)
+                {
+                    for (i = length; i > scope.entity.retake_time; i--) {
+                        scope.retake_time_list.splice(i-1, 1);
+                    }
+                }
+            }
+            else {
+                length > 0 ? scope.retake_time_list.splice(1, 4) : scope.retake_time_list.push({no: 1, start_date: null, start_time: null, end_date: null, end_time: null })
+
+            }
+
+
+        }
+        scope.loadDataRetake();
+
+
+
         
     });
 </script>

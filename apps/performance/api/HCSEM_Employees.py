@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 from bson import ObjectId
+import qmongo
 import models
 import datetime
 import logging
@@ -82,7 +83,7 @@ def insert(args):
         ret = {}
         if args['data'] != None:
             data =  set_dict_insert_data(args['data'])
-            ret  =  models.HCSEM_Employees().insert(data)
+            ret  =  qmongo.models.HCSEM_Employees.insert(data)
             lock.release()
             return ret
 
@@ -101,7 +102,7 @@ def update(args):
         ret = {}
         if args['data'] != None:
             data =  set_dict_update_data(args['data'])
-            ret  =  models.HCSEM_Employees().update(
+            ret  =  qmongo.models.HCSEM_Employees.update(
                 data, 
                 "employee_code == {0}", 
                 args['data']['employee_code'])

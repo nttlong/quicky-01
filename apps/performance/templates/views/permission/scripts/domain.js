@@ -145,14 +145,10 @@
      * @param {string} id Id của form dialog, default = 'myModal'
      */
     function openDialog(title, path, callback, id = 'myModal') {
-
-        //check tồn tại của form dialog theo id
         if ($('#' + id).length === 0) {
             scope.headerTitle = title;
-            //Đặt ID cho form dialog
             dialog(scope).url(path).done(function () {
                 callback();
-                //Set draggable cho form dialog
                 $dialog.draggable();
             });
         }

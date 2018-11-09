@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 from bson import ObjectId
+import qmongo
 import models
 import common
 from Query import AdministrativeSubdivisions
@@ -50,7 +51,7 @@ def insert(args):
         ret = {}
         if args['data'] != None:
             data =  set_dict_insert_data(args)
-            ret  =  models.HCSLS_Province().insert(data)
+            ret  =  qmongo.models.HCSLS_Province.insert(data)
             lock.release()
             return ret
 
@@ -69,7 +70,7 @@ def update(args):
         ret = {}
         if args['data'] != None:
             data =  set_dict_update_data(args)
-            ret  =  models.HCSLS_Province().update(
+            ret  = qmongo.models.HCSLS_Province.update(
                 data, 
                 "province_code == {0}", 
                 args['data']['province_code'])
@@ -94,7 +95,7 @@ def delete(args):
         lock.acquire()
         ret = {}
         if args['data'] != None:
-            ret  =  models.HCSLS_Province().delete("province_code in {0}",[x["province_code"]for x in args['data']])
+            ret  = qmongo.models.HCSLS_Province.delete("province_code in {0}",[x["province_code"]for x in args['data']])
             lock.release()
             return ret
 

@@ -1,9 +1,9 @@
 import common
 import datetime
 import models
-
+import qmongo
 def get_permission(args):
-    user_role = models.auth_user_info().aggregate().project(username = 1, role_code = 1)\
+    user_role = qmongo.models.auth_user_info.aggregate.project(username = 1, role_code = 1)\
     .match("username == {0}", args['user'].username).get_item()
     ret = common.get_collection("AD_Roles").aggregate([
         {"$match": {

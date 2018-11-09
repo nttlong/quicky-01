@@ -1,17 +1,18 @@
 ﻿
-<div class="tab-pane" style="padding-right:unset; height: 100%; overflow-y:hidden; overflow:auto; background-color:#fff;">
+<div class="tab-pane hcs-format" style="padding-right:unset; height: 100%; overflow-y:hidden; overflow:auto; background-color:#fff;">
     <div class="tabbable-panel">
         <div class="tabbable-line">
             <div class="hcs-tab-info">
                 <div class="col-md-12 competency no-padding">
-                    <div class="col-md-3 active" href="#tab_default_1" data-toggle="tab" ng-click="changeActive($event)">
-                        <img src="${get_static('assets/images/Setting.png')}" style="width:30px; margin-top:8px; margin-right:15px;"/>
+                    <div class="hcs-tab-info-box active" href="#tab_default_1" data-toggle="tab" ng-click="changeActive($event)">
+                        <span class="sap-icon sap-action-settings"></span>
                         <label>
                             ${get_res('config-general','Thiết lập chung')}
                         </label>
                     </div>
-                    <div class="col-md-3" href="#tab_default_2" data-toggle="tab" ng-click="changeActive($event)">
-                        <img src="${get_static('assets/images/Email.png')}" style="margin-top:0px"/>
+                    <div class="hcs-tab-info-line"/>
+                    <div class="hcs-tab-info-box" href="#tab_default_2" data-toggle="tab" ng-click="changeActive($event)">
+                        <span class="sap-icon sap-email"></span>
                         <label style="padding-left:5px;">
                             ${get_res('email_confirm','Email thông báo')}
                         </label>
@@ -21,8 +22,8 @@
             <div class="tab-content">
                 <div class="tab-pane active" id="tab_default_1">
                     <div class="col-md-12">
-                     <!--<collapse-box class="zb-form-common" title="${get_res('general_config','Thiết lập chung')}">
-                        <toolbar class="eeeeee">
+                     <collapse-box class="zb-form-common" title="${get_res('general_config','Thiết lập chung')}">
+                        <!--<toolbar class="eeeeee">
                             <button ng-click="onSave()" class="zb-btn zb-btn-o-black" style="float:right">
                                 <i class="bowtie-icon bowtie-save"></i>
                             </button>
@@ -131,18 +132,18 @@
                                 <div class="form-group zb-form-group">
                                    <label for="DisplayInfo" class="col-sm-6 zb-form-label">${get_global_res('create_and_modify','Tạo | Sửa')}</label>
                                         <div class="col-sm-6">
-                                            <input-text value="{{ entity.created_on | date: $root.systemConfig.date_format}} {{entity.created_by}} | {{ entity.modified_on | date: $root.systemConfig.date_format}} {{entity.modified_by}}" ng-disabled="true"/>
+                                            <input-text style="text-align:right;" value="{{ entity.created_on | date: $root.systemConfig.date_format}} {{entity.created_by}} | {{ entity.modified_on | date: $root.systemConfig.date_format}} {{entity.modified_by}}" ng-disabled="true"/>
                                         </div>
                                 </div>
                             </div>
-                        <!--</collapse-box>-->
+                        </collapse-box>
                     </div>
                 </div>
                 <div class="tab-pane" id="tab_default_2">
                     <div class="col-md-6">
                     <!--<div class="col-md-6">-->
                         <collapse-box class="zb-form-common" title="${get_res('email_send','Email gửi duyệt')}">
-                            <div class="col-md-12">
+                            <div class="col-xs-12 col-md-12">
                                 <div class="form-group zb-form-group">
                                     <label class="col-sm-5 zb-form-label">${get_res('email_send_code','Mẫu Email')}</label>
                                     <div class="col-sm-7">
@@ -329,8 +330,6 @@
                                         ${get_res('is_send_email_pronto','Gửi ngay khi có phát sinh')}
                                     </label>
                                 </div>
-                            </div>
-                            <div class="col-md-12 col-xs-12">
                                 <div class="form-group zb-form-group">
                                     <label class="radio zb-form-radio">
                                         <input type="radio" name="radio_is_send_email" ng-click="onChangeRadioButton(2)" ng-value="true" ng-model="entity.is_send_email_once">
@@ -338,8 +337,6 @@
                                         ${get_res('is_send_email_once','Gửi danh sách một lần trong ngày')}
                                     </label>
                                 </div>
-                            </div>
-                            <div class="col-md-12 col-xs-12">
                                 <div class="form-group zb-form-group">
                                     <label class="col-sm-6 col-xs-6 zb-form-label">${get_res('is_send_email_once_from_hour','Từ giờ')}</label>
                                     <div class="col-sm-6 col-xs-6">
@@ -347,8 +344,6 @@
                                                      ng-disabled="entity.is_send_email_once ? false : true"></time-picker>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="col-md-12 col-xs-12">
                                 <div class="form-group zb-form-group">
                                     <label class="col-sm-6 col-xs-6 zb-form-label">${get_res('is_send_email_once_to_hour','Đến giờ')}</label>
                                     <div class="col-sm-6 col-xs-6">

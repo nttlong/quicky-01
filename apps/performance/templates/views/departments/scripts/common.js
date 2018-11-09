@@ -33,6 +33,7 @@
         domain_code: null,
         signed_by: null
     }
+    var _imageData = "";
     scope.$parent.$parent.$parent.$parent.onSave = onSave;
     scope.__mode = scope.$parent.$parent.$parent.$parent.mode;
     scope.entity = {};
@@ -40,10 +41,13 @@
 
 
     function onSave() {
+        debugger
+        scope.entity.logo_image = _imageData;
         $msg.confirm("${get_global_res('Notification','Thông báo')}", "${get_res('Notify_Save','Bạn có muốn lưu không?')}", function () {
             var url = scope.__mode === 1 ? "${get_api_key('app_main.api.HCSSYS_Departments/insert')}" 
             : "${get_api_key('app_main.api.HCSSYS_Departments/update')}" ;
             callApi(url, scope.entity, function (res) {
+                console.log(res);
                 if (res.error == null) {
                     $msg.alert("${get_global_res('Handle_Success','Thao tác thành công')}", $type_alert.INFO);
                     scope.$parent.$parent._departments();
@@ -166,4 +170,24 @@
             _getDataInitCombobox();
         }
     })();
+
+    scope.imageDel = function(){
+        scope.entity.logo_image = '';
+    }
+
+    $(document).ready(function(){
+        document.getElementById('imageUpload').addEventListener('change', function(){
+            var fileList = document.getElementById("imageUpload").files;
+            var fileReader = new FileReader();
+            if (fileReader && fileList && fileList.length) {
+              fileReader.readAsArrayBuffer(fileList[0]);
+              fileReader.onload = function () {
+                 var imageData = fileReader.result;
+                 var base64String = btoa(String.fromCharCode.apply(null, new Uint8Array(imageData)));
+                 _imageData = base64String;
+                 scope.entity.logo_image = _imageData;
+              };
+            }
+        }, false);
+    })
 });

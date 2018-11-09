@@ -1,0 +1,53 @@
+<div class="col-md-12">
+    <collapse-box class="zb-form-common" title="${get_res('option_list','Option List')}">
+        <table-data data-source="$$table.tableSource"
+                fields="$$table.tableFields"
+                type="MultiSelect"
+                paging="true"
+                page-length="100"
+                server-side="true"
+                press-enter="$$table.onSelectTableRow"
+                selected-items="$$table.selectedItems"
+                current-item="$$table.currentItem"
+                search-text="$$table.tableSearchText"
+                refresh-row="$$table.refreshDataRow">
+            </table-data>
+        <toolbar>
+            <input-text-icon icon="bowtie-icon bowtie-search"
+                                                on-click="onSearch"></input-text-icon>
+            <button ng-click="event.add()" class="zb-btn zb-btn-o-green">
+                <i class="bowtie-icon bowtie-math-plus"></i>
+            </button>
+            <button ng-click="event.refresh()" class="zb-btn">
+                <i class="bowtie-icon bowtie-navigate-refresh"></i>
+            </button>
+        </toolbar>
+    </collapse-box>
+</div>
+<div class="col-md-12">
+    <collapse-box class="zb-form-common" title="${get_res('total_marks','Total Marks')}">
+        <div class="col-md-6">
+                <div class="form-group zb-form-group">
+                    <label for="inputEmp_Train_Mode_Name" class="col-sm-5 zb-form-label">
+                        ${get_res('ques_right_marks','Right Marks')}
+                    </label>
+                    <div class="col-md-7">
+                        <input-number id="inputEmp_Train_Mode_Name" ng-model="entity.ques_total_marks.right_mark"/>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group zb-form-group">
+                    <label for="inputEmp_Train_Mode_Name" class="col-md-5 zb-form-label">
+                            ${get_res('ques_negative_marks','Negative Marks')}
+                    </label>
+                    <div class="col-md-7">
+                        <input-number id="inputEmp_Train_Mode_Name" ng-model="entity.ques_total_marks.negative_mark">
+                    </div>
+                </div>
+            </div>
+    </collapse-box>
+</div>
+<script>
+    <%include file="scripts/optionsandmarks.js"/>
+</script>

@@ -51,7 +51,7 @@
                 <!--Thứ tự-->
                 <label for="inputOrdinal" class="col-xs-5 col-sm-5 zb-form-label">${get_res('ordinal','Thứ tự')}</label>
                 <div class="col-xs-7 col-sm-7">
-                    <input-number id="inputOrdinal" ng-model="entity.ordinal">
+                    <input-number id="inputOrdinal" ng-model="entity.ordinal" type="int">
                 </div>
             </div>
         </div>
@@ -83,7 +83,7 @@
 </div>
     <!--Thiết lập theo hệ số lương-->
     <div class="col-xs-12 col-md-12 col-sm-12" style="padding-bottom:20px;">
-    <collapse-box class="zb-form-common" title="${get_global_res('Set_by_salary','Thiết lập theo hệ số lương')}">
+    <collapse-box class="zb-form-common format-multi-col" title="${get_global_res('Set_by_salary','Thiết lập theo hệ số lương')}">
         <div class="col-xs-12 col-md-{{col_conf_sal}}">
             <div class="form-group zb-form-group">
                 <label for="inputEmp_coeff" class="col-xs-5 col-sm-5 zb-form-label">${get_res('acadame_coeff','Thiết lập theo')}</label>
@@ -121,7 +121,7 @@
 </div>
     <div class="col-xs-12 col-md-12" ng-hide="entity.coeff != 2 && __mode != 1">
     <collapse-box class="zb-form-common" title="${get_res('setting_acadame','Thiết lập chi tiết Trình độ học vấn')}">
-        <toolbar>
+        <toolbar class="zb-toolbar-small-control">
             <input-text-icon icon="bowtie-icon bowtie-search"
                              on-click="onSearch"></input-text-icon>
             <button ng-click="addDetail()" class="zb-btn zb-btn-o-green">
@@ -133,7 +133,7 @@
             <button ng-click="deleteDetail()" class="zb-btn zb-btn-o-red">
                 <i class="bowtie-icon bowtie-trash"></i>
             </button>
-            <button ng-click="" class="zb-btn">
+            <button ng-click="" class="zb-btn zb-btn-o-purple">
                 <i class="bowtie-icon bowtie-navigate-refresh"></i>
             </button>
         </toolbar>

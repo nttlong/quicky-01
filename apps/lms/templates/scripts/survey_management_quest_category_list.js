@@ -58,6 +58,8 @@
         }
     }
 
+    scope.onSearch = onSearch;
+
     scope.onImport = function(){
         
     }
@@ -147,4 +149,14 @@
             window.location.href = '#page=' + scope.$root.$extension.TripleDES.encrypt(data['page']);
         }
     });
+
+    function onSearch(val) {
+        scope.$$table.tableSearchText = val;
+        var tableConfig = scope.$$table.$$tableConfig;
+        _tableData(tableConfig.iPage,
+            tableConfig.iPageLength, tableConfig.orderBy,
+            tableConfig.searchText, tableConfig.fnReloadData);
+            scope.$apply();
+    }
+
 });

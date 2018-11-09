@@ -1,5 +1,7 @@
 # -*- coding: utf-8 -*-
 from bson import ObjectId
+import qmongo
+import qmongo
 import models
 from Query import KPIGroup
 import logging
@@ -27,9 +29,9 @@ def get_competency_group(lock):
             lock = True
         else: 
             lock = None
-    ret = models.TMLS_CompetencyGroup().aggregate();
-    ret.left_join(models.auth_user_info(), "created_by", "username", "uc");
-    ret.left_join(models.auth_user_info(), "modified_by", "username", "um");
+    ret = qmongo.models.TMLS_CompetencyGroup.aggregate
+    ret.left_join(qmongo.models.auth_user_info, "created_by", "username", "uc");
+    ret.left_join(qmongo.models.auth_user_info, "modified_by", "username", "um");
 
     if lock != None:
         ret.match("lock == {0}", lock);
@@ -62,7 +64,7 @@ def insert(args):
         if args['data'] != None:
             data = set_dict_insert_data(args)
             if data.has_key('parent_code') and data['parent_code'] != None:
-                parent_com_group_code = models.TMLS_CompetencyGroup().aggregate().project(
+                parent_com_group_code = qmongo.models.TMLS_CompetencyGroup.aggregate.project(
                     level_code = 1, 
                     com_group_code = 1,
                     level = 1).match("com_group_code == {0}", data['parent_code']).get_item()
@@ -72,7 +74,7 @@ def insert(args):
             else:
                 data['level'] = 1
                 data['level_code'] = [data['com_group_code']]
-            ret = models.TMLS_CompetencyGroup().insert(data)
+            ret =qmongo.models.TMLS_CompetencyGroup.insert(data)
             lock.release()
             return ret
 
@@ -90,7 +92,7 @@ def update(args):
         if args['data'] != None:
             data = set_dict_update_data(args)
             if data.has_key('parent_code') and data['parent_code'] != None:
-                parent_com_group_code = models.TMLS_CompetencyGroup().aggregate().project(
+                parent_com_group_code = qmongo.models.TMLS_CompetencyGroup.aggregate.project(
                     level_code = 1, 
                     com_group_code = 1,
                     level = 1).match("com_group_code == {0}", data['parent_code']).get_item()
@@ -101,7 +103,7 @@ def update(args):
                 data['level'] = 1
                 data['level_code'] = [args['data']['com_group_code']]
 
-            ret = models.TMLS_CompetencyGroup().update(data, 
+            ret = qmongo.models.TMLS_CompetencyGroup.update(data,
                 "com_group_code == {0}", 
                 args['data']['com_group_code'])
             if ret['data'].raw_result['updatedExisting'] == True:
@@ -151,7 +153,7 @@ def delete(args):
             #kiểm tra từ code hiện tại đến các cấp cha có group code nào đang được sử dụng không
             #Nếu có 'len(list_com_workig) > 0' return
             #Không có xử lí delete
-            list_com_workig = models.TMLS_Competency().aggregate().project(
+            list_com_workig = qmongo.models.TMLS_Competency.aggregate.project(
                 com_code = 1,
                 com_group_code = 1
                 ).match("com_group_code in {0}", [x["com_group_code"]for x in list_fiter]).get_list()
@@ -163,7 +165,7 @@ def delete(args):
                     deleted = 0
                 )
             else:
-                ret  =  models.TMLS_CompetencyGroup().delete("com_group_code in {0}", list_group_code)
+                ret  =  qmongo.models.TMLS_CompetencyGroup.delete("com_group_code in {0}", list_group_code)
                 lock.release()
                 return ret
 

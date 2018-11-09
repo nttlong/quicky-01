@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 from bson import ObjectId
+import qmongo
 import models
 import logging
 import threading
@@ -10,9 +11,9 @@ import datetime
 logger = logging.getLogger(__name__)
 global lock
 lock = threading.Lock()
-
+import qmongo
 def get_list_tree_data(args):
-    items = models.LMSLS_Forum().aggregate()
+    items =qmongo.models.LMSLS_Forum.aggregate
     items.match("forum_type=={0}", True).project(
         forum_id=1,
         forum_name=1,
@@ -20,7 +21,7 @@ def get_list_tree_data(args):
     data = items.get_list()
     data_public_forum = [parent_public_forum(x) for x in data]
 
-    items = models.LMSLS_Forum().aggregate()
+    items = qmongo.models.LMSLS_Forum.aggregate
     items.match("forum_type=={0}", False).project(
         forum_id=1,
         forum_name=1,
@@ -43,19 +44,23 @@ def parent_private_forum (arg):
     return arg
 
 def get_list_data():
-    items = models.LMSLS_Forum().aggregate()
-    items.left_join(models.auth_user_info(), "created_by", "username", "uc")
-    items.left_join(models.auth_user_info(), "modified_by", "username", "um")
+    items =qmongo.models.LMSLS_Forum.aggregate
+    items.left_join(qmongo.models.auth_user_info, "created_by", "username", "uc")
+    items.left_join(qmongo.models.auth_user_info, "modified_by", "username", "um")
     items.project(
         forum_id=1,
         forum_name=1,
         forum_name_other=1,
         description=1,
         forum_type=1,
+        info_course_name=1,
+        info_start_date=1,
+        info_class_code=1,
 
-        forum_info=1,
         forum_avail=1,
-        specific_avail=1,
+        avail=1,
+        avail_start_date=1,
+        avail_end_date=1,
         allow_anonymous_posts=1,
         allow_attachment_files=1,
         limit_space=1,
@@ -67,12 +72,14 @@ def get_list_data():
         allow_user_reply=1,
         allow_member_thread=1,
 
-        allow_subscription=1,
+        subscription_type=1,
         allow_member_rate=1,
         force_moderation_post=1,
         type_moderation=1,
         forum_administrator=1,
         forum_status=1,
+        disable=1,
+        order=1,
 
         created_by="uc.login_account",
         created_on="created_on",
@@ -92,8 +99,8 @@ def get_list_with_searchtext_public(args):
     pageIndex = (lambda pIndex: pIndex if pIndex != None else 0)(pageIndex)
     pageSize = (lambda pSize: pSize if pSize != None else 20)(pageSize)
 
-    ret = models.LMSLS_Forum().aggregate()
-    ret.lookup(models.LMS_VW_Employee(), "forum_administrator", "employee_code", "emp")
+    ret =  qmongo.models.LMSLS_Forum.aggregate
+    ret.lookup(qmongo.views.LMS_VW_Employee, "forum_administrator", "employee_code", "emp")
     ret.unwind("emp", True)
     ret.match("(forum_type=={0})", True)
     ret.project(
@@ -102,10 +109,15 @@ def get_list_with_searchtext_public(args):
         forum_name_other=1,
         description=1,
         forum_type=1,
+        info_course_name=1,
+        info_start_date=1,
+        info_class_code=1,
 
-        forum_info=1,
         forum_avail=1,
-        specific_avail=1,
+        avail=1,
+        avail_start_date=1,
+        avail_end_date=1,
+
         allow_anonymous_posts=1,
         allow_attachment_files=1,
         limit_space=1,
@@ -117,13 +129,15 @@ def get_list_with_searchtext_public(args):
         allow_user_reply=1,
         allow_member_thread=1,
 
-        allow_subscription=1,
+        subscription_type=1,
         allow_member_rate=1,
         force_moderation_post=1,
         type_moderation=1,
         forum_administrator=1,
         forum_administrator_name="concat(emp.last_name, ' ', emp.first_name)",
         forum_status=1,
+        disable=1,
+        order=1,
 
         created_on=1,
         created_by=1,
@@ -149,8 +163,8 @@ def get_list_with_searchtext_private(args):
 
     pageIndex = (lambda pIndex: pIndex if pIndex != None else 0)(pageIndex)
     pageSize = (lambda pSize: pSize if pSize != None else 20)(pageSize)
-    ret = models.LMSLS_Forum().aggregate()
-    ret.lookup(models.LMS_VW_Employee(), "forum_administrator", "employee_code", "emp")
+    ret = qmongo.models.LMSLS_Forum.aggregate
+    ret.lookup(qmongo.views.LMS_VW_Employee, "forum_administrator", "employee_code", "emp")
     ret.unwind("emp", True)
     ret.match("(forum_type=={0})", False)
     ret.project(
@@ -159,10 +173,15 @@ def get_list_with_searchtext_private(args):
         forum_name_other=1,
         description=1,
         forum_type=1,
+        info_course_name=1,
+        info_start_date=1,
+        info_class_code=1,
 
-        forum_info=1,
         forum_avail=1,
-        specific_avail=1,
+        avail=1,
+        avail_start_date=1,
+        avail_end_date=1,
+
         allow_anonymous_posts=1,
         allow_attachment_files=1,
         limit_space=1,
@@ -174,13 +193,15 @@ def get_list_with_searchtext_private(args):
         allow_user_reply=1,
         allow_member_thread=1,
 
-        allow_subscription=1,
+        subscription_type=1,
         allow_member_rate=1,
         force_moderation_post=1,
         type_moderation=1,
         forum_administrator=1,
         forum_administrator_name="concat(emp.last_name, ' ', emp.first_name)",
         forum_status=1,
+        disable=1,
+        order=1,
 
         created_on=1,
         created_by=1,
@@ -206,8 +227,8 @@ def get_list_with_searchtext_all(args):
 
     pageIndex = (lambda pIndex: pIndex if pIndex != None else 0)(pageIndex)
     pageSize = (lambda pSize: pSize if pSize != None else 20)(pageSize)
-    ret = models.LMSLS_Forum().aggregate()
-    ret.lookup(models.LMS_VW_Employee(), "forum_administrator", "employee_code", "emp")
+    ret = qmongo.models.LMSLS_Forum.aggregate
+    ret.lookup(qmongo.views.LMS_VW_Employee, "forum_administrator", "employee_code", "emp")
     ret.unwind("emp", True)
     ret.project(
         forum_id=1,
@@ -215,10 +236,15 @@ def get_list_with_searchtext_all(args):
         forum_name_other=1,
         description=1,
         forum_type=1,
+        info_course_name=1,
+        info_start_date=1,
+        info_class_code=1,
 
-        forum_info=1,
         forum_avail=1,
-        specific_avail=1,
+        avail=1,
+        avail_start_date=1,
+        avail_end_date=1,
+
         allow_anonymous_posts=1,
         allow_attachment_files=1,
         limit_space=1,
@@ -230,13 +256,15 @@ def get_list_with_searchtext_all(args):
         allow_user_reply=1,
         allow_member_thread=1,
 
-        allow_subscription=1,
+        subscription_type=1,
         allow_member_rate=1,
         force_moderation_post=1,
         type_moderation=1,
         forum_administrator=1,
         forum_administrator_name="concat(emp.last_name, ' ', emp.first_name)",
         forum_status=1,
+        disable=1,
+        order=1,
 
         created_on=1,
         created_by=1,
@@ -262,20 +290,25 @@ def get_list_with_searchtext_archived(args):
 
     pageIndex = (lambda pIndex: pIndex if pIndex != None else 0)(pageIndex)
     pageSize = (lambda pSize: pSize if pSize != None else 20)(pageSize)
-    ret = models.LMSLS_Forum().aggregate()
-    ret.lookup(models.LMS_VW_Employee(), "forum_administrator", "employee_code", "emp")
+    ret = qmongo.models.LMSLS_Forum.aggregate
+    ret.lookup(qmongo.views.LMS_VW_Employee, "forum_administrator", "employee_code", "emp")
     ret.unwind("emp", True)
-    ret.match("(specific_avail.end_date<{0})", datetime.datetime.now())
+    ret.match("(avail_end_date<{0})", datetime.datetime.now())
     ret.project(
         forum_id=1,
         forum_name=1,
         forum_name_other=1,
         description=1,
         forum_type=1,
+        info_course_name=1,
+        info_start_date=1,
+        info_class_code=1,
 
-        forum_info=1,
         forum_avail=1,
-        specific_avail=1,
+        avail=1,
+        avail_start_date=1,
+        avail_end_date=1,
+
         allow_anonymous_posts=1,
         allow_attachment_files=1,
         limit_space=1,
@@ -287,7 +320,7 @@ def get_list_with_searchtext_archived(args):
         allow_user_reply=1,
         allow_member_thread=1,
 
-        allow_subscription=1,
+        subscription_type=1,
         allow_member_rate=1,
         force_moderation_post=1,
         type_moderation=1,
@@ -316,7 +349,7 @@ def insert(args):
         ret = {}
         if args['data'] != None:
             data = set_dict_insert_data(args)
-            ret = models.LMSLS_Forum().insert(data)
+            ret =qmongo.models.LMSLS_Forum.insert(data)
             lock.release()
             return ret
 
@@ -334,7 +367,7 @@ def update(args):
         ret = {}
         if args['data'] != None:
             data = set_dict_update_data(args)
-            ret = models.LMSLS_Forum().update(
+            ret =qmongo.models.LMSLS_Forum.update(
                 data,
                 "_id == {0}",
                 ObjectId(args['data']['_id']))
@@ -360,7 +393,7 @@ def update_status_open(args):
 
         if args['data'] != None:
             for el in args['data']:
-                ret = models.LMSLS_Forum().update(
+                ret = qmongo.models.LMSLS_Forum.update(
                     {
                         "forum_status": 1
                     },
@@ -385,7 +418,7 @@ def update_status_suspend(args):
 
             if args['data'] != None:
                 for el in args['data']:
-                    ret = models.LMSLS_Forum().update(
+                    ret =qmongo.models.LMSLS_Forum.update(
                         {
                             "forum_status": 2
                         },
@@ -410,7 +443,7 @@ def update_status_write_protected(args):
 
                 if args['data'] != None:
                     for el in args['data']:
-                        ret = models.LMSLS_Forum().update(
+                        ret =qmongo.models.LMSLS_Forum.update(
                             {
                                 "forum_status": 3
                             },
@@ -433,7 +466,7 @@ def delete(args):
         lock.acquire()
         ret = {}
         if args['data'] != None:
-            ret = models.LMSLS_Forum().delete("_id in {0}", [ObjectId(x["_id"]) for x in args['data']])
+            ret =qmongo.models.LMSLS_Forum.delete("_id in {0}", [ObjectId(x["_id"]) for x in args['data']])
             lock.release()
             return ret
 
@@ -454,10 +487,14 @@ def set_dict_insert_data(args):
         forum_name_other=(lambda x: x['forum_name_other'] if x.has_key('forum_name_other') else None)(args['data']),
         description=(lambda x: x['description'] if x.has_key('description') else None)(args['data']),
         forum_type=(lambda x: x['forum_type'] if x.has_key('forum_type') else None)(args['data']),
+        info_course_name=(lambda x: x['info_course_name'] if x.has_key('info_course_name') else None)(args['data']),
+        info_start_date=(lambda x: x['info_start_date'] if x.has_key('info_start_date') else None)(args['data']),
+        info_class_code=(lambda x: x['info_class_code'] if x.has_key('info_class_code') else None)(args['data']),
 
-        forum_info=(lambda x: x['forum_info'] if x.has_key('forum_info') else None)(args['data']),
         forum_avail=(lambda x: x['forum_avail'] if x.has_key('forum_avail') else None)(args['data']),
-        specific_avail=(lambda x: x['specific_avail'] if x.has_key('specific_avail') else None)(args['data']),
+        avail=(lambda x: x['avail'] if x.has_key('avail') else None)(args['data']),
+        avail_start_date=(lambda x: x['avail_start_date'] if x.has_key('avail_start_date') else None)(args['data']),
+        avail_end_date=(lambda x: x['avail_end_date'] if x.has_key('avail_end_date') else None)(args['data']),
         allow_anonymous_posts=(lambda x: x['allow_anonymous_posts'] if x.has_key('allow_anonymous_posts') else None)(args['data']),
         allow_attachment_files=(lambda x: x['allow_attachment_files'] if x.has_key('allow_attachment_files') else None)(args['data']),
         limit_space=(lambda x: x['limit_space'] if x.has_key('limit_space') else None)(args['data']),
@@ -469,13 +506,14 @@ def set_dict_insert_data(args):
         allow_user_reply=(lambda x: x['allow_user_reply'] if x.has_key('allow_user_reply') else None)(args['data']),
         allow_member_thread=(lambda x: x['allow_member_thread'] if x.has_key('allow_member_thread') else None)(args['data']),
 
-        allow_subscription=(lambda x: x['allow_subscription'] if x.has_key('allow_subscription') else None)(args['data']),
+        subscription_type=(lambda x: x['subscription_type'] if x.has_key('subscription_type') else None)(args['data']),
         allow_member_rate=(lambda x: x['allow_member_rate'] if x.has_key('allow_member_rate') else None)(args['data']),
         force_moderation_post=(lambda x: x['force_moderation_post'] if x.has_key('force_moderation_post') else None)(args['data']),
         type_moderation=(lambda x: x['type_moderation'] if x.has_key('type_moderation') else None)(args['data']),
         forum_administrator=(lambda x: x['forum_administrator'] if x.has_key('forum_administrator') else None)(args['data']),
-        forum_status=(lambda x: x['forum_status'] if x.has_key('forum_status') else None)(
-            args['data']),
+        forum_status=(lambda x: x['forum_status'] if x.has_key('forum_status') else None)(args['data']),
+        disable=(lambda x: x['disable'] if x.has_key('disable') else None)(args['data']),
+        order=(lambda x: x['order'] if x.has_key('order') else None)(args['data']),
     )
 
     return ret_dict

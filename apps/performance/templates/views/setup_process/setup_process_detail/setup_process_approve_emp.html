@@ -3,26 +3,26 @@
         background:#F9F9F9 !important;
     }
 </style>
-<div class="tab-pane" style="padding-right:unset; height: 100%;">
+<div class="tab-pane" style="padding-right:unset; height: 100%;background-color:#fff">
     <div class="" style="height: 100%; display: grid; width: 100%; grid-auto-rows: auto 1fr;">
-        <div class="hcs-tab-info">
+        <div class="hcs-tab-info" style="padding-bottom:10px">
             <div class="col-md-12 competency no-padding">
                 <div class="hcs-tab-info-box active" href="#tab_default_1" data-toggle="tab" ng-click="changeActive($event, 'employee')">
-                    <img src="${get_static('assets/images/DuyetNhanvien.png')}" style="width: 38px;padding: 12px 12px 0px 0px;" />
+                   <span class="sap-icon sap-employee"></span>
                     <label>
                         ${get_res('by_employee','Theo nhân viên')}
                     </label>
                 </div>
+                <div class="hcs-tab-info-line"></div>
                 <div class="hcs-tab-info-box" href="#tab_default_2" data-toggle="tab" ng-class="{'hcs-tab-info-box-disabled': $parent.$parent.$parent.$parent.$$is_approve_by_dept && $parent.$parent.$parent.$parent.$$is_approve_by_dept == true ? false : true}"  ng-click="changeActive($event, 'department')">
-                    <img src="${get_static('assets/images/DuyetBophan.png')}"/>
+                    <span class="sap-icon sap-manager"></span>
                     <label style="padding-left:5px;">
                         ${get_res('by_department','Theo bộ phận')}
                     </label>
                 </div>
             </div>
         </div>
-        <div c-template url="{{$partialpage}}"
-                 class="row"></div>
+        <div c-template url="{{$partialpage}}"></div>
     </div>
 </div>
 <script>

@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 from bson import ObjectId
+import qmongo
 import models
 import logging
 import threading
@@ -46,7 +47,7 @@ def get_list_with_searchtext(args):
 
     pageIndex = (lambda pIndex: pIndex if pIndex != None else 0)(pageIndex)
     pageSize = (lambda pSize: pSize if pSize != None else 20)(pageSize)
-    ret = models.LMSLS_ExTemplateList().aggregate()
+    ret =qmongo.models.LMSLS_ExTemplateList.aggregate
     ret.project(
         exam_temp_id=1,
         exam_temp_category=1,
@@ -96,7 +97,7 @@ def insert(args):
                             del a['$$hashKey']
         if (args['data'] != None):
             data = set_dict_insert_data(args)
-            ret = models.LMSLS_ExTemplateList().insert(data)
+            ret =qmongo.models.LMSLS_ExTemplateList.insert(data)
             lock.release()
             return ret
 
@@ -115,13 +116,13 @@ def update(args):
         ret = {}
         if args['data'] != None:
             data = set_dict_update_data(args)
-            ret = models.LMSLS_ExTemplateList().update(
+            ret =qmongo.models.LMSLS_ExTemplateList.update(
                 data,
                 "_id == @id",
                 id = ObjectId(args['data']['_id']))
             if ret['data'].raw_result['updatedExisting'] == True:
                 ret.update(
-                    item=models.LMSLS_ExTemplateList().aggregate().match("_id == @id",
+                    item=qmongo.models.LMSLS_ExTemplateList.aggregate.match("_id == @id",
                                                                          id = ObjectId(args['data']['_id'])).get_item()
                 )
             lock.release()
@@ -141,7 +142,7 @@ def delete(args):
         lock.acquire()
         ret = {}
         if args['data'] != None:
-            ret = models.LMSLS_ExTemplateList().delete("_id in {0}", [ObjectId(x["_id"]) for x in args['data']])
+            ret =qmongo.models.LMSLS_ExTemplateList.delete("_id in {0}", [ObjectId(x["_id"]) for x in args['data']])
             lock.release()
             return ret
 

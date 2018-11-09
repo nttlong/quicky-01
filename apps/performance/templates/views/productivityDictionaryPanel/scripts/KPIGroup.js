@@ -4,9 +4,9 @@
         "dataTableTree": [],
         "tableFields": [
             { "data": "kpi_group_code", "title": "${get_res('kpi_group_code','Mã nhóm')}", width: "100px", className: "text-center" },
-            { "data": "weight", "title": "${get_res('weight','Trọng số')}", width: "100px", className: "text-center" },
+            { "data": "weight", "format":"number: system", "title": "${get_res('weight','Trọng số')}", width: "100px", className: "text-right" },
             { "data": "is_team", "title": "${get_res('is_team','Tập thể')}", format: "checkbox", width: "100px", className: "text-center" },
-            { "data": "ordinal", "title": "${get_res('ordinal','Thứ tự')}", width: "100px", className: "text-center" },
+            { "data": "ordinal", "format":"number: system", "title": "${get_res('ordinal','Thứ tự')}" , width: "100px", className: "text-center" },
             { "data": "lock", "title": "${get_res('lock','Ngưng sử dụng')}", format: "checkbox", width: "100px", className: "text-center" }
         ],
         "selectTreeNode": function (node) {

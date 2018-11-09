@@ -74,7 +74,7 @@
 
 
 
-    scope.objSearch = {
+    scope.$parent.$parent.$parent.objSearch = {
         $$$modelSearch: null,
         onSearch: onSearch
     }
@@ -93,7 +93,10 @@
         { "data": "approver_id", "title": "${get_res('approver_table_header','Approver(s)')}","expr":function(row, data, func){
             func(function(){
                 if(row.approver_id)
-                    return "<img style='width:15px;height:17px' src='" + scope.urls + "css/icon/approver_tr.png" + "'/>"+ " "+row.approver_id;
+                    return "<img style='width:15px;height:17px' src='"
+                    + scope.urls + "css/icon/approver_tr.png" + "'/>"
+                    + " "
+                    +row.approver_name.map(c => c.full_name).join(',')
                 return '';
             });
             return true;
@@ -307,6 +310,7 @@
                             data: res.items
                         };
                         scope.__tableSource = JSON.parse(JSON.stringify(res.items));
+                        debugger
                         callback(data);
                         scope.currentItem = null;
                         scope.$apply();

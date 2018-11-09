@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 from bson import ObjectId
+import qmongo
 import models
 import logging
 import threading
@@ -7,9 +8,9 @@ import common
 logger = logging.getLogger(__name__)
 global lock
 lock = threading.Lock()
-
+import qmongo
 def get_list_data():
-    items = models.LMSLS_ExQuestionCategory().aggregate()
+    items = qmongo.models.LMSLS_ExQuestionCategory.aggregate
 
     items.project(
         category_id = 1,
@@ -18,15 +19,14 @@ def get_list_data():
         active=1,
         note=1,
         order=1,
-        moderator =1,
+        #moderator =1,
         created_on=1,
         )
     
     return items
 
-
 def get_list(args):
-    items = models.LMSLS_ExQuestionCategory().aggregate().project(
+    items = qmongo.models.LMSLS_ExQuestionCategory.aggregate.project(
         category_id = 1,
         category_name = 1,
         category_name2=1,
@@ -49,9 +49,9 @@ def get_list_with_searchtext(args):
 
     pageIndex = (lambda pIndex: pIndex if pIndex != None else 0)(pageIndex)
     pageSize = (lambda pSize: pSize if pSize != None else 20)(pageSize)
-    ret=models.LMSLS_ExQuestionCategory().aggregate()
-    ret.left_join(models.models.auth_user_info(), "created_by", "username", "uc")
-    ret.left_join(models.models.auth_user_info(), "modified_by", "username", "um")
+    ret= qmongo.models.LMSLS_ExQuestionCategory.aggregate
+    ret.left_join(qmongo.models.auth_user_info, "created_by", "username", "uc")
+    ret.left_join(qmongo.models.auth_user_info, "modified_by", "username", "um")
     ret.project(
             folder_id=1,
             folder_name=1,
@@ -63,7 +63,7 @@ def get_list_with_searchtext(args):
             ordinal=1,
             lock=1,
             note=1,
-            moderator_id=1,
+            #moderator_id=1,
             approver_id=1,
             active=1,
             permisions=1,
@@ -163,7 +163,7 @@ def insert(args):
         ret = {}
         if args['data'] != None:
             data =  set_dict_insert_data(args)
-            ret  =  models.LMSLS_ExQuestionCategory().insert(data)
+            ret  = qmongo.models.LMSLS_ExQuestionCategory.insert(data)
             lock.release()
             return ret
 
@@ -181,7 +181,7 @@ def update(args):
         ret = {}
         if args['data'] != None:
             data =  set_dict_update_data(args)
-            ret  =  models.LMSLS_ExQuestionCategory().update(
+            ret  = qmongo.models.LMSLS_ExQuestionCategory.update(
                 data, 
                 "_id == {0}", 
                 ObjectId(args['data']['_id']))
@@ -205,7 +205,7 @@ def delete(args):
         lock.acquire()
         ret = {}
         if args['data'] != None:
-            ret  =  models.LMSLS_ExQuestionCategory().delete("_id in {0}",[ObjectId(x["_id"])for x in args['data']])
+            ret  = qmongo.models.LMSLS_ExQuestionCategory.delete("_id in {0}",[ObjectId(x["_id"])for x in args['data']])
             lock.release()
             return ret
 
@@ -239,9 +239,10 @@ def set_dict_update_data(args):
     ret_dict = set_dict_insert_data(args)
     del ret_dict['category_id']
     return ret_dict
+
 def get_level_code_by_folder_id(args):
     where = args['data'].get('where')
-    ret=models.LMSLS_ExQuestionCategory().aggregate()
+    ret= qmongo.models.LMSLS_ExQuestionCategory.aggregate
     if(where != None):
         ret.match("(folder_id==@folder_id)",folder_id=where['folder_id'])
     ret.project(
@@ -250,30 +251,75 @@ def get_level_code_by_folder_id(args):
     return ret.get_page(0, 100)
 
 def get_list_category_question(args):
-    try:
-            collection  =  common.get_collection('LMSLS_ExQuestionCategory')
-            ret = collection.aggregate([
-                    {
-                        "$lookup": {
-                           "from": "lv.LMSLS_ExQuestionBank",
-                           "localField": "category_id",
-                           "foreignField": "ques_category",
-                           "as": "ques",
-                         }
-                    },{
-                        "$project":
-                          {
-                              "category_id": 1,
-                              "category_name": 1,
-                              "category_name2": 1,
-                              "created_on": 1,
-                              "active": 1,
-                              "note": 1,
-                              "order": 1,
-                              "ques":1,
-                          }
-                    }
-                ])
-            return list(ret)
-    except Exception as ex:
-        raise(ex)
+    searchText = args['data'].get('search', '')
+    pageSize = args['data'].get('pageSize', 0)
+    pageIndex = args['data'].get('pageIndex', 20)
+    sort = args['data'].get('sort', 20)
+    where = args['data'].get('where')
+    collection = common.get_collection('LMSLS_ExQuestionCategory')
+    arrayData = []
+
+    lookup = {
+                 "$lookup": {
+                     "from": "lv.LMSLS_ExQuestionBank",
+                     "localField": "category_id",
+                     "foreignField": "ques_category",
+                     "as": "ques",
+                 },
+             }
+    arrayData.append(lookup)
+
+    lookup = {
+                 "$lookup": {
+                     "from": common.get_collection_name_with_schema("auth_user_info"),
+                     "localField": 'created_by',
+                     "foreignField": 'username',
+                     "as": 'uc'
+                 },
+             }
+    arrayData.append(lookup)
+
+
+    lookup = {
+                 "$lookup": {
+                     "from": common.get_collection_name_with_schema("auth_user_info"),
+                     "localField": 'modified_by',
+                     "foreignField": 'username',
+                     "as": 'um'
+                 },
+             }
+    arrayData.append(lookup)
+
+    arrayData.append({'$unwind': '$uc'})
+    arrayData.append({"$unwind": {'path': '$um', "preserveNullAndEmptyArrays": True}})
+
+    arrayData.append(
+                {
+                    "$project":
+                        {
+                            "category_id": 1,
+                            "category_name": 1,
+                            "category_name2": 1,
+                            "created_on": 1,
+                            "created_by": "$uc.login_account",
+                            "modified_on": 1,
+                            'modified_by': {"$ifNull": ["$um.login_account", ""]},
+                            "active": 1,
+                            "note": 1,
+                            "order": 1,
+                            "ques": 1,
+                        }
+                }
+            )
+
+    if (sort != None):
+        arrayData.append({
+            "$sort": sort
+        })
+    ret = list(collection.aggregate(arrayData))
+    return dict(
+        items=ret,
+        page_index=pageIndex,
+        page_size=pageSize,
+        total_items=ret.__len__()
+    )

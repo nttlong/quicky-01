@@ -95,7 +95,7 @@
             .then(function (res) {
                 scope.$rating = res;
                 res = _.map(res, function (val) {
-                    return { "data": val.rank_code, "title": "%"+ "<"+ val.rank_name +">",format:"number", width: "100px", className: "text-left" };
+                    return { "data": val.rank_code, "title": "%"+ "<"+ val.rank_name +">","format":"number: system", width: "100px", className: "text-left" };
                 })
                 scope.$parent.$$$tableFields = res;
                 callback(res)

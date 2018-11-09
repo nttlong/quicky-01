@@ -4,11 +4,14 @@
     scope.currentFunction = '';
     scope.mapName = [];
     scope.currentSetupProcess = null;
+    scope.onSearchProcess = function(val){
+
+    }
     scope.obj = {
         showDetail: false,
         selectedFunction: "",
         selectFunc: function (event, f) {
-            scope.detail.selectedFunction = f;
+            scope.obj.selectedFunction = f;
         },
     }
     scope.selectFunc = function (event, f) {
@@ -108,14 +111,14 @@
     }
 
     function backPage() {
-        //$('.hcs-profile-list').fadeToggle();
-        //setTimeout(function () {
+        $('.hcs-profile-list').fadeToggle();
+        setTimeout(function () {
             scope.obj.showDetail = scope.obj.showDetail === false ? true : false;
             scope.mode = 0;
             scope.$partialpage = scope.mapName[0].url;
             scope.obj.selectedFunction = scope.mapName[0].function_id;
             $(window).trigger('resize');
-        // }, 100);
+         }, 100);
     }
 
     function handleData() {

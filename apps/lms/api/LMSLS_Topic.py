@@ -13,9 +13,9 @@ global lock
 lock = threading.Lock()
 
 def get_list_data():
-    items = models.LMSLS_Topic().aggregate()
-    items.left_join(models.auth_user_info(), "created_by", "username", "uc")
-    items.left_join(models.auth_user_info(), "modified_by", "username", "um")
+    items = qmongo.models.LMSLS_Topic.aggregate
+    items.left_join(qmongo.models.auth_user_info, "created_by", "username", "uc")
+    items.left_join(qmongo.models.auth_user_info, "modified_by", "username", "um")
     items.project(
         topic_id=1,
         topic_name=1,
@@ -55,11 +55,11 @@ def get_list_with_searchtext_draft(args):
 
     pageIndex = (lambda pIndex: pIndex if pIndex != None else 0)(pageIndex)
     pageSize = (lambda pSize: pSize if pSize != None else 20)(pageSize)
-    ret = models.LMSLS_Topic().aggregate()
+    ret =qmongo.models.LMSLS_Topic.aggregate
     ret.match("(publish=={0} and topic_removed=={1})", False, False)
-    ret.left_join(models.auth_user_info(), "created_by", "username", "uc")
-    ret.left_join(models.auth_user_info(), "modified_by", "username", "um")
-    ret.left_join(models.LMSLS_Forum(), "forum_id", "forum_id", "fr")
+    ret.left_join(qmongo.models.auth_user_info, "created_by", "username", "uc")
+    ret.left_join(qmongo.models.auth_user_info, "modified_by", "username", "um")
+    ret.left_join(qmongo.models.LMSLS_Forum, "forum_id", "forum_id", "fr")
 
     if (where != None):
         if (where.has_key('parent_code') and (where['parent_code'] == None or where['parent_code'] == '0')): # là node cha
@@ -114,11 +114,11 @@ def get_list_with_searchtext_pending(args):
 
     pageIndex = (lambda pIndex: pIndex if pIndex != None else 0)(pageIndex)
     pageSize = (lambda pSize: pSize if pSize != None else 20)(pageSize)
-    ret = models.LMSLS_Topic().aggregate()
+    ret =qmongo.models.LMSLS_Topic.aggregate
     ret.match("publish == {0} and topic_approved == {1} and topic_removed=={2}", True, None, False)
-    ret.left_join(models.auth_user_info(), "created_by", "username", "uc")
-    ret.left_join(models.auth_user_info(), "modified_by", "username", "um")
-    ret.left_join(models.LMSLS_Forum(), "forum_id", "forum_id", "fr")
+    ret.left_join(qmongo.models.auth_user_info, "created_by", "username", "uc")
+    ret.left_join(qmongo.models.auth_user_info, "modified_by", "username", "um")
+    ret.left_join(qmongo.models.LMSLS_Forum, "forum_id", "forum_id", "fr")
 
     if (where != None):
         if (where.has_key('parent_code') and (where['parent_code'] == None or where['parent_code'] == '0')): # là node cha
@@ -176,13 +176,13 @@ def get_list_with_searchtext_published(args):
 
     pageIndex = (lambda pIndex: pIndex if pIndex != None else 0)(pageIndex)
     pageSize = (lambda pSize: pSize if pSize != None else 20)(pageSize)
-    ret = models.LMSLS_Topic().aggregate()
+    ret =qmongo.models.LMSLS_Topic.aggregate
     ret.match("publish == {0} and topic_approved == {1} and publish_date <= {2} and topic_removed=={3}", True, True,
               datetime.datetime.now(), False) # lấy topic publish true, đã approved, date <= ngày hệ thống
-    ret.left_join(models.auth_user_info(), "created_by", "username", "uc")
-    ret.left_join(models.auth_user_info(), "modified_by", "username", "um")
-    ret.left_join(models.auth_user_info(), "approved_by", "username", "ua")
-    ret.left_join(models.LMSLS_Forum(), "forum_id", "forum_id", "fr")
+    ret.left_join(qmongo.models.auth_user_info, "created_by", "username", "uc")
+    ret.left_join(qmongo.models.auth_user_info, "modified_by", "username", "um")
+    ret.left_join(qmongo.models.auth_user_info, "approved_by", "username", "ua")
+    ret.left_join(qmongo.models.LMSLS_Forum, "forum_id", "forum_id", "fr")
 
 
 
@@ -244,13 +244,13 @@ def get_list_with_searchtext_scheduled(args):
 
     pageIndex = (lambda pIndex: pIndex if pIndex != None else 0)(pageIndex)
     pageSize = (lambda pSize: pSize if pSize != None else 20)(pageSize)
-    ret = models.LMSLS_Topic().aggregate()
+    ret = qmongo.models.LMSLS_Topic.aggregate
     ret.match("publish == {0} and topic_approved == {1} and publish_date > {2} and topic_removed=={3}", True, True,
               datetime.datetime.now(), False) # lấy topic publish true, đã approved, date > ngày hệ thống
-    ret.left_join(models.auth_user_info(), "created_by", "username", "uc")
-    ret.left_join(models.auth_user_info(), "modified_by", "username", "um")
-    ret.left_join(models.auth_user_info(), "approved_by", "username", "ua")
-    ret.left_join(models.LMSLS_Forum(), "forum_id", "forum_id", "fr")
+    ret.left_join(qmongo.models.auth_user_info, "created_by", "username", "uc")
+    ret.left_join(qmongo.models.auth_user_info, "modified_by", "username", "um")
+    ret.left_join(qmongo.models.auth_user_info, "approved_by", "username", "ua")
+    ret.left_join(qmongo.models.LMSLS_Forum, "forum_id", "forum_id", "fr")
 
 
 
@@ -778,7 +778,7 @@ def insert(args):
         ret = {}
         if args['data'] != None:
             data = set_dict_insert_data(args)
-            ret = models.LMSLS_Topic().insert(data)
+            ret = qmongo.models.LMSLS_Topic.insert(data)
             lock.release()
             return ret
 
@@ -802,7 +802,7 @@ def update(args):
             elif args['data']['topic_approved'] == True:
                 set_dict_approve(data)
 
-            ret = models.LMSLS_Topic().update(
+            ret = qmongo.models.LMSLS_Topic.update(
                 data,
                 "_id == {0}",
                 ObjectId(args['data']['_id']))
@@ -826,7 +826,7 @@ def delete(args):
         lock.acquire()
         ret = {}
         if args['data'] != None:
-            ret = models.LMSLS_Topic().delete("_id in {0}", [ObjectId(x["_id"]) for x in args['data']])
+            ret = qmongo.models.LMSLS_Topic.delete("_id in {0}", [ObjectId(x["_id"]) for x in args['data']])
             lock.release()
             return ret
 
@@ -845,7 +845,7 @@ def delete_to_trash(args):
 
         if args['data'] != None:
             for el in args['data']:
-                ret = models.LMSLS_Topic().update(
+                ret = qmongo.models.LMSLS_Topic.update(
                     {
                         "topic_removed": True
                     },
@@ -870,7 +870,7 @@ def update_topic_pin(args):
 
         if args['data'] != None:
             for el in args['data']:
-                ret = models.LMSLS_Topic().update(
+                ret = qmongo.models.LMSLS_Topic.update(
                     {
                         "topic_pin": True
                     },
@@ -895,7 +895,7 @@ def update_topic_block(args):
 
             if args['data'] != None:
                 for el in args['data']:
-                    ret = models.LMSLS_Topic().update(
+                    ret = qmongo.models.LMSLS_Topic.update(
                         {
                             "topic_block": True
                         },

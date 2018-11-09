@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 from bson import ObjectId
+import  qmongo
 import models
 from Query import KPIGroup
 import logging
@@ -19,9 +20,9 @@ def get_list_with_searchtext(args):
 
     pageIndex = (lambda pIndex: pIndex if pIndex != None else 0)(pageIndex)
     pageSize = (lambda pSize: pSize if pSize != None else 20)(pageSize)
-    ret = models.TMLS_CompetencyFactor().aggregate()
-    ret.left_join(models.auth_user_info(), "created_by", "username", "uc")
-    ret.left_join(models.auth_user_info(), "modified_by", "username", "um")
+    ret = qmongo.models.TMLS_CompetencyFactor.aggregate
+    ret.left_join(qmongo.models.auth_user_info, "created_by", "username", "uc")
+    ret.left_join(qmongo.models.auth_user_info, "modified_by", "username", "um")
     ret.project(
         com_code="com_code",
         factor="factor",
@@ -46,9 +47,9 @@ def get_list_with_searchtext(args):
 
 
 def get_competency_factor(com_code, factor):
-    ret = models.TMLS_CompetencyFactor().aggregate()
-    ret.left_join(models.auth_user_info(), "created_by", "username", "uc")
-    ret.left_join(models.auth_user_info(), "modified_by", "username", "um")
+    ret = qmongo.models.TMLS_CompetencyFactor.aggregate
+    ret.left_join(qmongo.models.auth_user_info, "created_by", "username", "uc")
+    ret.left_join(qmongo.models.auth_user_info, "modified_by", "username", "um")
     ret.project(
         com_code="com_code",
         factor="factor",
@@ -72,7 +73,7 @@ def insert(args):
         ret = {}
         if args['data'] != None:
             del args['data']['_id']
-            ret = models.TMLS_CompetencyFactor().insert(args['data'])
+            ret = qmongo.models.TMLS_CompetencyFactor.insert(args['data'])
             lock.release()
             return ret
 
@@ -93,7 +94,7 @@ def update(args):
             data = args['data'].copy()
             del data['com_code']
             del data['_id']
-            ret = models.TMLS_CompetencyFactor().update(
+            ret = qmongo.models.TMLS_CompetencyFactor.update(
                 data,
                 "com_code == @com_code and _id == @_id",
                 com_code=args['data']['com_code'],
@@ -120,7 +121,7 @@ def delete(args):
         lock.acquire()
         ret = {}
         if args['data'] != None:
-            ret = models.TMLS_CompetencyFactor().delete(
+            ret = qmongo.models.TMLS_CompetencyFactor.delete(
                 "com_code == {0} and _id in {1}",
                 args['data']['com_code'],
                 [ObjectId(x) for x in args['data']['_id']])

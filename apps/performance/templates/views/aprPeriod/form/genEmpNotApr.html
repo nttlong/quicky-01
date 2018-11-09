@@ -78,7 +78,6 @@
 			chk_genExchangeData: 0
 		};
 		function _loadCombobox(callback) {
-			debugger
                 services.api("${get_api_key('app_main.api.TMPER_AprPeriodEmpOut/get_list_distinct_approval_year_and_period')}")
                     .data({
                         apr_period: scope.$parent.$parent.mode == 1 ? scope.$parent.$parent.apr_period_now : scope.$parent.$parent.Re_Map_Period(scope.$parent.$parent.entity.apr_period),
@@ -86,7 +85,6 @@
                     })
                     .done()
 					.then(function (res) {
-						debugger
                         callback(res)
                     })
 		}
@@ -97,7 +95,6 @@
 		scope.selectBtn = selectBtn;
 
         (function _init_() {
-        debugger
 			_loadCombobox(function (res) {
 				var period_now = scope.$parent.$parent.mode == 1 ? scope.$parent.$parent.apr_period_now : scope.$parent.$parent.Re_Map_Period(scope.$parent.$parent.entity.apr_period);
 				var year_now = scope.$parent.$parent.mode == 1 ? scope.$parent.$parent.apr_year_now : scope.$parent.$parent.entity.apr_year;
@@ -122,7 +119,6 @@
 		})
 		
 	function selectBtn() {
-		debugger
 		var tmp = scope.entity.apr_now_result_period;
 		services.api("${get_api_key('app_main.api.TMPER_AprPeriodEmpOut/get_genPreAperiodData')}")
 			.data({
@@ -132,7 +128,6 @@
 			})
 			.done()
 			.then(function (res) {
-				debugger
 				services.api("${get_api_key('app_main.api.TMPER_AprPeriodEmpOut/generate')}")
 					.data({
 						res,
@@ -156,7 +151,6 @@
 		}
 
 		function ReloadData() {
-			debugger
 			scope.$$tableConfig = scope.$parent.$$tableConfig;
 			(scope.$parent._tableData(scope.$$tableConfig.iPage, scope.$$tableConfig.iPageLength, scope.$$tableConfig.orderBy, scope.$$tableConfig.SearchText, scope.$$tableConfig.fnReloadData))();
 		}

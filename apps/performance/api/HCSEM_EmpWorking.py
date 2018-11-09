@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 from bson import ObjectId
+import qmongo
 import models
 import datetime
 import logging
@@ -110,7 +111,7 @@ def insert(args):
         ret = {}
         if args['data'] != None:
             data =  set_dict_insert_data(args['data'])
-            ret  =  models.HCSEM_EmpWorking().insert(data)
+            ret  =  qmongo.models.HCSEM_EmpWorking.insert(data)
             lock.release()
             return ret
 
@@ -129,7 +130,7 @@ def update(args):
         ret = {}
         if args['data'] != None:
             data =  set_dict_update_data(args['data'])
-            ret  =  models.HCSEM_EmpWorking().update(
+            ret  = qmongo.models.HCSEM_EmpWorking.update(
                 data, 
                 "_id == {0}", 
                 ObjectId(args['data']['_id']))
@@ -156,7 +157,7 @@ def delete(args):
         lock.acquire()
         ret = {}
         if args['data'] != None:
-            ret  =  models.HCSEM_EmpWorking().delete("_id in {0}",[ObjectId(x["_id"])for x in args['data']])
+            ret  = qmongo.models.HCSEM_EmpWorking.delete("_id in {0}",[ObjectId(x["_id"])for x in args['data']])
             lock.release()
             return ret
 
@@ -212,7 +213,7 @@ def update_employee(args):
         ret = {}
         if args['data'] != None:
             data =  set_dict_update_employee(args['data'])
-            ret  =  models.HCSEM_Employees().update(
+            ret  =  qmongo.models.HCSEM_Employees.update(
                 data, 
                 "employee_code == {0}", 
                 args['data']['employee_code'])

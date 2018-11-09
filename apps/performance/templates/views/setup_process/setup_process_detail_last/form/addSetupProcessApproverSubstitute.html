@@ -6,7 +6,8 @@
 %>
 <%inherit file="../../../commons/dialog_save_close.html"/>
 
-<%block name="modal_body"><div class="tab-pane" style="padding-right:unset; height: 100%;">
+<%block name="modal_body">
+<div class="tab-pane hcs-modal-format" style="padding-right:unset; height: 100%;">
    <div class="col-md-12 col-sm-12 col-xs-12">
         <div class="col-md-6 col-sm-6 col-xs-12">
         <collapse-box class="zb-form-common" title="${get_global_res('Common_Information_1','Ủy quyền')}">
@@ -76,16 +77,16 @@
         </div>
         <div class="col-md-6 col-sm-6 col-xs-12">
             <collapse-box class="zb-form-common" title="${get_global_res('note','Ghi chú')}">
-                <div class="form-group zb-form-group">
-                      <div class="col-md-12 col-sm-12 col-xs-12 no-padding">
-                            <input-textarea rows="3" ng-model="entity.note" style="padding-bottom:31px;"></input-textarea>
-                      </div>
-                </div>
-                <div class="form-group zb-form-group">
-                    <label for="DisplayInfo" class="col-sm-3 zb-form-label">${get_global_res('create_and_modify','Tạo | Sửa')}</label>
-                    <div class="col-sm-9">
-                        <input-text
-                                    value="{{ entity.created_on | date: $root.systemConfig.date_format}} {{entity.created_by}} | {{ entity.modified_on | date: $root.systemConfig.date_format}} {{entity.modified_by}}" ng-disabled="true">
+                <div class="col-xs-12 col-md-12">
+                    <div class="form-group zb-form-group">
+                      <input-textarea rows="3" ng-model="entity.note" style="padding-bottom:31px;"></input-textarea>
+                    </div>
+                    <div class="form-group zb-form-group">
+                        <label for="DisplayInfo" class="col-sm-3 zb-form-label">${get_global_res('create_and_modify','Tạo | Sửa')}</label>
+                        <div class="col-sm-9">
+                            <input-text style="text-align:right;"
+                                        value="{{ entity.created_on | date: $root.systemConfig.date_format}} {{entity.created_by}} | {{ entity.modified_on | date: $root.systemConfig.date_format}} {{entity.modified_by}}" ng-disabled="true">
+                        </div>
                     </div>
                 </div>
             </collapse-box>

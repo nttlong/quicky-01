@@ -2,60 +2,77 @@
 <%!
     #_style="width:200px;"
 %>
-<%inherit file="../commons/dialog_save_close.html"/>
+<%inherit file="../commons/dialog_save_close_resize.html"/>
 
 <%block name="modal_body">
-        
-<div class="col-md-{{col_group}} col-sm-{{col_group}}">
-    <collapse-box class="zb-form-common" title="${get_res('add_new_exam_category','Add a Exam Category')}">
-        <div class="col-md-6 col-sm-6">
+
+<div class="hcs-modal-format">
+    <div class="col-xs-12 col-md-{{col_group}} col-sm-{{col_group}}" style="padding-bottom:20px;">
+        <collapse-box class="zb-form-common" title="${get_res('General_Information','General Information')}">
+        <div class="col-xs-{{col}} col-md-{{col}}">
             <div class="form-group zb-form-group">
                 <!--Mã Tài liệu, ID-->
                 <label for="inputEmp_Train_Mode_Name" class="col-sm-5 zb-form-label">${get_res('category_id','Category ID')}</label>
-                <div class="col-sm-7"> 
-                    <input-text id="inputEmp_Train_Mode_Name" ng-model="entity.category_id" required>
+                <div class="col-sm-7">
+                    <input-text id="inputEmp_Train_Mode_Name" ng-model="entity.category_id" ng-disabled="{{ __mode === 2 ? 'true' : 'false' }}" required>
                 </div>
             </div>
+        </div>
+        <div class="col-xs-{{col}} col-md-{{col}}">
             <div class="form-group zb-form-group">
                 <!--Tên Tài liệu-->
                 <label for="inputEmp_Train_Mode_Name" class="col-sm-5 zb-form-label">${get_res('category_name','Category Name 1')}</label>
-                <div class="col-sm-7"> 
+                <div class="col-sm-7">
                     <input-text id="inputEmp_Train_Mode_Name" ng-model="entity.category_name" required>
                 </div>
             </div>
+        </div>
+        <div class="col-xs-{{col}} col-md-{{col}}">
             <div class="form-group zb-form-group">
                 <!--Tên Tài liệu-->
                 <label for="inputEmp_Train_Mode_Name" class="col-sm-5 zb-form-label">${get_res('category_name2','Category Name 2')}</label>
-                <div class="col-sm-7"> 
+                <div class="col-sm-7">
                     <input-text id="inputEmp_Train_Mode_Name" ng-model="entity.category_name2" >
                 </div>
             </div>
+        </div>
+        <div class="col-xs-{{col}} col-md-{{col}}">
             <div class="form-group zb-form-group">
                 <!--Nguon dinh danh Tài liệu-->
                 <label for="inputEmp_Train_Mode_Name" class="col-sm-5 zb-form-label">${get_res('order','Order')}</label>
-                <div class="col-sm-7"> 
+                <div class="col-sm-7">
                     <input-number id="inputEmp_Train_Mode_Name" ng-model="entity.order" >
                 </div>
             </div>
         </div>
-        <div class="col-md-6 col-sm-6">
-            <div class="form-group zb-form-group">
-                <!--Mô tả tài liệu-->
-                <label for="inputEmp_Train_Mode_Name" class="col-sm-3 zb-form-label">${get_res('note','Note')}</label>
-                <div class="col-sm-9" style="padding: 0;">
-                    <input-textarea rows="4" ng-model="entity.note" ></input-textarea>
-                </div>
-            </div>
-                    
+        <div class="col-xs-{{col}} col-md-{{col}}">
             <div class="form-group zb-form-group">
                 <!--Tên Khóa học-->
-                <label for="inputEmp_Train_Mode_Name" class="col-sm-3 zb-form-label">${get_res('is_active','Is Active')}</label>
-                <div class="col-sm-9" style="padding: 0;"> 
+                <label for="inputEmp_Train_Mode_Name" class="col-sm-5 zb-form-label">${get_res('is_active','Is Active')}</label>
+                <div class="col-sm-7">
                     <input-checkbox ng-model="entity.active"/>
                 </div>
             </div>
         </div>
     </collapse-box>
+    </div>
+    <div class="col-xs-12 col-md-{{ 12 - col_group}} col-sm-{{ 12 - col_group}}" style="padding-bottom:20px;">
+        <collapse-box class="zb-form-common" title="${get_global_res('Note','Note')}">
+         <!--Ghi chú-->
+         <div class="col-xs-12 col-sm-12">
+            <div class="form-group zb-form-group">
+               <input-textarea rows="5" ng-model="entity.note"></input-textarea>
+            </div>
+            <div class="form-group zb-form-group">
+            <label for="DisplayInfo" class="col-xs-3 col-sm-3 zb-form-label">${get_global_res('create_and_modify','Tạo | Sửa')}</label>
+            <div class="col-xs-9 col-sm-9">
+               <input-text style="text-align: right;"
+                  value="{{ entity.created_on | date: $root.systemConfig.date_format}} {{entity.created_by}} | {{ entity.modified_on | date: $root.systemConfig.date_format}} {{entity.modified_by}}" ng-disabled="true">
+            </div>
+         </div>
+         </div>
+   </collapse-box>
+    </div>
 </div>
 
 </%block>
@@ -70,8 +87,7 @@
         scope.__mode = scope.$parent.mode;
         scope.onResizeDialog = onResizeDialog;
         scope.col = 12;
-        scope.col_group = 12;
-        scope.col_conf_sal = 12;
+        scope.col_group = 6;
         scope.title = scope.$parent.headerTitle;
         scope.customCbb = {};
         var __entity = JSON.parse(JSON.stringify(scope.$parent.currentItem ? scope.$parent.currentItem : {}));
@@ -216,7 +232,6 @@
             $dialog.fullScreen();
             scope.col = scope.col == 12 ? 6 : 12;
             scope.col_group = scope.col_group == 6 ? 8 : 6;
-            scope.col_conf_sal = scope.col_conf_sal == 6 ? 4 : 6;
         }
 
         function saveNClose() {

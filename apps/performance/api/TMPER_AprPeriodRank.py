@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 from bson import ObjectId
+import qmongo
 import models
 import common
 import logging
@@ -7,17 +8,13 @@ import threading
 from hcs_authorization import action_type,authorization
 from Query import TMLS_Rank
 from services import TMPER_AprPeriodRankService as service
-
 logger = logging.getLogger(__name__)
 global lock
 import quicky
-
 lock = threading.Lock()
 from Query import AprPeriodRank
 from bson import SON
-
-from qmongo import qcollections
-
+#from qmongo import qcollections
 @authorization.authorise(action=action_type.Action.READ)
 def get_tree(args):
     ret = {}
@@ -45,9 +42,7 @@ def get_tree(args):
         }},
         {"$sort": SON([("ordinal", 1), ("rank_name", 1)])}
     ])
-
     ret = list(collection)
-
     if (ret != None):
         list_rank_code = TMLS_Rank.getListRank(args)
         for idx, val in enumerate(ret):
@@ -55,7 +50,6 @@ def get_tree(args):
                 for index, value in enumerate(list_rank_code):
                     val[val['rank_level'][index]['rank_code']] = val['rank_level'][index]['percent']
     return ret
-
 @authorization.authorise(action=action_type.Action.READ)
 def get_genPreAperiodData(args):
     if (args['data'] != None):
@@ -75,7 +69,6 @@ def get_genPreAperiodData(args):
         ])
         ret = list(collection)
         return ret
-
 @authorization.authorise(action=action_type.Action.CREATE)
 def generate(args):
     try:
@@ -85,13 +78,13 @@ def generate(args):
         if (len(listRankPerNow) > 0 and len(args['data']['res']) > 0):
             if args['data'] != None and args['data'].has_key('now_apr_period') and args['data'].has_key('now_apr_year'):
                 if (args['data'].has_key('chk_exchangeData') and args['data']['chk_exchangeData'] == 1):
-                    ret = models.TMPER_AprPeriodRank().delete("_id in {0}",
+                    ret = qmongo.models.TMPER_AprPeriodRank.delete("_id in {0}",
                                                               [ObjectId(x["_id"]) for x in listRankPerNow])
                     for item in args['data']['res']:
                         item['apr_period'] = args['data']['now_apr_period']
                         item['apr_year'] = args['data']['now_apr_year']
                         data = set_dict_insert_data(item)
-                        ret = models.TMPER_AprPeriodRank().insert(data)
+                        ret = qmongo.models.TMPER_AprPeriodRank.insert(data)
                 else:
                     for item in args['data']['res']:
                         if item.has_key('apr_period' and 'apr_year' and 'department_code'):
@@ -101,7 +94,7 @@ def generate(args):
                                     if (rank['note'] == None or rank['note'] == ""):
                                         rank['note'] = item['note']
                                     data = set_dict_update_data(rank)
-                                    ret = models.TMPER_AprPeriodRank().update(
+                                    ret = qmongo.models.TMPER_AprPeriodRank.update(
                                         data,
                                         "_id == {0}",
                                         ObjectId(rank['_id']))
@@ -111,7 +104,7 @@ def generate(args):
                                         item['apr_period'] = args['data']['now_apr_period']
                                         item['apr_year'] = args['data']['now_apr_year']
                                         data = set_dict_insert_data(item)
-                                        ret = models.TMPER_AprPeriodRank().insert(data)
+                                        ret = qmongo.models.TMPER_AprPeriodRank.insert(data)
                                     else:
                                         continue
                 lock.release()
@@ -121,7 +114,7 @@ def generate(args):
                 item['apr_period'] = args['data']['now_apr_period']
                 item['apr_year'] = args['data']['now_apr_year']
                 data = set_dict_insert_data(item)
-                ret = models.TMPER_AprPeriodRank().insert(data)
+                ret = qmongo.models.TMPER_AprPeriodRank.insert(data)
             lock.release()
             return ret
         lock.release()
@@ -131,7 +124,6 @@ def generate(args):
     except Exception as ex:
         lock.release()
         raise (ex)
-
 @authorization.authorise(action=action_type.Action.READ)
 def get_RankDataByPeriodAndYear(args):
     if (args['data'] != None):
@@ -151,7 +143,6 @@ def get_RankDataByPeriodAndYear(args):
         ])
         ret = list(collection)
         return ret
-
 @authorization.authorise(action=action_type.Action.READ)
 def get_parent_code_by_departCode(args):
     if (args != None):
@@ -165,7 +156,6 @@ def get_parent_code_by_departCode(args):
                     break
         unique = list(set(ret))
         return unique
-
 @authorization.authorise(action=action_type.Action.CREATE)
 def insert(args):
     try:
@@ -183,7 +173,6 @@ def insert(args):
                     if (len(tmp_depart) > 0 and tmp_depart.__contains__(dep_code)):
                         for x in dbs:
                             if (x['department_code'] == dep_code):
-
                                 # update department and list rating
                                 ite = {}
                                 x['apr_period'] = args['data']['apr_period']
@@ -202,10 +191,9 @@ def insert(args):
                                     else:
                                         tmp['percent'] = item['percent']
                                     ite['rank_level'].append(tmp)
-
                                 x['rank_level'] = ite['rank_level']
                                 data = set_dict_update_data(x)
-                                ret = models.TMPER_AprPeriodRank().update(
+                                ret = qmongo.models.TMPER_AprPeriodRank.update(
                                     data,
                                     "_id == {0}",
                                     ObjectId(x['_id']))
@@ -228,9 +216,8 @@ def insert(args):
                             else:
                                 tmp['percent'] = item['percent']
                             ite['rank_level'].append(tmp)
-
                         data = set_dict_insert_data(ite)
-                        ret = models.TMPER_AprPeriodRank().insert(data)
+                        ret = qmongo.models.TMPER_AprPeriodRank.insert(data)
                 # get parent_code from department in Department,
                 arr = args['data']['departments']['department_code']
                 while (all(y is None for y in arr) == False):
@@ -247,7 +234,7 @@ def insert(args):
                             ite['department_code'] = dep_code
                             ite['rank_level'] = None
                             data = set_dict_insert_data(ite)
-                            ret = models.TMPER_AprPeriodRank().insert(data)
+                            ret = qmongo.models.TMPER_AprPeriodRank.insert(data)
                     arr = arr_calback
                 lock.release()
                 return ret
@@ -258,7 +245,6 @@ def insert(args):
     except Exception as ex:
         lock.release()
         raise (ex)
-
 @authorization.authorise(action=action_type.Action.WRITE)
 def update(args):
     try:
@@ -279,14 +265,13 @@ def update(args):
                         else:
                             tmp['percent'] = item['percent']
                         ite['rank_level'].append(tmp)
-
                     x['rank_level'] = ite['rank_level']
                     if args['data']['departments'].has_key('note'):
                         x['note'] = args['data']['departments']['note']
                     else:
                         x['note'] = ""
                     data = set_dict_update_data(x)
-                    ret = models.TMPER_AprPeriodRank().update(
+                    ret = qmongo.models.TMPER_AprPeriodRank.update(
                         data,
                         "_id == {0}",
                         ObjectId(x['_id']))
@@ -299,7 +284,6 @@ def update(args):
     except Exception as ex:
         lock.release()
         raise (ex)
-
 @authorization.authorise(action=action_type.Action.DELETE)
 def delete(args):
     try:
@@ -310,7 +294,7 @@ def delete(args):
                 if (item['level'] == 1 and item['parent_code'] == None):
                     _id = get_id_by_departCode(item)
                     item['_id'] = unicode(_id['_id'])
-            ret = models.TMPER_AprPeriodRank().delete("_id in {0}", [ObjectId(x["_id"]) for x in args['data']])
+            ret = qmongo.models.TMPER_AprPeriodRank.delete("_id in {0}", [ObjectId(x["_id"]) for x in args['data']])
             lock.release()
             return ret
         lock.release()
@@ -320,11 +304,9 @@ def delete(args):
     except Exception as ex:
         lock.release()
         raise (ex)
-
 @authorization.authorise(common= True)
 def set_dict_insert_data(item):
     ret_dict = dict()
-
     ret_dict.update(
         apr_period=(lambda x: x['apr_period'] if x.has_key('apr_period') else None)(item),
         apr_year=(lambda x: x['apr_year'] if x.has_key('apr_year') else None)(item),
@@ -333,12 +315,10 @@ def set_dict_insert_data(item):
         note=(lambda x: x['note'] if x.has_key('note') else None)(item)
     )
     return ret_dict
-
 @authorization.authorise(common= True)
 def set_dict_update_data(args):
     ret_dict = set_dict_insert_data(args)
     return ret_dict
-
 @authorization.authorise(action=action_type.Action.READ)
 def get_all_department_by_year_month(args):
     ret = {}
@@ -355,10 +335,8 @@ def get_all_department_by_year_month(args):
             "note": 1
         }},
     ])
-
     ret = list(collection)
     return ret
-
 @authorization.authorise(action=action_type.Action.READ)
 def get_id_by_departCode(args):
     ret = {}
@@ -371,10 +349,8 @@ def get_id_by_departCode(args):
             "_id": 1,
         }},
     ])
-
     ret = list(collection)
     return (lambda x: x[0] if len(x) > 0 else None)(ret)
-
 @authorization.authorise(action=action_type.Action.READ)
 def get_aprAprRank_by_departCode(args):
     ret = {}
@@ -392,15 +368,13 @@ def get_aprAprRank_by_departCode(args):
             "note": 1
         }},
     ])
-
     ret = list(collection)
     return (lambda x: x[0] if len(x) > 0 else None)(ret)
-
 @authorization.authorise(action=action_type.Action.READ)
 def getListRankcodeWithData(args):
-    ret = models.TMPER_AprPeriodRank().aggregate()
-    ret.left_join(models.auth_user_info(), "created_by", "username", "uc")
-    ret.left_join(models.auth_user_info(), "modified_by", "username", "um")
+    ret = qmongo.models.TMPER_AprPeriodRank.aggregate
+    ret.left_join(qmongo.models.auth_user_info, "created_by", "username", "uc")
+    ret.left_join(qmongo.models.auth_user_info, "modified_by", "username", "um")
     ret.match("apr_period == {0} and apr_year == {1} and department_code == {2}",
               args['data']['apr_period'], args['data']['apr_year'], args['data']['department_code'])
     ret.project(
@@ -422,11 +396,7 @@ def getListRankcodeWithData(args):
                     item['rank_name'] = i['rank_name']
                     break
     return ret
-
-
-
     return ret.get_item()
-
 @authorization.authorise(action=action_type.Action.READ)
 def get_list_distinct_approval_year_and_period(args):
     ret = {}
@@ -448,11 +418,9 @@ def get_list_distinct_approval_year_and_period(args):
             "value": {'$concat': ["$apr_year_a", "__", "$apr_period"]},
             "apr_year": 1,
             "apr_period": {'$toInt': "$apr_period"},
-
         }},
         {"$sort": SON([("apr_year", -1), ("apr_period", -1)])}
     ])
-
     ret = list(collection)
     ret1 = []
     if (args['data'] != None and args['data'].has_key('apr_period' and 'apr_year')):

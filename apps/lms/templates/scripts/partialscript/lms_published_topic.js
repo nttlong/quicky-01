@@ -99,7 +99,7 @@
         }
     };
 
-    scope.objSearch = {
+    scope.$parent.$parent.$parent.objSearch = {
         $$$modelSearch: null,
         onSearch: onSearch
     }
@@ -244,9 +244,6 @@
 	scope._tableData = _tableData;
 
     function _tableData(iPage, iPageLength, orderBy, searchText, callback, objSearchAdvance) {
-
-        debugger
-
         var sort = {};
         $.each(orderBy, function (i, v) {
             sort[v.columns] = (v.type === "asc") ? 1 : -1;

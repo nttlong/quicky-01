@@ -26,6 +26,9 @@
         scope.searchText = scope.objSearch.$$$modelSearch
 
     }
+    debugger
+    scope.$parent.$parent.$parent.onSearch = onSearch;
+
     scope.advancedSearch = {
         main_region_code: null,
         main_nation_code: null
@@ -219,9 +222,9 @@
         { "data": "exam_id", "title": "${get_res('exam_id_table_header','ID')}" },
         { "data": "exam_name1", "title": "${get_res('exam_name_table_header','Exam Name')}" },
         { "data": "exam_category", "title": "${get_res('exam_category_ques_header','Exam Category')}" },
-        { "data": "exam_type", "title": "${get_res('exam_type_table_header','Exam Type')}","expr":function(row, data, func){
+        { "data": "course_related_name", "title": "${get_res('exam_type_table_header','Exam Type')}","expr":function(row, data, func){
             func(function(){
-                return "<p style='color:rgb(91,155,213);margin-bottom:0px;'>" + row.exam_type + "</p>" ;
+                return "<p style='color:rgb(91,155,213);margin-bottom:0px;'>" + row.course_related_name + "</p>" ;
             });
             return true;
         } },
@@ -431,11 +434,8 @@
                 .done()
                 .then(function (res) {
                     res.items = _.map(res.items, function (val) {
-                        if (val.course_related)
-                        { val.exam_type = "Course-Related" }
-                        else { val.exam_type = "Non Course-Related" };
-                        if (val.exam_mode) { val.exam_mode = "Practice" ; val.color = "rgb(68,114,196)"}
-                        else { val.exam_mode = "Official"; val.color = "rgb(237,125,49)" };
+                        if (val.exam_mode == 1) { val.exam_mode = "${get_global_res('practice','Practice')}"; val.color = "rgb(68,114,196)"}
+                        else { val.exam_mode = "${get_global_res('official','Official')}"; val.color = "rgb(237,125,49)" };
                         val.total_question = val.question_list ? val.question_list.length : 0;
                         if (val.specific_avail) {
                             val.start_date = val.specific_avail.start_date;

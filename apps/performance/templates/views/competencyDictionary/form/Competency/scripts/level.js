@@ -5,8 +5,8 @@
             tableFields: [
                 { "data": "com_level_code", "title": "${get_global_res('code','Mã')}", "className": "text-center" },
                 { "data": "com_level_name", "title": "${get_global_res('name','Tên')}", "className": "text-left" },
-                { "data": "score_from", "title": "${get_res('apr_form_type_table_header','Hình thức đánh giá')}", "className": "text-right" },
-                { "data": "score_to", "title": "${get_res('point_scale_type_table_header','Thang điểm')}", "className": "text-right" }
+                { "data": "score_from", "title": "${get_res('apr_form_type_table_header','Hình thức đánh giá')}","format":"number: system", "className": "text-left" },
+                { "data": "score_to", "title": "${get_res('point_scale_type_table_header','Thang điểm')}","format":"number: system", "className": "text-left" }
             ],
             $$tableConfig: {},
             tableSource: function (fnReloadData, iPage, iPageLength, orderBy, searchText) {

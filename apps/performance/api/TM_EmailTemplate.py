@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 from bson import ObjectId
+import qmongo
 import models
 import common
 import logging
@@ -8,14 +9,14 @@ logger = logging.getLogger(__name__)
 global lock
 lock = threading.Lock()
 from hcs_authorization import action_type,authorization
-
+from views.views import SYS_VW_ValueList
 @authorization.authorise(action=action_type.Action.READ)
 def get_list(args):
     return get_email_template().get_list()
 
 def get_email_template():
-    collection = models.TM_EmailTemplate().aggregate()
-    collection.lookup(models.SYS_VW_ValueList(), "module_name", "value", "val")
+    collection = qmongo.models.TM_EmailTemplate.aggregate
+    collection.lookup(SYS_VW_ValueList(), "module_name", "value", "val")
     collection.unwind("val")
     collection.match("val.language == {0}", common.get_language())
     collection.project(
@@ -37,7 +38,7 @@ def insert(args):
         lock.acquire()
         ret = {}
         if args['data'] != None:
-            ret  =  models.TM_EmailTemplate().insert(args['data'])
+            ret  =  qmongo.models.TM_EmailTemplate.insert(args['data'])
             lock.release()
             return ret
 
@@ -58,7 +59,7 @@ def update(args):
             data = args['data'].copy()
             del data['email_template_code']
             del data['rec_id']
-            ret  =  models.TM_EmailTemplate().update(
+            ret  =  qmongo.models.TM_EmailTemplate.update(
                 data,
                 "rec_id == {0}",
                 args['data']['rec_id'])
@@ -83,7 +84,7 @@ def delete(args):
         lock.acquire()
         ret = {}
         if args['data'] != None:
-            ret  =  models.TM_EmailTemplate().delete(
+            ret  =  qmongo.models.TM_EmailTemplate.delete(
                 "rec_id == {0}",
                 args['data']['rec_id'])
             lock.release()

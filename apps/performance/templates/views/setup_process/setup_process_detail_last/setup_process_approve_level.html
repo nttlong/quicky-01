@@ -1,14 +1,15 @@
 ﻿<div class="hcs-tab-info">
     <div class="col-xs-12 col-md-12 competency no-padding">
         <div class="hcs-tab-info-box active" href="#tab_default_1" data-toggle="tab" ng-click="changeActive($event, 'tab1')">
+            <span class="bowtie-icon bowtie-icon bowtie-step" style="font-size: 25px;"/>
             <label>
-                <i class="bowtie-icon bowtie-icon bowtie-step" style="font-size: 25px;"/>
                 ${get_res('detail_approve_level','Chi tiết cấp duyệt')}
             </label>
         </div>
+        <div class="hcs-tab-info-line"/>
         <div class="hcs-tab-info-box" href="#tab_default_2" data-toggle="tab" ng-click="changeActive($event, 'tab2')">
+             <span class="bowtie-icon bowtie-draft" style="font-size: 25px;"/>
             <label style="padding-left:5px;">
-                <i class="bowtie-icon bowtie-draft" style="font-size: 25px;"/>
                 ${get_res('score_evaluation_method','Cách tính điểm đánh giá')}
             </label>
         </div>
@@ -16,21 +17,27 @@
 </div>
 <div class="tab-content" style="height: 100%;">
     <div class="tab-pane active" id="tab_default_1" style="height: calc(100% - 75px);">
-         <table-data data-source="$$table.tableSource" 
-                    fields="$$table.tableFields" 
-                    type="MultiSelect" 
-                    paging="true" 
-                    page-length="100" 
-                    server-side="true" 
-                    press-enter="$$table.onSelectTableRow" 
-                    selected-items="$$table.selectedItems" 
-                    current-item="$$table.currentItem" 
+         <div class="col-md-12" style="height:100%;">
+             <collapse-box class="zb-form-common" title="${get_global_res('Common_Information','Thông tin chung')}">
+             <table-data data-source="$$table.tableSource"
+                    fields="$$table.tableFields"
+                    type="MultiSelect"
+                    paging="true"
+                    page-length="100"
+                    server-side="true"
+                    press-enter="$$table.onSelectTableRow"
+                    selected-items="$$table.selectedItems"
+                    current-item="$$table.currentItem"
                     search-text="$$table.tableSearchText"
                     refresh-row="$$table.refreshDataRow">
         </table-data>
+         </collapse-box>
+         </div>
     </div>
     <div class="tab-pane" id="tab_default_2">
-        <div class="row">
+        <div class="col-md-12">
+            <collapse-box class="zb-form-common" title="${get_res('evaluation_method_point','Cách tính điểm')}">
+                <div class="row">
             <div class="col-md-12 col-xs-12">
                 <div class="form-group zb-form-group">
                     <div class="col-md-12 col-xs-12">
@@ -43,8 +50,8 @@
                 </div>
             </div>
         </div>
-        <div class="row">
-            <div class="col-md-10 col-md-offset-1">
+                <div class="row">
+            <div class="col-md-12">
                 <div class="form-group zb-form-group" style="height: 300px; overflow: auto;">
                     <table class="display zb-data-table responsive nowrap dataTable no-footer" ng-disabled="tableSourceScoreCoeff.score_by != 4">
                         <thead>
@@ -62,6 +69,8 @@
                     </table>
                 </div>
             </div>
+        </div>
+            </collapse-box>
         </div>
     </div>
 </div>

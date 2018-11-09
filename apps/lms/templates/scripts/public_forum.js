@@ -1,6 +1,8 @@
 ﻿(function (scope) {
 
     scope.selectedItems = [];
+    scope.url_static = scope.$root.url_static;
+    scope.systemConfig = scope.$root.systemConfig
 
     scope.$parent.$parent.$parent.edit = function () {
 
@@ -121,18 +123,18 @@
             { "data": "forum_id", "title": "${get_res('forum_id','ID')}" },
             { "data": "forum_name", "title": "${get_res('forum_name','Forum Name')}" },
             { "data": "description", "title": "${get_res('forum_description','Description')}" },
-            { "data": "specific_avail.start_date", "title": "${get_res('forum_start_date','Start Date')}", "className": "text-center" ,"expr":function(row, data, func){
+            { "data": "avail_start_date", "title": "${get_res('forum_start_date','Start Date')}", "className": "text-center" ,"expr":function(row, data, func){
                 func(function(){
                     if(data != null)
-                        return "<image style='width:16px;height:16px;margin-bottom:3px' src='" +  scope.$root.url_static + "css/icon/calendar.png'/>" +" " + window.DateFormat.format(data, scope.$root.systemConfig.date_format);
+                        return "<image style='width:16px;height:16px;margin-bottom:3px' src='" +  scope.url_static + "css/icon/calendar.png'/>" +" " + window.DateFormat.format(data, scope.systemConfig.date_format);
                     return " ";
                 });
                 return true;
             }},
-            { "data": "specific_avail.end_date", "title": "${get_res('forum_end_date','End Date')}", "className": "text-center" ,"expr":function(row, data, func){
+            { "data": "avail_end_date", "title": "${get_res('forum_end_date','End Date')}", "className": "text-center" ,"expr":function(row, data, func){
                 func(function(){
                     if(data != null)
-                        return "<image style='width:16px;height:16px;margin-bottom:3px' src='" +  scope.$root.url_static + "css/icon/calendar.png'/>" +" " + window.DateFormat.format(data, scope.$root.systemConfig.date_format);
+                        return "<image style='width:16px;height:16px;margin-bottom:3px' src='" +  scope.url_static + "css/icon/calendar.png'/>" +" " + window.DateFormat.format(data, scope.systemConfig.date_format);
                     return " ";
                 });
                 return true;
@@ -140,7 +142,7 @@
             { "data": "forum_administrator_name", "title": "${get_res('forum_administrator','Forum Admin')}" ,"expr":function(row, data, func){
                 func(function(){
                     if(data != null)
-                        return "<img style='width:15px;height:17px' src='" + scope.$root.url_static + "css/icon/approver_tr.png" + "'/>" + " " + data;
+                        return "<img style='width:15px;height:17px' src='" + scope.url_static + "css/icon/approver_tr.png" + "'/>" + " " + data;
                     return " ";
                 });
                 return true;
@@ -153,7 +155,7 @@
                 });
                 return true;
             }},
-            { "data": "created_on", "title": "${get_res('forum_created_on','Create At')}" , "format": "date:"  +  scope.$root.systemConfig.date_format + ' h:mm:ss a' },
+            { "data": "created_on", "title": "${get_res('forum_created_on','Create At')}" , "format": "date:"  +  scope.systemConfig.date_format + ' h:mm:ss a' },
     ];
 
     scope.tableSource = _loadDataServerSide;

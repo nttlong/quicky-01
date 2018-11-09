@@ -2,7 +2,7 @@
 import models
 import datetime
 import common
-
+import qmongo
 def get_list_process_approve_by_dept(args):
 
     searchText = args['data'].get('search', '')
@@ -13,8 +13,8 @@ def get_list_process_approve_by_dept(args):
     pageIndex = (lambda pIndex: pIndex if pIndex != None else 0)(pageIndex)
     pageSize = (lambda pSize: pSize if pSize != None else 20)(pageSize)
 
-    collection = models.TM_SetupProcessApproverDept().aggregate()
-    collection.join(models.HCSSYS_Departments(), "department_code", "department_code", "dept")
+    collection = qmongo.models.TM_SetupProcessApproverDept.aggregate
+    collection.join(qmongo.models.HCSSYS_Departments, "department_code", "department_code", "dept")
     collection.project(
         process_id = "process_id",
         approve_level = "approve_level",
@@ -64,7 +64,7 @@ def get_list_process_approve_by_dept(args):
     return data
 
 def get_list_by_process_id(args):
-    ret = models.TM_SetupProcessApproverDept().aggregate()\
+    ret = qmongo.models.TM_SetupProcessApproverDept.aggregate\
     .project(
         process_id = 1,
         department_code = 1,
@@ -85,7 +85,7 @@ def insert_by_dept(args):
             })
         ret = None
         if len(list_insert) > 0:
-            ret = models.TM_SetupProcessApproverDept().insert(list_insert)
+            ret = qmongo.models.TM_SetupProcessApproverDept.insert(list_insert)
 
         return ret
 
@@ -94,7 +94,7 @@ def insert_by_dept(args):
 
 def update_by_dept(args):
     list_update = []
-    list_department = models.TM_SetupProcessApproverDept().aggregate().project(
+    list_department = qmongo.models.TM_SetupProcessApproverDept.aggregate.project(
         process_id=1,
         approve_level=1,
         department_code=1,
@@ -124,7 +124,7 @@ def update_by_dept(args):
         result = []
         if len(list_update) > 0:
             for x in list_update:
-                ret = models.TM_SetupProcessApproverDept().update({
+                ret = qmongo.models.TM_SetupProcessApproverDept.update({
                     'appover_code' : x['appover_code']
                 }, "process_id == @process_id and department_code == @dept_code",
                 process_id = x["process_id"],
@@ -140,7 +140,7 @@ def delete_dept(args):
     try:
         ret = {}
         if args['data'] != None:
-            ret  =  models.TM_SetupProcessApproverDept().delete("process_id == @process_id and department_code in @department_code",
+            ret  =  qmongo.models.TM_SetupProcessApproverDept.delete("process_id == @process_id and department_code in @department_code",
                                                                 process_id = args['data']['process_id'],
                                                                 department_code = args['data']['department_code'])
             return ret

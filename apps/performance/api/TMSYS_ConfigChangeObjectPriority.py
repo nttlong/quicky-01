@@ -1,10 +1,10 @@
 # -*- coding: utf-8 -*-
 import models
 import quicky
-
+import  qmongo
 def get_list(args):
     try:
-        items = models.TMSYS_ConfigChangeObjectPriority().aggregate().project(
+        items = qmongo.models.TMSYS_ConfigChangeObjectPriority.aggregate.project(
             value_list_key = 1,
             change_object = 1,
             change_object_name = 1,

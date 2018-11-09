@@ -18,8 +18,8 @@ helpers.extent_model(
             publish_date=helpers.create_field("date"),
             allow_replies=helpers.create_field("bool"),
 
-            topic_replies=helpers.create_field("numberic"),
-            topic_views=helpers.create_field("numberic"),
+            topic_replies=float,
+            topic_views=float,
             approved_by=helpers.create_field("text"),
             approved_on=helpers.create_field("date"),
             rejected_by=helpers.create_field("text"),

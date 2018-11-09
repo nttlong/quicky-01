@@ -3,6 +3,7 @@
 @bg_content: #edf1f5;
 
 @bd_bottom: #e7e7e7;
+@border_color: #cbcbcb;
 
 @bg_left_select: #fff;
 @cl_left_select: #01638f;
@@ -38,7 +39,7 @@
                 min-height: 80px;
                 border-bottom: 1px solid @bd_bottom;
                 padding: 5px;
-                border-left: 5px solid transparent;
+                border-left: 3px solid transparent;
                 cursor: pointer;
                 display: flex;
                 flex-direction: column;
@@ -64,6 +65,9 @@
             .zb-left-li.li-selected {
                 border-left: 5px solid @cl_left_select;
                 background: @bg_left_select;
+                > span{
+                    color: #2694D9;
+                }
             }
 
             .zb-left-li.li-selected:hover {
@@ -95,7 +99,7 @@
             padding: 5px;
 
             .zb-left-content {
-                width: calc(~'100% - 600px');
+                width: calc(~'100% - 500px');
                 float: left;
 
                 .zb-btn-collapse {
@@ -127,7 +131,6 @@
 
                 .zb-extend-toolbar {
                     float: left;
-                    margin-right: 5px;
                 }
 
                 .zb-form-text-icon {
@@ -251,6 +254,8 @@
     transition: all ease 0.5s;
     outline: none;
     background: #fff;
+    position:relative;
+    z-index:10;
 }
 
 .zb-btn:hover {
@@ -258,11 +263,24 @@
     color: #fff;
 }
 
+.zb-btn.btn-more {
+    border-left: none;
+    border-right: none;
+    border-top: none;
+    border-bottom: 1px solid @border_color;
+    border-radius: 0px;
+
+}
+
+.zb-btn.btn-more:hover {
+    background: rgba(222, 222, 222, 0.5);
+}
+
 .zb-btn.zb-btn-blue {
-    background: #008ccb;
+    background: transparent;
     font-size: 20px;
-    border: 1px solid #008ccb;
-    color: #fff;
+    border: 0 solid #008ccb;
+    color: #008ccb;
 }
 
 .zb-btn.zb-btn-o-blue {
@@ -298,5 +316,35 @@
 .zb-btn.zb-btn-o-red:hover {
     background: #EF4438;
     border: 1px solid #EF4438;
+    color: #fff;
+}
+
+.zb-btn-o-orange {
+    background:#fff;border:1px solid #f2942e;color:#f2942e;
+}
+
+.zb-btn.zb-btn-o-orange:hover {
+    background: #f2942e;
+    border: 1px solid #f2942e;
+    color: #fff;
+}
+
+.zb-btn-o-purple {
+    background:#fff;border:1px solid #8000da;color:#8000da;
+}
+
+.zb-btn.zb-btn-o-purple:hover {
+    background: #8000da;
+    border: 1px solid #8000da;
+    color: #fff;
+}
+
+.zb-btn-o-dark-blue {
+    background:#fff;border:1px solid #0000ff;color:#0000ff;
+}
+
+.zb-btn.zb-btn-o-dark-blue:hover {
+    background: #0000ff;
+    border: 1px solid #0000ff;
     color: #fff;
 }

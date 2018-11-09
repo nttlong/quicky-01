@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 from bson import ObjectId
+import qmongo
 import models
 from Query import KPIGroup
 import logging
@@ -17,9 +18,9 @@ def get_list_with_searchtext(args):
 
     pageIndex = (lambda pIndex: pIndex if pIndex != None else 0)(pageIndex)
     pageSize = (lambda pSize: pSize if pSize != None else 20)(pageSize)
-    ret=models.TMLS_CompetencyAction().aggregate()
-    ret.left_join(models.auth_user_info(), "created_by", "username", "uc")
-    ret.left_join(models.auth_user_info(), "modified_by", "username", "um")
+    ret=qmongo.models.TMLS_CompetencyAction.aggregate
+    ret.left_join(qmongo.models.auth_user_info, "created_by", "username", "uc")
+    ret.left_join(qmongo.models.auth_user_info, "modified_by", "username", "um")
     ret.project(
             com_code = "com_code",
             com_level_code = "com_level_code",
@@ -43,9 +44,9 @@ def get_list_with_searchtext(args):
     return ret.get_page(pageIndex, pageSize)
 
 def get_competency_action(com_code, com_level_code, action):
-    ret=models.TMLS_CompetencyAction().aggregate()
-    ret.left_join(models.auth_user_info(), "created_by", "username", "uc")
-    ret.left_join(models.auth_user_info(), "modified_by", "username", "um")
+    ret=qmongo.models.TMLS_CompetencyAction.aggregate
+    ret.left_join(qmongo.models.auth_user_info, "created_by", "username", "uc")
+    ret.left_join(qmongo.models.auth_user_info, "modified_by", "username", "um")
     ret.project(
             com_code = "com_code",
             com_level_code = "com_level_code",
@@ -69,7 +70,7 @@ def insert(args):
         ret = {}
         if args['data'] != None:
             del args['data']['_id']
-            ret  =  models.TMLS_CompetencyAction().insert(args['data'])
+            ret  =  qmongo.models.TMLS_CompetencyAction.insert(args['data'])
             lock.release()
             return ret
 
@@ -90,7 +91,7 @@ def update(args):
             del data['com_code']
             del data['com_level_code']
             del data['_id']
-            ret  =  models.TMLS_CompetencyAction().update(
+            ret  =  qmongo.models.TMLS_CompetencyAction.update(
                 data,
                 "com_code == @com_code and com_level_code == @com_level_code and _id == @_id",
                 com_code = args['data']['com_code'],
@@ -116,7 +117,7 @@ def delete(args):
         lock.acquire()
         ret = {}
         if args['data'] != None:
-            ret  =  models.TMLS_CompetencyAction().delete(
+            ret  =  qmongo.models.TMLS_CompetencyAction.delete(
                 "com_code == {0} and com_level_code == {1} and _id in {2}",
                 args['data']['com_code'],
                 args['data']['com_level_code'],

@@ -1,8 +1,8 @@
 from .. import models
-
+import qmongo
 
 def check_exits_kpicode_within_kpiGroup(list_kpi_group_code):
-    list_kpi_group = models.TMLS_KPIGroup().aggregate().match("kpi_group_code in {0}", list_kpi_group_code).get_list()
+    list_kpi_group = qmongo.models.TMLS_KPIGroup.aggregate.match("kpi_group_code in {0}", list_kpi_group_code).get_list()
     if (list_kpi_group != None) and len(list_kpi_group) > 0:
         return True
     return False
@@ -14,9 +14,9 @@ def get_kpi_group(lock):
             lock = True
         else: 
             lock = None;    
-    ret = models.TMLS_KPIGroup().aggregate();
-    ret.left_join(models.auth_user_info(), "created_by", "username", "uc");
-    ret.left_join(models.auth_user_info(), "modified_by", "username", "um");
+    ret = qmongo.models.TMLS_KPIGroup.aggregate;
+    ret.left_join(qmongo.models.auth_user_info, "created_by", "username", "uc");
+    ret.left_join(qmongo.models.auth_user_info, "modified_by", "username", "um");
 
     if lock != None:
         ret.match("lock == {0}", lock);

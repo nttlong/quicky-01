@@ -6,8 +6,8 @@
 
 <%block name="modal_body">
 <div class="hcs-modal-format">
-    <div class="col-xs-12 col-md-{{col_group}} col-sm-{{col_group}}">
-    <collapse-box class="zb-form-common" title="${get_global_res('Common_Information','Thông tin chung')}">
+    <div class="col-xs-12 col-md-{{col_group}} col-sm-{{col_group}}" style="padding-bottom:20px;">
+        <collapse-box class="zb-form-common" title="${get_global_res('Common_Information','Thông tin chung')}">
         <div class="col-xs-{{col}} col-md-{{col}}">
             <div class="form-group zb-form-group">
                 <!--Mã loại NV-->
@@ -44,6 +44,24 @@
                 </div>
             </div>
         </div>
+        <div class="col-xs-{{col}} col-md-{{col}}">
+         <div class="form-group zb-form-group">
+            <!--Kiểu dữ liệu-->
+            <label for="inputData_Type" class="col-xs-5 col-sm-5 zb-form-label">${get_res('data_type','Kiểu dữ liệu')}</label>
+            <div class="col-xs-7 col-sm-7">
+                <input-select ng-model="entity.data_type" data-list="cbbDataType" data-value="value" data-caption="caption" />
+            </div>
+         </div>
+      </div>
+        <div class="col-xs-{{col}} col-md-{{col}}">
+         <div class="form-group zb-form-group">
+            <!--Số số lẻ-->
+            <label for="inputDec_Place" class="col-xs-5 col-sm-5 zb-form-label">${get_res('dec_place','Số số lẻ')}</label>
+            <div class="col-xs-7 col-sm-7" ng-disabled="true">
+               <input-number id="inputDec_Place" ng-model="entity.dec_place" type="float">
+            </div>
+         </div>
+      </div>
       <div class="col-xs-{{col}} col-md-{{col}}">
             <div class="form-group zb-form-group">
                 <!--Ngưng sử dụng-->
@@ -53,14 +71,23 @@
                 </div>
             </div>
         </div>
+        <div class="col-xs-{{col}} col-md-{{col}}">
+            <div class="form-group zb-form-group">
+                <!--Thiết lập mặc định-->
+                <label for="inputIs_Default" class="col-xs-5 col-sm-5 zb-form-label">${get_res('is_default','Thiết lập mặc định')}</label>
+                <div class="col-xs-7 col-sm-7">
+                    <input-checkbox id="inputIsDefault" ng-model="entity.is_default" ng-change="checkIsDefault()">
+                </div>
+            </div>
+        </div>
     </collapse-box>
-</div>
-    <div class="col-xs-12 col-md-{{ 12 - col_group}} col-sm-{{ 12 - col_group}}">
+    </div>
+    <div class="col-xs-12 col-md-{{ 12 - col_group}} col-sm-{{ 12 - col_group}}" style="padding-bottom:20px;">
              <collapse-box class="zb-form-common" title="${get_global_res('Note','Ghi chú')}">
                 <!--Ghi chú-->
                 <div class="col-xs-12 col-sm-12">
                     <div class="form-group zb-form-group">
-                        <input-textarea rows="6" ng-model="entity.note"></input-textarea>
+                        <input-textarea rows="10" ng-model="entity.note"></input-textarea>
                     </div>
                     <div class="form-group zb-form-group">
                     <label for="DisplayInfo" class="col-xs-5 col-sm-3 zb-form-label">${get_global_res('create_and_modify','Tạo | Sửa')}</label>
@@ -78,6 +105,7 @@
 <%block name="modal_script">
 <script>
     (function (scope) {
+        scope._currentItem = scope.$parent.currentItem;
         scope.__mode = scope.$parent.mode;
         scope.onResizeDialog = onResizeDialog;
         scope.col = 12;
@@ -88,13 +116,14 @@
         scope.entity = scope.__mode == 2 ? __entity : null;
 
         //Combobox Datasource
-        scope.cbbUnit = scope.$parent.cbbUnit;
+        scope.cbbDataType = scope.$parent.cbbDataType;
 
         //Nút lưu và thêm
         scope.saveNNext = saveNNext;
 
         //Nút lưu
         scope.saveNClose = saveNClose;
+
 
         /**
          * Thay đỗi kích thước form Dialog và các control trên form dialog
@@ -106,7 +135,6 @@
         }
 
 		function saveNClose() {
-			debugger
             if (scope.entity != null) {
                 var rsCheck = checkError();//Kết quả check input
                 if (rsCheck.result) {
@@ -122,6 +150,7 @@
                             //Reload table data
                             reloadData();
                         } else if (scope.__mode == 2) {
+                            reloadData();
                             scope.$parent.currentItem = scope.entity;
                             scope.$parent.currentItem.modified_on = res.item.modified_on;
                             scope.$parent.currentItem.modified_by = res.item.modified_by;
@@ -150,6 +179,7 @@
                         if (scope.__mode == 1 || scope.__mode == 3)
                             reloadData();
                         else {
+                            reloadData();
                             scope.$parent.currentItem = scope.entity;
                             scope.$parent.currentItem.modified_on = res.item.modified_on;
                             scope.$parent.currentItem.modified_by = res.item.modified_by;
@@ -168,7 +198,6 @@
         }
 
 		function editData(callback) {
-			debugger
             var url = getUrl();
             if (scope.__mode == 3) {
 
@@ -218,6 +247,12 @@
             rs.result = valid.isNullOrWhiteSpace();
             rs.errorMsg = rs.result === true ? "${get_res('currency_name_is_not_null','Tên đơn vị tính không được để trống')}" + '\n' : "" ;
             if(rs.result === true){
+                return rs;
+            }
+            if(!scope.entity.data_type)
+            {
+                rs.result = true;
+                rs.errorMsg = "${get_res('data_type_is_not_null','Kiểu dữ liệu không được để trống')}" + '\n';
                 return rs;
             }
             return rs;

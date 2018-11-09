@@ -29,11 +29,11 @@
                 <th style="color:dodgerblue;text-align:center"> 
                 </th>
                 <th style="color:red;text-align:center">
-                    <button class="btn btn-default" ng-click="delUser()" style="float:right; margin-left:10px;" >
-                        <span><i class="glyphicon glyphicon-trash"></i></span> Delete
+                    <button class="zb-btn zb-btn-o-red" ng-click="delUser()" style="float:right; margin-left:10px;" >
+                        <i class="bowtie-icon bowtie-trash"></i>
                     </button>
-                    <button class="btn btn-default" ng-click="addUserDlg()" style="float:right; margin-left:10px;">
-                        <span><i class="glyphicon glyphicon-plus"></i></span> Add
+                    <button class="zb-btn zb-btn-o-green" ng-click="addUserDlg()" style="float:right; margin-left:10px;">
+                        <i class="bowtie-icon bowtie-math-plus"></i>
                     </button>
                 </th>
             </tr>
@@ -42,7 +42,7 @@
     </div>
 
 <!---->
-<div class="col-md-12 " style="height:160px;  overflow-y: scroll;">
+<div class="col-md-12 " style="max-height:160px;">
     <table class="display zb-data-table responsive nowrap dataTable no-footer">
         <tbody>
             <tr role= "row" ng-repeat="elem in user_list track by $index" ng-click="selectRow(elem)">
@@ -199,7 +199,11 @@
 			});
 		}
 
+        var isFullSize = false;
+        scope.maxHeightDialog = "80vh";
 		function onResizeDialog() {
+            isFullSize = !isFullSize;
+            scope.maxHeightDialog = isFullSize ? "100%":"80vh";
             $dialog.fullScreen();
             scope.col = scope.col == 12 ? 6 : 12;
             scope.col_group = scope.col_group == 6 ? 8 : 6;

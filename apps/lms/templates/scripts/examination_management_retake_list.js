@@ -5,8 +5,8 @@
         { "data": "exam_id", "title": "${get_res('ID','ID')}" },
         { "data": "exam_name1", "title": "${get_res('exam_name','Exam Name')}" },
         { "data": "exam_type", "title": "${get_res('exam_type','Exam Type')}" },
-        { "data": "start_date", "title": "${get_res('start_date','Start Date')}" },
-        { "data": "end_date", "title": "${get_res('end_date','End Date')}" },
+        { "data": "start_date", "title": "${get_res('start_date','Start Date')}", "format": "date: " + scope.$root.systemConfig.date_format  },
+        { "data": "end_date", "title": "${get_res('end_date','End Date')}", "format": "date: " + scope.$root.systemConfig.date_format },
         { "data": "result_less_name", "title": "${get_res('retake_condition','Retake Condition')}" },
         { "data": "retake_condition", "title": "${get_res('retake_times','Retake Times')}" },
         { "data": "exam_id", "title": "${get_res('no_of_candidates','No.of Candidates')}" },
@@ -69,6 +69,7 @@
                         recordsFiltered: res.total_items,
                         data: res.items
                     };
+                    debugger
                     callback(data);
                     scope.$apply();
                 })
@@ -81,6 +82,7 @@
     scope.onSelectTableRow = function ($row) {
         scope.$partialpage = "examination_management_retake_detail";
         //
+        $('.hcs-profile-list').fadeToggle();
         scope.$display.mapName = _.filter(scope.$root.$function_list, function (f) {
             return f.level_code.includes(scope.$root.currentFunction.function_id)
                 && f.level_code.length == scope.$root.currentFunction.level_code.length + 1

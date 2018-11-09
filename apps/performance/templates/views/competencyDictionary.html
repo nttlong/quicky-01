@@ -16,7 +16,17 @@
         <site-map>
             <span>{{$root.currentFunction.default_name}}</span>
             <span><i class="bowtie-icon bowtie-chevron-right"></i></span>
-            <span>{{currentFunction.default_name}}</span>
+            <a data-toggle="collapse" href="#dropdownFunction"><span>{{currentFunction.default_name}}</span>
+                <span><i class="bowtie-icon bowtie-chevron-down"></i></span>
+                <div id="dropdownFunction" class="dropdown-content">
+                        <div class="filter">
+                            <input-text-icon ng-model="search" style="padding:3px;"/>
+                        </div>
+                        <div class="dropdown">
+                            <p ng-repeat="f in mapName | filter : search" ng-class="{focus : selectedFunction === f.function_id}" ng-click="selectFunc($event, f.function_id)">{{f.custom_name ? f.default_name : f.custom_name}}</p>
+                        </div>
+                    </div>
+            </a>
             <div class="hcs-resp-action-zb-left-content" style="float: right;">
                 <button ng-if="isChangeFunc" class="zb-btn zb-btn-o-green ng-scope hcs-menu-mobile"
                         ng-click="$root.doToggle('.hcs-left-side-department-content')">

@@ -2,7 +2,7 @@ from . import models
 import logging
 logger = logging.getLogger(__name__)
 import common
-
+import qmongo
 def get_list(args):
     if (args["data"] == None or args["data"].has_key("language") == False or args["data"]["language"] == None):
         return dict();
@@ -14,9 +14,10 @@ def get_list(args):
 
     lang = lang.upper()
 
-    items = models.models_per.SYS_FunctionList().aggregate()
-    items.left_join(models.models_per.HCSSYS_FunctionListSummary(), "function_id", "function_id", "uc")
-    items.left_join(models.HCSSYS_FunctionListLabel(), "function_id", "function_id", "lb")
+    items = qmongo.models.SYS_FunctionList.aggregate
+    items.left_join(qmongo.models.HCSSYS_FunctionListSummary, "function_id", "function_id", "uc")
+    items.left_join(qmongo.models.HCSSYS_FunctionListLabel, "function_id", "function_id", "lb")
+    items.left_join(qmongo.models.SYS_FunctionList_Favorite, "function_id", "function_id", "fv")
     items.match("(lb.language == {0}) or ((image != {1}) and (image != {2}))", lang, "", None)
     items.project(
         sorting              = 1,
@@ -39,7 +40,8 @@ def get_list(args):
         sumary               = "uc",
         default_name_lb      = "lb.default_name",
         custom_name_lb       = "lb.custom_name",
-        description_lb       = "lb.description"
+        description_lb       = "lb.description",
+        favorites            = "fv.function_id"
         ).match("app == {0}", "PortalLms").sort({"sorting":1})
     data = items.get_list()
     for x in data:

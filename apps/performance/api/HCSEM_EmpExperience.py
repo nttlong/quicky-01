@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 from bson import ObjectId
+import qmongo
 import models
 import datetime
 import logging
@@ -7,10 +8,12 @@ import threading
 import common
 from Query import EmpExperience
 import views
+from hcs_authorization import action_type, authorization
 logger = logging.getLogger(__name__)
 global lock
 lock = threading.Lock()
 
+@authorization.authorise(action = action_type.Action.READ)
 def get_list_with_searchtext(args):
     try:
         ret = {}
@@ -45,13 +48,14 @@ def get_list_with_searchtext(args):
     except Exception as ex:
         raise(ex)
 
+@authorization.authorise(action = action_type.Action.CREATE)
 def insert(args):
     try:
         lock.acquire()
         ret = {}
         if args['data'] != None:
             data =  set_dict_insert_data(args['data'])
-            ret  =  models.HCSEM_EmpExperience().insert(data)
+            ret  =  qmongo.models.HCSEM_EmpExperience.insert(data)
             lock.release()
             return ret
 
@@ -63,13 +67,14 @@ def insert(args):
         lock.release()
         raise(ex)
 
+@authorization.authorise(action = action_type.Action.WRITE)
 def update(args):
     try:
         lock.acquire()
         ret = {}
         if args['data'] != None:
             data =  set_dict_update_data(args['data'])
-            ret  =  models.HCSEM_EmpExperience().update(
+            ret  =  qmongo.models.HCSEM_EmpExperience.update(
                 data, 
                 "_id == {0}", 
                 ObjectId(args['data']['_id']))
@@ -84,12 +89,13 @@ def update(args):
         lock.release()
         raise(ex)
 
+@authorization.authorise(action = action_type.Action.DELETE)
 def delete(args):
     try:
         lock.acquire()
         ret = {}
         if args['data'] != None:
-            ret  =  models.HCSEM_EmpExperience().delete("_id in {0}",[ObjectId(x["_id"])for x in args['data']])
+            ret  =  qmongo.models.HCSEM_EmpExperience.delete("_id in {0}",[ObjectId(x["_id"])for x in args['data']])
             lock.release()
             return ret
 
@@ -101,6 +107,7 @@ def delete(args):
         lock.release()
         raise(ex)
 
+@authorization.authorise(common = True)
 def set_dict_insert_data(args):
     ret_dict = dict()
 
@@ -127,6 +134,7 @@ def set_dict_insert_data(args):
 
     return ret_dict
 
+@authorization.authorise(common = True)
 def set_dict_update_data(args):
     ret_dict = set_dict_insert_data(args)
     return ret_dict

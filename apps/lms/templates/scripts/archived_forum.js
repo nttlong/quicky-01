@@ -135,7 +135,7 @@
                 });
                 return true;
             }},
-            { "data": "specific_avail.start_date", "title": "${get_res('forum_start_date','Start Date')}", "className": "text-center" ,"expr":function(row, data, func){
+            { "data": "avail_start_date", "title": "${get_res('forum_start_date','Start Date')}", "className": "text-center" ,"expr":function(row, data, func){
                 func(function(){
                     if(data != null)
                         return "<image style='width:16px;height:16px;margin-bottom:3px' src='" +  scope.$root.url_static + "css/icon/calendar.png'/>" +" " + window.DateFormat.format(data, scope.$root.systemConfig.date_format);
@@ -143,7 +143,7 @@
                 });
                 return true;
             }},
-            { "data": "specific_avail.end_date", "title": "${get_res('forum_end_date','End Date')}", "className": "text-center" ,"expr":function(row, data, func){
+            { "data": "avail_end_date", "title": "${get_res('forum_end_date','End Date')}", "className": "text-center" ,"expr":function(row, data, func){
                 func(function(){
                     if(data != null)
                         return "<image style='width:16px;height:16px;margin-bottom:3px' src='" +  scope.$root.url_static + "css/icon/calendar.png'/>" +" " + window.DateFormat.format(data, scope.$root.systemConfig.date_format);

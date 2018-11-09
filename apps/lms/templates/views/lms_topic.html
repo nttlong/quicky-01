@@ -10,6 +10,18 @@
         height:17px;
         font-weight:900;
     }
+    .dataTables_wrapper.form-inline.dt-bootstrap.no-footer,.dataTables_scroll{
+        height: 100%;
+      }
+      .dataTables_wrapper.form-inline.dt-bootstrap.no-footer > .row:nth-child(2){
+        height:calc(100% - 35px);
+      }
+      .dataTables_wrapper.form-inline.dt-bootstrap.no-footer > .row:nth-child(2) > [class*="col-"]{
+        height:100%;
+      }
+      .dataTables_scrollBody{
+        height:calc(100% - 35px);
+      }
 </style>
 <div class="hcs-container" style="height: 100%">
     <page-sidebar on-add="onAdd"
@@ -27,13 +39,25 @@
                   reload-on-change="true"
                   advanced-search="advancedSearch">
         <site-map>
-            <a><span>{{$root.currentFunction.default_name}}</span></a>
+            <span>{{$root.currentFunction.default_name}}</span>
             <span><i class="bowtie-icon bowtie-chevron-right"></i></span>
-            <span>{{currentFunction.default_name}}</span></site-map>
+            <a data-toggle="collapse" href="#dropdownFunction">
+                <span>{{currentFunction.default_name}}</span>
+                <span><i class="bowtie-icon bowtie-chevron-down"></i></span>
+                <div id="dropdownFunction" class="dropdown-content">
+                    <div class="filter">
+                        <input-text-icon ng-model="search" style="padding:3px;"/>
+                    </div>
+                    <div class="dropdown">
+                        <p ng-repeat="f in mapName | filter : search" ng-class="{focus : selectedFunction === f.function_id}" ng-click="selectFunc($event, f.function_id)">{{f.custom_name ? f.default_name : f.custom_name}}</p>
+                    </div>
+                </div>
+            </a>
+        </site-map>
 
         <extend-toolbar>
                 <div style="display: grid; grid-template-columns: 1fr auto">
-                    <input-text-icon icon="bowtie-icon bowtie-search" on-click="onSearch"></input-text-icon>
+                    <input-text-icon icon="bowtie-icon bowtie-search" on-click="objSearch.onSearch" ng-model="objSearch.$$$modelSearch" ></input-text-icon>
                     <div>
                         <button class="zb-btn zb-btn-o-green" ng-click="addTopic()">
                             <i class="bowtie-icon bowtie-math-plus"></i>
@@ -52,7 +76,7 @@
                         </button>
                         <button class="zb-btn" ng-click="blockTopic()">
                             <i class="bowtie-icon bowtie-security-lock"></i>
-                    </button>
+                        </button>
                     </div>
                 </div>
          </extend-toolbar>

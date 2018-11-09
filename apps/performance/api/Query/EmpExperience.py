@@ -1,11 +1,12 @@
 from .. import models
+import qmongo
 def get_emp_experience_by_emp_code(emp_code, search):
-    ret=models.HCSEM_EmpExperience().aggregate()
+    ret=qmongo.models.HCSEM_EmpExperience.aggregate
     ret.match("employee_code == {0}", emp_code)
-    ret.left_join(models.HCSLS_Position(), "job_pos_code", "job_pos_code", "pos")
-    ret.left_join(models.HCSLS_JobWorking(), "job_w_code", "job_w_code", "job")
-    ret.left_join(models.auth_user_info(), "created_by", "username", "uc")
-    ret.left_join(models.auth_user_info(), "modified_by", "username", "um")
+    ret.left_join(qmongo.models.HCSLS_Position, "job_pos_code", "job_pos_code", "pos")
+    ret.left_join(qmongo.models.HCSLS_JobWorking, "job_w_code", "job_w_code", "job")
+    ret.left_join(qmongo.models.auth_user_info, "created_by", "username", "uc")
+    ret.left_join(qmongo.models.auth_user_info, "modified_by", "username", "um")
     ret.project(
         employee_code="employee_code",
         begin_date="begin_date",

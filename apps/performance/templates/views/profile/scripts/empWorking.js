@@ -12,9 +12,9 @@
         tableField: [
             { "data": "appoint_name", "title": "${get_res('appoint','Loại')}" },
             { "data": "decision_no", "title": "${get_res('decision_no','Số QĐ')}" },
-            { "data": "effect_date", "title": "${get_res('effect_date','Ngày QĐ')}", "className": "text-center", "format": "date:" + scope.$root.systemConfig.date_format },
-            { "data": "begin_date", "title": "${get_res('begin_date','Từ ngày')}", "className": "text-center", "format": "date:" + scope.$root.systemConfig.date_format },
-            { "data": "end_date", "title": "${get_res('end_date','Đến ngày')}", "className": "text-center", "format": "date:" + scope.$root.systemConfig.date_format },
+            { "data": "effect_date", "title": "${get_res('effect_date','Ngày QĐ')}", "format": "date:" + scope.$root.systemConfig.date_format },
+            { "data": "begin_date", "title": "${get_res('begin_date','Từ ngày')}", "format": "date:" + scope.$root.systemConfig.date_format },
+            { "data": "end_date", "title": "${get_res('end_date','Đến ngày')}", "format": "date:" + scope.$root.systemConfig.date_format },
             { "data": "department_name", "title": "${get_res('department_code','Bộ phận')}" },
             { "data": "job_pos_name", "title": "${get_res('job_pos_code','Chức vụ')}" },
             { "data": "job_w_name", "title": "${get_res('job_w_code','Chức danh')}" },
@@ -38,8 +38,8 @@
 
     scope.$tableEmpExperience = {
         tableField: [
-            { "data": "begin_date", "title": "${get_res('begin_date','Từ ngày')}", "className": "text-center", "format": "date:" + scope.$root.systemConfig.date_format },
-            { "data": "end_date", "title": "${get_res('end_date','Đến ngày')}", "className": "text-center", "format": "date:" + scope.$root.systemConfig.date_format },
+            { "data": "begin_date", "title": "${get_res('begin_date','Từ ngày')}", "format": "date:" + scope.$root.systemConfig.date_format },
+            { "data": "end_date", "title": "${get_res('end_date','Đến ngày')}", "format": "date:" + scope.$root.systemConfig.date_format },
             { "data": "working_location", "title": "${get_res('working_location','Đơn vị làm việc')}", "className": "text-left" },
             { "data": "job_pos_name", "title": "${get_res('job_pos_code','Chức vụ')}", "className": "text-left" },
             { "data": "job_w_name", "title": "${get_res('job_w_code','Chức danh')}", "className": "text-left" }

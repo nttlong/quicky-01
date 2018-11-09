@@ -1,0 +1,92 @@
+
+<%!
+    #_style="width:300px;"
+%>
+<%inherit file="../../commons/dialog_accept_one_col.html"/>
+
+<%block name="modal_body">
+<div class="col-md-12 col-xs-12">
+    <collapse-box class="zb-form-common" title="${get_res('data_generate_option','Tùy chọn phát sinh dữ liệu')}">
+        <div class="col-md-12 col-xs-12">
+            <div class="form-group zb-form-group">
+                <label class="col-sm-5 zb-form-label">${get_res('apr_apriod','Kỳ đánh giá')}</label>
+                <div class="col-sm-7">
+                    <input-text value="{{ $parent.apr_name + '/' + $parent._currentAprYear}}" ng-disabled="true">
+                </div>
+            </div>
+        </div>
+        <div class="col-md-12 col-xs-12">
+            <div class="form-group zb-form-group">
+                <label class="col-sm-5 zb-form-label">${get_res('generate_data_by_apriod','Phát sinh dữ liệu theo Kỳ')}</label>
+                <div class="col-sm-7">
+                    <combobox load-data="$root.$getComboboxData"
+                            ng-model="genGiveTargetCondition.apr_code"
+                            params="{key:'${encryptor.get_key('cbb_tmper_apr_single_select')}', value:[]}"
+                            on-search-change="false"
+                            on-search-press="true"
+                            placeholder=""
+                            init-data="$$$cbb_tmper_apr_single_select.value"
+                            caption-field="{{$$$cbb_tmper_apr_single_select.caption_field}}"
+                            paging="true"
+                            close-on-select="true"
+                            template-fields="$$$cbb_tmper_apr_single_select.display_fields"
+                            ng-disabled="_displayControlCondition.aprPeriod"
+                            reload="true">
+                    </combobox>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-12 col-xs-12">
+            <div class="form-group zb-form-group">
+                <div class="col-sm-7" style="padding-left: unset;">
+                    <input-checkbox ng-model="genGiveTargetCondition.is_copy_weight" caption="${get_res('copy_weight','Sao chép trọng số')}"/>
+                </div>
+            </div>
+            <div class="form-group zb-form-group">
+                <div class="col-sm-7" style="padding-left: unset;">
+                    <input-checkbox ng-model="genGiveTargetCondition.is_copy_target" caption="${get_res('copy_target','Sao chép chỉ tiêu')}"/>
+                </div>
+            </div>
+            <div class="form-group zb-form-group">
+                <div class="col-sm-7" style="padding-left: unset;">
+                    <input-checkbox ng-model="genGiveTargetCondition.is_replace" caption="${get_res('replace_current_data','Thay thế dữ liệu hiện có')}"/>
+                </div>
+            </div>
+        </div>
+    </collapse-box>
+</div>
+<div class="col-md-12 col-xs-12">
+    <collapse-box class="zb-form-common" title="${get_res('select_target','Chọn mục tiêu')}">
+        <div class="form-group zb-form-group">
+            <table class="display zb-data-table responsive nowrap dataTable no-footer">
+                <thead>
+                    <th style="width: 15px;"><div style="width: 15px;margin-bottom: 10px;" class="checkbox zb-form-checkbox"><label class="custom-checkbox" style="margin-left: 4px;"><input type="checkbox"/><span></span></label></div></th>
+                    <th>${get_res('target_name', 'Mục tiêu')}</th>
+                    <th>${get_res('weight', 'Trọng số')}</th>
+                    <th>${get_res('targets', 'Chỉ tiêu')}</th>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td role= "row"><input-checkbox ng-model="item.checked"></input-checkbox></td>
+                        <td role= "row" class="text-left"><a ng-click="openTargetBrief()">Mục tiêu 1</a></td>
+                        <td role= "row" class="text-left">10</td>
+                        <td role= "row" class="text-left">20</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </collapse-box>
+</div>
+</%block>
+
+<%block name="modal_script">
+<script>
+    (function (scope) {
+        scope.title = scope.$parent.headerTitle;
+        scope.openTargetBrief = function(){
+            scope.$root.$extension.openDialog(scope, "${get_res('target_information', 'Thông tin mục tiêu')}", "giveTarget/form/targetBrief", function(){}, 'targetBrief');
+        }
+    });
+</script>
+
+</%block>

@@ -138,7 +138,6 @@
                     .done()
                     .then(function (res) {
                         if(res.exist){
-                            debugger
                             //Tùy chọn thêm
                             $msg.confirm("${get_global_res('Notification','Thông báo')}", msgConfirm1 + "\n" + msgConfirm2, 
                             function (val) {

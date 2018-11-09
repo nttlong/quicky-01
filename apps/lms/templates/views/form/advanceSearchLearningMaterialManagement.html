@@ -5,60 +5,167 @@
 <%inherit file="../commons/dialog_search_close.html"/>
 
 <%block name="modal_body">
-<div class="col-md-12">
-    <collapse-box class="zb-form-common" title="${get_res('advanced_search','Advanced Search')}">
+<style>
+    collapse-box:last-child{
+        margin-bottom:20px;
+    }
+</style>
+</br>
+<div class="hcs-modal-format col-md-12">
         <div class="col-md-6">
             <div class="form-group zb-form-group">
-                <label for="input_SearchText" class="col-sm-5 zb-form-label">${get_res('search_text','Search Text')}</label>
-                <div class="col-sm-7">
+                <label for="input_SearchText" class="col-sm-4 zb-form-label">${get_res('search_text','Search Text')}</label>
+                <div class="col-sm-8">
                     <input-text ng-model="entity.searchText" />
                 </div>
             </div>
+            <div class="form-group zb-form-group">
+                        <label for="input_CourseName" class="col-sm-4 zb-form-label">${get_res('course_name','Course Name')}</label>
+                        <div class="col-sm-8">
+                            <combobox load-data="$root.$getComboboxData"
+                              ng-model="entity.course_name"
+                              params="{key:'${encryptor.get_key('lms_cbb_course')}'}"
+                              on-search-change="false"
+                              on-search-press="true"
+                              placeholder=""
+                              init-data="$$$cbb_lmsls_course.value"
+                              paging="true"
+                              close-on-select="true"
+                              template-fields="$$$cbb_lmsls_course.display_fields"
+                              reload="false">
+                            </combobox>
+                        </div>
+                    </div>
+            <div class="form-group zb-form-group">
+                <label for="input_ValidFrom" class="col-sm-4 zb-form-label">${get_res('valid_from','Valid From')}</label>
+                <div class="col-sm-8">
+                    <date-picker ng-model="entity.valid_from_date" data-format="{{$root.systemConfig.date_format}}"/>
+                </div>
+            </div>
+            <div class="form-group zb-form-group">
+                <label for="input_Author" class="col-sm-4 zb-form-label">${get_res('author_','Author')}</label>
+                <div class="col-sm-8">
+                    <!--<input-select ng-model="entity.created_by" data-list="$root.cbbTypeFolder" data-value="value" data-caption="caption" />-->
+                    <combobox load-data="$root.$getComboboxData"
+                              ng-model="entity.created_by"
+                              params="{key:'${encryptor.get_key('cbb_lmsls_list_author_material_management')}'}"
+                              on-search-change="false" on-search-press="true" placeholder=""
+                              init-data="$$$cbb_lmsls_author.value"
+                              paging="true" close-on-select="true"
+                              template-fields="$$$cbb_lmsls_author.display_fields"
+                              reload="false">
+                            </combobox>
+                </div>
+            </div>
+            <div class="form-group zb-form-group">
+                        <label for="input_Category" class="col-sm-4 zb-form-label">${get_res('category','Category')}</label>
+                        <div class="col-sm-8">
+                            <combobox load-data="$root.$getComboboxData"
+                                      ng-model="entity.category_id"
+                                      params="{key:'${encryptor.get_key('cbb_lmsls_materialfolderfollowparent')}', value:[{ '@lock': true },{'@parent_code':null}]}"
+                                      on-search-change="false"
+                                      on-search-press="true"
+                                      placeholder=""
+                                      init-data="$$$cbb_lmsls_materialfolderfollowparent.value"
+                                      paging="true"
+                                      close-on-select="true"
+                                      template-fields="$$$cbb_lmsls_materialfolderfollowparent.display_fields"
+                                      reload="false">
+                            </combobox>
+                        </div>
+                    </div>
+            <div class="form-group zb-form-group">
+                            <label for="input_SizeFrom" class="col-sm-4 zb-form-label">${get_res('size_from','Size From')}</label>
+                            <div class="col-sm-5">
+                                <input-number ng-model="entity.num_size_from" />
+                            </div>
+                            <div class="col-sm-3">
+                                <input-select ng-model="entity.type_size_from" data-list="cbbMemorySize" data-value="value" data-caption="caption" />
+                            </div>
+                        </div>
+            <div class="form-group zb-form-group">
+                    <label for="input_StarRatingFrom" class="col-sm-4 zb-form-label">${get_res('rating_from','Rating from')}</label>
+                    <div class="col-sm-8">
+                        <input-select ng-model="entity.star_rating_from" data-list="cbbStarRating" data-value="value" data-caption="caption" />
+                    </div>
+                </div>
         </div>
         <div class="col-md-6">
             <div class="form-group zb-form-group">
-                <label for="input_SearchCriteria" class="col-sm-5 zb-form-label">${get_res('search_criteria','Search Criteria')}</label>
-                <div class="col-sm-7">
+                <label for="input_SearchCriteria" class="col-sm-4 zb-form-label">${get_res('search_criteria','Search Criteria')}</label>
+                <div class="col-sm-8">
                     <input-select ng-model="entity.search_criteria" data-list="cbbSearchCriteria" data-value="value" data-caption="caption" />
                 </div>
             </div>
-        </div>
-    </collapse-box>
-    <collapse-box class="zb-form-common" title="${get_res('search_by_people','Search by People')}">
-        <div class="col-md-6">
             <div class="form-group zb-form-group">
-                <label for="input_CreatedBy" class="col-sm-5 zb-form-label">${get_res('created_by','Created by')}</label>
-                <div class="col-sm-7">
-                    <!--<input-select ng-model="entity.created_by" data-list="$root.cbbTypeFolder" data-value="value" data-caption="caption" />-->
-                    <combobox load-data="$root.$getComboboxData" 
-                              ng-model="entity.created_by" 
-                              params="{key:'${encryptor.get_key('cbb_lmsls_list_author_material_management')}'}" 
-                              on-search-change="false" on-search-press="true" placeholder="" 
-                              init-data="$$$cbb_lmsls_author.value" 
-                              paging="true" close-on-select="true" 
-                              template-fields="$$$cbb_lmsls_author.display_fields" 
-                              reload="false">
-                            </combobox>
+                <label for="input_FileFormat" class="col-sm-4 zb-form-label">${get_res('file_format','File Format')}</label>
+                <div class="col-sm-8">
+                    <input-select ng-model="entity.file_format" data-list="cbbLMSFileFormat" data-value="value" data-caption="caption" />
                 </div>
             </div>
-        </div>
-        <div class="col-md-6">
             <div class="form-group zb-form-group">
-                <label for="input_ContributedBy" class="col-sm-5 zb-form-label">${get_res('contributed_by','Contributed by')}</label>
-                <div class="col-sm-7">
+                <label for="input_ValidTo" class="col-sm-4 zb-form-label">${get_res('valid_from','Valid From')}</label>
+                <div class="col-sm-8">
+                    <date-picker ng-model="entity.valid_to_date" data-format="{{$root.systemConfig.date_format}}"/>
+                </div>
+            </div>
+            <div class="form-group zb-form-group">
+                <label for="input_Creator" class="col-sm-4 zb-form-label">${get_res('creator','Creator')}</label>
+                <div class="col-sm-8">
                     <!--<input-select ng-model="entity.contributed_by" data-list="$root.cbbTypeFolder" data-value="value" data-caption="caption" />-->
-                    <combobox load-data="$root.$getComboboxData" 
-                              ng-model="entity.contributed_by" 
-                              params="{key:'${encryptor.get_key('lms_cbb_employees_cbcc')}'}" 
-                              on-search-change="false" on-search-press="true" placeholder="" 
-                              init-data="$$$cbb_lmsls_employees.value" 
-                              paging="true" close-on-select="true" 
-                              template-fields="$$$cbb_lmsls_employees.display_fields" 
+                    <combobox load-data="$root.$getComboboxData"
+                              ng-model="entity.contributed_by"
+                              params="{key:'${encryptor.get_key('lms_cbb_employees_cbcc')}'}"
+                              on-search-change="false"
+                              on-search-press="true"
+                              placeholder=""
+                              init-data="$$$cbb_lmsls_employees.value"
+                              paging="true"
+                              close-on-select="true"
+                              template-fields="$$$cbb_lmsls_employees.display_fields"
                               reload="false">
                             </combobox>
                 </div>
             </div>
-            <!--<div class="form-group zb-form-group">
+            <div class="form-group zb-form-group">
+                        <label for="input_SubCategory" class="col-sm-4 zb-form-label">${get_res('sub_category','Sub Category')}</label>
+                        <div class="col-sm-8">
+                            <combobox load-data="$root.$getComboboxData"
+                                      ng-model="entity.sub_category_id"
+                                      params="{key:'${encryptor.get_key('cbb_lmsls_materialfolderfollowparent')}', value:[{ '@lock': true },{'@parent_code':entity.category_id}]}"
+                                      on-search-change="false"
+                                      on-search-press="true"
+                                      placeholder=""
+                                      init-data="$$$cbb_lmsls_submaterialfolderfollowparent.value"
+                                      paging="true"
+                                      close-on-select="true"
+                                      template-fields="$$$cbb_lmsls_submaterialfolderfollowparent.display_fields"
+                                      reload="true">
+                            </combobox>
+                        </div>
+                    </div>
+            <div class="form-group zb-form-group">
+                            <label for="input_SizeFrom" class="col-sm-4 zb-form-label">${get_res('size_to','Size To')}</label>
+                            <div class="col-sm-5">
+                                <input-number ng-model="entity.num_size_to" />
+                            </div>
+                            <div class="col-sm-3">
+                                <input-select ng-model="entity.type_size_to" data-list="cbbMemorySize" data-value="value" data-caption="caption" />
+                            </div>
+                        </div>
+            <div class="form-group zb-form-group">
+                    <label for="input_StarRatingTo" class="col-sm-4 zb-form-label">${get_res('rating_to','Rating to')}</label>
+                    <div class="col-sm-8">
+                        <input-select ng-model="entity.star_rating_to" data-list="cbbStarRating" data-value="value" data-caption="caption" />
+                    </div>
+                </div>
+        </div>
+    <!--<div class="col-md-6">
+
+        </div>
+    <div class="col-md-6">
+
+            &lt;!&ndash;<div class="form-group zb-form-group">
                 <label for="input_DateCreated" class="col-sm-5 zb-form-label">${get_res('date_created','Date Created')}</label>
                 <div class="col-sm-7">
                     <date-picker ng-model="entity.date_created" data-format="{{$root.systemConfig.date_format}}" required/>
@@ -69,56 +176,19 @@
                 <div class="col-sm-7">
                     <date-picker ng-model="entity.date_contributed" data-format="{{$root.systemConfig.date_format}}" required/>
                 </div>
-            </div>-->
+            </div>&ndash;&gt;
         </div>
-    </collapse-box>
-    <div class="row">
-        <div class="col-md-6">
-            <collapse-box class="zb-form-common" title="${get_res('file_property','File Property')}">
-                <div class="" style="padding-left: 15px;">
-                    <div class="form-group zb-form-group">
-                        <label for="input_Category" class="col-sm-5 zb-form-label">${get_res('category','Category')}</label>
-                        <div class="col-sm-7">
-                            <combobox load-data="$root.$getComboboxData" ng-model="entity.category_id" params="{key:'${encryptor.get_key('cbb_lmsls_materialfolder')}', value:[{ '@lock': true }]}" on-search-change="false" on-search-press="true" placeholder="" init-data="$$$cbb_lmsls_materialfolder.value" paging="true" close-on-select="true" template-fields="$$$cbb_lmsls_materialfolder.display_fields" reload="false">
-                            </combobox>
-                        </div>
-                    </div>
-                    <div class="form-group zb-form-group">
-                        <label for="input_FileFormat" class="col-sm-5 zb-form-label">${get_res('file_format','File Format')}</label>
-                        <div class="col-sm-7">
-                            <input-select ng-model="entity.file_format" data-list="cbbLMSFileFormat" data-value="value" data-caption="caption" />
-                        </div>
-                    </div>
-                    <div class="form-group zb-form-group">
-                        <label for="input_SizeFrom" class="col-sm-5 zb-form-label">${get_res('size_from','Size From')}</label>
-                        <div class="col-sm-3">
-                            <input-number ng-model="entity.num_size_from" />
-                        </div>
-                        <div class="col-sm-4">
-                            <input-select ng-model="entity.type_size_from" data-list="cbbMemorySize" data-value="value" data-caption="caption" />
-                        </div>
-                    </div>
-                    <div class="form-group zb-form-group">
-                        <label for="input_SizeFrom" class="col-sm-5 zb-form-label">${get_res('size_to','Size To')}</label>
-                        <div class="col-sm-3">
-                            <input-number ng-model="entity.num_size_to" />
-                        </div>
-                        <div class="col-sm-4">
-                            <input-select ng-model="entity.type_size_to" data-list="cbbMemorySize" data-value="value" data-caption="caption" />
-                        </div>
-                    </div>
+    <div class="col-md-6">
+           <div class="col-md-12" style="padding-left: 15px;">
+
+
+
+
                 </div>
-            </collapse-box>
         </div>
-        <div class="col-md-6">
-            <collapse-box class="zb-form-common" title="${get_res('course_property','Course Property')}">
-                <div class="" style="padding-right: 15px;">
-                    <div class="form-group zb-form-group">
-                        <label for="input_CourseName" class="col-sm-5 zb-form-label">${get_res('course_name','Course Name')}</label>
-                        <div class="col-sm-7">
-                            <input-text ng-model="course_name" />
-                        </div>
-                    </div>
+    <div class="col-md-6">
+            <div class="col-md-12" style="padding-right: 15px;">
+
                     <div class="form-group zb-form-group">
                         <label for="input_StartDate" class="col-sm-5 zb-form-label">${get_res('start_date','Start Date')}</label>
                         <div class="col-sm-7">
@@ -138,17 +208,9 @@
                         </div>
                     </div>
                 </div>
-            </collapse-box>
         </div>
-    </div>
-    <collapse-box class="zb-form-common" title="${get_res('filters','Filters')}">
-        <div class="col-md-6">
-            <div class="form-group zb-form-group">
-                <label for="input_StarRatingFrom" class="col-sm-5 zb-form-label">${get_res('star_rating_from','Star Rating from')}</label>
-                <div class="col-sm-7">
-                    <input-select ng-model="entity.star_rating_from" data-list="cbbStarRating" data-value="value" data-caption="caption" />
-                </div>
-            </div>
+    <div class="col-md-6">
+
             <div class="form-group zb-form-group">
                 <label for="input_DateContributedFrom" class="col-sm-5 zb-form-label">${get_res('date_contributed_from','Date Contributed from')}</label>
                 <div class="col-sm-7">
@@ -162,13 +224,8 @@
                 </div>
             </div>
         </div>
-        <div class="col-md-6">
-            <div class="form-group zb-form-group">
-                <label for="input_StarRatingTo" class="col-sm-5 zb-form-label">${get_res('star_rating_to','Star Rating to')}</label>
-                <div class="col-sm-7">
-                    <input-select ng-model="entity.star_rating_to" data-list="cbbStarRating" data-value="value" data-caption="caption" />
-                </div>
-            </div>
+    <div class="col-md-6">
+
             <div class="form-group zb-form-group">
                 <label for="input_DateContributedTo" class="col-sm-5 zb-form-label">${get_res('date_contributed_to','Date Contributed to')}</label>
                 <div class="col-sm-7">
@@ -181,8 +238,7 @@
                     <date-picker ng-model="entity.date_created_to" data-format="{{$root.systemConfig.date_format}}" required/>
                 </div>
             </div>
-        </div>
-    </collapse-box>
+        </div>-->
 </div>
 </%block>
 
@@ -195,6 +251,7 @@
 
         scope.entity = {
             category_id: null,
+            sub_category_id:null,
             searchText: null,
             created_by: null,
             contributed_by: null,
@@ -204,64 +261,20 @@
             num_size_to: null,
             type_size_to: null,
             star_rating_from: 1,
-            date_contributed_from: null,
+            //date_contributed_from: null,
             search_criteria: null,
-            date_contributed: null,
+            //date_contributed: null,
             course_name: null,
-            start_date: null,
-            end_date: null,
+            //start_date: null,
+            //end_date: null,
             instructor: null,
             star_rating_to: 1,
-            date_contributed_to: null,
-            date_created_to: null,
-            date_created_from: null
+            //date_contributed_to: null,
+            //date_created_to: null,
+            //date_created_from: null
+            date_valid_from:null,
+            date_valid_to:null,
         }
-        scope.cbbMemorySize = [{
-                caption: "BIT",
-                value: "BIT"
-            },
-            {
-                caption: "BYTE",
-                value: "BYTE"
-            },
-            {
-                caption: "KB",
-                value: "KB"
-            },
-            {
-                caption: "MB",
-                value: "MB"
-            },
-            {
-                caption: "GB",
-                value: "GB"
-            },
-            {
-                caption: "TB",
-                value: "TB"
-            }
-        ]
-        scope.cbbStarRating = [{
-                caption: "1",
-                value: 1
-            },
-            {
-                caption: "2",
-                value: 2
-            },
-            {
-                caption: "3",
-                value: 3
-            },
-            {
-                caption: "4",
-                value: 4
-            },
-            {
-                caption: "5",
-                value: 5
-            }
-        ]
 
         function onResizeDialog() {
             $dialog.fullScreen();
@@ -276,13 +289,18 @@
                 .data({
                     "name": [
                         "LSearchCriterial",
-                        "LMSFileFormat"
+                        "LMSFileFormat",
+                        "LMSStarRating",
+                        "LMSMemorySize"
                     ]
                 })
                 .done()
                 .then(function(res) {
+                debugger
                     scope.cbbSearchCriteria = getValue(res.values, "LSearchCriterial");
                     scope.cbbLMSFileFormat = getValue(res.values, "LMSFileFormat");
+                    scope.cbbStarRating = getValue(res.values,"LMSStarRating");
+                    scope.cbbMemorySize = getValue(res.values,"LMSMemorySize");
                     scope.$applyAsync();
 
                     function getValue(response, listName) {
@@ -297,9 +315,9 @@
 
         function _getDataInitCombobox() {
             scope.$root.$getInitComboboxData(scope, [{
-                "key": "${encryptor.get_key('cbb_lmsls_materialfolder')}",
+                "key": "${encryptor.get_key('cbb_lmsls_materialfolderfollowparent')}",
                 "code": scope.entity.category_id,
-                "alias": "$$$cbb_lmsls_materialfolder"
+                "alias": "$$$cbb_lmsls_materialfolderfollowparent"
             }, {
                 "key": "${encryptor.get_key('cbb_lmsls_list_author_material_management')}",
                 "code": scope.entity.created_by,
@@ -308,6 +326,14 @@
                 "key": "${encryptor.get_key('lms_cbb_employees_cbcc')}",
                 "code": scope.entity.contributed_by,
                 "alias": "$$$cbb_lmsls_employees"
+            },{
+                "key": "${encryptor.get_key('cbb_lmsls_materialfolderfollowparent')}",
+                "code": scope.entity.sub_category_id,
+                "alias": "$$$cbb_lmsls_submaterialfolderfollowparent"
+            },{
+                "key":"${encryptor.get_key('cbb_lmsls_course')}",
+                "code": scope.entity.course_name,
+                "alias": "$$$cbb_lmsls_course",
             }]);
         }
         _getDataInitCombobox();

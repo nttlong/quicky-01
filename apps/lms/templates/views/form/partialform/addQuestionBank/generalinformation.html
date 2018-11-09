@@ -1,0 +1,103 @@
+<div class="row" style="margin:unset">
+    <div class="col-md-6">
+    <collapse-box class="zb-form-common" title="${get_res('general_information','General Information')}">
+        <div class="col-md-12">
+            <div class="form-group zb-form-group">
+                <label class="col-xs-6 col-sm-4 col-md-4 zb-form-label">
+                    ${get_res('ques_id','Question ID')}
+                </label>
+                <div class="col-xs-6 col-sm-8 col-md-8">
+                    <input-text id="inputEmp_Train_Mode_Name" ng-model="entity.ques_id"
+                                        ng-disabled="__mode == 2" required/>
+                </div>
+            </div>
+            <div class="form-group zb-form-group">
+                <!--Tên Tài liệu-->
+                <label for="inputEmp_Train_Mode_Name" class="col-sm-4 zb-form-label">${get_res('ques_category','Question Category')}</label>
+                <div class="col-sm-8">
+                    <div class="pull-left" >
+                        <span zb-required=""></span>
+                    </div>
+                    <!--<input-text id="inputEmp_Train_Mode_Name" ng-model="entity.ques_category" required>-->
+                    <combobox load-data="$root.$getComboboxData"
+                            ng-model="entity.ques_category"
+                            params="{key:'${encryptor.get_key('lms_cbb_exQuestionCategory')}', value:[]}"
+                            on-search-change="false"
+                            on-search-press="true"
+                            placeholder=""
+                            init-data="cbb_excategory.value"
+                            caption-field="{{cbb_excategory.caption_field}}"
+                            paging="true"
+                            close-on-select="true"
+                            template-fields="cbb_excategory.display_fields"
+                            reload="false"
+                            required>
+                    </combobox>
+                </div>
+            </div>
+            <div class="form-group zb-form-group">
+                 <!--Tên Tài liệu-->
+                <label for="inputEmp_Train_Mode_Name" class="col-md-4 zb-form-label">${get_res('ques_type','Question Type')}</label>
+                <div class="col-md-8">
+                    <input-select ng-model="entity.ques_type"
+                                  data-list="vll_LMSEx_ques_type"
+                                  data-value="value"
+                                  data-caption="caption" required/>
+                </div>
+            </div>
+            <div class="form-group zb-form-group">
+                <!--Nguon dinh danh Tài liệu-->
+                <label for="inputEmp_Train_Mode_Name" class="col-md-4 zb-form-label">${get_res('ques_level','Question Level')}</label>
+                <div class="col-md-8">
+                    <input-select ng-model="entity.ques_level"
+                                  data-list="vll_LMSEx_ques_level"
+                                  data-value="value"
+                                  data-caption="caption" required/>
+                </div>
+            </div>
+            <div class="form-group zb-form-group">
+                <label for="inputEmp_Train_Mode_Name" class="col-md-4 zb-form-label">${get_res('quest_order','Order')}</label>
+                <div class="col-md-8">
+                    <input-number id="inputOrdinal" ng-model="entity.ordinal">
+                </input-number>
+                </div>
+            </div>
+            <div class="form-group zb-form-group">
+                <!--Ngưng sử dụng-->
+                <label for="inputLock" class="col-md-4 zb-form-label">${get_res('disable','Disable')}</label>
+                <div class="col-md-8">
+                    <input-checkbox id="inputLock" ng-model="entity.lock">
+                    </input-checkbox>
+                </div>
+            </div>
+        </div>
+    </collapse-box>
+</div>
+    <div class="col-md-6">
+    <collapse-box class="zb-form-common" title="${get_res('ques_detail_1','Question Detail 1')}">
+        <div class="col-md-12">
+            <input-textarea rows="8" ng-model="entity.ques_detail_1"></input-textarea>
+        </div>
+    </collapse-box>
+</div>
+</div>
+<div class="row" style="margin:unset">
+    <div class="col-md-6">
+    <collapse-box class="zb-form-common" title="${get_res('ques_hint','Question Hint')}">
+        <div class="col-md-12">
+            <input-textarea rows="2" ng-model="entity.ques_hint.hint"></input-textarea>
+        </div>
+    </collapse-box>
+</div>
+    <div class="col-md-6">
+    <collapse-box class="zb-form-common" title="${get_res('ques_detail_2','Question Detail 2')}">
+        <div class="col-md-12">
+            <input-textarea rows="2" ng-model="entity.ques_detail_2"></input-textarea>
+        </div>
+    </collapse-box>
+</div>
+</div>
+
+<script>
+    <%include file="scripts/generalinformation.js"/>
+</script>

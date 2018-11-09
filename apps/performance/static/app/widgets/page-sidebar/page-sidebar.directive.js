@@ -48,15 +48,18 @@
 
                 var advancedSearch = $(elem).find(".zb-advanced-search");
                 var btnAdvancedSearch = $(elem).find("#btnAdvancedSearch");
+                var left_ul = $(elem).find(".zb-left-ul");
+                var zb_left_thumb_y = $(elem).find(".zb-left-thumb-y");
+                var zb_left_rail_y = $(elem).find(".zb-left-rail-y");
 
                 left.on( "mouseenter", function() {
-                    $(this).css({
-                        "overflow-y": "auto",
+                    zb_left_rail_y.css({
+                        "display": "block",
                     })
                   })
                   .on( "mouseleave", function() {
-                    $(this).css({
-                        "overflow-y": "unset"
+                    zb_left_rail_y.css({
+                        "display": "none",
                     })
                 });
 
@@ -76,6 +79,14 @@
                                 $scope.authorise = res;
                                 $scope.$root.$$$authoriseFunction.authorisePermission = res;
                                 $scope.$applyAsync();
+                                zb_left_thumb_y.css({
+                                    "height": left_ul.height()
+                                })
+                                left.scroll(function() {
+                                   var scroll = left.scrollTop();
+                                    zb_left_rail_y.scrollTop(scroll);
+                                });
+
                             });
                         }
                     }

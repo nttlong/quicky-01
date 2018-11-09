@@ -126,18 +126,11 @@
                 </div>
                 <!--Giải thể-->
                 <div class="form-group zb-form-group">
-                    <div class="col-xs-5 col-md-5" style="padding-left:5px">
+                    <div class="col-xs-5 col-md-5">
                         <input-checkbox ng-model="entity.lock" data-caption="${get_res('lock','Giải thể')}"/>
                     </div>
                     <div class="col-xs-7 col-sm-7">
                         <date-picker ng-model="entity.lock_date" data-format="{{$root.systemConfig.date_format}}" />
-                    </div>
-                </div>
-                <!--Logo-->
-                <div class="form-group zb-form-group">
-                    <label for="inputLogo" class="col-xs-5 col-sm-5 zb-form-label">${get_res('logo','Logo')}</label>
-                    <div class="col-xs-7 col-sm-7">
-                        <input-text id="inputLogo" ng-model="entity.logo"/>
                     </div>
                 </div>
             </div>
@@ -336,6 +329,26 @@
                                     template-fields="$$$region_code.display_fields"
                                     reload="false">
                         </combobox>
+                    </div>
+                </div>
+            </div>
+        </collapse-box>
+    </div>
+    <div class="col-md-12">
+        <collapse-box class="zb-form-common" title="${get_res('Logo','Logo')}">
+            <div class="col-md-6">
+                <!--Logo-->
+                <div class="form-group zb-form-group">
+                    <div class="col-xs-5 col-sm-5"></div>
+                    <div class="col-xs-7 col-sm-7" style="padding-right: 15px!important;">
+                        <div class="image-upload">
+                            <div class="image-delete" ng-click="imageDel()"><i class="sap-icon sap-delete"></i></div>
+                            <label class="image-preview" for="imageUpload">
+                                <input type='file'  id="imageUpload" accept=".png, .jpg, .jpeg" />
+                                <img ng-src="{{$root.url_static + 'assets/images/NoImage.png' }}" alt="" ng-if="entity.logo_image==''||entity.logo_image==null">
+                                <img style="min-width: 180px" src="data:image/png;base64,{{entity.logo_image}}" ng-if="entity.logo_image!=''&&entity.logo_image!=null"/>
+                            </label>
+                        </div>
                     </div>
                 </div>
             </div>

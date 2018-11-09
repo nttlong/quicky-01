@@ -7,7 +7,18 @@
         height: 50px;
         width: 100%;
     }
-
+    
+     .hcs-progress-bar-custom {
+        border-radius: 4px;
+        
+        background-color: #05A4DE
+    }
+    .hcs-progress-custom {
+        background-color: #DEDDDD;
+    
+            box-shadow: none !important;
+        
+    }
     .zb-list-view .list-group-item ul li{
         padding-top: 28px;
         width: 50%;
@@ -18,6 +29,7 @@
     .zb-list-view .list-group-item ul li:last-child{
         text-align: right;
     }
+    
     .hcs-card .panel-heading{
         background-color: unset;
     }
@@ -52,196 +64,413 @@
 
     .hcs-right-side-department-content .table tbody tr td .progress{
         margin-bottom: unset;
+        
     }
+    .hcs-scroll-bar-question-container {
+    position:relative;
+    margin:0 auto;
+    overflow:hidden;
+	padding:5px;
+  	height:50px;
+}
+
+    .question-list {
+        position:absolute;
+        left:0px;
+        top:0px;
+        min-width:3000px;
+        margin-left:12px;
+        margin-top:0px;
+    }
+
+.question-list li{
+    padding-right: 25px;
+	display:table-cell;
+    position:relative;
+    text-align:center;
+    cursor:grab;
+    cursor:-webkit-grab;
+    color:#efefef;
+    vertical-align:middle;
+}
+.question-list li:hover{
+    background-color: #E8F5F6;
+}
+.hcs-scroll-bar-question-container .nav-tabs{
+    border:none
+}
+.hcs-scroll-bar-question-category-container .nav-tabs{
+    border:none
+}
+.question-scroller {
+  text-align:center;
+  cursor:pointer;
+  display:none;
+  padding:7px;
+  padding-top:11px;
+  white-space:no-wrap;
+  vertical-align:middle;
+  background-color:#fff;
+}
+
+.question-scroller-right{
+  float:right;
+}
+
+.question-scroller-left {
+  float:left;
+  
+}
+.hcs-scroll-bar-question-container .nav-tabs>li.active>a{
+border: none;
+font-weight: bold;
+}
+.hcs-scroll-bar-question-category-container .nav-tabs>li.active>a{
+    border:none;
+    font-weight: bold;
+}
+/*//////////////////////////*/
+.hcs-scroll-bar-question-category-container {
+    position:relative;
+    margin:0 auto;
+    overflow:hidden;
+	padding:5px;
+  	height:50px;
+}
+
+    .question-category-list {
+        position:absolute;
+        left:0px;
+        top:0px;
+        min-width:3000px;
+        margin-left:12px;
+        margin-top:0px;
+    }
+
+.question-category-list li{
+    padding-right: 25px;
+	display:table-cell;
+    position:relative;
+    text-align:center;
+    cursor:grab;
+    cursor:-webkit-grab;
+    color:#efefef;
+    vertical-align:middle;
+}
+.question-category-list li:hover{
+    background-color: #E8F5F6;
+}
+.hcs-scroll-bar-question-category-container .nav>li>a:hover {
+    text-decoration: none;
+     background-color: #E8F5F6;
+}
+.hcs-scroll-bar-question-container .nav>li>a:hover {
+    text-decoration: none;
+     background-color: #E8F5F6;
+}
+.hcs-scroll-bar-question-container .nav-tabs>li>a {
+    border:none;
+    background-color: none;
+}
+.hcs-scroll-bar-question-category-container .nav-tabs>li>a{
+    border:none;
+    background-color: none;
+}
+
+.question-category-scroller {
+  text-align:center;
+  cursor:pointer;
+  display:none;
+  padding:7px;
+  padding-top:11px;
+  white-space:no-wrap;
+  vertical-align:middle;
+  background-color:#fff;
+}
+
+.question-category-scroller-right{
+  float:right;
+}
+
+.question-category-scroller-left {
+  float:left;
+}
 </style>
-<div class="tab-pane" style="padding-right:unset; height: 100%; display: none;">
-    <table-data data-source="$$table.tableSource" fields="$$table.tableFields" type="MultiSelect" 
-        paging="true" page-length="100" server-side="true" 
-        press-enter="$$table.onSelectTableRow" selected-items="$$table.selectedItems" 
-        current-item="$$table.currentItem" search-text="$$table.tableSearchText"
-        refresh-row="$$table.refreshDataRow">
-    </table-data>
-</div>
-<div class="tab-pane" style="padding-right:unset; height: 100%;" ng-if="$$display.detail">
-    <div class="row hcs-profile-list" style="height: 100%;">
-        <div class="hcs-left-side-department-content" style="width: 270px;">
+<div class="tab-pane" style="padding-right:unset; height: 100%;overflow: auto;">
+    <div class="hcs-left-side-department-content" style="width: 100%;">
             <div class="hcs-left-side-department-tree" style="height: calc(100% - 0px); padding: unset;width: 100%;">
-                <div class="list-group zb-list-view">
-                        <a ng-class="{active:_equal(ngModel, elm)}" 
+                <div class="list-group zb-list-view" style="display:flex;overflow: visible">
+                        <a   ng-class="{active:opentab===1}" 
                            class="list-group-item ng-binding ng-scope active" 
-                           ng-click="selectItem($event, elm)">
+                           ng-click="selectItem(1)" 
+                           style="width:300px;border: 1px solid #ddd!important;margin: 0px;"
+                           >
                             Course evaluation by students
                             <ul>
                                 <li>Total: 30</li>
                                 <li>Response: 28</li>
                             </ul>
                         </a>
-                        <a ng-class="{active:_equal(ngModel, elm)}" 
+                        <a  ng-class="{active:opentab===2}" 
                            class="list-group-item ng-binding ng-scope"
-                           ng-click="selectItem($event, elm)">
+                           ng-click="selectItem(2)"
+                           style="width:300px;border: 1px solid #ddd!important;margin: 0px;">
                             Course evaluation by teachers
                             <ul>
                                 <li>Total: 05</li>
                                 <li>Response: 04</li>
                             </ul>
                         </a>
-                        <a ng-class="{active:_equal(ngModel, elm)}" 
+                        <a  ng-class="{active:opentab===3}" 
                            class="list-group-item ng-binding ng-scope" 
-                           ng-click="selectItem($event, elm)">
+                           ng-click="selectItem(3)"
+                           style="width:300px;border: 1px solid #ddd!important;margin: 0px;">
                             Course evaluation by training dept
                             <ul>
                                 <li>Total: 04</li>
                                 <li>Response: 04</li>
                             </ul>
-                        </a>
-                        aaaaaaaaaa
-                <list-view multi="false">
-                    <template>
-                        <div>
+                        </a>      
+                       
+                </div>
+            </div>
+        </div>
+    <div class="row hcs-profile-list" style="height: 100%;padding-left:50px;width: calc(100% - 50px);padding-top: 25px;">
+        <div class="tab-pane active"  ng-if="opentab ===1">
+        <collapse-box class="zb-form-common" title="${get_res('employee_filter', 'Lọc nhân viên')}">
+             <div class="hcs-right-side-department-content" style="height:auto;border:none;width: calc(100% - 100px); ;">
+                <div class="col-xs-12 col-md-6" style="padding-bottom: 30px;">
+                    <h4>Activity</h4>
+                    <div class="panel panel-default hcs-card">
+                        <div class="panel-heading">
+                            100% Complete rate
+                            <div class="progress hcs-progress-custom">
+                                <div class="progress-bar hcs-progress-bar-custom" role="progressbar" aria-valuenow="100"
+                            aria-valuemin="0" aria-valuemax="100" style="width:100%">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel-body">
                             <ul>
                                 <li>
-                                    {{item.A}}
+                                    <span>4</span>
+                                    <p>Visits</p>
                                 </li>
                                 <li>
-                                    {{item.B}}
+                                    <span>2</span>
+                                    <p>Responses</p>
                                 </li>
                                 <li>
-                                    {{item.C}}
+                                    <span>2</span>
+                                    <p>Complete</p>
                                 </li>
                                 <li>
-                                    {{item.D}}
+                                    <span>0</span>
+                                    <p>Incomplete</p>
                                 </li>
                             </ul>
                         </div>
-                    </template>
-                </list-view>
-                </div>
-            </div>
-        </div>
-        <div class="hcs-right-side-department-content" style="overflow: auto; width: calc(100% - 270px);">
-            <div class="col-xs-12 col-md-6">
-                <h4>Activity</h4>
-                <div class="panel panel-default hcs-card">
-                    <div class="panel-heading">
-                        100% Complete rate
-                        <div class="progress">
-                            <div class="progress-bar" role="progressbar" aria-valuenow="100"
-                          aria-valuemin="0" aria-valuemax="100" style="width:100%">
-                            </div>
-                        </div>
                     </div>
-                    <div class="panel-body">
-                        <ul>
-                            <li>
-                                <span>4</span>
-                                <p>Visits</p>
-                            </li>
-                            <li>
-                                <span>2</span>
-                                <p>Responses</p>
-                            </li>
-                            <li>
-                                <span>2</span>
-                                <p>Complete</p>
-                            </li>
-                            <li>
-                                <span>0</span>
-                                <p>Incomplete</p>
-                            </li>
+                </div>
+                <div class="col-xs-12 col-md-6">
+                    <h4>Responses</h4>
+                    <div class="panel panel-default hcs-card">
+                        <chart height-chart="138"
+                            chart-data-set="dataSetChart"
+                            chart-label-set="labelSetChart"
+                            title-chart="">
+                        </chart>
+                    </div>
+                </div>
+                <div class="col-xs-12 col-md-12" style="padding:0px">
+                    <div class="container" style="padding-left: 0px;">
+                        <div class="question-category-scroller question-category-scroller-left"><i class="glyphicon glyphicon-chevron-left"></i></div>
+                        <div class="question-category-scroller question-category-scroller-right"><i class="glyphicon glyphicon-chevron-right"></i></div>
+                        <div class="hcs-scroll-bar-question-category-container">
+                          <ul class="nav nav-tabs question-category-list" id="myTab">
+                            <li ng-repeat="item in testDataQuestion track by $index"  ng-class="{ active: isSetCategory($index)}" ng-click="chooseCategoryQuestion($index)" style="border-right:1px solid #DEDDDD"><a >{{item.category}}</a></li>                                    
                         </ul>
+                        </div>
+                      </div>
+                    <div class="container" style="padding-left: 0px;">
+                        <div class="question-scroller question-scroller-left"><i class="glyphicon glyphicon-chevron-left"></i></div>
+                        <div class="question-scroller question-scroller-right"><i class="glyphicon glyphicon-chevron-right"></i></div>
+                        <div class="hcs-scroll-bar-question-container">
+                          <ul class="nav nav-tabs question-list" id="myTab1-list-question">
+                            <li id='list-question' ng-repeat="data in testDataQuestion[currentCategoryQuestion].question track by $index"  ng-class="{ active: isSet($index)}" ng-click="chooseQuestion($index)" style="border-right:1px solid #DEDDDD"><a style="font-Size:14px;line-height: 10px;">{{data.title}}</a></li>                     
+                        </ul>
+                        </div>
+                      </div>                      
+                </div>
+                <div class="col-xs-12 col-md-12">
+                    <h4  style="line-height: 50px;">1. Overall satisfied are you with your educational experience at our school ?</h4>
+                    <table class="table table-bordered">
+                        <tbody>
+                            <tr>
+                                <td style="width: 60%;">Very satisfied</td>
+                                <td style="width: 5%;">0%</td>
+                                <td>
+                                    <div class="progress hcs-progress-custom">
+                                        <div class="progress-bar hcs-progress-bar-custom" role="progressbar" aria-valuenow="0"
+                                    aria-valuemin="0" aria-valuemax="0" style="width:0%">
+                                        </div>
+                                    </div>
+                                </td>
+                                <td style="width: 5%;">0</td>
+                            </tr>
+                            <tr>
+                                <td>Satisfied</td>
+                                <td>50%</td>
+                                <td>
+                                    <div class="progress hcs-progress-custom">
+                                        <div class="progress-bar hcs-progress-bar-custom" role="progressbar" aria-valuenow="50"
+                                    aria-valuemin="0" aria-valuemax="0" style="width:50%">
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>1</td>
+                            </tr>
+                            <tr>
+                                <td>Neutral</td>
+                                <td>0%</td>
+                                <td>
+                                    <div class="progress hcs-progress-custom">
+                                        <div class="progress-bar hcs-progress-bar-custom" role="progressbar" aria-valuenow="0"
+                                    aria-valuemin="0" aria-valuemax="0" style="width:0%">
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>0</td>
+                            </tr>
+                            <tr>
+                                <td>Disatisfied</td>
+                                <td>50%</td>
+                                <td>
+                                    <div class="progress hcs-progress-custom">
+                                        <div class="progress-bar hcs-progress-bar-custom" role="progressbar" aria-valuenow="50"
+                                    aria-valuemin="0" aria-valuemax="0" style="width:50%">
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>1</td>
+                            </tr>
+                            <tr>
+                                <td>Very disatisfied</td>
+                                <td>0%</td>
+                                <td>
+                                    <div class="progress hcs-progress-custom">
+                                        <div class="progress-bar hcs-progress-bar-custom" role="progressbar" aria-valuenow="0"
+                                    aria-valuemin="0" aria-valuemax="0" style="width:0%">
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>0</td>
+                            </tr>
+                        </tbody>
+                        <tr>
+                            <td colspan="3" style="text-align: right;">Total Respondents</td>
+                            <td>2</td>
+                        </tr>
+                        <tr>
+                            <td colspan="3" style="text-align: right;">Respondents who skipped this question</td>
+                            <td>0</td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="col-xs-12 col-md-12">
+                        <h4 style="line-height: 50px;">2. Your educational experience satisfied are you with your educational experience at our school ?</h4>
+                        <table class="table table-bordered">
+                            <tbody>
+                                 <tr>
+                                            <th></th>
+                                            <th>Poor(1)</th>
+                                            <th>Fair(2)</th>
+                                            <th>Good(1)</th>
+                                            <th>Very good(2)</th>
+                                            <th>Exellent</th>
+                                            <th>Other</th>
+                                            <th>Average</th>
+                                            <th></th>
+                                 </tr>
+                                <tr>
+                                    <td style="width: 30%;">Quality of the teaching faculty</td>
+                                    
+                                    <td ng-repeat="item in dataTable track by $index">
+                                        <div class="progress hcs-progress-custom">
+                                            <div class="progress-bar hcs-progress-bar-custom" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="0" style="width:{{item}}">
+                                            </div>
+                                        </div>
+                                    </td>
+                                    
+                                    <td style="width: 5%;">0</td>
+                                </tr>
+                                <tr>
+                                        <td style="width: 30%;">Library</td>
+                                        
+                                        <td ng-repeat="item in dataTable track by $index">
+                                            <div class="progress hcs-progress-custom">
+                                                <div class="progress-bar hcs-progress-bar-custom" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="0" style="width:{{item}}">
+                                                </div>
+                                            </div>
+                                        </td>
+                                        
+                                        <td style="width: 5%;">0</td>
+                                    </tr>
+                                    <tr>
+                                            <td style="width: 30%;">Parking</td>
+                                            
+                                            <td ng-repeat="item in dataTable track by $index">
+                                                <div class="progress hcs-progress-custom">
+                                                    <div class="progress-bar hcs-progress-bar-custom" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="0" style="width:{{item}}">
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            
+                                            <td style="width: 5%;">0</td>
+                                        </tr>
+                                        <tr>
+                                                <td style="width: 30%;">Food services</td>
+                                                
+                                                <td ng-repeat="item in dataTable track by $index">
+                                                    <div class="progress hcs-progress-custom">
+                                                        <div class="progress-bar hcs-progress-bar-custom" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="0" style="width:{{item}}">
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                                
+                                                <td style="width: 5%;">0</td>
+                                            </tr>
+                                            <tr>
+                                                    <td style="width: 30%;">Sport and fitness</td>
+                                                    
+                                                    <td ng-repeat="item in dataTable track by $index">
+                                                        <div class="progress hcs-progress-custom">
+                                                            <div class="progress-bar hcs-progress-bar-custom" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="0" style="width:{{item}}">
+                                                            </div>
+                                                        </div>
+                                                    </td>
+                                                    
+                                                    <td style="width: 5%;">0</td>
+                                                </tr>
+                            </tbody>
+                            <tr>
+                                <td colspan="8" style="text-align: right;">Total Respondents</td>
+                                <td>2</td>
+                            </tr>
+                            <tr>
+                                <td colspan="8" style="text-align: right;">Respondents who skipped this question</td>
+                                <td>0</td>
+                            </tr>
+                        </table>
                     </div>
-                </div>
-            </div>
-            <div class="col-xs-12 col-md-6">
-                <h4>Responses</h4>
-                <div class="panel panel-default hcs-card">
-                    <chart height-chart="300"
-                           chart-data-set="dataSetChart"
-                           chart-label-set="labelSetChart"
-                           title-chart="">
-                    </chart>
-                </div>
-            </div>
-            <div class="col-xs-12 col-md-12">
-                <h4>1. Overall satisfied are you with your educational experience at our school ?</h4>
-                <table class="table table-bordered">
-                    <tbody>
-                        <tr>
-                            <td style="width: 60%;">Very satisfied</td>
-                            <td style="width: 5%;">0%</td>
-                            <td>
-                                <div class="progress">
-                                    <div class="progress-bar" role="progressbar" aria-valuenow="0"
-                                  aria-valuemin="0" aria-valuemax="0" style="width:0%">
-                                    </div>
-                                </div>
-                            </td>
-                            <td style="width: 5%;">0</td>
-                        </tr>
-                        <tr>
-                            <td>Satisfied</td>
-                            <td>50%</td>
-                            <td>
-                                <div class="progress">
-                                    <div class="progress-bar" role="progressbar" aria-valuenow="50"
-                                  aria-valuemin="0" aria-valuemax="0" style="width:50%">
-                                    </div>
-                                </div>
-                            </td>
-                            <td>1</td>
-                        </tr>
-                        <tr>
-                            <td>Neutral</td>
-                            <td>0%</td>
-                            <td>
-                                <div class="progress">
-                                    <div class="progress-bar" role="progressbar" aria-valuenow="0"
-                                  aria-valuemin="0" aria-valuemax="0" style="width:0%">
-                                    </div>
-                                </div>
-                            </td>
-                            <td>0</td>
-                        </tr>
-                        <tr>
-                            <td>Disatisfied</td>
-                            <td>50%</td>
-                            <td>
-                                <div class="progress">
-                                    <div class="progress-bar" role="progressbar" aria-valuenow="50"
-                                  aria-valuemin="0" aria-valuemax="0" style="width:50%">
-                                    </div>
-                                </div>
-                            </td>
-                            <td>1</td>
-                        </tr>
-                        <tr>
-                            <td>Very disatisfied</td>
-                            <td>0%</td>
-                            <td>
-                                <div class="progress">
-                                    <div class="progress-bar" role="progressbar" aria-valuenow="0"
-                                  aria-valuemin="0" aria-valuemax="0" style="width:0%">
-                                    </div>
-                                </div>
-                            </td>
-                            <td>0</td>
-                        </tr>
-                    </tbody>
-                    <tr>
-                        <td colspan="3" style="text-align: right;">Total Respondents</td>
-                        <td>2</td>
-                    </tr>
-                    <tr>
-                        <td colspan="3" style="text-align: right;">Respondents who skipped this question</td>
-                        <td>0</td>
-                    </tr>
-                </table>
-            </div>
-            <div class="col-xs-12 col-md-12">
-            </div>
-        </div>
+            </div> 
+        </collapse-box>
+    </div>
+    <div class="tab-pane active"  ng-if="opentab ===2">sdf</div>
+    <div class="tab-pane active"  ng-if="opentab ===3">sdfsdfew</div>
     </div>
 </div>
+
 <script>
     <%include file="../../scripts/partialscript/survey_management_survey_result_general_report.js"/>
 </script>

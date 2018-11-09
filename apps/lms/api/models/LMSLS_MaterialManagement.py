@@ -2,25 +2,21 @@
 from config import database, helpers, db_context, qview
 from performance.api import common
 _hasCreated=False
-
+import qmongo
 def LMS_VW_Author_Name():
     return qview.create_mongodb_view(
-            LMSLS_MaterialManagement().aggregate().project(
+            qmongo.models.LMSLS_MaterialManagement.aggregate.project(
                     author_name=1
                 ).match("author_name != {0}", None)  
         ,
         "LMS_VW_Author_Name"
         )
-
-def LMSLS_MaterialManagement():
-    global _hasCreated
-    if not _hasCreated:
-        helpers.extent_model(
+helpers.extent_model(
             "LMSLS_MaterialManagement",
             "base",
             [["material_id"]],
             #id=helpers.create_field("numeric",True),
-            material_id=helpers.create_field("text", True), 
+            material_id=helpers.create_field("text", True),
             material_name=helpers.create_field("text", True),
             material_name2=helpers.create_field("text"),
             material_version=helpers.create_field("list"),
@@ -45,6 +41,7 @@ def LMSLS_MaterialManagement():
             size=helpers.create_field("text"),
             creator=helpers.create_field("text"),
             category=helpers.create_field("text",True),
+            sub_category=helpers.create_field("text",True),
             level_code=helpers.create_field("list"),
             identifier=helpers.create_field("text",True),
             material_type=helpers.create_field("text",True),
@@ -87,7 +84,7 @@ def LMSLS_MaterialManagement():
                 reply=helpers.create_field("list",False,dict(
                     id_user=helpers.create_field("text"),
                     content=helpers.create_field("text"),
-                    created_on=helpers.create_field("date"), 
+                    created_on=helpers.create_field("date"),
                     login_account=helpers.create_field("text"),
                     id_reply=helpers.create_field("text"),
                     votes=helpers.create_field("list",False,dict(
@@ -118,6 +115,9 @@ def LMSLS_MaterialManagement():
             )),
             status=helpers.create_field("numeric"),
         )
+def LMSLS_MaterialManagement():
+    global _hasCreated
+    if not _hasCreated:
         def on_before_insert(data):
             pass
 

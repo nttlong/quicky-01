@@ -1,8 +1,5 @@
-import django
 import quicky
-# import authorization
-import qmongo
-from qmongo import database, helpers
+from qmongo import database
 app=quicky.applications.get_app_by_file(__file__)
 db_context=database.connect(app.settings.Database)
 from SYS_FunctionList import SYS_FunctionList
@@ -71,21 +68,16 @@ from TM_SetupProcessApproverEmp import TM_SetupProcessApproverEmp
 from TM_SetupProcessApproverDept import TM_SetupProcessApproverDept
 from TM_SetupProcessApplyEmp import TM_SetupProcessApplyEmp
 from HCSSYS_FunctionListLabel import HCSSYS_FunctionListLabel
-
-# Long meagere code
 from TM_SetupProcess import TM_SetupProcess
 from TM_SetupProcessApproveLevel import TM_SetupProcessApproveLevel
 from TM_SetupProcessApproverSubstitute import TM_SetupProcessApproverSubstitute
 from TM_EmailHR import TM_EmailHR
-
-# Long meagere code end
-#Tien sua code
-
-# Long test
-from ..views import *
-import pymongo
+from TMHP_AssignTargetRequest import TMHP_AssignTargetRequest
+from TMPER_TargetKPI import TMPER_TargetKPI
+from TMPER_TargetKPI_Emp import TMPER_TargetKPI_Emp
 from pymongo.read_concern import ReadConcern
 from pymongo.write_concern import WriteConcern
+from ..views import *
 
 def create_session():
     session = db_context.db.client.start_session()

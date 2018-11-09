@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 from bson import ObjectId
+import qmongo
 import models
 from Query import JobWorking
 import common
@@ -99,7 +100,7 @@ def insert(args):
         ret = {}
         if args['data'] != None:
             data =  set_dict_insert_data(args['data'])
-            ret  =  models.HCSLS_JobWorking().insert(data)
+            ret  =  qmongo.models.HCSLS_JobWorking.insert(data)
             lock.release()
             ret['data'] = JobWorking.get_job_description_by_job_working_code(data['job_w_code']).get_item()
             return ret
@@ -119,11 +120,11 @@ def update(args):
         ret = {}
         if args['data'] != None:
             data =  set_dict_update_data(args['data'])
-            ret  =  models.HCSLS_JobWorking().update(
+            ret  =  qmongo.models.HCSLS_JobWorking.update(
                 data, 
                 "job_w_code == {0}", 
                 args['data']['job_w_code'])
-            if (ret.has_key('error') and ret['error'] == None) and ret['data'].raw_result['updatedExisting'] == True:
+            if ret['data'].raw_result['updatedExisting'] == True:
                 ret.update(
                     data = get_job_description({"data":{"job_w_code":args['data']['job_w_code']}})
                     )
@@ -146,7 +147,7 @@ def delete(args):
         if args['data'] != None:
             #check HCSLS_JobWorking using by HCSEM_Employees
             list_code = [x["job_w_code"]for x in args['data']]
-            list_employee = models.HCSEM_Employees().aggregate().project(job_w_code = 1).match("job_w_code in {0}", list_code).get_list()
+            list_employee = qmongo.models.HCSEM_Employees.aggregate.project(job_w_code = 1).match("job_w_code in {0}", list_code).get_list()
             if len(list_employee) > 0:
                 lock.release()
                 return dict(
@@ -154,7 +155,7 @@ def delete(args):
                     items = list_employee
                 )
             else:
-                ret  =  models.HCSLS_JobWorking().delete("job_w_code in {0}", list_code)
+                ret  =  qmongo.models.HCSLS_JobWorking.delete("job_w_code in {0}", list_code)
                 lock.release()
                 return ret
 
@@ -355,11 +356,11 @@ def get_list_performance_standanrd(args):
 
 @authorization.authorise(action=action_type.Action.READ)
 def get_list_performance_standanrd_by_job_working_code(job_w_code):
-    ret=models.HCSLS_JobWorking().aggregate()
+    ret=qmongo.models.HCSLS_JobWorking.aggregate
     ret.match("job_w_code == {0}", job_w_code)
     ret.unwind("kpi")
-    ret.left_join(models.auth_user_info(), "created_by", "username", "uc")
-    ret.left_join(models.auth_user_info(), "modified_by", "username", "um")
+    ret.left_join(qmongo.models.auth_user_info, "created_by", "username", "uc")
+    ret.left_join(qmongo.models.auth_user_info, "modified_by", "username", "um")
     ret.project(
         job_w_code="job_w_code",
         rec_id ="kpi.rec_id",
@@ -831,7 +832,7 @@ def insert_performance_standanrd(args):
             import TMLS_KPI
             #if (data['weight'] == None or data['weight'] == "") or (data['standard_mark'] == None or data['standard_mark'] == ""):
             #default = TMLS_KPI.get_kpi_by_kpi_code({"data":{"kpi_code":args['data']['kpi']['kpi_code'][0]}})
-            default = models.TMLS_KPI().aggregate().project(
+            default = qmongo.models.TMLS_KPI.aggregate.project(
                 kpi_code = 1,
                 kpi_group_code = 1,
                 unit_code = 1,
@@ -914,7 +915,7 @@ def insert_performance_standanrd(args):
             for x in args['data']['kpi']['kpi_code']:
                 tmp = dict_insert_performance_standanrd(args['data']['kpi'])
                 tmp['kpi_code'] = x
-                default = models.TMLS_KPI().aggregate().project(
+                default = qmongo.models.TMLS_KPI.aggregate.project(
                     kpi_code = 1,
                     kpi_group_code = 1,
                     unit_code = 1,
@@ -1005,7 +1006,7 @@ def update_performance_standanrd(args):
         lock.acquire()
         data = dict_insert_performance_standanrd(args['data']['kpi'])
         import TMLS_KPI
-        default = models.TMLS_KPI().aggregate().project(
+        default = qmongo.models.TMLS_KPI.aggregate.project(
             kpi_code = 1,
             kpi_group_code = 1,
             unit_code = 1,

@@ -22,6 +22,18 @@
     .hcs-tab-info-box-disabled:hover{
         cursor: no-drop !important;
     }
+    .dataTables_wrapper.form-inline.dt-bootstrap.no-footer,.dataTables_scroll{
+        height: 100%;
+      }
+      .dataTables_wrapper.form-inline.dt-bootstrap.no-footer > .row:nth-child(2){
+        height:calc(100% - 38px);
+      }
+      .dataTables_wrapper.form-inline.dt-bootstrap.no-footer > .row:nth-child(2) > [class*="col-"]{
+        height:100%;
+      }
+      .dataTables_scrollBody{
+        height:calc(100% - 35px) !important;
+      }
 </style>
 <div class="hcs-container">
     <div class="row hcs-profile-detail" style="margin:unset; height:100%;" ng-if="obj.showDetail">
@@ -45,10 +57,12 @@
             <site-map>
                 <a ng-click="backPage()">{{$root.currentFunction.default_name}}</a>
                 <span><i class="bowtie-icon bowtie-chevron-right"></i></span>
-                <span>{{$$table.currentItem.process_name}}</span>
-
-                <a data-target="#dropdownFunction" style="color:#333" data-toggle="collapse"><i
-                        class="bowtie-icon bowtie-chevron-down"></i></a>
+                <a data-target="#dropdownFunction" data-toggle="collapse">
+                    <span>{{$$table.currentItem.process_name}}</span>
+                    <span>
+                        <i class="bowtie-icon bowtie-chevron-down"></i>
+                    </span>
+                </a>
                 <div id="dropdownFunction" class="dropdown-content">
                     <div class="filter">
                         <input-text-icon ng-model="search" style="padding:3px;"/>
@@ -56,7 +70,7 @@
                     <div class="dropdown">
                         <p ng-repeat="f in mapName | filter : search"
                            ng-class="{focus : obj.selectedFunction === f.function_id}"
-                           ng-click="selectFunc($event, f.function_id)">{{f.custom_name ? f.default_name :
+                           ng-click="obj.selectFunc($event, f.function_id)">{{f.custom_name ? f.default_name :
                             f.custom_name}}</p>
                     </div>
                 </div>
@@ -67,9 +81,66 @@
             </content>
         </page-sidebar>
     </div>
-    <div class="tab-pane" style="padding-right:unset; height: 100%; " ng-if="!obj.showDetail">
+    <div class="row hcs-profile-list">
+         <div class="hcs-right-side-department-content" style="width:100%; height:100%">
+            <div>
+                <header-page
+                    on-add="button.add"
+                    on-delete="button.delete"
+                    on-refresh="button.refresh"
+                    on-search-press="onSearchProcess"
+                    display-field="currentFunction.default_name"
+                    key-field="function_id"
+                    display-field="default_name"
+                    icon-field="icon"
+                    selected-key="obj.selectedFunction"
+                    reload-on-change="false">
+             <site-map>
+                <span>{{$root.currentFunction.default_name}}</span>
+                <div class="hcs-resp-action-zb-left-content" style="float: right;">
+                    <button class="zb-btn zb-btn-o-green ng-scope"
+                            ng-click="$root.doToggle('.zb-right-content')">
+                        <i class="bowtie-icon bowtie-menu"></i>
+                    </button>
+                </div>
+            </site-map>
+            <toolbar>
+                <input-text-icon id="tableSearchText" on-click="objSearch.onSearch"
+                                 ng-model="objSearch.$$$modelSearch">
+                </input-text-icon>
+                <button ng-click="button.add()" class="zb-btn zb-btn-o-green">
+                    <i class="bowtie-icon bowtie-math-plus"></i>
+                </button>
+                <button ng-click="button.delete()" class="zb-btn zb-btn-o-red">
+                    <i class="bowtie-icon bowtie-trash"></i>
+                </button>
+                <button ng-click="button.refresh()" class="zb-btn">
+                    <i class="bowtie-icon bowtie-navigate-refresh"></i>
+                </button>
+            </toolbar>
+        </header-page>
+            </div>
+             <div class="hcs-right-side-department-list" style="height: calc(100% - 39px);">
+                <collapse-box class="zb-datatable" title="${get_res('setup_process_evaluation','Thiết lập quy trình đánh giá')}">
+                    <table-data data-source="$$table.tableSource"
+                                fields="$$table.tableFields"
+                                type="SingeSelect"
+                                paging="true"
+                                page-length="100"
+                                server-side="true"
+                                press-enter="$$table.onSelectTableRow"
+                                selected-items="$$table.selectedItems"
+                                current-item="$$table.currentItem"
+                                search-text="$$table.tableSearchText"
+                                refresh-row="$$table.refreshDataRow">
+                    </table-data>
+                </collapse-box>
+             </div>
+         </div>
+    </div>
+    <!--<div class="row hcs-profile-list" style="padding-right:unset; height: 100%; " ng-if="!obj.showDetail">
         <div>
-            <!--<a><span>{{$root.currentFunction.default_name}}</span></a>-->
+            &lt;!&ndash;<a><span>{{$root.currentFunction.default_name}}</span></a>&ndash;&gt;
             <div class="zb-left-content" style="width:600px;float:right;padding:5px">
                 <div class="row">
                     <div class="col-md-6" style="display:none;">
@@ -99,21 +170,8 @@
             </div>
             <div class="clearfix"></div>
         </div>
-        <div style="height:93%;">
-            <table-data data-source="$$table.tableSource"
-                        fields="$$table.tableFields"
-                        type="SingeSelect"
-                        paging="true"
-                        page-length="100"
-                        server-side="true"
-                        press-enter="$$table.onSelectTableRow"
-                        selected-items="$$table.selectedItems"
-                        current-item="$$table.currentItem"
-                        search-text="$$table.tableSearchText"
-                        refresh-row="$$table.refreshDataRow">
-            </table-data>
-        </div>
-    </div>
+
+    </div>-->
 </div>
 <div class="clearfix"></div>
 <script>

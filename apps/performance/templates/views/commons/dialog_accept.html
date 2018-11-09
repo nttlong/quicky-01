@@ -1,0 +1,31 @@
+<%!
+    _style = ""
+    _height = ""
+    _maximize = "true"
+    _modal_content_style = ""
+%>
+<div class="modal-dialog" style="${self.attr._style};">
+    <div class="modal-content" style="${self.attr._modal_content_style}">
+        <div class="modal-header">
+            <div class="left-content pull-left">
+                <!--<img src="{{$root.logo}}">-->
+                <span class="modal-title">{{title}}</span>
+            </div>
+            <div class="right-content pull-right">
+                <button type="button" class="close" data-dismiss="modal"><i class="bowtie-icon bowtie-navigate-close"></i></button>
+                <button type="button" style="display:{{ ${self.attr._maximize} == true ? '' : 'none' }};" class="close" ng-click="onResizeDialog()"><i class="bowtie-icon bowtie-view-full-screen"></i></button>
+            </div>
+        </div>
+        <div class="modal-body modal-body-resize hcs-modal-format" style="height:${self.attr._height};max-height:{{maxHeightDialog}}">
+            <%block name="modal_body"/>
+        </div>
+        <div class="modal-footer">
+            <div class="right-content pull-right" ng-if="($root.$$$authoriseFunction.authorisePermission.create && $root.$$$authoriseFunction.authorisePermission.create === true) || ($root.$$$authoriseFunction.authorisePermission.write && $root.$$$authoriseFunction.authorisePermission.write === true)">
+                <button ng-click="saveNClose($event)" title="${get_global_res('save','Lưu')}"><i class="bowtie-icon bowtie-check-light"></i></button>
+            </div>
+        </div>
+    </div>
+</div>
+<%block name="modal_script"/>
+${self.body()}
+

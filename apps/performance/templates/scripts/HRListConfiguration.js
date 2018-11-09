@@ -29,5 +29,6 @@
 
     function init() {
         scope.$partialpage = _view[0];
+        scope.$root.$$$authoriseFunction.id = scope.$root.currentFunction.function_id;
     }
 });

@@ -1,9 +1,10 @@
 from .. import models
 from .. import common
+import qmongo
 def display_list_acadame():
-    ret=models.HCSLS_Acadame().aggregate()
-    ret.left_join(models.auth_user_info(), "created_by", "username", "uc")
-    ret.left_join(models.auth_user_info(), "modified_by", "username", "um")
+    ret=qmongo.models.HCSLS_Acadame.aggregate
+    ret.left_join(qmongo.models.auth_user_info, "created_by", "username", "uc")
+    ret.left_join(qmongo.models.auth_user_info, "modified_by", "username", "um")
     ret.project(
         _id = "_id",
         train_level_code="train_level_code",
@@ -30,10 +31,10 @@ def display_list_acadame():
     return ret
 
 def display_list_acadame_detail(train_level_code):
-    col=models.HCSLS_Acadame().aggregate().match("train_level_code == {0}", train_level_code)
+    col=qmongo.models.HCSLS_Acadame.aggregate.match("train_level_code == {0}", train_level_code)
     col.unwind("details", False)
-    col.join(models.auth_user_info(), "created_by", "username", "uc")
-    col.left_join(models.auth_user_info(), "modified_by", "username", "um")
+    col.join(qmongo.models.auth_user_info, "created_by", "username", "uc")
+    col.left_join(qmongo.models.auth_user_info, "modified_by", "username", "um")
     col.project(
         rec_id = "details.rec_id",
         seniority_from = "details.seniority_from",

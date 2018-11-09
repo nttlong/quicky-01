@@ -1,9 +1,6 @@
 from config import database, helpers, db_context
 _hasCreated=False
-def LMS_SetupProcess():
-    global _hasCreated
-    if not _hasCreated:
-        helpers.define_model(
+helpers.define_model(
             "LMS_SetupProcess",
             [["process_id"]],
             process_id=helpers.create_field("int", True),
@@ -17,7 +14,7 @@ def LMS_SetupProcess():
             is_require_when_approve=helpers.create_field("bool"),
             is_require_when_reject=helpers.create_field("bool"),
             sender_value=helpers.create_field("text"),
-            file_size_limit=helpers.create_field("numberic"),
+            file_size_limit=float,
             exclude_file_types=helpers.create_field("text"),
             email_send_code=helpers.create_field("text"),
             email_send_to=helpers.create_field("text"),
@@ -31,6 +28,9 @@ def LMS_SetupProcess():
             modified_on=helpers.create_field("date"),
             modified_by=helpers.create_field("text"),
         )
+def LMS_SetupProcess():
+    global _hasCreated
+    if not _hasCreated:
         _hasCreated=True
     ret = db_context.collection("LMS_SetupProcess")
 

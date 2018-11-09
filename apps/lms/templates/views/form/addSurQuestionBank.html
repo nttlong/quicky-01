@@ -2,7 +2,7 @@
     #_style="width:200px;"
 %>
 
-<%inherit file="../commons/dialog_save.html"/>
+<%inherit file="../commons/dialog_save_close.html"/>
 
 <%block name="modal_body">
 <div class="hcs-tab-info">
@@ -33,32 +33,52 @@
                     <div class="form-group zb-form-group">
                         <label class="col-sm-5 zb-form-label">${get_res('question_id','Question ID')}</label>
                         <div class="col-sm-7"> 
-                            <input-text ng-model="entity.category_id" ng-disabled="__mode !== 1 ? true : false" required>
+                            <input-text ng-model="entity.question_id" ng-disabled="__mode !== 1 ? true : false" required>
                         </div>
                     </div>
                     <div class="form-group zb-form-group">
                         <label class="col-sm-5 zb-form-label">${get_res('question_category','Question Category')}</label>
                         <div class="col-sm-7"> 
-                            <combobox required>
+                           <!-- <combobox required>
+                            </combobox>-->
+                            <div class="pull-left" >
+                                <span zb-required=""></span>
+                            </div>
+                            <combobox load-data="$root.$getComboboxData"
+                                      ng-model="entity.category_id"
+                                      params="{key:'${encryptor.get_key('lms_cbb_sur_question_category')}', value:[]}"
+                                      on-search-change="false"
+                                      on-search-press="true"
+                                      placeholder=""
+                                      init-data="$$$lms_cbb_sur_question_category.value"
+                                      caption-field="{{$$$lms_cbb_sur_question_category.caption_field}}"
+                                      paging="true"
+                                      close-on-select="true"
+                                      template-fields="$$$lms_cbb_sur_question_category.display_fields"
+                                      reload="false">
                             </combobox>
                         </div>
                     </div>
                     <div class="form-group zb-form-group">
                         <label class="col-sm-5 zb-form-label">${get_res('question_type','Question Type')}</label>
                         <div class="col-sm-7"> 
-                            <input-select ng-model="" required>
+                            <!--<input-select ng-model="" required>-->
+                            <input-select data-list="LMS_LSurQuestionType" ng-model="entity.category_type"
+                            placeholder="${get_res('sur_question_type_place_holder','Loại câu hỏi')}"
+                            data-value="value" required
+                            data-caption="caption"/>
                         </div>
                     </div>
                     <div class="form-group zb-form-group">
                         <label class="col-sm-5 zb-form-label">${get_res('Order','Order')}</label>
                         <div class="col-sm-7"> 
-                            <input-number type="int">
+                            <input-number type="int" ng-model="entity.ordinal">
                         </div>
                     </div>
                     <div class="form-group zb-form-group">
                         <label class="col-sm-5 zb-form-label">${get_res('Disable','Disable')}</label>
                         <div class="col-sm-7"> 
-                            <input-checkbox ng-model="">
+                            <input-checkbox ng-model="entity.active">
                         </div>
                     </div>
                 </div>
@@ -69,7 +89,7 @@
                 <div class="col-xs-12 col-md-12 col-sm-12">
                     <div class="form-group zb-form-group">
                         <div class="col-sm-12" style="padding: 0;">
-                            <input-textarea rows="9" ng-model="entity.note" ></input-textarea>
+                            <input-textarea rows="9" ng-model="entity.question_content_1" ></input-textarea>
                         </div>
                     </div>
                 </div>
@@ -80,7 +100,7 @@
                  <div class="col-xs-12 col-md-12 col-sm-12">
                     <div class="form-group zb-form-group">
                         <div class="col-sm-12" style="padding: 0;">
-                            <input-textarea rows="3"></input-textarea>
+                            <input-textarea rows="3" ng-model="entity.question_description"></input-textarea>
                         </div>
                     </div>
                 </div>
@@ -91,7 +111,7 @@
                 <div class="col-xs-12 col-md-12 col-sm-12">
                     <div class="form-group zb-form-group">
                         <div class="col-sm-12" style="padding: 0;">
-                            <input-textarea rows="3"></input-textarea>
+                            <input-textarea rows="3" ng-model="entity.question_content_2"></input-textarea>
                         </div>
                     </div>
                 </div>
@@ -133,19 +153,19 @@
                     <div class="form-group zb-form-group">
                         <label class="col-sm-5 zb-form-label">${get_res('add_an_other_field','Add an "Other" field')}</label>
                         <div class="col-sm-7"> 
-                            <input-checkbox ng-model="">
+                            <input-checkbox ng-model="entity.question_other_field">
                         </div>
                     </div>
                     <div class="form-group zb-form-group">
                         <label class="col-sm-5 zb-form-label">${get_res('randomize options','Randomize Options')}</label>
                         <div class="col-sm-7"> 
-                            <input-checkbox ng-model="">
+                            <input-checkbox ng-model="entity.question_random_options">
                         </div>
                     </div>
                     <div class="form-group zb-form-group">
                         <label class="col-sm-5 zb-form-label">${get_res('require_awnser','Require awnser')}</label>
                         <div class="col-sm-7"> 
-                            <input-checkbox ng-model="">
+                            <input-checkbox ng-model="entity.question_require_answer">
                         </div>
                     </div>
                 </div>
@@ -156,13 +176,15 @@
                 <div class="col-xs-12 col-md-12 col-sm-12">
                     <div class="form-group zb-form-group">
                         <div class="col-sm-12" style="padding: 0;">
-                            <input-textarea rows="3"></input-textarea>
+                            <input-textarea rows="3" ng-model="entity.question_note"></input-textarea>
                         </div>
                     </div>
                     <div class="form-group zb-form-group">
                         <label class="col-sm-3 zb-form-label">${get_global_res('created_and_modified','Tạo | Sửa')}</label>
-                        <div class="col-sm-9" style="padding: 0;"> 
-                            <input-text value="{{ entity.created_on | date: $root.systemConfig.date_format}} {{entity.created_by}} | {{ entity.modified_on | date: $root.systemConfig.date_format}} {{entity.modified_by}}" ng-disabled="true">
+                        <div class="col-sm-9" style="padding: 0;">
+                            <input-text
+                                value="{{ entity.created_on | date: $root.systemConfig.date_format}} {{entity.created_by}} | {{ entity.modified_on | date: $root.systemConfig.date_format}} {{entity.modified_by}}" ng-disabled="true"
+                                style="text-align: right;">
                         </div>
                     </div>
                 </div>
@@ -178,15 +200,25 @@
 <script>
     (function (scope) {
         var __model__ = {
+            question_id: null,
             category_id: null,
-            category_name: null,
-            category_name2: null,
-            category_group: null,
             ordinal: null,
             active: false,
-            note: null
+            note: null,
+            category_type: null,
+            question_content_1: null,
+            question_content_2: null,
+            question_description: null,
+            question_note: null,
+            question_options: [],
+            question_other_field: false,
+            question_random_options: false,
+            question_require_answer: false
         }
         scope.__mode = scope.$parent.mode;
+        var __entity = JSON.parse(JSON.stringify(scope.$parent.$$table.currentItem));
+        scope.entity = scope.__mode === 2 ? __entity : {};
+
         scope.onResizeDialog = onResizeDialog;
         scope.title = scope.$parent.headerTitle;
 
@@ -270,8 +302,8 @@
         }
 
         function getUrl() {
-            return scope.__mode == 1 ? "${get_api_key('app_main.api.LMS_SurQuestionCategoryController/insert')}"
-                    : "${get_api_key('app_main.api.LMS_SurQuestionCategoryController/update')}"
+            return scope.__mode == 1 ? "${get_api_key('app_main.api.LMS_SurQuestionBankController/insert')}"
+                    : "${get_api_key('app_main.api.LMS_SurQuestionBankController/update')}"
         }
 
         function reloadData() {
@@ -288,21 +320,26 @@
                 "result": false,
                 "errorMsg": ''
             };
-            valid = lv.Validate(scope.entity.category_id);
+            valid = lv.Validate(scope.entity.question_id);
             rs.result = valid.isNullOrWhiteSpace();
             rs.errorMsg = rs.result === true ? "${get_res('category_id_is_not_null','Mã danh mục câu hỏi không được để trống')}" + '\n' : "" ;
             if(rs.result === true){
                 return rs;
             }
-            valid = lv.Validate(scope.entity.category_name);
-            rs.result = valid.isNullOrWhiteSpace();
-            rs.errorMsg = rs.result === true ? "${get_res('category_name_not_null','Tên danh mục câu hỏi được để trống')}" + '\n' : "" ;
-            if(rs.result === true){
-                return rs;
-            }
-            valid = lv.Validate(scope.entity.category_group);
+            //
+            valid = lv.Validate(scope.entity.category_id);
             rs.result = valid.isNumber();
-            rs.errorMsg = rs.result === false ? "${get_res('category_group_not_null','Nhóm câu hỏi không được để trống')}" + '\n' : "" ;
+            rs.errorMsg = rs.result === false ? "${get_res('ques_category_not_null','Danh mục câu hỏi không được để trống')}" + '\n' : "" ;
+            if(rs.result === false){
+                rs.result = true;
+                return rs;
+            }else{
+                rs.result = false;
+            }
+            //
+            valid = lv.Validate(scope.entity.category_id);
+            rs.result = valid.isNumber();
+            rs.errorMsg = rs.result === false ? "${get_res('category_id_not_null','Nhóm câu hỏi không được để trống')}" + '\n' : "" ;
             if(rs.result === false){
                 rs.result = true;
                 return rs;
@@ -312,7 +349,35 @@
             return rs;
         }
 
-        
+        function _getDataInitCombobox() {
+        debugger
+            scope.$root.$getInitComboboxData(scope, {
+                "key": "${encryptor.get_key('lms_cbb_sur_question_category')}",
+                "code": scope.entity
+                        && scope.entity.hasOwnProperty('category_id')
+                        ? scope.entity.category_id
+                        : null,
+                "alias": "$$$lms_cbb_sur_question_category"
+            });
+        }
+        _getDataInitCombobox();
+
+        function _comboboxData() {
+            services.api("${get_api_key('app_main.api.SYS_ValueList/get_list')}")
+                .data({
+                    //parameter at here
+                    "name": "LMS_LSurQuestionType"
+                })
+                .done()
+                .then(function (res) {
+                console.log(res);
+                    delete res.language;
+                    delete res.list_name;
+                    scope.LMS_LSurQuestionType = res.values;
+                    scope.$applyAsync();
+                })
+        }
+        _comboboxData();
 
         (function _getDataValueList() {
             services.api("${get_api_key('app_main.api.SYS_ValueList/get_list')}")

@@ -2,6 +2,7 @@
 from bson import ObjectId
 import models
 from Query import DepartmentGroup
+import qmongo
 import datetime
 
 def get_tree(args):
@@ -9,7 +10,7 @@ def get_tree(args):
     return ret.get_list()
 
 def get_list(args):
-    items = models.HCSSYS_Departments().aggregate().project(
+    items = qmongo.models.HCSSYS_Departments.aggregate.project(
         department_code = 1,
         department_name = 1,
         parent_code = 1

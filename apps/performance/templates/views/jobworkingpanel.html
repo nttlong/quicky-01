@@ -18,16 +18,19 @@
         <site-map>
             <span>{{$root.currentFunction.default_name}}</span>
             <span><i class="bowtie-icon bowtie-chevron-right"></i></span>
-            <span>{{currentFunction.default_name}}</span>
-            <a href="#dropdownFunction" style="color:#333" data-toggle="collapse"><i class="bowtie-icon bowtie-chevron-down"></i></a>
-            <div id="dropdownFunction" class="dropdown-content">
+            <a data-toggle="collapse" href="#dropdownFunction"><span>{{currentFunction.default_name}}</span>
+                <span><i class="bowtie-icon bowtie-chevron-down"></i></span>
+                <div id="dropdownFunction" class="dropdown-content">
                 <div class="filter">
-                    <input-text-icon ng-model="search" style="padding:3px;">
+                    <input-text-icon ng-model="search" style="padding:3px;"/>
                 </div>
                 <div class="dropdown">
                     <p ng-repeat="f in mapName | filter : search" ng-class="{focus : selectedFunction === f.function_id}" ng-click="selectFunc($event, f.function_id)">{{f.custom_name ? f.default_name : f.custom_name}}</p>
                 </div>
             </div>
+            </a>
+            <!--<a ></a>-->
+
             <div class="hcs-resp-action-zb-left-content" style="float: right;">
                 <button ng-if="isChangeFunc" class="zb-btn zb-btn-o-green ng-scope hcs-menu-mobile"
                         ng-click="$root.doToggle('.hcs-left-side-department-content')">
@@ -77,16 +80,18 @@
                 <span><i class="bowtie-icon bowtie-chevron-right"></i></span>
                 <span>${get_res('job_w_name', 'Tên chức danh')} {{detail.$job_w_name}})</span>
                 <span><i class="bowtie-icon bowtie-chevron-right"></i></span>
-                <span>{{detail.currentFunction.default_name}}</span>
-                <a data-target="#dropdownFunction" style="color:#333" data-toggle="collapse"><i class="bowtie-icon bowtie-chevron-down"></i></a>
-                <div id="dropdownFunction" class="dropdown-content">
-                    <div class="filter">
-                        <input-text-icon ng-model="$parent.$parent.detail.search" style="padding:3px;"/>
+                <a data-target="#dropdownFunction" data-toggle="collapse"><span>{{detail.currentFunction.default_name}}</span><span><i class="bowtie-icon bowtie-chevron-down"></i></span>
+                    <div id="dropdownFunction" class="dropdown-content">
+                        <div class="filter">
+                            <input-text-icon ng-model="$parent.$parent.detail.search" style="padding:3px;"/>
+                        </div>
+                        <div class="dropdown">
+                            <p ng-repeat="f in $parent.$parent.detail.mapName | filter : $parent.$parent.detail.search" ng-class="{focus : $parent.detail.selectedFunction === f.function_id}" ng-click="$parent.detail.selectFunc($event, f.function_id)">{{f.custom_name ? f.default_name : f.custom_name}}</p>
+                        </div>
                     </div>
-                    <div class="dropdown">
-                        <p ng-repeat="f in $parent.$parent.detail.mapName | filter : $parent.$parent.detail.search" ng-class="{focus : $parent.detail.selectedFunction === f.function_id}" ng-click="$parent.detail.selectFunc($event, f.function_id)">{{f.custom_name ? f.default_name : f.custom_name}}</p>
-                    </div>
-                </div>
+                </a>
+                <!--<a data-target="#dropdownFunction" style="color:#333" data-toggle="collapse"><i class="bowtie-icon bowtie-chevron-down"></i></a>-->
+
             </div>
             <div class="hcs-resp-action-zb-left-content hcs-res-site-map-mobile-right" style="float: right; position: absolute; right: 3px;">
                 <button class="zb-btn zb-btn-o-green ng-scope" ng-click="$root.doToggle('.zb-top .zb-right-content')">

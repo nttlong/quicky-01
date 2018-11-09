@@ -2,7 +2,7 @@
 <%!
     #_style="width:300px;"
 %>
-<%inherit file="../../commons/dialog_resize_save_close.html"/>
+<%inherit file="../../commons/dialog_accept.html"/>
 
 <%block name="modal_body">
 <div class="col-md-12 col-xs-12">
@@ -11,7 +11,7 @@
             <div class="form-group zb-form-group">
                 <label class="col-sm-5 zb-form-label">${get_res('approve_period','Kỳ đánh giá')}</label>
                 <div class="col-sm-7">
-                    <input-text>
+                    <input-text value="{{ $parent.apr_name + '/' + $parent._currentAprYear}}" ng-disabled="true">
                 </div>
             </div>
         </div>
@@ -19,7 +19,7 @@
             <div class="form-group zb-form-group">
                 <label class="col-sm-5 zb-form-label">${get_res('employee','Nhân viên')}</label>
                 <div class="col-sm-7">
-                    <input-text>
+                    <input-text value="{{ $parent._currentEmp.employee_name}}" ng-disabled="true">
                 </div>
             </div>
         </div>
@@ -29,20 +29,8 @@
     <collapse-box class="zb-form-common" title="${get_res('data_generate_option','Tùy chọn phát sinh dữ liệu')}">
         <div class="col-md-6 col-xs-6">
             <div class="form-group zb-form-group" style="display: block;">
-                <label class="radio">Sao chép dữ liệu theo Kỳ cũ của chính Nhân viên hiện hành
-                    <input type="radio" ng-value="true">
-                    <span class="checkround"></span>
-                 </label>
-                 <label class="radio">Sao chép dữ liệu theo Kỳ cũ của Nhân viên khác
-                    <input type="radio" ng-value="true">
-                    <span class="checkround"></span>
-                 </label>
-                 <label class="radio">Sao chép dữ liệu Kỳ hiện hành cho Nhân viên khác
-                    <input type="radio" ng-value="true">
-                    <span class="checkround"></span>
-                 </label>
-                 <label class="radio">Sao chép tất cả dữ liệu theo Kỳ cũ cho toàn bộ Nhân viên tham gia
-                    <input type="radio" ng-value="true">
+                <label class="radio" ng-repeat="item in LPERF_GiveTarget_Option_Generate_Data">{{item.caption}}
+                    <input type="radio" ng-model="genGiveTargetCondition.opt_gen" name="optionGenerateData" ng-value="item.value">
                     <span class="checkround"></span>
                  </label>
             </div>
@@ -51,22 +39,35 @@
             <div class="form-group zb-form-group">
                 <label class="col-sm-5 zb-form-label">${get_res('select_approve_period','Chọn kỳ đánh giá')}</label>
                 <div class="col-sm-7">
-                    <combobox/>
+                    <combobox load-data="$root.$getComboboxData"
+                            ng-model="genGiveTargetCondition.apr_code"
+                            params="{key:'${encryptor.get_key('cbb_tmper_apr_single_select')}', value:[]}"
+                            on-search-change="false"
+                            on-search-press="true"
+                            placeholder=""
+                            init-data="$$$cbb_tmper_apr_single_select.value"
+                            caption-field="{{$$$cbb_tmper_apr_single_select.caption_field}}"
+                            paging="true"
+                            close-on-select="true"
+                            template-fields="$$$cbb_tmper_apr_single_select.display_fields"
+                            ng-disabled="_displayControlCondition.aprPeriod"
+                            reload="true">
+                    </combobox>
                 </div>
             </div>
             <div class="form-group zb-form-group">
                 <div class="col-sm-7">
-                    <input-checkbox caption="${get_res('copy_weight','Sao chép trọng số')}"/>
+                    <input-checkbox ng-model="genGiveTargetCondition.is_copy_weight" caption="${get_res('copy_weight','Sao chép trọng số')}"/>
                 </div>
             </div>
             <div class="form-group zb-form-group">
                 <div class="col-sm-7">
-                    <input-checkbox caption="${get_res('copy_target','Sao chép chỉ tiêu')}"/>
+                    <input-checkbox ng-model="genGiveTargetCondition.is_copy_target" caption="${get_res('copy_target','Sao chép chỉ tiêu')}"/>
                 </div>
             </div>
             <div class="form-group zb-form-group">
                 <div class="col-sm-7">
-                    <input-checkbox caption="${get_res('replace_current_data','Thay thế dữ liệu hiện có')}"/>
+                    <input-checkbox ng-model="genGiveTargetCondition.is_replace" caption="${get_res('replace_current_data','Thay thế dữ liệu hiện có')}"/>
                 </div>
             </div>
         </div>
@@ -75,30 +76,56 @@
 <div class="col-md-6 col-xs-6">
     <collapse-box class="zb-form-common" title="${get_res('select_employee','Chọn nhân viên')}">
         <toolbar>
-           <input-text-icon icon="bowtie-icon bowtie-search" on-click="onSearch"></input-text-icon>
+           <input-text-icon icon="bowtie-icon bowtie-search" on-click="onSearchEmployee"></input-text-icon>
         </toolbar>
-        <div class="col-sm-12">
-            <!--Ghi chú-->
-            <div class="form-group zb-form-group">
-                <div class="col-sm-12 no-padding">
-                    <input-textarea rows="4" ng-model="entity.kpi_desc"></input-textarea>
-                </div>
-            </div>
+        <div style="height: 30vh;" ng-if="!_displayControlCondition.gridEmployeeMulti">
+            <table-data data-source="$$table[0].tableSource" 
+                        fields="$$table[0].tableFields" 
+                        type="SingleSelect" 
+                        paging="true" 
+                        page-length="100" 
+                        server-side="true" 
+                        press-enter="$$table[0].onSelectTableRow" 
+                        selected-items="$$table[0].selectedItems" 
+                        current-item="$$table[0].currentItem" 
+                        search-text="$$table[0].tableSearchText"
+                        refresh-row="$$table[0].refreshDataRow">
+            </table-data>
+        </div>
+        <div style="height: 30vh;" ng-if="_displayControlCondition.gridEmployeeMulti">
+            <table-data data-source="$$table[1].tableSource" 
+                        fields="$$table[1].tableFields" 
+                        type="MultiSelect" 
+                        paging="true" 
+                        page-length="100" 
+                        server-side="true" 
+                        press-enter="$$table[1].onSelectTableRow" 
+                        selected-items="$$table[1].selectedItems" 
+                        current-item="$$table[1].currentItem" 
+                        search-text="$$table[1].tableSearchText"
+                        refresh-row="$$table[1].refreshDataRow">
+            </table-data>
         </div>
     </collapse-box>
 </div>
 <div class="col-md-6 col-xs-6">
-    <collapse-box class="zb-form-common" title="${get_res('Note','Chọn nhân viên')}">
+    <collapse-box class="zb-form-common" title="${get_res('select_target','Chọn mục tiêu')}">
         <toolbar>
-           <input-text-icon icon="bowtie-icon bowtie-search" on-click="onSearch"></input-text-icon>
+           <input-text-icon icon="bowtie-icon bowtie-search" on-click="onSearchTarget"></input-text-icon>
         </toolbar>
-        <div class="col-sm-12">
-            <!--Ghi chú-->
-            <div class="form-group zb-form-group">
-                <div class="col-sm-12 no-padding">
-                    <input-textarea rows="4" ng-model="entity.note"></input-textarea>
-                </div>
-            </div>
+        <div style="height: 30vh;">
+            <table-data data-source="$$table[2].tableSource" 
+                        fields="$$table[2].tableFields" 
+                        type="MultiSelect" 
+                        paging="true" 
+                        page-length="100" 
+                        server-side="true" 
+                        press-enter="$$table[2].onSelectTableRow" 
+                        selected-items="$$table[2].selectedItems" 
+                        current-item="$$table[2].currentItem" 
+                        search-text="$$table[2].tableSearchText"
+                        refresh-row="$$table[2].refreshDataRow">
+            </table-data>
         </div>
     </collapse-box>
 </div>
@@ -107,13 +134,449 @@
 <%block name="modal_script">
 <script>
     (function (scope) {
+        var _genGiveTargetCondition = {
+            opt_gen: 1,
+            apr_code: null,
+            apr_period: null,
+            apr_year: null,
+            curr_apr_period: scope.$parent._currentAprPeriod,
+            curr_apr_year: scope.$parent._currentAprYear,
+            is_copy_weight: true,
+            is_copy_target: true,
+            is_replace: true,
+            employee_code: null
+        }
+
+        var _displayControlCondition = {
+            aprPeriod: false,
+            gridEmployee: true,
+            gridEmployeeMulti: false,
+            gridTarget: false,
+
+        }
+
+        setTimeout(function(){
+            $(window).trigger('resize');
+        },100)
+
+        scope.$$table = [
+            {
+                tableFields: [
+                    { "data": "employee_name", "title": "${get_res('employee_name','Họ tên')}", "className": "text-left" },
+                    { "data": "job_w_name", "title": "${get_res('job_w_name','Chức danh')}", "className": "text-left" }
+                ],
+                $$tableConfig: {},
+                tableSource: _loadDataEmployee,
+                onSelectTableRow: function ($row) { scope.onEdit(); },
+                selectedItems: [],
+                currentItem: {},
+                tableSearchText: '',
+                refreshDataRow: function () { /*Do nothing*/ }
+            },
+            {
+                tableFields: [
+                    { "data": "employee_name", "title": "${get_res('employee_name','Họ tên')}", "className": "text-left" },
+                    { "data": "job_w_name", "title": "${get_res('job_w_name','Chức danh')}", "className": "text-left" }
+                ],
+                $$tableConfig: {},
+                tableSource: _loadDataEmployee,
+                onSelectTableRow: function ($row) { scope.onEdit(); },
+                selectedItems: [],
+                currentItem: {},
+                tableSearchText: '',
+                refreshDataRow: function () { /*Do nothing*/ }
+            },
+            {
+                tableFields: [
+                    { "data": "target_name", "title": "${get_res('target_name','Mục tiêu')}", "className": "text-left" },
+                    { "data": "weight", "title": "${get_res('weight','Trọng số')}", "className": "text-left" },
+                    { "data": "target", "title": "${get_res('target','Chỉ tiêu')}", "className": "text-left" }
+                ],
+                $$tableConfig: {},
+                tableSource: _loadDataTarget,
+                onSelectTableRow: function ($row) { scope.onEdit(); },
+                selectedItems: [],
+                currentItem: {},
+                tableSearchText: '',
+                refreshDataRow: function () { /*Do nothing*/ }
+            }
+        ];
+
+        scope.genGiveTargetCondition = _genGiveTargetCondition;
+        scope._displayControlCondition = _displayControlCondition;
+
         scope.__mode = scope.$parent.mode;
         scope.title = scope.$parent.headerTitle;
-        scope.onResizeDialog = onResizeDialog;
+        scope.onResizeDialog = $dialog.fullScreen;
+        scope.saveNClose = saveNClose;
+        scope.onSearchTarget = onSearchTarget;
+        scope.onSearchEmployee = onSearchEmployee;
 
-        function onResizeDialog() {
-            $dialog.fullScreen();
+        function onSearchTarget(val){
+            scope.$$table[2].tableSearchText = val;
+            var config = scope.$$table[2].$$tableConfig;
+            _apiLoadTarget(config.iPage, config.iPageLength, config.orderBy, config.tableSearchText, config.fnReloadData);
         }
+
+        function onSearchEmployee(val){
+            var config = {};
+            if(scope._displayControlCondition.gridEmployeeMulti){
+                scope.$$table[1].tableSearchText = val;
+                config = scope.$$table[1].$$tableConfig;
+            }else{
+                scope.$$table[0].tableSearchText = val;
+                config = scope.$$table[0].$$tableConfig;
+            }
+            _apiLoadEmployee(config.iPage, config.iPageLength, config.orderBy, config.tableSearchText, config.fnReloadData);
+        }
+
+        function _loadDataEmployee(fnReloadData, iPage, iPageLength, orderBy, searchText) {
+            var config = {
+                fnReloadData: fnReloadData,
+                iPage: iPage,
+                iPageLength: iPageLength,
+                orderBy: orderBy,
+                searchText: searchText
+            };
+            scope.$$table[0].$$tableConfig = config;
+            scope.$$table[1].$$tableConfig = config;
+            if (fnReloadData) {
+                if (searchText) {
+                    _apiLoadEmployee(iPage, iPageLength, orderBy, searchText, function (data) {
+                        fnReloadData(data);
+                    });
+                } else {
+                    _apiLoadEmployee(iPage, iPageLength, orderBy, null, function (data) {
+                        fnReloadData(data);
+                    });
+                }
+            }
+        };
+
+        function _loadDataTarget(fnReloadData, iPage, iPageLength, orderBy, searchText) {
+            var config = {
+                fnReloadData: fnReloadData,
+                iPage: iPage,
+                iPageLength: iPageLength,
+                orderBy: orderBy,
+                searchText: searchText
+            };
+            scope.$$table[2].$$tableConfig = config;
+            if (fnReloadData) {
+                if (searchText) {
+                    _apiLoadTarget(iPage, iPageLength, orderBy, searchText, function (data) {
+                        fnReloadData(data);
+                    });
+                } else {
+                    _apiLoadTarget(iPage, iPageLength, orderBy, null, function (data) {
+                        fnReloadData(data);
+                    });
+                }
+            }
+        };
+
+        function _apiLoadEmployee(iPage, iPageLength, orderBy, searchText, callback) {
+            var sort = {};
+            $.each(orderBy, function (i, v) {
+                sort[v.columns] = (v.type === "asc") ? 1 : -1;
+            });
+            if((scope.genGiveTargetCondition.apr_code || scope.genGiveTargetCondition.opt_gen == 3) && (scope.genGiveTargetCondition.opt_gen == 2 || scope.genGiveTargetCondition.opt_gen  == 3)){
+                sort[orderBy[0].columns] =
+                services.api("${get_api_key('app_main.api.TMPER_TargetKPI_EmpController/get_list_employee_in_apr_period')}")
+                    .data({
+                        "pageIndex": iPage - 1,
+                        "pageSize": iPageLength,
+                        "search": searchText,
+                        "sort": sort,
+                        "apr_period": scope.genGiveTargetCondition.apr_period,
+                        "apr_year": scope.genGiveTargetCondition.apr_year,
+                    })
+                    .done()
+                    .then(function (res) {
+                        if (res.items) {
+                            var data = {
+                                recordsTotal: res.total_items,
+                                recordsFiltered: res.total_items,
+                                data: res.items
+                            };
+                            callback(data);
+                            scope.$apply();
+                        }
+                    })
+                }else{
+                callback({
+                    recordsTotal: 0,
+                    recordsFiltered: 0,
+                    data: []
+                })
+            }
+        }
+
+        function _apiLoadTarget(iPage, iPageLength, orderBy, searchText, callback) {
+            var sort = {};
+            $.each(orderBy, function (i, v) {
+                sort[v.columns] = (v.type === "asc") ? 1 : -1;
+            });
+            if((scope.genGiveTargetCondition.apr_code || (scope.genGiveTargetCondition.opt_gen == 3 && 
+                scope.genGiveTargetCondition.opt_gen != 4))){
+                sort[orderBy[0].columns] =
+                services.api("${get_api_key('app_main.api.TMPER_TargetKPIController/get_list_target')}")
+                    .data({
+                        "pageIndex": iPage - 1,
+                        "pageSize": iPageLength,
+                        "search": searchText,
+                        "sort": sort,
+                        "apr_period": scope.genGiveTargetCondition.opt_gen === 3 ? scope.genGiveTargetCondition.curr_apr_period :scope.genGiveTargetCondition.apr_period,
+                        "apr_year": scope.genGiveTargetCondition.opt_gen === 3 ? scope.genGiveTargetCondition.curr_apr_year :scope.genGiveTargetCondition.apr_year,
+                        "employee_code": scope.genGiveTargetCondition.opt_gen === 2 ? scope.$$table[0].currentItem.employee_code : scope.$parent._currentEmp.employee_code
+                    })
+                    .done()
+                    .then(function (res) {
+                        if (res.items) {
+                            var data = {
+                                recordsTotal: res.total_items,
+                                recordsFiltered: res.total_items,
+                                data: res.items
+                            };
+                            callback(data);
+                            scope.$apply();
+                        }
+                    })
+                }else{
+                callback({
+                    recordsTotal: 0,
+                    recordsFiltered: 0,
+                    data: []
+                })
+            }
+        }
+
+        function openKPI(){
+            $('#comboboxTargetName .zb-open-modal').click();
+        }
+
+        function saveNClose(){
+            switch(scope.genGiveTargetCondition.opt_gen){
+                case 1:
+                    if(!checkDifferenceApr())
+                        return;
+                    if(!checkSelectedTarget())
+                        return;
+                    break;
+                case 2:
+                    if(!checkDifferenceApr())
+                        return;
+                    if(!checkSelectedTarget())
+                        return;
+                    if(!checkSelectedEmp())
+                        return;
+                    break;
+                case 3:
+                    if(!checkSelectedTarget())
+                        return;
+                    if(!checkSelectedEmp(3))
+                        return;
+                    break;
+                case 4:
+                    if(!checkDifferenceApr())
+                        return;
+                    break;
+            }
+            editData(function (res) {
+                if(res.error == null){
+                    scope.$parent.loadDataFilterEmployee();
+                    scope.$parent.reloadData();
+                    $dialog.closeDialog();
+                    $msg.alert("${get_global_res('Handle_Success','Thao tác thành công')}", $type_alert.INFO);
+                }else{
+                    $msg.message("${get_global_res('Internal_Server_Error','Có lỗi từ phía máy chủ')}", "${get_global_res('have_error_when_generate_data','Có lỗi khi phát sinh dữ liệu')}", function () { });
+                }
+            });
+        }
+
+        function checkSelectedEmp(optionGen = 2){
+            if(optionGen == 2){
+                if(!scope.$$table[0].currentItem || Object.keys(scope.$$table[0].currentItem).length == 0){
+                    $msg.message("${get_global_res('Notification','Thông báo')}", "${get_res('no_employee_selected','Không có nhân viên được chọn')}", function () { });
+                    return false;
+                }
+                return true;
+            }else{
+                if(!scope.$$table[1].selectedItems || scope.$$table[1].selectedItems.length == 0){
+                    $msg.message("${get_global_res('Notification','Thông báo')}", "${get_res('no_employee_selected','Không có nhân viên được chọn')}", function () { });
+                    return false;
+                }
+                return true;
+            }
+        }
+
+        function checkSelectedTarget(){
+            if(!scope.$$table[2].selectedItems || scope.$$table[2].selectedItems.length == 0){
+                $msg.message("${get_global_res('Notification','Thông báo')}", "${get_res('no_target_selected','Không có mục tiêu được chọn')}", function () { });
+                return false;
+            }
+            return true;
+        }
+
+        function checkDifferenceApr(){
+            if(scope.genGiveTargetCondition.apr_code){
+                var temp = scope.genGiveTargetCondition.apr_code.split('-');
+                var curAprCode = scope.genGiveTargetCondition.curr_apr_period + '-' + scope.genGiveTargetCondition.curr_apr_year;
+                if(curAprCode == scope.genGiveTargetCondition.apr_code){
+                    $msg.message("${get_global_res('Notification','Thông báo')}", "${get_app_res('select_approve_period_is_must_be_different_with_current_approve_period','Chọn kỳ đánh giá phải khác với kỳ hiện tại')}", function () { });
+                    return false;
+                }
+            }else{
+                $msg.message("${get_global_res('Notification','Thông báo')}", "${get_app_res('approve_period_is_not_selected','Chưa chọn kỳ đánh giá')}", function () { });
+                return false;
+            }
+            return true;
+        }
+
+        function reloadData(){
+            scope.$parent.reloadData();
+        }
+
+        function _getDataInitCombobox() {
+            scope.$root.$getInitComboboxData(scope,
+                {
+                    "key": "${encryptor.get_key('cbb_tmper_apr_single_select')}",
+                    "code": scope.entity
+                    && scope.genGiveTargetCondition.hasOwnProperty('apr_code') ?
+                    scope.genGiveTargetCondition.apr_code : null,
+                    "alias": "$$$cbb_tmper_apr_single_select"
+                }
+            );
+        }
+
+        function getParameter(){
+            var param = {};
+            switch(scope.genGiveTargetCondition.opt_gen){
+                case 1: 
+                    param.genGiveTargetCondition = scope.genGiveTargetCondition;
+                    param.selectedEmployee = [scope.$parent._currentEmp.employee_code];
+                    param.selectedTarget = _.pluck(scope.$$table[2].selectedItems, 'target_name');
+                    break;
+                case 2:
+                    param.genGiveTargetCondition = scope.genGiveTargetCondition;
+                    param.selectedEmployee = [scope.$$table[0].currentItem.employee_code];
+                    param.selectedTarget = _.pluck(scope.$$table[2].selectedItems, 'target_name');
+                    param.genGiveTargetCondition.employee_code = scope.$parent._currentEmp.employee_code;
+                    break;
+                case 3:
+                    param.genGiveTargetCondition = scope.genGiveTargetCondition;
+                    param.selectedEmployee = _.pluck(scope.$$table[1].selectedItems, 'employee_code');
+                    param.selectedTarget = _.pluck(scope.$$table[2].selectedItems, 'target_name');
+                    param.genGiveTargetCondition.employee_code = scope.$parent._currentEmp.employee_code;
+                    break;
+                case 4:
+                    param.genGiveTargetCondition = scope.genGiveTargetCondition;
+                    param.selectedEmployee = [];
+                    param.selectedTarget = [];
+                    break;
+            }
+            return param;
+        }
+
+        function editData(callback) {
+            var url = "${get_api_key('app_main.api.TMPER_TargetKPIController/generate')}";
+            var parameter = getParameter();
+
+            services.api(url)
+                .data(parameter)
+                .done()
+                .then(function (res) {
+                    callback(res);
+                })
+        }
+
+        (function __init__(){
+                _getDataInitCombobox();
+                scope.$root.$extension.getValueList(["LPERF_GiveTarget_Option_Generate_Data"], 
+                    function(val){
+                        scope.LPERF_GiveTarget_Option_Generate_Data = getValue(val.values, "LPERF_GiveTarget_Option_Generate_Data");
+                        scope.$applyAsync();
+                        function getValue(response, listName) {
+                            return _.findWhere(response, { "list_name": listName }) ? _.findWhere(response, { "list_name": listName }).values : [];
+                        }
+                    }
+                );
+        })();
+
+        scope.$watch('genGiveTargetCondition.opt_gen', function(val){
+            if(val){
+                switch(val){
+                    case 1:
+                    /*
+                    Enable kỳ đánh giá, disable lưới nhân viên, enable lưới mục tiêu default select all
+                     */
+                    scope._displayControlCondition.aprPeriod = false;
+                    scope._displayControlCondition.gridEmployee = false;
+                    scope._displayControlCondition.gridTarget = true;
+                    break;
+                    case 2:
+                    /*
+                    Enable kỳ đánh giá, Enable lưới nhân viên, enable lưới mục tiêu default select all
+                     */
+                    scope._displayControlCondition.aprPeriod = false;
+                    scope._displayControlCondition.gridEmployee = true;
+                    scope._displayControlCondition.gridTarget = true;
+                    scope._displayControlCondition.gridEmployeeMulti = false;
+                    break;
+                    case 3:
+                    /*
+                    Disable kỳ đánh giá, disable lưới nhân viên, enable lưới mục tiêu default select all
+                     */
+                    scope._displayControlCondition.aprPeriod = true;
+                    scope._displayControlCondition.gridEmployee = true;
+                    scope._displayControlCondition.gridTarget = false;
+                    scope._displayControlCondition.gridEmployeeMulti = true;
+                    break;
+                    case 4:
+                    /*
+                    Enable kỳ đánh giá, disable lưới nhân viên, disable lưới mục tiêu
+                     */
+                    scope._displayControlCondition.aprPeriod = false;
+                    scope._displayControlCondition.gridEmployee = true;
+                    scope._displayControlCondition.gridTarget = false;
+                    break;
+                }
+                scope.$applyAsync();
+            }
+        });
+
+        function reloadDataTable(){
+            if(scope._displayControlCondition.gridEmployeeMulti && scope._displayControlCondition.gridEmployeeMulti == true){
+                var config = scope.$$table[1].$$tableConfig;
+                _apiLoadEmployee(config.iPage, config.iPageLength, config.orderBy, config.searchText, config.fnReloadData);
+            }else{
+                var config = scope.$$table[0].$$tableConfig;
+                _apiLoadEmployee(config.iPage, config.iPageLength, config.orderBy, config.searchText, config.fnReloadData);
+            }
+            var config = scope.$$table[2].$$tableConfig;
+            if(scope.genGiveTargetCondition.opt_gen != 2 || (scope.$$table[0].currentItem && Object.keys(scope.$$table[0].currentItem).length > 0))
+                _apiLoadTarget(config.iPage, config.iPageLength, config.orderBy, config.searchText, config.fnReloadData);
+        }
+
+        scope.$watch('genGiveTargetCondition.apr_code', function(val){
+            if(val){
+                var _temp = val.split("-");
+                scope.genGiveTargetCondition.apr_period = parseInt(_temp[0]);
+                scope.genGiveTargetCondition.apr_year = parseInt(_temp[1]);
+                reloadDataTable();
+            }
+        })
+
+        scope.$watch('genGiveTargetCondition.opt_gen', function(val){
+            reloadDataTable();
+        })
+
+        scope.$watchCollection('$$table[0].currentItem', function(val){
+            if(val){
+                var config = scope.$$table[2].$$tableConfig;
+                _apiLoadTarget(config.iPage, config.iPageLength, config.orderBy, config.searchText, config.fnReloadData);
+            }
+        })
     });
 </script>
 

@@ -6,6 +6,8 @@
 @bg_grey: #edf1f5;
 @bg_cyan: #ebf9ff;
 
+@border_color: #cbcbcb;
+
 @h_top: 36px;
 @h_control: 30px;
 
@@ -23,7 +25,7 @@
         border-radius: 0;
         border: 0;
         box-shadow: none;
-        border-bottom: 1px solid #ddd;
+        border-bottom: 1px solid @border_color;
 
         > .placeholder {
             color: #c0c0c0;
@@ -32,6 +34,7 @@
         > input, .placeholder {
             padding-top: 9px;
             padding-bottom: 0px;
+            display: inline-block;
         }
 
          .display-value {
@@ -51,13 +54,14 @@
 
         button {
             height: @h_control;
+            width: 30px
             padding: 0 6px;
             line-height: @h_control;
             border: 0;
-            border-bottom: 1px solid #ddd;
+            border-bottom: 1px solid @border_color;
             border-radius: 0 !important;
             color: #999;
-            font-size: 18px;
+            font-size: 16px;
             transition: background ease 0.5s, color ease 0.5s;
             outline: none;
             background: #fff;

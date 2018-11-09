@@ -4,7 +4,8 @@
     <%inherit file="../../../../commons/dialog_save.html"/>
 
 <%block name="modal_body">
-<div class="col-md-{{col_group}} col-xs-{{col_group}}">
+<div class="hcs-modal-format">
+    <div class="col-md-{{col_group}} col-xs-{{col_group}}">
     <collapse-box class="zb-form-common" title="${get_res('employee','Nhân viên')}">
         <div class="col-md-12 col-xs-12">
             <div class="hcs-left-side-department-content">
@@ -68,16 +69,14 @@
         </div>
     </collapse-box>
 </div>
-<div class="col-md-{{ 12 - col_group}} col-xs-{{ 12 - col_group}}">
+    <div class="col-md-{{ 12 - col_group}} col-xs-{{ 12 - col_group}}">
     <collapse-box class="zb-form-common" title="${get_res('config_approver', 'Thiết lập người duyệt')}">
-        <div class="col-md-12 col-xs-12"  ng-repeat="elm in configApprover track by $index">
-            <div class="form-group zb-form-group">
+        <div class="col-md-12 col-xs-12">
+            <div class="form-group zb-form-group" ng-repeat="elm in configApprover track by $index">
                 <!--Tên khác-->
-                <div class="col-md-5 col-xs-5">
-                    <input-checkbox class="col-sm-5" ng-model="elm.checked" ng-if="__mode != 1" caption=""></input-checkbox>
-                    <label class="col-xs-5 col-sm-5 zb-form-label">${get_res('level', 'Cấp độ')} {{$index + 1}}</label>
-                </div>
-                <div class="col-md-7 col-xs-7">
+                <input-checkbox class="col-md-1" ng-model="elm.checked" ng-if="__mode != 1" caption=""></input-checkbox>
+                <label class="col-md-3 zb-form-label">${get_res('level', 'Cấp độ')} {{$index + 1}}</label>
+                <div ng-class="__mode!=1 ? 'col-md-8':'col-md-9'">
                     <combobox load-data="$root.$getComboboxData"
                             ng-model="elm.appover_code"
                             params="{key:'${encryptor.get_key('cbb_employees_cbcc')}', value:[]}"
@@ -97,6 +96,7 @@
             </div>
         </div>
     </collapse-box>
+</div>
 </div>
 </%block>
 

@@ -1,8 +1,9 @@
 from .. import models
+import qmongo
 def display_list_quit_job():
-    ret=models.HCSLS_QuitJob().aggregate()
-    ret.left_join(models.auth_user_info(), "created_by", "username", "uc")
-    ret.left_join(models.auth_user_info(), "modified_by", "username", "um")
+    ret=qmongo.models.HCSLS_QuitJob.aggregate
+    ret.left_join(qmongo.models.auth_user_info, "created_by", "username", "uc")
+    ret.left_join(qmongo.models.auth_user_info, "modified_by", "username", "um")
     ret.project(
         _id = "_id",
         quit_job_code="quit_job_code",

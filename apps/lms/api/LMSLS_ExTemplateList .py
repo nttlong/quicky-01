@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 from bson import ObjectId
+import qmongo
 import models
 import logging
 import threading
@@ -87,7 +88,7 @@ def insert(args):
         ret = {}
         if args['data'] != None:
             data =  set_dict_insert_data(args)
-            ret  =  models.LMSLS_ExQuestionBank().insert(data)
+            ret  =  qmongo.models.LMSLS_ExQuestionBank.insert(data)
             lock.release()
             return ret
 
@@ -105,7 +106,7 @@ def update(args):
         ret = {}
         if args['data'] != None:
             data =  set_dict_update_data(args)
-            ret  =  models.LMSLS_ExTemplateList().update(
+            ret  = qmongo.models.LMSLS_ExTemplateList.update(
                 data, 
                 "_id == {0}", 
                 ObjectId(args['data']['_id']))
@@ -129,7 +130,7 @@ def delete(args):
         lock.acquire()
         ret = {}
         if args['data'] != None:
-            ret  =  models.LMSLS_ExTemplateList().delete("_id in {0}",[ObjectId(x["_id"])for x in args['data']])
+            ret  = qmongo.models.LMSLS_ExTemplateList.delete("_id in {0}",[ObjectId(x["_id"])for x in args['data']])
             lock.release()
             return ret
 

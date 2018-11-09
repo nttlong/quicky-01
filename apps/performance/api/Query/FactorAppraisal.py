@@ -1,10 +1,11 @@
 from .. import models
 from .. import common
+import qmongo
 def display_list_factor_appraisal(group_code):
-    ret=models.TMLS_FactorAppraisal().aggregate()
-    ret.join(models.TMLS_FactorAppraisalGroup(), "factor_group_code", "factor_group_code", "fag")
-    ret.left_join(models.auth_user_info(), "created_by", "username", "uc")
-    ret.left_join(models.auth_user_info(), "modified_by", "username", "um")
+    ret=qmongo.models.TMLS_FactorAppraisal.aggregate
+    ret.join(qmongo.models.TMLS_FactorAppraisalGroup, "factor_group_code", "factor_group_code", "fag")
+    ret.left_join(qmongo.models.auth_user_info, "created_by", "username", "uc")
+    ret.left_join(qmongo.models.auth_user_info, "modified_by", "username", "um")
     if group_code != None and group_code != "":
         ret.match('fag.level_code == {0}', group_code)
     ret.project(

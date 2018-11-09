@@ -1,85 +1,64 @@
-﻿<div>
-  <div class="col-md-12 col-sm-12">
-    <div class="form-group zb-form-group">
-       <!--Mã Tài liệu, ID-->
-       <label for="input_Forum_ID" class="col-sm-3 zb-form-label">${get_res('forum_key','Forum ID')}</label>
-       <div class="col-sm-9">
-          <input-text id="input_Forum_ID" ng-model="entity.forum_id" ng-disabled="{{ __mode === 2 ? 'true' : 'false' }}" required>
-       </div>
-    </div>
-    <div class="form-group zb-form-group">
-       <!--Tên Tài liệu-->
-       <label for="input_Forum_Name" class="col-sm-3 zb-form-label">${get_res('forum_name','Forum Name 1')}</label>
-       <div class="col-sm-9">
-          <input-text id="input_Forum_Name" ng-model="entity.forum_name" required>
-       </div>
-    </div>
-    <div class="form-group zb-form-group">
-       <!--Tên Tài liệu-->
-       <label for="input_Forum_Name_Other" class="col-sm-3 zb-form-label">${get_res('forum_name_other','Forum Name 2')}</label>
-       <div class="col-sm-9">
-          <input-text id="input_Forum_Name_Other" ng-model="entity.forum_name_other">
-       </div>
-    </div>
-    <div class="form-group zb-form-group">
-       <!--Mô tả tài liệu-->
-       <label for="input_Description" class="col-sm-3 zb-form-label">${get_res('description','Description')}</label>
-       <div class="col-sm-7">
-           <div class="clearblock" style="display:inline-block"></div>
-           <input-textarea rows="4" ng-model="entity.description" required></input-textarea>
-       </div>
-   </div>
-    <div class="form-group zb-form-group">
-       <!--Nguon dinh danh Tài liệu-->
-       <label for="inputEmp_Train_Mode_Name" class="col-sm-3 zb-form-label">${get_res('public','Public')}</label>
-       <div class="col-sm-9">
-          <div style="display: inline-flex;">
-             <div class="radio radio-success">
-                <input type="radio" name="radCourse" ng-value="dt_true" id="idradCourse1"
-                   ng-model="entity.forum_type">
-                <label for="idradCourse1">
-                <span>${get_res('yes_related','Yes')}</span>
-                </label>
-             </div>
-             <div class="radio radio-success" style="margin-left: 136px;">
-                <input type="radio" name="radCourse" ng-value="dt_false" id="idradCourse2"
-                   ng-model="entity.forum_type">
-                <label for="idradCourse2">
-                <span>${get_res('no_related','No')}</span>
-                </label>
-             </div>
-          </div>
-       </div>
-    </div>
-    <div class="form-group zb-form-group" ng-show="!entity.forum_type">
-       <!--Mô tả tài liệu-->
-       <label for="input_Forum_Info" class="col-sm-3 zb-form-label">${get_res('course_info','Course Information')}</label>
-       <div class="col-sm-9">
-          <div class="row" style="margin-left:-16px">
-              <div class="col-md-2">
-                  <p style="font-size:13px;color:rgb(237,125,49);font-style:italic;margin-top:10px;">Class Code</p>
-              </div>
-                    <div class="col-sm-5">
+﻿
+<div class="col-xs-12 col-md-{{ 12 - col_group}} col-sm-{{ 12 - col_group}}">
+    <collapse-box class="zb-form-common" title="${get_res('General_Information','General Information')}">
+        <div class="col-md-12 col-xs-12">
+            <div class="form-group zb-form-group">
+               <label for="input_Forum_ID" class="col-xs-5 col-sm-5 zb-form-label">${get_res('forum_key','Forum ID')}</label>
+               <div class="col-xs-7 col-sm-7">
+                  <input-text id="input_Forum_ID" ng-model="entity.forum_id" ng-disabled="{{ __mode === 2 ? 'true' : 'false' }}" required>
+               </div>
+            </div>
+            <div class="form-group zb-form-group">
+               <label for="input_Forum_Name" class="col-xs-5 col-sm-5 zb-form-label">${get_res('forum_name','Forum Name 1')}</label>
+               <div class="col-xs-7 col-sm-7">
+                  <input-text id="input_Forum_Name" ng-model="entity.forum_name" required>
+               </div>
+            </div>
+            <div class="form-group zb-form-group">
+               <label for="input_Forum_Name_Other" class="col-xs-5 col-sm-5 zb-form-label">${get_res('forum_name_other','Forum Name 2')}</label>
+               <div class="col-xs-7 col-sm-7">
+                  <input-text id="input_Forum_Name_Other" ng-model="entity.forum_name_other">
+               </div>
+            </div>
+            <div class="form-group zb-form-group">
+               <label for="input_Forum_Order" class="col-xs-5 col-sm-5 zb-form-label">${get_res('order','Order')}</label>
+               <div class="col-xs-7 col-sm-7">
+                  <input-number id="input_Forum_Order" ng-model="entity.order">
+               </div>
+            </div>
+            <div class="form-group zb-form-group">
+               <label class="col-xs-5 col-sm-5 zb-form-label">${get_res('disable','Disable')}</label>
+               <div class="col-xs-7 col-sm-7">
+                  <input-checkbox  ng-model="entity.disable">
+               </div>
+            </div>
+        </div>
+    </collapse-box>
+</div>
+<div class="col-xs-12 col-md-{{ 12 - col_group}} col-sm-{{ 12 - col_group}}">
+    <collapse-box class="zb-form-common" title="${get_res('Forum_Description','Forum Description')}">
+        <div class="col-md-12 col-xs-12">
+            <div class="form-group zb-form-group">
+                <input-textarea rows="7" ng-model="entity.description"></input-textarea>
+            </div>
+        </div>
+    </collapse-box>
+</div>
+<div class="col-xs-12 col-md-{{ 12 - col_group}} col-sm-{{ 12 - col_group}}">
+    <collapse-box class="zb-form-common" title="${get_res('Forum_Publicity','Forum Publicity')}">
+        <div class="col-md-12 col-xs-12">
+            <div class="form-group zb-form-group">
+               <label class="col-xs-5 col-sm-5 zb-form-label">${get_res('public','Public')}</label>
+               <div class="col-xs-7 col-sm-7">
+                   <input-checkbox ng-model="entity.forum_type">
+               </div>
+            </div>
+            <div ng-show="!entity.forum_type">
+                <div class="form-group zb-form-group" >
+                    <label class="col-xs-5 col-sm-5 zb-form-label">${get_res('course_name','Course Name')}</label>
+                    <div class="col-xs-7 col-sm-7">
                         <combobox load-data="$root.$getComboboxData"
-                                  ng-model="entity.forum_info.class_code"
-                                  params="{key:'${encryptor.get_key('cbb_lmsls_materialfolder')}', value:[{ '@lock': true }]}"
-                                  on-search-change="false"
-                                  on-search-press="true"
-                                  placeholder=""
-                                  init-data="$$$class_code.value"
-                                  caption-field="{{$$$class_code.caption_field}}"
-                                  paging="true"
-                                  close-on-select="true"
-                                  template-fields="$$$class_code.display_fields"
-                                  reload="false">
-                        </combobox>
-                    </div>
-          </div>
-           <div class="row" style="margin-left:-16px">
-               <div class="col-md-2"><p style="font-size:13px;color:rgb(237,125,49);font-style:italic;margin-top:10px;">Course Name</p></div>
-              <div class="col-sm-5">
-                        <combobox load-data="$root.$getComboboxData"
-                                  ng-model="entity.forum_info.course_name"
+                                  ng-model="entity.info_course_name"
                                   params="{key:'${encryptor.get_key('cbb_lmsls_materialfolder')}', value:[{ '@lock': true }]}"
                                   on-search-change="false"
                                   on-search-press="true"
@@ -89,70 +68,81 @@
                                   paging="true"
                                   close-on-select="true"
                                   template-fields="$$$course_name.display_fields"
-                                  reload="false">
+                                  reload="false" required>
                         </combobox>
                     </div>
-           </div>
-             <div class="row" style="margin-left:-16px">
-                 <div class="col-md-2">
-                     <p style="font-size:13px;color:rgb(237,125,49);font-style:italic;margin-top:10px;display:inline-block;float:left">Start Date</p>
-                 </div>
-                   <div class="col-sm-5">
-              <date-picker ng-model="entity.forum_info.start_date" data-format="{{$root.systemConfig.date_format}}" />
-           </div>
-           </div>
-
-
-       </div>
-    </div>
-    <div class="form-group zb-form-group">
-       <!--Tên Khóa học-->
-       <label for="inputEmp_Train_Mode_Name" class="col-sm-3 zb-form-label">${get_res('forum_avail','Forum Availability')}</label>
-       <div class="col-sm-9">
-          <div style="display: inline-flex;">
-             <div class="radio radio-success">
-                <input type="radio" name="radAvail" ng-value="dt_true" id="idradAvail1"
-                   ng-model="entity.forum_avail" >
-                <label for="idradAvail1">
-                <span>${get_res('alway_avail','Always Available')}</span>
-                </label>
-             </div>
-             <div class="radio radio-success" style="margin-left:54px" >
-                <input type="radio" name="radAvail" ng-value="dt_false" id="idradAvail2"
-                   ng-model="entity.forum_avail" >
-                <label for="idradAvail2">
-                <span>${get_res('specific_avail','Available on specific time')}</span>
-                </label>
-             </div>
-          </div>
-       </div>
-    </div>
-    <div class="form-group zb-form-group" ng-show="!entity.forum_avail">
-        <label for="input_SizeFrom" class="col-sm-3 zb-form-label">${get_res('start_date','Start Date')}</label>
-        <div class="col-sm-9" style="padding: 0">
-            <div class="col-sm-5">
-              <date-picker ng-model="entity.specific_avail.start_date" data-format="{{$root.systemConfig.date_format}}" />
-           </div>
-           <label style="text-align: center !important;" for="inputEmp_Train_Mode_Name" class="col-sm-2 zb-form-label">${get_res('start_time','Time')}</label>
-           <div class="col-sm-5">
-              <time-picker ng-model="entity.specific_avail.start_time" format="HH:mm" />
-           </div>
-       </div>
-    </div>
-    <div class="form-group zb-form-group" ng-show="!entity.forum_avail">
-        <label for="input_SizeFrom" class="col-sm-3 zb-form-label">${get_res('end_date','End Date')}</label>
-        <div class="col-sm-9" style="padding: 0">
-            <div class="col-sm-5">
-              <date-picker ng-model="entity.specific_avail.end_date" data-format="{{$root.systemConfig.date_format}}" />
-           </div>
-           <label  style="text-align: center !important;" for="inputEmp_Train_Mode_Name" class="col-sm-2 zb-form-label">${get_res('start_time','Time')}</label>
-           <div class="col-sm-5">
-              <time-picker ng-model="entity.specific_avail.end_time" format="HH:mm" />
-           </div>
-       </div>
-    </div>
-  </div>
+                </div>
+                <div class="form-group zb-form-group" >
+                    <label class="col-xs-5 col-sm-5 zb-form-label">${get_res('class_code','Class Code')}</label>
+                    <div class="col-xs-7 col-sm-7">
+                        <combobox load-data="$root.$getComboboxData"
+                                  ng-model="entity.info_class_code"
+                                  params="{key:'${encryptor.get_key('cbb_lmsls_materialfolder')}', value:[{ '@lock': true }]}"
+                                  on-search-change="false"
+                                  on-search-press="true"
+                                  placeholder=""
+                                  init-data="$$$class_code.value"
+                                  caption-field="{{$$$class_code.caption_field}}"
+                                  paging="true"
+                                  close-on-select="true"
+                                  template-fields="$$$class_code.display_fields"
+                                  reload="false" required>
+                        </combobox>
+                    </div>
+                </div>
+                <div class="form-group zb-form-group" >
+                    <label class="col-xs-5 col-sm-5 zb-form-label">${get_res('start_date','Start Date')}</label>
+                    <div class="col-xs-7 col-sm-7">
+                        <date-picker ng-model="entity.info_start_date" data-format="{{$root.systemConfig.date_format}}" required/>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </collapse-box>
 </div>
+<div class="col-xs-12 col-md-{{ 12 - col_group}} col-sm-{{ 12 - col_group}}">
+    <collapse-box class="zb-form-common" title="${get_res('Forum_Availability','Forum Availability')}">
+        <div class="col-md-12 col-xs-12">
+            <div class="form-group zb-form-group">
+               <label class="col-xs-5 col-sm-5 zb-form-label">${get_res('always_avail','Always Availability')}</label>
+               <div class="col-xs-7 col-sm-7">
+                   <input-checkbox ng-model="entity.forum_avail">
+               </div>
+            </div>
+            <div ng-show="!entity.forum_avail">
+                <div class="form-group zb-form-group" >
+                    <label class="col-xs-5 col-sm-5 zb-form-label">${get_res('start_date','Start Date')}</label>
+                    <div class="col-xs-7 col-sm-7">
+                        <date-picker ng-model="entity.avail_start_date" data-format="{{$root.systemConfig.date_format}}" />
+                    </div>
+                </div>
+
+                <div class="form-group zb-form-group" >
+                    <label class="col-xs-5 col-sm-5 zb-form-label">${get_res('avail_start_time','Start Time')}</label>
+                    <div class="col-xs-7 col-sm-7">
+                        <time-picker ng-model="entity.avail.start_time" format="HH:mm" />
+                    </div>
+                </div>
+                <div class="form-group zb-form-group" >
+                    <label class="col-xs-5 col-sm-5 zb-form-label">${get_res('end_date','End Date')}</label>
+                    <div class="col-xs-7 col-sm-7">
+                        <date-picker ng-model="entity.avail_end_date" data-format="{{$root.systemConfig.date_format}}" />
+                    </div>
+                </div>
+
+                <div class="form-group zb-form-group" >
+                    <label class="col-xs-5 col-sm-5 zb-form-label">${get_res('avail_end_time','End Time')}</label>
+                    <div class="col-xs-7 col-sm-7">
+                        <time-picker ng-model="entity.avail.end_time" format="HH:mm" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </collapse-box>
+</div>
+
+
+
 <script>
     (function (scope) {
 

@@ -2,10 +2,7 @@ from config import database, helpers, db_context
 from ...api import common
 
 _hasCreated=False
-def LMS_SetupProcessApproveLevel():
-    global _hasCreated
-    if not _hasCreated:
-        helpers.define_model(
+helpers.define_model(
             "LMS_SetupProcessApproveLevel",
             [['rec_id']],
             rec_id =helpers.create_field("text", True),
@@ -25,6 +22,9 @@ def LMS_SetupProcessApproveLevel():
             modified_on=helpers.create_field("date"),
             modified_by=helpers.create_field("text"),
         )
+def LMS_SetupProcessApproveLevel():
+    global _hasCreated
+    if not _hasCreated:
         def on_before_insert(data):
             data.update({
                 "rec_id": common.generate_guid()

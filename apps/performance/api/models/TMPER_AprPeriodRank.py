@@ -1,10 +1,6 @@
 from config import database, helpers, db_context
 import base
-_hasCreated=False
-def TMPER_AprPeriodRank():
-    global _hasCreated
-    if not _hasCreated:
-        helpers.extent_model(
+helpers.extent_model(
             "TMPER_AprPeriodRank",
             "base",
             [["apr_period","apr_year","department_code"]],
@@ -18,7 +14,7 @@ def TMPER_AprPeriodRank():
             modified_on=helpers.create_field("date"),
             modified_by=helpers.create_field("text")
         )
-        _hasCreated=True
+def TMPER_AprPeriodRank():
     ret = db_context.collection("TMPER_AprPeriodRank")
 
     return ret

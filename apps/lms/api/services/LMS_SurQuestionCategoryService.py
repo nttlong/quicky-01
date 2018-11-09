@@ -1,16 +1,21 @@
 from bson import ObjectId
+import qmongo
 from .. import models
 import logging
 import threading
 from .. import common
-
+from ..views.views import SYS_VW_ValueList
 def get_list(args):
     searchText = args['data'].get('search', '')
     pageSize = args['data'].get('pageSize', 0)
     pageIndex = args['data'].get('pageIndex', 20)
     sort = args['data'].get('sort', 20)
 
-    value_list = models.extend.SYS_VW_ValueList()
+    if searchText == None:
+        searchText = ''
+
+    #value_list = models.extend.SYS_VW_ValueList()
+    value_list = SYS_VW_ValueList()
     qr = common.get_collection('LMS_SurQuestionCategory').aggregate([
         {"$lookup": {
             "from": common.get_collection_name_with_schema('SYS_VW_ValueList'),
@@ -114,6 +119,16 @@ def get_list(args):
             "modified_by": "$modified_by",
             "created_by": "$created_by"
         }},
+        {
+            "$match": {
+                "$or": [{"category_name": {"$regex": searchText, "$options": 'i'}},
+                        {"category_name2": {"$regex": searchText, "$options": 'i'}},
+                        {"question_group_display": {"$regex": searchText, "$options": 'i'}},
+                        {"num_of_questions": {"$regex": searchText, "$options": 'i'}},
+                        {"created_on": {"$regex": searchText, "$options": 'i'}},
+                        {"ordinal": {"$regex": searchText, "$options": 'i'}}]
+            }
+        },
         {"$sort": common.aggregate_sort(sort)},
         {
             "$facet": {
@@ -143,14 +158,23 @@ def get_list(args):
         'items': []
     })(result)
 
+def get_data_tree(args):
+    ret = qmongo.models.LMS_SurQuestionCategory.aggregate
+    ret.project(
+        category_id=1,
+        category_name=1,
+    )
+    data = ret.get_list()
+    return data
+
 def insert_sur_question_category(data):
-    result = models.LMS_SurQuestionCategory().insert(data)
+    result = qmongo.models.LMS_SurQuestionCategory.insert(data)
     return result
 
 def update_sur_question_category(data):
     code = data['category_id']
     del data['category_id']
-    result = models.LMS_SurQuestionCategory().update(
+    result = qmongo.models.LMS_SurQuestionCategory.update(
         data,
         "category_id == {0}",
         code
@@ -159,7 +183,7 @@ def update_sur_question_category(data):
     return result
 
 def delete_sur_question_category(data):
-    result = models.LMS_SurQuestionCategory().delete(
+    result = qmongo.models.LMS_SurQuestionCategory.delete(
         "category_id in @id",
         id = [x['category_id'] for x in data]
     )
@@ -167,7 +191,7 @@ def delete_sur_question_category(data):
     return result
 
 def get_list_value_and_caption(data):
-    result = models.LMS_SurQuestionCategory().aggregate()\
+    result = qmongo.models.LMS_SurQuestionCategory.aggregate\
     .project(
         _id = 0,
         category_id = 1,

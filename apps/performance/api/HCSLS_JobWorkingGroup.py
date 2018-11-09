@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 from bson import ObjectId
+import qmongo
 import models
 import common
 from Query import JobWorkingGroup
@@ -23,7 +24,7 @@ def insert(args):
         if args['data'] != None:
             data =  set_dict_insert_data(args)
             if data.has_key('parent_code') and data['parent_code'] != None:
-                parent_job_working = models.HCSLS_JobWorkingGroup().aggregate().project(
+                parent_job_working = qmongo.models.HCSLS_JobWorkingGroup.aggregate.project(
                     level_code = 1, 
                     gjw_code = 1,
                     level = 1).match("gjw_code == {0}", data['parent_code']).get_item()
@@ -33,7 +34,7 @@ def insert(args):
             else:
                 data['level'] = 1
                 data['level_code'] = [data['gjw_code']]
-            ret  =  models.HCSLS_JobWorkingGroup().insert(data)
+            ret  =  qmongo.models.HCSLS_JobWorkingGroup.insert(data)
             lock.release()
             return ret
 
@@ -53,7 +54,7 @@ def update(args):
         if args['data'] != None:
             data =  set_dict_update_data(args)
             if data.has_key('parent_code') and data['parent_code'] != None:
-                parent_job_working = models.HCSLS_JobWorkingGroup().aggregate().project(
+                parent_job_working = qmongo.models.HCSLS_JobWorkingGroup.aggregate.project(
                     level_code = 1, 
                     gjw_code = 1,
                     level = 1).match("gjw_code == {0}", data['parent_code']).get_item()
@@ -64,7 +65,7 @@ def update(args):
                 data['level'] = 1
                 data['level_code'] = [args['data']['gjw_code']]
 
-            ret  =  models.HCSLS_JobWorkingGroup().update(
+            ret  =  qmongo.models.HCSLS_JobWorkingGroup.update(
                 data, 
                 "gjw_code == {0}", 
                 args['data']['gjw_code'])
@@ -120,7 +121,7 @@ def delete(args):
             #kiểm tra từ code hiện tại đến các cấp cha có group code nào đang được sử dụng không
             #Nếu có 'len(list_job_workig) > 0' return
             #Không có xử lí delete
-            list_job_workig = models.HCSLS_JobWorking().aggregate().project(job_w_code = 1, gjw_code = 1).match("gjw_code in {0}", [x["gjw_code"]for x in list_fiter]).get_list()
+            list_job_workig = qmongo.models.HCSLS_JobWorking.aggregate.project(job_w_code = 1, gjw_code = 1).match("gjw_code in {0}", [x["gjw_code"]for x in list_fiter]).get_list()
             if len(list_job_workig) > 0:
                 lock.release()
                 return dict(
@@ -128,7 +129,7 @@ def delete(args):
                     items = list_job_workig
                 )
             else:
-                ret  =  models.HCSLS_JobWorkingGroup().delete("gjw_code in {0}", list_group_code)
+                ret  =  qmongo.models.HCSLS_JobWorkingGroup.delete("gjw_code in {0}", list_group_code)
                 lock.release()
                 return ret
 

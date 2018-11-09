@@ -1,191 +1,141 @@
-﻿<div>
-   <div class="col-md-2 col-sm-2"></div>
-  <div class="col-md-10 col-sm-10">
-    <div class="form-group zb-form-group">
-       <!--Nguon dinh danh Tài liệu-->
-       <label for="inputEmp_Train_Mode_Name" class="col-sm-4 zb-form-label">${get_res('allow_anonymous_posts','Allow Anonymous Post')}</label>
-       <div class="col-sm-8">
-          <div style="display: inline-flex;">
-             <div class="radio radio-success">
-                <input type="radio" name="radCourse12" ng-value="dt_true" id="idradCourse0"
-                   ng-model="entity.allow_anonymous_posts">
-                <label for="idradCourse0">
-                <span>${get_res('yes_related','Yes')}</span>
-                </label>
-             </div>
-             <div class="radio radio-success" style="margin-left: 136px;">
-                <input type="radio" name="radCourse12" ng-value="dt_false" id="idradCourse1"
-                   ng-model="entity.allow_anonymous_posts">
-                <label for="idradCourse1">
-                <span>${get_res('no_related','No')}</span>
-                </label>
-             </div>
-          </div>
-       </div>
-    </div>
-    <div class="form-group zb-form-group">
-       <!--Nguon dinh danh Tài liệu-->
-       <label for="inputEmp_Train_Mode_Name" class="col-sm-4 zb-form-label">${get_res('allow_attachment_files','Allow Attachment Files')}</label>
-       <div class="col-sm-8">
-          <div style="display: inline-flex;">
-             <div class="radio radio-success">
-                <input type="radio" name="idradCourse11" ng-value="dt_true" id="idradCourse2"
-                   ng-model="entity.allow_attachment_files">
-                <label for="idradCourse2">
-                <span>${get_res('yes_related','Yes')}</span>
-                </label>
-             </div>
-             <div class="radio radio-success" style="margin-left: 136px;">
-                <input type="radio" name="idradCourse11" ng-value="dt_false" id="idradCourse3"
-                   ng-model="entity.allow_attachment_files">
-                <label for="idradCourse3">
-                <span>${get_res('no_related','No')}</span>
-                </label>
-             </div>
-          </div>
-       </div>
-    </div>
-    <div class="form-group zb-form-group" ng-show="entity.allow_attachment_files" style="height:43px">
-       <!--Mô tả tài liệu-->
-       <div class="col-sm-4"></div>
-       <div class="col-sm-8" style="padding: 0">
-          <div>
-             <div class="col-md-2" style="padding:0">
-                 <p style="font-size:13px;text-align:center;color:rgb(237,125,49);font-style:italic;margin-top:10px">Limit Space:</p>
-             </div>
-             <div class="col-md-2" style="padding-right:0px; border-right: 1px solid #ddd;">
-                <input-number ng-model="entity.limit_space.number"></input-number>
-             </div>
-             <div class="col-md-2" style="padding-left:0px">
-                  <input-select ng-model="entity.limit_space.type" data-list="cbbQuestionPicking" data-value="value" data-caption="caption"></input-select>
-             </div>
-          </div>
-       </div>
-    </div>
-      <div class="form-group zb-form-group" style="height:43px">
-       <!--Mô tả tài liệu-->
-       <label for="input_Forum_Info" class="col-sm-4 zb-form-label">${get_res('max_number_posts','Maximum Number of Posts')}</label>
-       <div class="col-sm-8" style="padding: 0">
-          <div>
-             <div class="col-md-4" >
-                <input-select ng-model="entity.max_number_posts" data-list="cbbNegativeMarks" data-value="value" data-caption="caption"></input-select>
-             </div>
-          </div>
-       </div>
-    </div>
-       <div class="form-group zb-form-group">
-       <!--Nguon dinh danh Tài liệu-->
-       <label for="inputEmp_Train_Mode_Name" class="col-sm-4 zb-form-label">${get_res('allow_author_delete','Allow Author to Delete Own Posts')}</label>
-       <div class="col-sm-8">
-          <div style="display: inline-flex;">
-             <div class="radio radio-success">
-                <input type="radio" name="idradCourse3" ng-value="dt_true" id="idradCourse4"
-                   ng-model="entity.allow_author_delete">
-                <label for="idradCourse4">
-                <span>${get_res('all_posts','All Posts')}</span>
-                </label>
-             </div>
-             <div class="radio radio-success" style="margin-left: 103px;">
-                <input type="radio" name="idradCourse3" ng-value="dt_false" id="idradCourse5"
-                   ng-model="entity.allow_author_delete">
-                <label for="idradCourse5">
-                <span>${get_res('only_posts','Only Posts with me Replies')}</span>
-                </label>
-             </div>
-          </div>
-       </div>
-    </div>
-       <div class="form-group zb-form-group">
-       <!--Nguon dinh danh Tài liệu-->
-       <label for="inputEmp_Train_Mode_Name" class="col-sm-4 zb-form-label">${get_res('allow_author_edit','Allow Author to Edit Own Published Posts')}</label>
-       <div class="col-sm-8">
-          <div style="display: inline-flex;">
-             <div class="radio radio-success">
-                <input type="radio" name="idradCourse5" ng-value="dt_true" id="idradCourse6"
-                   ng-model="entity.allow_author_edit">
-                <label for="idradCourse6">
-                <span>${get_res('yes_related','Yes')}</span>
-                </label>
-             </div>
-             <div class="radio radio-success" style="margin-left: 136px;">
-                <input type="radio" name="idradCourse5" ng-value="dt_false" id="idradCourse7"
-                   ng-model="entity.allow_author_edit">
-                <label for="idradCourse7">
-                <span>${get_res('no_related','No')}</span>
-                </label>
-             </div>
-          </div>
-       </div>
-    </div>
-       <div class="form-group zb-form-group">
-       <!--Nguon dinh danh Tài liệu-->
-       <label for="inputEmp_Train_Mode_Name" class="col-sm-4 zb-form-label">${get_res('allow_post_tagging','Allow Post Tagging')}</label>
-       <div class="col-sm-8">
-          <div style="display: inline-flex;">
-             <div class="radio radio-success">
-                <input type="radio" name="idradCourse7" ng-value="dt_true" id="idradCourse8"
-                   ng-model="entity.allow_post_tagging">
-                <label for="idradCourse8">
-                <span>${get_res('yes_related','Yes')}</span>
-                </label>
-             </div>
-             <div class="radio radio-success" style="margin-left: 136px;">
-                <input type="radio" name="idradCourse7" ng-value="dt_false" id="idradCourse9"
-                   ng-model="entity.allow_post_tagging">
-                <label for="idradCourse9">
-                <span>${get_res('no_related','No')}</span>
-                </label>
-             </div>
-          </div>
-       </div>
-    </div>
-       <div class="form-group zb-form-group">
-       <!--Nguon dinh danh Tài liệu-->
-       <label for="inputEmp_Train_Mode_Name" class="col-sm-4 zb-form-label">${get_res('allow_user_reply','Allow Users to Reply with Quotes')}</label>
-       <div class="col-sm-8">
-          <div style="display: inline-flex;">
-             <div class="radio radio-success">
-                <input type="radio" name="radCourse8" ng-value="dt_true" id="idradCourse10"
-                   ng-model="entity.allow_user_reply">
-                <label for="idradCourse10">
-                <span>${get_res('yes_related','Yes')}</span>
-                </label>
-             </div>
-             <div class="radio radio-success" style="margin-left: 136px;">
-                <input type="radio" name="radCourse8" ng-value="dt_false" id="idradCourse11"
-                   ng-model="entity.allow_user_reply">
-                <label for="idradCourse11">
-                <span>${get_res('no_related','No')}</span>
-                </label>
-             </div>
-          </div>
-       </div>
-    </div>
-       <div class="form-group zb-form-group">
-       <!--Nguon dinh danh Tài liệu-->
-       <label for="inputEmp_Train_Mode_Name" class="col-sm-4 zb-form-label">${get_res('allow_member_thread','Allow Members to Create New Threads')}</label>
-       <div class="col-sm-8">
-          <div style="display: inline-flex;">
-             <div class="radio radio-success">
-                <input type="radio" name="radCourse9" ng-value="dt_true" id="idradCourse12"
-                   ng-model="entity.allow_member_thread">
-                <label for="idradCourse12">
-                <span>${get_res('yes_related','Yes')}</span>
-                </label>
-             </div>
-             <div class="radio radio-success" style="margin-left: 136px;">
-                <input type="radio" name="radCourse9" ng-value="dt_false" id="idradCourse13"
-                   ng-model="entity.allow_member_thread">
-                <label for="idradCourse13">
-                <span>${get_res('no_related','No')}</span>
-                </label>
-             </div>
-          </div>
-       </div>
-    </div>
+﻿
+<div class="col-xs-12 col-md-{{ 12 - col}} col-sm-{{ 12 - col}}">
+   <collapse-box class="zb-form-common" title="${get_res('General_Settings','General Settings')}">
+      <div class="col-md-6 col-xs-12">
+         <div class="form-group zb-form-group">
+            <label class="col-xs-5 col-sm-5 zb-form-label">${get_res('allow_attachment_files','Allow Attachment Files')}</label>
+            <div class="col-xs-7 col-sm-7">
+                <input-checkbox ng-model="entity.allow_attachment_files">
+            </div>
+         </div>
+         <div class="form-group zb-form-group">
+             <label class="col-xs-5 col-sm-5 zb-form-label">${get_res('file_size_limit','File Size Limit')}</label>
+               <div class="col-xs-7 col-sm-7">
+                  <input-select data-list="vllExamMode"
+                            ng-model="entity.limit_space" data-value="value"
+                            data-caption="caption" required/>
+               </div>
+         </div>
+         <div class="form-group zb-form-group">
+             <label class="col-xs-5 col-sm-5 zb-form-label">${get_res('max_number_posts','Maximum Number of Posts')}</label>
+               <div class="col-xs-7 col-sm-7">
+                  <input-select data-list="vllExamMode"
+                            ng-model="entity.max_number_posts" data-value="value"
+                            data-caption="caption"/>
+               </div>
+         </div>
+         <div class="form-group zb-form-group">
+             <label class="col-xs-5 col-sm-5 zb-form-label">${get_res('allow_author_delete','Allow Author to Delete Own Posts')}</label>
+               <div class="col-xs-7 col-sm-7">
+                  <input-select data-list="vllLMSAllowAuthorDelete"
+                            ng-model="entity.allow_author_delete" data-value="value"
+                            data-caption="caption"/>
+               </div>
+         </div>
+      </div>
 
-  </div>
+      <div class="col-md-6 col-xs-12">
+         <div class="form-group zb-form-group">
+            <label class="col-xs-9 col-sm-9 zb-form-label">${get_res('allow_author_edit','Allow Author to Edit Own Published Posts')}</label>
+            <div class="col-xs-3 col-sm-3">
+               <input-checkbox ng-model="entity.allow_author_edit">
+            </div>
+         </div>
+         <div class="form-group zb-form-group">
+            <label class="col-xs-9 col-sm-9 zb-form-label">${get_res('allow_post_tagging','Allow Post Tagging')}</label>
+            <div class="col-xs-3 col-sm-3">
+               <input-checkbox ng-model="entity.allow_post_tagging">
+            </div>
+         </div>
+         <div class="form-group zb-form-group">
+            <label class="col-xs-9 col-sm-9 zb-form-label">${get_res('allow_user_reply','Allow Users to Reply with Quotes')}</label>
+            <div class="col-xs-3 col-sm-3">
+               <input-checkbox ng-model="entity.allow_user_reply">
+            </div>
+         </div>
+         <div class="form-group zb-form-group">
+            <label class="col-xs-9 col-sm-9 zb-form-label">${get_res('allow_users_thread','Allow Users to Create New Threads')}</label>
+            <div class="col-xs-3 col-sm-3">
+               <input-checkbox ng-model="entity.allow_member_thread">
+            </div>
+         </div>
+         <div class="form-group zb-form-group">
+            <label class="col-xs-9 col-sm-9 zb-form-label">${get_res('allow_anonymous_posts','Allow Anonymous Post')}</label>
+            <div class="col-xs-3 col-sm-3">
+               <input-checkbox ng-model="entity.allow_anonymous_posts">
+            </div>
+         </div>
+      </div>
+   </collapse-box>
+
 </div>
+
+<div class="col-xs-12 col-md-{{ 12 - col_group}} col-sm-{{ 12 - col_group}}">
+   <collapse-box class="zb-form-common" title="${get_res('Forum_Subcriptions','Forum Subcriptions')}">
+      <div class="col-md-12 col-xs-12">
+          <div class="form-group zb-form-group">
+             <label class="col-xs-5 col-sm-5 zb-form-label">${get_res('subscription_type','Subcription Type')}</label>
+             <div class="col-xs-7 col-sm-7">
+                <input-checkbox ng-model="entity.subscription_type">
+             </div>
+          </div>
+          <div class="form-group zb-form-group">
+            <label class="col-xs-5 col-sm-5 zb-form-label">${get_res('allow_member_rate','Allow Members to Rate Pots')}</label>
+            <div class="col-xs-7 col-sm-7">
+               <input-checkbox ng-model="entity.allow_member_rate">
+            </div>
+          </div>
+         <div class="form-group zb-form-group">
+             <label class="col-xs-5 col-sm-5 zb-form-label">${get_res('forum_status','Forum Status')}</label>
+               <div class="col-xs-7 col-sm-7">
+                  <input-select data-list="vllLMSForumStatus"
+                            ng-model="entity.forum_status" data-value="value"
+                            data-caption="caption"/>
+               </div>
+         </div>
+      </div>
+   </collapse-box>
+</div>
+
+<div class="col-xs-12 col-md-{{ 12 - col_group}} col-sm-{{ 12 - col_group}}">
+   <collapse-box class="zb-form-common" title="${get_res('Forum_Moderation','Forum Moderation')}">
+      <div class="col-md-12 col-xs-12">
+          <div class="form-group zb-form-group">
+           <label class="col-xs-5 col-sm-5 zb-form-label">${get_res('force_moderation_post','Force Moderation of Posts')}</label>
+           <div class="col-xs-7 col-sm-7">
+               <input-checkbox ng-model="entity.force_moderation_post">
+           </div>
+        </div>
+         <div class="form-group zb-form-group">
+             <label class="col-xs-5 col-sm-5 zb-form-label">${get_res('moderation_type','Moderation Type')}</label>
+               <div class="col-xs-7 col-sm-7">
+                  <input-select data-list="vllLMSModerationType"
+                            ng-model="entity.type_moderation" data-value="value"
+                            data-caption="caption"/>
+               </div>
+         </div>
+         <div class="form-group zb-form-group">
+            <label  class="col-xs-5 col-sm-5 zb-form-label">${get_res('forum_administrator','Forum Admin')}</label>
+            <div class="col-xs-7 col-sm-7">
+               <combobox load-data="$root.$getComboboxData"
+                         ng-model="entity.forum_administrator"
+                         params="{key:'${encryptor.get_key('lms_cbb_emp')}', value:[{ '@lock': true }]}"
+                         on-search-change="false"
+                         on-search-press="true"
+                         placeholder=""
+                         init-data="$$$forum_admin_id.value"
+                         caption-field="{{$$$forum_admin_id.caption_field}}"
+                         paging="true"
+                         close-on-select="true"
+                         template-fields="$$$forum_admin_id.display_fields"
+                         reload="false">
+               </combobox>
+            </div>
+         </div>
+      </div>
+   </collapse-box>
+</div>
+
 <script>
     (function (scope) {
         

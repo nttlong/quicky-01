@@ -14,9 +14,22 @@
                   reload-on-change="true"
                   advanced-search="advancedSearch">
         <site-map>
-            <a><span>{{$root.currentFunction.default_name}}</span></a>
+            <span>{{$root.currentFunction.default_name}}</span>
             <span><i class="bowtie-icon bowtie-chevron-right"></i></span>
-            <span>{{currentFunction.default_name}}</span></site-map>
+            <a data-toggle="collapse" href="#dropdownFunction">
+                <span>{{currentFunction.default_name}}</span>
+                <span><i class="bowtie-icon bowtie-chevron-down"></i></span>
+                <div id="dropdownFunction" class="dropdown-content">
+                    <div class="filter">
+                        <input-text-icon ng-model="search" style="padding:3px;"/>
+                    </div>
+                    <div class="dropdown">
+                        <p ng-repeat="f in mapName | filter : search" ng-class="{focus : selectedFunction === f.function_id}" ng-click="selectFunc($event, f.function_id)">{{f.custom_name ? f.default_name : f.custom_name}}</p>
+                    </div>
+                </div>
+            </a>
+
+        </site-map>
         <extend-toolbar ng-if="$root.extendToolbar">
             <div style="display: grid; grid-template-columns: {{$root.isDisplay ? 'auto 1fr auto' : '1fr auto'}} ">
                 <div style="float: left;margin-right:5px;" ng-if="$root.isDisplay">
@@ -45,55 +58,55 @@
                         <button class="zb-btn dropdown-toggle" type="button" data-toggle="dropdown">
                             <i class="bowtie-ellipsis bowtie-icon"></i>
                         </button>
-                        <ul class="dropdown-menu">
+                        <ul class="dropdown-menu btn-menu">
                             <ng-container ng-if="$root.isDisplayManagermentButton">
-                                <li>
-                                <button class="zb-btn border-0" ng-click="viewDetailsLearningMaterial()">
-                                    <i class="bowtie-icon bowtie-ellipsis"></i>
-                                </button>
-                                <span>${get_res('view_detail','Details')}</span>
-                            </li>
-                            <li>
-                                <button class="zb-btn border-0" ng-click="editLearningMaterial()">
+                                <li ng-click="viewDetailsLearningMaterial()">
+                                    <button class="zb-btn border-0">
+                                        <i class="bowtie-icon bowtie-ellipsis"></i>
+                                    </button>
+                                    <span>${get_res('view_detail','Details')}</span>
+                                </li>
+                            <li ng-click="editLearningMaterial()">
+                                <button class="zb-btn border-0">
                                     <i class="bowtie-icon bowtie-watch-eye-fill"></i>
                                 </button>
                                 <span>${get_res('view_info','View')}</span>
                             </li>
-                            <li>
-                                <button class="zb-btn" ng-click="downLoadFileLearningMaterial()">
+                            <li ng-click="downLoadFileLearningMaterial()">
+                                <button class="zb-btn">
                                     <i class="bowtie-icon bowtie-transfer-download"></i>
                                 </button>
                                 <span>${get_res('view_download_file','Download file')}</span>
                             </li>
-                            <li>
-                                <button class="zb-btn border-0" ng-click="viewShareFileLearningMaterial()">
+                            <li ng-click="viewShareFileLearningMaterial()">
+                                <button class="zb-btn border-0">
                                     <i class="bowtie-icon bowtie-share"></i>
                                 </button>
                                 <span>${get_res('view_share_file','Share file')}</span>
                             </li>
-                            <li>
-                                <button class="zb-btn border-0" ng-click="viewPermissionLearningMaterialManagerment()">
+                            <li ng-click="viewPermissionLearningMaterialManagerment()">
+                                <button class="zb-btn border-0">
                                     <i class="glyphicon glyphicon-lock"></i>
                                 </button>
                                 <span>${get_res('view_assign_permission','Assign Permissions')}</span>
                             </li>
-                            <li>
-                                <button class="zb-btn border-0" ng-click="viewHistoryLearningMaterial()">
+                            <li ng-click="viewHistoryLearningMaterial()">
+                                <button class="zb-btn border-0">
                                     <i class="bowtie-icon bowtie-navigate-history"></i>
                                 </button>
                                 <span>${get_res('view_history','View History')}</span>
                             </li>
                             </ng-container>
                             <ng-container ng-if="$root.isDisplayFoldertButton">
-                                <li>
-                                    <button class="zb-btn border-0" ng-click="editLearningMaterial()">
+                                <li ng-click="editLearningMaterial()">
+                                    <button class="zb-btn border-0">
                                         <i class="bowtie-icon bowtie-edit-outline"></i>
                                     </button>
                                 <span>${get_res('view_edit','Edit')}</span>
                                 </li>
                             </ng-container>
-                            <li>
-                                <button class="zb-btn border-0" ng-click="delOneLearningMaterial()">
+                            <li ng-click="delOneLearningMaterial()">
+                                <button class="zb-btn border-0">
                                     <i class="bowtie-icon bowtie-trash"></i>
                                 </button>
                                 <span>${get_res('view_delete','Delete')}</span>

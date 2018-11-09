@@ -1,8 +1,10 @@
 # -*- coding: utf-8 -*-
 import models
+import qmongo
 import datetime
 import common
 import quicky
+from views.views import SYS_VW_ValueList;
 
 def get_list_approve_level_by_process_id(args):
     searchText = args['data'].get('search', '')
@@ -13,7 +15,7 @@ def get_list_approve_level_by_process_id(args):
     pageIndex = (lambda pIndex: pIndex if pIndex != None else 0)(pageIndex)
     pageSize = (lambda pSize: pSize if pSize != None else 20)(pageSize)
 
-    items = models.TM_SetupProcessApproveLevel().aggregate()
+    items = qmongo.models.TM_SetupProcessApproveLevel.aggregate
 
     # items.left_join(models.SYS_VW_ValueList(), "email_approve_to", "value", "email_approve")
     # items.match("(email_approve.list_name == @list_name and email_approve.language == @lan) or email_approve_to == @email_approve_to",
@@ -21,7 +23,7 @@ def get_list_approve_level_by_process_id(args):
     # items.left_join(models.SYS_VW_ValueList(), "email_reject_to", "value", "email_reject")
     # items.match("(email_reject.list_name == @list_name and email_reject.language == @lan) or email_reject_to == @email_reject_to",
     #             list_name="LSendEmail", lan=common.get_language(), email_reject_to = None)
-    items.left_join(models.SYS_VW_ValueList(), "approver_value", "value", "appr_val")
+    items.left_join(SYS_VW_ValueList(), "approver_value", "value", "appr_val")
     items.match("(appr_val.list_name == @list_name and appr_val.language == @lan) or approver_value == @approver_value",
         list_name="PERF_Approver", lan=common.get_language(), approver_value=None)
 
@@ -69,7 +71,7 @@ def get_list_approve_level_by_process_id(args):
 
 def insert(args):
     if args['data'] != None:
-        ret = models.LMS_SetupProcess().insert(args['data'])
+        ret = qmongo.models.LMS_SetupProcess.insert(args['data'])
         return ret
     return None
 
@@ -82,7 +84,7 @@ def update(args):
             if(args['data'].has_key('process_id')):
                 process_id = args['data']['process_id']
                 args['data'].pop('process_id')
-            ret = models.TM_SetupProcessApproveLevel().update(
+            ret = qmongo.models.TM_SetupProcessApproveLevel.update(
             args['data'],
             "rec_id == @rec_id",
             rec_id = args['data']['rec_id'])
@@ -91,7 +93,7 @@ def update(args):
 
 def delete(args):
     if args['data'] != None:
-        ret = models.LMS_SetupProcess().delete("process_id in {0}", [x["process_id"] for x in args['data']])
+        ret = qmongo.models.LMS_SetupProcess.delete("process_id in {0}", [x["process_id"] for x in args['data']])
         return ret
     return None
 

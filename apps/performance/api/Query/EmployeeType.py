@@ -1,10 +1,11 @@
 from .. import models
+import qmongo
 def display_list_employee_type():
-    ret=models.SYS_ValueList().aggregate().match("list_name == {0}", "LEmployeeType")
+    ret=qmongo.models.SYS_ValueList.aggregate.match("list_name == {0}", "LEmployeeType")
     ret.unwind("values")
-    ret.join(models.HCSLS_EmployeeType(),"values.value","true_type","el")
-    ret.left_join(models.auth_user_info(), "el.created_by", "username", "uc")
-    ret.left_join(models.auth_user_info(), "el.modified_by", "username", "um")
+    ret.join(qmongo.models.HCSLS_EmployeeType,"values.value","true_type","el")
+    ret.left_join(qmongo.models.auth_user_info, "el.created_by", "username", "uc")
+    ret.left_join(qmongo.models.auth_user_info, "el.modified_by", "username", "um")
     ret.project(
         _id = "el._id",
         emp_type_code="el.emp_type_code",

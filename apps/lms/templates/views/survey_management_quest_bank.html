@@ -21,7 +21,9 @@
             </div>
         </site-map>
         <extend-toolbar>
-            <button class="zb-btn zb-btn-o-orange">
+            <input-text-icon icon="bowtie-icon bowtie-search" ng-model="txtSearchText"
+                                    on-click="onSearchText"></input-text-icon>
+            <button class="zb-btn zb-btn-o-orange" style="margin-right: 5px">
                 <i class="bowtie-icon bowtie-search-filter"></i>
             </button>
         </extend-toolbar>
@@ -33,7 +35,7 @@
                 <div class="pull-left" style="padding-left:10px;">
                     <div class="hcs-left-side-department-tree-tool-bar-div-search">
                        <input class="hcs-left-side-department-tree-tool-bar-input-search" 
-                              placeholder="Filter" ng-model="$$tree.treeSearchText">
+                              placeholder="Filter" ng-model="$treeSearchtext">
                        <div class="hcs-left-side-department-tree-tool-bar-input-search-bot"></div>
                        <div class="hcs-left-side-department-tree-tool-bar-input-search-bot-icon">
                            <i class="glyphicon glyphicon-search"></i>
@@ -68,7 +70,8 @@
                                source="__valueList"
                                ng-model="groupCategory"
                                multi="false"
-                               />
+                               text-search="$treeSearchtext"
+                    ></list-view>
                 </div>
             </div>
         </div>

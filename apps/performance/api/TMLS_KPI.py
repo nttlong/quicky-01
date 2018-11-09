@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 from bson import ObjectId
+import qmongo
 import models
 from Query import KPI
 import logging
@@ -10,7 +11,7 @@ from hcs_authorization import action_type, authorization
 logger = logging.getLogger(__name__)
 global lock
 lock = threading.Lock()
-
+# from views.views import HCSLS_VW_JobWorkingKPI;
 @authorization.authorise(action = action_type.Action.READ)
 def get_list_with_searchtext(args):
     searchText = args['data'].get('search', '')
@@ -119,12 +120,18 @@ def get_list_with_searchtext(args):
         })(list(ret))
 
 @authorization.authorise(action = action_type.Action.READ)
+def get(args):
+    ret = list(common.get_collection("TMLS_KPI").find({"kpi_code":args['data']['kpi_code']}))
+    return (lambda x: x[0] if len(x) > 0 else {})(ret)
+
+@authorization.authorise(action = action_type.Action.READ)
 def get_by_kpi_code(args):
+    import qmongo
     try:
-        ret = models.TMLS_KPI().aggregate()
-        ret.lookup(models.HCSLS_VW_JobWorkingKPI(), "kpi_code", "kpi_code", "j_kpi")
-        ret.left_join(models.auth_user_info(), "created_by", "username", "uc")
-        ret.left_join(models.auth_user_info(), "modified_by", "username", "um")
+        ret = qmongo.models.TMLS_KPI.aggregate
+        ret.lookup(qmongo.views.HCSLS_VW_JobWorkingKPI, "kpi_code", "kpi_code", "j_kpi")
+        ret.left_join(qmongo.models.auth_user_info, "created_by", "username", "uc")
+        ret.left_join(qmongo.models.auth_user_info, "modified_by", "username", "um")
         ret.project(
             kpi_code = "kpi_code",
             kpi_name = "kpi_name",
@@ -247,7 +254,7 @@ def insert(args):
         ret = {}
         if args['data'] != None:
             data =  set_dict_insert_data(args)
-            ret  =  models.TMLS_KPI().insert(data)
+            ret  =  qmongo.models.TMLS_KPI.insert(data)
             if args['data'].has_key('job_working') and len(args['data']['job_working']) > 0:
                 insert_job_working_kpi(args['data']['job_working'], args['data'])
             lock.release()
@@ -268,7 +275,7 @@ def update(args):
         ret = {}
         if args['data'] != None:
             data =  set_dict_update_data(args)
-            ret  =  models.TMLS_KPI().update(
+            ret  =  qmongo.models.TMLS_KPI.update(
                 data, 
                 "kpi_code == {0}", 
                 args['data']['kpi_code'])
@@ -296,7 +303,7 @@ def delete(args):
         lock.acquire()
         ret = {}
         if args['data'] != None:
-            ret  =  models.TMLS_KPI().delete("kpi_code in {0}",[x["kpi_code"]for x in args['data']])
+            ret  =  qmongo.models.TMLS_KPI.delete("kpi_code in {0}",[x["kpi_code"]for x in args['data']])
             lock.release()
             return ret
 
@@ -311,7 +318,7 @@ def delete(args):
 def insert_job_working_kpi(job_w_code, kpi):
     try:
         if(len(job_w_code)) > 0:
-            exist = models.HCSLS_VW_JobWorkingKPI().aggregate().project(
+            exist = HCSLS_VW_JobWorkingKPI().aggregate().project(
                 rec_id = 1,
                 kpi_code = 1,
                 job_w_code = 1,

@@ -1,11 +1,12 @@
 # -*- coding: utf-8 -*-
 from bson import ObjectId
-import models
+import qmongo
 import common
 from Query import AprPeriod, AprPeriodEmpOut, AprPeriodRank
 from hcs_authorization import action_type,authorization
 import logging
 import threading
+from services import TMPER_AprPeriodService as service
 logger = logging.getLogger(__name__)
 global lock
 lock = threading.Lock()
@@ -24,14 +25,14 @@ def get_list_with_searchtext(args):
     ret=common.filter_lock(ret, args)
     if(sort != None):
         ret.sort(sort)
-      
+
     return ret.get_page(pageIndex, pageSize)
 
 @authorization.authorise(action=action_type.Action.READ)
 def get_item_by_period_year(args):
-    ret=models.TMPER_AprPeriod().aggregate()
-    ret.left_join(models.auth_user_info(), "created_by", "username", "uc")
-    ret.left_join(models.auth_user_info(), "modified_by", "username", "um")
+    ret=qmongo.models.TMPER_AprPeriod.aggregate
+    ret.left_join(qmongo.models.auth_user_info, "created_by", "username", "uc")
+    ret.left_join(qmongo.models.auth_user_info, "modified_by", "username", "um")
     ret.project(
         _id=1,
         apr_period="apr_period",
@@ -70,13 +71,13 @@ def save(args):
             item = get_item_by_period_year(args)
             if item!= None:
                 data = set_dict_update_data(args)
-                ret = models.TMPER_AprPeriod().update(
+                ret = qmongo.models.TMPER_AprPeriod.update(
                     data,
                     "_id == {0}",
                     ObjectId(item['_id']))
             else:
                 data =  set_dict_insert_data(args)
-                ret  =  models.TMPER_AprPeriod().insert(data)
+                ret  =  qmongo.models.TMPER_AprPeriod.insert(data)
             lock.release()
             return ret
 
@@ -99,12 +100,12 @@ def delete(args):
                 list_emp_out = AprPeriodEmpOut.get_apr_emp_out_by_apr_period_year(item['apr_period'], item['apr_year'])
                 list_rank = AprPeriodRank.get_apr_rank_by_apr_period_year(item['apr_period'], item['apr_year'])
                 if(len(list_emp_out) > 0):
-                    models.TMPER_AprPeriodEmpOut().delete("_id in {0}",
+                    qmongo.models.TMPER_AprPeriodEmpOut.delete("_id in {0}",
                                             [ObjectId(item_emp_out["_id"]) for item_emp_out in list_emp_out])
                 if(len(list_rank) > 0):
-                    models.TMPER_AprPeriodRank().delete("_id in {0}",
+                    qmongo.models.TMPER_AprPeriodRank.delete("_id in {0}",
                                                       [ObjectId(item_rank["_id"]) for item_rank in list_rank])
-                ret = models.TMPER_AprPeriod().delete("_id in {0}", [ObjectId(item["_id"])])
+                ret = qmongo.models.TMPER_AprPeriod.delete("_id in {0}", [ObjectId(item["_id"])])
             lock.release()
             return ret
 
@@ -143,3 +144,17 @@ def set_dict_update_data(args):
     #del ret_dict['_id']
     return ret_dict
 
+def get_give_target_list_main(args):
+    return service.get_give_target_list_main(args)
+
+@authorization.authorise(action=action_type.Action.READ)
+def get_empNotApr_by_apr_period(args):
+    return service.get_empNotApr_by_apr_period(args)
+
+@authorization.authorise(action=action_type.Action.WRITE)
+def update_apr_period_emp_out(args):
+    return service.update_apr_period_emp_out(args)
+
+@authorization.authorise(action=action_type.Action.WRITE)
+def update_apr_period_emp_out_multi(args):
+    return service.update_apr_period_emp_out_multi(args)

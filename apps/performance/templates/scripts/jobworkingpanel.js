@@ -125,6 +125,7 @@
         scope.detail.mapName = scope.handleData.detail.mapName;
         scope.currentFunction = scope.mapName[0];
         scope.detail.currentFunction = scope.detail.mapName[0];
+        scope.$root.$$$authoriseFunction.id = scope.$root.currentFunction.function_id;
         _comboboxData();
     }
 

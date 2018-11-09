@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 from bson import ObjectId
+import qmongo
 import models
 import common
 import datetime
@@ -7,10 +8,13 @@ from Query import FactorAppraisal
 from Query import JobWorking
 import logging
 import threading
+#from views.views import HCSLS_VW_JobWorkingFactorAppraisal
+from hcs_authorization import action_type, authorization
 logger = logging.getLogger(__name__)
 global lock
 lock = threading.Lock()
 
+@authorization.authorise(action = action_type.Action.READ)
 def get_list_with_searchtext(args):
     searchText = args['data'].get('search', '')
     pageSize = args['data'].get('pageSize', 0)
@@ -36,6 +40,7 @@ def get_list_with_searchtext(args):
         
     return ret.get_page(pageIndex, pageSize)
 
+@authorization.authorise(common = True)
 def delete_factor_appraisal(args):
     try:
         lock.acquire()
@@ -85,9 +90,11 @@ def delete_factor_appraisal(args):
         lock.release()
         raise(ex)
 
+@authorization.authorise(action = action_type.Action.READ)
 def get_factor_appraisal_by_factor_code(args):
+    import qmongo
     try:
-        ret = models.HCSLS_VW_JobWorkingFactorAppraisal().aggregate().project(
+        ret =qmongo.views.HCSLS_VW_JobWorkingFactorAppraisal.aggregate.project(
             job_w_code = 1,
             factor_code = 1
             ).match("factor_code == {0}", args['data']['factor_code'])
@@ -99,6 +106,7 @@ def get_factor_appraisal_by_factor_code(args):
     except Exception as ex:
         raise(ex)
 
+@authorization.authorise(common = True)
 def insert_factor_appraisal(args):
     try:
         #lock.acquire()
@@ -173,13 +181,14 @@ def insert_factor_appraisal(args):
         #lock.release()
         raise(ex)
 
+@authorization.authorise(action = action_type.Action.CREATE)
 def insert(args):
     try:
         lock.acquire()
         ret = {}
         if args['data'] != None:
             data =  set_dict_insert_data(args)
-            ret  =  models.TMLS_FactorAppraisal().insert(data)
+            ret  =  qmongo.models.TMLS_FactorAppraisal.insert(data)
             lock.release()
             return ret
 
@@ -191,13 +200,14 @@ def insert(args):
         lock.release()
         raise(ex)
 
+@authorization.authorise(action = action_type.Action.WRITE)
 def update(args):
     try:
         lock.acquire()
         ret = {}
         if args['data'] != None:
             data =  set_dict_update_data(args)
-            ret  =  models.TMLS_FactorAppraisal().update(
+            ret  = qmongo.models.TMLS_FactorAppraisal.update(
                 data, 
                 "factor_code == {0}", 
                 args['data']['factor_code'])
@@ -222,12 +232,13 @@ def update(args):
         lock.release()
         raise(ex)
 
+@authorization.authorise(action = action_type.Action.DELETE)
 def delete(args):
     try:
         lock.acquire()
         ret = {}
         if args['data'] != None:
-            ret  =  models.TMLS_FactorAppraisal().delete("factor_code in {0}",[x["factor_code"]for x in args['data']])
+            ret  =  qmongo.models.TMLS_FactorAppraisal.delete("factor_code in {0}",[x["factor_code"]for x in args['data']])
             lock.release()
             return ret
 
@@ -239,6 +250,7 @@ def delete(args):
         lock.release()
         raise(ex)
 
+@authorization.authorise(common = True)
 def set_dict_insert_data(args):
     ret_dict = dict()
 
@@ -257,6 +269,7 @@ def set_dict_insert_data(args):
 
     return ret_dict
 
+@authorization.authorise(common = True)
 def set_dict_update_data(args):
     ret_dict = set_dict_insert_data(args)
     del ret_dict['factor_code']

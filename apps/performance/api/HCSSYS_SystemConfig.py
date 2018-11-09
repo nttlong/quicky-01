@@ -4,12 +4,12 @@ import models
 import logging
 from hcs_authorization import action_type, authorization
 logger = logging.getLogger(__name__)
-
+import qmongo
 @authorization.authorise(action = action_type.Action.WRITE)
 def update(args):
     try:
         if args['data'] != None:
-            ret = models.HCSSYS_SystemConfig().update(
+            ret = qmongo.models.HCSSYS_SystemConfig.update(
             args['data'],
             "_id==@_id",
             dict(

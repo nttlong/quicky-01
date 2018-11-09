@@ -2,7 +2,7 @@
 import models
 import datetime
 import common
-
+import qmongo
 def get_list_process_approve_by_emp(args):
 
     searchText = args['data'].get('search', '')
@@ -13,8 +13,8 @@ def get_list_process_approve_by_emp(args):
     pageIndex = (lambda pIndex: pIndex if pIndex != None else 0)(pageIndex)
     pageSize = (lambda pSize: pSize if pSize != None else 20)(pageSize)
 
-    collection = models.TM_SetupProcessApproverEmp().aggregate()
-    collection.join(models.HCSEM_Employees(), "employee_code", "employee_code", "emp")
+    collection =qmongo.models.TM_SetupProcessApproverEmp.aggregate
+    collection.join(qmongo.models.HCSEM_Employees, "employee_code", "employee_code", "emp")
     collection.project(
         process_id="process_id",
         approve_level="approve_level",
@@ -23,7 +23,7 @@ def get_list_process_approve_by_emp(args):
         appover_code="appover_code",
         employee_name="concat(emp.last_name, ' ', emp.first_name)"
     )
-    collection.join(models.HCSSYS_Departments(), "department_code", "department_code", "dept")
+    collection.join(qmongo.models.HCSSYS_Departments, "department_code", "department_code", "dept")
     collection.project(
         process_id = 1,
         approve_level = 1,
@@ -77,7 +77,7 @@ def get_list_process_approve_by_emp(args):
 def get_list_selected_employee(args):
     from Query import Employee
 
-    list_emp_appr = models.TM_SetupProcessApproverEmp().aggregate().project(
+    list_emp_appr = qmongo.models.TM_SetupProcessApproverEmp.aggregate.project(
         employee_code = 1,
         process_id = 1
     ).match("process_id == {0}", args['data']['process_id']).get_list()
@@ -88,12 +88,12 @@ def get_list_selected_employee(args):
     return result
 
 def get_list_by_process_id(args):
-    ret = models.TM_SetupProcessApproverEmp().aggregate().project(
+    ret =qmongo.models.TM_SetupProcessApproverEmp.aggregate.project(
         process_id=1,
         approve_level=1,
         employee_code=1,
         appover_code=1
-    ).join(models.HCSEM_Employees(), "employee_code", "employee_code", "emp")\
+    ).join(qmongo.models.HCSEM_Employees, "employee_code", "employee_code", "emp")\
     .project(
         process_id="process_id",
         approve_level="approve_level",
@@ -103,7 +103,7 @@ def get_list_by_process_id(args):
         first_name="emp.first_name",
         last_name="emp.last_name",
         department_code="emp.department_code"
-    ).join(models.HCSSYS_Departments(), "department_code", "department_code", "dept")\
+    ).join(qmongo.models.HCSSYS_Departments, "department_code", "department_code", "dept")\
     .project(
         process_id="process_id",
         approve_level="approve_level",
@@ -141,7 +141,7 @@ def insert_by_emp(args):
 
 def update_by_emp(args):
     list_update = []
-    list_employee = models.TM_SetupProcessApproverEmp().aggregate().project(
+    list_employee = qmongo.models.TM_SetupProcessApproverEmp.aggregate.project(
         process_id=1,
         approve_level=1,
         employee_code=1,
@@ -187,7 +187,7 @@ def delete_emp(args):
     try:
         ret = {}
         if args['data'] != None:
-            ret  =  models.TM_SetupProcessApproverEmp().delete("process_id == @process_id and employee_code in @emp_code",
+            ret  =  qmongo.models.TM_SetupProcessApproverEmp.delete("process_id == @process_id and employee_code in @emp_code",
                                                                process_id = args['data']['process_id'],
                                                                emp_code = args['data']['employee_code'])
             return ret

@@ -1,13 +1,13 @@
 # -*- coding: utf-8 -*-
 from bson import ObjectId
-import models
+from qmongo import models
 import logging
 logger = logging.getLogger(__name__)
-
+import qmongo
 def update(args):
     try:
         if args['data'] != None:
-            ret = models.HCSSYS_SystemConfig().update(
+            ret = qmongo.models.HCSSYS_SystemConfig.update(
             args['data'],
             "_id==@_id",
             dict(
@@ -23,7 +23,7 @@ def update(args):
 
 def get_config(args):
     try:
-        return models.HCSSYS_SystemConfig().aggregate().get_list()[0]
+        return models.HCSSYS_SystemConfig.aggregate.get_item()
     except Exception as ex:
         logger.debug(ex)
         raise(ex)

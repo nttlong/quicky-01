@@ -8,6 +8,7 @@ import threading
 from hcs_authorization import action_type, authorization
 logger = logging.getLogger(__name__)
 global lock
+import qmongo
 lock = threading.Lock()
 
 @authorization.authorise(action = action_type.Action.READ)
@@ -41,7 +42,7 @@ def insert(args):
         ret = {}
         if args['data'] != None:
             data =  set_dict_insert_data(args)
-            ret  =  models.HCSLS_Discipline().insert(data)
+            ret  =  qmongo.models.HCSLS_Discipline.insert(data)
             lock.release()
             return ret
 
@@ -60,7 +61,7 @@ def update(args):
         ret = {}
         if args['data'] != None:
             data =  set_dict_update_data(args)
-            ret  =  models.HCSLS_Discipline().update(
+            ret  =  qmongo.models.HCSLS_Discipline.update(
                 data, 
                 "disc_code == {0}", 
                 args['data']['disc_code'])
@@ -85,7 +86,7 @@ def delete(args):
         lock.acquire()
         ret = {}
         if args['data'] != None:
-            ret  =  models.HCSLS_Discipline().delete("disc_code in {0}",[x["disc_code"]for x in args['data']])
+            ret  =  qmongo.models.HCSLS_Discipline.delete("disc_code in {0}",[x["disc_code"]for x in args['data']])
             lock.release()
             return ret
 

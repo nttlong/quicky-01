@@ -98,7 +98,7 @@
         }
     };
 
-    scope.objSearch = {
+    scope.$parent.$parent.$parent.objSearch = {
         $$$modelSearch: null,
         onSearch: onSearch
     }

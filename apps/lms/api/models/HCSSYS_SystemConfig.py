@@ -3,10 +3,7 @@ import datetime
 import base
 import threading
 _hasCreated=False
-def HCSSYS_SystemConfig():
-    global _hasCreated
-    if not _hasCreated:
-        helpers.extent_model(
+helpers.extent_model(
             "HCSSYS_SystemConfig",
             "base",
             [],
@@ -46,7 +43,9 @@ def HCSSYS_SystemConfig():
             dec_place_currency=helpers.create_field("numeric"),
             default_language=helpers.create_field("text")
         )
-
+def HCSSYS_SystemConfig():
+    global _hasCreated
+    if not _hasCreated:
         _hasCreated=True
     ret = db_context.collection("HCSSYS_SystemConfig")
 

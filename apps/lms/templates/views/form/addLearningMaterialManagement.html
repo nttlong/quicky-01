@@ -1,6 +1,7 @@
 ﻿﻿﻿
 <%!
     #_style="width:200px;"
+    __style_modal_body = "max-height:100%;"
 %>
 <!--style dropzone-->
 <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/dropzone/4.3.0/dropzone.css'>
@@ -10,9 +11,13 @@
     border-radius: 5px;
     border: 2px dashed rgb(0, 135, 247);
     border-image: none;
-    max-width: 500px;
-    margin-left: auto;
-    margin-right: auto;
+    min-width:auto !important;
+    min-height:auto !important;
+    padding-top:2px;
+    padding-right:0px;
+    padding-left:0px;
+    padding-bottom:0px;
+    height:46px;
 }
 .relation-rows {
     color: #23527c;
@@ -20,26 +25,58 @@
 }
 .relation-rows:hover {
     color: black;
-    
+}
+.outer{
+        height: 100%;
+        display: table;
+        width:100%
+    }
+.zb-form-common.zb-collapse-box,.dataTables_wrapper.form-inline dt-bootstrap no-footer,
+.dataTables_wrapper.form-inline.dt-bootstrap.no-footer,
+.dataTables_wrapper.form-inline.dt-bootstrap.no-footer > .row:nth-child(2),
+.dataTables_wrapper.form-inline.dt-bootstrap.no-footer > .row:nth-child(2) > [class*="col-"],
+.dataTables_scroll{
+    height:100%;
+}
+.dataTables_scrollBody{
+    height:calc(100% - 35px) !important;
+}
+.zb-content.hcs-zb-content-custom{
+    height:calc(100% - 72px);
+}
+.outer{
+    display:table;
+}
+.inner-title{
+    width:100%;
+    display:table-row;
+}
+.inner-content{
+    width:100%;
+    height:100%;
+    display:table-row
+}
+.dropzone .dz-message{
+    margin:unset;
+    font-size:12px;
 }
 </style>
 <%inherit file="../commons/dialog_save_close.html"/>
 
 <%block name="modal_body">
-            <div class="col-md-{{col_group}} col-sm-{{col_group}}">
-                <collapse-box class="zb-form-common" title="${get_res('add_new_material','Add a New Material')}">
-
+    <div class="hcs-modal-format outer">
+        <div class="col-md-12" style="height:100%;">
+            <div class="row">
                     <div class="col-md-6">
-                        <div class="col-md-{{col}}">
-                        <div class="form-group zb-form-group">
-                            <!--Mã Tài liệu, ID-->
-                            <label for="inputEmp_Train_Mode_Name" class="col-sm-5 zb-form-label">${get_res('id','ID')}</label>
-                            <div class="col-sm-7">
-                                <input-text id="inputEmp_Train_Mode_Name" ng-model="entity.material_id" required>
-                            </div>
-                        </div>
-                    </div>
-                        <div class="col-md-{{col}}">
+                    <collapse-box class="zb-form-common" title="${get_res('general_information','General Information')}">
+                        <div class="col-md-12">
+                            <div class="form-group zb-form-group">
+                                    <!--Mã Tài liệu, ID-->
+                                    <label for="inputEmp_Train_Mode_Name" class="col-sm-5 zb-form-label">${get_res('id','ID')}</label>
+                                    <div class="col-sm-7">
+                                        <input-text id="inputEmp_Train_Mode_Name" ng-model="entity.material_id" required>
+                                    </div>
+                                </div>
                             <div class="form-group zb-form-group">
                                 <!--Tên Tài liệu-->
                                 <label for="inputEmp_Train_Mode_Name" class="col-sm-5 zb-form-label">${get_res('file_name','File Name')}</label>
@@ -47,18 +84,6 @@
                                     <input-text id="inputEmp_Train_Mode_Name" ng-model="entity.material_name" required>
                                 </div>
                             </div>
-                        </div>
-                        <div class="col-md-{{col}}">
-                            <div class="form-group zb-form-group">
-                                <!--Mô tả tài liệu-->
-                                <label for="inputEmp_Train_Mode_Name" class="col-sm-5 zb-form-label">${get_res('description','Description')}</label>
-                                <div class="col-sm-7">
-                                    <div class="clearblock" style="display:inline-block"></div>
-                                    <input-textarea rows="4" ng-model="entity.description" required></input-textarea>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-{{col}}">
                             <div class="form-group zb-form-group">
                                 <!--Nguon dinh danh Tài liệu-->
                                 <label for="inputEmp_Train_Mode_Name" class="col-sm-5 zb-form-label">${get_res('identifier','Identifier')}</label>
@@ -66,8 +91,13 @@
                                     <input-text id="inputEmp_Train_Mode_Name" ng-model="entity.identifier" required>
                                 </div>
                             </div>
-                        </div>
-                        <div class="col-md-{{col}}">
+                            <div class="form-group zb-form-group">
+                                <!--Nguon dinh danh Tài liệu-->
+                                <label for="inputEmp_Train_Mode_Name" class="col-sm-5 zb-form-label">${get_res('source','Source')}</label>
+                                <div class="col-sm-7">
+                                    <input-text id="inputEmp_Train_Mode_Name" ng-model="entity.source" >
+                                </div>
+                            </div>
                             <div class="form-group zb-form-group">
                                 <!--Tên Khóa học-->
                                 <label for="inputEmp_Train_Mode_Name" class="col-sm-5 zb-form-label">${get_res('material_type','Material Type')}</label>
@@ -75,46 +105,40 @@
                                   <input-select ng-model="entity.material_type" data-list="cbbLMSLMaterialType" data-value="caption" data-caption="caption" required />
                                 </div>
                             </div>
-                        </div>
-                        <div class="col-md-{{col}}">
                             <div class="form-group zb-form-group">
-                                <!--Tên Tác giả-->
-                                <label for="inputEmp_Train_Mode_Name" class="col-sm-5 zb-form-label">${get_res('author','Author')}</label>
+                                <!--Tên Khóa học-->
+                                <label for="inputEmp_Train_Mode_Name" class="col-sm-5 zb-form-label">${get_res('material_format','Material Format')}</label>
                                 <div class="col-sm-7">
-                                    <input-text id="inputEmp_Train_Mode_Name" ng-model="entity.author_name" >
+                                  <input-select ng-model="entity.material_format" data-list="cbbLMSLMaterialFormat" data-value="caption" data-caption="caption"  />
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-{{col}}">
+                    </collapse-box>
+                </div>
+                    <div class="col-md-6">
+                    <collapse-box class="zb-form-common" title="${get_res('file_and_description','File & Description')}">
+                         <div class="col-md-12">
+                             <!--Drag and drop file-->
                             <div class="form-group zb-form-group">
-                                <!--Tên nhà xuất bản-->
-                                <label for="inputEmp_Train_Mode_Name" class="col-sm-5 zb-form-label">${get_res('publisher','Publisher')}</label>
-                                <div class="col-sm-7">
-                                    <input-text id="inputEmp_Train_Mode_Name" ng-model="entity.publisher_name" >
-                                </div>
+                                <template-drag-drop limit-condition="[]"
+                                                current-item="entity.files"
+                                                mode-modify="__mode">
+                                </template-drag-drop>
                             </div>
-                        </div>
-                        <div class="col-md-{{col}}">
+                            <br/>
                             <div class="form-group zb-form-group">
-                                <!--Người tạo -->
-                                <label for="inputEmp_Train_Mode_Name" class="col-sm-5 zb-form-label">${get_res('creator','Creator')}</label>
-                                <div class="col-sm-7">
-                                    <input-text id="inputEmp_Train_Mode_Name" ng-model="entity.creator" disabled="disabled">
-                                </div>
+                                <!--Mô tả tài liệu-->
+                                <input-textarea rows="4" ng-model="entity.description"></input-textarea>
                             </div>
-                        </div>
-
-                        <div class="col-md-{{col}}">
-                            <div class="form-group zb-form-group">
-                                <!--Ngày tài liệu có hiệu lực-->
-                                <label for="inputEmp_Train_Mode_Name" class="col-sm-5 zb-form-label">${get_res('val_from','Valid from')}</label>
-                                <div class="col-sm-7">
-                                    <date-picker ng-model="entity.date_valid_from" data-format="{{$root.systemConfig.date_format}}" required/>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-{{col}}">
-                            <div class="form-group zb-form-group">
+                         </div>
+                    </collapse-box>
+                </div>
+                </div>
+            <div class="row">
+                    <div class="col-md-6">
+                    <collapse-box class="zb-form-common" title="${get_res('related_information','Related Information')}">
+                           <div class="col-md-12">
+                                <div class="form-group zb-form-group">
                                 <!--Danh mục-->
                                 <label for="inputEmp_Train_Mode_Name" class="col-sm-5 zb-form-label">${get_res('category','Category')}</label>
                                 <div class="col-sm-7" >
@@ -123,7 +147,7 @@
                                     </div>
                                     <combobox load-data="$root.$getComboboxData"
                                               ng-model="entity.category"
-					    					  params="{key:'${encryptor.get_key('cbb_lmsls_materialfolder')}', value:[{ '@lock': true }]}"
+                                              params="{key:'${encryptor.get_key('cbb_lmsls_materialfolderfollowparent')}', value:[{ '@lock': true },{'@parent_code':null}]}"
                                               on-search-change="false"
                                               on-search-press="true"
                                               placeholder=""
@@ -136,136 +160,180 @@
                                     </combobox>
                                 </div>
                             </div>
-                        </div>
-                        <div class="col-md-{{col}}">
-                            <div class="form-group zb-form-group">
-                                <!--Tên Khóa học-->
-                                <label for="inputEmp_Train_Mode_Name" class="col-sm-5 zb-form-label">${get_res('course','Course')}</label>
-                                <div class="col-sm-7">
-                                  <input-select ng-model="entity.course_name" data-list="cbbLMSLCourse" data-value="caption" data-caption="caption" />
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-{{col}}">
-                            <div class="form-group zb-form-group">
-                                <!--Coverage-->
-                                <label for="inputEmp_Train_Mode_Name" class="col-sm-5 zb-form-label">${get_res('coverage','Coverage')}</label>
-                                <div class="col-sm-7">
-                                     <input-text id="inputEmp_Train_Mode_Name" ng-model="entity.coverage" >
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-{{col}}">
-                            <div class="form-group zb-form-group">
-                                <!--Phân loại các mối quan hệ của tài liệu -->
-                                <label for="inputEmp_Train_Mode_Name2" class="col-sm-5 zb-form-label">${get_res('relation','Relation')}</label>
-                                <div class="col-sm-7" style="padding-bottom:50px">
-                                    <div class="pull-left" >
-                                    <span zb-required=""></span>
-                                    </div>
-                                    <div class="pull-right" style="padding-top: 3px;">
-                                    <span class="bowtie-icon bowtie-math-plus-circle-outline" ng-click="addRows()" style="cursor: pointer;"  >
-                                    </span>
-                                    <span class="bowtie-icon bowtie-math-multiply-box-outline" ng-click="delRows()" style="cursor: pointer;" >
-                                    </span>
-                                    </div>
-                                    <div class="col-sm-12 " ng-repeat="elem in entity.relations track by $index">
-                                        <div class="col-md-6 row" style=" padding: 0">
-                                          <input-select ng-model="elem.ref_relation"
-                                                        data-list="cbbLMSLRelation"
-                                                        data-value="value"
-                                                        data-caption="caption"
-                                                        ng-change="onChangeRelation"
-                                                        except="entity.relations_ref"/>
+                                <div class="form-group zb-form-group">
+                                            <!--Danh mục-->
+                                            <label for="inputEmp_Train_Mode_Name" class="col-sm-5 zb-form-label">${get_res('sub_category','Subcategory')}</label>
+                                            <div class="col-sm-7" >
+                                               <div class="pull-left" >
+                                                <span zb-required=""></span>
+                                                </div>
+                                                <combobox load-data="$root.$getComboboxData"
+                                                          ng-model="entity.sub_category"
+                                                          params="{key:'${encryptor.get_key('cbb_lmsls_materialfolderfollowparent')}', value:[{ '@lock': true },{'@parent_code':entity.category}]}"
+                                                          on-search-change="false"
+                                                          on-search-press="true"
+                                                          placeholder=""
+                                                          init-data="$$$sub_folder_id.value"
+                                                          caption-field="{{$$$sub_folder_id.caption_field}}"
+                                                          paging="true"
+                                                          close-on-select="true"
+                                                          template-fields="$$$sub_folder_id.display_fields"
+                                                          reload="true"">
+                                                </combobox>
+                                            </div>
                                         </div>
-                                       <div class="col-md-6 pull-right row" style=" padding: 0">
-                                          <input-text id="inputEmp_Train_Mode_Name" ng-model="elem.intro_relation">
+                                <div class="form-group zb-form-group">
+                                        <!--Tên Khóa học-->
+                                        <label for="inputEmp_Train_Mode_Name" class="col-sm-5 zb-form-label">${get_res('course','Course')}</label>
+                                        <div class="col-sm-7">
+                                          <!--<input-select ng-model="entity.course_name" data-list="cbbLMSLCourse" data-value="caption" data-caption="caption" />-->
+                                            <combobox load-data="$root.$getComboboxData"
+                                                          ng-model="entity.course_name"
+                                                          params="{key:'${encryptor.get_key('cbb_lmsls_materialfolderfollowparent')}', value:[{ '@lock': true },{'@parent_code':'Parent 2'}]}"
+                                                          on-search-change="false"
+                                                          on-search-press="true"
+                                                          placeholder=""
+                                                          init-data="$$$folder_id.value"
+                                                          caption-field="{{$$$folder_id.caption_field}}"
+                                                          paging="true"
+                                                          close-on-select="true"
+                                                          template-fields="$$$folder_id.display_fields"
+                                                          reload="false">
+                                                </combobox>
                                         </div>
-
-                                        <br/>
                                     </div>
-
+                                <div class="form-group zb-form-group">
+                                            <!--Phân loại các ngôn ngữ -->
+                                            <label for="inputEmp_Train_Mode_Name" class="col-sm-5 zb-form-label">${get_res('lang','Language')}</label>
+                                            <div class="col-sm-7">
+                                              <input-select ng-model="entity.language" data-list="cbbLDefaultLanguage" data-value="value" data-caption="caption" />
+                                            </div>
+                                        </div>
+                                <div class="form-group zb-form-group">
+                                        <!--Coverage-->
+                                        <label for="inputEmp_Train_Mode_Name" class="col-sm-5 zb-form-label">${get_res('coverage','Coverage')}</label>
+                                        <div class="col-sm-7">
+                                             <input-text id="inputEmp_Train_Mode_Name" ng-model="entity.coverage" >
+                                        </div>
+                                    </div>
+                                <div class="form-group zb-form-group">
+                                            <!--Phân loại các quyền truy cập tài liệu -->
+                                            <label for="inputEmp_Train_Mode_Name" class="col-sm-5 zb-form-label">${get_res('right','Rights')}</label>
+                                            <div class="col-sm-7">
+                                                <input-text id="inputEmp_Train_Mode_Name" ng-model="entity.rights"  required>
+                                            </div>
+                                        </div>
+                           </div>
+                    </collapse-box>
+                </div>
+                    <div class="col-md-6">
+                    <collapse-box class="zb-form-common" title="${get_res('resource_information','Resource Information')}">
+                        <div class="col-md-12">
+                            <div class="form-group zb-form-group">
+                                <!--Tên Tác giả-->
+                                <label for="inputEmp_Train_Mode_Name" class="col-sm-5 zb-form-label">${get_res('author','Author')}</label>
+                                <div class="col-sm-7">
+                                    <input-text id="inputEmp_Train_Mode_Name" ng-model="entity.author_name" >
+                                </div>
+                            </div>
+                            <div class="form-group zb-form-group">
+                                <!--Tên nhà xuất bản-->
+                                <label for="inputEmp_Train_Mode_Name" class="col-sm-5 zb-form-label">${get_res('publisher','Publisher')}</label>
+                                <div class="col-sm-7">
+                                    <input-text id="inputEmp_Train_Mode_Name" ng-model="entity.publisher_name" >
+                                </div>
+                            </div>
+                             <div class="form-group zb-form-group">
+                                <!--Ngày xuất bản-->
+                                <label for="inputEmp_Train_Mode_Name" class="col-sm-5 zb-form-label">${get_res('date_pub','Date Published')}</label>
+                                <div class="col-sm-7">
+                                    <date-picker ng-model="entity.publisher_date" data-format="{{$root.systemConfig.date_format}}" />
+                                </div>
+                            </div>
+                            <div class="form-group zb-form-group">
+                                <!--Người tạo -->
+                                <label for="inputEmp_Train_Mode_Name" class="col-sm-5 zb-form-label">${get_res('creator','Creator')}</label>
+                                <div class="col-sm-7">
+                                    <input-text id="inputEmp_Train_Mode_Name" ng-model="entity.creator" disabled="disabled">
+                                </div>
+                            </div>
+                             <div class="form-group zb-form-group">
+                                <!--Ngày tạo-->
+                                <label for="inputEmp_Train_Mode_Name" class="col-sm-5 zb-form-label">${get_res('date_cre','Date Created')}</label>
+                                <div class="col-sm-7">
+                                    <input-text id="inputEmp_Train_Mode_Name" ng-model="entity.submit_date | date:'dd/MM/yyyy'" disabled="disabled" >
+                                </div>
+                            </div>
+                            <div class="form-group zb-form-group">
+                                <!--Ngày tài liệu có hiệu lực-->
+                                <label for="inputEmp_Train_Mode_Name" class="col-sm-5 zb-form-label">${get_res('val_from','Valid from')}</label>
+                                <div class="col-sm-7">
+                                    <date-picker ng-model="entity.date_valid_from" data-format="{{$root.systemConfig.date_format}}" required/>
+                                </div>
+                            </div>
+                             <div class="form-group zb-form-group">
+                                <!--Ngày tài liệu hết hiệu lực-->
+                                <label for="inputEmp_Train_Mode_Name" class="col-sm-5 zb-form-label">${get_res('val_to','Valid to')}</label>
+                                <div class="col-sm-7">
+                                    <date-picker ng-model="entity.date_valid_to" data-format="{{$root.systemConfig.date_format}}" />
                                 </div>
                             </div>
                         </div>
+                    </collapse-box>
+                </div>
+                </div>
+            <div class="row">
+                    <div class="col-md-6" style="height:100%;">
+                        <collapse-box class="zb-form-common" title="${get_res('relation_list','Relation List')}">
+                            <table-data data-source="$$table.tableSource"
+                                    fields="$$table.tableFields"
+                                    type="MultiSelect"
+                                    paging="true"
+                                    page-length="100"
+                                    server-side="true"
+                                    press-enter="$$table.onSelectTableRow"
+                                    selected-items="$$table.selectedItems"
+                                    current-item="$$table.currentItem"
+                                    search-text="$$table.tableSearchText"
+                                    refresh-row="$$table.refreshDataRow">
+                                </table-data>
+                            <toolbar>
+                                <input-text-icon class-btn="zb-small-btn" icon="bowtie-icon bowtie-search"
+                                  on-click="onSearch"></input-text-icon>
+                               <button ng-click="addNewRelation()" class="zb-btn zb-btn-o-green zb-small-btn">
+                               <i class="bowtie-icon bowtie-math-plus"></i>
+                               </button>
+                               <button ng-click="editRelation()"  class="zb-btn zb-btn-o-blue zb-small-btn">
+                               <i class="bowtie-icon bowtie-edit-outline"></i>
+                               </button>
+                               <button ng-click="removeRelation()" class="zb-btn zb-btn-o-red zb-small-btn">
+                               <i class="bowtie-icon bowtie-trash"></i>
+                               </button>
+                               <button ng-click="refreshRelation()" class="zb-btn zb-small-btn">
+                               <i class="bowtie-icon bowtie-navigate-refresh"></i>
+                               </button>
+                            </toolbar>
+                        </collapse-box>
                     </div>
                     <div class="col-md-6">
-                       <div class="col-sm-{{col}}">
-                        <!--Drag and drop file-->
-                        <template-drag-drop limit-condition="[]"
-                                            current-item="entity.files"
-                                            mode-modify="__mode">
-                        </template-drag-drop>
-                        <br/>
-                    </div>
-                     <div class="col-md-{{col}}">
-                        <div class="form-group zb-form-group">
-                            <!--Nguon dinh danh Tài liệu-->
-                            <label for="inputEmp_Train_Mode_Name" class="col-sm-5 zb-form-label">${get_res('source','Source')}</label>
-                            <div class="col-sm-7">
-                                <input-text id="inputEmp_Train_Mode_Name" ng-model="entity.source" >
+                        <collapse-box class="zb-form-common" title="${get_global_res('Note_','Note')}">
+                            <div class="col-md-12">
+                                <div class="form-group zb-form-group">
+                                    <!--Mô tả tài liệu-->
+                                    <input-textarea rows="4" ng-model="entity.description"></input-textarea>
+                                </div>
+                                <div class="form-group zb-form-group">
+                                    <label for="DisplayInfo" class="col-xs-3 col-sm-3 zb-form-label">${get_global_res('create_and_modify','Tạo | Sửa')}</label>
+                                    <div class="col-xs-9 col-sm-9">
+                                        <input-text style="text-align:right;" value="{{ entity.created_on | date: $root.systemConfig.date_format}} {{entity.created_by}} | {{ entity.modified_on | date: $root.systemConfig.date_format}} {{entity.modified_by}}" ng-disabled="true">
+                                    </div>
+                                </div>
                             </div>
-                        </div>
+                        </collapse-box>
                     </div>
-                    <div class="col-md-{{col}}">
-                        <div class="form-group zb-form-group">
-                            <!--Tên Khóa học-->
-                            <label for="inputEmp_Train_Mode_Name" class="col-sm-5 zb-form-label">${get_res('material_format','Material Format')}</label>
-                            <div class="col-sm-7">
-                              <input-select ng-model="entity.material_format" data-list="LMSLMaterialFormat" data-value="caption" data-caption="caption"  />
-                            </div>
-                        </div>
-                    </div>
-                     <div class="col-md-{{col}}">
-                        <div class="form-group zb-form-group">
-                            <!--Ngày xuất bản-->
-                            <label for="inputEmp_Train_Mode_Name" class="col-sm-5 zb-form-label">${get_res('date_pub','Date Published')}</label>
-                            <div class="col-sm-7">
-                                <date-picker ng-model="entity.publisher_date" data-format="{{$root.systemConfig.date_format}}" />
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-{{col}}">
-                        <div class="form-group zb-form-group">
-                            <!--Ngày tạo-->
-                            <label for="inputEmp_Train_Mode_Name" class="col-sm-5 zb-form-label">${get_res('date_cre','Date Created')}</label>
-                            <div class="col-sm-7">
-                                <input-text id="inputEmp_Train_Mode_Name" ng-model="entity.submit_date | date:'dd/MM/yyyy'" disabled="disabled" >
-                            </div>
-                        </div>
-                    </div>
-                     <div class="col-md-{{col}}">
-                        <div class="form-group zb-form-group">
-                            <!--Ngày tài liệu hết hiệu lực-->
-                            <label for="inputEmp_Train_Mode_Name" class="col-sm-5 zb-form-label">${get_res('val_to','Valid to')}</label>
-                            <div class="col-sm-7">
-                                <date-picker ng-model="entity.date_valid_to" data-format="{{$root.systemConfig.date_format}}" />
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-{{col}}">
-                        <div class="form-group zb-form-group">
-                            <!--Phân loại các ngôn ngữ -->
-                            <label for="inputEmp_Train_Mode_Name" class="col-sm-5 zb-form-label">${get_res('lang','Language')}</label>
-                            <div class="col-sm-7">
-                              <input-select ng-model="entity.language" data-list="cbbLDefaultLanguage" data-value="value" data-caption="caption" />
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-{{col}}">
-                        <div class="form-group zb-form-group">
-                            <!--Phân loại các quyền truy cập tài liệu -->
-                            <label for="inputEmp_Train_Mode_Name" class="col-sm-5 zb-form-label">${get_res('right','Rights')}</label>
-                            <div class="col-sm-7">
-                                <input-text id="inputEmp_Train_Mode_Name" ng-model="entity.rights"  required>
-                            </div>
-                        </div>
-                    </div>
-
-
-                    </div>
-                </collapse-box>
+                </div>
             </div>
+    </div>
 </%block>
 
 <%block name="modal_script">
@@ -273,12 +341,14 @@
     (function (scope) {
         // List Relation
         scope.__mode = scope.$parent.mode;
+        scope.___mode = 0 ; //mode relation;
         scope.onResizeDialog = onResizeDialog;
         scope.col = 12;
         scope.col_group = 12;
         scope.col_conf_sal = 6;
         scope.title = scope.$parent.headerTitle;
         scope.customCbb = {};
+        console.log(scope.$parent.currentItem);
         var __entity = JSON.parse(JSON.stringify(scope.$parent.currentItem ? scope.$parent.currentItem : {}));
         //Mode 1: tạo mới, Mode 2: chỉnh sửa, Mode 3: sao chép
 
@@ -335,7 +405,7 @@
                 { "data": "download", "title": "${get_res('download_table_header','Download')}", "format": "checkbox" }
             ],
             "$$tableConfig" : {},
-            "tableSource": [],//_loadDataServerSide,
+            "tableSource": _loadDataServerSide,
             "onSelectTableRow" : function ($row) {
                 editDetail();
             },
@@ -351,9 +421,37 @@
             cbbApprover: [{}]
         }
         scope.SearchText = '';
+        scope.addNewRelation = addNewRelation;
+        scope.editRelation = editRelation;
+        scope.deleteRelation = deleteRelation;
+        scope.refreshRelation = refreshRelation;
+
+        function addNewRelation(){
+            ___mode = 1;
+            openDialog("${get_res('add_new_relation','Add new relation')}", 'form/partialform/addNewRelation/addNewRelation', function () { }, "addNewRelation");
+        }
+
+        function editRelation(){
+            if($$table.currentItem){
+                ___mode = 2;
+                openDialog("${get_res('edit_relation','Edit relation')}", 'form/partialform/addNewRelation/addNewRelation', function () { }, "editRelation");
+            }else{
+                $msg.message("${get_global_res('Notification','Thông báo')}", "${get_app_res('No_Row_Selected','Không có dòng được chọn')}", function () { });
+            }
+        }
+
+        function deleteRelation(){
+
+        }
+
+        function refreshRelation(){
+
+        }
+
         //Refesh table
         scope._tableData = _tableData;
         function _loadDataServerSide(fnReloadData, iPage, iPageLength, orderBy, searchText) {
+        debugger
             scope.$$tableConfig = {
                 fnReloadData: fnReloadData,
                 iPage: iPage,
@@ -374,6 +472,7 @@
             }
         };
         function _tableData(iPage, iPageLength, orderBy, searchText, callback) {
+        debugger
             var dataItem = [{
                 role: "System Admin",
                 full_control: true,
@@ -396,6 +495,7 @@
                 view: true,
                 download: true,
             }];
+
             var data = {
                 recordsTotal: dataItem.length,
                 recordsFiltered: dataItem.length,
@@ -440,7 +540,11 @@
          *
          * Thay đỗi kích thước form Dialog và các control trên form dialog
          */
+         var isFullSize = false;
+         scope.maxHeightDialog = "80vh";
         function onResizeDialog() {
+            isFullSize = !isFullSize;
+            scope.maxHeightDialog = isFullSize ? "100%" : "80vh";
             $dialog.fullScreen();
             scope.col = scope.col == 12 ? 6 : 12;
             scope.col_group = scope.col_group == 6 ? 8 : 6;
@@ -691,7 +795,7 @@
          * @param {string} id Id của form dialog, default = 'myModal'
          */
         function openDialog(title, path, callback, id = 'myModal') {
-
+        debugger
             //check tồn tại của form dialog theo id
             if ($('#' + id).length === 0) {
                 scope.headerTitle = title;
@@ -711,6 +815,7 @@
         //        }, 200);
         //    }
         //}, true)
+        var cacheMaterialDataFormat;
         loadValueList();
         function loadValueList() {
             services.api("${get_api_key('app_main.api.SYS_ValueList/get_list')}")
@@ -722,19 +827,22 @@
                     "LMSLCoverage",
                     "LMSLRelation",
                     "LMSLMaterialType",
-                    "LMSLMaterialFormat",
-
+                    "LMSMaterialFormat",
+                    "LMSMaterialRight",
+                    "LMSMaterialRelation",
                 ]
             })
             .done()
             .then(function (res) {
+            debugger
                 scope.cbbLDefaultLanguage = getValue(res.values, "LDefaultLanguage");
                 scope.cbbLMSLRights = getValue(res.values, "LMSLRights");
                 scope.cbbLMSLCourse = getValue(res.values, "LMSLCourse");
                 scope.cbbLMSLCoverage = getValue(res.values, "LMSLCoverage");
                 scope.cbbLMSLRelation = getValue(res.values, "LMSLRelation");
                 scope.cbbLMSLMaterialType = getValue(res.values, "LMSLMaterialType");
-                scope.cbbLMSLMaterialFormat = getValue(res.values, "LMSLMaterialFormat");
+                //scope.cbbLMSLMaterialFormat = getValue(res.values, "LMSFileFormat");
+                cacheMaterialDataFormat = getValue(res.values, "LMSMaterialFormat");
                 scope.$applyAsync();
                 function getValue(response, listName) {
                     return _.findWhere(response, { "list_name": listName }) ? _.findWhere(response, { "list_name": listName }).values : [];
@@ -774,16 +882,25 @@
         }
 
         function _getDataInitCombobox() {
+        debugger
 			scope.$root.$getInitComboboxData(scope,
-				{
-                    "key": "${encryptor.get_key('cbb_lmsls_materialfolder')}",
-                    "code": scope.entity && scope.entity.hasOwnProperty('category')? scope.entity.category: null,
-                    "alias": "$$$folder_id"
-                }
+				[
+				    {
+                        "key": "${encryptor.get_key('cbb_lmsls_materialfolder')}",
+                        "code": (scope.entity && scope.entity.hasOwnProperty('category') && scope.entity.category) ? scope.entity.category: null,
+                        "alias": "$$$folder_id"
+                    },
+                    {
+                        "key":"${encryptor.get_key('cbb_lmsls_materialfolder')}",
+                        "code":(scope.entity && scope.entity.hasOwnProperty('sub_category') && scope.entity.sub_category) ? scope.entity.sub_category: null,
+                        "alias":"$$$sub_folder_id"
+                    }
+				]
 			);
 		}
         _getDataInitCombobox();
-        scope.$watch("entity.category", function () {
+
+        scope.$watch("entity.category", function (val) {
             if (scope.entity.category) {
                 services.api("${get_api_key('app_main.api.LMSLS_MaterialFolder/get_level_code_by_folder_id')}")
                     .data({
@@ -796,6 +913,16 @@
 
                         scope.entity.level_code = res.items[0].level_code
                     })
+                    debugger
+            }
+        })
+
+        scope.$watch("entity.material_type",function(val){
+        debugger
+            if(val){
+                scope.cbbLMSLMaterialFormat = _.where(cacheMaterialDataFormat,{"type":val}) ? _.where(cacheMaterialDataFormat,{"type":val}) : [];
+                scope.entity.material_format = scope.cbbLMSLMaterialFormat && scope.cbbLMSLMaterialFormat.length > 0 ? scope.cbbLMSLMaterialFormat[0].caption : null;
+                scope.$apply();
             }
         })
 

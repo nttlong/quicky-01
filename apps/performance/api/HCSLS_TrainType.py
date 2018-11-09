@@ -9,7 +9,7 @@ from hcs_authorization import action_type, authorization
 logger = logging.getLogger(__name__)
 global lock
 lock = threading.Lock()
-
+import qmongo
 @authorization.authorise(action = action_type.Action.READ)
 def get_list_with_searchtext(args):
     searchText = args['data'].get('search', '')
@@ -41,7 +41,7 @@ def insert(args):
         ret = {}
         if args['data'] != None:
             data =  set_dict_insert_data(args)
-            ret  =  models.HCSLS_TrainType().insert(data)
+            ret  =   qmongo.models.HCSLS_TrainType.insert(data)
             lock.release()
             return ret
 
@@ -60,7 +60,7 @@ def update(args):
         ret = {}
         if args['data'] != None:
             data =  set_dict_update_data(args)
-            ret  =  models.HCSLS_TrainType().update(
+            ret  =  qmongo.models.HCSLS_TrainType.update(
                 data, 
                 "train_mode_code == {0}", 
                 args['data']['train_mode_code'])
@@ -85,7 +85,7 @@ def delete(args):
         lock.acquire()
         ret = {}
         if args['data'] != None:
-            ret  =  models.HCSLS_TrainType().delete("train_mode_code in {0}",[x["train_mode_code"]for x in args['data']])
+            ret  =  qmongo.models.HCSLS_TrainType.delete("train_mode_code in {0}",[x["train_mode_code"]for x in args['data']])
             lock.release()
             return ret
 

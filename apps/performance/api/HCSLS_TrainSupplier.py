@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 from bson import ObjectId
+import qmongo
 import models
 import common
 from Query import TrainSupplier
@@ -46,7 +47,7 @@ def insert(args):
         ret = {}
         if args['data'] != None:
             data =  set_dict_insert_data(args)
-            ret  =  models.HCSLS_TrainSupplier().insert(data)
+            ret  = qmongo.models.HCSLS_TrainSupplier.insert(data)
             lock.release()
             return ret
 
@@ -65,7 +66,7 @@ def update(args):
         ret = {}
         if args['data'] != None:
             data =  set_dict_update_data(args)
-            ret  =  models.HCSLS_TrainSupplier().update(
+            ret  =  qmongo.models.HCSLS_TrainSupplier.update(
                 data, 
                 "tr_supplier_code == {0}", 
                 args['data']['tr_supplier_code'])
@@ -90,7 +91,7 @@ def delete(args):
         lock.acquire()
         ret = {}
         if args['data'] != None:
-            ret  =  models.HCSLS_TrainSupplier().delete("tr_supplier_code in {0}",[x["tr_supplier_code"]for x in args['data']])
+            ret  =  qmongo.models.HCSLS_TrainSupplier.delete("tr_supplier_code in {0}",[x["tr_supplier_code"]for x in args['data']])
             lock.release()
             return ret
 

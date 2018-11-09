@@ -1,8 +1,9 @@
 from .. import models
+import qmongo
 def data_access_domain():
-    ret=models.SYS_ValueList().aggregate().match("list_name == {0}", "LAccessDomain")
+    ret=qmongo.models.SYS_ValueList.aggregate.match("list_name == {0}", "LAccessDomain")
     ret.unwind("values")
-    ret.join(models.HCSSYS_DataDomain(),"values.value","access_mode","dd")
+    ret.join(qmongo.models.HCSSYS_DataDomain,"values.value","access_mode","dd")
     ret.project(
         _id = "dd._id",
         dd_code="dd.dd_code",

@@ -33,7 +33,7 @@
                     <div class="col-sm-7">
                         <combobox load-data="$root.$getComboboxData"
                               ng-model="entity.role_code"
-                              params="{key:'${encryptor.get_key('cbb_ad_roles')}', value:[{ '@lock': true }]}"
+                              params="{key:'${encryptor.get_key('cbb_ad_roles_stop_column')}', value:[{ '@stop': true }]}"
                               on-search-change="false"
                               on-search-press="true"
                               placeholder=""
@@ -70,8 +70,8 @@
     </div>
     <div class="col-md-{{ 12 - col_group }} col-sm-{{ 12 - col_group }}">
         <collapse-box class="zb-form-common" title="${get_global_res('Note','Ghi chú')}">
-            <div class="form-group zb-form-group">
-                <div class="col-sm-12">
+            <div class="col-sm-12">
+                <div class="form-group zb-form-group">
                     <!--Ghi chú-->
                     <input-textarea rows="7" ng-model="entity.description"></input-textarea>
                 </div>
@@ -448,7 +448,7 @@
         (function _getDataInitCombobox() {
             scope.$root.$getInitComboboxData(scope,
                 {
-                    "key": "${encryptor.get_key('cbb_ad_roles')}",
+                    "key": "${encryptor.get_key('cbb_ad_roles_stop_column')}",
                     "code": scope.entity
                         && scope.entity.hasOwnProperty('role_code')
                         ? scope.entity.role_code

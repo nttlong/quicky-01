@@ -119,9 +119,6 @@
 	scope.backPage = backPage;
 
     scope.onSearchTable = onSearchTable;
-    scope.onSearch = function(val){
-        alert("val");
-    }
     function onSearchTable(val){
         scope.tableSearchText = val;
         scope.$apply();

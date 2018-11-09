@@ -38,13 +38,11 @@
     scope.onImport = onImport;
 
     function onSearch(val){
-        debugger
         scope.tableSearchText = val;
         scope.$apply();
     }
 
     function _loadDataServerSide(fnReloadData, iPage, iPageLength, orderBy, searchText) {
-    debugger
         scope.$$tableConfig = {
             fnReloadData: fnReloadData,
             iPage: iPage,
@@ -68,13 +66,12 @@
     };
 
     function _tableData(iPage, iPageLength, orderBy, searchText, callback) {
-    debugger
         var sort = {};
         $.each(orderBy, function (i, v) {
             sort[v.columns] = (v.type === "asc") ? 1 : -1;
         });
         sort[orderBy[0].columns] =
-            services.api("${get_api_key('app_main.api.TMPER_AprPeriodEmpOut/get_list_with_searchtext')}")
+            services.api("${get_api_key('app_main.api.TMPER_AprPeriod/get_empNotApr_by_apr_period')}")
                 .data({
                     "apr_period": scope.$parent.mode == 1 ? scope.$parent.apr_period_now : scope.$parent.Re_Map_Period(scope.$parent.entity.apr_period),
                     "apr_year": scope.$parent.mode == 1 ? scope.$parent.apr_year_now : scope.$parent.entity.apr_year,
@@ -85,6 +82,7 @@
                 })
                 .done()
                 .then(function (res) {
+                    scope.apr_period_emp_out = JSON.parse(JSON.stringify(res.items));
                     var data = {
                         recordsTotal: res.total_items,
                         recordsFiltered: res.total_items,
@@ -105,16 +103,13 @@
     };
 
     function onAdd() {
-        debugger
 
         scope.entity = {};
         scope.entity.list_nv = [];
         var frm = lv.FormSearch(scope, "$$$perf_cbb_employees");
         frm.EmployeeFilter(scope.entity, "list_nv", "${get_res('job_w_change','CDCV có thể thuyên chuyển')}", true);
         frm.openDialog;
-        debugger
         frm.accept(function () {
-        debugger
             console.log("@@@@", scope.entity.list_nv);
             // call server to get multi nv by emp_code and insert data to TMPER_AprPeriodEmpOut
                 // => generate department_code and job_w_code, apr_year, apr_period
@@ -150,7 +145,6 @@
                     .done()
                     .then(function (res) {
                         if (res.deleted > 0) {
-                        debugger
                             _tableData(scope.$$tableConfig.iPage, scope.$$tableConfig.iPageLength, scope.$$tableConfig.orderBy, scope.$$tableConfig.SearchText, scope.$$tableConfig.fnReloadData);
                             $msg.alert("${get_global_res('Handle_Success','Thao tác thành công')}", $type_alert.INFO);
                             scope.$applyAsync();
@@ -164,7 +158,6 @@
     };
 
     function onEdit() {
-    debugger
         if (scope.currentItem || scope.selectedItems.length > 0) {
             scope.mode = 2;
             (scope.selectedItems.length == 1 || scope.selectedItems.length == 0) ?

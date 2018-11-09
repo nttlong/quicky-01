@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 from bson import ObjectId
 import models
+import qmongo
 from Query import KPIGroup
 import logging
 import threading
@@ -9,7 +10,9 @@ import datetime
 logger = logging.getLogger(__name__)
 global lock
 lock = threading.Lock()
+from hcs_authorization import action_type,authorization
 
+@authorization.authorise(action=action_type.Action.READ)
 def get_list_email_by_company(args):
     searchText = args['data'].get('search', '')
     pageSize = args['data'].get('pageSize', 0)
@@ -19,11 +22,11 @@ def get_list_email_by_company(args):
     pageIndex = (lambda pIndex: pIndex if pIndex != None else 0)(pageIndex)
     pageSize = (lambda pSize: pSize if pSize != None else 20)(pageSize)
     
-    ret = models.TM_EmailHR().aggregate()
-    ret.lookup(models.HCSEM_Employees(), "employee_code", "employee_code", "emp")
+    ret = qmongo.models.TM_EmailHR.aggregate
+    ret.lookup(qmongo.models.HCSEM_Employees, "employee_code", "employee_code", "emp")
     ret.unwind("emp", False)
-    ret.left_join(models.auth_user_info(), "created_by", "username", "uc")
-    ret.left_join(models.auth_user_info(), "modified_by", "username", "um")
+    ret.left_join(qmongo.models.auth_user_info, "created_by", "username", "uc")
+    ret.left_join(qmongo.models.auth_user_info, "modified_by", "username", "um")
     ret.project(
         employee_code = "employee_code",
         full_name="concat(emp.last_name, ' ', emp.first_name)",
@@ -48,6 +51,7 @@ def get_list_email_by_company(args):
 
     return ret.get_page(pageIndex, pageSize)
 
+@authorization.authorise(action=action_type.Action.READ)
 def get_list_email_by_dept(args):
     searchText = args['data'].get('search', '')
     pageSize = args['data'].get('pageSize', 0)
@@ -57,10 +61,10 @@ def get_list_email_by_dept(args):
     pageIndex = (lambda pIndex: pIndex if pIndex != None else 0)(pageIndex)
     pageSize = (lambda pSize: pSize if pSize != None else 20)(pageSize)
 
-    ret = models.TM_EmailHR().aggregate()
-    ret.lookup(models.HCSEM_Employees(), "employee_code", "employee_code", "emp")
+    ret =qmongo.models.TM_EmailHR.aggregate
+    ret.lookup(qmongo.models.HCSEM_Employees, "employee_code", "employee_code", "emp")
     ret.unwind("emp", False)
-    ret.lookup(models.HCSSYS_Departments(), "department_code", "department_code", "dept")
+    ret.lookup(qmongo.models.HCSSYS_Departments, "department_code", "department_code", "dept")
     ret.unwind("dept", False)
     ret.left_join(models.auth_user_info(), "created_by", "username", "uc")
     ret.left_join(models.auth_user_info(), "modified_by", "username", "um")
@@ -90,25 +94,28 @@ def get_list_email_by_dept(args):
 
     return ret.get_page(pageIndex, pageSize)
 
+@authorization.authorise(action=action_type.Action.READ)
 def check_using_dept(args):
-    find = models.TM_EmailHR().aggregate().project(
+    find =qmongo.models.TM_EmailHR.aggregate.project(
         employee_code = 1,
         department_code = 1
     ).match("employee_code in @employee_code and department_code != @department_code", employee_code = args['data'], department_code = None).get_list()
 
     return {"exist":(lambda x: True if x > 0 else False)(len(find))}
 
+@authorization.authorise(action=action_type.Action.READ)
 def check_using_by_com(args):
-    find = models.TM_EmailHR().aggregate().project(
+    find = qmongo.models.TM_EmailHR.aggregate.project(
         employee_code = 1,
         department_code = 1
     ).match("employee_code in @employee_code and department_code == @department_code", employee_code = args['data'], department_code = None).get_list()
 
     return {"exist":(lambda x: True if x > 0 else False)(len(find))}
 
+@authorization.authorise(action=action_type.Action.CREATE)
 def insert(args):
     try:
-        find = models.TM_EmailHR().aggregate().lookup(models.HCSEM_Employees(), "employee_code", "employee_code", "emp").project(
+        find = qmongo.models.TM_EmailHR.aggregate.lookup(qmongo.models.HCSEM_Employees, "employee_code", "employee_code", "emp").project(
             employee_code = "employee_code",
             email = "switch(case(emp.email!='',emp.email),'')"
         ).match("employee_code in @employee_code and department_code == @department_code", employee_code = args['data'], department_code = None).get_list()
@@ -148,15 +155,16 @@ def insert(args):
     except Exception as ex:
         raise (ex)
 
+@authorization.authorise(action=action_type.Action.CREATE)
 def insert_force(args):
     emp_codes = args['data']
 
-    find = models.HCSEM_Employees().aggregate().project(
+    find = qmongo.models.HCSEM_Employees.aggregateq.project(
         employee_code=1,
         email=1
     ).match("employee_code in {0}", emp_codes).get_list()
 
-    deleted = models.TM_EmailHR().delete("employee_code in {0}", emp_codes)
+    deleted = qmongo.models.TM_EmailHR.delete("employee_code in {0}", emp_codes)
 
     ret = None
 
@@ -190,22 +198,25 @@ def insert_force(args):
 
     return ret
 
+@authorization.authorise(action=action_type.Action.WRITE)
 def update(args):
     emp_code = args['data']['employee_code']
     del args['data']['employee_code']
     args['data']['modified_on'] = datetime.datetime.now()
     args['data']['modified_by'] = common.get_user_id()
-    rs = models.TM_EmailHR().update(args['data'], "employee_code == {0}", emp_code)
+    rs = qmongo.models.TM_EmailHR.update(args['data'], "employee_code == {0}", emp_code)
 
     return rs
 
+@authorization.authorise(action=action_type.Action.DELETE)
 def delete(args):
-    rs = models.TM_EmailHR().delete("employee_code in {0}", [x["employee_code"] for x in args['data']])
+    rs = qmongo.models.TM_EmailHR.delete("employee_code in {0}", [x["employee_code"] for x in args['data']])
     return rs
 
+@authorization.authorise(action=action_type.Action.CREATE)
 def insert_dept(args):
     try:
-        find = models.TM_EmailHR().aggregate().lookup(models.HCSEM_Employees(), "employee_code", "employee_code", "emp").project(
+        find = qmongo.models.TM_EmailHR.aggregate.lookup(qmongo.models.HCSEM_Employees, "employee_code", "employee_code", "emp").project(
             employee_code = "employee_code",
             email = "switch(case(emp.email!='',emp.email),'')",
             department_code = "department_code"
@@ -245,15 +256,16 @@ def insert_dept(args):
     except Exception as ex:
         raise(ex)
 
+@authorization.authorise(action=action_type.Action.CREATE)
 def insert_force_dept(args):
     emp_codes = args['data']['list']
 
-    find = models.HCSEM_Employees().aggregate().project(
+    find = qmongo.models.HCSEM_Employees.aggregate.project(
         employee_code=1,
         email=1
     ).match("employee_code in {0}", emp_codes).get_list()
 
-    deleted = models.TM_EmailHR().delete("employee_code in {0}", emp_codes)
+    deleted = qmongo.models.TM_EmailHR.delete("employee_code in {0}", emp_codes)
 
     ret = None
 

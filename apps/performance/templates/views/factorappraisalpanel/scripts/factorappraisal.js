@@ -7,9 +7,9 @@
         tableFields: [
             { "data": "factor_code", "title": "${get_res('factor_code_table_header','Mã')}" },
             { "data": "factor_name", "title": "${get_res('factor_name_table_header','Yếu tố')}" },
-            { "data": "weight", "title": "${get_res('weight_table_header','Trọng số')}" },
+            { "data": "weight", "format":"number: system", "title": "${get_res('weight_table_header','Trọng số')}" },
             { "data": "is_apply_all", "title": "${get_res('is_apply_all_table_header','Toàn cty')}", "format": "checkbox" },
-            { "data": "ordinal", "title": "${get_res('ordinal_table_header','Thứ tự')}" },
+            { "data": "ordinal", "format":"number: system", "title": "${get_res('ordinal_table_header','Thứ tự')}" },
             { "data": "lock", "title": "${get_res('lock_table_header','Ngưng sử dụng')}", "format": "checkbox" }
         ],
         $$tableConfig: {},

@@ -2,15 +2,16 @@
 #from bson import ObjectId
 import models
 import common
+import qmongo
 import datetime
 #import TM_SetupProcessApproveLevel
 
 def get_list_with_process_id(args):
     try:
         if args['data'] != None and args['data'].has_key('process_id'):
-            items = models.TM_SetupProcess().aggregate()
-            items.left_join(models.auth_user_info(), "created_by", "username", "uc")
-            items.left_join(models.auth_user_info(), "modified_by", "username", "um")
+            items = qmongo.models.TM_SetupProcess.aggregate
+            items.left_join(qmongo.models.auth_user_info, "created_by", "username", "uc")
+            items.left_join(qmongo.models.auth_user_info, "modified_by", "username", "um")
             items.project(
                 process_id=1,
                 process_name=1,
@@ -67,9 +68,9 @@ def get_list_with_searchtext(args):
     pageIndex = (lambda pIndex: pIndex if pIndex != None else 0)(pageIndex)
     pageSize = (lambda pSize: pSize if pSize != None else 20)(pageSize)
 
-    items = models.TM_SetupProcess().aggregate()
-    items.left_join(models.auth_user_info(), "created_by", "username", "uc")
-    items.left_join(models.auth_user_info(), "modified_by", "username", "um")
+    items = qmongo.models.TM_SetupProcess.aggregate
+    items.left_join(qmongo.models.auth_user_info, "created_by", "username", "uc")
+    items.left_join(qmongo.models.auth_user_info, "modified_by", "username", "um")
     items.project(
         process_id=1,
         process_name=1,
@@ -137,7 +138,7 @@ def insert(args):
                     "approve_level":range(args['data']['max_approve_level']).index(x) + 1,
                     "coeff": 1
                 })
-        ret = models.TM_SetupProcess().insert(args['data'])
+        ret = qmongo.models.TM_SetupProcess.insert(args['data'])
         return ret
     return None
 
@@ -173,7 +174,7 @@ def update(args):
                                 "approve_level":current_process['max_approve_level'] + range(max_level).index(x) + 1,
                                 "coeff": 1
                             })
-                        models.TM_SetupProcess().update(
+                            qmongo.models.TM_SetupProcess.update(
                             {
                                 "score_by_coeff": current_process['score_by_coeff']
                             },
@@ -185,7 +186,7 @@ def update(args):
                         max_level = current_process['max_approve_level'] - args['data']['max_approve_level']
                         for x in range(max_level):
                             current_process['score_by_coeff'].pop(current_process['max_approve_level'] - (range(max_level).index(x)))
-                        models.TM_SetupProcess().update(
+                            qmongo.models.TM_SetupProcess.update(
                             {
                                 "score_by_coeff": current_process['score_by_coeff']
                             },
@@ -194,7 +195,7 @@ def update(args):
                         )
 
                 args['data'].pop('process_id')
-            ret = models.TM_SetupProcess().update(
+            ret = qmongo.models.TM_SetupProcess.update(
             args['data'],
             "process_id==@process_id",
             dict(
@@ -205,7 +206,7 @@ def update(args):
 
 def delete(args):
     if args['data'] != None:
-        ret = models.TM_SetupProcess().delete("process_id in {0}", [x["process_id"] for x in args['data']])
+        ret = qmongo.models.TM_SetupProcess.delete("process_id in {0}", [x["process_id"] for x in args['data']])
         return ret
     return None
 
@@ -275,11 +276,11 @@ def generate_list_approve_by_max_approve_level(args):
                     args['data']['created_by'] = "admin" #models.auth_user_info()["login_account"]
                     args['data']['modified_on'] = None
                     args['data']['modified_by'] = None
-                    ret = models.TM_SetupProcessApproveLevel().insert(args['data'])
+                    ret = qmongo.models.TM_SetupProcessApproveLevel.insert(args['data'])
                     i += 1
                 return ret
             elif count_approve_level > max_approve_level: #giảm số cấp duyệt
-                ret = models.TM_SetupProcessApproveLevel().delete("approve_level > {0} and process_id == {1}", max_approve_level, int(args['data']['process_id']))
+                ret = qmongo.models.TM_SetupProcessApproveLevel.delete("approve_level > {0} and process_id == {1}", max_approve_level, int(args['data']['process_id']))
                 update_data = {}
                 for x in range(count_approve_level - max_approve_level):
                     update_data.update({"appover_code." + str(max_approve_level + range(count_approve_level - max_approve_level).index(x)): None})
@@ -305,7 +306,7 @@ def generate_list_approve_by_max_approve_level(args):
 
 def get_score_coeff_by_process_id(args):
     try:
-        return models.TM_SetupProcess().aggregate().project(
+        return qmongo.models.TM_SetupProcess.aggregate.project(
             process_id = 1,
             process_level_apply_for = 1,
             score_by = 1,
@@ -321,7 +322,7 @@ def update_score_by_coeff_by_process_id(args):
         del args['data']['process_id']
         if args['data']['score_by'] != 4:
             del args['data']['score_by_coeff']
-        ret = models.TM_SetupProcess().update(
+        ret = qmongo.models.TM_SetupProcess.update(
             args['data'],
             "process_id == @process",
             process = process_id

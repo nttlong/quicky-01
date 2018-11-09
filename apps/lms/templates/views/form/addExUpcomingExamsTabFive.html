@@ -1,13 +1,153 @@
 ﻿<div>
   
  <div>
-        <div class="col-md-2 col-sm-2">
-            </div>
-        <div class="col-md-10 col-sm-10">
+        <div class="col-md-12 col-xs-12">
+            <collapse-box class="zb-form-common" title="${get_res('Examination_Settings','Examination Settings')}">
+                <div class="col-xs-12 col-md-6">
+                    <div class="form-group zb-form-group">
+                        <label class="col-xs-5 zb-form-label">${get_res('show_result','Show Result in')}</label>
+                        <div class="col-xs-7">
+                            <input-select ng-click="onShowDecimalPlace()" ng-model="entity.show_result" data-list="cbbShowResult" data-value="value" data-caption="caption"></input-select>
+                        </div>
+                    </div>
+                    <div class="form-group zb-form-group">
+                        <label class="col-xs-5 zb-form-label">${get_res('customize','Customize decimal places')}</label>
+                        <div class="col-xs-7">
+                            <input-select ng-model="entity.customize" data-list="cbbCustomizeDecimal" data-value="value" data-caption="caption"></input-select>
+                        </div>
+                    </div>
+                    <div class="form-group zb-form-group">
+                        <label class="col-xs-5 zb-form-label">${get_res('minium_score','Minimum Passing Score')}</label>
+                           <div class="col-xs-7">
+                               <input-select ng-model="entity.minium_score" data-list="cbbNegativeMarks" data-value="caption" data-caption="caption"></input-select>
+                           </div>
+                    </div>
+                    <div class="form-group zb-form-group">
+                        <label class="col-xs-5 zb-form-label">${get_res('return_type','Result Type')}</label>
+                        <div class="col-xs-7">
+                            <combobox load-data="$root.$getComboboxData"
+                                    ng-model="entity.result_type"
+                                    params="{key:'${encryptor.get_key('cbb_HCSLS_Unit')}', value:[{ '@lock': true }]}"
+                                    on-search-change="false"
+                                    on-search-press="true"
+                                    placeholder=""
+                                    init-data="$$$cbb_HCSLS_Unit.value"
+                                    caption-field="{{$$$cbb_HCSLS_Unit.caption_field}}"
+                                    paging="true"
+                                    close-on-select="true"
+                                    template-fields="$$$cbb_HCSLS_Unit.display_fields"
+                                    reload="false">
+                            </combobox>
+                        </div>
+                    </div>
+                    <div class="form-group zb-form-group">
+                        <label class="col-xs-5 zb-form-label">${get_res('Minimum required score')}</label>
+                        <div class="col-xs-7">
+                            <input-select ng-model="entity.minimum_score" data-list="cbbResultType" data-value="value" data-caption="caption"></input-select>
+                        </div>
+                    </div>
+                    <div class="form-group zb-form-group">
+                        <label class="col-xs-5 col-sm-5 zb-form-label">${get_res('certificate_template','Certificate Template')}</label>
+                         <div class="col-xs-7 col-sm-7">
+                            <combobox load-data="$root.$getComboboxData"
+                                    ng-model="entity.certificate_template"
+                                    params="{key:'${encryptor.get_key('cbb_HCSLS_Unit')}', value:[{ '@lock': true }]}"
+                                    on-search-change="false"
+                                    on-search-press="true"
+                                    placeholder=""
+                                    init-data="$$$cbb_HCSLS_Unit.value"
+                                    caption-field="{{$$$cbb_HCSLS_Unit.caption_field}}"
+                                    paging="true"
+                                    close-on-select="true"
+                                    template-fields="$$$cbb_HCSLS_Unit.display_fields"
+                                    reload="false">
+                            </combobox>
+                        </div>
+                    </div>
+                    <div class="form-group zb-form-group">
+                        <label class="col-xs-5 zb-form-label">${get_res('display_result','Display Result')}</label>
+                        <div class="col-xs-7">
+                            <input-select ng-model="entity.display_result" data-list="cbbDisplayResult" data-value="value" data-caption="caption"></input-select>
+                        </div>
+                    </div>
+                    <div class="form-group zb-form-group">
+                        <label class="col-xs-5 zb-form-label">${get_res('ques_order','Question Order')}</label>
+                        <div class="col-xs-7">
+                            <input-select ng-model="entity.ques_order" data-list="cbbQuestionOrder" data-value="value" data-caption="caption"></input-select>
+                        </div>
+                    </div>
+                    <div class="form-group zb-form-group">
+                        <label class="col-xs-5 zb-form-label">${get_res('ques_dis','Question Display')}</label>
+                        <div class="col-xs-7">
+                            <input-select data-list="vllQuestionDisplay"
+                                           ng-model="entity.ques_dis" data-value="value"
+                                           data-caption="caption"/>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-12 col-md-6">
+                    <div class="form-group zb-form-group">
+                        <label class="col-xs-9 zb-form-label">${get_res('ques_navi','Allow Question Navigation during the exam')}</label>
+                        <div class="col-xs-3">
+                            <input-checkbox ng-model="entity.ques_navi" />
+                        </div>
+                    </div>
+                    <div class="form-group zb-form-group">
+                        <label class="col-xs-9 zb-form-label">${get_res('allow_candidates','Allow candidates to preview this exam')}</label>
+                        <div class="col-xs-3">
+                            <input-checkbox ng-model="entity.allow_candidates" />
+                        </div>
+                    </div>
+                    <div class="form-group zb-form-group">
+                        <label class="col-xs-9 zb-form-label">${get_res('preview_time','Add preview time to answer time')}</label>
+                        <div class="col-xs-3">
+                            <input-checkbox ng-model="entity.preview_time" />
+                        </div>
+                    </div>
+                     <div class="form-group zb-form-group">
+                        <label class="col-xs-9 zb-form-label">${get_res('text_high','Enable Text Highlighter')}</label>
+                        <div class="col-xs-3">
+                            <input-checkbox ng-model="entity.text_high" />
+                        </div>
+                    </div>
+                    <div class="form-group zb-form-group">
+                        <label class="col-xs-9 zb-form-label">${get_res('assign_certificate','Assign Certificate')}</label>
+                        <div class="col-xs-3">
+                            <input-checkbox ng-model="entity.certificate" />
+                        </div>
+                    </div>
+                     <div class="form-group zb-form-group">
+                        <label class="col-xs-9 zb-form-label">${get_res('result_SMS','Send result to test taker via SMS')}</label>
+                        <div class="col-xs-3">
+                            <input-checkbox ng-model="entity.result_SMS" />
+                        </div>
+                    </div>
+                     <div class="form-group zb-form-group">
+                        <label class="col-xs-9 zb-form-label">${get_res('result_email','Send result to test taker via email')}</label>
+                        <div class="col-xs-3">
+                            <input-checkbox ng-model="entity.result_email" />
+                        </div>
+                    </div>
+                     <div class="form-group zb-form-group">
+                        <label class="col-xs-9 zb-form-label">${get_res('pause_resume','Allow Pause & Resume')}</label>
+                        <div class="col-xs-3">
+                            <input-checkbox ng-model="entity.pause_resume" />
+                        </div>
+                    </div>
+                    <div class="form-group zb-form-group">
+                        <label class="col-xs-9 zb-form-label">${get_res('check_plagi','Check Plagiarism')}</label>
+                        <div class="col-xs-3">
+                            <input-checkbox ng-model="entity.check_plagi" />
+                        </div>
+                    </div>
+                </div>
+            </collapse-box>
+        </div>
+       <!-- <div class="col-md-10 col-sm-10">
 
             <div class="col-md-{{col}}" style="padding-bottom: 20px;">
                 <div class="form-group zb-form-group">
-                    <!--Mô tả tài liệu-->
+                    &lt;!&ndash;Mô tả tài liệu&ndash;&gt;
                     <label for="inputEmp_Train_Mode_Name" class="col-sm-3 zb-form-label">${get_res('show_result','Show Result in')}</label>
                     <div class="col-sm-4">
                             <div>
@@ -18,7 +158,7 @@
             </div>
             <div class="col-md-{{col}}" style="padding-bottom: 20px;" ng-if="DecimalPlace">
                 <div class="form-group zb-form-group">
-                    <!--Mô tả tài liệu-->
+                    &lt;!&ndash;Mô tả tài liệu&ndash;&gt;
                     <label for="inputEmp_Train_Mode_Name" class="col-sm-3 zb-form-label">${get_res('customize','Customize decimal places')}</label>
                     <div class="col-sm-4">
                             <div>
@@ -30,7 +170,7 @@
             </div>
             <div class="col-md-{{col}}" style="padding-bottom: 20px;">
                 <div class="form-group zb-form-group">
-                    <!--Mô tả tài liệu-->
+                    &lt;!&ndash;Mô tả tài liệu&ndash;&gt;
                     <label for="inputEmp_Train_Mode_Name" class="col-sm-3 zb-form-label">${get_res('minium_score','Minimum Passing Score')}</label>
                     <div class="col-sm-4">
                             <div>
@@ -50,7 +190,7 @@
             </div>
             <div class="col-md-{{col}}" style="padding-bottom: 20px;">
                 <div class="form-group zb-form-group">
-                    <!--Mô tả tài liệu-->
+                    &lt;!&ndash;Mô tả tài liệu&ndash;&gt;
                     <label for="inputEmp_Train_Mode_Name" class="col-sm-3 zb-form-label">${get_res('return_type','Result Type')}</label>
                     <div class="col-sm-4">
                             <div>
@@ -81,7 +221,7 @@
             </div>
             <div class="col-md-{{col}}" style="padding-bottom: 20px;">
                 <div class="form-group zb-form-group">
-                    <!--Mô tả tài liệu-->
+                    &lt;!&ndash;Mô tả tài liệu&ndash;&gt;
                     <label for="inputEmp_Train_Mode_Name" class="col-sm-3 zb-form-label">${get_res('certificate','Certificate')}</label>
                     <div class="col-sm-4">
                             <div>
@@ -92,7 +232,7 @@
             </div>
             <div class="col-md-{{col}}" style="padding-bottom: 20px;">
                 <div class="form-group zb-form-group">
-                    <!--Mô tả tài liệu-->
+                    &lt;!&ndash;Mô tả tài liệu&ndash;&gt;
                     <label for="inputEmp_Train_Mode_Name" class="col-sm-3 zb-form-label">${get_res('display_result','Display Result')}</label>
                     <div class="col-sm-4">
                             <div>
@@ -103,7 +243,7 @@
             </div>
             <div class="col-md-{{col}}" style="padding-bottom: 20px;">
                 <div class="form-group zb-form-group">
-                    <!--Mô tả tài liệu-->
+                    &lt;!&ndash;Mô tả tài liệu&ndash;&gt;
                     <label for="inputEmp_Train_Mode_Name" class="col-sm-3 zb-form-label">${get_res('ques_order','Question Order')}</label>
                     <div class="col-sm-4">
                             <div>
@@ -114,7 +254,7 @@
             </div>
             <div class="col-md-{{col}}" >
             <div class="form-group zb-form-group">
-                <!--Tên Khóa học-->
+                &lt;!&ndash;Tên Khóa học&ndash;&gt;
                 <label for="inputEmp_Train_Mode_Name" class="col-sm-5 zb-form-label">${get_res('ques_navi','Question Navigation during the exam')}</label>
                 <div class="col-sm-7">
                     <div class="col-sm-6" style="padding:0">
@@ -140,7 +280,7 @@
            </div>
             <div class="col-md-{{col}}" >
             <div class="form-group zb-form-group">
-                <!--Tên Khóa học-->
+                &lt;!&ndash;Tên Khóa học&ndash;&gt;
                 <label for="inputEmp_Train_Mode_Name" class="col-sm-5 zb-form-label">${get_res('allow_candidates','Allow candidates to preview this exam')}</label>
                 <div class="col-sm-7">
                     <div class="col-sm-6" style="padding:0">
@@ -166,7 +306,7 @@
            </div>
             <div class="col-md-{{col}}" >
             <div class="form-group zb-form-group">
-                <!--Tên Khóa học-->
+                &lt;!&ndash;Tên Khóa học&ndash;&gt;
                 <label for="inputEmp_Train_Mode_Name" class="col-sm-5 zb-form-label">${get_res('preview_time','Add preview time to answer time')}</label>
                 <div class="col-sm-7">
                     <div class="col-sm-6" style="padding:0">
@@ -192,7 +332,7 @@
            </div>
             <div class="col-md-{{col}}" >
             <div class="form-group zb-form-group">
-                <!--Tên Khóa học-->
+                &lt;!&ndash;Tên Khóa học&ndash;&gt;
                 <label for="inputEmp_Train_Mode_Name" class="col-sm-5 zb-form-label">${get_res('text_high','Text Highlighter')}</label>
                 <div class="col-sm-7">
                     <div class="col-sm-6" style="padding:0">
@@ -218,7 +358,7 @@
            </div>
             <div class="col-md-{{col}}" >
             <div class="form-group zb-form-group">
-                <!--Tên Khóa học-->
+                &lt;!&ndash;Tên Khóa học&ndash;&gt;
                 <label for="inputEmp_Train_Mode_Name" class="col-sm-5 zb-form-label">${get_res('ques_dis','Question Display')}</label>
                 <div class="col-sm-7">
                     <div class="col-sm-6" style="padding:0">
@@ -244,7 +384,7 @@
            </div>
             <div class="col-md-{{col}}" >
             <div class="form-group zb-form-group">
-                <!--Tên Khóa học-->
+                &lt;!&ndash;Tên Khóa học&ndash;&gt;
                 <label for="inputEmp_Train_Mode_Name" class="col-sm-5 zb-form-label">${get_res('result_SMS','Send result to test taker via SMS')}</label>
                 <div class="col-sm-7">
                     <div class="col-sm-6" style="padding:0">
@@ -270,7 +410,7 @@
            </div>
             <div class="col-md-{{col}}" >
             <div class="form-group zb-form-group">
-                <!--Tên Khóa học-->
+                &lt;!&ndash;Tên Khóa học&ndash;&gt;
                 <label for="inputEmp_Train_Mode_Name" class="col-sm-5 zb-form-label">${get_res('result_email','Send result to test taker via email')}</label>
                 <div class="col-sm-7">
                     
@@ -297,7 +437,7 @@
            </div>
             <div class="col-md-{{col}}" >
             <div class="form-group zb-form-group">
-                <!--Tên Khóa học-->
+                &lt;!&ndash;Tên Khóa học&ndash;&gt;
                 <label for="inputEmp_Train_Mode_Name" class="col-sm-5 zb-form-label">${get_res('pause_resume','Allow Pause & Resume')}</label>
                 <div class="col-sm-7">                    
                     <div class="col-sm-6" style="padding:0">
@@ -323,7 +463,7 @@
            </div>
             <div class="col-md-{{col}}" >
                 <div class="form-group zb-form-group">
-                <!--Tên Khóa học-->
+                &lt;!&ndash;Tên Khóa học&ndash;&gt;
                 <label for="inputEmp_Train_Mode_Name" class="col-sm-5 zb-form-label">${get_res('check_plagi','Check Plagiarism')}</label>
                 <div class="col-sm-7">
                     <div class="col-sm-6" style="padding:0">
@@ -349,7 +489,7 @@
            </div>
               <div class="col-md-{{col}}" >
                 <div class="form-group zb-form-group">
-                <!--Tên Khóa học-->
+                &lt;!&ndash;Tên Khóa học&ndash;&gt;
                 <label for="inputEmp_Train_Mode_Name" class="col-sm-5 zb-form-label">${get_res('publish','Publish')}</label>
                 <div class="col-sm-7">
                     <div class="col-sm-6" style="padding:0">
@@ -373,7 +513,9 @@
                 </div>
             </div>
            </div>
-        </div>
+        </div>-->
+
+
  </div>
                                   
    

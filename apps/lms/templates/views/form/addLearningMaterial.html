@@ -174,14 +174,15 @@ input[type=checkbox] .styled:checked+label::after,input[type=radio] .styled:chec
 </style>
 
 <%block name="modal_body">
-            <div class="col-md-{{col_group}} col-sm-{{col_group}}">
+    <div class="hcs-modal-format">
+         <div class="col-md-{{col_group}} col-sm-{{col_group}}">
                 <collapse-box class="zb-form-common" title="${get_res('create_new_folder','Create a new folder')}">
                     <div class="col-md-{{col}}">
                         <div class="form-group zb-form-group">
                             <!--Mã trình độ-->
                             <label for="inputEmp_Train_Mode_Code" class="col-sm-5 zb-form-label">${get_res('parent_code','Parent')}</label>
                             <div class="col-sm-7">
-                                <!--<input-combobox-custom 
+                                <!--<input-combobox-custom
                                     list-code="${encryptor.get_key('cbb_lmsls_materialfolder')}"
                                     list-value="[{ '@lock': true }, { '@parent_code': null }]"
                                     list-data="[{'folder_id': 'root', 'folder_name': 'root'}]"
@@ -189,13 +190,13 @@ input[type=checkbox] .styled:checked+label::after,input[type=radio] .styled:chec
                                     item-custom = "entity.customData"
                                     current-item="entity.parent_code"
                                     current-item-other="currentItemOther" required /> -->
-                                
-                                <combobox load-data="$root.$getComboboxData" 
+
+                                <combobox load-data="$root.$getComboboxData"
                                           ng-model="entity.parent_code"
                                           params="{key:'${encryptor.get_key('cbb_lmsls_materialfolder')}', value:[{ '@lock': true }]}"
-                                          on-search-change="false" on-search-press="true" placeholder="" 
-                                          init-data="cbb_lmsls_materialfolder.value" paging="true" 
-                                          close-on-select="true" template-fields="cbb_lmsls_materialfolder.display_fields" 
+                                          on-search-change="false" on-search-press="true" placeholder=""
+                                          init-data="cbb_lmsls_materialfolder.value" paging="true"
+                                          close-on-select="true" template-fields="cbb_lmsls_materialfolder.display_fields"
                                           reload="false">
                                 </combobox>
                             </div>
@@ -223,16 +224,16 @@ input[type=checkbox] .styled:checked+label::after,input[type=radio] .styled:chec
                         <div class="form-group zb-form-group">
                             <label for="inputEmp_QuitJob_Type" class="col-sm-5 zb-form-label">${get_res('moderator','Moderator')}</label>
                             <div class="col-sm-7">
-                                <!-- <input-combobox 
+                                <!-- <input-combobox
                                     list-code="${encryptor.get_key('cbb_employees_cbcc')}"
                                     list-value="[{ '@is_cbcc': true }]"
                                     current-item="entity.moderator_id" required /> -->
-                                <combobox load-data="$root.$getComboboxData" 
-                                          ng-model="entity.moderator_id" 
+                                <combobox load-data="$root.$getComboboxData"
+                                          ng-model="entity.moderator_id"
                                           params="{key:'${encryptor.get_key('lms_cbb_emp')}', value:[{ '@lock': true }]}"
-                                          on-search-change="false" on-search-press="true" placeholder="" 
-                                          init-data="cbb_employees.value" paging="true" 
-                                          close-on-select="true" template-fields="cbb_employees.display_fields" 
+                                          on-search-change="false" on-search-press="true" placeholder=""
+                                          init-data="cbb_employees.value" paging="true"
+                                          close-on-select="true" template-fields="cbb_employees.display_fields"
                                           reload="false">
                                 </combobox>
                             </div>
@@ -304,80 +305,81 @@ input[type=checkbox] .styled:checked+label::after,input[type=radio] .styled:chec
                     </div>
                 </collapse-box>
             </div>
-            <div class="col-md-{{ 12 - col_group}} col-sm-{{ 12 - col_group}}">
-                <collapse-box class="zb-form-common" title="${get_global_res('Note','Ghi chú')}">
-                    <!--Ghi chú-->
-                    <div class="col-sm-12">
-                        <input-textarea rows="7" ng-model="entity.note"></input-textarea>
+        <div class="col-md-{{ 12 - col_group}} col-sm-{{ 12 - col_group}}">
+            <collapse-box class="zb-form-common" title="${get_global_res('Note','Ghi chú')}">
+                <!--Ghi chú-->
+                <div class="col-sm-12">
+                    <div class="form-group zb-form-group">
+                        <input-textarea rows="10" ng-model="entity.note"></input-textarea>
                     </div>
-                    <div class="col-md-12" style="padding-top: 16px;">
-                        <div class="form-group zb-form-group">
-                            <label for="DisplayInfo" class="col-sm-3 zb-form-label">${get_global_res('create_and_modify','Tạo | Sửa')}</label>
-                            <div class="col-sm-9">
-                                <input-text value="{{ entity.created_on | date: $root.systemConfig.date_format}} - {{entity.created_by}} | {{ entity.modified_on | date: $root.systemConfig.date_format}} - {{entity.modified_by}}" ng-disabled="true">
-                            </div>
+                    <div class="form-group zb-form-group">
+                        <label for="DisplayInfo" class="col-sm-3 zb-form-label">${get_global_res('create_and_modify','Tạo | Sửa')}</label>
+                        <div class="col-sm-9">
+                            <input-text style="text-align:right;" value="{{ entity.created_on | date: $root.systemConfig.date_format}} - {{entity.created_by}} | {{ entity.modified_on | date: $root.systemConfig.date_format}} - {{entity.modified_by}}" ng-disabled="true">
                         </div>
                     </div>
-                </collapse-box>
-            </div>
-            <div class="col-md-12">
-                <collapse-box class="zb-form-common" title="${get_res('filder_permission','Folder Permissions')}">
-                    <!--<toolbar>
-                        <input-text-icon icon="bowtie-icon bowtie-search"
-                                         on-click="onSearch"></input-text-icon>
-                        <button ng-click="addDetail()" class="zb-btn zb-btn-o-green">
-                            <i class="bowtie-icon bowtie-math-plus"></i>
-                        </button>
-                        <button ng-click="editDetail()" class="zb-btn zb-btn-o-blue">
-                            <i class="bowtie-icon bowtie-edit-outline"></i>
-                        </button>
-                        <button ng-click="deleteDetail()" class="zb-btn zb-btn-o-red">
-                            <i class="bowtie-icon bowtie-trash"></i>
-                        </button>
-                        <button ng-click="" class="zb-btn">
-                            <i class="bowtie-icon bowtie-navigate-refresh"></i>
-                        </button>
-                    </toolbar>-->
-                    <div class="col-md-12 no-padding" style="height:230px;">
-                    <!--<table-data data-source="$$table.tableSource" fields="$$table.tableFields" type="MultiSelect" 
-                        paging="true" page-length="100" server-side="true" 
-                        press-enter="$$table.onSelectTableRow" selected-items="$$table.selectedItems"
-                        current-item="$$table.currentItem" search-text="$$table.tableSearchText"
-                        refresh-row="$$table.refreshDataRow">
-                    </table-data>-->
-                        <table class="display zb-data-table responsive nowrap dataTable no-footer">
-                            <thead>
-                              <tr>
-                                <th style="{{item.style}}" ng-repeat="item in $$table.tableFields">{{item.title}}</th>
-                              </tr>
-                            </thead>
-                            <tbody>
-                              <tr ng-repeat="item in entity.permisions track by $index">
-                                  <td><img class="hcs-small-img" ng-src='{{item.role == "System Admin" ? (urls + "css/icon/admin.png"):
-                                                  item.role == "Instructor" ?( urls + "css/icon/moderator.png"):
-                                                  item.role == "Student" ? ( urls + "css/icon/student.png"):
-                                                  item.role == "Guest"? ( urls + "css/icon/guest.png" ): ""}}'/> {{item.role}}</td>
-                                <td style="text-align: center">
-                                  <input-checkbox ng-model="item.allow_full_control">
-                                </td>
-                                <td style="text-align: center">
-                                  <input-checkbox ng-model="item.allow_list_content"/>
-                                </td>
-                                <td style="text-align: center">
-                                  <input-checkbox ng-model="item.allow_modify"/>
-                                </td>
-                                <td style="text-align: center">
-                                  <input-checkbox ng-model="item.allow_view"/>
-                                </td>
-                                <td style="text-align: center">
-                                  <input-checkbox ng-model="item.allow_download"/>
-                                </td>
-                              </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </collapse-box>
-            </div>
+                </div>
+            </collapse-box>
+        </div>
+        <div class="col-md-12">
+            <collapse-box class="zb-form-common" title="${get_res('filder_permission','Folder Permissions')}">
+                <!--<toolbar>
+                    <input-text-icon icon="bowtie-icon bowtie-search"
+                                     on-click="onSearch"></input-text-icon>
+                    <button ng-click="addDetail()" class="zb-btn zb-btn-o-green">
+                        <i class="bowtie-icon bowtie-math-plus"></i>
+                    </button>
+                    <button ng-click="editDetail()" class="zb-btn zb-btn-o-blue">
+                        <i class="bowtie-icon bowtie-edit-outline"></i>
+                    </button>
+                    <button ng-click="deleteDetail()" class="zb-btn zb-btn-o-red">
+                        <i class="bowtie-icon bowtie-trash"></i>
+                    </button>
+                    <button ng-click="" class="zb-btn">
+                        <i class="bowtie-icon bowtie-navigate-refresh"></i>
+                    </button>
+                </toolbar>-->
+                <div class="col-md-12 no-padding" style="height:230px;">
+                <!--<table-data data-source="$$table.tableSource" fields="$$table.tableFields" type="MultiSelect"
+                    paging="true" page-length="100" server-side="true"
+                    press-enter="$$table.onSelectTableRow" selected-items="$$table.selectedItems"
+                    current-item="$$table.currentItem" search-text="$$table.tableSearchText"
+                    refresh-row="$$table.refreshDataRow">
+                </table-data>-->
+                    <table class="display zb-data-table responsive nowrap dataTable no-footer">
+                        <thead>
+                          <tr>
+                            <th style="{{item.style}}" ng-repeat="item in $$table.tableFields">{{item.title}}</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr ng-repeat="item in entity.permisions track by $index">
+                              <td><img class="hcs-small-img" ng-src='{{item.role == "System Admin" ? (urls + "css/icon/admin.png"):
+                                              item.role == "Instructor" ?( urls + "css/icon/moderator.png"):
+                                              item.role == "Student" ? ( urls + "css/icon/student.png"):
+                                              item.role == "Guest"? ( urls + "css/icon/guest.png" ): ""}}'/> {{item.role}}</td>
+                            <td style="text-align: center">
+                              <input-checkbox ng-model="item.allow_full_control">
+                            </td>
+                            <td style="text-align: center">
+                              <input-checkbox ng-model="item.allow_list_content"/>
+                            </td>
+                            <td style="text-align: center">
+                              <input-checkbox ng-model="item.allow_modify"/>
+                            </td>
+                            <td style="text-align: center">
+                              <input-checkbox ng-model="item.allow_view"/>
+                            </td>
+                            <td style="text-align: center">
+                              <input-checkbox ng-model="item.allow_download"/>
+                            </td>
+                          </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </collapse-box>
+        </div>
+    </div>
 </%block>
 
 <%block name="modal_script">
@@ -395,6 +397,7 @@ input[type=checkbox] .styled:checked+label::after,input[type=radio] .styled:chec
         scope.customCbb = {};
         var __entity = JSON.parse(JSON.stringify(scope.$parent.currentItem ? scope.$parent.currentItem : {}));
         //Mode 1: tạo mới, Mode 2: chỉnh sửa, Mode 3: sao chép
+        convertApprover(__entity);
         scope.entity = scope.__mode == 2 ? __entity : {};
         scope.parent_code_old = scope.entity.parent_code;
         //combobox source
@@ -476,6 +479,7 @@ input[type=checkbox] .styled:checked+label::after,input[type=radio] .styled:chec
             allow_download: false,
         }] : scope.entity.permisions;
         function _loadDataServerSide(fnReloadData, iPage, iPageLength, orderBy, searchText) {
+        debugger
             scope.$$tableConfig = {
                 fnReloadData: fnReloadData,
                 iPage: iPage,
@@ -495,8 +499,9 @@ input[type=checkbox] .styled:checked+label::after,input[type=radio] .styled:chec
                 }
             }
         };
-        
+        debugger
         function _tableData(iPage, iPageLength, orderBy, searchText, callback) {
+        debugger
             var sort = {};
             $.each(orderBy, function (i, v) {
                 sort[v.columns] = (v.type === "asc") ? 1 : -1;
@@ -528,6 +533,7 @@ input[type=checkbox] .styled:checked+label::after,input[type=radio] .styled:chec
                                 data: res.items
                             };
                         }
+                        debugger
                         callback(data);
                         scope.$$table.currentItem = null;
                         scope.$apply();
@@ -537,7 +543,11 @@ input[type=checkbox] .styled:checked+label::after,input[type=radio] .styled:chec
         /**
          * Thay đỗi kích thước form Dialog và các control trên form dialog
          */
+        var isFullSize = false;
+        scope.maxHeightDialog = "80vh";
         function onResizeDialog() {
+            isFullSize = !isFullSize;
+            scope.maxHeightDialog = isFullSize ? "100%" : "80vh";
             $dialog.fullScreen();
             scope.col = scope.col == 12 ? 6 : 12;
             scope.col_group = scope.col_group == 6 ? 8 : 6;
@@ -641,6 +651,9 @@ input[type=checkbox] .styled:checked+label::after,input[type=radio] .styled:chec
                         scope.entity.level_code[i] = scope.entity.parent_code;
                     }
                 }
+                //join data to text to save to database
+                scope.entity.approver_id = scope.entity.approver_id.join(",");
+
             }
             services.api(url)
                 .data(scope.entity)
@@ -653,6 +666,12 @@ input[type=checkbox] .styled:checked+label::after,input[type=radio] .styled:chec
         function getUrl() {
             return scope.__mode == 1 || scope.__mode == 3 ? "${get_api_key('app_main.api.LMSLS_MaterialFolder/insert')}" /*Mode 1: Tạo mới*/
                     : "${get_api_key('app_main.api.LMSLS_MaterialFolder/update')}" /*Mode 2: Cập nhật*/
+        }
+
+        function convertApprover(entity){
+            if(entity && entity.approver_id && entity.approver_id !== null){
+                entity.approver_id = entity.approver_id.split(",");
+            }
         }
 
         function reloadData() {

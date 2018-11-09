@@ -5,7 +5,7 @@
         "tableFields" : [
             { "data": "factor_group_code", "title": "${get_res('function_list','Mã nhóm')}", width: "100px", className: "text-center"},
             { "data": "note", "title": "${get_res('note','Ghi chú')}", width: "100px", className: "text-center"},
-            { "data": "ordinal", "title": "${get_res('ordinal','Thứ tự')}", width: "100px", className: "text-center"},
+            { "data": "ordinal", "format":"number: system", "title": "${get_res('ordinal','Thứ tự')}", width: "100px", className: "text-center"},
             { "data": "lock", "title": "${get_res('lock','Ngưng sử dụng')}", format: "checkbox", width: "100px", className: "text-center" }
         ],
         "selectTreeNode" : function (node) {
@@ -13,6 +13,7 @@
         },
         "treeCurrentNode": {},
         "treeSelectedNodes": [],
+        "treePressEnter":onEdit,
         "treeSelectedRootNodes": [],
         "treeMultiSelect": true,
         "treeSelectMode": 3,

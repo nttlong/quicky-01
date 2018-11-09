@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 from bson import ObjectId
 import models
+import qmongo
 import datetime
 import quicky
 
@@ -13,7 +14,7 @@ def get_list_approve_level_by_process_id(args):
     pageIndex = (lambda pIndex: pIndex if pIndex != None else 0)(pageIndex)
     pageSize = (lambda pSize: pSize if pSize != None else 20)(pageSize)
 
-    items = models.LMS_SetupProcessApproveLevel().aggregate()
+    items = qmongo.models.LMS_SetupProcessApproveLevel.aggregate
     #items.left_join(models.models.SYS_VW_ValueList(), "email_approve_to", "value", "email_approve")
     #items.match("email_approve.list_name == {0} and email_approve.language =={1}", "LSendEmail", quicky.language.get_language())
     ##items.left_join(models.models.SYS_VW_ValueList(), "email_reject_to", "value", "email_reject")
@@ -24,8 +25,8 @@ def get_list_approve_level_by_process_id(args):
     ##    "$and": [ { 'aprPeriod.list_name': "LApprovalPeriod" }, { 'aprPeriod.language': quicky.language.get_language()} ]
     ##}},
 
-    items.left_join(models.models.auth_user_info(), "created_by", "username", "uc")
-    items.left_join(models.models.auth_user_info(), "modified_by", "username", "um")
+    items.left_join(qmongo.models.auth_user_info, "created_by", "username", "uc")
+    items.left_join(qmongo.models.auth_user_info, "modified_by", "username", "um")
     items.project(
             process_id = 1,
             approve_level = 1,
@@ -55,7 +56,7 @@ def get_list_approve_level_by_process_id(args):
 
 def insert(args):
     if args['data'] != None:
-        ret = models.LMS_SetupProcess().insert(args['data'])
+        ret = qmongo.models.LMS_SetupProcess.insert(args['data'])
         return ret
     return None
 
@@ -68,7 +69,7 @@ def update(args):
             if(args['data'].has_key('process_id')):
                 process_id = args['data']['process_id']
                 args['data'].pop('process_id')
-            ret = models.LMS_SetupProcess().update(
+            ret = qmongo.models.LMS_SetupProcess.update(
             args['data'],
             "process_id==@process_id",
             dict(
@@ -79,7 +80,7 @@ def update(args):
 
 def delete(args):
     if args['data'] != None:
-        ret = models.LMS_SetupProcess().delete("process_id in {0}", [x["process_id"] for x in args['data']])
+        ret = qmongo.models.LMS_SetupProcess.delete("process_id in {0}", [x["process_id"] for x in args['data']])
         return ret
     return None
 

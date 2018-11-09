@@ -5,7 +5,7 @@
                 <label for="inputCodeDomain" class="col-sm-12 col-xs-12">${get_res('view_by','Xem theo')}</label>
                 <input-select class="size-lg" data-list="LviewBy" data-value="value" data-caption="caption" ng-model="viewBy">
             </div>
-            <div class="hcs-left-side-department-tree" style="height: calc(100% - 38px);" ng-if="modeView == 0">
+            <div class="hcs-left-side-department-tree" style="height: calc(100% - 60px);" ng-if="modeView == 0">
                 <tree-data data-source="$$tree[0].treeDataSource" 
                            display-field="gjw_name"
                            parent-field="parent_code" 
@@ -23,7 +23,7 @@
                            expand-all="$treeExpandAll"
                            collapse-all="$treeCollapseAll"/>
              </div>
-             <div class="hcs-left-side-department-tree" style="height: calc(100% - 38px);" ng-if="modeView == 1">
+             <div class="hcs-left-side-department-tree" style="height: calc(100% - 60px);" ng-if="modeView == 1">
                 <tree-data data-source="$$tree[1].treeDataSource" 
                            display-field="department_name"
                            parent-field="parent_code" 
@@ -41,7 +41,7 @@
                            expand-all="$treeExpandAll"
                            collapse-all="$treeCollapseAll"/>
             </div>
-            <div class="hcs-left-side-department-tree" style="height: calc(100% - 38px);" ng-if="modeView == 2">
+            <div class="hcs-left-side-department-tree" style="height: calc(100% - 60px);" ng-if="modeView == 2">
             </div>
         </div>
         <div class="hcs-right-side-department-content">

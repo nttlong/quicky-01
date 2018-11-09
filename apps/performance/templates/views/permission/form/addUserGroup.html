@@ -1,7 +1,7 @@
 ﻿
 <%!
     #_style="width:300px;"
-    #_height=";overflow:hidden"
+    _height=";overflow:hidden"
 %>
 <%inherit file="../../commons/dialog_save_close.html"/>
 
@@ -16,9 +16,13 @@
     .zb-nav-tabs .zb-tab-container{
         padding: 0 !important;
     }
+    .dataTables_scrollBody{
+        height:calc(100% - 35px) !important;
+    }
 </style>
-<div class="hcs-modal-format">
-    <div class="col-md-{{col_group}} col-sm-{{col_group}}" style="max-height:{{resizeMaxHeight}}">
+<div class="hcs-modal-format" style="height:100%;">
+    <div class="row" style="margin:unset">
+        <div class="col-md-{{col_group}} col-sm-{{col_group}}" style="max-height:{{resizeMaxHeight}}">
     <collapse-box class="zb-form-common" title="${get_global_res('Common_Information','Thông tin chung')}">
         <div class="col-md-{{col}}">
             <div class="form-group zb-form-group">
@@ -76,7 +80,7 @@
         </div>
     </collapse-box>
 </div>
-    <div class="col-md-{{ 12 - col_group }} col-sm-{{ 12 - col_group }}">
+        <div class="col-md-{{ 12 - col_group }} col-sm-{{ 12 - col_group }}">
 
         <collapse-box class="zb-form-common" title="${get_global_res('Note','Ghi chú')}">
             <!--Ghi chú-->
@@ -87,15 +91,42 @@
           </div>
         </collapse-box>
     </div>
-    <div class="col-md-12">
+    </div>
+    <div class="row" style="margin:unset;height:calc(100% - 165px)">
+        <div class="col-md-12" style="height:100%">
     <style>
         tab-content .hcs-zb-header-icon-custom {
             display:none;
         }
+        div.zb-nav-tabs,.dataTables_wrapper.form-inline.dt-bootstrap.no-footer,
+        div.dataTables_wrapper > .row:nth-child(2) > [class*="col-"],
+        div.dataTables_scroll{
+            height:100%;
+        }
+        div.zb-tab-container{
+            height:calc(100% - 36px);
+        }
+        tab-content{
+            height:calc(100% - 12px);
+        }
+        div.zb-content{
+            height:calc(100% - 35px);
+        }
+        div.dataTables_wrapper > .row:nth-child(2){
+            height:calc(100% - 30px);
+        }
+        div.dataTables_scrollBody{
+            height:calc(100% - 35px);
+        }
+        .hcs-modal-format .dataTables_scrollBody{
+            max-height:{{maxHeightTableScroll}};
+            overflow:auto;
+        }
     </style>
     <nav-tabs ng-show="__mode != 1">
         <tab-content name="tab1" title="${get_res('list_user_group','Danh sách nhóm người dùng')}">
-            <div class="col-md-12 no-padding">
+            <div class="row" style="margin:unset;height:100%">
+                <div class="col-md-12 no-padding" style="height:100%">
                 <collapse-box class="zb-form-common" title="">
                     <toolbar>
                         <input-text-icon icon="bowtie-icon bowtie-search"
@@ -107,7 +138,7 @@
                             <i class="bowtie-icon bowtie-edit-remove"></i>
                         </button>
                     </toolbar>
-                        <div class="col-md-12 no-padding" style="overflow:hidden">
+                        <div class="col-md-12 no-padding" style="overflow:hidden;height:100%;">
                             <table-data data-source="dataTable.tableListUserSource" fields="dataTable.tableListUserFields" type="MultiSelect"
                                 paging="true" page-length="100" server-side="true"
                                 press-enter="dataTable.onSelectTableRow" selected-items="dataTable.selectedListUserItems"
@@ -118,9 +149,11 @@
                         </div>
                 </collapse-box>
             </div>
+            </div>
         </tab-content>
         <tab-content name="tab2" title="${get_res('function_list','Danh sách tính năng')}">
-            <div class="col-md-12 no-padding">
+            <div class="row" style="margin:unset;height:100%;">
+                <div class="col-md-12 no-padding" style="height:100%">
                 <collapse-box class="zb-form-common" title="">
                     <toolbar>
                         <input-text-icon icon="bowtie-icon bowtie-search" on-click="onSearchTableTree"></input-text-icon>
@@ -147,9 +180,11 @@
                     </div>
                 </collapse-box>
             </div>
+            </div>
         </tab-content>
     </nav-tabs>
 </div>
+    </div>
 </div>
 
 </%block>
@@ -343,14 +378,16 @@
         scope.$applyAsync();
         var isFullSize = false;
         scope.maxHeightDialog = "80vh";//default init
-        scope.minHeightDialog = "80vh";
+        scope.maxHeightTableScroll = "38vh";
+        //scope.minHeightDialog = "80vh";
         function onResizeDialog() {
             $dialog.fullScreen();
             scope.col_group = scope.col_group == 6 ? 8 : 6;
             scope.col = scope.col == 12 ? 6 : 12;
             isFullSize = !isFullSize;
             scope.maxHeightDialog = isFullSize ? "100%" : "80vh";
-            scope.minHeightDialog = isFullSize ? "100%" : "80vh";
+            scope.maxHeightTableScroll = isFullSize ? "" : "38vh";
+            //scope.minHeightDialog = isFullSize ? "100%" : "80vh";
             setTimeout(function () {
                 $(window).trigger('resize');
             }, 100);

@@ -2,48 +2,85 @@
     .app-content {
         overflow: unset !important;
     }
+    .dataTables_wrapper.form-inline.dt-bootstrap.no-footer,.dataTables_scroll{
+        height: 100%;
+      }
+      .dataTables_wrapper.form-inline.dt-bootstrap.no-footer > .row:nth-child(2){
+        height:calc(100% - 35px);
+      }
+      .dataTables_wrapper.form-inline.dt-bootstrap.no-footer > .row:nth-child(2) > [class*="col-"]{
+        height:100%;
+      }
+      .dataTables_scrollBody{
+        height:calc(100% - 35px);
+      }
 </style>
-<div class="tab-pane" style="padding-right:unset; height: 100%; ">
-    <div>
-        <header-page>
-            <site-map>
-                <a><span>{{$root.currentFunction.default_name}}</span></a>
-            </site-map>
-            <toolbar>
-                <input-text-icon icon="bowtie-icon bowtie-search"
-                                    on-click="onSearch"></input-text-icon>
-                <button class="zb-btn zb-btn-o-green" ng-click="createResultType()">
-                    <i class="bowtie-icon bowtie-math-plus"></i>
-                </button>
-                <button class="zb-btn zb-btn-o-blue" ng-click="editResultType()">
-                    <i class="bowtie-icon bowtie-edit-outline"></i>
-                </button>
-                <button class="zb-btn zb-btn-o-red" ng-click="delResultType()">
-                    <i class="bowtie-icon bowtie-edit-remove"></i>
-                </button>
-                <button class="zb-btn" ng-click="importLearningMaterial()">
-                    <i class="bowtie-icon bowtie-transfer-upload"></i>
-                </button>
-                <button class="zb-btn" ng-click="exportLearningMaterial()">
-                    <i class="bowtie-icon bowtie-transfer-download"></i>
-                </button>
-                <button class="zb-btn" ng-click="$root.refresh()">
-                    <i class="bowtie-icon bowtie-navigate-refresh"></i>
-                </button>
-            </toolbar>
-        </header-page>
-    </div>
-    <div class="hcs-right-side-department-list" style="height: calc(100% - 40px);">
-
-            <table-data data-source="tableSource" fields="tableFields" type="MultiSelect" paging="true" page-length="100" server-side="true"
-                            press-enter="onSelectTableRow" selected-items="selectedItems" current-item="currentItem"
-                            search-text="tableSearchText" refresh-row="refreshDataRow">
-                </table-data>
-
+<div class="hcs-container">
+    <div class="row hcs-profile-detail" style="margin:unset; height:100%;" ng-if="false">
 
     </div>
-    <div class="clearfix"></div>
+    <div class="row hcs-profile-list">
+        <div class="hcs-right-side-department-content" style="width:100%; height:100%">
+            <div>
+                <header-page on-add="addAprPeriod"
+                        on-edit="editAprPeriod"
+                        on-delete="deleteAprPeriod"
+                        on-import="btnDownload"
+                        on-export="btnUpload"
+                        on-refresh="btnRefresh"
+                        on-search-press="onSearchTable"
+                        key-field="function_id"
+                        display-field="currentFunction.default_name"
+                        icon-field="icon"
+                        reload-on-change="false"
+                        selected-key="$root.currentFunction.function_id">
+                    <site-map>
+                        <span>{{$root.currentFunction.default_name}}</span>
+                    </site-map>
+                    <toolbar>
+                        <input-text-icon icon="bowtie-icon bowtie-search"
+                                            on-click="onSearch"></input-text-icon>
+                        <button class="zb-btn zb-btn-o-green" ng-click="createResultType()">
+                            <i class="bowtie-icon bowtie-math-plus"></i>
+                        </button>
+                        <button class="zb-btn zb-btn-o-blue" ng-click="editResultType()">
+                            <i class="bowtie-icon bowtie-edit-outline"></i>
+                        </button>
+                        <button class="zb-btn zb-btn-o-red" ng-click="delResultType()">
+                            <i class="bowtie-icon bowtie-edit-remove"></i>
+                        </button>
+                        <button class="zb-btn" ng-click="importLearningMaterial()">
+                            <i class="bowtie-icon bowtie-transfer-upload"></i>
+                        </button>
+                        <button class="zb-btn" ng-click="exportLearningMaterial()">
+                            <i class="bowtie-icon bowtie-transfer-download"></i>
+                        </button>
+                        <button class="zb-btn" ng-click="$root.refresh()">
+                            <i class="bowtie-icon bowtie-navigate-refresh"></i>
+                        </button>
+                    </toolbar>
+                </header-page>
+            </div>
+            <div class="hcs-right-side-department-list" style="height: calc(100% - 39px);">
+                <collapse-box class="zb-datatable" title="${get_res('danh_sach_ket_qua_thi','Danh sách kết quả thi')}">
+                    <table-data data-source="tableSource"
+                                fields="tableFields"
+                                type="MultiSelect"
+                                paging="true"
+                                page-length="100"
+                                server-side="true"
+                                press-enter="onSelectTableRow"
+                                selected-items="selectedItems"
+                                current-item="currentItem"
+                                search-text="tableSearchText"
+                                refresh-row="refreshDataRow">
+                    </table-data>
+                </collapse-box>
+            </div>
+        </div>
+    </div>
 </div>
+<div class="clearfix"></div>
 <script>
     <%include file="../scripts/examination_management_ex_result_list.js"/>
 </script>

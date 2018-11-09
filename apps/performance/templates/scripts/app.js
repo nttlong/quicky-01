@@ -5,7 +5,7 @@ window.set_authenticated_permission_service("${get_api_key('app_main.api.authent
 window.get_static = "${get_static('/')}"
 window.set_static(window.get_static)
 angular
-    .module("admin", ["c-ui", 'ZebraApp.components', 'ZebraApp.widgets', 'hcs-template', 'authenticatedModule'])
+    .module("admin", ["c-ui", 'ZebraApp.components', 'ZebraApp.widgets', 'hcs-template', 'chart.js', 'authenticatedModule'])
     .controller("admin", controller)
     .filter('$filterFunction', function () {
         return function (input, txtSearch) {
@@ -62,10 +62,10 @@ function controller($dialog, $scope, $filter) {
         var NumberGroupSeparator = info.dec_place_separator === "," ? "." : ",";
         var NumberDecimalSeparator = info.dec_place_separator === "," ? "," : ".";
         var str = num.toString().split('.');
-        if(str[0].length >= 5) {
+        if(str[0].length >= 4) {
             str[0] = str[0].replace(/(\d)(?=(\d{3})+$)/g, '$1' + NumberGroupSeparator);
         }
-        if(str[1] && str[1].length >= 5) {
+        if(str[1] && str[1].length >= 4) {
             str[1] = str[1].replace(/(\d{3})/g, '$1');
         }
         return str.join(NumberDecimalSeparator);
@@ -432,6 +432,8 @@ function extension() {
 
     fac.getComboboxData = getComboboxData;
     fac.getInitComboboxData = getInitComboboxData;
+    fac.openDialog = openDialog;
+    fac.getValueList = getValueList;
     fac.TripleDES = {
         _password: CryptoJS.MD5("lv"),
         setPassword: function(password){
@@ -466,6 +468,36 @@ function extension() {
             }
         }
     };
+
+    /**
+     * [openDialog description]
+     * @param  {[type]}   scope    [description]
+     * @param  {[type]}   title    [description]
+     * @param  {[type]}   path     [description]
+     * @param  {Function} callback [description]
+     * @param  {String}   id       [description]
+     * @return {[type]}            [description]
+     */
+    function openDialog(scope, title, path, callback, id = 'myModal') {
+        if ($('#' + id).length === 0) {
+            scope.headerTitle = title;
+            dialog(scope).url(path).done(function () {
+                callback();
+                $dialog.draggable();
+            });
+        }
+    }
+
+    function getValueList(param, fnCallBack){
+        services.api("${get_api_key('app_main.api.SYS_ValueList/get_list')}")
+            .data({
+                name: param
+            })
+            .done()
+            .then(function (res) {
+                fnCallBack(res);
+            });
+    }
 
     /**
      * Hàm get combobox data

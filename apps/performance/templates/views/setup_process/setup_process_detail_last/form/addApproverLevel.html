@@ -7,7 +7,8 @@
 <%inherit file="../../../commons/dialog_save.html"/>
 
 <%block name="modal_body">
-<div class="col-md-12 col-xs-12">
+<div class="hcs-modal-format">
+    <div class="col-md-12 col-xs-12">
     <collapse-box class="zb-form-common" title="${get_res('approver_setting','Thiết lập cấp duyệt')}">
         <div class="col-md-6 col-xs-6">
             <div class="form-group zb-form-group">
@@ -70,93 +71,93 @@
         </div>
     </collapse-box>
 </div>
-<div class="col-md-6 col-xs-6">
-    <collapse-box class="zb-form-common" title="${get_res('email_approve','Email DUYỆT')}">
-        <div class="col-md-12 col-xs-12">
-            <div class="form-group zb-form-group">
-                <label class="col-sm-5 zb-form-label">${get_res('email_send_code','Mẫu Email')}</label>
-                <div class="col-sm-7">
-                    <combobox load-data="$root.$getComboboxData"
-                        ng-model="entity.email_approve_code"
-                        params="{key:'${encryptor.get_key('cbb_TM_Email_Template')}', value:[{ '@module_name': 'TMPER' }]}"
-                        on-search-change="false"
-                        on-search-press="true"
-                        placeholder=""
-                        init-data="$$$email_approve_code.value"
-                        caption-field="{{$$$email_approve_code.caption_field}}"
-                        paging="true"
-                        close-on-select="true"
-                        template-fields="$$$email_approve_code.display_fields"
-                        reload="false">
-                    </combobox>
+    <div class="col-md-6 col-xs-6">
+        <collapse-box class="zb-form-common" title="${get_res('email_approve','Email DUYỆT')}">
+            <div class="col-md-12 col-xs-12">
+                <div class="form-group zb-form-group">
+                    <label class="col-sm-5 zb-form-label">${get_res('email_send_code','Mẫu Email')}</label>
+                    <div class="col-sm-7">
+                        <combobox load-data="$root.$getComboboxData"
+                            ng-model="entity.email_approve_code"
+                            params="{key:'${encryptor.get_key('cbb_TM_Email_Template')}', value:[{ '@module_name': 'TMPER' }]}"
+                            on-search-change="false"
+                            on-search-press="true"
+                            placeholder=""
+                            init-data="$$$email_approve_code.value"
+                            caption-field="{{$$$email_approve_code.caption_field}}"
+                            paging="true"
+                            close-on-select="true"
+                            template-fields="$$$email_approve_code.display_fields"
+                            reload="false">
+                        </combobox>
+                    </div>
+                </div>
+                <div class="form-group zb-form-group">
+                    <label  class="col-sm-5 zb-form-label">${get_res('email_send_to','Gửi tới')}</label>
+                    <div class="col-sm-7">
+                          <input-multi-select data-list="cbbLSendEmailTo" ng-model="entity.email_approve_to"
+                                              data-value="value" data-caption="caption"/>
+                    </div>
+                </div>
+                <div class="form-group zb-form-group">
+                    <label  class="col-sm-5 zb-form-label">${get_res('email_send_cc','Gửi thêm tới')}</label>
+                    <div class="col-sm-7">
+                        <input-multi-select ng-model="entity.email_approve_cc" data-list="cbbLSendEmailCC"
+                                            data-value="value" data-caption="caption" />
+                    </div>
+                </div>
+                <div class="form-group zb-form-group">
+                    <label  class="col-sm-5 zb-form-label">${get_res('email_send_more','Gửi chỉ định tới')}</label>
+                    <div class="col-sm-7">
+                        <input-text ng-model="entity.email_approve_more" />
+                    </div>
                 </div>
             </div>
-            <div class="form-group zb-form-group">
-                <label  class="col-sm-5 zb-form-label">${get_res('email_send_to','Gửi tới')}</label>
-                <div class="col-sm-7">
-                      <input-multi-select data-list="cbbLSendEmailTo" ng-model="entity.email_approve_to"
-                                          data-value="value" data-caption="caption"/>
+        </collapse-box>
+        <collapse-box ng-show="!$parent.$parent.$parent.$parent.$parent.$$table.currentItem.is_email_cancel" class="zb-form-common" title="${get_res('email_approve_cancel','Email DUYỆT HUỶ')}">
+            <div class="col-md-12 col-xs-12">
+                <div class="form-group zb-form-group">
+                    <label class="col-sm-5 zb-form-label">${get_res('email_send_code','Mẫu Email')}</label>
+                    <div class="col-sm-7">
+                        <combobox load-data="$root.$getComboboxData"
+                            ng-model="entity.email_approve_cancel_code"
+                            params="{key:'${encryptor.get_key('cbb_TM_Email_Template')}', value:[{ '@module_name': 'TMPER' }]}"
+                            on-search-change="false"
+                            on-search-press="true"
+                            placeholder=""
+                            init-data="$$$email_delete_code.value"
+                            caption-field="{{$$$email_delete_code.caption_field}}"
+                            paging="true"
+                            close-on-select="true"
+                            template-fields="$$$email_delete_code.display_fields"
+                            reload="false">
+                        </combobox>
+                    </div>
+                </div>
+                <div class="form-group zb-form-group">
+                    <label  class="col-sm-5 zb-form-label">${get_res('email_send_to','Gửi tới')}</label>
+                    <div class="col-sm-7">
+                        <input-multi-select data-list="cbbLEmailDeleteTo" ng-model="entity.email_approve_cancel_to"
+                                              data-value="value" data-caption="caption"/>
+                    </div>
+                </div>
+                <div class="form-group zb-form-group">
+                    <label  class="col-sm-5 zb-form-label">${get_res('email_send_cc','Gửi thêm tới')}</label>
+                    <div class="col-sm-7">
+                        <input-multi-select data-list="cbbLEmailDeleteCC" ng-model="entity.email_approve_cancel_cc"
+                                              data-value="value" data-caption="caption"/>
+                    </div>
+                </div>
+                <div class="form-group zb-form-group">
+                    <label  class="col-sm-5 zb-form-label">${get_res('email_send_more','Gửi chỉ định tới')}</label>
+                    <div class="col-sm-7">
+                        <input-text ng-model="entity.email_approve_cancel_more" />
+                    </div>
                 </div>
             </div>
-            <div class="form-group zb-form-group">
-                <label  class="col-sm-5 zb-form-label">${get_res('email_send_cc','Gửi thêm tới')}</label>
-                <div class="col-sm-7">
-                    <input-multi-select ng-model="entity.email_approve_cc" data-list="cbbLSendEmailCC"
-                                        data-value="value" data-caption="caption" />
-                </div>
-            </div>
-            <div class="form-group zb-form-group">
-                <label  class="col-sm-5 zb-form-label">${get_res('email_send_more','Gửi chỉ định tới')}</label>
-                <div class="col-sm-7">
-                    <input-text ng-model="entity.email_approve_more" />
-                </div>
-            </div>
-        </div>
-    </collapse-box>
-    <collapse-box ng-show="!$parent.$parent.$parent.$parent.$parent.$$table.currentItem.is_email_cancel" class="zb-form-common" title="${get_res('email_approve_cancel','Email DUYỆT HUỶ')}">
-        <div class="col-md-12 col-xs-12">
-            <div class="form-group zb-form-group">
-                <label class="col-sm-5 zb-form-label">${get_res('email_send_code','Mẫu Email')}</label>
-                <div class="col-sm-7">
-                    <combobox load-data="$root.$getComboboxData"
-                        ng-model="entity.email_approve_cancel_code"
-                        params="{key:'${encryptor.get_key('cbb_TM_Email_Template')}', value:[{ '@module_name': 'TMPER' }]}"
-                        on-search-change="false"
-                        on-search-press="true"
-                        placeholder=""
-                        init-data="$$$email_delete_code.value"
-                        caption-field="{{$$$email_delete_code.caption_field}}"
-                        paging="true"
-                        close-on-select="true"
-                        template-fields="$$$email_delete_code.display_fields"
-                        reload="false">
-                    </combobox>
-                </div>
-            </div>
-            <div class="form-group zb-form-group">
-                <label  class="col-sm-5 zb-form-label">${get_res('email_send_to','Gửi tới')}</label>
-                <div class="col-sm-7">
-                    <input-multi-select data-list="cbbLEmailDeleteTo" ng-model="entity.email_approve_cancel_to"
-                                          data-value="value" data-caption="caption"/>
-                </div>
-            </div>
-            <div class="form-group zb-form-group">
-                <label  class="col-sm-5 zb-form-label">${get_res('email_send_cc','Gửi thêm tới')}</label>
-                <div class="col-sm-7">
-                    <input-multi-select data-list="cbbLEmailDeleteCC" ng-model="entity.email_approve_cancel_cc"
-                                          data-value="value" data-caption="caption"/>
-                </div>
-            </div>
-            <div class="form-group zb-form-group">
-                <label  class="col-sm-5 zb-form-label">${get_res('email_send_more','Gửi chỉ định tới')}</label>
-                <div class="col-sm-7">
-                    <input-text ng-model="entity.email_approve_cancel_more" />
-                </div>
-            </div>
-        </div>
-    </collapse-box>
-</div>
-<div class="col-md-6 col-xs-6">
+        </collapse-box>
+    </div>
+    <div class="col-md-6 col-xs-6">
     <collapse-box ng-show="!$parent.$parent.$parent.$parent.$parent.$$table.currentItem.is_email_cancel" class="zb-form-common" title="${get_res('email_cancel','Email KHÔNG DUYỆT')}">
         <div class="col-md-12 col-xs-12">
             <div class="form-group zb-form-group">
@@ -241,6 +242,7 @@
             </div>
         </div>
     </collapse-box>
+</div>
 </div>
 </%block>
 

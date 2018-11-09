@@ -1,10 +1,7 @@
 # -*- coding: utf-8 -*-
 from config import database, helpers, db_context
 _hasCreated=False
-def HCSSYS_Departments():
-    global _hasCreated
-    if not _hasCreated:
-        helpers.define_model(
+helpers.define_model(
             "HCSSYS_Departments",
             [["department_code"]],
             #id=helpers.create_field("numeric",True),
@@ -48,6 +45,9 @@ def HCSSYS_Departments():
             modified_on=helpers.create_field("date"),
             modified_by=helpers.create_field("text")
         )
+def HCSSYS_Departments():
+    global _hasCreated
+    if not _hasCreated:
         _hasCreated=True
     ret = db_context.collection("HCSSYS_Departments")
 

@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 from django.contrib.auth.models import User
+import qmongo
 from bson import ObjectId
 import uuid
 import models
@@ -199,10 +200,10 @@ def check_password(password, user_name):
 def delete(args):
     if args['data'] != None:
         try:
-            user_names = models.models_per.auth_user_info().aggregate().project(username = 1).match("_id in {0}", [ObjectId(x["_id"])for x in args['data']]).get_list()
+            user_names =qmongo.models.auth_user_info.aggregate.project(username = 1).match("_id in {0}", [ObjectId(x["_id"])for x in args['data']]).get_list()
 
-            models.models_per.auth_user().delete("username in {0}", [x["username"] for x in user_names])
-            ret = models.models_per.auth_user_info().delete("username in {0}", [x["username"]for x in args['data']])
+            qmongo.models.auth_user.delete("username in {0}", [x["username"] for x in user_names])
+            ret = qmongo.models.auth_user_info.delete("username in {0}", [x["username"]for x in args['data']])
             return ret
         except Exception as ex:
             logger.debug(ex)
@@ -226,7 +227,7 @@ def get_list_with_searchtext(args):
             pageSize        = (lambda pSize: pSize if pSize != None else 20)(pageSize)
 
             items = models.models_per.auth_user_info().aggregate()
-            items.left_join(models.models_per.AD_Roles(), "role_code", "role_code", "role")
+            items.left_join(qmongo.models.AD_Roles, "role_code", "role_code", "role")
             items.project(
                     login_account       = 1,
                     username            = 1,

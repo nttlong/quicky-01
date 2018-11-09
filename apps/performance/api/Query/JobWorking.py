@@ -1,9 +1,10 @@
 from .. import models
 from .. import common
+import qmongo
 def display_list_job_working(group_code):
-    ret=models.HCSLS_JobWorking().aggregate()
-    ret.join(models.HCSLS_JobWorkingGroup(), "gjw_code", "gjw_code", "jwg")
-    ret.left_join(models.HCSEM_Employees(), "report_to_job_w", "employee_code", "emp")
+    ret=qmongo.models.HCSLS_JobWorking.aggregate
+    ret.join(qmongo.models.HCSLS_JobWorkingGroup, "gjw_code", "gjw_code", "jwg")
+    ret.left_join(qmongo.models.HCSEM_Employees, "report_to_job_w", "employee_code", "emp")
     if group_code != None and group_code != "":
         ret.match('jwg.level_code == {0}', group_code)
     ret.project(
@@ -20,14 +21,14 @@ def display_list_job_working(group_code):
     return ret
 
 def get_job_working_group_by_group_code(gjw_code):
-    rs = models.HCSLS_JobWorkingGroup().aggregate().project(gjw_code = 1, gjw_name = 1, ordinal = 1).match("gjw_code == {0}", gjw_code).sort({"ordinal":1}).get_item()
+    rs = qmongo.models.HCSLS_JobWorkingGroup.aggregate.project(gjw_code = 1, gjw_name = 1, ordinal = 1).match("gjw_code == {0}", gjw_code).sort({"ordinal":1}).get_item()
     return rs
 
 def get_job_description_by_job_working_code(job_w_code):
-    ret=models.HCSLS_JobWorking().aggregate()
-    ret.join(models.HCSLS_JobWorkingGroup(), "gjw_code", "gjw_code", "gjw")
-    ret.left_join(models.auth_user_info(), "created_by", "username", "uc")
-    ret.left_join(models.auth_user_info(), "modified_by", "username", "um")
+    ret=qmongo.models.HCSLS_JobWorking.aggregate
+    ret.join(qmongo.models.HCSLS_JobWorkingGroup, "gjw_code", "gjw_code", "gjw")
+    ret.left_join(qmongo.models.auth_user_info, "created_by", "username", "uc")
+    ret.left_join(qmongo.models.auth_user_info, "modified_by", "username", "um")
     ret.project(
         job_w_code="job_w_code",
         job_w_name="job_w_name",
@@ -59,11 +60,11 @@ def get_job_description_by_job_working_code(job_w_code):
     return ret
 
 def get_list_permission_and_mission_by_job_working_code(job_w_code,search_text):
-    ret=models.HCSLS_JobWorking().aggregate()
+    ret=qmongo.models.HCSLS_JobWorking.aggregate
     ret.match("job_w_code == {0}", job_w_code)
     ret.unwind("task")
-    ret.left_join(models.auth_user_info(), "created_by", "username", "uc")
-    ret.left_join(models.auth_user_info(), "modified_by", "username", "um")
+    ret.left_join(qmongo.models.auth_user_info, "created_by", "username", "uc")
+    ret.left_join(qmongo.models.auth_user_info, "modified_by", "username", "um")
     ret.project(
         job_w_code="job_w_code",
         rec_id ="task.rec_id",
@@ -232,13 +233,13 @@ def get_list_job_specific_by_job_working_code(job_w_code):
     pass
 
 def get_list_evaluation_factor_by_job_working_code(job_w_code):
-    ret=models.HCSLS_JobWorking().aggregate()
+    ret=qmongo.models.HCSLS_JobWorking.aggregate
     ret.match("job_w_code == {0}", job_w_code)
     ret.unwind("factor_appraisal")
-    ret.join(models.TMLS_FactorAppraisal(), "factor_appraisal.factor_code", "factor_code", "fac")
-    ret.join(models.TMLS_FactorAppraisalGroup(), "fac.factor_group_code", "factor_group_code", "fac_g")
-    ret.left_join(models.auth_user_info(), "created_by", "username", "uc")
-    ret.left_join(models.auth_user_info(), "modified_by", "username", "um")
+    ret.join(qmongo.models.TMLS_FactorAppraisal, "factor_appraisal.factor_code", "factor_code", "fac")
+    ret.join(qmongo.models.TMLS_FactorAppraisalGroup, "fac.factor_group_code", "factor_group_code", "fac_g")
+    ret.left_join(qmongo.models.auth_user_info, "created_by", "username", "uc")
+    ret.left_join(qmongo.models.auth_user_info, "modified_by", "username", "um")
     ret.project(
         job_w_code="job_w_code",
         rec_id ="factor_appraisal.rec_id",

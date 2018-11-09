@@ -1,8 +1,9 @@
 from .. import models
+import qmongo
 def display_list_train_supplier():
-    ret=models.HCSLS_TrainSupplier().aggregate()
-    ret.left_join(models.auth_user_info(), "created_by", "username", "uc")
-    ret.left_join(models.auth_user_info(), "modified_by", "username", "um")
+    ret=qmongo.models.HCSLS_TrainSupplier.aggregate
+    ret.left_join(qmongo.models.auth_user_info, "created_by", "username", "uc")
+    ret.left_join(qmongo.models.auth_user_info, "modified_by", "username", "um")
     ret.project(
         _id = "_id",
         tr_supplier_code="tr_supplier_code",

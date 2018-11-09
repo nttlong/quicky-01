@@ -5,7 +5,7 @@
 </style>
 <div class="col-xs-12 col-md-12">
     <collapse-box class="zb-form-common" title="${get_res('list_competency_factor','Danh sách yếu tố đánh giá')}">
-        <toolbar>
+        <toolbar class="zb-toolbar-small-control">
             <input-text-icon icon="bowtie-icon bowtie-search"
                                                 on-click="onSearch"></input-text-icon>
             <button ng-click="event.add()" class="zb-btn zb-btn-o-green">
@@ -18,7 +18,7 @@
                 <i class="bowtie-icon bowtie-navigate-refresh"></i>
             </button>
         </toolbar>
-        <div class="col-xs-12 col-md-12 no-padding" style="height:200px;">
+        <div class="col-xs-12 col-md-12 no-padding" style="height:500px;">
             <table-data data-source="$$table.tableSource" 
                 fields="$$table.tableFields" 
                 type="MultiSelect" 
@@ -33,7 +33,7 @@
             </table-data>
         </div>
     </collapse-box>
-    <div style="margin-top:40px;">
+    <div>
     <collapse-box class="zb-form-common" title="${get_res('competency_factor_detail','Chi tiết yếu tố đánh giá')}">
         <toolbar>
             <button ng-click="event.save()" title="${get_global_res('save','Lưu')}" class="zb-btn">
@@ -83,7 +83,7 @@
             <div class="form-group zb-form-group">
                 <label for="DisplayInfo" class="col-xs-4 col-sm-3 col-md-4 zb-form-label">${get_global_res('create_and_modify','Tạo | Sửa')}</label>
                 <div class="col-xs-8 col-sm-9 col-md-8">
-                    <input-text value="{{ entity.created_on | date: $root.systemConfig.date_format}} {{entity.created_by}} | {{ entity.modified_on | date: $root.systemConfig.date_format}} {{entity.modified_by}}" ng-disabled="true"/>
+                    <input-text style="text-align:right;" value="{{ entity.created_on | date: $root.systemConfig.date_format}} {{entity.created_by}} | {{ entity.modified_on | date: $root.systemConfig.date_format}} {{entity.modified_by}}" ng-disabled="true"/>
                 </div>
             </div>
         </div>

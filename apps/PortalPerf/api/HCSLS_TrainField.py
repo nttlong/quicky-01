@@ -1,9 +1,7 @@
 # -*- coding: utf-8 -*-
-from django.contrib.auth.models import User
 from bson import ObjectId
 import uuid
-import models
-import datetime
+from qmongo import models
 import logging
 import threading
 import re
@@ -25,8 +23,8 @@ def get_list_with_searchtext(args):
     pageSize = (lambda pSize: pSize if pSize != None else 20)(pageSize)
 
     items = models.HCSLS_TrainField().aggregate()
-    items.left_join(models.models_per.auth_user_info(), "created_by", "username", "uc")
-    items.left_join(models.models_per.auth_user_info(), "modified_by", "username", "um")
+    items.left_join(models.auth_user_info(), "created_by", "username", "uc")
+    items.left_join(models.auth_user_info(), "modified_by", "username", "um")
     items.project(
         field_code=1,
         field_name=1,
@@ -204,7 +202,7 @@ def check_password(password, user_name):
     return rs
 
 def get_user_info_by_user_name(args):
-    return models.models_per.auth_user_info().aggregate().project(display_name = 1, login_account = 1, username = 1).match('username == {0}', args['data']['username']).get_item()
+    return models.auth_user_info().aggregate().project(display_name = 1, login_account = 1, username = 1).match('username == {0}', args['data']['username']).get_item()
 
 def update_role_code(args):
     try:
@@ -213,7 +211,7 @@ def update_role_code(args):
 
             if args['data'].has_key('role_code') and args['data'].has_key('users'):
                 user_names = [x["username"]for x in args['data']['users']]
-                ret = models.models_per.auth_user_info().update(
+                ret = models.auth_user_info().update(
                     dict(
                         role_code = args['data']['role_code']
                         ),
@@ -237,7 +235,7 @@ def remove_role_code_by_user(args):
         lock.acquire()
         if args['data'].has_key('users'):
             user_names = [x["username"]for x in args['data']['users']]
-            ret = models.models_per.auth_user_info().update(
+            ret = models.auth_user_info().update(
                 dict(
                     role_code = None
                     ),
@@ -257,7 +255,7 @@ def remove_role_code_by_user(args):
 def remove_role_code_by_role(roles):
     try:
         lock.acquire()
-        ret = models.models_per.auth_user_info().update(
+        ret = models.auth_user_info().update(
             dict(
                 role_code = None
                 ),

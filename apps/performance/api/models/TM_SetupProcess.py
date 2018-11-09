@@ -1,9 +1,5 @@
 from config import database, helpers, db_context
-_hasCreated = False
-def TM_SetupProcess():
-    global _hasCreated
-    if not _hasCreated:
-        helpers.extent_model(
+helpers.extent_model(
             "TM_SetupProcess",
             "base",
             [["process_id"]],
@@ -48,7 +44,7 @@ def TM_SetupProcess():
             score_by=helpers.create_field("numeric"),
             score_by_coeff=helpers.create_field("list")
         )
-        _hasCreated = True
+def TM_SetupProcess():
     ret = db_context.collection("TM_SetupProcess")
 
     return ret

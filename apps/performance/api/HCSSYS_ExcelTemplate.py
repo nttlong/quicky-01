@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 from bson import ObjectId
+import qmongo
 import models
 import logging
 import threading
@@ -17,7 +18,7 @@ def get_list_with_searchtext(args):
 
     pageIndex = (lambda pIndex: pIndex if pIndex != None else 0)(pageIndex)
     pageSize = (lambda pSize: pSize if pSize != None else 20)(pageSize)
-    ret = models.HCSSYS_ExcelTemplate().aggregate().project(
+    ret = qmongo.models.HCSSYS_ExcelTemplate.aggregate.project(
             function_id = 1,
             template_code = 1,
             template_name = 1,
@@ -45,7 +46,7 @@ def get_datail_with_searchtext(args):
 
     pageIndex = (lambda pIndex: pIndex if pIndex != None else 0)(pageIndex)
     pageSize = (lambda pSize: pSize if pSize != None else 20)(pageSize)
-    ret = models.HCSSYS_ExcelTemplate().aggregate().project(
+    ret = qmongo.models.HCSSYS_ExcelTemplate.aggregate.project(
             function_id = 1,
             detail = 1
             )
@@ -76,7 +77,7 @@ def insert(args):
         ret = {}
         if args['data'] != None:
             data =  set_dict_insert_data(args)
-            ret  =  models.HCSSYS_ExcelTemplate().insert(data)
+            ret  =  qmongo.models.HCSSYS_ExcelTemplate.insert(data)
             lock.release()
             return ret
 
@@ -94,7 +95,7 @@ def update(args):
         ret = {}
         if args['data'] != None:
             data =  set_dict_update_data(args)
-            ret  =  models.HCSSYS_ExcelTemplate().update(data, "_id == {0}", _id = args['data']['_id'])
+            ret  =  qmongo.models.HCSSYS_ExcelTemplate.update(data, "_id == {0}", _id = args['data']['_id'])
             lock.release()
             return ret
 
@@ -111,7 +112,7 @@ def delete(args):
         lock.acquire()
         ret = {}
         if args['data'] != None:
-            ret  =  models.HCSSYS_ExcelTemplate().delete("_id in {0}",[ObjectId(x["_id"])for x in args['data']])
+            ret  =  qmongo.models.HCSSYS_ExcelTemplate.delete("_id in {0}",[ObjectId(x["_id"])for x in args['data']])
             lock.release()
             return ret
 
@@ -130,7 +131,7 @@ def remove_detail(args):
         id = ""
         if args['data'] != None:
             filter_value=helpers.filter("detail.field_name == {0}", args['data']['detail'][0]['field_name']).get_filter()
-            ret  =  models.HCSSYS_ExcelTemplate().update({
+            ret  =  qmongo.models.HCSSYS_ExcelTemplate.update({
                     "$pull": filter_value
                 },"_id == {0}",id)
             lock.release()

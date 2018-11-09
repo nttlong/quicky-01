@@ -1,11 +1,7 @@
 from config import database, helpers, db_context
 import datetime
 _hasCreated=False
-
-def HCSSYS_ComboboxList():
-    global _hasCreated
-    if not _hasCreated:
-        helpers.extent_model(
+helpers.extent_model(
             "HCSSYS_ComboboxList",
             "base",
             [["combobox_code", "language"]],
@@ -32,6 +28,9 @@ def HCSSYS_ComboboxList():
             modified_on=helpers.create_field("date"),
             modified_by=helpers.create_field("text"),
         )
+def HCSSYS_ComboboxList():
+    global _hasCreated
+    if not _hasCreated:
 
         _hasCreated=True
     ret = db_context.collection("HCSSYS_ComboboxList")

@@ -179,10 +179,13 @@
 
     //Cấu hình tên field và caption hiển thị trên UI
     scope.tableFields = [
-        { "data": "category_id", "title": "${get_res('category_id_table_header','ID')}" },
+        { "data": "category_id", "title": "${get_res('category_id_table_header','ID')}", width: "170px" },
         { "data": "category_name", "title": "${get_res('category_name_table_header','Question Category Name')}" },
-        { "data": "number_ques", "title": "${get_res('number_ques_header','Number of Questions')}" },
-        { "data": "created_on", "title": "${get_res('created_at_table_header','Created at')}", "format": "date:" + 'dd/MM/yyyy h:mm:ss a' },  
+        { "data": "number_ques", "format":"number: system", "title": "${get_res('number_ques_header','Number of Questions')}", "className": "text-right", width: "150px" },
+        { "data": "order", "format":"number: system", "title": "${get_res('order','Order')}", "className": "text-center", width: "100px" },
+        { "data": "created_on", "title": "${get_res('created_at_table_header','Created at')}", "format": "date:" + scope.$root.systemConfig.date_format + ' hh:mm: a', width: "150px" },
+        { "data": "active", "title": "${get_res('active','Active')}", "className": "text-center", "format": "checkbox", width: "100px" },
+
     ];
     scope.$$tableConfig = {};
     scope.$root.$$tableConfig = {};
@@ -371,12 +374,11 @@
                 })
                 .done()
             .then(function (res) {
-
-                _.map(res, function (val) { val.number_ques = val.ques.length;  return val})
+                _.map(res.items, function (val) { val.number_ques = val.ques.length;  return val})
                     var data = {
                         recordsTotal: res.total_items,
                         recordsFiltered: res.total_items,
-                        data: res
+                        data: res.items
                     };
                     callback(data);
                    // scope.$$table.currentItem = null;

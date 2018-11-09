@@ -1,6 +1,7 @@
 ﻿
 <%!
     #_style="width:200px;"
+    #_height=""
 %>
 <%inherit file="../commons/dialog_accepted.html"/>
 
@@ -8,29 +9,34 @@
     .radio input[type=radio]:disabled+label::before {
     cursor: not-allowed;
 }
+label.zb-form-label{
+    padding-left:0px;
+}
 </style>
 
 <%block name="modal_body">
 
-<div class="tab-pane" style="padding-right:unset; height: 100%; overflow-y:hidden; overflow:auto; background-color:#fff;">
+<div class="tab-pane hcs-modal-format" style="padding-right:unset; height: 100%; overflow-y:hidden; overflow:auto; background-color:#fff;">
     	<div class="tabbable-panel">
 		<div class="tabbable-line">
 			<div class="hcs-tab-info">
                 <div class="col-xs-12 col-md-12 competency no-padding">
                      <div class="hcs-tab-info-box active" href="#tab_default_1" data-toggle="tab" ng-click="changeActive($event)">
-                        <img src="${get_static('assets/images/General.png')}"/>
+                        <span class="sap-icon sap-activity-items"></span>
                         <label>
                             ${get_res('Versions_History','Versions History')}
                         </label>
                     </div>
+                    <div class="hcs-tab-info-line"></div>
                     <div class="hcs-tab-info-box" href="#tab_default_2" data-toggle="tab" ng-click="changeActive($event)">
-                        <img src="${get_static('assets/images/Level.png')}"/>
+                        <span class="bowtie-icon bowtie-step-shared"></span>
                         <label style="padding-left:5px;">
                             ${get_res('Download_History','Download History')}
                         </label>
                     </div>
+                    <div class="hcs-tab-info-line"></div>
                     <div class="hcs-tab-info-box" href="#tab_default_3" data-toggle="tab" ng-click="changeActive($event)">
-                        <img src="${get_static('assets/images/Factor1.png')}"/>
+                        <span class="bowtie-icon bowtie-work-item-bug"></span>
                         <label>
                             ${get_res('Sharing_History','Sharing History')}
                         </label>
@@ -85,9 +91,19 @@
         }
 
         scope.Close = Close;
+        scope.onResizeDialog = onResizeDialog;
 
         function Close(event) {
             $(event.target).closest("#myModal").modal('toggle');
+        }
+
+
+        var isFullSize = false;
+        scope.maxHeightDialog = "80vh";
+        function onResizeDialog(){
+            isFullSize = !isFullSize;
+            scope.maxHeightDialog = isFullSize ? "100%" : "80vh";
+            $dialog.fullScreen();
         }
     });
 </script>

@@ -4,11 +4,11 @@ import models
 import common
 import datetime
 import LMS_SetupProcessApproveLevel
-
+import qmongo
 def get_list_with_process_id(args):
     try:
         if args['data'] != None and args['data'].has_key('process_id'):
-            items = models.LMS_SetupProcess().aggregate().project(
+            items =  qmongo.models.LMS_SetupProcess.aggregate.project(
                 process_id = 1,
                 process_name = 1,
                 is_not_apply_process = 1,
@@ -47,9 +47,9 @@ def get_list_with_searchtext(args):
     pageIndex = (lambda pIndex: pIndex if pIndex != None else 0)(pageIndex)
     pageSize = (lambda pSize: pSize if pSize != None else 20)(pageSize)
 
-    items = models.LMS_SetupProcess().aggregate()
-    items.left_join(models.models.auth_user_info(), "created_by", "username", "uc")
-    items.left_join(models.models.auth_user_info(), "modified_by", "username", "um")
+    items = qmongo.models.LMS_SetupProcess.aggregate
+    items.left_join(qmongo.models.models.auth_user_info, "created_by", "username", "uc")
+    items.left_join(qmongo.models.models.auth_user_info, "modified_by", "username", "um")
     items.project(
             process_id = 1,
             process_name = 1,
@@ -87,7 +87,7 @@ def get_list_with_searchtext(args):
 
 def insert(args):
     if args['data'] != None:
-        ret = models.LMS_SetupProcess().insert(args['data'])
+        ret = qmongo.models.LMS_SetupProcess.insert(args['data'])
         return ret
     return None
 
@@ -100,7 +100,7 @@ def update(args):
             if(args['data'].has_key('process_id')):
                 process_id = args['data']['process_id']
                 args['data'].pop('process_id')
-            ret = models.LMS_SetupProcess().update(
+            ret = qmongo.models.LMS_SetupProcess.update(
             args['data'],
             "process_id==@process_id",
             dict(
@@ -111,7 +111,7 @@ def update(args):
 
 def delete(args):
     if args['data'] != None:
-        ret = models.LMS_SetupProcess().delete("process_id in {0}", [x["process_id"] for x in args['data']])
+        ret = qmongo.models.LMS_SetupProcess.delete("process_id in {0}", [x["process_id"] for x in args['data']])
         return ret
     return None
 
@@ -171,11 +171,11 @@ def generate_list_approve_by_max_approve_level(args):
                     args['data']['created_by'] = "admin" #models.models.auth_user_info()["login_account"]
                     args['data']['modified_on'] = None
                     args['data']['modified_by'] = None
-                    ret = models.LMS_SetupProcessApproveLevel().insert(args['data'])
+                    ret =  qmongo.models.LMS_SetupProcessApproveLevel.insert(args['data'])
                     i += 1
                 return ret
             elif count_approve_level > max_approve_level: #giảm số cấp duyệt
-                ret = models.LMS_SetupProcessApproveLevel().delete("approve_level > {0} and process_id == {1}", max_approve_level, int(args['data']['process_id']))
+                ret = qmongo.models.LMS_SetupProcessApproveLevel.delete("approve_level > {0} and process_id == {1}", max_approve_level, int(args['data']['process_id']))
                 return ret
     return None
 

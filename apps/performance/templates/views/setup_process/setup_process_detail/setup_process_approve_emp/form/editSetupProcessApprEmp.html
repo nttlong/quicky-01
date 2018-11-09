@@ -23,8 +23,8 @@
                 <output-label style="width: 100%;text-align: center !important;" value="$parent.$$table.currentItem.employee_code + ' - ' + $parent.$$table.currentItem.employee_name"></output-label>
             </div>
             <div class="form-group zb-form-group" ng-show="__mode != 1">
-                <div class="checkbox zb-form-checkbox"><label class="custom-checkbox" style="margin-left: 15px;"><input type="checkbox" ng-model="addEmployee" ng-click="loadListEmployee($event)"><span></span></label></div>
-                <label class="zb-output-label">${get_res('add_employee', 'Chọn thêm nhân viên')}</label>
+                <div class="checkbox zb-form-checkbox"><label class="custom-checkbox" style="margin-left: 10px;"><input type="checkbox" ng-model="addEmployee" ng-click="loadListEmployee($event)"><span></span></label></div>
+                <label class="zb-form-label">${get_res('add_employee', 'Chọn thêm nhân viên')}</label>
             </div>
             <div class="form-group zb-form-group">
                 <table class="display zb-data-table responsive nowrap dataTable no-footer">
@@ -58,14 +58,12 @@
 </div>
     <div class="col-md-{{ 12 - col_group}} col-xs-{{ 12 - col_group}}">
     <collapse-box class="zb-form-common" title="${get_res('config_approver', 'Thiết lập người duyệt')}">
-        <div class="col-md-12 col-xs-12"  ng-repeat="elm in configApprover track by $index">
-            <div class="form-group zb-form-group">
+        <div class="col-md-12 col-xs-12" >
+            <div class="form-group zb-form-group" ng-repeat="elm in configApprover track by $index">
                 <!--Tên khác-->
-                <div class="col-md-5 col-xs-5">
-                    <input-checkbox class="col-sm-5" ng-model="elm.checked" ng-if="__mode != 1" caption=""></input-checkbox>
-                    <label class="col-xs-5 col-sm-5 zb-form-label">${get_res('level', 'Cấp độ')} {{$index + 1}}</label>
-                </div>
-                <div class="col-sm-7">
+                <input-checkbox class="col-md-1" ng-model="elm.checked" ng-if="__mode != 1" caption=""></input-checkbox>
+                <label class="col-md-3 zb-form-label">${get_res('level', 'Cấp độ')} {{$index + 1}}</label>
+                <div ng-class="__mode!=1? 'col-md-8':'col-md-9'">
                     <combobox load-data="$root.$getComboboxData"
                             ng-model="elm.appover_code"
                             params="{key:'${encryptor.get_key('cbb_employees_cbcc')}', value:[]}"
@@ -152,6 +150,7 @@
             frm.openDialog;
             frm.accept(function () {
                 getEmloyeeByCodes(scope.listEmployee.codes, function(res){
+                debugger
                     scope.listEmployee.employees = res;
                     scope.listEmployee.codes = [];
                     scope.$applyAsync();

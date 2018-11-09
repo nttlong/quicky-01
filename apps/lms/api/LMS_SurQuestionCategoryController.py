@@ -6,6 +6,10 @@ from services import LMS_SurQuestionCategoryService as service
 def get_list(args):
     return service.get_list(args)
 
+@authorization.authorise(action = action_type.Action.READ)
+def get_data_tree(args):
+    return service.get_data_tree(args)
+
 @authorization.authorise(action = action_type.Action.CREATE)
 def insert(args):
     return service.insert_sur_question_category(args['data'])

@@ -211,7 +211,6 @@
         }
 
 		function editData(callback) {
-			debugger
             var url = getUrl();
             if (scope.__mode == 3) {
 
@@ -261,6 +260,11 @@
             rs.result = valid.isNullOrWhiteSpace();
             rs.errorMsg = rs.result === true ? "${get_res('currency_name_is_not_null','Tên nguyên tệ không được để trống')}" + '\n' : "" ;
             if(rs.result === true){
+                return rs;
+            }
+            if(!scope.entity.multiply){
+                rs.result = true;
+                rs.errorMsg = "${get_res('multiply_is_not_null','Nhân hệ số không được chọn')}" + '\n';
                 return rs;
             }
             return rs;

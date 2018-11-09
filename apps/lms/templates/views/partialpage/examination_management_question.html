@@ -3,12 +3,35 @@
     .app-content {
         overflow: unset !important;
     }
+    .dataTables_wrapper.form-inline.dt-bootstrap.no-footer,.dataTables_scroll{
+        height: 100%;
+      }
+      .dataTables_wrapper.form-inline.dt-bootstrap.no-footer > .row:nth-child(2){
+        height:calc(100% - 35px);
+      }
+      .dataTables_wrapper.form-inline.dt-bootstrap.no-footer > .row:nth-child(2) > [class*="col-"]{
+        height:100%;
+      }
+      .dataTables_scrollBody{
+        height:calc(100% - 35px);
+      }
 </style>
-<div class="tab-pane" style="padding-right:unset; height: 100%; ">
+<div class="hcs-container" style="padding-right:unset; height: 100%; ">
     <div>
-        <header-page>
+        <header-page on-add="createQuestionCategory"
+                  on-edit="editQuestionCategory"
+                  on-delete="delQuestionCategory"
+                  on-import="importLearningMaterial"
+                  on-export="exportLearningMaterial"
+                  on-refresh="onRefresh"
+                  on-search-press="onSearch"
+                  key-field="function_id"
+                  display-field="default_name"
+                  icon-field="icon"
+                  selected-key="$root.currentFunction.function_id"
+                  reload-on-change="false">
             <site-map>
-                <a><span>{{$root.currentFunction.default_name}}</span></a>
+                <span>{{$root.currentFunction.default_name}}</span>
             </site-map>
             <toolbar>
                 <input-text-icon icon="bowtie-icon bowtie-search"

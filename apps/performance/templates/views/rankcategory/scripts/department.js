@@ -5,7 +5,7 @@
         { "data": "marital_code", "title": "${get_res('marital_code_table_header','Mã')}" },
         { "data": "marital_name", "title": "${get_res('marital_name_table_header','Tên')}" },
         { "data": "note", "title": "${get_res('note_table_header','Ghi chú')}" },
-        { "data": "ordinal", "title": "${get_res('ordinal_table_header','Thứ tự')}" },
+        { "data": "ordinal", "title": "${get_res('ordinal_table_header','Thứ tự')}","format":"number: system" },
         { "data": "created_on", "title": "${get_res('created_on_table_header','Ngày tạo')}", "format": "date:" + scope.$root.systemConfig.date_format },
         { "data": "lock", "title": "${get_res('lock_table_header','Ngưng SD')}", "format": "checkbox" }
     ];

@@ -1,87 +1,61 @@
 ﻿﻿
 <%!
     #_style="width:200px;"
+    #_height=";max-height:80vh"
 %>
 <%inherit file="../commons/dialog_share_close.html"/>
 ss
 
 <%block name="modal_body">
-        <div class="col-md-{{col_group}} col-sm-{{col_group}}">
-        <collapse-box class="zb-form-common" title="${get_res('public_link','Public Link')}" style="width: 95%;margin-left: 20px;">
-            <div class="content-view-sharing" style="margin-left:30px">
-                <div style="padding-bottom: 180px;margin-top: 30px;">
-                    <div class="col-md-3 col-lg-3 col-sm-3 col-3" >
-                        <img ng-src="{{$root.url_static}}{{_currentItem.files.file_thumbnail}}" alt="Smiley face" style="width:91%;height:128px;float:right">
-                      </div>
-                    <div class="col-md-9 col-lg-9 col-sm-9 col-9" style="padding: 0px;">
-                            <div class="col-md-12" style="padding-bottom: 10px;"><span>{{_currentItem.files.file_name}}</span></div>
-                            <div class="col-md-8 col-lg-8 col-sm-8 col-8" style="padding-right: 30px;">
-                                <input id="link-file" type="text" ng-model="link_sharing" name="link-file" class="form-control"  style="margin-bottom: 10px;">
-                                <div>
-                                    <img ng-src="{{$root.url_static}}css/icon/img-linkedin.png" ng-click="sharingSocial('linkedin')">
-                                    <img ng-src="{{$root.url_static}}css/icon/img-facebook.png" ng-click="sharingSocial('facebook')">
-                                    <img ng-src="{{$root.url_static}}css/icon/img-dropbox.png" ng-click="sharingSocial('dropbox')">
-                                    <img ng-src="{{$root.url_static}}css/icon/img-youtube.png"  ng-click="sharingSocial('youtube')">
-                                    <img ng-src="{{$root.url_static}}css/icon/img-google-plus.png" ng-click="sharingSocial('google')">
-                                    <img ng-src="{{$root.url_static}}css/icon/img-twitter.png" ng-click="sharingSocial('twitter')">
-                                  </div>    
-                            </div>   
-                            <div class="col-md-4 col-lg-4 col-sm-4 col-4" >
-                                <button class="form-control btn btn-primary" ngclipboard data-clipboard-target="#link-file" type="submit" style="width:70%;" >Copy link</button>
-                            </div>
-                      </div>
+        <div class="hcs-modal-format">
+            <div class="col-md-12 col-sm-12">
+            <collapse-box class="zb-form-common" title="${get_res('public_link','Public Link')}" style="margin-left: 20px;">
+                <div class="content-view-sharing" style="padding-bottom: 120px;margin-top: 30px;">
+                    <div class="col-md-2 col-sm-3 col-3" >
+                            <img ng-src="{{$root.url_static}}{{_currentItem.files.file_thumbnail}}" alt="Smiley face" style="padding-top:5px;height:109px;float:right">
+                          </div>
+                    <div class="col-md-10 col-sm-9 col-9" style="padding: 0px;">
+                                <div class="col-md-12" style="padding-bottom: 10px;"><span>{{_currentItem.files.file_name}}</span></div>
+                                <div class="col-md-8 col-lg-8 col-sm-8 col-8" style="padding-right: 30px;">
+                                    <input id="link-file" type="text" ng-model="link_sharing" name="link-file" class="form-control"  style="margin-bottom: 10px;">
+                                    <div>
+                                        <img ng-src="{{$root.url_static}}css/icon/img-linkedin.png" ng-click="sharingSocial('linkedin')">
+                                        <img ng-src="{{$root.url_static}}css/icon/img-facebook.png" ng-click="sharingSocial('facebook')">
+                                        <img ng-src="{{$root.url_static}}css/icon/img-dropbox.png" ng-click="sharingSocial('dropbox')">
+                                        <img ng-src="{{$root.url_static}}css/icon/img-youtube.png"  ng-click="sharingSocial('youtube')">
+                                        <img ng-src="{{$root.url_static}}css/icon/img-google-plus.png" ng-click="sharingSocial('google')">
+                                        <img ng-src="{{$root.url_static}}css/icon/img-twitter.png" ng-click="sharingSocial('twitter')">
+                                      </div>
+                                </div>
+                                <div class="col-md-4 col-lg-4 col-sm-4 col-4" >
+                                    <button class="form-control btn btn-primary" ngclipboard data-clipboard-target="#link-file" type="submit" style="width:70%;" >Copy link</button>
+                                </div>
+                          </div>
+                </div>
+            </collapse-box>
+        </div>
+            <div class="col-md-12 col-sm-12">
+                <collapse-box class="zb-form-common" title="${get_res('file_sharing','File Sharing')}" style="margin-left: 20px;">
+                    <div class="col-md-6">
+                        <div class="form-group zb-form-group">
+                            <input-multi-select style="width:100%;" ng-model="sharing.members_group" data-list="cbbLMSLCourse" data-value="caption" data-caption="caption"/>
+                        </div>
+                        <div class="form-group zb-form-group" ng-repeat="item in sharing.invited_email track by $index" style="padding-top: 28px;">
+                            <input-text-icon style="width:100%;" icon="bowtie-icon bowtie-edit-delete" id="inputEmp_Train_Mode_Name" ng-model="item.address" placeholder="Invite (Email Address)" on-click="delEmailAddress($index)"></input-text-icon>
+                        </div>
+                        <div class="form-group zb-form-group" style="margin:20px 0px;">
+                            <a class="relation-content-row" ng-click="addEmailAddress()" style="font-size:11px;cursor: pointer;float:left">Invite new Member</a>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group zb-form-group">
+                            <input-textarea style="margin-left:0px;margin-top:0px" rows="4" ng-model="sharing.message" placeholder="Message"></input-textarea>
+                        </div>
+                    </div>
+                </collapse-box>
 
                 </div>
         </div>
-        <div class="col-md-{{col_group}} col-sm-{{col_group}}">
-                <collapse-box class="zb-form-common" title="${get_res('file_sharing','File Sharing')}" >
-                    <div class="col-md-3 col-lg-3 col-sm-3" >
-                        </div>
-                    <div class="col-md-6 col-lg-6 col-sm-6" >
-                     <div class="col-md-{{col}}">
-                        <div class="form-group zb-form-group">
-                            <div class="col-sm-12"> 
-                              <input-multi-select ng-model="sharing.members_group" data-list="cbbLMSLCourse" data-value="caption" data-caption="caption" placeholder="Member or Group" />
-                            </div>
-                        </div>
-                    </div>
-                   <div class="col-md-{{col}}" ng-repeat="item in sharing.invited_email track by $index">
-                        <div class="form-group zb-form-group" style="padding-top: 20px;">
-                            <div class="col-sm-12"> 
-                                <input-text-icon icon="bowtie-icon bowtie-edit-delete" id="inputEmp_Train_Mode_Name" ng-model="item.address" placeholder="Invite (Email Address)" on-click="delEmailAddress($index)"></input-text-icon>
-                                
-                            </div>
-                            
-                        </div>
-                    </div>
-                       <div class="col-md-{{col}}">
-                        <div class="form-group zb-form-group">
-                             <div class="col-sm-12" style="margin-top:20px"> 
-                             <a class="relation-content-row" ng-click="addEmailAddress()" style="font-size:11px;cursor: pointer;float:left">Invite new Member</a>
-                            </div>
-                            
-                        </div>
-                    </div>
-                        
-                     <div class="col-md-{{col}}">
-                        <div class="form-group zb-form-group">
-                            <div class="col-sm-12" style="margin-top:30px"> 
-                                <input-textarea rows="4" ng-model="sharing.message" placeholder="Message"></input-textarea>
-                            </div>
-                           
-                        </div>
-                    </div>
-                        
-                        </div>
-                    <div class="col-md-3 col-lg-3 col-sm-3" >
-                        </div>
-
-
-                </div>
-                    
-            </div>
-        
-        
 </%block>
 
 <%block name="modal_script">
@@ -99,7 +73,8 @@ ss
 
         scope.title = scope.$parent.headerTitle;
 
-        scope.sharing = {}
+        scope.sharing = {};
+        scope.sharing.members_group = [];
         scope.sharing.invited_email = [{}];
 
         scope._currentItem = scope.$parent.currentItem;
@@ -117,7 +92,8 @@ ss
             })
             .done()
             .then(function (res) {
-                scope.cbbLMSLCourse = getValue(res.values, "LMSLSharing");
+            debugger
+                scope.cbbLMSLCourse = JSON.parse(JSON.stringify(getValue(res.values, "LMSLSharing")));
 
                 scope.$applyAsync();
                 function getValue(response, listName) {
@@ -221,6 +197,14 @@ ss
             $(event.target).closest("#myModal").modal('toggle');
         }
 
+        scope.onResizeDialog = onResizeDialog;
+        var maxHeightDialog = "80vh";
+        var isFullSize = false;
+        function onResizeDialog(){
+            isFullSize = !isFullSize;
+            maxHeightDialog = isFullSize ? "100%" : "80vh";
+            $dialog.fullScreen();
+        }
   
     });
 </script>

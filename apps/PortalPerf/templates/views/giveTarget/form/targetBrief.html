@@ -1,0 +1,271 @@
+<%!
+    #_style="width:300px;"
+%>
+    <%inherit file="../../commons/dialog_resize_save_close.html"/>
+
+<%block name="modal_body">
+<div class="col-md-6 col-sm-6">
+    <collapse-box class="zb-form-common" title="${get_res('Information_target','Thông tin mục tiêu')}">
+        <div class="col-md-12">
+            <div class="form-group zb-form-group">
+                <label class="col-sm-5 zb-form-label">${get_res('target_name','Mục tiêu')}</label>
+                <div class="col-sm-7" style="display: grid; grid-template-columns:1fr auto;">
+                    <div>
+                        <input-text ng-model="entity.target_name"></input-text>
+                        <combobox load-data="$root.$getComboboxData"
+                                  ng-model="entity.kpi_code"
+                                  ng-change="setTargetName"
+                                  params="{key:'${encryptor.get_key('cbb_tmls_kpi_single_select')}', value:[{ '@lock': true }]}"
+                                  on-search-change="false"
+                                  on-search-press="true"
+                                  placeholder=""
+                                  init-data="$$$cbb_tmls_kpi_single_select.value"
+                                  caption-field="{{$$$cbb_tmls_kpi_single_select.caption_field}}"
+                                  paging="true"
+                                  close-on-select="true"
+                                  template-fields="$$$cbb_tmls_kpi_single_select.display_fields"
+                                  reload="true"
+                                  style="display: none;"
+                                  id="comboboxTargetName"
+                                  required>
+                        </combobox>
+                    </div>
+                    <div>
+                        <button ng-click="openKPI()" class="zb-btn border-left hcs-left-side-department-tree-tool-bar-btn-custom-icon btn-more" style="text-align: center;">
+                            <span>
+                            <i class="bowtie-icon bowtie-ellipsis" style="color:#999"></i>
+                            </span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-12">
+            <div class="form-group zb-form-group">
+                <label class="col-sm-5 zb-form-label">${get_res('parent_name','Thuộc mục tiêu bộ phận cha')}</label>
+                <div class="col-sm-7">
+                    <combobox ng-model=""/>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-12">
+            <div class="form-group zb-form-group">
+                <label class="col-sm-5 zb-form-label">${get_res('bsc_type','Phân nhóm (theo BSC)')}</label>
+                <div class="col-sm-7">
+                    <input-select data-list="LPERF_BSC_Type" ng-model="entity.bsc_type" data-value="value" 
+                               data-caption="caption">
+                </div>
+            </div>
+        </div>
+        <div class="col-md-12">
+            <div class="form-group zb-form-group">
+                <!--Thuộc nhóm-->
+                <label class="col-sm-5 zb-form-label">${get_res('unit_code','Đơn vị tính')}</label>
+                <div class="col-sm-7">
+                     <combobox load-data="$root.$getComboboxData"
+                                ng-model="entity.unit_code"
+                                params="{key:'${encryptor.get_key('cbb_HCSLS_Unit')}', value:[{ '@lock': true }]}"
+                                on-search-change="false"
+                                on-search-press="true"
+                                on-accept="changeUnit"
+                                placeholder=""
+                                init-data="$$$cbb_HCSLS_Unit.value"
+                                caption-field="{{$$$cbb_HCSLS_Unit.caption_field}}"
+                                paging="true"
+                                close-on-select="true"
+                                template-fields="$$$cbb_HCSLS_Unit.display_fields"
+                                reload="false">
+                        </combobox>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-12">
+            <div class="form-group zb-form-group">
+                <!--Trọng số-->
+                <label class="col-sm-5 zb-form-label">${get_res('weight','Trọng số')}</label>
+                <div class="col-sm-7">
+                    <input-number ng-model="entity.weight" type="float">
+                </div>
+            </div>
+        </div>
+        <div class="col-md-12">
+            <div class="form-group zb-form-group">
+                <label class="col-sm-5 zb-form-label">${get_res('kpi_formula','Công thức tính năng suất')}</label>
+                 <div class="col-sm-7" style="display: grid; grid-template-columns:1fr auto;">
+                    <div>
+                        <combobox load-data="$root.$getComboboxData"
+                                ng-model="entity.kpi_formula"
+                                params="{key:'${encryptor.get_key('cbb_HCSLS_Unit')}', value:[{ '@lock': true }]}"
+                                on-search-change="false"
+                                on-search-press="true"
+                                placeholder=""
+                                init-data="$$$cbb_HCSLS_Unit.value"
+                                caption-field="{{$$$cbb_HCSLS_Unit.caption_field}}"
+                                paging="true"
+                                close-on-select="true"
+                                template-fields="$$$cbb_HCSLS_Unit.display_fields"
+                                reload="false">
+                        </combobox>
+                    </div>
+                    <div>
+                        <button ng-click="addFormula()" class="zb-btn border-left hcs-left-side-department-tree-tool-bar-btn-custom-icon btn-more" style="text-align: center;">
+                            <span>
+                            <i class="bowtie-icon bowtie-ellipsis" style="color:#999"></i>
+                            </span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-12">
+            <div class="form-group zb-form-group">
+                <label class="col-sm-5 zb-form-label">${get_res('value_cal_type','Cách tính cột "Thực hiện"')}</label>
+                 <div class="col-sm-7">
+                    <input-select data-list="cbbValueCalType" 
+                               ng-model="entity.value_cal_type" data-value="value" 
+                               data-caption="caption"/>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-12">
+            <div class="form-group zb-form-group">
+                <label class="col-sm-5 zb-form-label">${get_res('cycle_type','Tần suất cập nhật')}</label>
+                 <div class="col-sm-7">
+                    <input-select data-list="LCycleType" 
+                               ng-model="entity.cycle_type" data-value="value" 
+                               data-caption="caption"/>
+                </div>
+            </div>
+        </div>
+    </collapse-box>
+</div>
+<div class="col-md-6 col-sm-6">
+    <collapse-box class="zb-form-common" title="${get_res('plan','Kế hoạch')}">
+        <div class="col-md-12">
+            <div class="form-group zb-form-group">
+                <!--Trọng số-->
+                <label class="col-sm-5 zb-form-label">${get_res('target','Chỉ tiêu')}</label>
+                <div class="col-sm-7">
+                    <input-number ng-if="!$$unit_type || $$unit_type === 1" ng-model="$parent.entity.target" type="float"></input-number>
+                    <input-text ng-if="$$unit_type && $$unit_type === 2" ng-model="$parent.entity.target"></input-text>
+                    <date-picker ng-if="$$unit_type && $$unit_type === 3" ng-model="$parent.entity.target"></date-picker>
+                    <time-picker ng-if="$$unit_type && $$unit_type === 4" ng-model="$parent.entity.target"></time-picker>
+                    <!--<datetime-picker ng-if="$$unit_type && $$unit_type === 5" ng-model="entity.target"></datetime-picker>-->
+                    <input-select ng-if="$$unit_type && $$unit_type === 6" ng-model="$parent.entity.target"></input-select>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-12">
+            <div class="form-group zb-form-group">
+                <!--Tên khác-->
+                <label class="col-sm-5 zb-form-label">${get_res('begin_date','Ngày bắt đầu')}</label>
+                <div class="col-sm-7">
+                    <date-picker ng-model="entity.begin_date">
+                </div>
+            </div>
+        </div>
+        <div class="col-md-12">
+            <div class="form-group zb-form-group">
+                <!--Thuộc nhóm-->
+                <label class="col-sm-5 zb-form-label">${get_res('end_date','Hạn hoàn thành')}</label>
+                <div class="col-sm-7">
+                    <date-picker ng-model="entity.end_date">
+                </div>
+            </div>
+        </div>
+        <div class="col-md-12">
+            <div class="form-group zb-form-group">
+                <!--Trọng số-->
+                <label class="col-sm-5 zb-form-label">${get_res('baseline','Giới hạn')}</label>
+                <div class="col-sm-7">
+                    <input-number ng-if="!$$unit_type || $$unit_type === 1" ng-model="$parent.entity.baseline" type="float"></input-number>
+                    <input-text ng-if="$$unit_type && $$unit_type === 2" ng-model="$parent.entity.baseline"></input-text>
+                    <date-picker ng-if="$$unit_type && $$unit_type === 3" ng-model="$parent.entity.baseline"></date-picker>
+                    <time-picker ng-if="$$unit_type && $$unit_type === 4" ng-model="$parent.entity.baseline"></time-picker>
+                    <!--<datetime-picker ng-if="$$unit_type && $$unit_type === 5" ng-model="entity.baseline"></datetime-picker>-->
+                    <input-select ng-if="$$unit_type && $$unit_type === 6" ng-model="$parent.entity.baseline"></input-select>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-12">
+            <div class="form-group zb-form-group">
+                <!--Trọng số-->
+                <label class="col-sm-5 zb-form-label">${get_res('min_value','Tối thiểu')}</label>
+                <div class="col-sm-7">
+                    <input-number ng-if="!$$unit_type || $$unit_type === 1" ng-model="$parent.entity.min_value" type="float"></input-number>
+                    <input-text ng-if="$$unit_type && $$unit_type === 2" ng-model="$parent.entity.min_value"></input-text>
+                    <date-picker ng-if="$$unit_type && $$unit_type === 3" ng-model="$parent.entity.min_value"></date-picker>
+                    <time-picker ng-if="$$unit_type && $$unit_type === 4" ng-model="$parent.entity.min_value"></time-picker>
+                    <!--<datetime-picker ng-if="$$unit_type && $$unit_type === 5" ng-model="entity.min_value"></datetime-picker>-->
+                    <input-select ng-if="$$unit_type && $$unit_type === 6" ng-model="$parent.entity.min_value"></input-select>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-12">
+            <div class="form-group zb-form-group">
+                <!--Trọng số-->
+                <label class="col-sm-5 zb-form-label">${get_res('maxvalue','Tối đa')}</label>
+                <div class="col-sm-7">
+                    <input-number ng-if="!$$unit_type || $$unit_type === 1" ng-model="$parent.entity.max_value" type="float"></input-number>
+                    <input-text ng-if="$$unit_type && $$unit_type === 2" ng-model="$parent.entity.max_value"></input-text>
+                    <date-picker ng-if="$$unit_type && $$unit_type === 3" ng-model="$parent.entity.max_value"></date-picker>
+                    <time-picker ng-if="$$unit_type && $$unit_type === 4" ng-model="$parent.entity.max_value"></time-picker>
+                    <!--<datetime-picker ng-if="$$unit_type && $$unit_type === 5" ng-model="entity.max_value"></datetime-picker>-->
+                    <input-select ng-if="$$unit_type && $$unit_type === 6" ng-model="$parent.entity.max_value"></input-select>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-12">
+            <div class="form-group zb-form-group">
+                <!--Trọng số-->
+                <label class="col-sm-5 zb-form-label">${get_res('origin_target','Chỉ tiêu ban đầu')}</label>
+                <div class="col-sm-7">
+                    <input-text ng-model="entity.origin_target" ng-disabled="true">
+                </div>
+            </div>
+        </div>
+        <div class="col-md-12">
+            <div class="form-group zb-form-group">
+                <!--Trọng số-->
+                <label class="col-sm-5 zb-form-label">${get_res('modify_type','Trạng thái thay đỗi')}</label>
+                <div class="col-sm-7">
+                    <input-select data-list="L_PERF_GiveTarget_ModifyType" data-caption="caption" data-value="value" ng-model="entity.modify_type" ng-disabled="true">
+                </div>
+            </div>
+        </div>
+    </collapse-box>
+</div>
+<div class="col-md-6 col-sm-6">
+    <collapse-box class="zb-form-common" title="${get_res('target_description','Mô tả mục tiêu')}">
+        <div class="col-sm-12">
+            <!--Ghi chú-->
+            <div class="form-group zb-form-group">
+                <div class="col-sm-12 no-padding">
+                    <input-textarea rows="4" ng-model="entity.target_desc"></input-textarea>
+                </div>
+            </div>
+        </div>
+    </collapse-box>
+</div>
+<div class="col-md-6 col-sm-6">
+    <collapse-box class="zb-form-common" title="${get_global_res('Note','Ghi chú')}">
+        <div class="col-sm-12">
+            <!--Ghi chú-->
+            <div class="form-group zb-form-group">
+                <div class="col-sm-12 no-padding">
+                    <input-textarea rows="4" ng-model="entity.note"></input-textarea>
+                </div>
+            </div>
+        </div>
+    </collapse-box>
+</div>
+</%block>
+
+<%block name="modal_script">
+<script>
+    (function (scope) {
+        scope.title = scope.$parent.headerTitle;
+    });
+</script>
+
+</%block>

@@ -1,10 +1,16 @@
 (function (scope) {
     scope.$$table = {
         tableFields: [
-            { "data": "com_code", "title": "${get_res('id','ID')}", "className": "text-left" },
-            { "data": "com_name", "title": "${get_res('Question','Question')}", "className": "text-left" },
-            { "data": "apr_form_type", "title": "${get_res('question_type','Question Type')}", "className": "text-left" },
-            { "data": "point_scale_type", "title": "${get_res('assigned_to','Assigned to')}", "className": "text-left" },
+            { "data": "question_id", "title": "${get_res('id','ID')}", "className": "text-left" },
+            { "data": "question_content_1", "title": "${get_res('Question','Question')}", "className": "text-left" },
+            { "data": "category_type_name", "title": "${get_res('question_type','Question Type')}", "className": "text-left" },
+            { "data": "total_temp_size", "title": "${get_res('assigned_to','Assigned to')}", "className": "text-left", "expr":function(row, data, func){
+                func(function(){
+                    return "<span>" + row.total_temp_size + "</span> <span style='color: green;' class='sap-icon sap-menu'></span>" ;
+
+                });
+                return true;
+            } },
             { "data": "created_on", "title": "${get_res('created_at','Created at')}", "format": "date:" + scope.$root.systemConfig.date_format, "className": "text-center" }
         ],
         $$tableConfig: {},
@@ -14,9 +20,8 @@
         currentItem: {},
         tableSearchText: '',
         refreshDataRow: function () { /*Do nothing*/ }
-
-
     };
+
     scope._tableData = _tableData;
     scope.searchText = "";
 
@@ -27,7 +32,7 @@
     scope.onExport = onExport;
     scope.onRefresh = onRefresh;
 
-    function onSearch(val) {
+    scope.onSearchText = function(val) {
         scope.$$table.tableSearchText = val;
         var tableConfig = scope.$$table.$$tableConfig;
         _tableData(tableConfig.iPage,
@@ -35,6 +40,7 @@
             tableConfig.searchText, tableConfig.fnReloadData);
             scope.$apply();
     }
+
     function onAdd() {
         scope.mode = 1;
         openDialog("${get_res('add_question','Thêm câu hỏi')}", 'form/addSurQuestionBank', function () { });
@@ -42,7 +48,7 @@
     function onEdit() {
         if (scope.$$table.currentItem) {
             scope.mode = 2;
-            openDialog("${get_res('detail_competency_dictionary','Chi tiết từ điển năng lực')}" + ": " + scope.$$table.currentItem.com_name, 'competencyDictionary/form/addCompetency', function () { });
+            openDialog("${get_res('detal_sur_question','Chi tiết câu hỏi')}" + ": " + scope.$$table.currentItem.question_content_1, 'form/addSurQuestionBank', function () { });
         } else {
             $msg.message("${get_global_res('Notification','Thông báo')}", "${get_app_res('No_Row_Selected','Không có dòng được chọn')}", function () { });
         }
@@ -51,10 +57,8 @@
         if (!scope.$$table.selectedItems || scope.$$table.selectedItems.length === 0) {
             $msg.message("${get_global_res('Notification','Thông báo')}", "${get_global_res('No_Row_Selected','Không có dòng được chọn')}", function () { });
         } else {
-            $msg.confirm("${get_global_res('Notification','Thông báo')}", "${get_global_res('Do_You_Want_Delete','Bạn có muốn xóa không?')}" + 
-                "\n" +
-                "${get_res('level_and_factor_will_be_delete','Cấp độ và yếu tố đánh giá của năng lực này sẽ được xóa theo.')}", function () {
-                services.api("${get_api_key('app_main.api.TMLS_Competency/delete')}")
+            $msg.confirm("${get_global_res('Notification','Thông báo')}", "${get_global_res('Do_You_Want_Delete','Bạn có muốn xóa không?')}", function () {
+                services.api("${get_api_key('app_main.api.LMS_SurQuestionBankController/delete')}")
                     .data(scope.$$table.selectedItems)
                     .done()
                     .then(function (res) {
@@ -97,6 +101,11 @@
         }
     }
 
+    scope.reloadData = function (){
+        var config = scope.$$table.$$tableConfig;
+        _tableData(config.iPage, config.iPageLength, config.orderBy, config.SearchText, config.fnReloadData);
+    }
+
     function _loadDataServerSide(fnReloadData, iPage, iPageLength, orderBy, searchText) {
         scope.$$table.$$tableConfig = {
             fnReloadData: fnReloadData,
@@ -118,20 +127,25 @@
         }
     };
 
+    scope.$watch("groupCategory", function(v, o){
+        scope.reloadData();
+    })
+
     function _tableData(iPage, iPageLength, orderBy, searchText, callback) {
         var sort = {};
         $.each(orderBy, function (i, v) {
             sort[v.columns] = (v.type === "asc") ? 1 : -1;
         });
         sort[orderBy[0].columns] =
-            services.api("${get_api_key('app_main.api.TMLS_Competency/get_list_with_searchtext')}")
+            services.api("${get_api_key('app_main.api.LMS_SurQuestionBankController/get_list')}")
                 .data({
                     "pageIndex": iPage - 1,
                     "pageSize": iPageLength,
                     "search": searchText,
                     "sort": sort,
-                    "com_group_code": scope.$$tree.treeCurrentNode.hasOwnProperty("com_group_code") === true ? scope.$$tree.treeCurrentNode.com_group_code : null,
-                    "com_type": scope.CompetencyType ? scope.CompetencyType['value'] : 0,
+                    "where": {
+                        category_id: scope.groupCategory ? scope.groupCategory.category_id : null
+                    }
                 })
                 .done()
                 .then(function (res) {

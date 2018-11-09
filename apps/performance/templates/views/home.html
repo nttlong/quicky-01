@@ -1,11 +1,11 @@
 ﻿<div class="hcs-body clearfix">
     <div class="col-md-12">
         <!--<h1>{{(Math.floor(Math.random() * 5))}}</h1>-->
-        <collapse-box class="zb-dashboard" ng-repeat="function in $functions"
+        <collapse-box-home class="zb-dashboard" ng-repeat="function in $functions"
                       title="{{function.custom_name_lb}}" description="{{function.description_lb}}"
                       ng-if="!function.parent_id">
 
-            <div style="padding-left: 20px;" class="container-fluid">
+            <div style="padding-top: 0.625rem; padding-bottom: 1.375rem;" class="container-fluid">
                 <div class="hcs-home-body-tile" id="hcs-body-{{function.function_id}}">
                         <tile-box ng-repeat="child in function.child_items"
                                   title="{{child.custom_name_lb}}"
@@ -21,7 +21,7 @@
                     </div>
             </div>
 
-        </collapse-box>
+        </collapse-box-home>
     </div>
 </div>
 <script>

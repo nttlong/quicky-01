@@ -3,10 +3,7 @@ import datetime
 import base
 import threading
 _hasCreated=False
-def HCSSYS_DataDomain():
-    global _hasCreated
-    if not _hasCreated:
-        helpers.extent_model(
+helpers.extent_model(
             "HCSSYS_DataDomain",
             "base",
             [["dd_code"]],
@@ -22,6 +19,9 @@ def HCSSYS_DataDomain():
                 department_code = helpers.create_field("text"),
                 ))
         )
+def HCSSYS_DataDomain():
+    global _hasCreated
+    if not _hasCreated:
         def on_before_insert(data):
             before_process
 

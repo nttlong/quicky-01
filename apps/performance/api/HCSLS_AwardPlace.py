@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 from bson import ObjectId
+import qmongo
 import models
 import common
 from Query import Award
@@ -40,7 +41,7 @@ def insert(args):
         ret = {}
         if args['data'] != None:
             data =  set_dict_insert_data(args)
-            ret  =  models.HCSLS_AwardPlace().insert(data)
+            ret  =  qmongo.models.HCSLS_AwardPlace.insert(data)
             lock.release()
             return ret
 
@@ -59,7 +60,7 @@ def update(args):
         ret = {}
         if args['data'] != None:
             data =  set_dict_update_data(args)
-            ret  =  models.HCSLS_AwardPlace().update(
+            ret  =  qmongo.models.HCSLS_AwardPlace.update(
                 data, 
                 "award_place_code == {0}", 
                 args['data']['award_place_code'])
@@ -84,7 +85,7 @@ def delete(args):
         lock.acquire()
         ret = {}
         if args['data'] != None:
-            ret  =  models.HCSLS_AwardPlace().delete("award_place_code in {0}",[x["award_place_code"]for x in args['data']])
+            ret  = qmongo.models.HCSLS_AwardPlace.delete("award_place_code in {0}",[x["award_place_code"]for x in args['data']])
             lock.release()
             return ret
 

@@ -13,7 +13,7 @@
     scope.$$table = {
         tableFields: [
             { "data": "factor", "title": "${get_res('factor_table_header','Yếu tố đánh giá')}" },
-            { "data": "weight", "title": "${get_res('weight_table_header','Trọng số')}" },
+            { "data": "weight", "title": "${get_res('weight_table_header','Trọng số')}","format":"number: system" },
             { "data": "com_level_code", "title": "${get_res('com_level_code_table_header','Dành cho cấp độ')}" }
         ],
         $$tableConfig: {},

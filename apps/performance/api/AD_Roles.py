@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 from bson import ObjectId
+import qmongo
 import models
 import auth_user
 import tmp_transactions
@@ -24,7 +25,7 @@ def insert(args):
                 stop = (lambda data: data["stop"] if data.has_key("stop") else False)(args['data']),
                 description = (lambda data: data["description"] if data.has_key("description") else None)(args['data'])
                 )
-            ret =  models.AD_Roles().insert(data)
+            ret = qmongo.models.AD_Roles.insert(data)
             lock.release()
             return ret
 
@@ -52,7 +53,7 @@ def update(args):
 
             #data_trans = tmp_transactions.create(common.generate_guid(), "api_path", dat, ord = 1)
 
-            ret = models.AD_Roles().update(
+            ret =qmongo.models.AD_Roles.update(
                     data,
                     "role_code == {0}",
                     args['data']['role_code'])
@@ -86,7 +87,7 @@ def delete(args):
         ret = {}
         if args['data'] != None:
             role_codes = [x["role_code"]for x in  args['data']] 
-            ret =  models.AD_Roles().delete("role_code in {0}", role_codes)
+            ret = qmongo.models.AD_Roles.delete("role_code in {0}", role_codes)
             #Remove role_code các user có trị tương ứng
             auth_user.remove_role_code_by_role(role_codes)
             lock.release()
@@ -111,8 +112,8 @@ def get_list_with_searchtext(args):
                 pageIndex       = (lambda pIndex: pIndex if pIndex != None else 0)(pageIndex)
                 pageSize        = (lambda pSize: pSize if pSize != None else 20)(pageSize)
 
-                items = models.AD_Roles().aggregate()
-                items.join(models.HCSSYS_DataDomain(), "dd_code", "dd_code", "domain")
+                items =qmongo.models.AD_Roles.aggregate
+                items.join(qmongo.models.HCSSYS_DataDomain, "dd_code", "dd_code", "domain")
                 items.project(
                         role_code       = 1,
                         role_name       = 1,

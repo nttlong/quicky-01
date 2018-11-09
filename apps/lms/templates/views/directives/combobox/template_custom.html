@@ -1,4 +1,21 @@
-﻿<div class="modal-dialog">
+﻿<style>
+    .zb-nav-tabs,tab-content{
+        height:100%;
+    }
+    ul.zb-navbar{
+        height:5%;
+    }
+    .zb-tab-container{
+        height:95%;
+    }
+    .dataTables_scrollBody{
+        max-height:{{maxHeightTable}}
+    }
+    .dataTables_scrollHeadInner,table.zb-data-table{
+        width:100% !important;
+    }
+</style>
+<div class="modal-dialog">
     <div class="modal-content">
         <div class="modal-header">
             <div class="left-content pull-left">
@@ -10,40 +27,39 @@
                 <button type="button" class="close" ng-click="onResizeDialog()"><i class="bowtie-icon bowtie-view-full-screen"></i></button>
             </div>
         </div>
-        <div class="modal-body" style="overflow:unset;">
-            <div class="col-md-12" style="margin-top: 10px;">
-    <nav-tabs min-height="72vh" max-height="72vh" style="overflow:unset;" >
-        <tab-content name="tab1"  title="${get_res('list_user','Người dùng')}" select="onSelectTabOne">
-            <div class="col-md-12" style="height: 66vh;padding:0px 6px;" select="onSelectTab">
-               
-                <!--Table user-->
-          <input-text-icon on-click="change" style="padding:5px;">
-            </input-text-icon>
-            <div style="height:calc(100% - 40px)">
-            <table-data data-source="tableSource" fields="tableFields" type="MultiSelect" 
-                    paging="true" page-length="table_info.page_size" server-side="true" 
-                    press-enter="$table.onSelectTableRow" selected-items="$table.selectedItems" 
-                    current-item="$table.currentItem" search-text="$table.tableSearchText"
-                    refresh-row="$table.refreshDataRow" >
-            </table-data>
-            </div>
-            </div>
-        </tab-content>
-        <tab-content name="tab2" title="${get_res('list_group_user','Nhóm người dùng')}" select="onSelectTabTwo">
-            <div class="col-md-12" style="height: 66vh;padding:0px 6px;">
-            <input-text-icon on-click="change" style="padding:5px;">
-            </input-text-icon>
-            <div style="height:calc(100% - 40px)">
-            <table-data data-source="_tableSource" fields="_tableFields" type="MultiSelect" 
-                    paging="true" page-length="table_info.page_size" server-side="true" 
-                    press-enter="$table_group._onSelectTableRow" selected-items="$table_group._selectedItems" 
-                    current-item="$table_group._currentItem" search-text="$table_group._tableSearchText"
-                    refresh-row="$table_group.refreshDataRow">
-            </table-data>
-            </div>
-            </div>
-        </tab-content>
-    </nav-tabs>
+        <div class="modal-body modal-body-resize" style="overflow-y:hidden;">
+            <div class="col-md-12 hcs-modal-format" style="margin-top: 10px;height:calc(100% - 16px)">
+                <nav-tabs style="overflow:unset;" >
+                    <tab-content name="tab1"  title="${get_res('list_user','Người dùng')}" select="onSelectTabOne">
+                        <div class="col-md-12" style="padding:0px 6px;height: 100%;" select="onSelectTab">
+                            <!--Table user-->
+                      <input-text-icon on-click="change" style="padding:5px;">
+                        </input-text-icon>
+                        <div style="height:calc(100% - 40px)">
+                        <table-data data-source="tableSource" fields="tableFields" type="MultiSelect"
+                                paging="true" page-length="table_info.page_size" server-side="true"
+                                press-enter="$table.onSelectTableRow" selected-items="$table.selectedItems"
+                                current-item="$table.currentItem" search-text="$table.tableSearchText"
+                                refresh-row="$table.refreshDataRow" >
+                        </table-data>
+                        </div>
+                        </div>
+                    </tab-content>
+                    <tab-content name="tab2" title="${get_res('list_group_user','Nhóm người dùng')}" select="onSelectTabTwo">
+                        <div class="col-md-12" style="height: 100%;padding:0px 6px;">
+                            <input-text-icon on-click="change" style="padding:5px;">
+                            </input-text-icon>
+                            <div style="height:calc(100% - 40px)">
+                                <table-data data-source="_tableSource" fields="_tableFields" type="MultiSelect"
+                                        paging="true" page-length="table_info.page_size" server-side="true"
+                                        press-enter="$table_group._onSelectTableRow" selected-items="$table_group._selectedItems"
+                                        current-item="$table_group._currentItem" search-text="$table_group._tableSearchText"
+                                        refresh-row="$table_group.refreshDataRow">
+                                </table-data>
+                            </div>
+                        </div>
+                    </tab-content>
+                </nav-tabs>
 </div>
            
             
@@ -143,7 +159,11 @@
             _tableData(config.iPage, config.iPageLength, config.orderBy, config.searchText, config.fnReloadData);
         }
 
+        var isFullSize = false;
+        scope.maxHeightTable = "400px";
         function onResizeDialog() {
+            isFullSize = !isFullSize;
+            scope.maxHeightTable = isFullSize ? "" : "400px";
             $dialog.fullScreen();
             setTimeout(function () {
                 $(window).trigger('resize');

@@ -5,7 +5,7 @@
         "tableFields": [
             { "data": "gjw_code", "title": "${get_res('function_list','Mã nhóm')}", width: "100px", className: "text-left" },
             { "data": "note", "title": "${get_res('note','Ghi chú')}", width: "100px", className: "text-left" },
-            { "data": "ordinal", "title": "${get_res('ordinal','Thứ tự')}", format: "number", width: "100px", className: "text-center" },
+            { "data": "ordinal", "title": "${get_res('ordinal','Thứ tự')}","format":"number: system", width: "100px", className: "text-center" },
             { "data": "lock", "title": "${get_res('lock','Ngưng sử dụng')}", format: "checkbox", width: "100px", className: "text-center" }
         ],
         "selectTreeNode": function (node) {

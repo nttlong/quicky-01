@@ -1,25 +1,6 @@
 ﻿﻿(function (scope) {
     scope.$parent.$partialpage = "partialpage/examination_management_question_bank";
     scope.$root.extendToolbar = true;
-    /**
-     * Hàm mở dialog
-     * @param {string} title Tittle của dialog
-     * @param {string} path Đường dẫn file template
-     * @param {function} callback Xử lí sau khi gọi dialog\
-     * @param {string} id Id của form dialog, default = 'myModal'
-     */
-    function openDialog(title, path, callback, id = 'myModal') {
-        //check tồn tại của form dialog theo id
-        //if ($('#myModal').length === 0) {
-        scope.headerTitle = title;
-        //Đặt ID cho form dialog
-        dialog(scope, id).url(path).done(function () {
-            callback();
-            //Set draggable cho form dialog
-            $dialog.draggable();
-        });
-        //}
-    }
 
     scope.$root.createQuestionCategory = function () {
         scope.mode = 1; // set mode chỉnh sửa
@@ -94,7 +75,8 @@
         { "data": "ques_total_marks", "title": "${get_res('ques_mark_table_header','Mark')}" },
         { "data": "ques_type", "title": "${get_res('ques_type_table_header','Question type')}", "expr": function(row, data, func) {
          func(function(){
-                return  "<img style='width:12px;min-height:12px;margin:0 5px 4px 0' src='" + scope.urls + row.images +"'/>" + row.ques_type;
+                //return  "<img style='width:12px;min-height:12px;margin:0 5px 4px 0' src='" + scope.urls + row.images +"'/>" + row.ques_type;
+                return "<span class='"+row.icons+"' style='color:#bbb;padding-right:5px;'></span>" + row.ques_type;
             });
             return true;
         }},
@@ -289,7 +271,6 @@
                 })
                 .done()
             .then(function (res) {
-
              services.api("${get_api_key('app_main.api.SYS_ValueList/get_list')}")
             .data({
                 "name": [
@@ -324,10 +305,10 @@
                             val.color = "rgb(47,117,181)"
                         }
 
-                        val.images = _.filter(scope.vll_LMSEx_ques_type,function (level) {
+                        val.icons = _.filter(scope.vll_LMSEx_ques_type,function (level) {
                             return val.ques_type == level.value
 
-                        })[0].custom.image
+                        })[0].custom.icon
                         val.ques_type = _.filter(scope.vll_LMSEx_ques_type,function (level) {
                             return val.ques_type == level.value
 
@@ -336,8 +317,6 @@
                             return val.ques_level == level.value
 
                         })[0].caption
-
-                        console.log(val);
 
                         return val
 

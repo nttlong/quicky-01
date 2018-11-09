@@ -10,6 +10,13 @@ helpers.extent_model(
             note=("text"),
 			lock=("bool"),
             ordinal=("numeric"),
+            is_default=("bool"),
+            data_type=("numeric"),
+            dec_place=("numeric"),
+            value_list_detail=("list", False, dict(
+                value=("numeric"),
+                caption=("text")
+            )),
             created_on=("date"),
             created_by=("text"),
             modified_on=("date"),

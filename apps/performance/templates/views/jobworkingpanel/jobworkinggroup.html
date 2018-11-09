@@ -1,6 +1,16 @@
-﻿<div class="col-md-12 no-padding">
+﻿<style>
+    div#scrolling_table{
+       overflow:auto;
+    }
+    thead th{
+        position:sticky;
+        top:0;
+        background:#EBF9FF;
+    }
+</style>
+<div class="col-md-12 no-padding" style="height:100%;">
     <collapse-box class="zb-datatable" title="${get_res('job_working_group','Danh sách nhóm chức danh')}">
-        <div class="col-md-12 no-padding" style="height: 220px;">
+        <div class="col-md-12 no-padding" style="height:calc(100% - 35px);">
             <tree-table data-source="$$tableTree.dataTableTree" data-fields="$$tableTree.tableFields"
                     display-field="gjw_name"
                     display-name="Tên nhóm"

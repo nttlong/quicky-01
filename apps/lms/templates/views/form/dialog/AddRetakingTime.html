@@ -1,0 +1,124 @@
+<div class="modal-dialog" style="width:30%;">
+    <div class="modal-content">
+        <div class="modal-header">
+            <div class="left-content pull-left">
+                <span class="modal-title">{{title}}</span>
+            </div>
+            <div class="right-content pull-right">
+                <button type="button" class="close" data-dismiss="modal"><i class="bowtie-icon bowtie-navigate-close"></i></button>
+                <button type="button" class="close" ng-click="onResizeDialog()"><i class="bowtie-icon bowtie-view-full-screen"></i></button>
+            </div>
+        </div>
+        <div class="modal-body" style="padding:15px;">
+            <div class="row">
+                <div class="col-md-{{col_group}} col-sm-{{col_group}}" style="padding-bottom:20px;">
+                        <div class="col-md-12">
+                            <div class="form-group zb-form-group" >
+                                <label class="col-xs-4 col-sm-4 zb-form-label">${get_res('start_date','Start Date')}</label>
+                                <div class="col-xs-8 col-sm-8">
+                                    <date-picker ng-model="entity.start_date" data-format="{{$root.systemConfig.date_format}}" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="form-group zb-form-group" >
+                                <label class="col-xs-4 col-sm-4 zb-form-label">${get_res('avail_start_time','Start Time')}</label>
+                                <div class="col-xs-8 col-sm-8">
+                                    <time-picker ng-model="entity.start_time" format="HH:mm" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="form-group zb-form-group" >
+                            <label class="col-xs-4 col-sm-4 zb-form-label">${get_res('end_date','End Date')}</label>
+                            <div class="col-xs-8 col-sm-8">
+                                <date-picker ng-model="entity.end_date" data-format="{{$root.systemConfig.date_format}}" />
+                            </div>
+                        </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="form-group zb-form-group" >
+                                <label class="col-xs-4 col-sm-4 zb-form-label">${get_res('avail_end_time','End Time')}</label>
+                                <div class="col-xs-8 col-sm-8">
+                                    <time-picker ng-model="entity.end_time" format="HH:mm" />
+                                </div>
+                            </div>
+                        </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <div class="right-content pull-right">
+                <button ng-click="saveNClose($event)"><i class="bowtie-icon bowtie-check-light"></i></button>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    (function (scope) {
+        debugger
+        scope.title = scope.$parent.headerTitle;
+        scope.saveNClose = saveNClose;
+        scope.__mode = scope.$parent.__detailMode;
+        scope.entity = scope.__mode === 2 ? scope.$parent.currentReTake : null;
+
+
+        function saveNClose() {
+
+            if (scope.entity) {
+                    var rsCheck = checkError();//Kết quả check input
+                    if (rsCheck.result) {
+                        $msg.message("${get_global_res('Input_Error','Nhập liệu sai')}", rsCheck.errorMsg, function () { });
+                        return;
+                    }
+                    $('#dialogInputRetakingTime').modal('hide');//Đóng form input
+                    $msg.alert("${get_global_res('Handle_Success','Thao tác thành công')}", $type_alert.INFO);//Xuất thông báo thành cônng
+                    scope.$parent.retake_time_list[scope.entity.no-1] = scope.entity;
+
+                } else {
+                $msg.message("${get_global_res('Internal_Server_Error','Có lỗi từ phía máy chủ')}", "${get_global_res('Please_Try_Again','Xin thử vui lòng thử lại')}", function () { });
+            }
+        }
+
+
+        function checkError() {
+
+
+            var errMsg;
+            var valid = null;
+            var rs = {
+                "result": false,
+                "errorMsg": ''
+            };
+
+            if(scope.entity.start_date != null && scope.entity.end_date != null)
+            {
+               if(scope.entity.start_date > scope.entity.end_date){
+                    rs.result = true;
+                    rs.errorMsg = "Thời gian bắt đầu, thời gian kết thúc không hợp lệ";
+                    return rs;
+               }
+
+               if(scope.entity.start_time != null && scope.entity.end_time != null) {
+                    debugger
+                    if(scope.entity.start_date.setHours(0,0,0,0) == scope.entity.end_date.setHours(0,0,0,0) && timeToSeconds(scope.entity.start_time) > timeToSeconds(scope.entity.end_time))
+                    {
+                         rs.result = true;
+                         rs.errorMsg = "Thời gian bắt đầu, thời gian kết thúc không hợp lệ";
+                         return rs;
+                     }
+               }
+            }
+            return rs;
+        }
+
+        function timeToSeconds(time) {
+            if(!_.isUndefined(time) )
+            {
+                time = time.split(':');
+                return time[0] * 3600 + time[1] * 60 + time[2];
+            }
+        }
+
+    });
+</script>

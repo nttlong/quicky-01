@@ -7,9 +7,9 @@ import common
 logger = logging.getLogger(__name__)
 global lock
 lock = threading.Lock()
-
+import qmongo
 def get_list_data():
-    items = models.LMSLS_ExTemplateCategory().aggregate()
+    items = qmongo.models.LMSLS_ExTemplateCategory.aggregate
 
     items.project(
         category_id = 1,
@@ -25,7 +25,7 @@ def get_list_data():
     return items
 
 def get_list(args):
-    items = models.LMSLS_ExTemplateCategory().aggregate().project(
+    items =qmongo.models.LMSLS_ExTemplateCategory.aggregate.project(
         category_id = 1,
         category_name = 1,
         parent_code = 1
@@ -156,7 +156,7 @@ def insert(args):
         ret = {}
         if args['data'] != None:    
             data =  set_dict_insert_data(args)
-            ret  =  models.LMSLS_ExTemplateCategory().insert(data)
+            ret  = qmongo.models.LMSLS_ExTemplateCategory.insert(data)
             lock.release()
             return ret
 
@@ -174,7 +174,7 @@ def update(args):
         ret = {}
         if args['data'] != None:
             data =  set_dict_update_data(args)
-            ret  =  models.LMSLS_ExTemplateCategory().update(
+            ret  = qmongo.models.LMSLS_ExTemplateCategory.update(
                 data, 
                 "_id == {0}", 
                 ObjectId(args['data']['_id']))
@@ -198,7 +198,7 @@ def delete(args):
         lock.acquire()
         ret = {}
         if args['data'] != None:
-            ret  =  models.LMSLS_ExTemplateCategory().delete("_id in {0}",[ObjectId(x["_id"])for x in args['data']])
+            ret  = qmongo.models.LMSLS_ExTemplateCategory.delete("_id in {0}",[ObjectId(x["_id"])for x in args['data']])
             lock.release()
             return ret
 
@@ -244,31 +244,75 @@ def set_dict_update_data(args):
 #    return ret.get_page(0, 100)
 
 def get_list_category_template(args):
-    try:
-            collection  =  common.get_collection('LMSLS_ExTemplateCategory')
-            ret = collection.aggregate([
-                    {
-                        "$lookup": {
-                           "from": "lv.LMSLS_ExTemplateList",
-                           "localField": "category_id",
-                           "foreignField": "exam_temp_category",
-                           "as": "ques",
-                         }
-                    },{
-                        "$project":
-                          {
-                              "category_id": 1,
-                              "category_name": 1,
-                              "category_name2": 1,
-                              "created_on": 1,
-                              "active": 1,
-                              "note": 1,
-                              "order": 1,
-                              "moderator":1,
-                              "ques":1,
-                          }
-                    }
-                ])
-            return list(ret)
-    except Exception as ex:
-        raise(ex)
+    searchText = args['data'].get('search', '')
+    pageSize = args['data'].get('pageSize', 0)
+    pageIndex = args['data'].get('pageIndex', 20)
+    sort = args['data'].get('sort', 20)
+    where = args['data'].get('where')
+    collection = common.get_collection('LMSLS_ExTemplateCategory')
+    arrayData = []
+
+    lookup = {
+                "$lookup": {
+                   "from": "lv.LMSLS_ExTemplateList",
+                   "localField": "category_id",
+                   "foreignField": "exam_temp_category",
+                   "as": "ques",
+                 }
+            }
+    arrayData.append(lookup)
+
+    lookup = {
+        "$lookup": {
+            "from": common.get_collection_name_with_schema("auth_user_info"),
+            "localField": 'created_by',
+            "foreignField": 'username',
+            "as": 'uc'
+        },
+    }
+    arrayData.append(lookup)
+
+    lookup = {
+        "$lookup": {
+            "from": common.get_collection_name_with_schema("auth_user_info"),
+            "localField": 'modified_by',
+            "foreignField": 'username',
+            "as": 'um'
+        },
+    }
+    arrayData.append(lookup)
+
+    arrayData.append({'$unwind': '$uc'})
+    arrayData.append({"$unwind": {'path': '$um', "preserveNullAndEmptyArrays": True}})
+
+    arrayData.append(
+            {
+                "$project":
+                  {
+                      "category_id": 1,
+                      "category_name": 1,
+                      "category_name2": 1,
+                      "created_on": 1,
+                      "created_by": "$uc.login_account",
+                      "modified_on": 1,
+                      "modified_by": {"$ifNull": ["$um.login_account", ""]},
+                      "active": 1,
+                      "note": 1,
+                      "order": 1,
+                      "moderator":1,
+                      "ques":1,
+                  }
+            }
+        )
+
+    if (sort != None):
+        arrayData.append({
+            "$sort": sort
+        })
+    ret = list(collection.aggregate(arrayData))
+    return dict(
+        items=ret,
+        page_index=pageIndex,
+        page_size=pageSize,
+        total_items=ret.__len__()
+    )

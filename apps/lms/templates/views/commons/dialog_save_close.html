@@ -1,5 +1,7 @@
 ﻿<%!
     _style = ""
+    __style_modal_body = ""
+    _height = ""
 %>
 <div class="modal-dialog" style="${self.attr._style}">
     <div class="modal-content">
@@ -13,7 +15,7 @@
                 <button type="button" class="close" ng-click="onResizeDialog()"><i class="bowtie-icon bowtie-view-full-screen"></i></button>
             </div>
         </div>
-        <div class="modal-body">
+        <div class="modal-body modal-body-resize" style="${self.attr.__style_modal_body};max-height:{{maxHeightDialog}}">
             <%block name="modal_body"/>
         </div>
         <div class="modal-footer">

@@ -40,8 +40,10 @@
                 <span><i class="bowtie-icon bowtie-chevron-right"></i></span>
                 <spam>{{entity.apr_period}} / {{entity.apr_year}}</spam>
                 <span><i class="bowtie-icon bowtie-chevron-right"></i></span>
-                <span>{{currentFunction.default_name}}</span>
-                <a data-target="#dropdownFunction" style="color:#333" data-toggle="collapse"><i class="bowtie-icon bowtie-chevron-down"></i></a>
+                <a data-target="#dropdownFunction" data-toggle="collapse">
+                    <span>{{currentFunction.default_name}}</span>
+                    <i class="bowtie-icon bowtie-chevron-down"></i>
+                </a>
                 <div id="dropdownFunction" class="dropdown-content">
                     <div class="filter">
                         <input-text-icon ng-model="search" style="padding:3px;"/>
@@ -69,7 +71,7 @@
     </page-sidebar>
     </div>
 	<div class="row hcs-profile-list">
-    <div class="hcs-right-side-department-content" style="width:100%; height:100%">
+        <div class="hcs-right-side-department-content" style="width:100%; height:100%">
             <div>
                 <header-page
                         on-add="addAprPeriod"
@@ -111,10 +113,10 @@
                         <button class="zb-btn ng-scope" ng-click="btnDownload()">
                             <i class="bowtie-icon bowtie-transfer-download"></i>
                         </button>
-                        <button class="zb-btn ng-scope">
+                        <button class="zb-btn zb-btn-o-dark-blue ng-scope">
                             <i class="bowtie-icon bowtie-print" ng-click="btnPrint()"></i>
                         </button>
-                        <button class="zb-btn ng-scope" ng-click="btnRefresh()">
+                        <button class="zb-btn zb-btn-o-purple ng-scope" ng-click="btnRefresh()">
                             <i class="bowtie-icon bowtie-navigate-refresh"></i>
                         </button>
                     </toolbar>

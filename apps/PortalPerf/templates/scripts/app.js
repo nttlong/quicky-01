@@ -5,7 +5,7 @@ window.set_authenticated_permission_service("${get_api_key('app_main.api.authent
 window.get_static = "${get_static('/')}"
 window.set_static(window.get_static)
 angular
-    .module("admin", ["c-ui", 'ZebraApp.components', 'ZebraApp.widgets', 'hcs-template', 'ngclipboard', 'chart.js'])
+    .module("admin", ["c-ui", 'ZebraApp.components', 'ZebraApp.widgets', 'hcs-template', 'authenticatedModule'])
     .controller("admin", controller)
     .filter('$filterFunction', function () {
         return function (input, txtSearch) {
@@ -24,10 +24,25 @@ angular
         return function (text) {
             return $sce.trustAsHtml(text);
         };
-    }]);;
+    }]);
+
+app.directive('ngRightClick', function($parse) {
+    return function(scope, element, attrs) {
+        var fn = $parse(attrs.ngRightClick);
+        element.bind('contextmenu', function(event) {
+            scope.$apply(function() {
+                event.preventDefault();
+                fn(scope, {$event:event});
+            });
+        });
+    };
+});
 
 controller.$inject = ["$dialog", "$scope", "$filter"];
 dialog_root_url('${get_app_url("pages/")}')
+<%
+    import json
+%>
 function controller($dialog, $scope, $filter) {
     window.top.PYUrl = window.location.origin + '/lms'
     window.top.UIUrl = window.location.origin + '/HoiThao'
@@ -35,12 +50,15 @@ function controller($dialog, $scope, $filter) {
     window.top.SettingUrl = window.location.origin + '/HoiThaoPortal'
     $scope.$root.$$absUrl = window.location.href;
     $scope.$root.title = "";
+
     $scope.isHomePage = true;
+    $scope.$root.$$absUrl = window.location.href;
     $scope.$root.url_static = "${get_static('/')}";
     $scope.$root.systemConfig = null;/*HCSSYS_SystemConfig*/
     $scope.$root.language = "${get_language()}";
     $scope.$root.APP_URL = "${get_app_url('')}";
-    $scope.VIEW_ID = "${register_view()}";
+    $scope.$root.languages = ${ json.dumps(get_languages()) };
+    $scope.VIEW_ID = "${register_view()}"
     $dialog($scope)
     ws_set_url("${get_app_url('api')}")
     ws_set_export_token_url("${get_api_key('app_main.excel.manager/generate_token')}");
@@ -58,24 +76,47 @@ function controller($dialog, $scope, $filter) {
     $scope.services = services = ws($scope);
     $scope.$root.$getComboboxData = extension().getComboboxData;
     $scope.$root.$getInitComboboxData = extension().getInitComboboxData;
-    $scope.$root.$groupingNumber = function (num) {
+    $scope.$root.$extension = extension();
+    $scope.$root.$groupingNumber = function (num){
         var info = $scope.$root.systemConfig;
         var NumberGroupSeparator = info.dec_place_separator === "," ? "." : ",";
         var NumberDecimalSeparator = info.dec_place_separator === "," ? "," : ".";
         var str = num.toString().split('.');
-        if (str[0].length >= 5) {
+        if(str[0].length >= 4) {
             str[0] = str[0].replace(/(\d)(?=(\d{3})+$)/g, '$1' + NumberGroupSeparator);
         }
-        if (str[1] && str[1].length >= 5) {
+        if(str[1] && str[1].length >= 4) {
             str[1] = str[1].replace(/(\d{3})/g, '$1');
         }
         return str.join(NumberDecimalSeparator);
     };
+    $scope.$root.$formatSystem = {
+        "number": function(data){
+            if(!data){
+                return "";
+            }
+            else if(Number(data) === data && data % 1 !== 0){
+                return formatNumber(data);
+            }
+            else if(Number(data) === data && data % 1 === 0){
+                return $scope.$root.$groupingNumber(data);
+            }else{
+                return "";
+            }
+        },
+        "date": function(data){
+            return $filter('date')(data, $scope.$root.systemConfig.date_format);
+        }
+    }
 
+    window.NumberFormat = {
+        "format": function(data){
+            formatNumber(data);
+        }
+    }
     window.DateFormat = {
         "format": $filter('date')
     };
-
     $scope.$root.collapseSubMenu = function collapseSubMenu(e) {
         e.stopPropagation();
         $('#hcs-top-bar-menu ul li ul').slideUp();
@@ -101,7 +142,47 @@ function controller($dialog, $scope, $filter) {
             $("#btnShowMenu").siblings(".hcs-menu-list").addClass("menu-hidden");
             $("#btnShowMessage").siblings(".hcs-message-list").addClass("message-hidden");
         }
+        if($(".custom-menu").css("display") == "block"){
+            $(".custom-menu").css("display", "none")
+        }
     });
+
+    // Responsive
+
+    window.onclick = function(ev){
+        if(window.innerWidth <= 768){
+            if(!ev.target.closest('.hcs-left-side-department-content') && !ev.target.closest('.hcs-menu-mobile')
+            && !ev.target.closest('.hcs-toggle-slider')){
+                if($('.hcs-left-side-department-content').css('display') == 'block'){
+                    $('.hcs-left-side-department-content').toggle('slide');
+                }
+
+                if($('.modal-dialog .hcs-left-side-department-content').css('display') == 'block'){
+                    $('.modal-dialog .hcs-left-side-department-content').toggle('slide');
+                }
+            }
+        }
+    };
+
+    window.onresize  = function(){
+        if($('.hcs-left-side-department-content').css('display') == 'none' && window.innerWidth >= 768){
+            $('.hcs-left-side-department-content').toggle('slide');
+        }
+
+        if($('.hcs-top-action-large').css('display') == 'none' && window.innerWidth >= 768){
+            $('.hcs-top-action-large').toggle('slide');
+        }
+    }
+
+    $scope.$root.doToggle = function(className, event) {
+        if(!event){
+            $(className).toggle("slide");
+        }else{
+            $(event.target).closest(".zb-top").find(".zb-right-content").toggle("slide");
+        }
+    }
+
+    // End Responsive
 
     $scope.$root.doLogout = function () {
         $scope.$root.__USER__ = null;
@@ -116,18 +197,6 @@ function controller($dialog, $scope, $filter) {
         })
         $(event.target).closest('.hcs-message-group').find('.hcs-menu-group-content').slideToggle(300)
     }
-
-    document.addEventListener("keydown", function (evt) {
-        if (evt.ctrlKey && evt.shiftKey && evt.code === "KeyF") {
-            $scope.searchFunctionTitle = "${get_global_res('function_list','Danh sách tính năng')}"
-            dialog($scope).url("commons/SearchFunction/SearchFunction").done(function () {
-                setTimeout(function () {
-                    $('#hcs-search-function').find('input').focus();
-                }, 1000)
-            });
-        }
-    });
-
     ////Đồng hồ
     $scope.$root.timer = {
         clock: Clock(),
@@ -141,8 +210,95 @@ function controller($dialog, $scope, $filter) {
             $scope.$root.timer.meridiem = getMeridiem();
         }
         $scope.$root.$applyAsync();
-    }, 10000);
+    }, 100);
 
+    //getTime($scope);
+
+    $(window).on('click', function (e) {
+        if (!e.target.closest('#dropdownFunction'))
+            $('#dropdownFunction').collapse('hide');
+    });
+
+    document.addEventListener("keydown", function (evt) {
+        if (evt.ctrlKey && evt.shiftKey && evt.code === "KeyF") {
+            $scope.searchFunctionTitle = "${get_global_res('function_list','Danh sách tính năng')}"
+            dialog($scope).url("commons/SearchFunction/SearchFunction").done(function () {
+                setTimeout(function () {
+                    $('#hcs-search-function').find('input').focus();
+                }, 1000)
+            });
+        }
+    });
+
+    $scope.$root.$dataPin = {};
+    $scope.$root.decrement = function (data, event){
+        // Avoid the real one
+        event.preventDefault();
+        $scope.$root.$dataPin = data;
+        $scope.$root.$applyAsync();
+        console.log($scope.$root.$dataPin)
+        // Show contextmenu
+        if($(event.target).closest(".hcs-function-style").length > 0) {
+            if($(".custom-menu").css("display") == "none"){
+                $(".custom-menu").toggle(100).
+                css({
+                    top: (event.pageY ) + "px",
+                    left: event.pageX + "px"
+                });
+            } else {
+                $(".custom-menu").css("display", "none");
+                $(".custom-menu").toggle(100).
+                css({
+                    top: (event.pageY ) + "px",
+                    left: event.pageX + "px"
+                });
+            }
+        }
+    }
+
+    $scope.$root.PinTab = function(){
+        services.api("${get_api_key('app_main.api.SYS_FunctionList_Favorite/insert')}")
+            .data({
+                data: $scope.$root.$dataPin
+            })
+            .done()
+            .then(function (res) {
+                //set hcssys_systemconfig
+                var data = $scope.$root.$functions;
+                for(var i = 0; i < data.length; i++) {
+                    var childs = data[i]["child_items"];
+                    for(var j = 0; j < childs.length; j++) {
+                        if(childs[j]["function_id"] == $scope.$root.$dataPin["function_id"]) {
+                            childs[j]["favorites"] = true;
+                            break;
+                        }
+                    }
+                }
+                $scope.$root.systemconfig = res;
+            })
+    }
+
+    $scope.$root.UnPinTab = function(){
+        services.api("${get_api_key('app_main.api.SYS_FunctionList_Favorite/delete')}")
+            .data({
+                data: $scope.$root.$dataPin
+            })
+            .done()
+            .then(function (res) {
+                //set hcssys_systemconfig
+                var data = $scope.$root.$functions;
+                for(var i = 0; i < data.length; i++) {
+                    var childs = data[i]["child_items"];
+                    for(var j = 0; j < childs.length; j++) {
+                        if(childs[j]["function_id"] == $scope.$root.$dataPin["function_id"]) {
+                            childs[j]["favorites"] = false;
+                            break;
+                        }
+                    }
+                }
+                $scope.$root.systemconfig = res;
+            })
+    }
 
     $scope.setTitle = function(){
         if($scope.$root.currModule.module_name) {
@@ -170,16 +326,38 @@ function controller($dialog, $scope, $filter) {
         }
     }
 
+    function formatNumber(data){
+        var dataFormatSeperator = $scope.$root.$groupingNumber(data);
+        var NumberDecimalSeparator = $scope.$root.systemConfig.dec_place_separator === "," ? "," : ".";
+        var leng = $scope.$root.systemConfig.dec_place_currency - dataFormatSeperator.substring(dataFormatSeperator.lastIndexOf($scope.$root.systemConfig.dec_place_separator) + 1, dataFormatSeperator.length).length;
+
+        var lenDec = dataFormatSeperator.substring(dataFormatSeperator.lastIndexOf($scope.$root.systemConfig.dec_place_separator) + 1, dataFormatSeperator.length).length;
+
+        function retData(data, len){
+            for(var i = 0; i < len; i++){
+                data += "0";
+            }
+            return data;
+        }
+
+        if(lenDec > $scope.$root.systemConfig.dec_place_currency){
+            var data = retData(dataFormatSeperator, leng);
+            return data.substring(0, data.lastIndexOf(NumberDecimalSeparator) + $scope.$root.systemConfig.dec_place_currency + 1);
+        }
+
+        return retData(dataFormatSeperator, leng);
+    }
+
     /**
      * Initialize Data
      */
     function activate() {
         $scope.$root.currentFunction = {};
-        $scope.$root.currModule = {};
-        $scope.$root.currentModule = '';
         $scope.$root.$$$authoriseFunction  = {
             id: "HOME"
         };
+        $scope.$root.currentModule = '';
+        $scope.$root.currModule = {};
         $scope.$root.logo = "${get_static('/')}css/images/logo.png";
 
         //Get function list
@@ -190,18 +368,19 @@ function controller($dialog, $scope, $filter) {
             })
             .done()
             .then(function (res) {
-
                 var functions = JSON.parse(JSON.stringify(res));
                 /**
                  * Customize string tittle group when display data
                  */
                 $.each(res, function (idx, val) {
                     if (val.parent_id == null) {
-                        var arr = val["custom_name"].split("/");
-                        var display_name = arr[0];
-                        var display_name_bold = arr[1];
-                        val["display_name"] = display_name;
-                        val['display_name_bold'] = display_name_bold;
+                        var arr = val["custom_name"] ? val["custom_name"].split("/") : "";
+                        if(arr && arr.length > 1){
+                            var display_name = arr[0];
+                            var display_name_bold = arr[1];
+                            val["display_name"] = display_name;
+                            val['display_name_bold'] = display_name_bold;
+                        }
                     }
                 });
 
@@ -221,12 +400,10 @@ function controller($dialog, $scope, $filter) {
                 });
                 $.each(fs, function (idx, val) {
                     val["child_items"] = _.filter(res, function (d) {
-                        return d["parent_id"] == val["function_id"];
+                        return d["parent_id"] == val["function_id"] && d["active"] == true;
                     });
                 });
                 $scope.$root.$functions = fs;
-
-
                 $scope.$applyAsync();
                 $scope.$root.getPage = function () {
                     return (angular.isObject($scope.$root.currentFunction))
@@ -236,6 +413,12 @@ function controller($dialog, $scope, $filter) {
                 $scope.$root.$history.change(function (data) {
                     $scope.$root.$$absUrl = window.location.href;
                     if (data.page) {
+                        if(!_.findWhere($scope.$root.$function_list, {function_id:data.page}))
+                        {
+                            data.page = $scope.$root.$extension.TripleDES.decrypt(data.page);
+                            if(data.f)
+                                data.f = $scope.$root.$extension.TripleDES.decrypt(data.f);
+                        }
                         $scope.isHomePage = false;
                         var currentFunction = _.filter(functions, function (d) {
                             return d["function_id"] == data.page;
@@ -265,13 +448,14 @@ function controller($dialog, $scope, $filter) {
             .done()
             .then(function (res) {
                 //Set HCSSYS_SystemConfig
+
                 $scope.$root.systemConfig = res;
             })
-        var lang = "${get_user()}";
+
         //Current user
         services.api("${get_api_key('app_main.api.auth_user/get_user_info_by_user_name')}")
             .data({
-                "username": lang
+                "username": "${get_user()}"
             })
             .done()
             .then(function (res) {
@@ -279,7 +463,7 @@ function controller($dialog, $scope, $filter) {
                 $scope.$root.__USER__ = res;
             })
 
-        //Get Module Navigation
+            //Get Module Navigation
         services.api("${get_api_key('app_main.api.functionlist/get_list_module')}")
             .data({
                 language: "${request.get_language()}"
@@ -287,11 +471,11 @@ function controller($dialog, $scope, $filter) {
             .done()
             .then(function (res) {
                 var modules = _.filter(res, function(v){
-                    return v.module_code.toLocaleLowerCase() != "portalperf";
+                    return v.module_code.toLocaleLowerCase() != "perf";
                 })
 
                 var curr_module = _.filter(res, function(v){
-                    return v.module_code.toLocaleLowerCase() == "portalperf";
+                    return v.module_code.toLocaleLowerCase() == "perf";
                 })
 
                 $scope.$root.currModule.module_name = (curr_module && curr_module.length > 0 )? curr_module[0].custom_name : "";
@@ -303,7 +487,7 @@ function controller($dialog, $scope, $filter) {
                     $scope.title2 = $scope.$root.currModule.module_name;
                 }
 
-                /*$scope.$root.title = $scope.$root.currModule.module_name;*/
+                //$scope.$root.title = $scope.$root.currModule.module_name;
                 $scope.$root.$$$list_modules = modules;
                 window.top.dataInfo = {};
                 window.top.dataInfo.listModule = res;
@@ -315,6 +499,23 @@ function controller($dialog, $scope, $filter) {
     activate();
 }
 
+function getTime($scope) {
+    moment.lang('${get_language()}');
+
+    $scope.$$$dateTime = {
+        $$$date: toTitleCase(moment()["format"]("dddd, D MMMM, YYYY")),
+        $$$hour: moment()["format"]("hh:mm"),
+        $$$clock: moment()["format"]("a").toLocaleUpperCase()
+    }
+
+    setTimeout(getTime($scope), 1000);
+
+    $scope.$applyAsync();
+}
+
+function toTitleCase(str) {
+    return str.replace(/\w\S*/g, function (txt) { return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase(); });
+}
 
 function extension() {
     var fac = {};
@@ -330,6 +531,72 @@ function extension() {
 
     fac.getComboboxData = getComboboxData;
     fac.getInitComboboxData = getInitComboboxData;
+    fac.openDialog = openDialog;
+    fac.getValueList = getValueList;
+    fac.TripleDES = {
+        _password: CryptoJS.MD5("lv"),
+        setPassword: function(password){
+            fac.TripleDES._password = CryptoJS.MD5(password);
+        },
+        encrypt: function(val){
+            try {
+                fac.TripleDES._password.words[4] = fac.TripleDES._password.words[0];
+                fac.TripleDES._password.words[5] = fac.TripleDES._password.words[1];
+
+                // create a 64-bit zero filled
+                var iv = CryptoJS.lib.WordArray.create(64/8);
+                return CryptoJS.TripleDES.encrypt(val, fac.TripleDES._password, {iv: iv}).toString();
+            }
+            catch(err) {
+                throw err
+            }
+        },
+        decrypt: function(val){
+            try {
+                fac.TripleDES._password.words[4] = fac.TripleDES._password.words[0];
+                fac.TripleDES._password.words[5] = fac.TripleDES._password.words[1];
+                var ct = {
+                    ciphertext: CryptoJS.enc.Base64.parse(val)
+                };
+                var iv = CryptoJS.lib.WordArray.create(64/8);
+                var decrypted = CryptoJS.TripleDES.decrypt(ct, fac.TripleDES._password, {iv: iv});
+                return decrypted.toString(CryptoJS.enc.Utf8);
+            }
+            catch(err) {
+                throw err
+            }
+        }
+    };
+
+    /**
+     * [openDialog description]
+     * @param  {[type]}   scope    [description]
+     * @param  {[type]}   title    [description]
+     * @param  {[type]}   path     [description]
+     * @param  {Function} callback [description]
+     * @param  {String}   id       [description]
+     * @return {[type]}            [description]
+     */
+    function openDialog(scope, title, path, callback, id = 'myModal') {
+        if ($('#' + id).length === 0) {
+            scope.headerTitle = title;
+            dialog(scope).url(path).done(function () {
+                callback();
+                $dialog.draggable();
+            });
+        }
+    }
+
+    function getValueList(param, fnCallBack){
+        services.api("${get_api_key('app_main.api.SYS_ValueList/get_list')}")
+            .data({
+                name: param
+            })
+            .done()
+            .then(function (res) {
+                fnCallBack(res);
+            });
+    }
 
     /**
      * Hàm get combobox data
@@ -353,10 +620,16 @@ function extension() {
                 scope.keyField = res.value_field;
                 scope.title = res.display_name;
                 scope.templateFields = res.display_fields;
-                var data = {
-                    recordsTotal: res.data.total_items,
-                    data: res.data.items
-                };
+                var data = {};
+                if (res.hasOwnProperty('parent_field') && res['parent_field']) {
+                    data = res.data.items;
+                }
+                else {
+                    data = {
+                        recordsTotal: res.data.total_items,
+                        data: res.data.items
+                    };
+                }
                 cbSetData(data);
             });
     }
@@ -369,7 +642,7 @@ function extension() {
      * Trường hợp get đơn lẻ truyền tham số là object
      * example:{key:xxx, code:xxx}
      */
-    function getInitComboboxData(scope, key) {
+    function getInitComboboxData(scope, key, callback) {
         services.api("${get_api_key('app_main.api.common/get_init_data_combobox')}")
             .data({
                 name: key
@@ -383,7 +656,8 @@ function extension() {
                 } else {
                     scope[res.alias] = res;
                 }
-                scope.$apply();
+                if(callback) callback();
+                scope.$applyAsync();
             })
     }
 

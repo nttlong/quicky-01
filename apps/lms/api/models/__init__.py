@@ -33,3 +33,7 @@ from LMSLS_Topic import LMSLS_Topic
 from LMSLS_Forum import LMSLS_Forum
 from HCSSYS_FunctionListLabel import HCSSYS_FunctionListLabel
 from HCSSYS_FunctionListSummary import HCSSYS_FunctionListSummary
+from LMS_SurQuestionCategory import LMS_SurQuestionCategory
+from LMS_SurQuestionBank import LMS_SurQuestionBank
+from LMS_SurveyTemplate import LMS_SurveyTemplate
+from ..views import *

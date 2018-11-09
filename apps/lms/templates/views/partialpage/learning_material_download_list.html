@@ -1,4 +1,17 @@
-﻿
+﻿<style>
+    .dataTables_wrapper.form-inline.dt-bootstrap.no-footer,.dataTables_scroll{
+        height: 100%;
+      }
+      .dataTables_wrapper.form-inline.dt-bootstrap.no-footer > .row:nth-child(2){
+        height:calc(100% - 35px);
+      }
+      .dataTables_wrapper.form-inline.dt-bootstrap.no-footer > .row:nth-child(2) > [class*="col-"]{
+        height:100%;
+      }
+      .dataTables_scrollBody{
+        height:calc(100% - 35px);
+      }
+</style>
 <div class="hcs-container" style="height: 100%">
     <div class="row hcs-profile-list">
         <div  ng-show="$parent.isList"style="height: 100%">

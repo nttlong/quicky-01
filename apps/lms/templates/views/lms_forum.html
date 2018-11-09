@@ -41,7 +41,18 @@
         height:17px;
         font-weight:900;
     }
-
+    .dataTables_wrapper.form-inline.dt-bootstrap.no-footer,.dataTables_scroll{
+        height: 100%;
+    }
+    .dataTables_wrapper.form-inline.dt-bootstrap.no-footer > .row:nth-child(2){
+        height:calc(100% - 35px);
+    }
+    .dataTables_wrapper.form-inline.dt-bootstrap.no-footer > .row:nth-child(2) > [class*="col-"]{
+      height:100%;
+    }
+    .dataTables_scrollBody{
+        height:calc(100% - 35px);
+    }
 </style>
 <div class="hcs-container" style="height: 100%">
     <page-sidebar on-add="onAdd"
@@ -73,30 +84,26 @@
         </site-map>
         <!--on-search-change="onSearch"-->
             <extend-toolbar>
-                <div style="display: grid; grid-template-columns: 1fr 1fr">
                     <!--<input-text-icon icon="bowtie-icon bowtie-search" on-click="onSearch"></input-text-icon>-->
                     <input-text-icon id="tableSearchText" on-click="onSearch" ></input-text-icon>
-                    <div>
                         <button class="zb-btn zb-btn-o-green" ng-click="create()">
-                                <i class="bowtie-icon bowtie-math-plus"></i>
+                            <i class="bowtie-icon bowtie-math-plus"></i>
                         </button>
                         <button class="zb-btn zb-btn-o-blue" ng-click="edit()">
-                                <i class="bowtie-icon bowtie-edit-outline"></i>
-                            </button>
+                            <i class="bowtie-icon bowtie-edit-outline"></i>
+                        </button>
                         <button class="zb-btn zb-btn-o-red" ng-click="delete()">
-                                <i class="bowtie-icon bowtie-trash"></i>
+                            <i class="bowtie-icon bowtie-trash"></i>
                         </button>
                         <button class="zb-btn" ng-click="update_status_open()">
-                                <i style="font-size:14px" class="bowtie-icon bowtie-folder"></i>
+                            <i style="font-size:14px" class="bowtie-icon bowtie-folder"></i>
                         </button>
                         <button class="zb-btn" ng-click="update_status_suspend()">
-                                <i class="bowtie-icon bowtie-status-warning"></i>
-                            </button>
-                        <button class="zb-btn" ng-click="update_status_write_protected()">
-                                <i class="bowtie-icon bowtie-unpin"></i>
+                            <i class="bowtie-icon bowtie-status-warning"></i>
                         </button>
-                    </div>
-                </div>
+                        <button class="zb-btn" ng-click="update_status_write_protected()">
+                            <i class="bowtie-icon bowtie-unpin"></i>
+                        </button>
             </extend-toolbar>
         <content>
             <div c-template url="${get_app_url('')}/pages/{{$partialpage}}"

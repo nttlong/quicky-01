@@ -161,6 +161,7 @@
                                     valItems['email_reject_to_name'] = "";
                                 }
                             });
+                            debugger
                             data = {
                                 recordsTotal: response.total_items,
                                 recordsFiltered: response.total_items,
@@ -191,6 +192,7 @@
                                     valItems['email_reject_to_name'] = "";
                                 }
                             });
+                            
                             data = {
                                 recordsTotal: response.total_items,
                                 recordsFiltered: response.total_items,

@@ -45,13 +45,18 @@ _data=dict(
     date_format= "dd/MM/yyyy",#định dạng ngày tháng (valuelist LDateFormat)
     dec_place_separator=",", #Ký tự phân cách phần thập phân (Ký tự phân cách)
     dec_place_currency= 2,#Số số lẻ phần thập phân
-    default_language= "vi"
-           )
+    default_language= "vi",
+    map_date_format = [
+        { 'dd': 'DD' },
+        { 'yy': 'YY' },
+        { 'yyyy': 'YYYY' }
+    ]
+)
 class Config():
     def __init__(self):
         for key in _data.keys():
             setattr(self,key,_data[key])
-        coll=HCSSYS_SystemConfig()
+        coll= HCSSYS_SystemConfig()
         data_item=coll.find_one()
         if data_item==None:
             data={}

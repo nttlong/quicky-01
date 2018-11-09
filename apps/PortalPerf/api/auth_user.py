@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 from django.contrib.auth.models import User
+import qmongo
 from bson import ObjectId
 import uuid
-import models
-import datetime
+from qmongo import models
 import logging
 import threading
 import re
@@ -22,7 +22,7 @@ def insert(args):
         try:
             lock.acquire()
             user_name = args['data']['login_account']
-            check_exist = models.models_per.auth_user_info().aggregate().project(login_account = 1).match("login_account == {0}", user_name).get_list()
+            check_exist = models.auth_user_info.aggregate.project(login_account = 1).match("login_account == {0}", user_name).get_list()
 
             if len(check_exist) == 0:
 
@@ -42,7 +42,7 @@ def insert(args):
                     description      = (lambda data: data["description"] if data.has_key("description") else None)(args['data'])
                     )
 
-                ret = models.models_per.auth_user_info().insert(data)
+                ret = models.auth_user_info.insert(data)
                 if ret.has_key('error') and ret['error'] != None:
                     raise(Exception(ret['error']['code']))
 
@@ -56,7 +56,7 @@ def insert(args):
                     lock.release()
                     return ret
                 except Exception as ex:
-                    models.models_per.auth_user_info().delete("username == {0}", args['data']['username'])
+                    models.auth_user_info.delete("username == {0}", args['data']['username'])
                     lock.release()
                     return dict(
                         error = "Internal Server Error"
@@ -79,7 +79,7 @@ def update(args):
         try:
             lock.acquire()
             user_name = args['data']['login_account']
-            if models.models_per.auth_user_info().aggregate().match("_id == {0}", ObjectId(args['data']['_id'])).get_item() != None:
+            if models.auth_user_info.aggregate.match("_id == {0}", ObjectId(args['data']['_id'])).get_item() != None:
 
                 data = dict(
                     login_account    = args['data']['login_account'],
@@ -104,7 +104,7 @@ def update(args):
                         lock.release()
                         return rs_check
 
-                ret = models.models_per.auth_user_info().update(
+                ret = models.auth_user_info.update(
                     data,
                     "username == {0}",
                     args['data']['username'])
@@ -199,10 +199,10 @@ def check_password(password, user_name):
 def delete(args):
     if args['data'] != None:
         try:
-            user_names = models.models_per.auth_user_info().aggregate().project(username = 1).match("_id in {0}", [ObjectId(x["_id"])for x in args['data']]).get_list()
+            user_names = models.auth_user_info.aggregate.project(username = 1).match("_id in {0}", [ObjectId(x["_id"])for x in args['data']]).get_list()
 
-            models.models_per.auth_user().delete("username in {0}", [x["username"] for x in user_names])
-            ret = models.models_per.auth_user_info().delete("username in {0}", [x["username"]for x in args['data']])
+            models.auth_user.delete("username in {0}", [x["username"] for x in user_names])
+            ret = models.auth_user_info.delete("username in {0}", [x["username"]for x in args['data']])
             return ret
         except Exception as ex:
             logger.debug(ex)
@@ -225,8 +225,8 @@ def get_list_with_searchtext(args):
             pageIndex       = (lambda pIndex: pIndex if pIndex != None else 0)(pageIndex)
             pageSize        = (lambda pSize: pSize if pSize != None else 20)(pageSize)
 
-            items = models.models_per.auth_user_info().aggregate()
-            items.left_join(models.models_per.AD_Roles(), "role_code", "role_code", "role")
+            items = qmongo.models.auth_user_info.aggregate
+            items.left_join(models.AD_Roles, "role_code", "role_code", "role")
             items.project(
                     login_account       = 1,
                     username            = 1,
@@ -267,7 +267,7 @@ def get_list_with_searchtext(args):
         )
 
 def get_user_info_by_user_name(args):
-    return models.models_per.auth_user_info().aggregate().project(display_name = 1, login_account = 1, username = 1).match('username == {0}', args['data']['username']).get_item()
+    return models.auth_user_info.aggregate.project(display_name = 1, login_account = 1, username = 1).match('username == {0}', args['data']['username']).get_item()
 
 def update_role_code(args):
     try:
@@ -276,7 +276,7 @@ def update_role_code(args):
 
             if args['data'].has_key('role_code') and args['data'].has_key('users'):
                 user_names = [x["username"]for x in args['data']['users']]
-                ret = models.models_per.auth_user_info().update(
+                ret = models.auth_user_info.update(
                     dict(
                         role_code = args['data']['role_code']
                         ),
@@ -300,7 +300,7 @@ def remove_role_code_by_user(args):
         lock.acquire()
         if args['data'].has_key('users'):
             user_names = [x["username"]for x in args['data']['users']]
-            ret = models.models_per.auth_user_info().update(
+            ret = models.auth_user_info.update(
                 dict(
                     role_code = None
                     ),
@@ -320,7 +320,7 @@ def remove_role_code_by_user(args):
 def remove_role_code_by_role(roles):
     try:
         lock.acquire()
-        ret = models.models_per.auth_user_info().update(
+        ret = models.auth_user_info.update(
             dict(
                 role_code = None
                 ),

@@ -1,7 +1,7 @@
 ﻿(function (scope) {
     var _view = [
-        "${get_app_url('')}/pages/setup_process/setup_process_detail/setup_process_approve_emp/employee",
-        "${get_app_url('')}/pages/setup_process/setup_process_detail/setup_process_approve_emp/department"
+        "${get_app_url('')}/pages/setup_process/setup_process_detail_last/setup_process_approve_emp/employee",
+        "${get_app_url('')}/pages/setup_process/setup_process_detail_last/setup_process_approve_emp/department"
     ];
     debugger
     scope.$partialpage = "";

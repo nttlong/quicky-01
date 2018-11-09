@@ -1,5 +1,6 @@
 
 import datetime
+import qmongo
 def authenticate(request):
     if request._get_request().has_key("token"):
         token=request._get_request()["token"]
@@ -16,7 +17,7 @@ def authenticate(request):
         from api import models
         login_token = sso_authenticate(token)
         if login_token.is_success:
-            login_account = models.auth_user_info().aggregate()\
+            login_account =qmongo.models.auth_user_info.aggregate\
                 .project(login_account = 1, username = 1)\
                 .match("login_account == {0}", login_token.login_account).get_item()
             request.__setattr__("user_login", login_account['username'])

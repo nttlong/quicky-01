@@ -1,0 +1,134 @@
+<style>
+.zb-list .zb-list-item .zb-item .item1 { grid-area: 1/1/1/1; }
+.zb-list .zb-list-item .zb-item .item2 { grid-area: 2/1/2/1; }
+.zb-list .zb-list-item .zb-item .item3 { grid-area: 3/1/3/1; }
+.zb-list .zb-list-item .zb-item .item4 { grid-area: 4/1/4/1; }
+.zb-list .zb-list-item .zb-item .item5 { grid-area: 1/2/1/2; }
+.zb-list .zb-list-item .zb-item .item6 { grid-area: 2/2/2/2; }
+.zb-list .zb-list-item .zb-item .item7 { grid-area: 3/2/3/2; }
+.zb-list .zb-list-item .zb-item .item8 { grid-area: 4/2/4/2; }
+</style>
+<div class="tab-pane" style="height: 100%;">
+    <header-page>
+        <site-map>
+            <span>{{$root.currentFunction.default_name}}</span>
+            <span><i class="bowtie-icon bowtie-chevron-right"></i></span>
+            <span>Đăng ký chỉ tiêu</span>
+            <div class="hcs-resp-action-zb-left-content" style="float: right;">
+                <button class="zb-btn zb-btn-o-green ng-scope">
+                    <i class="bowtie-icon bowtie-menu"></i>
+                </button>
+            </div>
+        </site-map>
+    </header-page>
+    <div class="row" style="padding: 0px 5px;height: calc(100vh - 116px);">
+        <div class="col-xs-4 col-md-4 hcs-format" style="display: grid;height: 100%;grid-auto-rows: auto 1fr;">
+            <div>
+                <collapse-box class="zb-form-common" title="${get_res('apr_apriod', 'Kỳ đánh giá')}">
+                    <div class="col-md-12 col-xs-12">
+                        <div class="form-group zb-form-group">
+                            <label class="col-xs-4 col-sm-4 zb-form-label">${get_res('year','Năm')}</label>
+                            <div class="col-xs-8 col-sm-8">
+                                <input-select></input-select>
+                            </div>
+                        </div>
+                        <div class="zb-list" style="margin-top: 10px;">
+                            <div class="zb-form-text-icon input-group">
+                                <input type="text" ng-model="txtSearchEmployee" class="form-control" placeholder="">
+                                <div class="input-group-btn"> 
+                                    <button class="btn"><i class="bowtie-icon bowtie-search"></i></button>
+                                </div>
+                            </div>
+                            <div class="zb-list-panel" style="height: calc(100vh - 231px);">
+                                <div class="zb-list-item" style="height: calc(100% - 0px);">
+                                    <div class="zb-item" style="display: grid; padding: 5px; border-bottom: 1px solid #d9d9d9;grid-auto-columns: 1fr auto;" ng-repeat="item in listViewAprPeriod | filter: txtSearchEmployee track by $index" ng-click="selectApr(item)" ng-class="{active: item.aprCode === _currentApr.aprCode}">
+                                        <div class="item1">
+                                            <span class="zb-list-title" style="font-weight: bold;">{{item.aprName}}</span>
+                                        </div>
+                                        <div class="item2">
+                                            <span class="zb-list-title grey">${get_res('give_target_date', 'Hạn đăng ký')}: {{$root.$formatSystem.date(item.giveTargetDate.from)}} - {{$root.$formatSystem.date(item.giveTargetDate.to)}}</span>
+                                        </div>
+                                        <div class="item3">
+                                            <span class="zb-list-title grey">${get_res('delay_target_date', 'Gia hạn')}: {{$root.$formatSystem.date(item.delayGiveTargetDate.from)}} - {{$root.$formatSystem.date(item.delayGiveTargetDate.to)}}</span>
+                                        </div>
+                                        <div class="item4">
+                                            <p><span class="zb-list-title">${get_res('give_target_date', 'Hạn đăng ký')}: {{$root.$formatSystem.date(item.assignDate)}}</span></p>
+                                        </div>
+                                        <div class="item5">
+                                            <span class="zb-list-title cycan">10</span>
+                                        </div>
+                                        <div class="item6">
+                                            <p class="text-center"><span title="" class="hcs-circle-icon {{$index == 0 ? 'success' : $index == 1 ? 'yellow' : 'red'}}"></span></p>
+                                        </div>
+                                        <div class="item7">
+                                        </div>
+                                        <div class="item8">
+                                            <p class="text-center"><span class="{{$index == 0 ? 'hcs-square-icon orange' : ''}}"></span></p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </collapse-box>
+            </div>
+        </div>
+        <div class="col-md-8 col-xs-8" style="padding-left: unset;">
+            <div class="col-md-12 col-xs-12">
+                <collapse-box class="zb-form-common" title="${get_res('target', 'Mục tiêu')}" id="target">
+                    <div style="height: 58vh;">
+                        <table-data data-source="$$table.tableSource" 
+                                    fields="$$table.tableFields" 
+                                    type="MultiSelect" 
+                                    paging="true" 
+                                    page-length="100" 
+                                    server-side="true" 
+                                    press-enter="$$table.onSelectTableRow" 
+                                    selected-items="$$table.selectedItems" 
+                                    current-item="$$table.currentItem" 
+                                    search-text="$$table.tableSearchText"
+                                    refresh-row="$$table.refreshDataRow">
+                        </table-data>
+                    </div>
+                </collapse-box>
+            </div>
+            <div class="col-md-12 col-xs-12">
+                <collapse-box class="zb-form-common" title="${get_res('approver', 'Nguời duyệt')}" id="approver">
+                    <div>
+                        <table-data data-source="$$table.tableSource" 
+                                    fields="$$table.tableFields" 
+                                    type="MultiSelect" 
+                                    paging="true" 
+                                    page-length="100" 
+                                    server-side="true" 
+                                    press-enter="$$table.onSelectTableRow" 
+                                    selected-items="$$table.selectedItems" 
+                                    current-item="$$table.currentItem" 
+                                    search-text="$$table.tableSearchText"
+                                    refresh-row="$$table.refreshDataRow">
+                        </table-data>
+                    </div>
+                </collapse-box>
+            </div>
+        </div>
+    </div>
+    <div class="zb-bottom-bar">
+        <div class="zb-right-content">
+            <button class="zb-btn" ng-click="openGenData()">
+                <i class="bowtie-icon bowtie-build-queue-new"></i>
+            </button>
+            <button class="zb-btn zb-btn-o-green" ng-click="openDetailData()">
+                <i class="bowtie-icon bowtie-math-plus"></i>
+            </button>
+            <button class="zb-btn zb-btn-o-red">
+                <i class="bowtie-icon bowtie-trash"></i>
+            </button>
+            <button class="zb-btn">
+                <i class="sap-icon sap-paper-plane"></i>
+            </button>
+        </div>
+    </div>
+</div>
+<script>
+    <%include file="scripts/portalRegister.js"/>
+</script>

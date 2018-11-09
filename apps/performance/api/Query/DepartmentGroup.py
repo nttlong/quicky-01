@@ -1,5 +1,5 @@
 from .. import models
-
+import qmongo
 
 #def check_exits_factCode_within_factGroup(list_factor_group):
 #    list_factCode = models.TMLS_FactorAppraisal().aggregate().match("factor_group_code in {0}", list_factor_group).get_list()
@@ -9,9 +9,9 @@ from .. import models
 
 
 def get_department_group():
-    ret=models.HCSSYS_Departments().aggregate()
-    ret.left_join(models.auth_user_info(), "created_by", "username", "uc")
-    ret.left_join(models.auth_user_info(), "modified_by", "username", "um")
+    ret=qmongo.models.HCSSYS_Departments.aggregate
+    ret.left_join(qmongo.models.auth_user_info, "created_by", "username", "uc")
+    ret.left_join(qmongo.models.auth_user_info, "modified_by", "username", "um")
     ret.project(
         _id = "_id",
         department_code = "department_code",

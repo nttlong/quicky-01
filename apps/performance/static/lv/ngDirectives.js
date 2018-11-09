@@ -417,6 +417,10 @@ mdl.directive("cTemplate", ["$compile", function ($compile) {
     function compile(scope, scripts, content,url) {
         
         var subScope = scope.$new(true, scope);
+        subScope.$onReady=function(callback){
+            subScope.__onReady=callback;
+        };
+
         if (scripts && (scripts.length > 0)) {
             for (var i = 0; i < scripts.length; i++) {
                 try {
@@ -454,6 +458,15 @@ mdl.directive("cTemplate", ["$compile", function ($compile) {
                             sScope.$destroy();
                         }
                         else {
+                            if(!sScope.__hasCallOnReady){
+                            if(sScope.__onReady){
+                                setTimeout(function(){
+                                    sScope.__onReady();
+                                },100);
+                            }
+
+                                sScope.__hasCallOnReady=true;
+                            }
                             setTimeout(watch, 500);
                         }
                     }

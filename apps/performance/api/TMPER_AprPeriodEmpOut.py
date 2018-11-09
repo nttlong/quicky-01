@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 from bson import ObjectId
+import qmongo
 import models
 import common
 from Query import AprPeriodEmpOut
@@ -79,12 +80,12 @@ def generate(args):
         if(len(listEmpPerNow) > 0 and len(args['data']['res']) >0):
             if args['data'] != None and args['data'].has_key('now_apr_period') and args['data'].has_key('now_apr_year') :
                 if(args['data'].has_key('chk_exchangeData') and args['data']['chk_exchangeData'] == 1):
-                    ret  =  models.TMPER_AprPeriodEmpOut().delete("_id in {0}",[ObjectId(x["_id"]) for x in listEmpPerNow])
+                    ret  =   qmongo.models.TMPER_AprPeriodEmpOut.delete("_id in {0}",[ObjectId(x["_id"]) for x in listEmpPerNow])
                     for item in args['data']['res']:
                         item['apr_period'] = args['data']['now_apr_period']
                         item['apr_year'] =  args['data']['now_apr_year']
                         data = set_dict_insert_data(item)
-                        ret  =  models.TMPER_AprPeriodEmpOut().insert(data)
+                        ret  = qmongo.models.TMPER_AprPeriodEmpOut.insert(data)
                 else:
                     for  item in args['data']['res'] :
                         if item.has_key('apr_period' and 'apr_year' and 'employee_code'):
@@ -99,7 +100,7 @@ def generate(args):
                                      if(emp['note'] == None or emp['note'] == ""):
                                          emp['note'] = item['note']
                                      data = set_dict_update_data(emp)
-                                     ret  =  models.TMPER_AprPeriodEmpOut().update(
+                                     ret  = qmongo.models.TMPER_AprPeriodEmpOut.update(
                                                  data, 
                                                 "_id == {0}", 
                                                  ObjectId(emp['_id']))
@@ -109,7 +110,7 @@ def generate(args):
                                         item['apr_period'] = args['data']['now_apr_period']
                                         item['apr_year'] =  args['data']['now_apr_year']
                                         data =  set_dict_insert_data(item)
-                                        ret  =  models.TMPER_AprPeriodEmpOut().insert(data)
+                                        ret  =  qmongo.models.TMPER_AprPeriodEmpOut.insert(data)
                                     else:
                                         continue
                 lock.release()
@@ -119,7 +120,7 @@ def generate(args):
                 item['apr_period'] = args['data']['now_apr_period']
                 item['apr_year'] =  args['data']['now_apr_year']
                 data = set_dict_insert_data(item)
-                ret  =  models.TMPER_AprPeriodEmpOut().insert(data)
+                ret  =  qmongo.models.TMPER_AprPeriodEmpOut.insert(data)
             lock.release()
             return ret
         lock.release()
@@ -139,7 +140,7 @@ def update(args):
             if(args['data']['tmp']==1):
                 del(args['data']['tmp'])
                 data =  set_dict_update_data(args['data'])
-                ret  =  models.TMPER_AprPeriodEmpOut().update(
+                ret  =  qmongo.models.TMPER_AprPeriodEmpOut.update(
                     data, 
                     "_id == {0}", 
                     ObjectId(args['data']['_id']))
@@ -151,7 +152,7 @@ def update(args):
                     "reason":args['data']['reason'],
                     "note":args['data']['note']
                     }
-                ret  =  models.TMPER_AprPeriodEmpOut().update(
+                ret  =  qmongo.models.TMPER_AprPeriodEmpOut.update(
                     data, 
                     "_id in {0}", 
                     [ObjectId(x) for x in args['data']['_id']])
@@ -171,7 +172,7 @@ def delete(args):
         lock.acquire()
         ret = {}
         if args['data'] != None:
-            ret  =  models.TMPER_AprPeriodEmpOut().delete("_id in {0}",[ObjectId(x["_id"])for x in args['data']])
+            ret  =  qmongo.models.TMPER_AprPeriodEmpOut.delete("_id in {0}",[ObjectId(x["_id"])for x in args['data']])
             lock.release()
             return ret
 
@@ -278,13 +279,13 @@ def get_insert_multi_empNotApr(args):
                 check_item = get_EmpDataByPeriodYearAndEmp(apr_period,apr_year,emp_code)
                 if (check_item != None):
                     data =  set_dict_update_data(check_item)
-                    ret  =  models.TMPER_AprPeriodEmpOut().update(
+                    ret  =  qmongo.models.TMPER_AprPeriodEmpOut.update(
                         data, 
                     "_id == {0}", 
                     ObjectId(check_item['_id']))
                 else:
                     data =  set_dict_insert_data(item)
-                    ret  =  models.TMPER_AprPeriodEmpOut().insert(data)
+                    ret  =  qmongo.models.TMPER_AprPeriodEmpOut.insert(data)
             lock.release()
             return ret
         lock.release()

@@ -1,9 +1,9 @@
 from .. import models, common
-
+import qmongo
 def display_list_apr_period():
-    ret=models.TMPER_AprPeriod().aggregate()
-    ret.left_join(models.auth_user_info(), "created_by", "username", "uc")
-    ret.left_join(models.auth_user_info(), "modified_by", "username", "um")
+    ret=qmongo.models.TMPER_AprPeriod.aggregate
+    ret.left_join(qmongo.models.auth_user_info, "created_by", "username", "uc")
+    ret.left_join(qmongo.models.auth_user_info, "modified_by", "username", "um")
     ret.project(
         apr_period="apr_period",
         apr_year="apr_year",
@@ -25,10 +25,10 @@ def display_list_apr_period():
 
 
 def get_empNotApr_by_apr_period(apr_period,apr_year,search_text):
-    ret=models.TMPER_AprPeriodEmpOut().aggregate()
-    ret.left_join(models.auth_user_info(), "created_by", "username", "uc")
-    ret.left_join(models.auth_user_info(), "modified_by", "username", "um")
-    ret.left_join(models.HCSEM_Employees(), "employee_code", "employee_code", "ee")
+    ret=qmongo.models.TMPER_AprPeriodEmpOut.aggregate
+    ret.left_join(qmongo.models.auth_user_info, "created_by", "username", "uc")
+    ret.left_join(qmongo.models.auth_user_info, "modified_by", "username", "um")
+    ret.left_join(qmongo.models.HCSEM_Employees, "employee_code", "employee_code", "ee")
     ret.match("apr_period == {0} and apr_year == {1}", apr_period, apr_year)
     ret.project(
         _id=1,

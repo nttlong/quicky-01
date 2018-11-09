@@ -8,6 +8,9 @@
     scope.filterFunctionModel = ''
     scope.currentFunction = '';
     scope.mapName = [];
+    scope.selectFunc = function (event, f) {
+        scope.selectedFunction = f;
+    }
     scope.$root.currentItem = [];
     scope.isDisplayGird = false;
     scope.isList = true;
@@ -24,16 +27,6 @@
     }
     scope.deleteOne = function () {
         scope.$root.deleteOne();
-    }
-    scope.onDisplayListData = function () {
-        scope.isList = true;
-        scope.isGrid = false;
-        scope.$root.onDisplayListData();
-    }
-    scope.onDisplayGridData = function () {
-        scope.isList = false;
-        scope.isGrid = true;
-        scope.$root.onDisplayGridData();
     }
     scope.onSearchText = function () {
 
@@ -113,11 +106,19 @@
     scope.$watch("selectedFunction", function (function_id) {
         if (function_id) {
             var $his = scope.$root.$history.data();
-            window.location.href = "#page=" + $his.page + "&f=" + function_id;
+            if($his && $his.hasOwnProperty('page') && _.findWhere(scope.$root.$function_list, {'function_id': $his.page}))
+                window.location.href = "#page=" + scope.$root.$extension.TripleDES.encrypt($his.page) + "&f=" + scope.$root.$extension.TripleDES.encrypt(function_id);
+            else
+                window.location.href = "#page=" + scope.$root.$extension.TripleDES.encrypt(scope.$root.$extension.TripleDES.decrypt($his.page)) + "&f=" + scope.$root.$extension.TripleDES.encrypt(function_id);
         }
     });
 
     scope.$root.$history.onChange(scope, function (data) {
+        if(!_.findWhere(scope.$root.$function_list, {function_id:data['page']}))
+            data = {
+                page: data.hasOwnProperty('page') ? scope.$root.$extension.TripleDES.decrypt(data.page) : null,
+                f: data.hasOwnProperty('f') ? scope.$root.$extension.TripleDES.decrypt(data.f) : null,
+            }
         if (scope.mapName.length > 0) {
             if (data.f) {
                 var func = _.filter(scope.mapName, function (f) {

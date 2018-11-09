@@ -19,21 +19,21 @@
 <div class="hcs-container">
     <div>
     <header-page on-add="onAdd"
-          on-edit="onEdit"
-          on-delete="onDelete"
-          on-save="onSave"
-          on-import="onImport"
-          on-export="onExport"
-          on-refresh="onRefresh"
-          on-search-press="onSearch"
-          source="mapName"
-          key-field="function_id"
-          display-field="default_name"
-          icon-field="icon"
-          selected-key="$root.currentFunction.function_id"
-          reload-on-change="false">
+                 on-edit="onEdit"
+                 on-delete="onDelete"
+                 on-save="onSave"
+                 on-import="onImport"
+                 on-export="onExport"
+                 on-refresh="onRefresh"
+                 on-search-press="onSearch"
+                 source="mapName"
+                 key-field="function_id"
+                 display-field="default_name"
+                 icon-field="icon"
+                 selected-key="$root.currentFunction.function_id"
+                 reload-on-change="false">
             <site-map>
-                <a><span>{{$root.currentFunction.default_name}}</span></a>
+                <span>{{$root.currentFunction.default_name}}</span>
             </site-map>
         </header-page>
     </div>
@@ -44,8 +44,8 @@
             <input-select></input-select>
         </div>
     </div>
-    <div class="" style="height: calc(100% - 40px); display: grid; width: 100%; grid-auto-rows: auto 1fr;">
-        <div class="hcs-tab-info" style="background-color: #fff; padding-bottom: 10px">
+    <div class="" style="height: calc(100% - 40px); display: grid; width: 100%; grid-auto-rows: auto 1fr;background-color: #fff;">
+        <div class="hcs-tab-info" style="padding-bottom: 10px">
             <div class="col-md-12 competency no-padding">
                 <div class="hcs-tab-info-line"></div>
                 <div class="hcs-tab-info-box active" href="#tab_default_1" data-toggle="tab" ng-click="changeActive($event, 'company')">

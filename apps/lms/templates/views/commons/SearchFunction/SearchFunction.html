@@ -31,7 +31,7 @@
                         {{function.default_name}}
                     </p>
                     <div class ="zb-list-view">
-                        <a ng-repeat="child in function.child_items | filter : search" class ="list-group-item" ng-click="redirectPage(child)">
+                        <a ng-repeat="child in function.child_items | filter : search" class ="list-group-item" ng-click="redirectPage(child)" ng-if="child.custom_name !== ''">
                             {{child.custom_name}}
                         </a>
                     </div>

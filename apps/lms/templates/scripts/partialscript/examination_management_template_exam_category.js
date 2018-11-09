@@ -181,15 +181,18 @@
     scope.tableFields = [
         { "data": "category_id", "title": "${get_res('category_id_table_header','ID')}" },
         { "data": "category_name", "title": "${get_res('category_name_table_header','Exam Category Name')}" },
-        { "data": "number_ques", "title": "${get_res('number_ques_header','Number of Exam Template')}" },
+        { "data": "number_ques", "format":"number: system", "title": "${get_res('number_ques_header','Number of Exam Template')}", "className": "text-right", width: "150px" },
         { "data": "moderator", "title": "${get_res('moderator_header','Moderator')}","expr":function(row, data, func){
             func(function(){
-                return "<img class='hcs-small-img'  src='" + scope.$root.url_static + "css/icon/approver.png" + "'/>"+ " "+row.moderator ;
-
+                if(row.moderator)
+                    return "<img class='hcs-small-img'  src='" + scope.$root.url_static + "css/icon/approver.png" + "'/>"+ " "+row.moderator ;
+                return " "
             });
             return true;
-        } },
-        { "data": "created_on", "title": "${get_res('created_at_table_header','Created at')}", "format": "date:" + 'dd/MM/yyyy h:mm:ss a' },  
+        }},
+         { "data": "order", "format":"number: system", "title": "${get_res('order','Order')}", "className": "text-center", width: "100px" },
+        { "data": "created_on", "title": "${get_res('created_at_table_header','Created at')}", "format": "date:" + scope.$root.systemConfig.date_format + ' hh:mm: a', width: "150px" },
+        { "data": "active", "title": "${get_res('active','Active')}", "className": "text-center", "format": "checkbox", width: "100px" },
     ];
     scope.$$tableConfig = {};
     scope.$root.$$tableConfig = {};
@@ -372,11 +375,11 @@
                 .done()
             .then(function (res) {
                 debugger
-                _.map(res, function (val) { val.number_ques = val.ques.length; val.moderator ='';  return val})
+                _.map(res.items, function (val) { val.number_ques = val.ques.length; val.moderator ='';  return val})
                     var data = {
                         recordsTotal: res.total_items,
                         recordsFiltered: res.total_items,
-                        data: res
+                        data: res.items
                     };
                     callback(data);
                    // scope.$$table.currentItem = null;

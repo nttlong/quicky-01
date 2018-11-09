@@ -1,4 +1,5 @@
 import datetime
+import qmongo
 from hcs_authorization import authorization
 Database=dict(
     host="172.16.7.67",
@@ -27,7 +28,7 @@ def authenticate(request):
         from api import models
         login_token = sso_authenticate(token)
         if login_token.is_success:
-            login_account = models.auth_user_info().aggregate()\
+            login_account = qmongo.models.auth_user_info.aggregate\
                 .project(login_account = 1, username = 1)\
                 .match("login_account == {0}", login_token.login_account).get_item()
             request.__setattr__("user_login", login_account['username'])
@@ -54,7 +55,7 @@ def authenticate(request):
 
 def AUTHORIZED(func_id):
     from api import models
-    exist = models.AD_Roles().aggregate()\
+    exist = qmongo.models.AD_Roles.aggregate\
     .unwind("permission", False)\
     .project(
         function_id = "permission.function_id"

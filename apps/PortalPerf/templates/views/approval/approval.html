@@ -1,0 +1,254 @@
+<style type="text/css">
+.hcs-tab-info .approve div {
+    border-right: 1px solid #E2E2E2;
+    height: 50px;
+    text-align: center;
+}
+
+#employeeList .zb-content{
+    height: calc(100% - 36px);
+}
+
+.hcs-tab-info .approve div label {
+    text-align: center;
+}
+
+.hcs-tab-info .approve div label span {
+    display: block;
+}
+
+.grid-container {
+  display: grid;
+  grid-template-columns: auto 1fr 1fr;
+}
+.grid-container>div {
+}
+
+.item1 {
+  grid-area: 1 / 1 / span 3 / 2;
+}
+</style>
+<div class="tab-pane" style="height: 100%;">
+    <header-page>
+        <site-map>
+            <span>{{$root.currentFunction.default_name}}</span>
+            <div class="hcs-resp-action-zb-left-content" style="float: right;">
+                <button class="zb-btn zb-btn-o-green ng-scope">
+                    <i class="bowtie-icon bowtie-menu"></i>
+                </button>
+            </div>
+        </site-map>
+    </header-page>
+    <div class="row" style="padding: 0px 5px;height: calc(100vh - 116px);">
+        <div class="col-xs-4 col-md-4 hcs-format" style="display: grid;height: 100%;grid-auto-rows: auto 1fr;">
+            <div>
+                <collapse-box class="zb-form-common" title="${get_res('employee_filter', 'Lọc nhân viên')}">
+                    <toolbar>
+                        <button class="zb-btn" ng-click="filterEmployee()">
+                            <i class="bowtie-icon bowtie-file-preview"></i>
+                        </button>
+                    </toolbar>
+                    <div class="col-md-12 col-xs-12">
+                        <div class="form-group zb-form-group">
+                            <label class="col-xs-4 col-sm-4 zb-form-label">${get_res('apr_period','Kỳ đánh giá')}</label>
+                            <div class="col-xs-8 col-sm-8">
+                                <tree-combobox
+                                        load-data="$root.$getComboboxData"
+                                        ng-model="$filterEmployee.department_code"
+                                        placeholder=""
+                                        select-mode="2"
+                                        init-data="$$$department.value"
+                                        caption-field="{{$$$department.caption_field}}"
+                                        key-field="{{$$$department.value_field}}"
+                                        parent-field="{{$$$department.parent_field}}"
+                                        multi-select="true"
+                                        on-accept=""
+                                        params="{key:'${encryptor.get_key('cbb_departments')}', value:[{ '@lock': true }]}"
+                                        reload="true"
+                                        required>
+                                </tree-combobox>
+                            </div>
+                        </div>
+                        <div class="form-group zb-form-group">
+                            <label class="col-xs-4 col-sm-4 zb-form-label">${get_res('department','Bộ phận')}</label>
+                            <div class="col-xs-8 col-sm-8">
+                                <tree-combobox
+                                        load-data="$root.$getComboboxData"
+                                        ng-model="$filterEmployee.department_code"
+                                        placeholder=""
+                                        select-mode="2"
+                                        init-data="$$$department.value"
+                                        caption-field="{{$$$department.caption_field}}"
+                                        key-field="{{$$$department.value_field}}"
+                                        parent-field="{{$$$department.parent_field}}"
+                                        multi-select="true"
+                                        on-accept=""
+                                        params="{key:'${encryptor.get_key('cbb_departments')}', value:[{ '@lock': true }]}"
+                                        reload="true"
+                                        required>
+                                </tree-combobox>
+                            </div>
+                        </div>
+                        <div class="form-group zb-form-group">
+                            <label class="col-xs-4 col-sm-4 zb-form-label">${get_res('job_working','Chức danh')}</label>
+                            <div class="col-xs-8 col-sm-8">
+                                <form-search ng-model="$filterEmployee.job_w_code" open="set_job_w_code()" init-data="$$$job_working" multi="true" required></form-search>
+                            </div>
+                        </div>
+                    </div>
+                </collapse-box>
+            </div>
+            <div id="employeeList">
+                <collapse-box class="zb-form-common" title="${get_res('list_employee', 'Danh sách nhân viên')}">
+                    <div class="col-md-12 col-xs-12" style="height: 100%;display: grid;grid-auto-rows: auto 1fr;">
+                        <div class="hcs-tab-info">
+                            <div class="col-xs-12 col-md-12 competency no-padding">
+                                <div class="hcs-tab-info-box active" href="#tab_default_1" data-toggle="tab" ng-click="changeActive($event, 1)">
+                                    <span>
+                                        <label style="padding-left:5px !important;">
+                                        250
+                                        </label>
+                                    </span>
+                                    <label>
+                                        ${get_res('tong_dg','Tổng ĐG')}
+                                    </label>
+                                </div>
+                                <div class="hcs-tab-info-line"></div>
+                                <div class="hcs-tab-info-box" ng-click="changeActive($event, 2)">
+                                    <span class="bowtie-icon bowtie-icon bowtie-status-success-outline">
+                                        <label class="pull-right text-right">
+                                        <!-- {{countEmployeeWithStatus.approved}} -->10
+                                        </label>
+                                    </span>
+                                    <label style="padding-left:5px;">
+                                        ${get_res('daduyet','Đã duyệt')}
+                                    </label>
+                                </div>
+                                <div class="hcs-tab-info-line"></div>
+                                <div class="hcs-tab-info-box" ng-click="changeActive($event, 3)">
+                                    <span class="bowtie-icon bowtie-icon bowtie-status-pause-outline">
+                                        <label class="pull-right text-right">
+                                        <!-- {{countEmployeeWithStatus.waiting}} -->20
+                                        </label>
+                                    </span>
+                                    <label>
+                                        ${get_res('choduyet','Chờ duyệt')}
+                                    </label>
+                                </div>
+                                <div class="hcs-tab-info-line"></div>
+                                <div class="hcs-tab-info-box" ng-click="changeActive($event, 4)">
+                                    <span class="bowtie-icon bowtie-icon bowtie-status-info-outline">
+                                        <label class="pull-right text-right">
+                                        <!-- {{countEmployeeWithStatus.not_give}} -->30
+                                        </label>
+                                    </span>
+                                    <label>
+                                        ${get_res('chuagiao','Chưa giao')}
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="zb-list" style="margin-top: 10px;">
+                            <div class="zb-form-text-icon input-group">
+                                <input type="text" ng-model="txtSearchEmployee" class="form-control" placeholder="">
+                                <div class="input-group-btn"> 
+                                    <button class="btn"><i class="bowtie-icon bowtie-search"></i></button>
+                                </div>
+                            </div>
+                            <div class="zb-list-panel">
+                                <div class="zb-list-item" style="height: calc(100% - 30px);">
+                                    <div class="zb-item grid-container" ng-repeat="item in $employee track by $index" ng-click="selectEmployee(item)" ng-class="{active: item.employee_code === _currentEmp.employee_code}" style="border: 1px solid #d9d9d9;padding: 10px;">
+                                        <div class="item1" style="margin-right: 10px;">
+                                            <img style="width: 30px;" src="${get_static('assets/images/avatar_female.png')}" ng-if="$index == 0"/>
+                                            <img style="width: 30px;" src="${get_static('assets/images/avatar_dog.png')}" ng-if="$index == 1"/>
+                                            <img style="width: 30px;" src="${get_static('assets/images/avatar_monkey.png')}" ng-if="$index == 2"/>
+                                        </div>
+                                        <div class="item2">
+                                            <span class="zb-list-title" style="font-weight: bold;">Nguyễn Văn A{{$index}}</span> 
+                                        </div>
+                                        <div class="item3 text-right">
+                                            <span class="zb-list-title">01/11/2011</span>
+                                        </div>
+                                        <div class="item4">
+                                            <span class="zb-list-title grey">Nhân viên kinh doanh</span>
+                                        </div>
+                                        <div class="item5 text-right">
+                                            <span title="" class="hcs-circle-icon {{$index == 0 ? 'success' : $index == 1 ? 'yellow' : 'red'}}"></span> ({{$index}}/3)
+                                        </div>
+                                        <div class="item6">
+                                            <span class="zb-list-title grey">Ngày giao: 05/07/2018</span>
+                                        </div>
+                                        <div class="item7 text-right">
+                                            <img src="${get_static('assets/images/step_image.png')}" style="width: 60px;"/>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </collapse-box>
+            </div>
+        </div>
+        <div class="col-md-8 col-xs-8" style="padding-left: unset;">
+            <div class="col-md-12 col-xs-12">
+                <collapse-box class="zb-form-common" title="${get_res('give_target', 'Giao chỉ tiêu')}" id="groupKPI">
+                    <toolbar>
+                        <button class="zb-btn">
+                            <i class="bowtie-icon bowtie-checkbox"></i>
+                        </button>
+                        <button class="zb-btn">
+                            <i class="bowtie-icon bowtie-math-multiply-box-outline"></i>
+                        </button>
+                    </toolbar>
+                    <div style="height: 50vh;">
+                        <table-data data-source="$$table.tableSource" 
+                                    fields="$$table.tableFields" 
+                                    type="MultiSelect" 
+                                    paging="true" 
+                                    page-length="100" 
+                                    server-side="true" 
+                                    press-enter="$$table.onSelectTableRow" 
+                                    selected-items="$$table.selectedItems" 
+                                    current-item="$$table.currentItem" 
+                                    search-text="$$table.tableSearchText"
+                                    refresh-row="$$table.refreshDataRow"/>
+                    </div>
+                </collapse-box>
+            </div>
+            <div class="col-md-12 col-xs-12">
+                <collapse-box class="zb-form-common" title="${get_res('history_approve_ticket', 'Lịch sử phê duyệt phiếu')}" id="approver">
+                    <div style="height: 30vh;">
+                        <table-data data-source="$$table.tableSource" 
+                                    fields="$$table1.tableFields" 
+                                    type="MultiSelect" 
+                                    paging="true" 
+                                    page-length="100" 
+                                    server-side="true" 
+                                    press-enter="$$table.onSelectTableRow" 
+                                    selected-items="$$table.selectedItems" 
+                                    current-item="$$table.currentItem" 
+                                    search-text="$$table.tableSearchText"
+                                    refresh-row="$$table.refreshDataRow">
+                        </table-data>
+                    </div>
+                </collapse-box>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="zb-bottom-bar">
+    <div class="zb-right-content">
+        <button class="zb-btn zb-btn-o-green" ng-click="openDetailData()">
+            <i class="bowtie-icon bowtie-math-plus"></i>
+        </button>
+        <button class="zb-btn">
+            <i class="bowtie-icon bowtie-manual-approval"></i>
+        </button>
+        <button class="zb-btn">
+            <i class="bowtie-icon bowtie-user-remove"></i>
+        </button>
+    </div>
+</div>
+<script>
+    <%include file="scripts/approval.js"/>
+</script>

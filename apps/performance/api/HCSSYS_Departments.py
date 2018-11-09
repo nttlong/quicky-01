@@ -10,10 +10,10 @@ global lock
 lock = threading.Lock()
 from Query import DepartmentGroup
 from hcs_authorization import action_type, authorization
-
+import qmongo
 @authorization.authorise(common = True)
 def get_list(args):
-    items = models.HCSSYS_Departments().aggregate().project(
+    items = qmongo.models.HCSSYS_Departments.aggregate.project(
         department_code = 1,
         department_name = 1,
         parent_code     = 1
@@ -25,7 +25,7 @@ def get_list(args):
 def get_department_by_dept_code(args):
     try:
         if args['data'] != None and args['data'].has_key('department_code'):
-            items = models.HCSSYS_Departments().aggregate().project(
+            items =qmongo.models.HCSSYS_Departments.aggregate.project(
                 department_code     = 1,
                 department_name     = 1,
                 department_name2    = 1,
@@ -73,7 +73,7 @@ def get_list_department_by_parent_code(args):
 
     pageIndex = (lambda pIndex: pIndex if pIndex != None else 0)(pageIndex)
     pageSize = (lambda pSize: pSize if pSize != None else 20)(pageSize)
-    ret= models.HCSSYS_Departments().aggregate().project(
+    ret=qmongo.models.HCSSYS_Departments.aggregate.project(
         department_code = 1,
         department_name = 1,
         department_alias = 1,
@@ -101,7 +101,7 @@ def get_tree(args):
 
 @authorization.authorise(common = True)
 def get_department_group():
-    ret=models.HCSSYS_Departments().aggregate()
+    ret=qmongo.models.HCSSYS_Departments.aggregate
     ret.left_join(models.auth_user_info(), "created_by", "username", "uc")
     ret.left_join(models.auth_user_info(), "modified_by", "username", "um")
     ret.project(
@@ -145,16 +145,18 @@ def insert(args):
                         }
                 }
                 
-            data =  set_dict_data(args)
-            parent_dept = models.HCSSYS_Departments().aggregate().project(
-                department_code = 1,
-                level = 1,
-                level_code = 1
-                ).match("department_code == {0}", args['data']['parent_code']).get_item()
+            data = set_dict_data(args)
+            if args['data'].has_key('parent_code') and args['data']["parent_code"] != None :
+                parent_dept = qmongo.models.HCSSYS_Departments.aggregate.project(
+                    department_code=1,
+                    level=1,
+                    level_code=1
+                    ).match("department_code == {0}", args['data']['parent_code']).get_item()
 
-            data['level'] = parent_dept['level'] + 1
-            data['level_code'] = parent_dept['level_code'] + [args['data']['department_code']]
-            ret  =  models.HCSSYS_Departments().insert(data)
+                data['level'] = parent_dept['level'] + 1
+                data['level_code'] = parent_dept['level_code'] + [args['data']['department_code']]
+
+            ret = qmongo.models.HCSSYS_Departments.insert(data)
             lock.release()
             return ret
 
@@ -173,7 +175,7 @@ def update(args):
         ret = {}
         if args['data'] != None:
             data = set_dict_data(args)
-            ret  =  models.HCSSYS_Departments().update(data, "department_code == @department_code", department_code = args['data']['department_code'])
+            ret  = qmongo.models.HCSSYS_Departments.update(data, "department_code == @department_code", department_code = args['data']['department_code'])
             lock.release()
             return ret
 
@@ -191,7 +193,7 @@ def delete(args):
         lock.acquire()
         ret = {}
         if args['data'] != None:
-            ret =  models.HCSSYS_Departments().delete("department_code in {0}", [x["department_code"]for x in args['data']])
+            ret = qmongo.models.HCSSYS_Departments.delete("department_code in {0}", [x["department_code"]for x in args['data']])
             lock.release()
             return ret
 

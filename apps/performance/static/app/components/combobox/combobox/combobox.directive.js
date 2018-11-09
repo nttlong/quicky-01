@@ -45,7 +45,8 @@
                 templateFields: "=",
                 /*Reload data khi nhấn button mở combobox*/
                 reload: "=",
-                ngRequired: "@"
+                ngRequired: "@",
+                ngChange: "="
             },
             //template: function(el, attrs) {
             //  return '<div class="switch-container ' + (attrs.color || '') + '"><input type="checkbox" ng-model="ngModel"></div>';
@@ -303,6 +304,9 @@
                     if(!val){
                         $scope.initData = null;
                         _control.applyCaption(null);
+                    }
+                    if (angular.isFunction($scope.ngChange)) {
+                        ($scope.ngChange)(val);
                     }
                 })
             }

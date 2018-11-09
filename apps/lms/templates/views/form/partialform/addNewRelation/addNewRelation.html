@@ -1,0 +1,47 @@
+<%!
+    _height=";min-height:30vh;"
+%>
+<%inherit file="../../../commons/dialog_save_close.html"/>
+<%block name="modal_body">
+    <div class="hcs-modal-format">
+        <div class="col-md-12">
+            <collapse-box class="zb-form-common" title="${get_res('relation','Relation')}">
+                <div class="col-md-12">
+                    <div class="form-group zb-form-group">
+                        <label class="col-sm-5 zb-form-label">
+                            ${get_res('relation','Relation')}
+                        </label>
+                        <div class="col-sm-7">
+                            <input-select ng-model="entity_relation.relation" data-list="cbbLMSLRelation" data-caption="caption" data-value="value"/>
+                        </div>
+                    </div>
+                    <div class="form-group zb-form-group">
+                        <label class="col-sm-5 zb-form-label">
+                            ${get_res('course','Course')}
+                        </label>
+                        <div class="col-sm-7">
+                            <combobox
+                                load-data="$root.$getComboboxData"
+                                ng-model="entity.course"
+                                params="{key:'${encryptor.get_key('cbb_lmsls_materialcouse')}', value:[{ '@lock': true }]}"
+                                on-search-change="false"
+                                on-search-press="true"
+                                placeholder=""
+                                init-data="$$$folder_id.value"
+                                caption-field="{{$$$course_id.caption_field}}"
+                                paging="true"
+                                close-on-select="true"
+                                template-fields="$$$course_id.display_fields"
+                                reload="false"/>
+                        </div>
+                    </div>
+                </div>
+            </collapse-box>
+        </div>
+    </div>
+</%block>
+<%block name="modal_script">
+    <script>
+        <%include file="scripts/addNewRelation.js"/>
+    </script>
+</%block>

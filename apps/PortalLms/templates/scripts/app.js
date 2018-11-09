@@ -4,7 +4,7 @@ window.set_api_combobox("${get_api_key('app_main.api.common/get_dropdown_list')}
 window.set_authenticated_permission_service("${get_api_key('app_main.api.authenticate_permission/get_permission')}")
 window.get_static = "${get_static('/')}"
 window.set_static(window.get_static)
-angular
+var app = angular
     .module("admin", ["c-ui", 'ZebraApp.components', 'ZebraApp.widgets', 'hcs-template', 'ngclipboard', 'chart.js', 'authenticatedModule'])
     .controller("admin", controller)
     .filter('$filterFunction', function () {
@@ -25,6 +25,18 @@ angular
             return $sce.trustAsHtml(text);
         };
     }]);
+
+app.directive('ngRightClick', function($parse) {
+    return function(scope, element, attrs) {
+        var fn = $parse(attrs.ngRightClick);
+        element.bind('contextmenu', function(event) {
+            scope.$apply(function() {
+                event.preventDefault();
+                fn(scope, {$event:event});
+            });
+        });
+    };
+});
 
 controller.$inject = ["$dialog", "$scope", "$filter"];
 dialog_root_url('${get_app_url("pages/")}')
@@ -100,6 +112,9 @@ function controller($dialog, $scope, $filter) {
             $("#btnShowMenu").siblings(".hcs-menu-list").addClass("menu-hidden");
             $("#btnShowMessage").siblings(".hcs-message-list").addClass("message-hidden");
         }
+        if($(".custom-menu").css("display") == "block"){
+            $(".custom-menu").css("display", "none")
+        }
     });
 
     $scope.$root.doLogout = function () {
@@ -166,6 +181,77 @@ function controller($dialog, $scope, $filter) {
                 window.location.href = url;
             }
         }
+    }
+
+
+    $scope.$root.$dataPin = {};
+    $scope.$root.decrement = function (data, event){
+        // Avoid the real one
+        event.preventDefault();
+        $scope.$root.$dataPin = data;
+        $scope.$root.$applyAsync();
+        console.log($scope.$root.$dataPin)
+        // Show contextmenu
+        if($(event.target).closest(".hcs-function-style").length > 0) {
+            if($(".custom-menu").css("display") == "none"){
+                $(".custom-menu").toggle(100).
+                css({
+                    top: (event.pageY ) + "px",
+                    left: event.pageX + "px"
+                });
+            } else {
+                $(".custom-menu").css("display", "none");
+                $(".custom-menu").toggle(100).
+                css({
+                    top: (event.pageY ) + "px",
+                    left: event.pageX + "px"
+                });
+            }
+        }
+    }
+
+    $scope.$root.PinTab = function(){
+        services.api("${get_api_key('app_main.api.SYS_FunctionList_Favorite/insert')}")
+            .data({
+                data: $scope.$root.$dataPin
+            })
+            .done()
+            .then(function (res) {
+                //set hcssys_systemconfig
+                var data = $scope.$root.$functions;
+                for(var i = 0; i < data.length; i++) {
+                    var childs = data[i]["child_items"];
+                    for(var j = 0; j < childs.length; j++) {
+                        if(childs[j]["function_id"] == $scope.$root.$dataPin["function_id"]) {
+                            childs[j]["favorites"] = true;
+                            break;
+                        }
+                    }
+                }
+                $scope.$root.systemconfig = res;
+            })
+    }
+
+    $scope.$root.UnPinTab = function(){
+        services.api("${get_api_key('app_main.api.SYS_FunctionList_Favorite/delete')}")
+            .data({
+                data: $scope.$root.$dataPin
+            })
+            .done()
+            .then(function (res) {
+                //set hcssys_systemconfig
+                var data = $scope.$root.$functions;
+                for(var i = 0; i < data.length; i++) {
+                    var childs = data[i]["child_items"];
+                    for(var j = 0; j < childs.length; j++) {
+                        if(childs[j]["function_id"] == $scope.$root.$dataPin["function_id"]) {
+                            childs[j]["favorites"] = false;
+                            break;
+                        }
+                    }
+                }
+                $scope.$root.systemconfig = res;
+            })
     }
 
     /**

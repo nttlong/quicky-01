@@ -5,8 +5,37 @@
 <%inherit file="../../commons/dialog_save_close.html"/>
 
 <%block name="modal_body">
-<div class="hcs-modal-format">
-   <div class="col-xs-12 col-md-{{col_group}} col-sm-{{col_group}}" style="padding-bottom:20px;">
+<style>
+    div.dataTables_scrollBody{
+        height:345px;
+    }
+    .outer{
+      display:table;
+      width:100%;
+      height:100%;
+    }
+    .inner-title{
+      width:100%;
+      display:table-row;
+    }
+    .inner-content{
+      width:100%;
+      height:100%;
+      display:table-row;
+    }
+    .dataTables_scrollHeadInner{
+      width:100% !important;
+    }
+    table.display.zb-data-table.responsive.nowrap.dataTable.no-footer{
+      width:100% !important;
+    }
+    .modal-body-resize{
+      overflow-x : hidden !important;
+    }
+</style>
+<div class="hcs-modal-format outer">
+   <div class="inner-title">
+      <div class="col-xs-12 col-md-{{col_group}} col-sm-{{col_group}}" style="padding-bottom:20px;">
          <collapse-box class="zb-form-common" title="${get_global_res('Common_Information','Thông tin chung')}">
             <div class="col-xs-{{col}} col-md-{{col}}">
                <div class="form-group zb-form-group">
@@ -40,7 +69,7 @@
                   <!--Tổng điểm từ-->
                   <label class="col-xs-5 col-sm-5 zb-form-label">${get_res('total_from','Tổng điểm từ')}</label>
                   <div class="col-xs-7 col-sm-7">
-                     <input-number ng-model="entity.total_from" type="int"/>
+                     <input-number ng-model="entity.total_from" type="float"/>
                   </div>
                </div>
             </div>
@@ -49,7 +78,7 @@
                   <!--Tổng điểm đến-->
                   <label class="col-xs-5 col-sm-5 zb-form-label">${get_res('total_to','Tổng điểm đến')}</label>
                   <div class="col-xs-7 col-sm-7">
-                     <input-number ng-model="entity.total_to" type="int"/>
+                     <input-number ng-model="entity.total_to" type="float"/>
                   </div>
                </div>
             </div>
@@ -58,7 +87,7 @@
                   <!--Thứ tự-->
                   <label class="col-xs-5 col-sm-5 zb-form-label">${get_res('ordinal','Thứ tự')}</label>
                   <div class="col-xs-7 col-sm-7">
-                     <input-number ng-model="entity.ordinal"/>
+                     <input-number ng-model="entity.ordinal" type="int"/>
                   </div>
                </div>
             </div>
@@ -82,7 +111,7 @@
             </div>
          </collapse-box>
       </div>
-   <div class="col-xs-12 col-md-{{ 12 - col_group}} col-sm-{{ 12 - col_group}}" style="padding-bottom:20px;">
+      <div class="col-xs-12 col-md-{{ 12 - col_group}} col-sm-{{ 12 - col_group}}" style="padding-bottom:20px;">
          <collapse-box class="zb-form-common" title="${get_global_res('general_assessment','Đánh giá chung')}">
             <div class="col-md-12 col-xs-12 col-sm-12">
                <!--Đánh giá chung-->
@@ -94,28 +123,30 @@
                <div class="form-group zb-form-group">
                   <label for="DisplayInfo" class="col-xs-3 col-sm-3 zb-form-label">${get_global_res('create_and_modify','Tạo | Sửa')}</label>
                   <div class="col-xs-9 col-sm-9">
-                     <input-text
+                     <input-text style="text-align:right;"
                         value="{{ entity.created_on | date: $root.systemConfig.date_format}} {{entity.created_by}} | {{ entity.modified_on | date: $root.systemConfig.date_format}} {{entity.modified_by}}" ng-disabled="true"/>
                   </div>
                </div>
             </div>
          </collapse-box>
       </div>
-   <div class="col-xs-12 col-md-12" ng-show="(__mode === 2 || __mode === 3) && entity.is_change_object === true">
+   </div>
+   <div class="inner-content">
+      <div class="col-xs-12 col-md-12" ng-if="(__mode === 2 || __mode === 3) && entity.is_change_object === true">
          <collapse-box class="zb-form-common" title="${get_res('is_change_object','Thiết lập riêng')}">
             <toolbar>
-               <input-text-icon icon="bowtie-icon bowtie-search"
+               <input-text-icon class-btn="zb-small-btn" icon="bowtie-icon bowtie-search"
                   on-click="onSearch"></input-text-icon>
-               <button ng-click="addNewRankSub()" class="zb-btn zb-btn-o-green">
+               <button ng-click="addNewRankSub()" class="zb-btn zb-btn-o-green zb-small-btn">
                <i class="bowtie-icon bowtie-math-plus"></i>
                </button>
-               <button ng-click="editRankSub()"  class="zb-btn zb-btn-o-blue">
+               <button ng-click="editRankSub()"  class="zb-btn zb-btn-o-blue zb-small-btn">
                <i class="bowtie-icon bowtie-edit-outline"></i>
                </button>
-               <button ng-click="removeRankSub()" class="zb-btn zb-btn-o-red">
+               <button ng-click="removeRankSub()" class="zb-btn zb-btn-o-red zb-small-btn">
                <i class="bowtie-icon bowtie-trash"></i>
                </button>
-               <button ng-click="refreshRankSub()" class="zb-btn">
+               <button ng-click="refreshRankSub()" class="zb-btn zb-small-btn">
                <i class="bowtie-icon bowtie-navigate-refresh"></i>
                </button>
             </toolbar>
@@ -135,6 +166,7 @@
             </div>
          </collapse-box>
       </div>
+   </div>
 </div>
 </%block>
 
@@ -144,10 +176,10 @@
         scope.$$table = {
             "tableSource": _loadDataServerSide,
             "tableFields": [
-                { "data": "object_code", "title": "${get_res('rank_code_table_header','Đối tượng')}", "className": "text-left" },
-                { "data": "object_name", "title": "${get_res('rank_name_table_header','Tên chi tiết')}", "className": "text-left" },
-                { "data": "total_from", "title": "${get_res('rank_content_table_header','Tổng điểm từ')}", "className": "text-center" },
-                { "data": "total_to", "title": "${get_res('total_from_table_header','Tổng điểm đến')}", "className": "text-center" }
+                { "data": "object_code", "title": "${get_res('rank_code_table_header','Đối tượng')}", "className": "text-left"},
+                { "data": "object_name", "title": "${get_res('rank_name_table_header','Tên chi tiết')}", "className": "text-left"},
+                { "data": "total_from", "title": "${get_res('rank_content_table_header','Tổng điểm từ')}","format":"number: system", "className": "text-center"},
+                { "data": "total_to", "title": "${get_res('total_from_table_header','Tổng điểm đến')}","format":"number: system", "className": "text-center"}
             ],
             "onSelectTableRow": pressEnter,
             "selectedItems": [],
@@ -202,17 +234,17 @@
 
         /**
          * Thay đỗi kích thước form Dialog và các control trên form dialog
-         */
+         */debugger
         var isFullSize = false;
-        scope.maxHeightDialog = "85vh";//default init
-        scope.minHeightDialog = "85vh";
+        scope.maxHeightDialog = ((scope.__mode === 2 || scope.__mode === 3) && scope.entity.is_change_object === true)? "calc(100vh - 142px)":"";//default init
+        //scope.minHeightDialog = ((scope.__mode === 2 || scope.__mode === 3) && scope.entity.is_change_object === true)? "calc(100vh - 142px)":"";;
         function onResizeDialog() {
             $dialog.fullScreen();
             scope.col = scope.col == 12 ? 6 : 12;
             scope.col_group = scope.col_group == 6 ? 8 : 6;
             isFullSize = !isFullSize //toggle fullsize
-            scope.maxHeightDialog = isFullSize ? "100%" : "85vh";
-            scope.minHeightDialog = isFullSize ? "100%" : "85vh";
+            scope.maxHeightDialog = isFullSize ? "calc(100vh - 70px)" : "calc(100vh - 142px)";
+            //scope.minHeightDialog = isFullSize ? "calc(100vh - 70px)" : "calc(100vh - 142px)";
         }
 
         function editRankSub() {

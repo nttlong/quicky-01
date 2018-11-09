@@ -4,13 +4,16 @@ import models
 import common
 import datetime
 from Query import TMLS_Rank,AprPeriodRank
+from services import TMLS_RankService as service
 import logging
 import threading
 import TMSYS_ConfigChangeObjectPriority
 logger = logging.getLogger(__name__)
 global lock
 lock = threading.Lock()
+from hcs_authorization import action_type,authorization
 
+@authorization.authorise(action=action_type.Action.READ)
 def get_list_with_searchtext(args):
     searchText = args['data'].get('search', '')
     pageSize = args['data'].get('pageSize', 0)
@@ -34,7 +37,7 @@ def get_list_with_searchtext(args):
     return ret.get_page(pageIndex, pageSize)
 
 
-
+@authorization.authorise(action=action_type.Action.READ)
 def get_list_details_with_searchtext(args):
 
     if args['data'].has_key('rank_code'):
@@ -62,6 +65,7 @@ def get_list_details_with_searchtext(args):
             error = "rank_code is not exist"
         )
 
+@authorization.authorise(action=action_type.Action.CREATE)
 def insert(args):
     try:
         lock.acquire()
@@ -81,6 +85,7 @@ def insert(args):
         lock.release()
         raise(ex)
 
+@authorization.authorise(action=action_type.Action.WRITE)
 def update(args):
     try:
         lock.acquire()
@@ -106,6 +111,7 @@ def update(args):
         lock.release()
         raise(ex)
 
+@authorization.authorise(action=action_type.Action.DELETE)
 def delete(args):
     try:
         lock.acquire()
@@ -124,6 +130,7 @@ def delete(args):
         lock.release()
         raise(ex)
 
+@authorization.authorise(action=action_type.Action.CREATE)
 def insert_details(args):
     try:
         lock.acquire()
@@ -152,7 +159,7 @@ def insert_details(args):
                                 check_exist = collection.find_one(
                                 {
                                     "rank_code":args['data']['rank_code'], 
-                                    "details":{
+                                    "setup_change_object":{
                                             "$elemMatch":{
                                                 "change_object":x["change_object"],
                                                 "object_code":x["object_code"]
@@ -219,6 +226,7 @@ def insert_details(args):
         lock.release()
         raise(ex)
 
+@authorization.authorise(action=action_type.Action.WRITE)
 def update_details(args):
     try:
         lock.acquire()
@@ -229,7 +237,7 @@ def update_details(args):
                 check_exist = collection.find_one(
                     {
                         "rank_code":args['data']['rank_code'], 
-                        "details":{
+                        "setup_change_object":{
                                 "$elemMatch":{
                                     "change_object":args['data']['details']["change_object"],
                                     "object_code":args['data']['details']["object_code"]
@@ -237,7 +245,7 @@ def update_details(args):
                              }
                      })
                 if check_exist == None:
-                    details = set_dict_detail_update_data(args['data']['details'], args['data']['rank_code'])
+                    details = service.set_dict_detail_update_data(args['data']['details'], args['data']['rank_code'])
                     ret = TMLS_Rank.update_details(args, details)
                 else:
                     ret = {
@@ -256,6 +264,7 @@ def update_details(args):
         lock.release()
         raise(ex)
 
+@authorization.authorise(action=action_type.Action.DELETE)
 def delete_detail(args):
     try:
         lock.acquire()
@@ -287,6 +296,7 @@ def delete_detail(args):
         lock.release()
         raise(ex)
 
+@authorization.authorise(common=True)
 def set_dict_insert_data(args):
     ret_dict = dict()
 
@@ -300,15 +310,16 @@ def set_dict_insert_data(args):
         is_change_object  = (lambda x: x['is_change_object']  if x.has_key('is_change_object') else None)(args['data']),
         ordinal           = (lambda x: x['ordinal']           if x.has_key('ordinal')          else None)(args['data']),
         lock              = (lambda x: x['lock']              if x.has_key('lock')             else None)(args['data']),
-        details           = (lambda x: x['details']           if x.has_key('details')          else [])(args['data'])
+        setup_change_object = (lambda x: x['setup_change_object']           if x.has_key('setup_change_object')          else [])(args['data'])
     )
 
     return ret_dict
 
+@authorization.authorise(common=True)
 def set_dict_update_data(args):
     ret_dict = set_dict_insert_data(args)
     del ret_dict['rank_code']
-    del ret_dict['details']
+    del ret_dict['setup_change_object']
 
     return ret_dict
 
@@ -363,12 +374,13 @@ def set_dict_detail_insert_data(args, rank_code):
     return ret_dict
 
 def set_dict_detail_update_data(args, rank_code):
-    ret_dict = set_dict_detail_insert_data(args, rank_code)
+    ret_dict = service.set_dict_detail_insert_data(args, rank_code)
     del ret_dict['rec_id']
     ret_dict['modified_on'] = datetime.datetime.now()
     ret_dict['modified_by'] = common.get_user_id()
     return ret_dict
 
+@authorization.authorise(action=action_type.Action.READ)
 def getListRankcode(args):
     ret = {}
     collection = common.get_collection('TMLS_Rank').aggregate([
@@ -385,6 +397,7 @@ def getListRankcode(args):
     ret = list(collection)
     return ret
 
+@authorization.authorise(action=action_type.Action.READ)
 def getListRank(args):
     ret = {}
     collection = common.get_collection('TMLS_Rank').aggregate([

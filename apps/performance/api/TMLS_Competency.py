@@ -1,13 +1,17 @@
 # -*- coding: utf-8 -*-
 from bson import ObjectId
+import qmongo
 import models
 from Query import KPI
 import logging
 import datetime
 import threading
 import common
+from services import TMLS_CompetencyService as service
 from hcs_authorization import action_type,authorization
 logger = logging.getLogger(__name__)
+from views.views import SYS_VW_ValueList;
+#from views.views import HCSLS_VW_JobWorkingCompetency;
 global lock
 lock = threading.Lock()
 
@@ -49,7 +53,7 @@ def get_list_with_searchtext(args):
     {'$lookup': {
         'foreignField': 'value', 
         'as': 'val_pst', 
-        'from':models.SYS_VW_ValueList().get_collection_name(),
+        'from':SYS_VW_ValueList().get_collection_name(),
         'localField': 'point_scale_type'
         }
     }, 
@@ -121,11 +125,12 @@ def get_list_with_searchtext(args):
 
 @authorization.authorise(action=action_type.Action.READ)
 def get_by_com_code(args):
+    import qmongo
     try:
-        ret = models.TMLS_Competency().aggregate()
-        ret.lookup(models.HCSLS_VW_JobWorkingCompetency(), "com_code", "com_code", "comp")
-        ret.left_join(models.auth_user_info(), "created_by", "username", "uc")
-        ret.left_join(models.auth_user_info(), "modified_by", "username", "um")
+        ret =qmongo.models.TMLS_Competency.aggregate
+        ret.lookup(qmongo.views.HCSLS_VW_JobWorkingCompetency, "com_code", "com_code", "comp")
+        ret.left_join(qmongo.models.auth_user_info, "created_by", "username", "uc")
+        ret.left_join(qmongo.models.auth_user_info, "modified_by", "username", "um")
         ret.project(
             job_working = "comp.job_w_code",
             com_code = "com_code",
@@ -160,9 +165,9 @@ def insert(args):
         ret = {}
         if args['data'] != None:
             data =  set_dict_insert_data(args['data'])
-            ret  =  models.TMLS_Competency().insert(data)
+            ret  = qmongo.models.TMLS_Competency.insert(data)
             if args['data'].has_key('job_working') and len(args['data']['job_working']) > 0:
-                insert_job_working_competency(args['data']['job_working'], args['data'])
+                service.insert_job_working_competency(args['data']['job_working'], args['data'])
             lock.release()
             return ret
 
@@ -181,13 +186,13 @@ def update(args):
         ret = {}
         if args['data'] != None:
             data =  set_dict_update_data(args['data'])
-            ret  =  models.TMLS_Competency().update(
+            ret  = qmongo.models.TMLS_Competency.update(
                 data, 
                 "com_code == {0}", 
                 args['data']['com_code'])
             if ret.has_key('error') and ret['error'] == None and ret['data'].raw_result['updatedExisting'] == True:
                 if args['data'].has_key('job_working') and len(args['data']['job_working']) > 0:
-                    insert_job_working_competency(args['data']['job_working'], args['data'])
+                    service.insert_job_working_competency(args['data']['job_working'], args['data'])
             if ret.has_key('error') and ret['error'] == None and ret['data'].raw_result['updatedExisting'] == True:
                 ret.update(
                     item = args['data']
@@ -209,11 +214,11 @@ def delete(args):
         lock.acquire()
         ret = {}
         if args['data'] != None:
-            ret  =  models.TMLS_Competency().delete("com_code in {0}",[x["com_code"]for x in args['data']])
+            ret  = qmongo.models.TMLS_Competency.delete("com_code in {0}",[x["com_code"]for x in args['data']])
             #delete level, delete action, delete factor
-            models.TMLS_CompetencyLevel().delete("com_code in {0}", [x["com_code"] for x in args['data']])
-            models.TMLS_CompetencyAction().delete("com_code in {0}", [x["com_code"] for x in args['data']])
-            models.TMLS_CompetencyFactor().delete("com_code in {0}", [x["com_code"] for x in args['data']])
+            qmongo.models.TMLS_CompetencyLevel.delete("com_code in {0}", [x["com_code"] for x in args['data']])
+            qmongo.models.TMLS_CompetencyAction.delete("com_code in {0}", [x["com_code"] for x in args['data']])
+            qmongo.models.TMLS_CompetencyFactor.delete("com_code in {0}", [x["com_code"] for x in args['data']])
             common.get_collection('HCSLS_JobWorking').update_many(
                 {
                     "competency":{
@@ -237,11 +242,11 @@ def delete(args):
         lock.release()
         raise(ex)
 
-@authorization.authorise(action=action_type.Action.CREATE)
 def insert_job_working_competency(job_w_code, comp):
+    import qmongo
     try:
         if(len(job_w_code)) > 0:
-            exist = models.HCSLS_VW_JobWorkingCompetency().aggregate().project(
+            exist = qmongo.views.HCSLS_VW_JobWorkingCompetency.aggregate.project(
                 rec_id = 1,
                 job_w_code = 1,
                 grade = 1,

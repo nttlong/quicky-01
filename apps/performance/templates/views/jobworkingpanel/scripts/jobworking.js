@@ -8,7 +8,7 @@
             { "data": "job_w_code", "title": "${get_res('job_w_code_table_header','Mã chức danh')}", "className": "text-left" },
             { "data": "job_w_name", "title": "${get_res('job_w_name_table_header','Tên chức danh')}", "className": "text-left" },
             { "data": "report_to_job_w", "title": "${get_res('report_to_job_w_table_header','Báo cáo cho')}", "className": "text-left" },
-            { "data": "ordinal", "title": "${get_res('ordinal_table_header','Thứ tự')}",format:"number", "className": "text-center" }
+            { "data": "ordinal", "title": "${get_res('ordinal_table_header','Thứ tự')}","format":"number: system", "className": "text-center" }
         ],
         $$tableConfig: {},
         tableSource: _loadDataServerSide,

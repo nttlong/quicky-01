@@ -22,6 +22,7 @@
                 /*end search*/
 
                 multiSelect: "=",
+                selectMode: "=",
 
                 //closeOnSelect: "=",
 
@@ -191,7 +192,7 @@
                             treeSelectedNodes: [],
                             treeSelectedRootNodes: [],
                             treeSearchText: null,
-                            selectMode: $scope.multiSelect ? 3 : 1,
+                            selectMode: $scope.selectMode ? $scope.selectMode : $scope.multiSelect ? 3 : 1,
                             multiSelect: $scope.multiSelect ? true : false,
                             treeDisabled: false,
 

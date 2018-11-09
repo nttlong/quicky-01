@@ -1,10 +1,7 @@
 # -*- coding: utf-8 -*-
 from config import database, helpers, db_context
 _hasCreated=False
-def LMSLS_ExTemplateList():
-    global _hasCreated
-    if not _hasCreated:
-        helpers.extent_model(
+helpers.extent_model(
             "LMSLS_ExTemplateList",
             "base",
             [["exam_temp_id"]],
@@ -23,6 +20,9 @@ def LMSLS_ExTemplateList():
             med_question = helpers.create_field("text"),
             diff_question = helpers.create_field("text"),
         )
+def LMSLS_ExTemplateList():
+    global _hasCreated
+    if not _hasCreated:
         _hasCreated=True
     ret = db_context.collection("LMSLS_ExTemplateList")
 

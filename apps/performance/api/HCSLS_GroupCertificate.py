@@ -9,6 +9,7 @@ from hcs_authorization import action_type, authorization
 logger = logging.getLogger(__name__)
 global lock
 lock = threading.Lock()
+import qmongo
 
 @authorization.authorise(action = action_type.Action.READ)
 def get_list_with_searchtext(args):
@@ -41,7 +42,7 @@ def insert(args):
         ret = {}
         if args['data'] != None:
             data =  set_dict_insert_data(args)
-            ret  =  models.HCSLS_GroupCertificate().insert(data)
+            ret  = qmongo.models.HCSLS_GroupCertificate.insert(data)
             lock.release()
             return ret
 
@@ -60,7 +61,7 @@ def update(args):
         ret = {}
         if args['data'] != None:
             data =  set_dict_update_data(args)
-            ret  =  models.HCSLS_GroupCertificate().update(
+            ret  = qmongo.models.HCSLS_GroupCertificate.update(
                 data, 
                 "group_cer_code == {0}", 
                 args['data']['group_cer_code'])
@@ -85,7 +86,7 @@ def delete(args):
         lock.acquire()
         ret = {}
         if args['data'] != None:
-            ret  =  models.HCSLS_GroupCertificate().delete("group_cer_code in {0}",[x["group_cer_code"]for x in args['data']])
+            ret  = qmongo.models.HCSLS_GroupCertificate.delete("group_cer_code in {0}",[x["group_cer_code"]for x in args['data']])
             lock.release()
             return ret
 

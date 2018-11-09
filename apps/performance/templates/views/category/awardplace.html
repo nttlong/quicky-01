@@ -13,7 +13,7 @@
                     <button ng-click="onDeleteAwardPlace()" class="zb-btn zb-btn-o-red">
                         <i class="bowtie-icon bowtie-trash"></i>
                     </button>
-                    <button ng-click="onReloadAwardPlace()" class="zb-btn">
+                    <button ng-click="onReloadAwardPlace()" class="zb-btn zb-btn-o-purple">
                         <i class="bowtie-icon bowtie-navigate-refresh"></i>
                     </button>
                 </toolbar>
@@ -32,7 +32,7 @@
         scope.tableAwardPlaceFields = [
         { "data": "award_place_code", "title": "${get_res('award_place_code_table_header','Mã')}", "className": "text-left" },
         { "data": "award_place_name", "title": "${get_res('award_place_name_table_header','Tên')}", "className": "text-left" },
-        { "data": "ordinal", "title": "${get_res('ordinal_table_header','Thứ tự')}", "className": "text-center" }
+        { "data": "ordinal", "format":"number: system", "title": "${get_res('ordinal_table_header','Thứ tự')}", "className": "text-center" }
         ];
         //
         scope.$$tableAwardPlaceConfig = {};
@@ -87,7 +87,7 @@
         function onEditAwardPlace() {
             if (scope.currentAwardPlace) {
                 scope.awardplace_mode = 2; // set mode chỉnh sửa
-                openDialog("${get_res('Detail_Award_Level','Chi tiết cấp khen thưởng')}", 'category/form/addAwardPlace', function () { }, "addAwardPlace");
+                 openDialog("${get_res('Detail_Award_Place','Chi tiết tổ chức khen thưởng')}", 'category/form/addAwardPlace', function () { }, "addAwardPlace");
             } else {
                 $msg.message("${get_global_res('Notification','Thông báo')}", "${get_app_res('No_Row_Selected','Không có dòng được chọn')}", function () { });
             }
@@ -98,7 +98,7 @@
          */
         function onAddAwardPlace() {
             scope.awardplace_mode = 1;// set mode tạo mới
-            openDialog("${get_res('Detail_Award_Level','Chi tiết cấp khen thưởng')}", 'category/form/addAwardPlace', function () { }, "addAwardPlace");
+            openDialog("${get_res('Detail_Award_Place','Chi tiết tổ chức khen thưởng')}", 'category/form/addAwardPlace', function () { }, "addAwardPlace");
         }
         function onDeleteAwardPlace() {
             if (!scope.selectedAwardPlace || scope.selectedAwardPlace.length === 0) {

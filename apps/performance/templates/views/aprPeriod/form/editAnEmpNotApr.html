@@ -6,7 +6,8 @@
 
 <%block name="modal_body">
     <div class="hcs-modal-format">
-        <div class="col-md-12 col-sm-12 col-xs-12">
+        <div class="row" style="margin:unset">
+            <div class="col-md-6 col-sm-12 col-xs-12">
 		   <collapse-box class="zb-form-common" title="${get_global_res('employee','Nhân viên')}">
 			   <div class=" col-md-12 col-sm-12 col-12">
 				   <div class="form-group zb-form-group">
@@ -34,35 +35,39 @@
 			   </div>
 			   </collapse-box>
 	  </div>
-        <div class="col-md-12 col-sm-12 col-xs-12">
-                  <collapse-box class="zb-form-common" title="${get_global_res('reason','Lý do không đánh giá trong kỳ')}">
-                        <div class="form-group zb-form-group">
-                            <!--Ghi chú-->
-                            <div class="col-md-12 col-sm-12 col-xs-12">
-                                <input-textarea rows="6" ng-model="entity.reason"></input-textarea>
-                            </div>
-                        </div>
-                    </collapse-box>
-                </div>
-        <div class="col-md-12 col-sm-12 col-xs-12">
+            <div class="col-md-6 col-sm-12 col-xs-12">
             <collapse-box class="zb-form-common" title="${get_global_res('Note','Ghi chú')}">
-                        <div class="form-group zb-form-group">
+                        <div class="col-md-12 col-sm-12 col-xs-12">
                             <!--Ghi chú-->
-                            <div class="col-md-12 col-sm-12 col-xs-12">
-                                <input-textarea rows="6" ng-model="entity.note"></input-textarea>
+                            <div class="form-group zb-form-group">
+                                <input-textarea rows="2" ng-model="entity.note"></input-textarea>
                             </div>
                         </div>
-                        <div class="col-md-12 col-sm-12 col-xs-12" style="padding-top: 16px;">
+                        <div class="col-md-12 col-sm-12 col-xs-12">
                             <div class="form-group zb-form-group">
                                 <label for="DisplayInfo" class="col-md-3 col-sm-3 col-xs-3 zb-form-label">${get_global_res('create_and_modify','Tạo | Sửa')}</label>
                                 <div class="col-md-9 col-sm-9 col-xs-9">
-                                    <input-text
+                                    <input-text style="text-align:right;"
                                                 value="{{ entity.created_on | date: $root.systemConfig.date_format}} {{entity.created_by}} | {{ entity.modified_on | date: $root.systemConfig.date_format}} {{entity.modified_by}}" ng-disabled="true"/>
                                 </div>
                             </div>
                         </div>
                     </collapse-box>
         </div>
+        </div>
+        <div class="row" style="margin:unset">
+            <div class="col-md-6 col-sm-12 col-xs-12">
+                  <collapse-box class="zb-form-common" title="${get_global_res('reason','Lý do không đánh giá trong kỳ')}">
+                        <div class="col-md-12 col-sm-12 col-xs-12">
+                            <!--Ghi chú-->
+                            <div class="form-group zb-form-group">
+                                <input-textarea rows="3" ng-model="entity.reason"></input-textarea>
+                            </div>
+                        </div>
+                    </collapse-box>
+                </div>
+        </div>
+
     </div>
 </%block>
 
@@ -89,7 +94,6 @@
 		}
 
 		(function Init(){
-		debugger
             if(scope.$parent.selectedItems.length == 1 && scope.$parent.currentItem != null){
                 scope.entity = scope.$parent.selectedItems[0];
 			}
@@ -145,9 +149,8 @@
         }
 
 		function getUrl() {
-			debugger
             return scope.$parent.mode == 1 || scope.$parent.mode == 3 ? "${get_api_key('app_main.api.TMPER_AprPeriodEmpOut/insert')}" /*Mode 1: Tạo mới*/
-                    : "${get_api_key('app_main.api.TMPER_AprPeriodEmpOut/update')}" /*Mode 2: Cập nhật*/
+                    : "${get_api_key('app_main.api.TMPER_AprPeriod/update_apr_period_emp_out')}" /*Mode 2: Cập nhật*/
         }
 
 		function reloadData() {

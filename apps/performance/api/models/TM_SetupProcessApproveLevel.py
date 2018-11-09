@@ -2,13 +2,9 @@ from config import database, helpers, db_context
 from ...api import common
 import base
 
-_hasCreated=False
-def TM_SetupProcessApproveLevel():
-    global _hasCreated
-    if not _hasCreated:
-        helpers.define_model(
+helpers.extent_model(
             "TM_SetupProcessApproveLevel",
-            #"base",
+            "base",
             [['rec_id']],
             rec_id=helpers.create_field("text", True),
             process_id=helpers.create_field("int"),
@@ -37,17 +33,16 @@ def TM_SetupProcessApproveLevel():
             modified_on=helpers.create_field("date"),
             modified_by=helpers.create_field("text"),
         )
-        def on_before_insert(data):
-            data.update({
-                "rec_id": common.generate_guid()
-                })
-            # pass
+def on_before_insert(data):
+    data.update({
+        "rec_id": common.generate_guid()
+        })
 
-        def on_before_update(data):
-            pass
-        helpers.events("TM_SetupProcessApproveLevel").on_before_insert(on_before_insert).on_before_update(on_before_update)
+def on_before_update(data):
+    pass
+helpers.events("TM_SetupProcessApproveLevel").on_before_insert(on_before_insert).on_before_update(on_before_update)
 
-        _hasCreated=True
+def TM_SetupProcessApproveLevel():
     ret = db_context.collection("TM_SetupProcessApproveLevel")
 
     return ret

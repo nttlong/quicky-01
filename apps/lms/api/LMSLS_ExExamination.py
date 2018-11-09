@@ -3,38 +3,13 @@ from bson import ObjectId
 import models
 import logging
 import threading
+import qmongo
+from models.SYS_ValueList import SYS_ValueList
 import common
 logger = logging.getLogger(__name__)
 global lock
 lock = threading.Lock()
 
-# def get_list_data():
-#    items = models.LMSLS_ExExamination().aggregate()
-#    items.left_join(models.auth_user_info(), "created_by", "username", "uc")
-#    items.left_join(models.auth_user_info(), "modified_by", "username", "um")
-#    items.project(
-#        folder_id=1,
-#        folder_name=1,
-#        folder_name2=1,
-#        parent_id=1,
-#        parent_code=1,
-#        level=1,
-#        level_code=1,
-#        ordinal=1,
-#        lock=1,
-#        note=1,
-#        moderator_id=1,
-#        approver_id=1,
-#        active=1,
-#        permisions=1,
-#        approve_type=1,
-#        created_by="uc.login_account",
-#        created_on="created_on",
-#        modified_on="switch(case(modified_on!='',modified_on),'')",
-#        modified_by="switch(case(modified_by!='',um.login_account),'')",
-#        )
-#
-#    return items
 def get_list_with_searchtext(args):
     searchText = args['data'].get('search', '')
     pageSize = args['data'].get('pageSize', 0)
@@ -44,7 +19,10 @@ def get_list_with_searchtext(args):
 
     pageIndex = (lambda pIndex: pIndex if pIndex != None else 0)(pageIndex)
     pageSize = (lambda pSize: pSize if pSize != None else 20)(pageSize)
-    ret=models.LMSLS_ExExamination().aggregate()
+    ret=qmongo.models.LMSLS_ExExamination.aggregate
+    ret.lookup(qmongo.views.SYS_VW_ValueList, "course_related", "value", "val")
+    ret.unwind("val", False)
+    ret.match("val.list_name == {0}", "LMS_Ex_ExamType")
     ret.project(
             exam_id=1,
             exam_name1=1,
@@ -55,7 +33,9 @@ def get_list_with_searchtext(args):
             duration=1,
             exam_mode=1,
             specific_avail=1,
-            status=1
+            status=1,
+            course_related_name="val.caption",
+            retake_time_list=1
         )
   
     if(sort != None):
@@ -64,14 +44,13 @@ def get_list_with_searchtext(args):
     data = ret.get_page(pageIndex, pageSize)
     return  data
 
-
 def insert(args):
     try:
         lock.acquire()
         ret = {}
         if args['data'] != None: 
             data =  set_dict_insert_data(args)
-            ret  =  models.LMSLS_ExExamination().insert(data)
+            ret  =  qmongo.models.LMSLS_ExExamination.insert(data)
             lock.release()
             return ret
 
@@ -89,13 +68,13 @@ def update(args):
         ret = {}
         if args['data'] != None:
             data =  set_dict_update_data(args)
-            ret  =  models.LMSLS_ExExamination().update(
+            ret  =  qmongo.models.LMSLS_ExExamination.update(
                 data, 
                 "_id == {0}", 
                 ObjectId(args['data']['_id']))
             if ret['data'].raw_result['updatedExisting'] == True:
                 ret.update(
-                    item=models.LMSLS_ExExamination().aggregate().match("_id == {0}", ObjectId(args['data']['_id'])).get_item()
+                    item=qmongo.models.LMSLS_ExExamination.aggregate.match("_id == {0}", ObjectId(args['data']['_id'])).get_item()
                     )
             lock.release()
             return ret
@@ -113,7 +92,7 @@ def delete(args):
         lock.acquire()
         ret = {}
         if args['data'] != None:
-            ret  =  models.LMSLS_ExExamination().delete("_id in {0}",[ObjectId(x["_id"])for x in args['data']])
+            ret  =  qmongo.models.LMSLS_ExExamination.delete("_id in {0}",[ObjectId(x["_id"])for x in args['data']])
             lock.release()
             return ret
 
@@ -130,7 +109,7 @@ def delete_one(id):
         lock.acquire()
         ret = {}
         if id['data'] != '':
-            ret  =  models.LMSLS_ExExamination().delete("_id == {0}", ObjectId(id['data']))
+            ret  =  qmongo.models.LMSLS_ExExamination.delete("_id == {0}", ObjectId(id['data']))
             lock.release()
             return ret
 
@@ -167,6 +146,7 @@ def set_dict_insert_data(args):
         retake_condition= (lambda x: x['retake_condition'] if x.has_key('retake_condition') else None)(args['data']),
         result_less= (lambda x: x['result_less'] if x.has_key('result_less') else None)(args['data']),
         retake_time= (lambda x: x['retake_time'] if x.has_key('retake_time') else None)(args['data']),
+        different_time=(lambda x: x['different_time'] if x.has_key('different_time') else None)(args['data']),
         list_time_retake= (lambda x: x['list_time_retake'] if x.has_key('list_time_retake') else [])(args['data']),
         range_time= (lambda x: x['range_time'] if x.has_key('range_time') else None)(args['data']),
         scoring_method= (lambda x: x['scoring_method'] if x.has_key('scoring_method') else None)(args['data']),
@@ -194,6 +174,10 @@ def set_dict_insert_data(args):
         edit_instruction=(lambda x: x['edit_instruction'] if x.has_key('edit_instruction') else None)(args['data']),
         specific_avail= (lambda x: x['specific_avail'] if x.has_key('specific_avail') else None)(args['data']),
         status= (lambda x: x['status'] if x.has_key('status') else None)(args['data']),
+        disable= (lambda x: x['disable'] if x.has_key('disable') else None)(args['data']),
+        note=(lambda x: x['note'] if x.has_key('note') else None)(args['data']),
+        certificate_template=(lambda x: x['certificate_template'] if x.has_key('certificate_template') else None)(args['data']),
+        retake_time_list=(lambda x: x['retake_time_list'] if x.has_key('retake_time_list') else None)(args['data']),
     )
 
     return ret_dict
@@ -217,7 +201,7 @@ def get_data_examination_by_id(args):
         ret = {}
         if args['data'] != None:
             where = args['data']
-            ret  =  models.LMSLS_ExExamination().aggregate()
+            ret  =  qmongo.models.LMSLS_ExExamination.aggregate
             ret.project(
                     exam_id=1,
                     exam_name1=1,
@@ -256,6 +240,7 @@ def get_data_examination_by_id(args):
                     exam_category=1,
                     exam_temp_name1=1,
                     retake_time=1,
+                    different_time=1,
                     range_time=1,
                     scoring_method=1,
                     customize=1,
@@ -265,7 +250,10 @@ def get_data_examination_by_id(args):
                     add_feedback=1,
                     list_time_retake=1,
                     edit_instruction=1,
-                    status=1
+                    status=1,
+                    disable=1,
+                    note=1,
+                    certificate_template=1,
                 )
             # test
             if(where.has_key('exam_id')):
@@ -278,6 +266,7 @@ def get_data_examination_by_id(args):
     except Exception as ex:
         raise(ex)
 
+
 def get_data_table_examination_by_id(args):
     try:
         ret = {}
@@ -288,14 +277,14 @@ def get_data_table_examination_by_id(args):
             where = args['data']
             pageIndex = (lambda pIndex: pIndex if pIndex != None else 0)(pageIndex)
             pageSize = (lambda pSize: pSize if pSize != None else 20)(pageSize)
-            ret  =  models.LMSLS_ExExamination().aggregate()
+            ret  =  qmongo.models.LMSLS_ExExamination.aggregate
 
             if(where.has_key('exam_id')):
                 ret.match("(exam_id==@exam_id)",exam_id=where['exam_id'])
 
             ret.unwind("question_list")
             ret.replace_root("question_list")
-            ret.left_join(models.LMSLS_ExQuestionCategory(), "ques_category", "category_id", "category")
+            ret.left_join( qmongo.models.LMSLS_ExQuestionCategory, "ques_category", "category_id", "category")
             dataRet = ret.get_page(pageIndex, pageSize)
             # data valuelist map qua dataRet
             dataValueList = []
@@ -330,7 +319,7 @@ def get_data_valuelist (val):
         if val != None:
             import quicky
             _language_code = quicky.language.get_language()
-            ret = models.SYS_ValueList().aggregate().match("(language == @lan) and (list_name == @name)", lan=_language_code, name=val)
+            ret = qmongo.models.SYS_ValueList.aggregate.match("(language == @lan) and (list_name == @name)", lan=_language_code, name=val)
             ret.unwind("values")
             ret.replace_root("values")
             #ret.project(
@@ -366,7 +355,7 @@ def get_exam_retake_list(args):
 
     pageIndex = (lambda pIndex: pIndex if pIndex != None else 0)(pageIndex)
     pageSize = (lambda pSize: pSize if pSize != None else 20)(pageSize)
-    ret=models.LMSLS_ExExamination().aggregate()
+    ret=qmongo.models.LMSLS_ExExamination.aggregate
     ret.project(
             exam_id=1, 
             exam_name1=1,
@@ -395,12 +384,12 @@ def getDataRetake (item):
                 if x.has_key('list_time_retake') and x['list_time_retake'] != None and len(x['list_time_retake']) > 0:
                     ilength = len(x['list_time_retake'])
                     dt = x['list_time_retake']
-                    x['start_date'] = dt[0]['start_date'].strftime("%d.%m.%Y")
-                    x['end_date'] = dt[ilength - 1]['end_date'].strftime("%d.%m.%Y")
+                    x['start_date'] = dt[0]['start_date']#.strftime("%d.%m.%Y")
+                    x['end_date'] = dt[ilength - 1]['end_date']#.strftime("%d.%m.%Y")
             else:
                 if x.has_key('range_time') and x['range_time'] != None:
                     dt = x['range_time']
-                    x['start_date'] = dt['start_date'].strftime("%d.%m.%Y")
-                    x['end_date'] = dt['end_date'].strftime("%d.%m.%Y")
+                    x['start_date'] = dt['start_date']#.strftime("%d.%m.%Y")
+                    x['end_date'] = dt['end_date']#.strftime("%d.%m.%Y")
         return item
     return item

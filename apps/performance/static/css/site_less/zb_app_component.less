@@ -75,10 +75,6 @@
     text-overflow: ellipsis;
 }
 
-.zb-form-label:after {
-    content: ':';
-}
-
 
 
 /*FORM SELECT*/
@@ -196,7 +192,9 @@
     }
 
     .caret:after {
-        content: "\f123";
+        font-family: "SAP-icons";
+        speak: none;
+        content: "\e1ef";
     }
 
     .ui-select-search {
@@ -320,7 +318,9 @@
     }
 
     .caret:after {
-        content: "\f123";
+        font-family: "SAP-icons";
+        speak: none;
+        content: "\e1ef";
     }
 
     .ui-select-search {
@@ -347,6 +347,7 @@
         height: @h_control;
         box-shadow: none;
         padding: 0 6px;
+        width: 30px;
 
         .bowtie-icon {
             padding-right: 0 2px;
@@ -491,7 +492,7 @@
 .zb-form-checkbox {
     margin-bottom: 0;
     margin-top: 2px;
-
+    padding-left:6px;
     .custom-checkbox {
         color: @caption_color;
         font-size: @font_size;
@@ -516,7 +517,7 @@
             min-width: 16px;
             margin-right: 6px;
             position: relative;
-            top: 0;
+            top: 2px;
             margin-left: -22px;
             float: left;
         }
@@ -533,7 +534,9 @@
         }
     }
 }
-
+[class*="col-"].zb-form-checkbox{
+    padding-left:7px;
+}
 .zb-form-checkbox.size-lg {
     margin-bottom: 0;
     margin-top: 0;
@@ -822,7 +825,9 @@ input[disabled] {
     }
 
     .caret:after {
-        content: "\f123";
+        font-family: "SAP-icons";
+        speak: none;
+        content: "\e1ef";
     }
 }
 
@@ -861,7 +866,7 @@ input-multi-select > .SumoSelect > select{
 input-multi-select > .SumoSelect >.CaptionCont{
     box-shadow:unset;
     border:unset;
-    padding: 1px 1em 0px 0px;
+    padding: 1px 1.4em 0px 0px;
     height: 30px;
 }
 
@@ -881,13 +886,21 @@ input-multi-select > .SumoSelect>.CaptionCont >span{
     line-height: 29px;
     height:29px;
     padding-right:5px;
+    padding-top:5px;
 }
 input-multi-select > .SumoSelect>.CaptionCont >span:hover{
     cursor:pointer;
 }
+input-multi-select > .SumoSelect>.CaptionCont >label{
+    height: 30px;
+    margin-bottom: 0;
+}
+input-multi-select > .SumoSelect > .CaptionCont > label:hover {
+    background: rgba(222, 222, 222, 0.5) !important;
+    color: #999;
+}
 input-multi-select > .SumoSelect>.CaptionCont >label>i{
-    background-image:unset;
-    top: 7px;
+    background-image: unset;
     left: 0;
     right: -5px;
     bottom: 0;
@@ -895,13 +908,13 @@ input-multi-select > .SumoSelect>.CaptionCont >label>i{
     font-style: normal;
     font-weight: 400;
     font-variant: normal;
-    width: 10px;
-    height: 10px;
     color: #6E6E6E;
     font-size: .875rem;
 }
 input-multi-select > .SumoSelect>.CaptionCont >label>i:after {
-    content: "\f123";
+    font-family: "SAP-icons";
+    speak: none;
+    content: "\e1ef";
 }
 
 input-multi-select > .SumoSelect>.optWrapper>.options li label{

@@ -1,4 +1,5 @@
 from . import models
+import qmongo
 import logging
 logger = logging.getLogger(__name__)
 from operator import itemgetter
@@ -6,7 +7,7 @@ import common
 from hcs_authorization import action_type, authorization
 
 def get_function_list_by_permission(username):
-    role_code = models.auth_user_info().aggregate()\
+    role_code = qmongo.models.auth_user_info.aggregate\
         .project(
             username=1,
             role_code=1
@@ -84,9 +85,9 @@ def get_list(args):
 
     lang = lang.upper()
 
-    items = models.SYS_FunctionList().aggregate()
-    items.left_join(models.HCSSYS_FunctionListSummary(), "function_id", "function_id", "uc")
-    items.left_join(models.HCSSYS_FunctionListLabel(), "function_id", "function_id", "lb")
+    items =qmongo.models.SYS_FunctionList.aggregate
+    items.left_join(qmongo.models.HCSSYS_FunctionListSummary, "function_id", "function_id", "uc")
+    items.left_join(qmongo.models.HCSSYS_FunctionListLabel, "function_id", "function_id", "lb")
     items.match("(lb.language == {0}) or (image != {1}) and (image != {2})", lang, "", None)
     items.project(
         sorting              = 1,

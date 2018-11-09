@@ -1,17 +1,18 @@
 # -*- coding: utf-8 -*-
-from bson import ObjectId
-import models
-import datetime
+from qmongo import models
 import logging
 import quicky
 from quicky import encryptor
-from qmongo import helpers
 import qmongo
 from pymongo.read_concern import ReadConcern
 from pymongo.write_concern import WriteConcern
 import uuid
 import threading
 import bson
+import settings
+_DATABASES = settings.DATABASES['default']
+import pymongo
+db_context = pymongo.MongoClient(_DATABASES['HOST'], _DATABASES['PORT']).get_database(_DATABASES['NAME'])
 logger = logging.getLogger(__name__)
 
 __collectionName = ''
@@ -22,10 +23,10 @@ def generate_guid():
     return str(uuid.uuid4())
 
 def get_collection(col_name):
-    return models.db_context.db.get_collection(quicky.tenancy.get_schema() + "." + col_name)
+    return db_context.get_collection(quicky.tenancy.get_schema() + "." + col_name)
 
 def get_db_context():
-    return models.db_context.db
+    return db_context
 
 def create_view(view_name, collection_name, pipe_line):
     get_db_context().command({
@@ -140,7 +141,7 @@ def get_data(pageIndex, pageSize, where, sort):
 
 def get_config(args):
     try:
-        return models.HCSSYS_SystemConfig().aggregate().get_list()[0]
+        return qmongo.models.HCSSYS_SystemConfig.aggregate.get_list()[0]
     except Exception as ex:
         logger.debug(ex)
         raise(ex)
@@ -246,7 +247,7 @@ def create_data_init_combobox(args, display_field, caption_field, value_field, m
 
             combobox_code = encryptor.get_value(args['data']['key'])
 
-            combobox_info = models.models_per.HCSSYS_ComboboxList().aggregate().project(
+            combobox_info = qmongo.models.HCSSYS_ComboboxList.aggregate.project(
                 combobox_code       =   1,
                 language            =   1,
                 display_name        =   1,
@@ -349,7 +350,7 @@ def create_data_combobox(args):
 
             combobox_code = encryptor.get_value(args['data']['key'])
 
-            combobox_info = models.models_per.HCSSYS_ComboboxList().aggregate().project(
+            combobox_info = models.HCSSYS_ComboboxList.aggregate.project(
                 combobox_code       =   1,
                 language            =   1,
                 display_name        =   1,

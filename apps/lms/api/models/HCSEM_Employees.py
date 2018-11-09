@@ -4,10 +4,10 @@ _hasCreated=False
 
 from qmongo import qview
 from quicky import tenancy
-
+import qmongo
 def LMS_VW_Employee():
     return qview.create_mongodb_view(
-            HCSEM_Employees().aggregate().project(
+            qmongo.models.HCSEM_Employees.aggregate.project(
             employee_code =  1,
             first_name =  1,
             last_name =  1,
@@ -20,11 +20,7 @@ def LMS_VW_Employee():
         "LMS_VW_Employee"
         )
 
-def HCSEM_Employees():
-    global _hasCreated
-    if not _hasCreated:
-        dict_permission = dict()
-        helpers.extent_model(
+helpers.extent_model(
             "HCSEM_Employees",
             "base",
             [["employee_code"]],
@@ -103,6 +99,11 @@ def HCSEM_Employees():
             modified_on=("date"),
             modified_by=("text")
         )
+
+def HCSEM_Employees():
+    global _hasCreated
+    if not _hasCreated:
+        dict_permission = dict()
 
         _hasCreated=True
     ret = db_context.collection("HCSEM_Employees")

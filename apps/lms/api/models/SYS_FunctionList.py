@@ -1,9 +1,6 @@
 from config import database, helpers, db_context
 _hasCreated=False
-def SYS_FunctionList():
-    global _hasCreated
-    if not _hasCreated:
-        helpers.define_model(
+helpers.define_model(
             "SYS_FunctionList",
             [["function_id"]],
             sorting=helpers.create_field("text"),
@@ -24,6 +21,9 @@ def SYS_FunctionList():
             app=helpers.create_field("text"),
             color=helpers.create_field("object"),
         )
+def SYS_FunctionList():
+    global _hasCreated
+    if not _hasCreated:
         _hasCreated=True
     ret = db_context.collection("SYS_FunctionList")
 

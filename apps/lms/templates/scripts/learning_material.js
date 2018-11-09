@@ -22,11 +22,14 @@
         scope.isGrid = true;
         scope.$root.onDisplayGridData();
     }
-    scope.onSearchText = function () {
-        
-        scope.searchText = scope.objSearch.$$$modelSearch
-
+    scope.selectFunc = function (event, f) {
+        scope.selectedFunction = f;
     }
+    scope.onSearchText = function () {
+        scope.searchText = scope.objSearch.$$$modelSearch
+    }
+
+
     scope.advancedSearch = {
         main_region_code: null,
         main_nation_code: null

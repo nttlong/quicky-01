@@ -25,7 +25,7 @@ def index(request):
     
     if request.user.is_anonymous():
         if hasattr(quicky.system_settings, "SSO_LOGIN_URL") and quicky.system_settings.SSO_LOGIN_URL != "":
-            redirect(quicky.system_settings + "?ret=" + request.get_app_url("login"))
+            return redirect(quicky.system_settings.SSO_LOGIN_URL + "?ret=" + request.get_app_url(""))
         return redirect(request.get_app_url("login"))
     else:
         model = {}
@@ -59,6 +59,8 @@ def login(request):
             _login.is_error=True
             _login.error_message=request.get_global_res("Username or Password is incorrect")
             return request.render(_login)
+    if hasattr(quicky.system_settings, "SSO_LOGIN_URL") and quicky.system_settings.SSO_LOGIN_URL != "":
+        return redirect(quicky.system_settings.SSO_LOGIN_URL + "?ret=" + request.get_app_url(""))
     return request.render(_login)
 
 def load_page(request,path):

@@ -1,0 +1,338 @@
+<%!
+    #_style="width:300px;"
+%>
+    <%inherit file="../../commons/dialog_accept.html"/>
+
+<%block name="modal_body">
+<div class="col-md-12 col-sm-12">
+    <collapse-box class="zb-form-common" title="${get_res('Information_target','Thông tin mục tiêu')}">
+        <div class="col-md-6">
+            <div class="form-group zb-form-group">
+                <label class="col-sm-5 zb-form-label">${get_res('target_name','Mục tiêu')}</label>
+                <div class="col-sm-7" style="display: grid; grid-template-columns:1fr auto;">
+                    <div>
+                        <input-text ng-model="entity.target_name" ng-disabled="true"></input-text>
+                        <combobox load-data="$root.$getComboboxData"
+                                  ng-model="entity.kpi_code"
+                                  ng-change="setTargetName"
+                                  params="{key:'${encryptor.get_key('cbb_tmls_kpi_single_select')}', value:[{ '@lock': true }]}"
+                                  on-search-change="false"
+                                  on-search-press="true"
+                                  placeholder=""
+                                  init-data="$$$cbb_tmls_kpi_single_select.value"
+                                  caption-field="{{$$$cbb_tmls_kpi_single_select.caption_field}}"
+                                  paging="true"
+                                  close-on-select="true"
+                                  template-fields="$$$cbb_tmls_kpi_single_select.display_fields"
+                                  reload="true"
+                                  style="display: none;"
+                                  id="comboboxTargetName"
+                                  ng-disabled="true">
+                        </combobox>
+                    </div>
+                    <div>
+                        <button ng-click="openKPI()" class="zb-btn border-left hcs-left-side-department-tree-tool-bar-btn-custom-icon btn-more" style="text-align: center;">
+                            <span>
+                            <i class="bowtie-icon bowtie-ellipsis" style="color:#999"></i>
+                            </span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group zb-form-group">
+                <label class="col-sm-5 zb-form-label">${get_res('parent_name','Thuộc mục tiêu bộ phận cha')}</label>
+                <div class="col-sm-7">
+                    <combobox ng-model="" ng-disabled="true"/>
+                </div>
+            </div>
+            <div class="form-group zb-form-group">
+                <label class="col-sm-5 zb-form-label">${get_res('bsc_type','Phân nhóm (theo BSC)')}</label>
+                <div class="col-sm-7">
+                    <input-select data-list="LPERF_BSC_Type" ng-model="entity.bsc_type" data-value="value"
+                               data-caption="caption" ng-disabled="true">
+                </div>
+            </div>
+            <div class="form-group zb-form-group">
+                <label class="col-sm-5 zb-form-label">${get_res('kpi_formula','Công thức tính năng suất')}</label>
+                 <div class="col-sm-7" style="display: grid; grid-template-columns:1fr auto;">
+                    <div>
+                        <combobox load-data="$root.$getComboboxData"
+                                ng-model="entity.kpi_formula"
+                                params="{key:'${encryptor.get_key('cbb_HCSLS_Unit')}', value:[{ '@lock': true }]}"
+                                on-search-change="false"
+                                on-search-press="true"
+                                placeholder=""
+                                init-data="$$$cbb_HCSLS_Unit.value"
+                                caption-field="{{$$$cbb_HCSLS_Unit.caption_field}}"
+                                paging="true"
+                                close-on-select="true"
+                                template-fields="$$$cbb_HCSLS_Unit.display_fields"
+                                reload="false"
+                                ng-disabled="true">
+                        </combobox>
+                    </div>
+                    <div>
+                        <button ng-click="addFormula()" class="zb-btn border-left hcs-left-side-department-tree-tool-bar-btn-custom-icon btn-more" style="text-align: center;">
+                            <span>
+                            <i class="bowtie-icon bowtie-ellipsis" style="color:#999"></i>
+                            </span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group zb-form-group">
+                <label class="col-sm-5 zb-form-label">${get_res('value_cal_type','Cách tính cột "Thực hiện"')}</label>
+                 <div class="col-sm-7">
+                    <input-select data-list="cbbValueCalType"
+                               ng-model="entity.value_cal_type" data-value="value"
+                               data-caption="caption" ng-disabled="true"/>
+                </div>
+            </div>
+            <div class="form-group zb-form-group">
+                <label class="col-sm-5 zb-form-label">${get_res('cycle_type','Tần suất cập nhật')}</label>
+                 <div class="col-sm-7">
+                    <input-select data-list="LCycleType"
+                               ng-model="entity.cycle_type" data-value="value"
+                               data-caption="caption" ng-disabled="true"/>
+                </div>
+            </div>
+            <div class="form-group zb-form-group">
+                <!--Thuộc nhóm-->
+                <label class="col-sm-5 zb-form-label">${get_res('unit_code','Đơn vị tính')}</label>
+                <div class="col-sm-7">
+                     <combobox load-data="$root.$getComboboxData"
+                                ng-model="entity.unit_code"
+                                params="{key:'${encryptor.get_key('cbb_HCSLS_Unit')}', value:[{ '@lock': true }]}"
+                                on-search-change="false"
+                                on-search-press="true"
+                                on-accept="changeUnit"
+                                placeholder=""
+                                init-data="$$$cbb_HCSLS_Unit.value"
+                                caption-field="{{$$$cbb_HCSLS_Unit.caption_field}}"
+                                paging="true"
+                                close-on-select="true"
+                                template-fields="$$$cbb_HCSLS_Unit.display_fields"
+                                reload="false"
+                                ng-disabled="true">
+                        </combobox>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="form-group zb-form-group">
+                <!--Trọng số-->
+                <label class="col-sm-5 zb-form-label">${get_res('weight','Trọng số')}</label>
+                <div class="col-sm-7">
+                    <input-number ng-model="entity.weight" type="float" ng-disabled="true">
+                </div>
+            </div>
+            <div class="form-group zb-form-group">
+                <!--Trọng số-->
+                <label class="col-sm-5 zb-form-label">${get_res('target','Chỉ tiêu')}</label>
+                <div class="col-sm-7">
+                    <input-number ng-if="!$$unit_type || $$unit_type === 1" ng-model="$parent.entity.target" type="float" ng-disabled="true"></input-number>
+                    <input-text ng-if="$$unit_type && $$unit_type === 2" ng-model="$parent.entity.target" ng-disabled="true"></input-text>
+                    <date-picker ng-if="$$unit_type && $$unit_type === 3" ng-model="$parent.entity.target" ng-disabled="true"></date-picker>
+                    <time-picker ng-if="$$unit_type && $$unit_type === 4" ng-model="$parent.entity.target" ng-disabled="true"></time-picker>
+                    <!--<datetime-picker ng-if="$$unit_type && $$unit_type === 5" ng-model="entity.target"></datetime-picker>-->
+                    <input-select ng-if="$$unit_type && $$unit_type === 6" ng-model="$parent.entity.target" ng-disabled="true"></input-select>
+                </div>
+            </div>
+            <div class="form-group zb-form-group">
+                <!--Trọng số-->
+                <label class="col-sm-5 zb-form-label">${get_res('baseline','Giới hạn')}</label>
+                <div class="col-sm-7">
+                    <input-number ng-if="!$$unit_type || $$unit_type === 1" ng-model="$parent.entity.baseline" type="float" ng-disabled="true"></input-number>
+                    <input-text ng-if="$$unit_type && $$unit_type === 2" ng-model="$parent.entity.baseline" ng-disabled="true"></input-text>
+                    <date-picker ng-if="$$unit_type && $$unit_type === 3" ng-model="$parent.entity.baseline" ng-disabled="true"></date-picker>
+                    <time-picker ng-if="$$unit_type && $$unit_type === 4" ng-model="$parent.entity.baseline" ng-disabled="true"></time-picker>
+                    <!--<datetime-picker ng-if="$$unit_type && $$unit_type === 5" ng-model="entity.baseline"></datetime-picker>-->
+                    <input-select ng-if="$$unit_type && $$unit_type === 6" ng-model="$parent.entity.baseline" ng-disabled="true"></input-select>
+                </div>
+            </div>
+            <div class="form-group zb-form-group">
+                <!--Trọng số-->
+                <label class="col-sm-5 zb-form-label">${get_res('min_value','Tối thiểu')}</label>
+                <div class="col-sm-7">
+                    <input-number ng-if="!$$unit_type || $$unit_type === 1" ng-model="$parent.entity.min_value" type="float" ng-disabled="true"></input-number>
+                    <input-text ng-if="$$unit_type && $$unit_type === 2" ng-model="$parent.entity.min_value" ng-disabled="true"></input-text>
+                    <date-picker ng-if="$$unit_type && $$unit_type === 3" ng-model="$parent.entity.min_value" ng-disabled="true"></date-picker>
+                    <time-picker ng-if="$$unit_type && $$unit_type === 4" ng-model="$parent.entity.min_value" ng-disabled="true"></time-picker>
+                    <!--<datetime-picker ng-if="$$unit_type && $$unit_type === 5" ng-model="entity.min_value"></datetime-picker>-->
+                    <input-select ng-if="$$unit_type && $$unit_type === 6" ng-model="$parent.entity.min_value" ng-disabled="true"></input-select>
+                </div>
+            </div>
+            <div class="form-group zb-form-group">
+                <!--Trọng số-->
+                <label class="col-sm-5 zb-form-label">${get_res('maxvalue','Tối đa')}</label>
+                <div class="col-sm-7">
+                    <input-number ng-if="!$$unit_type || $$unit_type === 1" ng-model="$parent.entity.max_value" type="float" ng-disabled="true"></input-number>
+                    <input-text ng-if="$$unit_type && $$unit_type === 2" ng-model="$parent.entity.max_value" ng-disabled="true"></input-text>
+                    <date-picker ng-if="$$unit_type && $$unit_type === 3" ng-model="$parent.entity.max_value" ng-disabled="true"></date-picker>
+                    <time-picker ng-if="$$unit_type && $$unit_type === 4" ng-model="$parent.entity.max_value" ng-disabled="true"></time-picker>
+                    <!--<datetime-picker ng-if="$$unit_type && $$unit_type === 5" ng-model="entity.max_value"></datetime-picker>-->
+                    <input-select ng-if="$$unit_type && $$unit_type === 6" ng-model="$parent.entity.max_value" ng-disabled="true"></input-select>
+                </div>
+            </div>
+            <div class="form-group zb-form-group">
+                <!--Trọng số-->
+                <label class="col-sm-5 zb-form-label">${get_res('origin_target','Chỉ tiêu ban đầu')}</label>
+                <div class="col-sm-7">
+                    <input-text ng-model="entity.origin_target" ng-disabled="true">
+                </div>
+            </div>
+            <div class="form-group zb-form-group">
+                <!--Trọng số-->
+                <label class="col-sm-5 zb-form-label">${get_res('modify_type','Trạng thái thay đổi')}</label>
+                <div class="col-sm-7">
+                    <input-select data-list="L_PERF_GiveTarget_ModifyType" data-caption="caption" data-value="value" ng-model="entity.modify_type" ng-disabled="true">
+                </div>
+            </div>
+        </div>
+    </collapse-box>
+</div>
+<div class="col-md-6 col-sm-6">
+    <collapse-box class="zb-form-common" title="${get_res('target_description','Mô tả mục tiêu')}">
+        <div class="col-sm-12">
+            <!--Ghi chú-->
+            <div class="form-group zb-form-group">
+                <div class="col-sm-12 no-padding">
+                    <input-textarea rows="4" ng-model="entity.target_desc"></input-textarea>
+                </div>
+            </div>
+        </div>
+    </collapse-box>
+</div>
+<div class="col-md-6 col-sm-6">
+    <collapse-box class="zb-form-common" title="${get_global_res('Note','Ghi chú')}">
+        <div class="col-sm-12">
+            <!--Ghi chú-->
+            <div class="form-group zb-form-group">
+                <div class="col-sm-12 no-padding">
+                    <input-textarea rows="4" ng-model="entity.note"></input-textarea>
+                </div>
+            </div>
+            <div class="form-group zb-form-group">
+                <label for="DisplayInfo" class="col-sm-3 zb-form-label">${get_global_res('create_and_modify','Tạo | Sửa')}</label>
+                <div class="col-sm-9">
+                    <input-text style="text-align:right" value="{{ entity.created_on | date: $root.systemConfig.date_format}} {{entity.created_by}} | {{ entity.modified_on | date: $root.systemConfig.date_format}} {{entity.modified_by}}" ng-disabled="true">
+                </div>
+            </div>
+        </div>
+    </collapse-box>
+</div>
+</%block>
+
+<%block name="modal_script">
+<script>
+    (function (scope) {
+
+        scope.__mode = scope.$parent.$parent.mode;
+        scope.title = scope.$parent.headerTitle;
+        scope.onResizeDialog = $dialog.fullScreen;
+        scope.saveNClose = saveNClose;
+
+        var _dynamicFieldUnit = [
+                "baseline",
+                "min_value",
+                "max_value",
+                "target"
+            ];
+
+        function saveNClose(){
+            $('#dialogInformationTarget').modal('hide');//Đóng form input
+        }
+
+        function reloadData(){
+            scope.$parent.reloadData();
+        }
+
+        function changeValueType(value){
+            if(value){
+                switch(scope.$$unit_type){
+                    case 1: return parseFloat(value);
+                    case 2: return value;
+                    case 3: return new Date(value);
+                    case 4: return new Date(value);
+                    case 5: return value;
+                    case 6: return parseInt(value)
+                    default: return null;
+                }
+            }
+            return null;
+        }
+
+        function _getDataInitCombobox() {
+            scope.$root.$getInitComboboxData(scope,
+                [{
+                    "key": "${encryptor.get_key('cbb_tmls_kpi_single_select')}",
+                    "code": scope.entity
+                    && scope.entity.hasOwnProperty('kpi_code') ?
+                    scope.entity.kpi_code : null,
+                    "alias": "$$$cbb_tmls_kpi_single_select"
+                },
+                {
+                    "key": "${encryptor.get_key('cbb_HCSLS_Unit')}",
+                    "code": scope.entity
+                    && scope.entity.hasOwnProperty('unit_code') ?
+                    scope.entity.unit_code : null,
+                    "alias": "$$$cbb_HCSLS_Unit"
+                }]
+            );
+        }
+
+        function getDetail(callback){
+            if(scope.$parent.$parent.mode == 2){
+                services.api("${get_api_key('app_main.api.TMPER_TargetKPIController/get')}")
+                        .data({
+                            rec_id: scope.$parent.$parent.$$table.currentItem.rec_id
+                        })
+                        .done()
+                        .then(function (res) {
+                            debugger
+                            callback(res);
+                        });
+            }else{
+                callback({});
+            }
+        }
+
+
+        function getDefaultUnit(callback){
+            //Nếu thêm mới load default đơn vị tính đang được set default
+            services.api("${get_api_key('app_main.api.HCSLS_Unit/get_default_vale')}")
+                    .data({})
+                    .done()
+                    .then(function (res) {
+                        callback(res);
+                    });
+        }
+
+        (function __init__(){
+            getDetail(function(res){
+                scope.entity = res;
+                getDefaultUnit(function(res){
+                    scope.entity.unit_code = res.unit_code;
+                    scope.$$unit_type = res.data_type;
+                    scope.entity = _.mapObject(scope.entity, function(val, key) {
+                        return _dynamicFieldUnit.includes(key) === true ? changeValueType(val) : val;
+                    });
+                    _getDataInitCombobox();
+                });
+                scope.$root.$extension.getValueList(["LCycleType", "cbbValueCalType", "LPERF_BSC_Type", "L_PERF_GiveTarget_ModifyType"],
+                    function(val){
+                        scope.LPERF_BSC_Type = getValue(val.values, "LPERF_BSC_Type");
+                        scope.cbbValueCalType = getValue(val.values, "cbbValueCalType");
+                        scope.L_PERF_GiveTarget_ModifyType = getValue(val.values, "L_PERF_GiveTarget_ModifyType");
+                        scope.LCycleType = getValue(val.values, "LCycleType");
+                        scope.$applyAsync();
+                        function getValue(response, listName) {
+                            return _.findWhere(response, { "list_name": listName }) ? _.findWhere(response, { "list_name": listName }).values : [];
+                        }
+                    });
+            });
+        })();
+    });
+</script>
+
+</%block>

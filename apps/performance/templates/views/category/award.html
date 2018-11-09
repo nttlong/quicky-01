@@ -13,7 +13,7 @@
                 <button class="zb-btn zb-btn-o-red" ng-click="onDeleteAward()">
                     <i class="bowtie-icon bowtie-trash"></i>
                 </button>
-                <button class="zb-btn" ng-click="onReloadAward()">
+                <button class="zb-btn zb-btn-o-purple" ng-click="onReloadAward()">
                     <i class="bowtie-icon bowtie-navigate-refresh"></i>
                 </button>
             </toolbar>
@@ -90,7 +90,7 @@
         function onEditAward() {
             if (scope.currentAward) {
                 scope.award_mode = 2; // set mode chỉnh sửa
-                openDialog("${get_res('Detail_Award_Level','Chi tiết cấp khen thưởng')}", 'category/form/addAward', function () { }, "addAward");
+                openDialog("${get_res('Detail_Award','Chi tiết hình thức khen thưởng')}", 'category/form/addAward', function () { }, "addAward");
             } else {
                 $msg.message("${get_global_res('Notification','Thông báo')}", "${get_app_res('No_Row_Selected','Không có dòng được chọn')}", function () { });
             }
@@ -101,7 +101,7 @@
          */
         function onAddAward() {
             scope.award_mode = 1;// set mode tạo mới
-            openDialog("${get_res('Detail_Award_Level','Chi tiết cấp khen thưởng')}", 'category/form/addAward', function () { }, "addAward");
+            openDialog("${get_res('Detail_Award','Chi tiết hình thức khen thưởng')}", 'category/form/addAward', function () { }, "addAward");
         }
         function onDeleteAward() {
             if (!scope.selectedAward || scope.selectedAward.length === 0) {
@@ -113,7 +113,7 @@
                         .done()
                         .then(function (res) {
                             if (res.deleted > 0) {
-                                _tableAwardData(scope.$$tableAwardConfig.iPage, scope.$$tableAwardConfig.iPageLength, scope.$$tableAwardConfig.orderBy, scope.$$tableAwardConfig.SearchText, scope.$$tableAwardLevelConfig.fnReloadData);
+                                _tableAwardData(scope.$$tableAwardConfig.iPage, scope.$$tableAwardConfig.iPageLength, scope.$$tableAwardConfig.orderBy, scope.$$tableAwardConfig.SearchText, scope.$$tableAwardConfig.fnReloadData);
                                 $msg.alert("${get_global_res('Handle_Success','Thao tác thành công')}", $type_alert.INFO);
                                 scope.currentAward = null;
                                 scope.selectedAward = [];
@@ -177,6 +177,22 @@
                         scope.$apply();
                     })
         }
+
+        function _comboboxData() {
+            services.api("${get_api_key('app_main.api.SYS_ValueList/get_list')}")
+                .data({
+                    //parameter at here
+                    "name": "LAwardType"
+                })
+                .done()
+                .then(function (res) {
+                    delete res.language;
+                    delete res.list_name;
+                    scope.cbbAwardType = res.values;
+                    scope.$applyAsync();
+                })
+        }
+        _comboboxData();
 
         $(document).ready(function () {
             $('#tableAwardSearchText').on('keypress', function (e) {

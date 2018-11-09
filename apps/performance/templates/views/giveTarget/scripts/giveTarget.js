@@ -1,24 +1,4 @@
 (function(scope){
-    scope.detail = {
-        display: false,
-        event:{
-            onGenerate: function(){
-                openDialog('Phát sinh mục tiêu nhân viên', 'giveTarget/form/genGiveTarget', function(){});
-            },
-            onAdd: function(){
-                openDialog('Chi tiết mục tiêu nhân viên', 'giveTarget/form/editGiveTarget', function(){});
-            },
-            onEdit: function(){
-
-            },
-            onDelete: function(){
-
-            }
-        }
-    }
-    scope.toggleDetail = toggleDetail;
-
-    scope.test = "hello";
     scope.$parent.$parent.$parent.onEdit = onEdit;
     scope.$parent.$parent.$parent.onDelete = onDelete;
     scope.$parent.$parent.$parent.onSearch  = function(val){
@@ -26,25 +6,10 @@
     }
 
     function onEdit(){
-        toggleDetail();
     }
 
-    function toggleDetail(){
-        if(!scope.detail.display){
-            $('.hcs-container .zb-page-sidebar .zb-top').hide();
-            $('.hcs-container .zb-page-sidebar .zb-left').hide();
-            $('.hcs-container .zb-page-sidebar .zb-right').css('width', '100%');
-            scope.detail.display = true;
-        }else{
-            $('.hcs-container .zb-page-sidebar .zb-top').show();
-            $('.hcs-container .zb-page-sidebar .zb-left').show();
-            $('.hcs-container .zb-page-sidebar .zb-right').css('width', 'calc(100% - 80px)');
-            scope.detail.display = false;
-        }
-    }
 
     function onDelete(){
-
     }
 
     /**

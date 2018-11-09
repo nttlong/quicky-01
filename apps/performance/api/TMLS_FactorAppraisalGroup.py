@@ -1,18 +1,21 @@
 # -*- coding: utf-8 -*-
+import qmongo
 from bson import ObjectId
 import models
 from Query import FactorAppraisalGroup
 import logging
 import threading
+from hcs_authorization import action_type, authorization
 logger = logging.getLogger(__name__)
 global lock
 lock = threading.Lock()
 
+@authorization.authorise(action = action_type.Action.READ)
 def get_tree(args):
     ret=FactorAppraisalGroup.get_factor_appraisal_group()
     return ret.get_list()
 
-
+@authorization.authorise(action = action_type.Action.CREATE)
 def insert(args):
     try:
         lock.acquire()
@@ -20,7 +23,7 @@ def insert(args):
         if args['data'] != None:
             data =  set_dict_insert_data(args)
             if data.has_key('parent_code') and data['parent_code'] != None:
-                parent_factor_group = models.TMLS_FactorAppraisalGroup().aggregate().project(
+                parent_factor_group = qmongo.models.TMLS_FactorAppraisalGroup.aggregate.project(
                     level_code = 1, 
                     factor_group_code = 1,
                     level = 1).match("factor_group_code == {0}", data['parent_code']).get_item()
@@ -30,7 +33,7 @@ def insert(args):
             else:
                 data['level'] = 1
                 data['level_code'] = [data['factor_group_code']]
-            ret  =  models.TMLS_FactorAppraisalGroup().insert(data)
+            ret  = qmongo.models.TMLS_FactorAppraisalGroup.insert(data)
             lock.release()
             return ret
 
@@ -42,10 +45,7 @@ def insert(args):
         lock.release()
         raise(ex)
 
-
-
-
-
+@authorization.authorise(action = action_type.Action.WRITE)
 def update(args):
     try:
         lock.acquire()
@@ -53,7 +53,7 @@ def update(args):
         if args['data'] != None:
             data =  set_dict_update_data(args)
             if data.has_key('parent_code') and data['parent_code'] != None:
-                parent_factor_group = models.TMLS_FactorAppraisalGroup().aggregate().project(
+                parent_factor_group =qmongo.models.TMLS_FactorAppraisalGroup.aggregate.project(
                     level_code = 1, 
                     factor_group_code = 1,
                     level = 1).match("factor_group_code == {0}", data['parent_code']).get_item()
@@ -64,7 +64,7 @@ def update(args):
                 data['level'] = 1
                 data['level_code'] = [args['data']['factor_group_code']]
 
-            ret  =  models.TMLS_FactorAppraisalGroup().update(
+            ret  =  qmongo.models.TMLS_FactorAppraisalGroup.update(
                 data, 
                 "factor_group_code == {0}", 
                 args['data']['factor_group_code'])
@@ -83,9 +83,7 @@ def update(args):
         lock.release()
         raise(ex)
 
-
-
-
+@authorization.authorise(action = action_type.Action.DELETE)
 def delete(args):
     try:
         lock.acquire()
@@ -93,7 +91,7 @@ def delete(args):
         if args['data'] != None:
             list_group_code = [x["factor_group_code"]for x in args['data']]
             if FactorAppraisalGroup.check_exits_factCode_within_factGroup(list_group_code) == False:
-                 ret  =  models.TMLS_FactorAppraisalGroup().delete("factor_group_code in {0}",[x["factor_group_code"]for x in args['data']])
+                 ret  =  qmongo.models.TMLS_FactorAppraisalGroup.delete("factor_group_code in {0}",[x["factor_group_code"]for x in args['data']])
                  lock.release()
                  return ret
             else:
@@ -109,8 +107,7 @@ def delete(args):
         lock.release()
         raise(ex)
 
-
-
+@authorization.authorise(common = True)
 def set_dict_insert_data(args):
     ret_dict = dict()
 
@@ -129,7 +126,7 @@ def set_dict_insert_data(args):
 
     return ret_dict
 
-
+@authorization.authorise(common = True)
 def set_dict_update_data(args):
     ret_dict = set_dict_insert_data(args)
     del ret_dict['factor_group_code']

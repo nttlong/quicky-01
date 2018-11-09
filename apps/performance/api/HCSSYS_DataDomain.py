@@ -3,9 +3,9 @@ from bson import ObjectId
 import models
 from Query import DataAccessDomain
 import datetime
-
+import qmongo
 def get_list(args):
-    items = models.HCSSYS_DataDomain().aggregate().project(
+    items = qmongo.models.HCSSYS_DataDomain.aggregate().project(
         dd_code = 1,
         dd_name = 1,
         access_mode = 1,
@@ -47,7 +47,7 @@ def get_list_with_searchtext(args):
 
 def insert(args):
     if args['data'] != None:
-        ret = models.HCSSYS_DataDomain().insert(args['data'])
+        ret = qmongo.models.HCSSYS_DataDomain.insert(args['data'])
         return ret
     return None
 
@@ -60,7 +60,7 @@ def update(args):
             if(args['data'].has_key('dd_code')):
                 domain_code = args['data']['dd_code']
                 args['data'].pop('dd_code')
-            ret = models.HCSSYS_DataDomain().update(
+            ret =qmongo.models.HCSSYS_DataDomain.update(
             args['data'],
             "dd_code==@dd_code",
             dict(
@@ -71,6 +71,6 @@ def update(args):
 
 def delete(args):
     if args['data'] != None:
-        ret = models.HCSSYS_DataDomain().delete("dd_code in {0}", [x["dd_code"]for x in args['data']])
+        ret =qmongo.models.HCSSYS_DataDomain.delete("dd_code in {0}", [x["dd_code"]for x in args['data']])
         return ret
     return None

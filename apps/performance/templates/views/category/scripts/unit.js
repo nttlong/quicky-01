@@ -2,12 +2,16 @@
     //("===============BEGIN TABLE==================")
     //Cấu hình tên field và caption hiển thị trên UI
     scope.tableFields = [
+		{ "data": "unit_name", "title": "${get_res('unit_table_header','Đơn vị tính')}", "className": "text-left" },
 		{ "data": "unit_code", "title": "${get_res('unit_code_table_header','Mã')}", "className":"text-left", width: "170px" },
-		{ "data": "unit_name", "title": "${get_res('unit_name_table_header','Tên')}", "className": "text-left" },
-		{ "data": "unit_name2", "title": "${get_res('unit_name2_table_header','Tên khác')}", "className": "text-left" },
-		{ "data": "note", "title": "${get_res('note_table_header','Ghi chú')}", "className": "text-left" },
-        { "data": "ordinal", "title": "${get_res('ordinal_table_header','Thứ tự')}", "className": "text-center", width: "100px" },
-        { "data": "lock", "title": "${get_res('lock_table_header','Ngưng SD')}", "format": "checkbox", "className": "text-center", width: "100px" },
+        { "data": "is_default" ,"expr":function(row, data, func){
+            func(function(){
+                    if(data)
+                        return '<span class="bowtie-icon bowtie-favorite-outline"></span>';
+                return ''
+            });
+            return true;
+        }},
     ];
     //
     scope.$$tableConfig = {};
@@ -35,17 +39,19 @@
         }
         //}, 1000);
     };
-    scope.onSelectTableRow = pressEnter;
     //Danh sách các dòng đc chọn (nếu là table MultiSelect)
     scope.selectedItems = [];
     //Dòng hiện tại đang được focus (nếu table là SingleSelect hoặc MultiSelect)
     scope.currentItem = null;
     scope.tableSearchText = '';
     scope.SearchText = '';
+    scope.default = {
+         data_type: 1,
+    };
     //Refesh table
     scope.refreshDataRow = function () { /*Do nothing*/ };
     //Mode 1: tạo mới, Mode 2: chỉnh sửa, Mode 3: sao chép
-    scope.mode = 0;
+    scope.mode = 1;
     scope.onEdit = onEdit;
     scope.onAdd = onAdd;
     scope.onDelete = onDelete;
@@ -53,16 +59,23 @@
     scope.onSearch = onSearch;
     scope.onExport = onExport;
     scope.onImport = onImport;
-    scope.$parent.$parent.$parent.onEdit = onEdit;
-    scope.$parent.$parent.$parent.onAdd = onAdd;
-    scope.$parent.$parent.$parent.onDelete = onDelete;
-    scope.$parent.$parent.$parent.onCopy = onCopy;
-    scope.$parent.$parent.$parent.onSearch = onSearch;
-    scope.$parent.$parent.$parent.onExport = onExport;
-    scope.$parent.$parent.$parent.onImport = onImport;
+    scope.onRefresh = reloadData;
+    scope.onSave = onSave;
+    scope.onDeleteOne = onDeleteOne;
+
+    scope.$parent.$parent.$parent.onSearch = null;
+    scope.$parent.$parent.$parent.onEdit = null;
+    scope.$parent.$parent.$parent.onAdd = null;
+    scope.$parent.$parent.$parent.onDelete = null;
+    scope.$parent.$parent.$parent.onCopy = null;
+    scope.$parent.$parent.$parent.onSearch = null;
+    scope.$parent.$parent.$parent.onExport = null;
+    scope.$parent.$parent.$parent.onImport = null;
+    scope.$parent.$parent.$parent.onRefresh = null;
     scope.$parent.$parent.$parent.onRefresh = reloadData;
+
     scope._tableData = _tableData;
-    scope.cbbEmployeeType = [];
+    scope.cbbDataType = [];
     
     function reloadData (){
         _tableData(scope.$$tableConfig.iPage, scope.$$tableConfig.iPageLength, scope.$$tableConfig.orderBy, scope.$$tableConfig.SearchText, scope.$$tableConfig.fnReloadData);
@@ -72,12 +85,7 @@
      * Hàm mở form chỉnh sửa
      */
     function onEdit() {
-        if (scope.currentItem) {
-            scope.mode = 2; // set mode chỉnh sửa
-            openDialog("${get_res('Detail_Unit','Chi tiết đơn vị tính')}", 'category/form/addUnit', function () { });
-        } else {
-            $msg.message("${get_global_res('Notification','Thông báo')}", "${get_app_res('No_Row_Selected','Không có dòng được chọn')}", function () { });
-        }
+
     }
 
     /**
@@ -85,7 +93,7 @@
      */
     function onAdd() {
         scope.mode = 1;// set mode tạo mới
-        openDialog("${get_res('Detail_Unit','Chi tiết đơn vị tính')}", 'category/form/addUnit', function () { });
+        LoadDataDetail();
     }
     function onDelete() {
         if (!scope.selectedItems || scope.selectedItems.length === 0) {
@@ -99,6 +107,8 @@
                         if (res.deleted > 0) {
                             _tableData(scope.$$tableConfig.iPage, scope.$$tableConfig.iPageLength, scope.$$tableConfig.orderBy, scope.$$tableConfig.SearchText, scope.$$tableConfig.fnReloadData);
                             $msg.alert("${get_global_res('Handle_Success','Thao tác thành công')}", $type_alert.INFO);
+                            scope.entity = null;
+                            scope.mode = 1;
                             scope.currentItem = null;
                             scope.selectedItems = [];
                         }
@@ -131,6 +141,113 @@
                 console.log("lv.UploadService", res);
             });
     }
+
+    function onDeleteOne () {
+	     if (scope.currentItem) {
+            var Id = scope.currentItem['_id'];
+            $msg.confirm("${get_global_res('Notification','Thông báo')}", "${get_global_res('Do_You_Want_Delete','Bạn có muốn xóa không?')}", function () {
+                services.api("${get_api_key('app_main.api.HCSLS_Unit/delete_one')}")
+                    .data(Id)
+                    .done()
+                    .then(function (res) {
+                        if (res.deleted > 0) {
+                            scope.entity = null;
+                            scope.mode = 1;
+                            scope.currentItem = [];
+                            scope.onRefresh();
+                        }
+                    })
+            });
+        }
+        else {
+            $msg.message("${get_global_res('Notification','Thông báo')}", "${get_app_res('No_Row_Selected','Không có dòng được chọn')}", function () { });
+        }
+	}
+
+    function onSave() {
+            if (scope.entity != null) {
+                var rsCheck = checkError();//Kết quả check input
+                if (rsCheck.result) {
+                    $msg.message("${get_global_res('Input_Error','Nhập liệu sai')}", rsCheck.errorMsg, function () { });
+                    return;
+                }
+                beforeCallToServer();
+                editData(function (res) {
+                    if (res.error == null) {
+                        $dialog.closeDialog();//Đóng form input
+                        $msg.alert("${get_global_res('Handle_Success','Thao tác thành công')}", $type_alert.INFO);//Xuất thông báo thành cônng
+                        if (scope.mode == 1 || scope.mode == 3) {
+                            //Reload table data
+                            reloadData();
+                        } else if (scope.mode == 2) {
+                            debugger
+                            reloadData();
+                            scope.currentItem = scope.entity;
+                            scope.currentItem.modified_on = res.item.modified_on;
+                            scope.currentItem.modified_by = res.item.modified_by;
+                            scope.$apply();
+                            //Refesh datatable
+                            scope.refreshDataRow();
+                        }
+                    } else {
+                        $msg.message("${get_global_res('Internal_Server_Error','Có lỗi từ phía máy chủ')}", "${get_global_res('Please_Try_Again','Xin thử vui lòng thử lại')}", function () { });
+                    }
+                });
+            }
+        }
+
+
+     function editData(callback) {
+            var url = getUrl();
+            if (scope.mode == 3) {
+
+            }
+            services.api(url)
+                .data(scope.entity)
+                .done()
+                .then(function (res) {
+                    callback(res);
+                })
+        }
+
+     function beforeCallToServer() {
+
+        }
+
+     function getUrl() {
+            return scope.mode == 1 || scope.mode == 3 ? "${get_api_key('app_main.api.HCSLS_Unit/insert')}" /*Mode 1: Tạo mới*/
+				: "${get_api_key('app_main.api.HCSLS_Unit/update')}" /*Mode 2: Cập nhật*/
+        }
+
+    function checkError() {
+    var errMsg;
+    var valid = null;
+    var rs = {
+        "result": false,
+        "errorMsg": ''
+    };
+    valid = lv.Validate(scope.entity.unit_code);
+    rs.result = valid.isNullOrWhiteSpace();
+    rs.errorMsg = rs.result === true ? "${get_res('unit_is_not_null','Mã đơn vị tính không được để trống')}" + '\n' : "" ;
+    if(rs.result === true){
+        return rs;
+    }
+    valid = lv.Validate(scope.entity.unit_name);
+    rs.result = valid.isNullOrWhiteSpace();
+    rs.errorMsg = rs.result === true ? "${get_res('currency_name_is_not_null','Tên đơn vị tính không được để trống')}" + '\n' : "" ;
+    if(rs.result === true){
+        return rs;
+    }
+    if(!scope.entity.data_type)
+    {
+        rs.result = true;
+        rs.errorMsg = "${get_res('data_type_is_not_null','Kiểu dữ liệu không được để trống')}" + '\n';
+        return rs;
+    }
+    return rs;
+}
+
+
     /**
      * Hàm mở dialog
      * @param {string} title Tittle của dialog
@@ -150,10 +267,6 @@
                 $dialog.draggable();
             });
         }
-    }
-
-    function pressEnter($row) {
-        scope.onEdit();
     }
 
     function _tableData(iPage, iPageLength, orderBy, searchText, callback) {
@@ -183,6 +296,34 @@
                     scope.$apply();
                 })
     }
+
+    scope.$watch("currentItem", function (val, old) {
+        if (val && Object.keys(val).length > 0) {
+            scope.mode = 2;
+            LoadDataDetail();
+        }
+    })
+
+    function LoadDataDetail() {
+        scope.entity = JSON.parse(JSON.stringify(scope.currentItem));
+        scope.entity = scope.mode == 2 ? scope.entity : scope.default;
+    }
+
+    function _comboboxData() {
+        services.api("${get_api_key('app_main.api.SYS_ValueList/get_list')}")
+            .data({
+                //parameter at here
+                "name": "HCSLS_Unit_DataType"
+            })
+            .done()
+            .then(function (res) {
+                delete res.language;
+                delete res.list_name;
+                scope.cbbDataType = res.values;
+                scope.$applyAsync();
+            })
+    }
+    _comboboxData();
    
     scope.$parent.$watch("advancedSearch.data_lock", function (val) {
         var config = scope.$$tableConfig;

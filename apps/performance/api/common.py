@@ -1,17 +1,15 @@
 # -*- coding: utf-8 -*-
-from bson import ObjectId
+import qmongo
 import models
-import datetime
 import logging
 import quicky
 from quicky import encryptor
-from qmongo import helpers
-import qmongo
 from pymongo.read_concern import ReadConcern
 from pymongo.write_concern import WriteConcern
 import uuid
 import threading
 import bson
+import datetime
 logger = logging.getLogger(__name__)
 
 __collectionName = ''
@@ -30,7 +28,7 @@ def get_db_context():
 def create_view(view_name, collection_name, pipe_line):
     get_db_context().command({
         "create": view_name,
-        "viewOn": get_collection_name_with_schema(collection_name), 
+        "viewOn": get_collection_name_with_schema(collection_name),
         "pipeline": pipe_line
     })
 
@@ -66,14 +64,28 @@ def get_user_id():
         user = threading.current_thread().user.username
     return user
 
+def get_employee_code():
+    try:
+        ret = qmongo.models.HCSEM_Employees.aggregate.join(qmongo.models.auth_user_info, "user_id", "login_account", "account")\
+        .project(
+            username = "account.username",
+            employee_code = "employee_code"
+        )\
+        .match("username == {0}", get_user_id()).get_item()
+        if ret == None:
+            raise Exception("not found employee")
+        return ret['employee_code']
+    except Exception as ex:
+        raise ex
+
 def aggregate_sort(sort):
     """
     Chuyển đỗi dict thành thành array tuple
     example:
-        {                       
+        {
             "a": -1,         => [("a", -1), ("b", 1)]
-            "b": 1              
-        }                       
+            "b": 1
+        }
     """
     "sort -> dict"
     result = []
@@ -103,8 +115,8 @@ def aggregate_filter_lock(value):
 
 def get_pagination(args):
     try:
-        global __collectionName 
-        global __collection 
+        global __collectionName
+        global __collection
 
         if('collection' in args['data'].keys()):
             __collectionName    =   args['data']['collection']
@@ -140,7 +152,7 @@ def get_data(pageIndex, pageSize, where, sort):
 
 def get_config(args):
     try:
-        return models.HCSSYS_SystemConfig().aggregate().get_list()[0]
+        return qmongo.models.HCSSYS_SystemConfig.aggregate.get_list()[0]
     except Exception as ex:
         logger.debug(ex)
         raise(ex)
@@ -236,8 +248,8 @@ def get_init_data_combobox(args):
 
 def create_data_init_combobox(args, display_field, caption_field, value_field, multi_select, parent_field):
     try:
-        global __collectionName 
-        global __collection 
+        global __collectionName
+        global __collection
 
         ret      = {}
         ret_list = []
@@ -246,7 +258,7 @@ def create_data_init_combobox(args, display_field, caption_field, value_field, m
 
             combobox_code = encryptor.get_value(args['data']['key'])
 
-            combobox_info = models.HCSSYS_ComboboxList().aggregate().project(
+            combobox_info = qmongo.models.HCSSYS_ComboboxList.aggregate.project(
                 combobox_code       =   1,
                 language            =   1,
                 display_name        =   1,
@@ -339,8 +351,8 @@ def create_data_init_combobox(args, display_field, caption_field, value_field, m
 def create_data_combobox(args):
     #Hàm get dropdown list theo tên collection và tên cột
     try:
-        global __collectionName 
-        global __collection 
+        global __collectionName
+        global __collection
 
         ret      = {}
         ret_list = []
@@ -349,7 +361,7 @@ def create_data_combobox(args):
 
             combobox_code = encryptor.get_value(args['data']['key'])
 
-            combobox_info = models.HCSSYS_ComboboxList().aggregate().project(
+            combobox_info = qmongo.models.HCSSYS_ComboboxList.aggregate.project(
                 combobox_code       =   1,
                 language            =   1,
                 display_name        =   1,
@@ -499,3 +511,42 @@ def create_data_combobox(args):
     except Exception as ex:
         logger.debug(ex)
         return {"data": None, "error": ex.message}
+
+def get_start_end_apr_period_date(apr_period, apr_year):
+    result = {
+        "begin_apr_period": None,
+        "end_apr_period": None
+    }
+
+    if apr_period in [1, 3, 5, 7, 8, 10, 12]:
+        result['begin_apr_period'] = datetime.datetime(apr_year, apr_period, 1)
+        result['end_apr_period'] = datetime.datetime(apr_year, apr_period, 31)
+    elif apr_period == 2:
+        result['begin_apr_period'] = datetime.datetime(apr_year, apr_period, 1)
+        result['end_apr_period'] = datetime.datetime(apr_year, apr_period + 1, 1).date() - datetime.timedelta(days=1)
+    elif apr_period in [4, 6, 9, 11]:
+        result['begin_apr_period'] = datetime.datetime(apr_year, apr_period, 1)
+        result['end_apr_period'] = datetime.datetime(apr_year, apr_period, 30)
+    elif apr_period == 13:
+        result['begin_apr_period'] = datetime.datetime(apr_year, 1, 1)
+        result['end_apr_period'] = datetime.datetime(apr_year, 3, 31)
+    elif apr_period == 14:
+        result['begin_apr_period'] = datetime.datetime(apr_year, 4, 1)
+        result['end_apr_period'] = datetime.datetime(apr_year, 6, 30)
+    elif apr_period == 15:
+        result['begin_apr_period'] = datetime.datetime(apr_year, 7, 1)
+        result['end_apr_period'] = datetime.datetime(apr_year, 9, 30)
+    elif apr_period == 16:
+        result['begin_apr_period'] = datetime.datetime(apr_year, 10, 1)
+        result['end_apr_period'] = datetime.datetime(apr_year, 12, 31)
+    elif apr_period == 17:
+        result['begin_apr_period'] = datetime.datetime(apr_year, 1, 1)
+        result['end_apr_period'] = datetime.datetime(apr_year, 6, 30)
+    elif apr_period == 18:
+        result['begin_apr_period'] = datetime.datetime(apr_year, 7, 1)
+        result['end_apr_period'] = datetime.datetime(apr_year, 12, 31)
+    elif apr_period == 19:
+        result['begin_apr_period'] = datetime.datetime(apr_year, 1, 1)
+        result['end_apr_period'] = datetime.datetime(apr_year, 12, 31)
+
+    return result

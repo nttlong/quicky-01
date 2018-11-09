@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 from bson import ObjectId
+import qmongo
 import models
 import common
 from Query import Region
@@ -41,7 +42,7 @@ def insert(args):
         ret = {}
         if args['data'] != None:
             data =  set_dict_insert_data(args)
-            ret  =  models.HCSLS_Region().insert(data)
+            ret  =  qmongo.models.HCSLS_Region.insert(data)
             lock.release()
             return ret
 
@@ -60,7 +61,7 @@ def update(args):
         ret = {}
         if args['data'] != None:
             data =  set_dict_update_data(args)
-            ret  =  models.HCSLS_Region().update(
+            ret  = qmongo.models.HCSLS_Region.update(
                 data, 
                 "region_code == {0}", 
                 args['data']['region_code'])
@@ -85,7 +86,7 @@ def delete(args):
         lock.acquire()
         ret = {}
         if args['data'] != None:
-            ret  =  models.HCSLS_Region().delete("region_code in {0}",[x["region_code"]for x in args['data']])
+            ret  =  qmongo.models.HCSLS_Region.delete("region_code in {0}",[x["region_code"]for x in args['data']])
             lock.release()
             return ret
 

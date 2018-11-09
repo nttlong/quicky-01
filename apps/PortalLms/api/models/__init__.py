@@ -15,3 +15,4 @@ from performance.api.models import HCSLS_TrainSupplier
 from HCSSYS_Modules import HCSSYS_Modules
 from HCSSYS_FunctionListLabel import HCSSYS_FunctionListLabel
 from HCSSYS_SystemConfig import HCSSYS_SystemConfig
+from SYS_FunctionList_Favorite import SYS_FunctionList_Favorite

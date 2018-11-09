@@ -101,8 +101,8 @@
             });
         }
     };
-
-    scope.objSearch = {
+    debugger
+    scope.$parent.$parent.$parent.objSearch = {
         $$$modelSearch: null,
         onSearch: onSearch
     }
@@ -331,7 +331,6 @@
             scope.$$tableConfig.orderBy, val)  
         scope.$applyAsync();
     });
-
 
     scope.fnSelectDataGrid = fnSelectDataGrid;
 

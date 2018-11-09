@@ -2,9 +2,10 @@
 from bson import ObjectId
 import models
 import datetime
+import qmongo
 
 def get_list(args):
-    items = models.HCSSYS_DataDomain().aggregate().project(
+    items = qmongo.models.HCSSYS_DataDomain.aggregate.project(
         dd_code = 1,
         dd_name = 1,
         access_mode = 1,
@@ -24,7 +25,7 @@ def get_list_with_searchtext(args):
     pageIndex = (lambda pIndex: pIndex if pIndex != None else 0)(pageIndex)
     pageSize = (lambda pSize: pSize if pSize != None else 20)(pageSize)
 
-    items = models.HCSSYS_DataDomain().aggregate().project(
+    items = qmongo.models.HCSSYS_DataDomain.aggregate.project(
             dd_code = 1,
             dd_name = 1,
             access_mode = 1,
@@ -44,7 +45,7 @@ def get_list_with_searchtext(args):
 
 def insert(args):
     if args['data'] != None:
-        ret = models.HCSSYS_DataDomain().insert(args['data'])
+        ret = qmongo.models.HCSSYS_DataDomain.insert(args['data'])
         return ret
     return None
 
@@ -55,7 +56,7 @@ def update(args):
         else:
             if(args['data'].has_key('dd_code')):
                 args['data'].pop('dd_code')
-            ret = models.HCSSYS_DataDomain().update(
+            ret = qmongo.models.HCSSYS_DataDomain.update(
             args['data'],
             "_id==@_id",
             dict(
@@ -66,6 +67,6 @@ def update(args):
 
 def delete(args):
     if args['data'] != None:
-        ret = models.HCSSYS_DataDomain().delete("_id in {0}", [ObjectId(x["_id"])for x in args['data']])
+        ret = qmongo.models.HCSSYS_DataDomain.delete("_id in {0}", [ObjectId(x["_id"])for x in args['data']])
         return ret
     return None

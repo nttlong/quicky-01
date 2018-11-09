@@ -7,11 +7,11 @@ import threading
 lock = threading.Lock()
 import datetime
 #import TM_SetupProcessApproveLevel
-
+import qmongo
 def get_list_with_process_id(args):
     try:
         if args['data'] != None and args['data'].has_key('process_id'):
-            items = models.TM_SetupProcessApproverSubstitute().aggregate().project(
+            items = qmongo.models.TM_SetupProcessApproverSubstitute.aggregate.project(
                 process_id=1,
                 process_code=1,
                 substitute_code=1,
@@ -33,11 +33,11 @@ def get_list_with_searchtext(args):
     pageIndex = (lambda pIndex: pIndex if pIndex != None else 0)(pageIndex)
     pageSize = (lambda pSize: pSize if pSize != None else 20)(pageSize)
 
-    items = models.TM_SetupProcessApproverSubstitute().aggregate()
-    items.left_join(models.HCSEM_Employees(), "process_code", "employee_code", "emp")
-    items.left_join(models.HCSEM_Employees(), "substitute_code", "employee_code", "em")
-    items.left_join(models.auth_user_info(), "created_by", "username", "uc")
-    items.left_join(models.auth_user_info(), "modified_by", "username", "um")
+    items = qmongo.models.TM_SetupProcessApproverSubstitute.aggregate
+    items.left_join(qmongo.models.HCSEM_Employees, "process_code", "employee_code", "emp")
+    items.left_join(qmongo.models.HCSEM_Employees, "substitute_code", "employee_code", "em")
+    items.left_join(qmongo.models.auth_user_info, "created_by", "username", "uc")
+    items.left_join(qmongo.models.auth_user_info, "modified_by", "username", "um")
     items.project(
         process_id=1,
         process_code=1,
@@ -75,7 +75,7 @@ def insert(args):
         ret = {}
         if args['data'] != None:
             data =  set_dict_insert_data(args)
-            ret  =  models.TM_SetupProcessApproverSubstitute().insert(data)
+            ret  =  qmongo.models.TM_SetupProcessApproverSubstitute.insert(data)
             lock.release()
             return ret
 
@@ -93,7 +93,7 @@ def save(args):
         ret = {}
         if args['data'] != None:
             data =  set_dict_insert_data(args)
-            ret  =  models.TM_SetupProcessApproverSubstitute().insert(data)
+            ret  =  qmongo.models.TM_SetupProcessApproverSubstitute.insert(data)
             lock.release()
             return ret
         lock.release()
@@ -113,7 +113,7 @@ def update(args):
             if (args['data'].has_key('process_id')):
                 process_id = args['data']['process_id']
                 args['data'].pop('process_id')
-            ret = models.TM_SetupProcessApproverSubstitute().update(
+            ret = qmongo.models.TM_SetupProcessApproverSubstitute.update(
                 args['data'],
                 "process_id==@process_id",
                 dict(
@@ -125,7 +125,7 @@ def update(args):
 def delete(args):
     if args['data'] != None:
         # ret = models.TM_SetupProcessApproverSubstitute().delete("process_code in {0}", [x["process_code"] for x in args['data']])
-        ret = models.TM_SetupProcessApproverSubstitute().delete(
+        ret = qmongo.models.TM_SetupProcessApproverSubstitute.delete(
             "_id in {1}",
             args['data']['process_id'],
             [ObjectId(x) for x in args['data']['_id']])

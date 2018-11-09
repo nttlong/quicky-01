@@ -140,7 +140,7 @@ def get_data(pageIndex, pageSize, where, sort):
 
 def get_config(args):
     try:
-        return models.HCSSYS_SystemConfig().aggregate().get_list()[0]
+        return qmongo.models.HCSSYS_SystemConfig.aggregate.get_list()[0]
     except Exception as ex:
         logger.debug(ex)
         raise(ex)
@@ -246,7 +246,7 @@ def create_data_init_combobox(args, display_field, caption_field, value_field, m
 
             combobox_code = encryptor.get_value(args['data']['key'])
 
-            combobox_info = models.HCSSYS_ComboboxList().aggregate().project(
+            combobox_info = qmongo.models.HCSSYS_ComboboxList.aggregate.project(
                 combobox_code       =   1,
                 language            =   1,
                 display_name        =   1,
@@ -349,7 +349,7 @@ def create_data_combobox(args):
 
             combobox_code = encryptor.get_value(args['data']['key'])
 
-            combobox_info = models.HCSSYS_ComboboxList().aggregate().project(
+            combobox_info = qmongo.models.HCSSYS_ComboboxList.aggregate.project(
                 combobox_code       =   1,
                 language            =   1,
                 display_name        =   1,

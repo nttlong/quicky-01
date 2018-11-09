@@ -1,0 +1,360 @@
+<style type="text/css">
+.hcs-tab-info .approve div {
+    border-right: 1px solid #E2E2E2;
+    height: 50px;
+    text-align: center;
+}
+
+#employeeList .zb-content{
+    height: calc(100% - 37px);
+}
+
+.hcs-tab-info .approve div label {
+    text-align: center;
+}
+
+.hcs-tab-info .approve div label span {
+    display: block;
+}
+
+.zb-item:hover {
+    background: #ebf9ff;
+    cursor: pointer;
+}
+
+.zb-list-view .zb-list-view-header label {
+    font-weight: 550;
+    padding-left: 5px;
+    margin: unset;
+    font-size: 14px;
+}
+
+.zb-list-view .zb-list-item .zb-item.active{
+    background: #ebf9ff;
+}
+
+.zb-item .zb-list-title {
+    font-size: .875rem;
+}
+.item1 { grid-area: 1 / 1 / 2 / 2; }
+.item2 { grid-area: 1 / 2 / 2 / 3; }
+.item3 { grid-area: 1 / 3 / 2 / 4; }
+.item4 { grid-area: 2 / 1 / 3 / 2; }
+.item5 { grid-area: 2 / 2 / 3 / 3; }
+.item6 { grid-area: 2 / 3 / 3 / 4; }
+</style>
+<div class="tab-pane" style="height: 100%;">
+    <header-page>
+        <site-map>
+            <a ng-click="backToMain()"><span>{{$root.currentFunction.default_name}}</span></a>
+            <span><i class="bowtie-icon bowtie-chevron-right"></i></span>
+            <span>{{apr_name}}/{{_currentAprYear}}</span>
+            <div class="hcs-resp-action-zb-left-content" style="float: right;">
+                <button class="zb-btn zb-btn-o-green ng-scope">
+                    <i class="bowtie-icon bowtie-menu"></i>
+                </button>
+            </div>
+        </site-map>
+    </header-page>
+    <div class="row" style="padding: 0px 5px;height: calc(100% - 40px);">
+        <div class="col-xs-4 col-md-4 hcs-format" style="display: grid;height: 100%;grid-auto-rows: auto 1fr;">
+            <div>
+                <collapse-box class="zb-form-common" title="${get_res('employee_filter', 'Lọc nhân viên')}">
+                    <toolbar>
+                        <button class="zb-btn" ng-click="filterEmployee()">
+                            <i class="bowtie-icon bowtie-file-preview"></i>
+                        </button>
+                    </toolbar>
+                    <div class="col-md-12 col-xs-12">
+                        <div class="form-group zb-form-group">
+                            <label class="col-xs-4 col-sm-4 zb-form-label">${get_res('department','Bộ phận')}</label>
+                            <div class="col-xs-8 col-sm-8">
+                                <tree-combobox
+                                        load-data="$root.$getComboboxData"
+                                        ng-model="$filterEmployee.department_code"
+                                        placeholder=""
+                                        select-mode="2"
+                                        init-data="$$$department.value"
+                                        caption-field="{{$$$department.caption_field}}"
+                                        key-field="{{$$$department.value_field}}"
+                                        parent-field="{{$$$department.parent_field}}"
+                                        multi-select="true"
+                                        on-accept=""
+                                        params="{key:'${encryptor.get_key('cbb_departments')}', value:[{ '@lock': true }]}"
+                                        reload="true"
+                                        required>
+                                </tree-combobox>
+                            </div>
+                        </div>
+                        <div class="form-group zb-form-group">
+                            <label class="col-xs-4 col-sm-4 zb-form-label">${get_res('job_working','Chức danh')}</label>
+                            <div class="col-xs-8 col-sm-8">
+                                <form-search ng-model="$filterEmployee.job_w_code" open="set_job_w_code()" init-data="$$$job_working" multi="true" required></form-search>
+                            </div>
+                        </div>
+                    </div>
+                </collapse-box>
+            </div>
+            <div id="employeeList">
+                <collapse-box class="zb-form-common" title="${get_res('list_employee', 'Danh sách nhân viên')}">
+                    <div class="col-md-12 col-xs-12" style="height: 100%;display: grid;grid-auto-rows: auto 1fr;">
+                        <div class="hcs-tab-info" id="tab_left">
+                            <div class="col-xs-12 col-md-12 competency no-padding">
+                                <div class="hcs-tab-info-box active" ng-click="changeActive($event, 2)">
+                                    <span class="bowtie-icon bowtie-icon bowtie-status-success-outline">
+                                        <label class="label_style">
+                                        180
+                                        </label>
+                                    </span>
+                                    <label style="padding-left:5px;">
+                                       ${get_res('dadanhgia','Đã đánh giá')}
+                                    </label>
+                                </div>
+                                <div class="hcs-tab-info-line"></div>
+                                <div class="hcs-tab-info-box" ng-click="changeActive($event, 3)">
+                                    <span class="bowtie-icon bowtie-icon bowtie-status-pause-outline">
+                                        <label class="label_style">
+                                        40
+                                        </label>
+                                    </span>
+                                    <label>
+                                        ${get_res('dangdanhgia','Đang đánh giá')}
+                                    </label>
+                                </div>
+                                <div class="hcs-tab-info-line"></div>
+                                <div class="hcs-tab-info-box" ng-click="changeActive($event, 4)">
+                                    <span class="bowtie-icon bowtie-icon bowtie-status-info-outline">
+                                        <label class="label_style">
+                                        30
+                                        </label>
+                                    </span>
+                                    <label>
+                                        ${get_res('chuadanhgia','Chưa đánh giá')}
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="zb-list" style="margin-top: 10px;">
+                            <div class="zb-form-text-icon input-group">
+                                <input type="text" ng-model="txtSearchEmployee" class="form-control" placeholder="">
+                                <div class="input-group-btn"> 
+                                    <button class="btn"><i class="bowtie-icon bowtie-search"></i></button>
+                                </div>
+                            </div>
+                            <div class="zb-list-panel">
+                                <div class="zb-list-item" style="height: calc(100% - 30px);">
+                                    <div class="zb-item" style="display: grid; padding: 5px; border-bottom: 1px solid #d9d9d9;grid-auto-columns: 1fr 1fr auto;" ng-repeat="item in listFilterEmployee | filter: txtSearchEmployee track by $index" ng-click="selectEmployee(item)" ng-class="{active: item.employee_code === _currentEmp.employee_code}">
+                                        <div class="item1">
+                                            <span class="zb-list-title" style="font-weight: bold;">{{item.employee_name}}</span>
+                                        </div>
+                                        <div class="item2">
+                                            <span class="zb-list-title">{{item.employee_code}}</span></span>
+                                        </div>
+                                        <div class="item3">
+                                            <p><span class="hcs-square-icon orange" ng-if="item.give_over"></span></p>
+                                        </div>
+                                        <div class="item4">
+                                            <span class="zb-list-title">{{item.job_working}}
+                                        </div>
+                                        <div class="item5">
+                                            {{$root.$formatSystem.date(item.join_date)}}
+                                        </div>
+                                        <div class="item6">
+                                            <p><span title="" class="hcs-circle-icon success" ng-if="item.approve_and_edit"></span></p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </collapse-box>
+            </div>
+        </div>
+        <div class="col-md-8 col-xs-8" style="padding-left: unset;">
+            <div class="col-md-12 col-xs-12">
+                <div class="hcs-tab-info" id='tab_right'>
+                <div class="col-xs-12 col-md-12 competency no-padding">
+                    <div class="hcs-tab-info-box active" href="#tab_right_1" data-toggle="tab" ng-click="changeTab($event)">
+                        <label style="padding-top:10px!important">
+                            ${get_res('danhgiacongviec','Đánh giá công việc')}
+                        </label>
+                    </div>
+                    <div class="hcs-tab-info-line"></div>
+                    <div class="hcs-tab-info-box" href="#tab_right_2" data-toggle="tab" ng-click="changeTab($event)">
+                        <label style="padding-left:5px;padding-top:10px!important">
+                            ${get_res('dexuatdaotao','Đề xuất đào tạo')}
+                        </label>
+                    </div>
+                    <div class="hcs-tab-info-line"></div>
+                    <div class="hcs-tab-info-box" href="#tab_right_3" data-toggle="tab" ng-click="changeTab($event)">
+                        <label style="padding-left:5px;padding-top:10px!important">
+                            ${get_res('khaosatnhanh','Khảo sát nhanh')}
+                        </label>
+                    </div>
+                </div>
+                </div>
+			    <div class="tab-content hcs-format">
+                    <div class="tab-pane active" id="tab_right_1">
+                        <collapse-box class="zb-form-common" title="${get_res('intent','Mục tiêu')}">
+                        <toolbar class="hcs-action-collapse-box-mobile">
+                            <button ng-click="$root.doToggle('.hcs-action-collapse-box-large')" class="zb-btn zb-btn-o-green">
+                                <i class="bowtie-icon bowtie-menu"></i>
+                            </button>
+                        </toolbar>
+                        <toolbar class="hcs-action-collapse-box-large">
+                            <input-text-icon icon="bowtie-icon bowtie-search"
+                                                on-click="onSearch"></input-text-icon>
+                            <button class="zb-btn zb-btn-o-red" ng-click="onSave()">
+                                <i class="bowtie-icon bowtie-save"></i>
+                            </button>
+                            <button class="zb-btn zb-btn-o-black" ng-click="onExport()">
+                                <i class="bowtie-icon bowtie-transfer-download"></i>
+                            </button>
+                            <button class="zb-btn zb-btn-o-black" ng-click="onExport()">
+                                <i class="bowtie-icon bowtie-transfer-upload"></i>
+                            </button>
+                        </toolbar>
+                        <div style="height: 35vh;">
+                            <table-data data-source="$$table.tableSource"
+                                        fields="$$table.tableFields"
+                                        type="MultiSelect"
+                                        paging="true"
+                                        page-length="100"
+                                        server-side="true"
+                                        press-enter="$$table.onSelectTableRow"
+                                        selected-items="$$table.selectedItems"
+                                        current-item="$$table.currentItem"
+                                        search-text="$$table.tableSearchText"
+                                        refresh-row="$$table.refreshDataRow"
+                                        find="findTargetInDataSource">
+                            </table-data>
+                        </div>
+                    </collapse-box>
+                        <collapse-box class="zb-form-common" title="${get_res('observe_common', 'Nhận xét chung')}">
+                            <table class="display zb-data-table responsive nowrap dataTable no-footer">
+                                <thead>
+                                    <th style="width:30%;text-align:left" class="text-left">${get_res('full_name', 'Họ Tên')}</th>
+                                    <th style="width:70%" class="text-left">${get_res('observe', 'Nhận xét')}</th>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td role="row" class="text-left">Nguyễn Văn A</td>
+                                        <td role="row" class="text-left">Nhận xét</td>
+                                    </tr>
+                                    <tr>
+                                        <td role="row" class="text-left">Lê Minh</td>
+                                        <td role="row" class="text-left">Nhận xét</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </collapse-box>
+                    </div>
+                    <div class="tab-pane" id="tab_right_2">
+                        <collapse-box class="zb-form-common" title="${get_res('dexuatdaotao', 'Đề xuất đào tạo')}">
+                        <toolbar class="hcs-action-collapse-box-large">
+                            <button class="zb-btn zb-btn-o-green" ng-click="onAdd()">
+                                <i class="bowtie-icon bowtie-math-plus"></i>
+                            </button>
+                        </toolbar>
+                            <table class="display zb-data-table responsive nowrap dataTable no-footer">
+                                <thead>
+                                    <th style="width:20%;text-align:left" class="text-left">${get_res('khoadaotao', 'Khóa đào tạo')}</th>
+                                    <th style="width:20%" class="text-left">${get_res('hinhthuc', 'Hình thức')}</th>
+                                    <th style="width:20%" class="text-left">${get_res('chiphi', 'Chi phí')}</th>
+                                    <th style="width:20%" class="text-left">${get_res('thoigian', 'Thời gian')}</th>
+                                    <th style="width:20%" class="text-left">${get_res('ghichu', 'Ghi chú')}</th>
+                                    <th style="width:20%" class="text-center">${get_res('leminh', 'Lê Minh')}</th>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td role="row" class="text-left">Lập trình python</td>
+                                        <td role="row" class="text-left">đào tạo chính quy</td>
+                                        <td role="row" class="text-left"></td>
+                                        <td role="row" class="text-left"></td>
+                                        <td role="row" class="text-left"></td>
+                                        <td class="text-center"><div class="text-center" style="white-space:normal; width:100px;text-overflow: ellipsis;overflow: hidden;"><span class="zb-checkbox-symbol">☐</span></div></td>
+                                    </tr>
+                                    <tr>
+                                        <td role="row" class="text-left">Tin học văn phòng</td>
+                                        <td role="row" class="text-left">đào tạo từ xa</td>
+                                        <td role="row" class="text-left"></td>
+                                        <td role="row" class="text-left"></td>
+                                        <td role="row" class="text-left"></td>
+                                        <td class="text-center"><div class="text-center" style="white-space:normal; width:100px;text-overflow: ellipsis;overflow: hidden;"><span class="zb-checkbox-symbol">☑</span></div></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </collapse-box>
+                    </div>
+                    <div class="tab-pane" id="tab_right_3">
+                        <collapse-box class="zb-form-common" title="${get_res('khaosatnhanh','Khảo sát nhanh')}">
+                            <table class="display zb-data-table responsive nowrap dataTable no-footer">
+                                <thead>
+                                    <th style="width:20%;text-align:left" class="text-left">${get_res('macauhoi', 'Mã câu hỏi')}</th>
+                                    <th style="width:60%" class="text-left">${get_res('cauhoi', 'Câu hỏi')}</th>
+                                    <th style="width:20%" class="text-left">${get_res('hoanthanh', 'Hoàn thành (4/10)')}</th>
+                                </thead>
+                                <tbody>
+                                    <tr ng-click="onEdit()">
+                                        <td role="row" class="text-left">1</td>
+                                        <td role="row" class="text-left">Câu hỏi 1</td>
+                                        <td class="text-center"><div class="text-center" style="white-space:normal; width:100px;text-overflow: ellipsis;overflow: hidden;"><span class="zb-checkbox-symbol">☐</span></div></td>
+                                    </tr>
+                                    <tr ng-click="onEdit()">
+                                        <td role="row" class="text-left">2</td>
+                                        <td role="row" class="text-left">Câu hỏi 2</td>
+                                        <td class="text-center"><div class="text-center" style="white-space:normal; width:100px;text-overflow: ellipsis;overflow: hidden;"><span class="zb-checkbox-symbol">☑</span></div></td>
+                                    </tr>
+                                   <tr ng-click="onEdit()">
+                                       <td role="row" class="text-left">3</td>
+                                       <td role="row" class="text-left">Câu hỏi 3</td>
+                                       <td class="text-center"><div class="text-center" style="white-space:normal; width:100px;text-overflow: ellipsis;overflow: hidden;"><span class="zb-checkbox-symbol">☑</span></div></td>
+                                   </tr>
+                                    <tr ng-click="onEdit()">
+                                        <td role="row" class="text-left">4</td>
+                                        <td role="row" class="text-left">Câu hỏi 4</td>
+                                        <td class="text-center"><div class="text-center" style="white-space:normal; width:100px;text-overflow: ellipsis;overflow: hidden;"><span class="zb-checkbox-symbol">☐</span></div></td>
+                                    </tr>
+                                    <tr>
+                                        <td role="row" class="text-left">5</td>
+                                        <td role="row" class="text-left">Câu hỏi 5</td>
+                                        <td class="text-center"><div class="text-center" style="white-space:normal; width:100px;text-overflow: ellipsis;overflow: hidden;"><span class="zb-checkbox-symbol">☐</span></div></td>
+                                    </tr>
+                                    <tr ng-click="onEdit()">
+                                        <td role="row" class="text-left">6</td>
+                                        <td role="row" class="text-left">Câu hỏi 6</td>
+                                        <td class="text-center"><div class="text-center" style="white-space:normal; width:100px;text-overflow: ellipsis;overflow: hidden;"><span class="zb-checkbox-symbol">☑</span></div></td>
+                                    </tr>
+                                    <tr ng-click="onEdit()">
+                                       <td role="row" class="text-left">7</td>
+                                       <td role="row" class="text-left">Câu hỏi 7</td>
+                                       <td class="text-center"><div class="text-center" style="white-space:normal; width:100px;text-overflow: ellipsis;overflow: hidden;"><span class="zb-checkbox-symbol">☐</span></div></td>
+                                    </tr>
+                                    <tr ng-click="onEdit()">
+                                        <td role="row" class="text-left">8</td>
+                                        <td role="row" class="text-left">Câu hỏi 8</td>
+                                        <td class="text-center"><div class="text-center" style="white-space:normal; width:100px;text-overflow: ellipsis;overflow: hidden;"><span class="zb-checkbox-symbol">☐</span></div></td>
+                                    </tr>
+                                    <tr ng-click="onEdit()">
+                                        <td role="row" class="text-left">9</td>
+                                        <td role="row" class="text-left">Câu hỏi 9</td>
+                                        <td class="text-center"><div class="text-center" style="white-space:normal; width:100px;text-overflow: ellipsis;overflow: hidden;"><span class="zb-checkbox-symbol">☐</span></div></td>
+                                    </tr>
+                                    <tr ng-click="onEdit()">
+                                        <td role="row" class="text-left">10</td>
+                                        <td role="row" class="text-left">Câu hỏi 10</td>
+                                        <td class="text-center"><div class="text-center" style="white-space:normal; width:100px;text-overflow: ellipsis;overflow: hidden;"><span class="zb-checkbox-symbol">☐</span></div></td>
+                                    </tr>
+
+                                </tbody>
+                            </table>
+                        </collapse-box>
+                    </div>
+			    </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    <%include file="scripts/aprTermDetail.js"/>
+</script>

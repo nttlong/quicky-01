@@ -1,10 +1,7 @@
 # -*- coding: utf-8 -*-
 from config import database, helpers, db_context
 _hasCreated=False
-def LMSLS_ExTemplateCategory():
-    global _hasCreated
-    if not _hasCreated:
-        helpers.extent_model(
+helpers.extent_model(
             "LMSLS_ExTemplateCategory",
             "base",
             [["category_id"]],
@@ -25,6 +22,9 @@ def LMSLS_ExTemplateCategory():
             modified_on=helpers.create_field("date"),
             modified_by=helpers.create_field("text"),
         )
+def LMSLS_ExTemplateCategory():
+    global _hasCreated
+    if not _hasCreated:
         _hasCreated=True
     ret = db_context.collection("LMSLS_ExTemplateCategory")
 

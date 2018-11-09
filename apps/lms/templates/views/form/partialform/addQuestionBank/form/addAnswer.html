@@ -1,0 +1,117 @@
+<%!
+    #_style="width:200px;"
+%>
+<%inherit file="../../../../commons/dialog_save_close.html"/>
+<%block name="modal_body">
+    <div class="hcs-modal-format">
+        <div class="col-md-12">
+        <collapse-box class="zb-form-common" title="${get_res('detail_answer','Detail answer')}">
+            <div class="col-md-12">
+                <div class="form-group zb-form-group">
+                    <label for="" class="col-md-2 zb-form-label">
+                        ${get_res('option_content','Option Content')}
+                    </label>
+                    <div class="col-md-10">
+                        <input-text ng-model="entityofanswer.answers"/>
+                    </div>
+                </div>
+                <div class="form-group zb-form-group">
+                    <label class="col-md-2 zb-form-label">
+                        ${get_res('is_correct','Is correct')}
+                    </label>
+                    <div class="col-md-10">
+                        <input-checkbox ng-model="entityofanswer.isCorrect"/>
+                    </div>
+                </div>
+                <div class="form-group zb-form-group">
+                    <label class="col-md-2 zb-form-label">
+                        ${get_res('if_correct','If correct')}
+                    </label>
+                    <div class="col-md-10">
+                        <input-number ng-model="entityofanswer.if_correct" type="float"/>
+                    </div>
+                </div>
+                <div class="form-group zb-form-group">
+                    <label class="col-md-2 zb-form-label">
+                        ${get_res('if_incorrect','If incorrect')}
+                    </label>
+                    <div class="col-md-10">
+                        <input-number ng-model="entityofanswer.if_incorrect" type="float"/>
+                    </div>
+                </div>
+            </div>
+        </collapse-box>
+    </div>
+    </div>
+</%block>
+<%block name="modal_script">
+<script>
+    (function (scope){
+        scope.entityofanswer = scope.$parent.entityofanswer;
+        scope.mode = scope.$parent.mode // answer mode
+        scope.title = scope.$parent.headerTitle;
+        scope.saveNNext = saveNNext;
+        scope.saveNClose = saveNClose;
+        function saveNNext(){
+            if(scope.mode === 1){
+                addData(function(res){
+
+                })
+            }else if(scope.mode === 2){
+                editData(function(res){
+
+                })
+            }
+
+        }
+
+        function saveNClose(){
+            if(scope.mode === 1){
+                addData(function(res){
+
+                })
+            }else if(scope.mode === 2){
+                editData(function(res){
+
+                })
+            }
+        }
+
+        scope.onResizeDialog = onResizeDialog;
+
+        function onResizeDialog(){
+            $dialog.fullScreen();
+        }
+
+        function getUrl(){
+            return scope.mode == 1 || scope.mode == 3 ? "${get_api_key('app_main.api.LMSLS_ExQuestionBank/insertanswer')}" /*Mode 1: Tạo mới*/
+                    : "${get_api_key('app_main.api.LMSLS_ExQuestionBank/updateanswer')}" /*Mode 2: Cập nhật*/
+        }
+        function editData(callback) {
+
+            var url = getUrl();
+            if (scope.mode == 3) {
+
+            }
+            services.api(url)
+                .data(scope.entityofanswer)
+                .done()
+                .then(function (res) {
+                    callback(res);
+                })
+        }
+        function addData(callback){
+            var url = getUrl();
+            if (scope.mode == 2) {
+                return;
+            }
+            services.api(url)
+                .data(scope.entityofanswer)
+                .done()
+                .then(function (res) {
+                    callback(res);
+                })
+        }
+    })
+</script>
+</%block>

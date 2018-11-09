@@ -119,7 +119,7 @@
             }
             else {
                 ele.find("input[type='number']").val(scope.ngModel);
-                ele.find("input[type='text']").val(scope.ngModel ? scope.ngModel.toString() : null);
+                ele.find("input[type='text']").val(scope.ngModel ? scope.$root.$groupingNumber(scope.ngModel) : null);
 
                 ele.find("input[type='text']").bind("focus", function () {
                     $(this).hide();
@@ -133,14 +133,14 @@
 
                 ele.find("input[type='number']").bind('input', function (val) {
                     scope.ngModel = parseInt(val.currentTarget.value);
-                    ele.find("input[type='text']").val(val.currentTarget.value);
+                    ele.find("input[type='text']").val(scope.$root.$groupingNumber(val.currentTarget.value));
                     scope.$applyAsync();
                 });
 
                 scope.$watch('ngModel', function (val) {
                     if (val) {
                         ele.find("input[type='number']").val(val);
-                        ele.find("input[type='text']").val(val.toString());
+                        ele.find("input[type='text']").val(scope.$root.$groupingNumber(scope.ngModel));
                     }else{
                         ele.find("input[type='number']").val(null);
                         ele.find("input[type='text']").val("");

@@ -1,9 +1,10 @@
 from .. import models
 from .. import common
+import qmongo
 def display_list_rank():
-    ret=models.TMLS_Rank().aggregate()
-    ret.left_join(models.auth_user_info(), "created_by", "username", "uc")
-    ret.left_join(models.auth_user_info(), "modified_by", "username", "um")
+    ret=qmongo.models.TMLS_Rank.aggregate
+    ret.left_join(qmongo.models.auth_user_info, "created_by", "username", "uc")
+    ret.left_join(qmongo.models.auth_user_info, "modified_by", "username", "um")
     ret.project(
         _id = "_id",
         rank_code="rank_code",
@@ -27,25 +28,25 @@ def display_list_rank():
     return ret
 
 def get_details(rank_code):
-    col=models.TMLS_Rank().aggregate().match("rank_code == {0}", rank_code)
-    col.unwind("details", False)
-    col.join(models.auth_user_info(), "created_by", "username", "uc")
-    col.left_join(models.auth_user_info(), "modified_by", "username", "um")
+    col=qmongo.models.TMLS_Rank.aggregate.match("rank_code == {0}", rank_code)
+    col.unwind("setup_change_object", False)
+    col.join(qmongo.models.auth_user_info, "created_by", "username", "uc")
+    col.left_join(qmongo.models.auth_user_info, "modified_by", "username", "um")
     col.project(
-        rec_id = "details.rec_id",
-        rank_code = "details.rank_code",
-        change_object = "details.change_object",
-        object_level = "details.object_level",
-        object_code = "details.object_code",
-        object_name = "details.object_name",
-        priority_no = "details.priority_no",
-        total_from = "details.total_from",
-        total_to = "details.total_to",
-        note = "details.note",
+        rec_id = "setup_change_object.rec_id",
+        rank_code = "setup_change_object.rank_code",
+        change_object = "setup_change_object.change_object",
+        object_level = "setup_change_object.object_level",
+        object_code = "setup_change_object.object_code",
+        object_name = "setup_change_object.object_name",
+        priority_no = "setup_change_object.priority_no",
+        total_from = "setup_change_object.total_from",
+        total_to = "setup_change_object.total_to",
+        note = "setup_change_object.note",
         created_by="uc.login_account",
         created_on="created_on",
-        modified_on="switch(case(details.modified_on!='',details.modified_on),'')",
-        modified_by="switch(case(details.modified_by!='',um.login_account),'')"
+        modified_on="switch(case(setup_change_object.modified_on!='',setup_change_object.modified_on),'')",
+        modified_by="switch(case(setup_change_object.modified_by!='',um.login_account),'')"
         )
     return col
 
@@ -56,7 +57,7 @@ def remove_details(args):
                             "rank_code": args['data']['rank_code']
                         },
                         {
-                            '$pull':{"details" :{ "rec_id": {'$in': args['data']['rec_id']}}}
+                            '$pull':{"setup_change_object" :{ "rec_id": {'$in': args['data']['rec_id']}}}
                         }, 
                         True
                         )
@@ -68,7 +69,7 @@ def insert_details(args, details):
                           { "rank_code": args['data']['rank_code'] },
                           {
                             '$push': {
-                              "details": details
+                              "setup_change_object": details
                             }
                           }
                         )
@@ -79,25 +80,25 @@ def update_details(args, details):
     ret = collection.update(
         {
             "rank_code": args['data']['rank_code'],
-            "details":{
+            "setup_change_object":{
                 "$elemMatch":{
-                    "rec_id":args['data']['details']["rec_id"]
+                    "rec_id":args['data']['setup_change_object']["rec_id"]
                     }
                 }
         },
         {
             "$set": {
-                'details.$.rank_code': details['rank_code'],
-                'details.$.change_object': details['change_object'],
-                'details.$.object_level': details['object_level'],
-                'details.$.object_code': details['object_code'],
-                'details.$.object_name': details['object_name'],
-                'details.$.priority_no': details['priority_no'],
-                'details.$.total_from': details['total_from'],
-                'details.$.total_to': details['total_to'],
-                'details.$.note': details['note'],
-                'details.$.modified_by': details['modified_by'],
-                'details.$.modified_on': details['modified_on']
+                'setup_change_object.$.rank_code': details['rank_code'],
+                'setup_change_object.$.change_object': details['change_object'],
+                'setup_change_object.$.object_level': details['object_level'],
+                'setup_change_object.$.object_code': details['object_code'],
+                'setup_change_object.$.object_name': details['object_name'],
+                'setup_change_object.$.priority_no': details['priority_no'],
+                'setup_change_object.$.total_from': details['total_from'],
+                'setup_change_object.$.total_to': details['total_to'],
+                'setup_change_object.$.note': details['note'],
+                'setup_change_object.$.modified_by': details['modified_by'],
+                'setup_change_object.$.modified_on': details['modified_on']
                 }
         })
     return ret

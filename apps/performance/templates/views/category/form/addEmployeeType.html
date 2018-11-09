@@ -71,7 +71,7 @@
             <!--Thứ tự-->
             <label for="inputOrdinal" class="col-xs-5 col-sm-5 zb-form-label">${get_res('ordinal','Thứ tự')}</label>
             <div class="col-xs-7 col-sm-7">
-               <input-number id="inputOrdinal" ng-model="entity.ordinal">
+               <input-number id="inputOrdinal" ng-model="entity.ordinal" type="int">
             </div>
          </div>
       </div>
@@ -219,8 +219,8 @@
         }
 
         function getUrl() {
-            return scope.__mode == 1 || scope.__mode == 3 ? "${get_api_key('app_main.api.HCSLS_EmployeeType/insert')}" /*Mode 1: Tạo mới*/
-                    : "${get_api_key('app_main.api.HCSLS_EmployeeType/update')}" /*Mode 2: Cập nhật*/
+            return scope.__mode == 1 || scope.__mode == 3 ? "${get_api_key('app_main.api.HCSLS_EmployeeTypeController/insert')}" /*Mode 1: Tạo mới*/
+                    : "${get_api_key('app_main.api.HCSLS_EmployeeTypeController/update')}" /*Mode 2: Cập nhật*/
         }
 
         function reloadData() {

@@ -16,9 +16,10 @@ helpers.extent_model(
                     text=("text"),
                     isCorrect=("bool"),
                     answers=("text"),
-                    if_correct=("text"),
-                    if_incorrect=("text"),
+                    if_correct=("numeric"),
+                    if_incorrect=("numeric"),
                     question=("text"),
+                    image=("text")
                 )),
             ques_total_marks=("object"),
             ques_attach_file=("bool"),

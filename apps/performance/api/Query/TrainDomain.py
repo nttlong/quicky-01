@@ -1,8 +1,9 @@
 from .. import models
+import qmongo
 def display_list_train_domain():
-    ret=models.HCSLS_TrainDomain().aggregate()
-    ret.left_join(models.auth_user_info(), "created_by", "username", "uc")
-    ret.left_join(models.auth_user_info(), "modified_by", "username", "um")
+    ret=qmongo.models.HCSLS_TrainDomain.aggregate
+    ret.left_join(qmongo.models.auth_user_info, "created_by", "username", "uc")
+    ret.left_join(qmongo.models.auth_user_info, "modified_by", "username", "um")
     ret.project(
         _id = "_id",
         domain_code="domain_code",

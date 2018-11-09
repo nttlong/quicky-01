@@ -1,8 +1,9 @@
 from .. import models
+import qmongo
 def display_list_train_type_detail():
-    ret=models.HCSLS_TrainTypeDetail().aggregate()
-    ret.left_join(models.auth_user_info(), "created_by", "username", "uc")
-    ret.left_join(models.auth_user_info(), "modified_by", "username", "um")
+    ret=qmongo.models.HCSLS_TrainTypeDetail.aggregate
+    ret.left_join(qmongo.models.auth_user_info, "created_by", "username", "uc")
+    ret.left_join(qmongo.models.auth_user_info, "modified_by", "username", "um")
     ret.project(
         _id = "_id",
         train_detail_code="train_detail_code",

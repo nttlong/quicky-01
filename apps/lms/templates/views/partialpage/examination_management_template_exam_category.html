@@ -2,14 +2,26 @@
     .app-content {
         overflow: unset !important;
     }
+    .dataTables_wrapper.form-inline.dt-bootstrap.no-footer,.dataTables_scroll{
+        height: 100%;
+      }
+      .dataTables_wrapper.form-inline.dt-bootstrap.no-footer > .row:nth-child(2){
+        height:calc(100% - 35px);
+      }
+      .dataTables_wrapper.form-inline.dt-bootstrap.no-footer > .row:nth-child(2) > [class*="col-"]{
+        height:100%;
+      }
+      .dataTables_scrollBody{
+        height:calc(100% - 35px);
+      }
 </style>
-<div class="tab-pane" style="padding-right:unset; height: 100%; ">
+<div class="hcs-container" style="padding-right:unset; height: 100%; ">
     <div>
         <header-page>
             <site-map>
-                <a><span>{{$root.currentFunction.default_name}}</span></a>
+                <span>{{$root.currentFunction.default_name}}</span>
             </site-map>
-            <toolbar>
+            <extend-toolbar>
                 <input-text-icon icon="bowtie-icon bowtie-search"
                                     on-click="onSearch"></input-text-icon>
                 <button class="zb-btn zb-btn-o-green" ng-click="createTemplate()">
@@ -19,7 +31,7 @@
                     <i class="bowtie-icon bowtie-edit-outline"></i>
                 </button>
                 <button class="zb-btn zb-btn-o-red" ng-click="delTemplate()">
-                    <i class="bowtie-icon bowtie-edit-remove"></i>
+                    <i class="bowtie-icon bowtie-trash"></i>
                 </button>
                 <button class="zb-btn" ng-click="importTemplate()">
                     <i class="bowtie-icon bowtie-transfer-upload"></i>
@@ -27,10 +39,10 @@
                 <button class="zb-btn" ng-click="exportTemplate()">
                     <i class="bowtie-icon bowtie-transfer-download"></i>
                 </button>
-                <button class="zb-btn" ng-click="$root.refresh()">
+                <button class="zb-btn zb-btn-o-purple" ng-click="$root.refresh()">
                     <i class="bowtie-icon bowtie-navigate-refresh"></i>
                 </button>
-            </toolbar>
+            </extend-toolbar>
         </header-page>
     </div>
     <div class="hcs-right-side-department-list" style="height: calc(100% - 40px);">

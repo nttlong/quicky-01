@@ -1,7 +1,7 @@
 <div class="zb-page-sidebar">
     <div class="zb-left">
         <ul class="zb-left-ul">
-            <li ng-repeat="item in listItem" 
+            <li ng-repeat="item in listItem"
                 class="zb-left-li"
                 ng-class="{'li-selected': item[keyField]==selectedKey ? true : false, 'zb-sidebar-disbled' : checkItemDisabled(item[keyField])}"
                 ng-click="$onSelectItem(item[keyField])">
@@ -9,12 +9,15 @@
                     <span class="left-title text-center">{{item[displayField]}}</span>
             </li>
         </ul>
+        <div class="zb-left-rail-y" style="display: none;top: 36px;left: 70px;width: 10px;height: 100%;position: absolute;overflow: auto;">
+            <div class="zb-left-thumb-y" tabindex="0" style="top: 0px;width: 0px !important;"></div>
+        </div>
     </div>
     <div class="zb-right">
         <div class="zb-top">
             <div class="zb-left-content">
                 <button ng-click="toggleCollapseMenu()" class="zb-btn zb-btn-blue zb-btn-collapse">
-                    <i class="bowtie-icon bowtie-pin"></i>
+                    <i class="sap-icon sap-menu2"></i>
                 </button>
                 <div ng-transclude="siteMap" class="zb-sitemap"></div>
             </div>

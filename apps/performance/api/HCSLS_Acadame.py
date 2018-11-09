@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 from bson import ObjectId
+import qmongo
 import models
 import common
 import datetime
@@ -73,7 +74,7 @@ def insert(args):
                 check_exist = collection.find_one({"train_level_code":args['data']['train_level_code']})
                 if check_exist == None:
                     data =  set_dict_insert_data(args)
-                    ret  =  models.HCSLS_Acadame().insert(data)
+                    ret  = qmongo.models.HCSLS_Acadame.insert(data)
                     lock.release()
                     return ret
                 else:
@@ -93,7 +94,7 @@ def update(args):
         ret = {}
         if args['data'] != None:
             data =  set_dict_update_data(args)
-            ret  =  models.HCSLS_Acadame().update(
+            ret  = qmongo.models.HCSLS_Acadame.update(
                 data, 
                 "train_level_code == {0}", 
                 args['data']['train_level_code'])
@@ -118,7 +119,7 @@ def delete(args):
         lock.acquire()
         ret = {}
         if args['data'] != None:
-            ret  =  models.HCSLS_Acadame().delete("train_level_code in {0}",[x["train_level_code"]for x in args['data']])
+            ret  =  qmongo.models.HCSLS_Acadame.delete("train_level_code in {0}",[x["train_level_code"]for x in args['data']])
             lock.release()
             return ret
 
