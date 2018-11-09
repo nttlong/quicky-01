@@ -293,7 +293,6 @@ def __buil_default_url__(_apps_, default_urls, host_dir):
                     **kwargs)
 
         fx = obj_exec_request(url_item)
-        from django.conf.urls import url
         map_url = url(
             url_regex,
             fx.exec_request

@@ -20,9 +20,9 @@ from . import url
 import datetime
 import threading
 
-from . import dynamic_views
 
-load_controllers=dynamic_views.load_controllers
+
+
 system_settings=None
 _db_multi_tenancy=None
 _cache_multi_tenancy={}
