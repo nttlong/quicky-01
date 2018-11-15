@@ -12,11 +12,13 @@ class rec_process():
         self.expr=None
 class BinaryExpression():
     def __init__(self, operator, left, right):
-        type = lambda: expression_types.LOGICAL_EXP if (operator == '||' or operator == '&&') else expression_types.BINARY_EXP
         self.operator=operator
         self.left = left
         self.right=right
-        self.type=type
+        if operator in ["||","&&"]:
+            self.type=expression_types.LOGICAL_EXP
+        else:
+            self.type=expression_types.BINARY_EXP
 class expression_types:
     COMPOUND = 'Compound'
     IDENTIFIER = 'Identifier'

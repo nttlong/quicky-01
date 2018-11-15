@@ -35,10 +35,16 @@ def do_part_with_params(expr,*args,**kwargs):
             i+=1
     return expr,params
 
-def parse(expr,*args,**kwargs):
+def to_mongobd(expr,*args,**kwargs):
     _expr,params = do_part_with_params(expr,*args,**kwargs)
     tree=compilers.compile_expression(_expr)
-    x=params
+    return to_mongodb_expr(tree,params,True)
+def to_mongobd_match(expr,*args,**kwargs):
+    _expr,params = do_part_with_params(expr,*args,**kwargs)
+    tree=compilers.compile_expression(_expr)
+    return to_mongodb_expr(tree,params,False)
+
+
 
 def to_mongodb_expr(fx,params,forSelect=False,forNot=False,prefix=None):
     import re
@@ -130,7 +136,7 @@ def to_mongodb_expr(fx,params,forSelect=False,forNot=False,prefix=None):
                     "$exists":not forNot
                 }
             }
-        if avgFuncs.index(";"+fx.callee.name+";")>-1:
+        if avgFuncs.find(";"+fx.callee.name+";")>-1:
             return {
                 "$" + fx.callee.name:to_mongodb_expr(fx.arguments[0],True,False,"$")
             }
@@ -332,6 +338,7 @@ def to_mongodb_expr(fx,params,forSelect=False,forNot=False,prefix=None):
         for arg in fx.arguments:
             ret["$"+fx.callee.name].append(to_mongodb_expr(arg,params,True,forNot,"$"))
         return ret
+
 
 
 

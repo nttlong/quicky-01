@@ -17,7 +17,8 @@ def binaryPrecedence(op_val):
     return binary_ops.get(op_val,0)
 def createBinaryExpression(operator, left, right):
     #type(str,dict,dict) -> BinaryExpression
-    return BinaryExpression(operator,left,right)
+    ret = BinaryExpression(operator,left,right)
+    return ret
 
 
 def exprI(rec):
@@ -137,10 +138,10 @@ def gobbleArguments(rec,termination):
         elif rec.ch_i ==char_codes.COMMA_CODE:
             rec.index+=1
         else:
-            rec.node = gobbleExpression(rec)
-            if not rec.node or rec.node.type==expression_types.COMPOUND:
+            node = gobbleExpression(rec)
+            if not node or node.type==expression_types.COMPOUND:
                 raise Exception('Expected comma {)}'.format(rec.index))
-            args.append(rec.node)
+            args.append(node)
 
     if not closed:
         raise Exception('Expected {0} at {1}'.format(chr(termination),rec.index))
@@ -153,13 +154,13 @@ def gobbleArray(rec):
 
 def gobbleGroup(rec):
     rec.index+=1
-    rec.node = gobbleExpression(rec)
+    node = gobbleExpression(rec)
     gobbleSpaces(rec)
     if exprICode(rec)==char_codes.CPAREN_CODE:
         rec.index+=1
-        return rec.node
+        return node
     else:
-        return rec.node
+        return node
         #raise Exception('Unclosed ('+ rec.index.__str__())
 
 def gobbleIdentifier(rec):
@@ -225,9 +226,9 @@ def gobbleVariable(rec):
     # type:(rec_process)->ArrayExpression
     rec.ch_i = exprICode(rec)
     if rec.ch_i == char_codes.OPAREN_CODE:
-        rec.node = gobbleGroup(rec)
+        node = gobbleGroup(rec)
     else:
-        rec.node = gobbleIdentifier(rec)
+        node = gobbleIdentifier(rec)
     gobbleSpaces(rec)
     rec.ch_i = exprICode(rec)
     while rec.ch_i in [char_codes.PERIOD_CODE,char_codes.OBRACK_CODE,char_codes.OPAREN_CODE]:
@@ -235,21 +236,21 @@ def gobbleVariable(rec):
         if rec.ch_i ==char_codes.PERIOD_CODE:
             gobbleSpaces(rec)
             property=gobbleIdentifier(rec)
-            rec.node= MemberExpression(False,rec.node,property)
+            node= MemberExpression(False,node,property)
 
         elif rec.ch_i ==char_codes.OBRACK_CODE:
-            rec.node = MemberExpression(True, rec.node, gobbleExpression(rec))
+            node = MemberExpression(True, node, gobbleExpression(rec))
             gobbleSpaces(rec)
             rec.ch_i = exprICode(rec)
             if rec.ch_i !=char_codes.CBRACK_CODE:
                 raise Exception('Unclosed ['+ rec.index.__str__())
             rec.index+=1
         elif rec.ch_i == char_codes.OPAREN_CODE:
-            rec.node=CallExpression(gobbleArguments(rec,char_codes.CPAREN_CODE),rec.node)
+            node=CallExpression(gobbleArguments(rec,char_codes.CPAREN_CODE),node)
 
         gobbleSpaces(rec)
         rec.ch_i = exprICode(rec)
-    return rec.node
+    return node
 
 def gobbleToken(rec):
     #type:(rec_process)->rec_process
@@ -351,20 +352,21 @@ def gobbleBinaryExpression(rec):
             right = stack.pop()
             biop = stack.pop().value
             left = stack.pop()
-            rec.node = createBinaryExpression(biop, left, right)
-            stack.append(rec.node)
+            node = createBinaryExpression(biop, left, right)
+            stack.append(node)
 
-        rec.node =gobbleToken(rec)
-        if not rec.node:
+        node =gobbleToken(rec)
+        if not node:
             raise Exception("Expected expression after ".format(biop, rec.index))
-        stack.extend([biop_info, rec.node])
+        stack.extend([biop_info, node])
         biop = gobbleBinaryOp(rec)
     i = stack.__len__() - 1
-    rec.node = stack[i]
+    node = stack[i]
     while i>1:
-        rec.node = createBinaryExpression(stack[i - 1].value, stack[i - 2], rec.node)
+        _node = createBinaryExpression(stack[i - 1].value, stack[i - 2], node)
+        node=_node
         i -= 2
-    return rec.node
+    return node
 
 def gobbleExpression(rec):
     #type: (rec_process) -> dict
@@ -406,7 +408,7 @@ def compile_expression(expr):
     rec.index = 0
     rec.length = expr.__len__()
     rec.nodes=[]
-    rec.node=None
+    node=None
     rec.ch_i=None
     rec.expr=expr
     while rec.index < rec.length:
@@ -414,9 +416,9 @@ def compile_expression(expr):
         if rec.ch_i ==  char_codes.SEMCOL_CODE or rec.ch_i == char_codes.COMMA_CODE:
             rec.index+=1
         else:
-            rec.node = gobbleExpression(rec)
-            if rec.node:
-                rec.nodes.append(rec.node)
+            node = gobbleExpression(rec)
+            if node:
+                rec.nodes.append(node)
             elif rec.index < rec.length:
                 raise Exception('Unexpected "{0}" at {1}'.format(exprI(rec), rec.index))
 
