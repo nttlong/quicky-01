@@ -1,9 +1,17 @@
 import compilers
 import pyquery
-qr=pyquery.query().project(dict(
-   basicSalary="3000*benefit"
-)).match(
-    "x==3"
+qr=pyquery.query().lookup(
+    From="ddd",
+    locaField="vvv",
+    foriegbField="ggg",
+    alias="ggg"
+
+).lookup(
+    From="bbb",
+    pipeline="bbbb",
+    let="bbbb",
+    alias="bbbbb",
+
 )
 
 
