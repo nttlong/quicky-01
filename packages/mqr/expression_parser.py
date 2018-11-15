@@ -36,6 +36,8 @@ def do_part_with_params(expr,*args,**kwargs):
     return expr,params
 
 def to_mongobd(expr,*args,**kwargs):
+    if type(expr) not in [str,unicode]:
+        return expr
     _expr,params = do_part_with_params(expr,*args,**kwargs)
     tree=compilers.compile_expression(_expr)
     return to_mongodb_expr(tree,params,True)
@@ -48,6 +50,8 @@ def to_mongobd_match(expr,*args,**kwargs):
 
 def to_mongodb_expr(fx,params,forSelect=False,forNot=False,prefix=None):
     import re
+    if isinstance(fx,expressions.NumericLiteralExpression):
+        return fx.value
     if isinstance(fx,expressions.UnaryExpression):
         if fx.type=="-":
             return -1*to_mongodb_expr(fx.argument,params,forSelect,True)
@@ -71,14 +75,14 @@ def to_mongodb_expr(fx,params,forSelect=False,forNot=False,prefix=None):
         left = to_mongodb_expr(fx.object, params, forSelect)
         if prefix!=None:
             if fx.property.name:
-                return prefix + left + "." + fx.property.name
+                return prefix + left.name + "." + fx.property.name
             else:
-                return prefix + left + "." + fx.property.raw
+                return prefix + left.name + "." + fx.property.raw
         else:
             if fx.property.name:
-                return left + "." + fx.property.name
+                return left.name + "." + fx.property.name
             else:
-                return left + "." + fx.property.raw
+                return left.name + "." + fx.property.raw
 
     if isinstance(fx,expressions.BinaryExpression):
         right = to_mongodb_expr(fx.right, params, True, False, prefix)
@@ -117,8 +121,8 @@ def to_mongodb_expr(fx,params,forSelect=False,forNot=False,prefix=None):
             }
         return {
             mOp:[
-                to_mongodb_expr(fx.right,params,True,False,"$"),
-                to_mongodb_expr(fx.left,params,True,False,"$")
+                to_mongodb_expr(fx.left,params,True,False,"$"),
+                to_mongodb_expr(fx.right,params,True,False,"$")
             ]
         }
         if fx.type==expressions.expression_types.LOGICAL_EXP:
