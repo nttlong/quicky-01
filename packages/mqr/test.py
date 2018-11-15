@@ -1,3 +1,6 @@
-import funcs
-x=funcs.parse("c==true")
+import compilers
+import expression_parser
+x=compilers.compile_expression("c.a.d")
+# expr,params=expression_parser.parse("$x==@test1",test1=2,username='admin')
 print x
+#print params

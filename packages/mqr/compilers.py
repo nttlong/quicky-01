@@ -1,9 +1,9 @@
-from func_rec import rec_process,BinaryExpression,char_codes,expression_types,binary_ops
-from func_rec import unary_ops,literals,isDecimalDigit,isIdentifierStart,isIdentifierPart
-from func_rec import NumericLiteralExpression,StringLiteralExpression,ArrayExpression
-from func_rec import UnaryExpression,MemberExpression,CallExpression,LiteralExpression,ThisExpression
-from func_rec import IdentifierExpression,ConditionalExpression
-from func_rec import CompoundExpression,BinaryOperatorInfo
+from expressions import rec_process,BinaryExpression,char_codes,expression_types,binary_ops
+from expressions import unary_ops,literals,isDecimalDigit,isIdentifierStart,isIdentifierPart
+from expressions import NumericLiteralExpression,StringLiteralExpression,ArrayExpression
+from expressions import UnaryExpression,MemberExpression,CallExpression,LiteralExpression,ThisExpression
+from expressions import IdentifierExpression,ConditionalExpression
+from expressions import CompoundExpression,BinaryOperatorInfo
 
 def getMaxKeyLen(obj):
     #type: (dict)-> int
@@ -26,6 +26,8 @@ def exprI(rec):
     :param rec:rec_process
     :return:chr
     """
+    if type(rec) is int:
+        raise Exception("e")
     if rec.index>=rec.expr.__len__():
         return None
     return rec.expr[rec.index]
@@ -53,8 +55,6 @@ def gobbleSpaces(rec):
 def gobbleNumericLiteral(rec):
     #type:(rec_process)->NumericLiteralExpression
     number = ''
-    ch = None
-    chCode = None
     while isDecimalDigit(exprICode(rec)):
         number += exprI(rec)
         rec.index += 1
@@ -66,22 +66,25 @@ def gobbleNumericLiteral(rec):
             rec.index += 1
     ch = exprI(rec)
     if ch in ['e','E']:#exponent marker
-        number += exprI(rec.index)
+        number += exprI(rec)
         rec.index += 1
-        ch = exprI(rec.index)
+        ch = exprI(rec)
         if ch in ['+','-']:#exponent sign
-            number += exprI(rec.index)
+            number += exprI(rec)
             rec.index += 1
-        while isDecimalDigit(exprICode(rec.index)):
-            number += exprI(rec.index)
+        while isDecimalDigit(exprICode(rec)):
+            number += exprI(rec)
             rec.index += 1
-
-        if not isDecimalDigit(exprICode(rec.index-1)):
+        _index=rec.index
+        rec.index-=1
+        if not isDecimalDigit(exprICode(rec)):
+            rec.index=_index
             raise Exception('Expected exponent {0} at {1}'.format (number + exprI(rec.index),rec.index))
+        rec.index=_index
     chCode = exprICode(rec)
     #Check to make sure this isn't a variable name that start with a number (123abc)
     if isIdentifierStart(chCode):
-        raise Exception("Variable names cannot start with a number {0} at {1}".format(number + exprI(rec.index),rec.index))
+        raise Exception("Variable names cannot start with a number {0} at {1}".format(number + exprI(rec),rec.index))
     elif chCode == char_codes.PERIOD_CODE:
         raise Exception('Unexpected period {0}'.format(rec.index))
     return NumericLiteralExpression(number)
@@ -119,43 +122,7 @@ def gobbleStringLiteral(rec):
     if not closed:
         raise Exception('Unclosed quote after {0} at {1}"'.format(str , rec.index));
     return   StringLiteralExpression(str,quote)
-"""
-gobbleStringLiteral = function() {
-							 var str = '', quote = exprI(index++), closed = false, ch;
 
-							 while(index < length) {
-								 ch = exprI(index++);
-								 if(ch === quote) {
-									 closed = true;
-									 break;
-								 } else if(ch === '\\') {
-									 // Check for all of the common escape codes
-									 ch = exprI(index++);
-									 switch(ch) {
-										 case 'n': str += '\n'; break;
-										 case 'r': str += '\r'; break;
-										 case 't': str += '\t'; break;
-										 case 'b': str += '\b'; break;
-										 case 'f': str += '\f'; break;
-										 case 'v': str += '\x0B'; break;
-										 default : str += ch;
-									 }
-								 } else {
-									 str += ch;
-								 }
-							 }
-
-							 if(!closed) {
-								 throwError('Unclosed quote after "'+str+'"', index);
-							 }
-
-							 return {
-								 type: LITERAL,
-								 value: str,
-								 raw: quote + str + quote
-							 };
-						 }
-"""
 def gobbleArguments(rec,termination):
 
     args = []
@@ -170,10 +137,10 @@ def gobbleArguments(rec,termination):
         elif rec.ch_i ==char_codes.COMMA_CODE:
             rec.index+=1
         else:
-            node = gobbleExpression(rec)
-            if not node or node.type==expression_types.COMPOUND:
+            rec.node = gobbleExpression(rec)
+            if not rec.node or rec.node.type==expression_types.COMPOUND:
                 raise Exception('Expected comma {)}'.format(rec.index))
-            args.append(node)
+            args.append(rec.node)
 
     if not closed:
         raise Exception('Expected {0} at {1}'.format(chr(termination),rec.index))
@@ -186,13 +153,13 @@ def gobbleArray(rec):
 
 def gobbleGroup(rec):
     rec.index+=1
-    node = gobbleExpression(rec)
+    rec.node = gobbleExpression(rec)
     gobbleSpaces(rec)
     if exprICode(rec)==char_codes.CPAREN_CODE:
         rec.index+=1
-        return node
+        return rec.node
     else:
-        return node
+        return rec.node
         #raise Exception('Unclosed ('+ rec.index.__str__())
 
 def gobbleIdentifier(rec):
@@ -217,36 +184,72 @@ def gobbleIdentifier(rec):
     else:
         return IdentifierExpression(identifier)
 
+"""
+gobbleIdentifier = function() {
+							 var ch = exprICode(index), start = index, identifier;
 
+							 if(isIdentifierStart(ch)) {
+								 index++;
+							 } else {
+								 throwError('Unexpected ' + exprI(index), index);
+							 }
+
+							 while(index < length) {
+								 ch = exprICode(index);
+								 if(isIdentifierPart(ch)) {
+									 index++;
+								 } else {
+									 break;
+								 }
+							 }
+							 identifier = expr.slice(start, index);
+
+							 if(literals.hasOwnProperty(identifier)) {
+								 return {
+									 type: LITERAL,
+									 value: literals[identifier],
+									 raw: identifier
+								 };
+							 } else if(identifier === this_str) {
+								 return { type: THIS_EXP };
+							 } else {
+								 return {
+									 type: IDENTIFIER,
+									 name: identifier
+								 };
+							 }
+						 }
+"""
 
 def gobbleVariable(rec):
     # type:(rec_process)->ArrayExpression
-
+    rec.ch_i = exprICode(rec)
     if rec.ch_i == char_codes.OPAREN_CODE:
-        node = gobbleGroup(rec)
+        rec.node = gobbleGroup(rec)
     else:
-        node = gobbleIdentifier(rec)
+        rec.node = gobbleIdentifier(rec)
     gobbleSpaces(rec)
     rec.ch_i = exprICode(rec)
-    while rec.ch_i ==char_codes.PERIOD_CODE or rec.ch_i ==char_codes.OBRACK_CODE or rec.ch_i ==  char_codes.OPAREN_CODE:
+    while rec.ch_i in [char_codes.PERIOD_CODE,char_codes.OBRACK_CODE,char_codes.OPAREN_CODE]:
         rec.index+=1
         if rec.ch_i ==char_codes.PERIOD_CODE:
             gobbleSpaces(rec)
-            return MemberExpression(False,node,gobbleIdentifier())
+            property=gobbleIdentifier(rec)
+            rec.node= MemberExpression(False,rec.node,property)
 
         elif rec.ch_i ==char_codes.OBRACK_CODE:
-            node = MemberExpression(True, node, gobbleExpression(rec))
+            rec.node = MemberExpression(True, rec.node, gobbleExpression(rec))
             gobbleSpaces(rec)
             rec.ch_i = exprICode(rec)
             if rec.ch_i !=char_codes.CBRACK_CODE:
                 raise Exception('Unclosed ['+ rec.index.__str__())
             rec.index+=1
         elif rec.ch_i == char_codes.OPAREN_CODE:
-            node=CallExpression(gobbleArguments(rec,char_codes.CPAREN_CODE),node)
+            rec.node=CallExpression(gobbleArguments(rec,char_codes.CPAREN_CODE),rec.node)
 
         gobbleSpaces(rec)
         rec.ch_i = exprICode(rec)
-    return node
+    return rec.node
 
 def gobbleToken(rec):
     #type:(rec_process)->rec_process
@@ -348,20 +351,20 @@ def gobbleBinaryExpression(rec):
             right = stack.pop()
             biop = stack.pop().value
             left = stack.pop()
-            node = createBinaryExpression(biop, left, right)
-            stack.append(node)
+            rec.node = createBinaryExpression(biop, left, right)
+            stack.append(rec.node)
 
-        node =gobbleToken(rec)
-        if not node:
+        rec.node =gobbleToken(rec)
+        if not rec.node:
             raise Exception("Expected expression after ".format(biop, rec.index))
-        stack.extend([biop_info, node])
+        stack.extend([biop_info, rec.node])
         biop = gobbleBinaryOp(rec)
     i = stack.__len__() - 1
-    node = stack[i]
+    rec.node = stack[i]
     while i>1:
-        node = createBinaryExpression(stack[i - 1].value, stack[i - 2], node)
+        rec.node = createBinaryExpression(stack[i - 1].value, stack[i - 2], rec.node)
         i -= 2
-    return node
+    return rec.node
 
 def gobbleExpression(rec):
     #type: (rec_process) -> dict
@@ -394,58 +397,26 @@ def gobbleExpression(rec):
             raise Exception("Expected :{0}".format(rec.index))
     else:
         return test
-"""
-gobbleExpression = function() {
-							 var test = gobbleBinaryExpression(),
-								 consequent, alternate;
-							 gobbleSpaces();
-							 if(exprICode(index) === QUMARK_CODE) {
-								 // Ternary expression: test ? consequent : alternate
-								 index++;
-								 consequent = gobbleExpression();
-								 if(!consequent) {
-									 throwError('Expected expression', index);
-								 }
-								 gobbleSpaces();
-								 if(exprICode(index) === COLON_CODE) {
-									 index++;
-									 alternate = gobbleExpression();
-									 if(!alternate) {
-										 throwError('Expected expression', index);
-									 }
-									 return {
-										 type: CONDITIONAL_EXP,
-										 test: test,
-										 consequent: consequent,
-										 alternate: alternate
-									 };
-								 } else {
-									 throwError('Expected :', index);
-								 }
-							 } else {
-								 return test;
-							 }
-						 }
-"""
-def parse(expr):
-    # expr="("+expr+")"
+
+def compile_expression(expr):
+
     rec= rec_process()
     rec.max_unop_len = getMaxKeyLen(unary_ops)
     rec.max_binop_len = getMaxKeyLen(binary_ops)
     rec.index = 0
     rec.length = expr.__len__()
     rec.nodes=[]
-    node=None
+    rec.node=None
     rec.ch_i=None
     rec.expr=expr
     while rec.index < rec.length:
-        rec.ch_i = exprICode(rec)
+        ch_i = exprICode(rec)
         if rec.ch_i ==  char_codes.SEMCOL_CODE or rec.ch_i == char_codes.COMMA_CODE:
             rec.index+=1
         else:
-            node = gobbleExpression(rec)
-            if node:
-                rec.nodes.append(node)
+            rec.node = gobbleExpression(rec)
+            if rec.node:
+                rec.nodes.append(rec.node)
             elif rec.index < rec.length:
                 raise Exception('Unexpected "{0}" at {1}'.format(exprI(rec), rec.index))
 
@@ -454,33 +425,3 @@ def parse(expr):
     else:
         return CompoundExpression(rec.nodes)
 
-"""
-                    while(index < length) {
-						 ch_i = exprICode(index);
-
-						 // Expressions can be separated by semicolons, commas, or just inferred without any
-						 // separators
-						 if(ch_i === SEMCOL_CODE || ch_i === COMMA_CODE) {
-							 index++; // ignore separators
-						 } else {
-							 // Try to gobble each expression individually
-							 if((node = gobbleExpression())) {
-								 nodes.push(node);
-							 // If we weren't able to find a binary expression and are out of room, then
-							 // the expression passed in probably has too much
-							 } else if(index < length) {
-								 throwError('Unexpected "' + exprI(index) + '"', index);
-							 }
-						 }
-					 }
-
-					 // If there's only one expression just try returning the expression
-					 if(nodes.length === 1) {
-						 return nodes[0];
-					 } else {
-						 return {
-							 type: COMPOUND,
-							 body: nodes
-						 };
-					 }
-"""
