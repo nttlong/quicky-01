@@ -4,23 +4,31 @@ import pymongo
 from pymongo import MongoClient
 import pyfuncs
 import pydoc
-X=pydoc.Fields()
-print pyfuncs.toDouble(X.name)
+Fields=pydoc.Fields()
+# print pyfuncs.toDouble(X.name)
+
 # fields=pydoc.Fields()
 # x=pyfuncs.cmp(fields.amount,fields.name)==0
 # print isinstance(x,pydoc.Fields)
 # # c=x.__owner__
 # print x.__tree__
-# cnn=MongoClient(host="localhost",
-#                 port=27017)
-# db=cnn.get_database("lms")
-# db.authenticate(name="sys",password="12345")
-# qr=pyquery.query(db,"test.coll001")
+cnn=MongoClient(host="localhost",
+                port=27017)
+db=cnn.get_database("lms")
+db.authenticate(name="sys",password="12345")
+qr=pyquery.query(db,"test.coll001")
+qr.project({
+    Fields.Users.username:1,
+    Fields.Users.fullName:pyfuncs.concat(Fields.Users.firstName, " ",Fields.Users.lastname)
+})
+
 # qr=qr+2
 #     #.set(x=1,y=2)
 # import pprint
 # items=list(qr.objects)
-# pprint.pprint(list(qr.find_to_objects()))
+import pprint
+x=list(qr.objects)
+pprint.pprint(list(qr.items()))
 
 # ret=qr=pyquery.query(db,"test.coll001").insert(dict(
 #     name=1

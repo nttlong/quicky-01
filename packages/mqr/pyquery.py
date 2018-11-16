@@ -1,6 +1,8 @@
 import expression_parser
 import mobject
 import pycollection
+import pydoc
+import pyfuncs
 class query():
     def __init__(self,*args,**kwargs):
         if kwargs=={}:
@@ -31,9 +33,23 @@ class query():
         _project={}
         if(isinstance(selectors,dict)):
             for k,v in selectors.items():
-                _project.update({
-                    k:expression_parser.to_mongobd(v,*args,**kwargs)
-                })
+                if isinstance(k,pydoc.Fields):
+                    if type(v) in [str,unicode]:
+                        _project.update({
+                            k.__name__: expression_parser.to_mongobd(v, *args, **kwargs)
+                        })
+                    elif isinstance(v,pydoc.Fields):
+                        _project.update({
+                            k.__name__: pydoc.get_field_expr(v)
+                        })
+                    else:
+                        _project.update({
+                            k.__name__:v
+                        })
+                else:
+                    _project.update({
+                        k:expression_parser.to_mongobd(v,*args,**kwargs)
+                    })
             self.pipeline.append({
                 "$project":_project
             })
@@ -124,6 +140,14 @@ class query():
         return ret
     def add_to_set(self,*args,**kwargs):
         return self.addToSet(*args,**kwargs)
+    @property
+    def items(self):
+        return self.coll.aggregate(self.pipeline)
+    @property
+    def objects(self):
+        for item in self.items:
+            yield mobject.dynamic_object(item)
+
 
 
 
