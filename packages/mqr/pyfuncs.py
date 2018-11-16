@@ -49,14 +49,14 @@ def regex(field, partern, ignore_case=True):
     import pydoc
     if  isinstance(field,pydoc.Fields):
         if ignore_case:
-            field.__owner__.__tree__={
+            field.__tree__={
                 field.__name__:{
                     "$regex":re.compile(partern,re.IGNORECASE)
                 }
             }
             return field
         else:
-            field.__owner__.__tree__ = {
+            field.__tree__ = {
                 field.__name__: {
                     "$regex": re.compile(partern)
                 }

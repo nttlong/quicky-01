@@ -17,10 +17,11 @@ cnn=MongoClient(host="localhost",
 db=cnn.get_database("lms")
 db.authenticate(name="sys",password="12345")
 qr=pyquery.query(db,"test.coll001")
-qr.project({
-    Fields.Users.username:1,
-    Fields.Users.fullName:pyfuncs.concat(Fields.Users.firstName, " ",Fields.Users.lastname)
-})
+qr=qr.where(pyfuncs.regex(Fields.fx,"^312313$"))
+# qr.project({
+#     Fields.Users.username:1,
+#     Fields.Users.fullName:pyfuncs.concat(Fields.Users.firstName, " ",Fields.Users.lastname)
+# })
 
 # qr=qr+2
 #     #.set(x=1,y=2)
@@ -28,7 +29,7 @@ qr.project({
 # items=list(qr.objects)
 import pprint
 x=list(qr.objects)
-pprint.pprint(list(qr.items()))
+pprint.pprint(list(qr.items))
 
 # ret=qr=pyquery.query(db,"test.coll001").insert(dict(
 #     name=1
