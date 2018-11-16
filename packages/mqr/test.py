@@ -14,8 +14,8 @@ Fields=pydoc.Fields()
 # print x.__tree__
 cnn=MongoClient(host="localhost",
                 port=27017)
-db=cnn.get_database("lms")
-db.authenticate(name="sys",password="12345")
+db=cnn.get_database("hrm")
+db.authenticate(name="root",password="123456")
 qr=pyquery.query(db,"test.coll001")
 qr=qr.where(pyfuncs.regex(Fields.fx,"^312313$"))
 # qr.project({

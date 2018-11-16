@@ -1,6 +1,14 @@
 import re
 import json
 get_field_expr=lambda x:"$"+x.__name__ if x.__tree__==None else x.__tree__
+def compile(expression,*args,**kwargs):
+    if isinstance(expression,Fields):
+        return get_field_expr(expression)
+    if type(expression) in [str,unicode]:
+        import expression_parser
+        return expression_parser.to_mongobd(expression,*args,**kwargs)
+    if isinstance(expression,dict):
+        return expression
 def get_str(d,t=0):
     x=""
     for i in range(0,t,1):
@@ -101,4 +109,5 @@ class Fields(BaseFields):
 
 
 def fields():
+    # type: () -> object
     return Fields()
