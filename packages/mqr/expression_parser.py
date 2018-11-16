@@ -69,7 +69,7 @@ def to_mongodb_expr(fx,params,forSelect=False,forNot=False,prefix=None):
         if prefix!=None:
             return prefix+fx.name
         else:
-            return fx
+            return fx.name
 
     if isinstance(fx,expressions.MemberExpression):
         left = to_mongodb_expr(fx.object, params, forSelect)
