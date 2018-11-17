@@ -18,6 +18,9 @@ db=cnn.get_database("hrm")
 db.authenticate(name="root",password="123456")
 qr=pyquery.query(db,"test.coll001")
 qr=qr.where(pyfuncs.regex(Fields.fx,"^312313$"))
+
+
+
 # qr.project({
 #     Fields.Users.username:1,
 #     Fields.Users.fullName:pyfuncs.concat(Fields.Users.firstName, " ",Fields.Users.lastname)

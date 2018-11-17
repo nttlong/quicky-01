@@ -1,6 +1,23 @@
 import re
 import json
-get_field_expr=lambda x:"$"+x.__name__ if x.__tree__==None else x.__tree__
+def get_field_expr(x,not_prefix=False):
+    if isinstance(x,Fields):
+        if x.__tree__ == None:
+            if x.__name__ == None:
+                return "this"
+            else:
+                if not not_prefix:
+                    return "$"+x.__name__
+                else:
+                    return x.__name__
+        else:
+            return x.__tree__
+    elif type(x) in [str,unicode]:
+        import expression_parser
+        return expression_parser.to_mongobd(x)
+    else:
+        return x
+
 def compile(expression,*args,**kwargs):
     if isinstance(expression,Fields):
         return get_field_expr(expression)
@@ -18,7 +35,7 @@ def get_str(d,t=0):
         for k,v in d.items():
             ret+=x+"\t"+'"'+k+'":'+get_str(v,t+1)+",\n"
         ret = ret[0:ret.__len__() - 2]
-        ret += "\n"+x+"\t}"
+        ret += "\n\t}"
         return ret
     elif type(d) is list:
         ret=x+"[\n"
@@ -26,15 +43,12 @@ def get_str(d,t=0):
             ret+=x+"\t"+get_str(item,t+1)+",\n"
         ret=ret[0:ret.__len__()-2]+x+"\n"+x+"\t"+"]"
         return ret
-
-
     elif type(d) is type(re.compile("")):
-        return json.dumps({
-            "$regex":d.pattern
-        })
+        return d.pattern
+    elif type(d) in [str,unicode]:
+        return '"'+d+'"'
     else:
         return d.__str__()
-
 
 
 
@@ -45,6 +59,22 @@ def __apply__(fn,a,b):
             fn: [get_field_expr(a), get_field_expr(b)]
         }
         setattr(a,"__tree__",ret_tree)
+    elif type(b) in [str,unicode]:
+        import expression_parser
+        ret_tree = {
+            fn: [get_field_expr (a), expression_parser.to_mongobd (b)]
+        }
+        setattr (a, "__tree__", ret_tree)
+    elif isinstance(b,tuple) and b.__len__()>0:
+        _b=b[0]
+        _params=[]
+        for i in range(1,b.__len__(),1):
+            _params.append(b[i])
+        import expression_parser
+        ret_tree = {
+            fn: [get_field_expr (a), expression_parser.to_mongobd (_b,*tuple(_params))]
+        }
+        setattr (a, "__tree__", ret_tree)
     else:
         ret_tree = {
             fn: [get_field_expr(a), b]
@@ -60,6 +90,7 @@ class BaseFields(object):
             self.__name__=data
         else:
             self.__tree__=data
+
 class Fields(BaseFields):
     def __getattr__(self, item):
         if self.__name__!=None:
@@ -96,8 +127,40 @@ class Fields(BaseFields):
         return __apply__("$gte", self, other)
     def __gt__(self, other):
         return __apply__("$gt", self, other)
-    def __call__(self, *args, **kwargs):
-        x=args
+    def __and__(self, other):
+        return __apply__ ("$and", self, other)
+    def __or__(self, other):
+        return __apply__ ("$or", self, other)
+
+    def __lshift__(self, other):
+        import expression_parser
+        if type(other) in [str,unicode]:
+            ret =Fields()
+            ret.__tree__=get_field_expr (other, True)
+            ret.__dict__.update ({
+                "__alias__":self.__name__
+            })
+            return ret
+        elif isinstance(other,tuple) and other.__len__()>0:
+            _other=other[0]
+            _param=tuple([x for x in other if other.index(x)>0])
+            ret = Fields ()
+            ret.__tree__ = expression_parser.to_mongobd (_other,*_param)
+            ret.__dict__.update ({
+                "__alias__": self.__name__
+            })
+            return ret
+
+        elif isinstance(other,Fields):
+            other.__dict__.update({
+                "__alias__":get_field_expr(self,True)
+            })
+            return other
+    def And(self,*args,**kwargs):
+        ret=[]
+        for item in args:
+            ret.append(get_field_expr(item))
+        return __apply__("$and",self,ret)
     def __repr__(self):
         if BaseFields(self)==None:
             return "root"
@@ -105,9 +168,11 @@ class Fields(BaseFields):
             return self.__name__
         else:
             return get_str(self.__tree__)
+    def __coerce__(self, other):
+        x=other
 
 
-
+document=Fields()
 def fields():
     # type: () -> object
     return Fields()
