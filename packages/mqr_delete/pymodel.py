@@ -40,12 +40,13 @@ class BaseModel(object):
     def __init__(self):
         self.__dict__={
             "__fields_types__":{},
-            "__fields_docs__":pydoc.Fields()
+            "__fields_docs__":pydoc.Fields(),
+            "__model_name__":None
         }
 
     def __getattr__(self, field):
-        if not self.__dict__["__fields_types__"].has_key(field):
-            raise Exception("{0} was not found ".format(field))
+        # if not self.__dict__["__fields_types__"].has_key(field):
+        #     raise Exception("{0} was not found ".format(field))
         items = field.split('.')
         ret = self.__dict__["__fields_docs__"]
         for item in items:
@@ -71,6 +72,14 @@ class BaseModel(object):
                     key+"."+k:v
                 })
                 ___consume_attr_field__(self.__dict__["__fields_types__"],key+"."+k,v)
+
+    def set_model_name(self,name):
+        self.__dict__.update({
+            "__model_name__":name
+        })
+    def get_model_name(self):
+        return self.__dict__.get("__model_name__",None)
+
 
 
         

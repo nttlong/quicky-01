@@ -9,11 +9,22 @@ class UserInfo(pymodel.BaseEmbededDoc):
 class Users(pymodel.BaseModel):
     def __init__(self):
         self.name=UserInfo()
-qr=pyquery.query("employess")
+
+
+
+class Employees(pymodel.BaseModel):
+   def __init__(self):
+        import datetime
+        self.set_model_name("employees")
+        self.firstname=str
+        self.lastname=str
+        self.bithdate=datetime.datetime
+employees=Employees()
+qr=pyquery.query(employees.get_model_name())
 qr.project(
-    pydoc.document.FirstName,
-    pydoc.document.LastName,
-    pydoc.document.FullName<<pyfuncs.concat(pydoc.document.FirstName,' ',pydoc.document.LastName)
+    employees.firstname,
+    employees.lastname
+
 )
 print qr.pipeline
 # user=Users()
