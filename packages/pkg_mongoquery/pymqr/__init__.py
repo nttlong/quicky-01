@@ -1,8 +1,23 @@
 def create_model(name,indexes,fields):
-    # type: (str, list, object) -> object
+    """
+    :param name:
+    :param indexes:
+    :param fields:
+    :return:
+
+    """
     import pymodel
+    # type: (str, list(pymodel.Index), object) -> object
     return pymodel.create_model(name,indexes,fields)
 def query(*args,**kwargs):
+    # type: (object, object) -> pyquery.query
+    """
+
+    :param args:
+    :param kwargs:
+    :return:
+    create queryable for monongodb with aggregate pipeline support and CRUID opreator
+    """
     import pyquery
     return pyquery.query(*args,**kwargs)
 def documents():

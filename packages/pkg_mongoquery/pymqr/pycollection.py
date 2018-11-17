@@ -1,4 +1,22 @@
 import mobject
+def __build_data__(data):
+    ret ={}
+    if isinstance(data,dict):
+        import pydoc
+        for k,v in data.items():
+            if isinstance(k,pydoc.Fields):
+                ret.update({
+                    pydoc.get_field_expr(k,True):__build_data__(v)
+                })
+            else:
+                ret.update ({
+                    k: __build_data__ (v)
+                })
+    else:
+        return data
+    return ret
+
+
 class entity():
     def __init__(self,owner,where={}):
         import pyquery
@@ -17,6 +35,7 @@ class entity():
                 self.__insert_data__=list(args)
         else:
             self.__insert_data__=kwargs
+        self.__insert_data__ = __build_data__(self.__insert_data__)
         return self
     def find(self):
         return self.owner.coll.find(self.__where__)

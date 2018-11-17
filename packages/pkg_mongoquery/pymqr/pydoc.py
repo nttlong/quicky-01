@@ -93,10 +93,26 @@ class BaseFields(object):
 
 class Fields(BaseFields):
     def __getattr__(self, item):
-        if self.__name__!=None:
-            return Fields(self.__name__+"."+item)
+        owner = super(Fields,self)
+        if item in ["__tree__","__name__","__alias__"]:
+            return owner.__dict__.get(item,None)
+        if hasattr(owner,"__name__"):
+            return Fields(getattr(owner,"__name__")+"."+item)
         else:
             return Fields(item)
+    def __setattr__(self, key, value):
+        owner = super(Fields,self).__dict__
+        if key in ["__tree__","__name__","__alias__"]:
+            return owner.update({
+                key:value
+            })
+        if not owner.has_key("__data__"):
+            owner.update({
+                "__data__":{}
+            })
+        owner["__data__"].update({
+            key:value
+        })
     def __str__(self):
         if BaseFields(self)==None:
             return "root"
@@ -131,7 +147,6 @@ class Fields(BaseFields):
         return __apply__ ("$and", self, other)
     def __or__(self, other):
         return __apply__ ("$or", self, other)
-
     def __lshift__(self, other):
         import expression_parser
         if type(other) in [str,unicode]:
@@ -156,18 +171,14 @@ class Fields(BaseFields):
                 "__alias__":get_field_expr(self,True)
             })
             return other
-    # def And(self,*args,**kwargs):
-    #     ret=[]
-    #     for item in args:
-    #         ret.append(get_field_expr(item))
-    #     return __apply__("$and",self,ret)
-    # def __repr__(self):
-    #     if BaseFields(self)==None:
-    #         return "root"
-    #     if self.__tree__==None:
-    #         return self.__name__
-    #     else:
-    #         return get_str(self.__tree__)
+    def __iand__(self, other):
+        x= other
+    def __getnewargs__(self):
+        x=self
+    def __rlshift__(self, other):
+        x=other
+
+
 
 
     def __coerce__(self, other):
