@@ -156,20 +156,34 @@ class Fields(BaseFields):
                 "__alias__":get_field_expr(self,True)
             })
             return other
-    def And(self,*args,**kwargs):
-        ret=[]
-        for item in args:
-            ret.append(get_field_expr(item))
-        return __apply__("$and",self,ret)
-    def __repr__(self):
-        if BaseFields(self)==None:
-            return "root"
-        if self.__tree__==None:
-            return self.__name__
-        else:
-            return get_str(self.__tree__)
+    # def And(self,*args,**kwargs):
+    #     ret=[]
+    #     for item in args:
+    #         ret.append(get_field_expr(item))
+    #     return __apply__("$and",self,ret)
+    # def __repr__(self):
+    #     if BaseFields(self)==None:
+    #         return "root"
+    #     if self.__tree__==None:
+    #         return self.__name__
+    #     else:
+    #         return get_str(self.__tree__)
+
+
     def __coerce__(self, other):
         x=other
+    def __call__(self, *args, **kwargs):
+        if args.__len__()==1:
+            if self.__name__ != None:
+                return Fields (self.__name__ + "." + args[0].__str__())
+            else:
+                return Fields ("this"+self.__name__ + "." + args[0].__str__())
+        return  None
+
+    def __delslice__(self, i, j):
+        x=1
+    def __get__(self, instance, owner):
+        x = 1
 
 
 document=Fields()

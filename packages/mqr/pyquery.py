@@ -15,6 +15,59 @@ class query():
                 hasattr(args[0],"database"):
                 self.coll=args[0]
         self.pipeline=[]
+    def stages(self,*args,**kwargs):
+        import  pyaggregatebuilders
+        for item in args:
+            if isinstance(item,dict):
+                self.pipeline.append(item)
+            elif isinstance(item,pyaggregatebuilders.Match):
+                self.pipeline.append({
+                    "$match":item.stage
+                })
+            elif isinstance(item,pyaggregatebuilders.Project):
+                self.pipeline.append({
+                    "$project":item.stage
+                })
+            elif isinstance(item,pyaggregatebuilders.AddFields):
+                self.pipeline.append({
+                    "$addFields":item.stage
+                })
+            elif isinstance(item,pyaggregatebuilders.Lookup):
+                self.pipeline.append({
+                    "$lookup":item.stage
+                })
+            elif isinstance(item,pyaggregatebuilders.Unwind):
+                self.pipeline.append({
+                    "$unwind":item.stage
+                })
+            elif isinstance(item,pyaggregatebuilders.BucketAuto):
+                self.pipeline.append({
+                    "$bucketAuto":item.stage
+                })
+            elif isinstance(item,pyaggregatebuilders.Bukcet):
+                self.pipeline.append({
+                    "$bucket":item.stage
+                })
+            elif isinstance(item,pyaggregatebuilders.Count):
+                self.pipeline.append({
+                    "$count":item.stage
+                })
+            elif isinstance(item,pyaggregatebuilders.Facet):
+                self.pipeline.append({
+                    "$facet":item.stage
+                })
+            elif isinstance(item,pyaggregatebuilders.Group):
+                self.pipeline.append({
+                    "$group":item.stage
+                })
+            elif isinstance(item,pyaggregatebuilders.ReplaceRoot):
+                self.pipeline.append({
+                    "$replaceRoot":item.stage
+                })
+
+        return self
+
+
     def where(self,expr,*args,**kwargs):
         #type:()->pycollection.entity
         if type(expr) is [str,unicode]:
@@ -81,30 +134,74 @@ class query():
     def add_fields(self,fields,*args,**kwargs):
         return self.addFields(fields,*args,**kwargs)
     def match(self,expr,*args,**kwargs):
-        self.pipeline.append({
-            "$match":expression_parser.to_mongobd_match(expr,*args,**kwargs)
-        })
+        import pyaggregatebuilders
+        self.stages(
+            pyaggregatebuilders.Match(expr,*args,**kwargs)
+        )
         return self
-    def lookup(self,*args,**kwargs):
+    def lookup(self,coll,local_field_or_let,foreign_field_or_pipeline,alias):
+        import pyaggregatebuilders
+        self.stages(pyaggregatebuilders.Lookup(
+            coll,
+            local_field_or_let,
+            foreign_field_or_pipeline,
+            alias))
         return self
-    def bucketAuto(self,groupBy,buckets,output,granularity,*args,**kwargs):
+    def bucketAuto(self,groupBy,buckets,output,granularity=None,*args,**kwargs):
+        import pyaggregatebuilders
+        self.stages (pyaggregatebuilders.BucketAuto(
+            groupBy,
+            buckets,
+            output,
+            granularity,
+            *args,
+            **kwargs
+           ))
         return self
-    def bucket_auto(self,groupBy,buckets,output,granularity,*args,**kwargs):
+    def bucket_auto(self,groupBy,buckets,output,granularity=None,*args,**kwargs):
         return self.bucketAuto(groupBy,buckets,output,granularity,*args,**kwargs)
     def bucket(self,groupBy,boundaries,default,output,*args,**kwargs):
+        import pyaggregatebuilders
+        self.stages (pyaggregatebuilders.Bukcet(
+            groupBy,
+            boundaries,
+            default,
+            output,
+            *args,
+            **kwargs
+        ))
         return self
-    def count(self,field=None):
-        if field==None:
-            field="ret"
-        self.pipeline.append({
-            "$count":field
-        })
+        return self
+    def count(self,field=None,*args,**kwargs):
+        import pyaggregatebuilders
+        self.stages(pyaggregatebuilders.Count(
+            field,
+            *args,
+            **kwargs
+        ))
         return self
     def facet(self,*args,**kwargs):
+        import pyaggregatebuilders
+        self.stages(pyaggregatebuilders.Facet(
+            *args,**kwargs
+        ))
         return self
     def group(self,selectors, _id=None,*args,**kwargs):
+        import pyaggregatebuilders
+        self.stages(pyaggregatebuilders.Group(
+            _id,
+            selectors,
+            *args,
+            **kwargs
+        ))
         return self
-    def replaceRoot(self):
+    def replaceRoot(self,expr,*args,**kwargs):
+        import pyaggregatebuilders
+        self.stages(pyaggregatebuilders.ReplaceRoot(
+            expr,
+            *args,
+            **kwargs
+        ))
         return self
     def find(self):
         return self.coll.find()
