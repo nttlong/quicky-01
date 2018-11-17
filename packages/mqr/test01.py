@@ -10,22 +10,11 @@ class Users(pymodel.BaseModel):
     def __init__(self):
         self.name=UserInfo()
 qr=pyquery.query("employess")
-qr.stages(pyaggregatebuilders.Project(
-    pydoc.document.fullName<<pyfuncs.concat(pydoc.document.first_name,' ',pydoc.document.last_name),
-
-),
-pyaggregatebuilders.Match(
-    pyfuncs.regex(pydoc.document.fullName,"jonny")
-),
-pyaggregatebuilders.Lookup(
-    "test",
-    pydoc.document.Name.X,
-    pyquery.query().stages(
-        pyaggregatebuilders.Match(pydoc.document.names(0)=='12345')
-    ),
-    "x"
-),
-pyaggregatebuilders.Count())
+qr.project(
+    pydoc.document.FirstName,
+    pydoc.document.LastName,
+    pydoc.document.FullName<<pyfuncs.concat(pydoc.document.FirstName,' ',pydoc.document.LastName)
+)
 print qr.pipeline
 # user=Users()
 # c=pydoc.document.nam + pydoc.document.x>("1+{0}+3",15)

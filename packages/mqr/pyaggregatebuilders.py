@@ -10,13 +10,91 @@ class PipelineStage(object):
             self.__stage__={}
         return self.__stage__
 class Project(PipelineStage):
-    def __init__(self,*args,**kwargs):
+    def __parse__(self,data):
         import pydoc
-        super(Project,self).__init__()
-        data=kwargs
+        import expression_parser
+        ret = {}
+        if isinstance(data,dict):
+            for k,v in data.items():
+                if isinstance(v,pydoc.Fields):
+                    ret.update({
+                        k:pydoc.get_field_expr(v)
+                    })
+                elif isinstance(v,dict):
+                    ret.update({
+                        k:self.__parse__(v)
+                    })
+                elif isinstance(v,tuple):
+                    _v=v[0]
+                    _p=[x for x in v if v.index(x)>0]
+                    ret.update({
+                        k:expression_parser.to_mongobd()
+                    })
+                elif isinstance(v,pydoc.Fields):
+                    if v.__dict__.has_key("__alias__"):
+                        ret.update({
+                            v.__dict__["__alias__"]:pydoc.get_field_expr(v)
+                        })
+                    else:
+                        ret.update({
+                            pydoc.get_field_expr(v,True):1
+                        })
+        return ret
+
+    def __init__(self,*args,**kwargs):
+
+        import pydoc
+        import expression_parser
+        self.__stage__ = {}
+        data = kwargs
         if args.__len__()>0:
             for item in args:
-                self.__add_item__(item)
+                if type(item) in[str,unicode]:
+                    self.__stage__.update({
+                        expression_parser.to_mongobd(item):1
+                    })
+                elif isinstance(item,tuple):
+                    _v = item[0]
+                    _p =tuple([x for x in item if item.index(x)>0])
+                    self.__stage__.update({
+                        expression_parser.to_mongobd(_v,*_p):1
+                    })
+                elif isinstance(item,dict):
+                    self.__stage__.update(self.__parse__(item))
+                elif isinstance(item,pydoc.Fields):
+                    if item.__dict__.has_key("__alias__"):
+                        self.__stage__.update({
+                            item.__dict__["__alias__"]:pydoc.get_field_expr(item)
+                        })
+                    else:
+                        self.__stage__.update({
+                            pydoc.get_field_expr(item,True):1
+                        })
+            return
+
+            data =args[0]
+
+        for k,v in data.items():
+            if type(v) in [str,unicode]:
+                self.__stage__.update({
+                    k:expression_parser.to_mongobd(v)
+                })
+            elif isinstance(v,tuple):
+                _v = v[0]
+                _p=tuple([x for x in v if v.index(x)>0])
+                self.__stage__.update({
+                    k:expression_parser.to_mongobd(_v,*_p)
+                })
+            elif isinstance(v,pydoc.Fields):
+                if v.__dict__.has_key("__alias__"):
+                    self.__stage__.update({
+                        k:pydoc.get_field_expr(v,True)
+                    })
+                else:
+                    self.__stage__.update({
+                        k:pydoc.get_field_expr(v,True)
+                    })
+
     def __add_item__(self,item):
         import pydoc
         if item.__dict__.has_key ("__alias__"):
