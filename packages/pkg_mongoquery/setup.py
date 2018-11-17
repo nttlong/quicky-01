@@ -1,9 +1,9 @@
 from distutils.core import setup
 
 setup (
-    name='mongoquery',
-    version='1.0.0.0',
-    packages=['mqr'],
+    name='pymqr',
+    version='1.0.0.1',
+    packages=['pymqr'],
     url='',
     license='',
     author='nttlong',
