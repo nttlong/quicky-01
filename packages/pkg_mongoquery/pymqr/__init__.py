@@ -1,4 +1,11 @@
-def create_model(name,indexes,fields):
+VERSION = [1,0,0,"beta",1]
+def get_version():
+    return VERSION[0].__str__()+\
+           "."+VERSION[1].__str__()+\
+           "."+VERSION[2].__str__()+\
+           "."+VERSION[3].__str__()+\
+           "."+VERSION[4].__str__()
+def create_model(name,required,indexes,fields):
     """
     :param name:
     :param indexes:
@@ -7,8 +14,8 @@ def create_model(name,indexes,fields):
 
     """
     import pymodel
-    # type: (str, list(pymodel.Index), object) -> object
-    return pymodel.create_model(name,indexes,fields)
+    # type: (str,object, list(pymodel.Index), object) -> object
+    return pymodel.create_model(name,required,indexes,fields)
 def query(*args,**kwargs):
     # type: (object, object) -> pyquery.query
     """
@@ -36,3 +43,7 @@ def compile(exr):
     return exr.__tree__
 funcs=mongodb_functions()
 doc=documents()
+from pymodel import Index,IndexOption,FieldInfo
+def create_index(fields,options):
+    import pymodel
+    return pymodel.Index(fields,options)

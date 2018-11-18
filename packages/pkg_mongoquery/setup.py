@@ -1,8 +1,8 @@
 from distutils.core import setup
-
+import pymqr
 setup (
     name='pymqr',
-    version='1.0.0.1',
+    version=pymqr.get_version(),
     packages=['pymqr'],
     url='',
     license='',
