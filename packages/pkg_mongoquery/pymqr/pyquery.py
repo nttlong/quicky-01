@@ -254,6 +254,7 @@ class query ():
         ret = pycollection.entity (self)
         ret.set (*args, **kwargs)
         return ret
+
     def inc(self, *args, **kwargs):
         ret = pycollection.entity ()
         ret.inc (*args, **kwargs)
@@ -263,28 +264,34 @@ class query ():
         ret = pycollection.entity ()
         ret.inc (*args, **kwargs)
         return ret
+
     def push(self, *args, **kwargs):
-        ret = pycollection.entity ()
+        ret = pycollection.entity (self)
         ret.push (*args, **kwargs)
         return ret
+
     def pull(self, expr, *args, **kwargs):
-        ret = pycollection.entity ()
+        ret = pycollection.entity (self)
         ret.pull (expr, *args, **kwargs)
         return ret
+
     def addToSet(self, *args, **kwargs):
         ret = pycollection.entity ()
         ret.addToSet (*args, **kwargs)
         return ret
+
     def add_to_set(self, *args, **kwargs):
         return self.addToSet (*args, **kwargs)
 
     @property
     def items(self):
         return self.coll.aggregate (self.pipeline)
+
     @property
     def objects(self):
         for item in self.items:
             yield mobject.dynamic_object (item)
+
     def get_page(self, page_size, page_index):
         _pipeline = [x for x in self.pipeline]
         _pipeline.append ({
@@ -309,21 +316,9 @@ class query ():
             })
             ret.items = list (self.coll.aggregate (self.pipeline))
             return ret
+
     def get_page_of_object(self, page_size, page_index):
         import mobject
         ret = self.get_page (page_size, page_index)
         ret.items = [mobject.dynamic_object (x) for x in ret.items]
         return ret
-
-
-
-
-
-
-
-
-
-
-
-
-
