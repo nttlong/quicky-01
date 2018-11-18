@@ -154,6 +154,7 @@ class FieldInfo (object):
         self.required = required
         self.detail = detail
 
+
         if not isinstance (fieldType, type):
             raise Exception ("'fieldType' must be type, not value")
         self.fieldType = fieldType
@@ -211,6 +212,10 @@ def create_model(name, required, indexes, fields):
         __models__.update ({
             name: instance_model
         })
+    doc = Document(name,None)
+    __create_doc__(doc,instance_model.fields)
+    setattr(documents,name,doc)
+
     return instance_model
 
 
@@ -219,6 +224,157 @@ def get_model(name):
     if __models__ == None:
         return None
     return __models__.get (name, None)
+
+import mobject
+documents = mobject.dynamic_object({})
+__doc_dict__ = {}
+def __create_instance_from_type__(data,data_type):
+    ret =DocumentInstance(data.__name__)
+    for k,v in data.__dict__.items():
+        if not (k.__len__()>2 and k[0:2]=="__" and k[k.__len__()-2:k.__len__()]=="__"):
+            if isinstance(v,Document):
+                master_data_type,data_type = getattr(data,k).__dict__["__dict__"]["__data_type__"]
+                if master_data_type == list:
+                    setattr (ret, k,([], __create_instance_from_type__ (v, data_type)))
+                else:
+                    setattr(ret,k,(master_data_type,__create_instance_from_type__(v,data_type)))
+            elif isinstance(v,tuple):
+                setattr (ret, k, v[0])
+            else:
+                setattr(ret,k,v)
+    ret.__dict__.update({
+        "__is_init_complete__":True
+    })
+    return ret
+
+class BaseDocumentInstance(object):
+    def __init__(self,name,*args,**kwargs):
+        self.__dict__ = {
+            "__type__":{},
+            "__is_in_init__":True,
+            "__name__":name
+        }
+
+        self.__is_in_init__ = True
+class DocumentInstance(BaseDocumentInstance):
+    def __setattr__(self, key, value):
+        ancestor = super(DocumentInstance,self)
+        if key =="__dict__":
+            ancestor.__dict__.update(value)
+            return
+        if key in [ "__type__", "__is_in_init__"]:
+            ancestor.__dict__.update({
+                key:value
+            })
+        is_init_complete = ancestor.__dict__.get ("__is_init_complete__", False)
+        if isinstance(value,tuple):
+            if value[0]==[]:
+                if ancestor.__dict__.get ("__type__", None) == None:
+                    ancestor.__dict__.update ({
+                        "__type__": {}
+                    })
+                ancestor.__dict__["__type__"].update ({
+                    key: list
+                })
+                ancestor.__dict__.update ({
+                    key: []
+                })
+                return
+
+        if isinstance(value,DocumentInstance):
+            if not is_init_complete:
+                if ancestor.__dict__.get("__type__",None) == None:
+                    ancestor.__dict__.update({
+                        "__type__":{}
+                    })
+                ancestor.__dict__["__type__"].update ({
+                    key: dict
+                })
+            ancestor.__dict__.update({
+                key:value
+            })
+
+        else:
+
+            if not is_init_complete:
+                if ancestor.__dict__.get("__type__",None) == None:
+                    ancestor.__dict__.update({
+                        "__type__":{}
+                    })
+                ancestor.__dict__.update ({
+                    key: None
+                })
+                if value == list:
+                    x= value
+                ancestor.__dict__["__type__"].update({
+                    key:value
+                })
+
+            else:
+                if not ancestor.__dict__["__type__"].has_key(key):
+                    raise Exception("'{0}' was not found".format(key))
+                data_type = ancestor.__dict__["__type__"][key]
+                if type(value) is data_type:
+                    if data_type == dict:
+                        if isinstance(value,DocumentInstance):
+                            ancestor.__dict__.update ({
+                                key: __create_instance_from_type__ (v)
+                            })
+                        else:
+                            raise Exception("{0} must be DocumentInstance of {0}".format(ancestor.__dict__["__name__"]+"."+key))
+                    elif type == list:
+                        ret_list =[]
+                        for item in value:
+                            ret_list.append(__create_instance_from_type__)
+                    else:
+                        ancestor.__dict__.update ({
+                            key: value
+                        })
+                else:
+                    raise Exception("{0} is not {1}".format(value,data_type))
+
+
+
+
+
+
+class BaseDocument(object):
+    def __init__(self,name,data_type):
+        self.__dict__ = {
+            "__type__": {},
+            "__doc__": pydoc.Fields (),
+            "__data_type__":data_type
+        }
+        self.__name__ = name
+class Document(BaseDocument):
+    def __setattr__(self, key, value):
+        ancestor = super(Document,self)
+        ancestor.__dict__.update({key:value})
+    def __getattr__(self, item):
+        owner = super (Document, self)
+        if item == "__dict__":
+            return owner.__getattribute__ (item)
+        else:
+            return owner.__dict__.get (item)
+    def field(self):
+        return pydoc.Fields()
+    def object(self):
+        return __create_instance_from_type__(self,None)
+
+
+
+
+def __create_doc__(doc,fields):
+    for k,v in fields.items():
+        sub_type = object
+        if isinstance(v.detail,type):
+            sub_type=v.detail
+        setattr (doc, k, (v.fieldType,sub_type))
+        if v.detail != None:
+            sub_doc = Document(doc.__name__+"."+k,(v.fieldType,sub_type))
+            _p = getattr(doc,k)
+            __create_doc__(sub_doc,v.detail)
+            setattr(doc,k,sub_doc)
 
 
 

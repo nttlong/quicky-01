@@ -22,42 +22,46 @@ model = pymqr.create_model(
         )
     ],
     dict(
-        Username=pymqr.FieldInfo(str),
-        Email=str,
-        PasswordSalt=str,
-        HashPassword=str,
-        LoginTimes=[datetime.datetime],
-        Profile=dict(
-            FirstName=str,
-            LastName=str,
-            BirthDate=datetime.datetime
-        ),
+        # Username=pymqr.FieldInfo(str),
+        # Email=str,
+        # PasswordSalt=str,
+        # HashPassword=str,
+        # LoginTimes=[datetime.datetime],
+        # Profile=dict(
+        #     FirstName=str,
+        #     LastName=str,
+        #     BirthDate=datetime.datetime
+        # ),
         Workings=pymqr.FieldInfo(
             list,
             [
                 "Year",
                 "CompanyName"
             ],
-            dict(
-                Year = int,
-                CompanyName = str,
-                Description = str
+            dict (
+                Year=int,
+                CompanyName=str,
+                Description=str
             )
         ),
-        PasswordChangeList = pymqr.FieldInfo(
-            list,
-            [
-                "OldPassword",
-                "Time",
-                "UtcTime"
-            ],
-            dict(
-                OldPassword = str,
-                Time = datetime.datetime,
-                UtcTime = datetime.datetime
-            )
-        )
+        # PasswordChangeList = pymqr.FieldInfo(
+        #     list,
+        #     [
+        #         "OldPassword",
+        #         "Time",
+        #         "UtcTime"
+        #     ],
+        #     dict (
+        #         OldPassword=str,
+        #         Time=datetime.datetime,
+        #         UtcTime=datetime.datetime
+        #     )
+        # )
     )
 
 )
-x = model
+x = pymqr.pymodel.documents.users.object()
+x.Profile=dict(
+    username="312321"
+)
+print x
