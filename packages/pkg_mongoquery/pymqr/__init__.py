@@ -1,4 +1,4 @@
-VERSION = [1,0,0,"beta",3]
+VERSION = [1,0,0,"beta",4]
 def get_version():
     return VERSION[0].__str__()+\
            "."+VERSION[1].__str__()+\
@@ -27,7 +27,7 @@ def query(*args,**kwargs):
     """
     import pyquery
     return pyquery.query(*args,**kwargs)
-def documents():
+def __docs__():
     import pydoc
     return pydoc.Fields()
 def mongodb_functions():
@@ -42,7 +42,7 @@ def compile(exr):
         raise Exception("invalid data type")
     return exr.__tree__
 funcs=mongodb_functions()
-doc=documents()
+docs=__docs__()
 from pymodel import Index,IndexOption,FieldInfo
 def create_index(fields,options):
     import pymodel

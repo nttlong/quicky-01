@@ -5,11 +5,14 @@ import pydoc
 import pyfuncs
 class query():
     def __init__(self,*args,**kwargs):
+        import documents
         if kwargs=={}:
-            if args.__len__()==2 and\
-                hasattr(args[0],"get_collection") and\
-                type(args[1]) in [str,unicode]:
-                self.coll=args[0].get_collection(args[1])
+            if args.__len__()==2:
+                if hasattr(args[0],"get_collection"):
+                    if type(args[1]) in [str,unicode]:
+                        self.coll=args[0].get_collection(args[1])
+                    if issubclass(type(args[1]),documents.BaseDocuments):
+                        self.coll = args[0].get_collection (args[1].get_model_name())
             elif args.__len__()==1 and\
                 hasattr(args[0],"aggregate") and\
                 hasattr(args[0],"database"):
