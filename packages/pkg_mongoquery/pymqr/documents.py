@@ -1,5 +1,5 @@
 
-class BaseModel (object):
+class BaseDocuments (object):
     def __init__(self):
         import pydoc
         self.__dict__ = {

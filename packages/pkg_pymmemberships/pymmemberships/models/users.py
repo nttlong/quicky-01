@@ -1,8 +1,9 @@
 import pymqr
 from pymqr import pydoc
+from pymqr import pymdocs
 import datetime
 
-class Users(pymqr.pymodel.BaseModel):
+class Users(pymqr.pydocs):
     class ChangePasswordInfo(pymqr.pymodel.BaseModel):
         def __init__(self):
             self.OldPassword=str
