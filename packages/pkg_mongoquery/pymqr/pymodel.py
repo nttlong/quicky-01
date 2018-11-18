@@ -7,8 +7,6 @@ import pydoc
 fields = pydoc.fields ()
 
 
-class BaseEmbededDoc (object):
-    pass
 
 
 class BaseModelDefinition (object):
@@ -34,69 +32,9 @@ class ModelDefinition (BaseModelDefinition):
         self.name = "";
         self.required = None
         return self
-
-
-def ___consume_attr_field__(param, key, value):
-    if isinstance (value, BaseEmbededDoc):
-        for k, v in value.__dict__.items ():
-            param.update ({
-                key + "." + k: v
-            })
-            ___consume_attr_field__ (param, key + "." + k, v)
-
-
-class BaseModel (object):
-    def __init__(self):
-        self.__dict__ = {
-            "__fields_types__": {},
-            "__fields_docs__": pydoc.Fields (),
-            "__model_name__": None
-        }
-
-    def __getattr__(self, field):
-        # if not self.__dict__["__fields_types__"].has_key(field):
-        #     raise Exception("{0} was not found ".format(field))
-        items = field.split ('.')
-        ret = self.__dict__["__fields_docs__"]
-        for item in items:
-            ret = getattr (ret, item)
-        return ret
-
-    def __setattr__(self, key, value):
-        if not self.__dict__.has_key ("__fields_types__"):
-            self.__dict__.update ({
-                "__fields_types__": {}
-            })
-
-        if not self.__dict__.has_key ("__fields_docs__"):
-            self.__dict__.update ({
-                "__fields_docs__": pydoc.fields ()
-            })
-
-        self.__dict__["__fields_types__"].update ({
-            key: value
-        })
-        if isinstance (value, BaseEmbededDoc):
-            for k, v in value.__dict__.items ():
-                self.__dict__["__fields_types__"].update ({
-                    key + "." + k: v
-                })
-                ___consume_attr_field__ (self.__dict__["__fields_types__"], key + "." + k, v)
-
-    def set_model_name(self, name):
-        self.__dict__.update ({
-            "__model_name__": name
-        })
-
-    def get_model_name(self):
-        return self.__dict__.get ("__model_name__", None)
-
-
 class PartialFilterExpression (object):
     def __init__(self, expr, *args, **kwargs):
         self.__data__ = pydoc.compile (expr, *args, **kwargs)
-
-
 class IndexOption (object):
     def __init__(self,
                  background=True,
@@ -118,8 +56,6 @@ class IndexOption (object):
             self.sparse = True
 
         self.expireAfterSeconds = 10
-
-
 class Index (object):
     def __init__(self, fields, options=None):
         # type: (str|dict|pydoc.Fields|tuple(pydoc.Fields)|tuple(str)|list(pydoc.Fields)|list(str), IndexOption) -> object
@@ -146,8 +82,6 @@ class Index (object):
 
         if isinstance (options, IndexOption):
             self.options = options
-
-
 class FieldInfo (object):
     def __init__(self, fieldType, required=None, detail=None):
         self.fieldType = None
@@ -163,8 +97,6 @@ class FieldInfo (object):
                 raise Exception ("'detail' must be dict")
             ret = __extract_fields__ (detail)
             self.detail = ret
-
-
 def __extract_fields__(fields):
     ret = {}
     for k, v in fields.items ():
@@ -185,8 +117,6 @@ def __extract_fields__(fields):
             })
 
     return ret
-
-
 def create_model(name, required, indexes, fields):
     # type: (str, list, object) -> object
     if type (name) not in [str, unicode]:
@@ -217,8 +147,6 @@ def create_model(name, required, indexes, fields):
     setattr(documents,name,doc)
 
     return instance_model
-
-
 def get_model(name):
     global __models__
     if __models__ == None:
@@ -318,7 +246,7 @@ class DocumentInstance(BaseDocumentInstance):
                     if data_type == dict:
                         if isinstance(value,DocumentInstance):
                             ancestor.__dict__.update ({
-                                key: __create_instance_from_type__ (v)
+                                key: __create_instance_from_type__ (value)
                             })
                         else:
                             raise Exception("{0} must be DocumentInstance of {0}".format(ancestor.__dict__["__name__"]+"."+key))
