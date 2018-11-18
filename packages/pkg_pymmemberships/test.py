@@ -7,6 +7,6 @@ db.authenticate(name="root",password="123456")
 import pymqr
 import pymmemberships.models.users
 users=pymmemberships.models.users.users
-x=pymqr.query(db,users).items()
-print x
+x=pymqr.query(db,users).get_page(50,1)
+print x.__dict__
 
