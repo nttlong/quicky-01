@@ -200,7 +200,18 @@ class Fields(BaseFields):
                     "__alias__": self.__name__
                 })
                 return ret
-
+        elif isinstance(other,list):
+            ret_dic = []
+            for item in other:
+                ret_dic.append(
+                    get_field_expr(item,True)
+                )
+            ret = Fields()
+            ret.__tree__ = ret_dic
+            ret.__dict__.update({
+                "__alias__": self.__name__
+            })
+            return ret
         elif isinstance(other,Fields):
             other.__dict__.update({
                 "__alias__":get_field_expr(self,True)
@@ -282,11 +293,12 @@ def BSON_select(*args):
                 ret.update({
                     item.__dict__["__alias__"]: __get_from_dict__(item)
                 })
+            elif isinstance(right,list):
+                ret.update({
+                    item.__dict__["__alias__"]: right
+                })
         else:
             ret.update({
                 get_field_expr(item,True):1
             })
     return ret
-
-
-
