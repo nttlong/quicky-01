@@ -80,6 +80,10 @@ class query ():
                 self.pipeline.append ({
                     "$replaceRoot": item.stage
                 })
+            elif isinstance(item,pyaggregatebuilders.Sort):
+                self.pipeline.append({
+                    "$sort": item.stage
+                })
 
         return self
 
@@ -162,7 +166,22 @@ class query ():
             pyaggregatebuilders.Match (expr, *args, **kwargs)
         )
         return self
-
+    def sort(self,*args,**kwargs):
+        import pyaggregatebuilders
+        self.stages(
+            pyaggregatebuilders.Sort(*args, **kwargs)
+        )
+        return self
+    def limit(self,num):
+        self.stages({
+            "$limit":num
+        })
+        return self
+    def skip(self,num):
+        self.stages({
+            "$skip":num
+        })
+        return self
     def lookup(self, coll, local_field_or_let, foreign_field_or_pipeline, alias):
         import pyaggregatebuilders
         self.stages (pyaggregatebuilders.Lookup (

@@ -289,7 +289,14 @@ class Fields(BaseFields):
             return {
                 get_field_expr(self, True): other
             }
-
+    def asc(self):
+        return {
+            get_field_expr(self,True):1
+        }
+    def desc(self):
+        return {
+            get_field_expr(self, True): -1
+        }
     def to_mongodb(self):
         """
         parse to mongodb expression

@@ -366,3 +366,29 @@ class ReplaceRoot(PipelineStage):
             self.stage = expression_parser.to_mongobd(expr, *args, **kwargs)
         elif isinstance(expr, pydoc.Fields):
             self.stage = pydoc.get_field_expr(expr, True)
+
+class Sort(PipelineStage):
+    def __init__(self, *args, **kwargs):
+        import pydoc
+        import expression_parser
+        data = {}
+        if args.__len__()>0:
+            for item in args:
+                data.update(item)
+        else:
+            for k,v in kwargs.items():
+                if type(k) in [str,unicode]:
+                    data.update({
+                        k:v
+                    })
+                elif isinstance(k,pydoc.Fields):
+                    data.update({
+                        pydoc.get_field_expr(k,True):v
+                    })
+        self.__stage__ = data
+
+
+
+
+
+
