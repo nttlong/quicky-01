@@ -19,7 +19,9 @@ mathOp=";$add;$subtract;$multiply;$divide;$mod;";
 matchOp=";$eq;$ne;$gt;$lt;$gte;$lte;";
 logical={
         "&&":"$and",
-        "||":"$or"
+        "||":"$or",
+        "and":"$and",
+        "or":"$or"
 }
 def do_part_with_params(expr,*args,**kwargs):
     params =[]
@@ -50,6 +52,8 @@ def to_mongobd_match(expr,*args,**kwargs):
 
 def to_mongodb_expr(fx,params,forSelect=False,forNot=False,prefix=None):
     import re
+    if isinstance(fx,expressions.StringLiteralExpression):
+        return fx.value
     if isinstance(fx,expressions.NumericLiteralExpression):
         return fx.value
     if isinstance(fx,expressions.UnaryExpression):
@@ -113,18 +117,19 @@ def to_mongodb_expr(fx,params,forSelect=False,forNot=False,prefix=None):
                                to_mongodb_expr(fx.right,params,True,False,"$")]
                     }
         mOp=op.get(fx.operator)
-        if not forSelect and matchOp.index(mOp)>-1:
-            return {
-                left:{
-                    mOp:right
+        if mOp != None:
+            if not forSelect and matchOp.index(mOp)>-1:
+                return {
+                    left:{
+                        mOp:right
+                    }
                 }
+            return {
+                mOp:[
+                    to_mongodb_expr(fx.left,params,True,False,"$"),
+                    to_mongodb_expr(fx.right,params,True,False,"$")
+                ]
             }
-        return {
-            mOp:[
-                to_mongodb_expr(fx.left,params,True,False,"$"),
-                to_mongodb_expr(fx.right,params,True,False,"$")
-            ]
-        }
         if fx.type==expressions.expression_types.LOGICAL_EXP:
             return {
                 logical.get(fx.operator):[
@@ -267,7 +272,7 @@ def to_mongodb_expr(fx,params,forSelect=False,forNot=False,prefix=None):
             return ret
         if fx.callee.name=="ceil":
             return {
-                "$ceil":to_mongodb_expr(fx.arguments[0], params, true, forNot, "$")
+                "$ceil":to_mongodb_expr(fx.arguments[0], params, True, forNot, "$")
             }
         if fx.callee.name in ["arrayToObject",'reverseArray']:
             return {
@@ -292,8 +297,9 @@ def to_mongodb_expr(fx,params,forSelect=False,forNot=False,prefix=None):
                 })
             return ret
         if fx.callee.name=='filter':
+            ret = {}
             paramIndexs = ['input', 'as', 'cond']
-            prefix = ["$", undefined, "$"]
+            prefix = ["$", None, "$"]
             for i in range(0, fx.arguments.__len__(), 1):
                 ret["$filter"].update({
                     paramIndexs[i]: to_mongodb_expr(fx.arguments[i], params, True, forNot, prefix[i])
@@ -301,8 +307,8 @@ def to_mongodb_expr(fx,params,forSelect=False,forNot=False,prefix=None):
             return ret
         if fx.callee.name=="type":
             if fx.arguments.__len__()==2:
-                field = js_parse(fx.arguments[0], params, True, forNot, "$")
-                val = js_parse(fx.arguments[1], params, true, forNot, "$")
+                field = to_mongodb_expr(fx.arguments[0], params, True, forNot, "$")
+                val = to_mongodb_expr(fx.arguments[1], params, True, forNot, "$")
                 if forNot:
                     return {
                         field:{
