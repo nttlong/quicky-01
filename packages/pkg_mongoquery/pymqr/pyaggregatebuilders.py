@@ -347,13 +347,16 @@ class Group(PipelineStage):
         if not isinstance(selector, dict):
             raise Exception("'selector' must be 'dict'")
         for k, v in selector.items():
+            _k = k
+            if isinstance(k, pydoc.Fields):
+                _k = pydoc.get_field_expr(k, True)
             if type(v) in [str, unicode]:
                 _selector.update({
-                    k: expression_parser.to_mongobd(v, *args, **kwargs)
+                    _k: expression_parser.to_mongobd(v, *args, **kwargs)
                 })
             elif isinstance(v, pydoc.Fields):
                 _selector.update({
-                    k: pydoc.get_field_expr(v)
+                    _k: pydoc.get_field_expr(v)
                 })
         self.__stage__ = _selector
 
@@ -363,27 +366,38 @@ class ReplaceRoot(PipelineStage):
         import pydoc
         import expression_parser
         if type(expr) in [str, unicode]:
-            self.stage = expression_parser.to_mongobd(expr, *args, **kwargs)
+            self.__stage__ = {"newRoot": expression_parser.to_mongobd(expr, *args, **kwargs)}
         elif isinstance(expr, pydoc.Fields):
-            self.stage = pydoc.get_field_expr(expr, True)
+            self.__stage__ = {"newRoot": pydoc.get_field_expr(expr)}
+        elif isinstance(expr, dict):
+            data = {}
+            for k, v in expr.items():
+                _k = k
+                if isinstance(k, pydoc.Fields):
+                    _k = pydoc.get_field_expr(k, True)
+                data.update({
+                    _k: pydoc.get_field_expr(v)
+                })
+            self.__stage__ = {"newRoot": data}
+
 
 class Sort(PipelineStage):
     def __init__(self, *args, **kwargs):
         import pydoc
         import expression_parser
         data = {}
-        if args.__len__()>0:
+        if args.__len__() > 0:
             for item in args:
                 data.update(item)
         else:
-            for k,v in kwargs.items():
-                if type(k) in [str,unicode]:
+            for k, v in kwargs.items():
+                if type(k) in [str, unicode]:
                     data.update({
-                        k:v
+                        k: v
                     })
-                elif isinstance(k,pydoc.Fields):
+                elif isinstance(k, pydoc.Fields):
                     data.update({
-                        pydoc.get_field_expr(k,True):v
+                        pydoc.get_field_expr(k, True): v
                     })
         self.__stage__ = data
 
