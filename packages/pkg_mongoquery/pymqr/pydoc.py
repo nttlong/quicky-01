@@ -61,8 +61,13 @@ def __apply__(fn,a,b):
         setattr(a,"__tree__",ret_tree)
     elif type(b) in [str,unicode]:
         import expression_parser
+        try:
+            right = expression_parser.to_mongobd (b)
+        except Exception as ex:
+            raise Exception("Can not apply operator +,-,*,/,.. with string constant\n"
+                            "Please use pyfuncs.concat or other text function in this package")
         ret_tree = {
-            fn: [get_field_expr (a), expression_parser.to_mongobd (b)]
+            fn: [get_field_expr (a), right]
         }
         setattr (a, "__tree__", ret_tree)
     elif isinstance(b,tuple) and b.__len__()>0:
@@ -81,22 +86,47 @@ def __apply__(fn,a,b):
         }
         setattr(a, "__tree__", ret_tree)
     return a
+def __get_from_dict__(d,not_use_prefix=True):
+    ret ={}
+    if isinstance(d,dict):
+        for k,v in d.items():
+            _k = k
+            if isinstance(k,Fields):
+                _k = get_field_expr(k,not_use_prefix)
+            ret.update({
+                _k: __get_from_dict__(v,not_use_prefix)
+            })
+        return ret
+    elif isinstance(d,Fields):
+        return d.to_mongodb()
+    else:
+        return d
+
+
 
 class BaseFields(object):
-    def __init__(self,data=None):
+    """
+    Ancestor of Mongodb parsable Field
+    """
+    def __init__(self,data=None,for_filter = False):
         self.__name__=None
         self.__tree__ = None
+        self.__for_filter__=for_filter
         if type(data) in [str,unicode]:
             self.__name__=data
         else:
             self.__tree__=data
 
 class Fields(BaseFields):
+    """
+    Mongodb parable document field example:
+    Fields().Amount*Fields().Price will be compile to {'$multiply': ['$Amount', '$Price']}
+    """
     def __getattr__(self, item):
         if self.__name__!=None:
-            return Fields(self.__name__+"."+item)
+            return Fields(self.__name__+"."+item,self.__for_filter__)
         else:
-            return Fields(item)
+            return Fields(item,self.__for_filter__)
     def __str__(self):
         if BaseFields(self)==None:
             return "root"
@@ -116,6 +146,13 @@ class Fields(BaseFields):
     def __mod__(self, other):
         return __apply__("$mod", self, other)
     def __eq__(self, other):
+        if self.__for_filter__ and type(other) in [str,unicode] :
+            self.__tree__ ={
+                self.__name__:{
+                    "$regex":re.compile("^"+other+"$",re.IGNORECASE)
+                }
+            }
+            return self
         return __apply__("$eq", self, other)
     def __ne__(self, other):
         return __apply__("$ne", self, other)
@@ -143,35 +180,32 @@ class Fields(BaseFields):
             return ret
         elif isinstance(other,tuple) and other.__len__()>0:
             _other=other[0]
-            _param=tuple([x for x in other if other.index(x)>0])
-            ret = Fields ()
-            ret.__tree__ = expression_parser.to_mongobd (_other,*_param)
-            ret.__dict__.update ({
-                "__alias__": self.__name__
-            })
-            return ret
+            if type(_other) in [str,unicode]:
+                _param=tuple([x for x in other if other.index(x)>0])
+                ret = Fields ()
+                ret.__tree__ = expression_parser.to_mongobd (_other,*_param)
+                ret.__dict__.update ({
+                    "__alias__": self.__name__
+                })
+                return ret
+            elif isinstance(_other,Fields):
+                ret_dic = {}
+                for item in other:
+                    ret_dic.update({
+                        get_field_expr(item,True):1
+                    })
+                ret = Fields()
+                ret.__tree__ = ret_dic
+                ret.__dict__.update({
+                    "__alias__": self.__name__
+                })
+                return ret
 
         elif isinstance(other,Fields):
             other.__dict__.update({
                 "__alias__":get_field_expr(self,True)
             })
             return other
-    # def And(self,*args,**kwargs):
-    #     ret=[]
-    #     for item in args:
-    #         ret.append(get_field_expr(item))
-    #     return __apply__("$and",self,ret)
-    # def __repr__(self):
-    #     if BaseFields(self)==None:
-    #         return "root"
-    #     if self.__tree__==None:
-    #         return self.__name__
-    #     else:
-    #         return get_str(self.__tree__)
-
-
-    def __coerce__(self, other):
-        x=other
     def __call__(self, *args, **kwargs):
         if args.__len__()==1:
             if self.__name__ != None:
@@ -179,16 +213,80 @@ class Fields(BaseFields):
             else:
                 return Fields ("this"+self.__name__ + "." + args[0].__str__())
         return  None
+    def __rshift__(self, other):
+        if isinstance(other,dict):
+            return {
+                get_field_expr(self,True):__get_from_dict__(other)
+            }
+        elif isinstance(other,Fields):
+            return {
+                get_field_expr(self, True): get_field_expr(other)
+            }
+        else:
+            return {
+                get_field_expr(self, True):other
+            }
 
-    def __delslice__(self, i, j):
-        x=1
-    def __get__(self, instance, owner):
-        x = 1
-
-
-
-
+    def to_mongodb(self):
+        """
+        parse to mongodb expression
+        :return:
+        """
+        if self.__tree__ == None:
+            return self.__name__
+        return self.__tree__
+filters = Fields(None,True)
 document=Fields()
 def fields():
     # type: () -> object
     return Fields()
+def BSON_doc(expr):
+    """
+        create document form field example:
+        Document({
+            pydoc.Fields().Name.Code:"xxx,
+            pydoc.Fields().Name.Age:4
+        }) =>{
+            "Name.Code":"xxx",
+            "Name.Age":4
+        }
+    :param expr:
+    :return:
+    """
+    ret = {}
+    if isinstance(expr,dict):
+        for k,v in expr.items():
+            if isinstance(k,Fields):
+                ret.update({
+                    get_field_expr(k,True):BSON_doc(v)
+                })
+            elif type(k) in [str,unicode]:
+                ret.update({
+                    k: BSON_doc(v)
+                })
+            else:
+                raise Exception("can not convert to dict with type of key is '{0}".format(type(k)))
+        return ret
+    else:
+        return expr
+def BSON_select(*args):
+    ret = {}
+    for item in args:
+        if item.__dict__.has_key("__alias__"):
+            right = __get_from_dict__(item)
+            if type(right) in [str,unicode]:
+                ret.update({
+                    item.__dict__["__alias__"]:{__get_from_dict__(item):1}
+                })
+            elif isinstance(right,dict):
+                ret.update({
+                    item.__dict__["__alias__"]: __get_from_dict__(item)
+                })
+        else:
+            ret.update({
+                get_field_expr(item,True):1
+            })
+    return ret
+
+
+
