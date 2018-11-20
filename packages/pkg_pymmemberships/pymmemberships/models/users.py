@@ -34,3 +34,4 @@ class Users(documents.BaseDocuments):
 # model = pymqr.create_model(
 users=Users()
 users.set_model_name("users")
+

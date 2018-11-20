@@ -1,3 +1,5 @@
+
+
 class BaseDocumentsInstance(object):
     def __setattr__(self, key, value):
         if not self.__dict__["__type__"].has_key(key):
@@ -52,7 +54,9 @@ class BaseDocuments (object):
         })
     def get_model_name(self):
         return self.__dict__.get ("__model_name__", None)
-    def object(self):
+    def object(self,value=None):
+        if value == None:
+            value = {}
         data= self.__dict__["__fields_types__"]
         ret_data ={
             "__type__":data
@@ -60,18 +64,34 @@ class BaseDocuments (object):
         for k,v in data.items():
             if issubclass(self.__dict__["__fields_types__"][k],BaseEmbededDoc):
                 x= self.__dict__["__fields_types__"][k]()
+                child = x.object(value.get(k,None))
                 ret_data.update ({
-                    k: x.object()
+                    k: child
                 })
             else:
+                _v = value.get(k,None)
+                if _v!=None:
+                    if isinstance(_v,dict):
+                        raise Exception ("type of {0} is {1}".format (k, type(v)))
+                    if self.__dict__["__fields_types__"].has_key(k):
+                        _t = self.__dict__["__fields_types__"][k]
+                        if not type(_v) is _t :
+                            raise Exception("type of {0} is not {1}".format(k,_t))
                 ret_data.update ({
-                    k: None
+                    k: _v
                 })
-
-
         ret= BaseDocumentsInstance()
         ret.__dict__.update(ret_data)
         return ret
+    def __lshift__(self, other):
+        ret = BaseDocuments()
+        ret.__dict__={}
+        ret.__dict__.update({
+            "__fields_types__":self.__dict__["__fields_types__"]
+        })
+        ret.object(other)
+        return ret
+
 class BaseEmbededDoc (BaseDocuments):
     pass
 def ___consume_attr_field__(param, key, value):
