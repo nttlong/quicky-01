@@ -253,7 +253,13 @@ class query ():
             **kwargs
         ))
         return self
-
+    def __iter__(self):
+        return list(self.items)
+    def __rshift__(self, other):
+        other = list(self.objects)
+    def reset(self):
+        self.pipeline = []
+        return self
     def find(self):
         return self.coll.find ()
 
@@ -263,7 +269,6 @@ class query ():
     def find_to_object(self):
         ret = self.find_one ()
         return mobject.dynamic_object (ret)
-
     def find_to_objects(self):
         ret = self.find ()
         for item in ret:

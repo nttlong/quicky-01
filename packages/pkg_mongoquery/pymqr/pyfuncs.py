@@ -1,5 +1,16 @@
 import re
 import inspect
+def __avg_consume__(*args,**kwargs):
+    fn = "$" + inspect.stack()[1][3]
+    if args.__len__() ==1:
+        return __create_item__(fn,args[0])
+    elif args.__len__()>1:
+        ret = {
+            fn: []
+        }
+        for item in args:
+            ret[fn].append(__get_field_expr__(item))
+        return __create__(ret)
 def __get_field_expr__(x):
     import pydoc
     if isinstance(x,pydoc.Fields):
@@ -15,7 +26,6 @@ def __create__(expr):
     setattr(ret, "__tree__", expr)
     return ret
 def __create_array__(fn,*args):
-    print inspect.stack()[1][3]
     ret = {
         fn: []
     }
@@ -173,13 +183,13 @@ def expr(expr):
     :return:
     """
     return __create_item__("$expr",expr)
-def avg(expr):
+def avg(*args,**kwargs):
     """
         { $avg: <expression> }
         :param expr:
         :return:
         """
-    return __create_item__("$avg", expr)
+    return __avg_consume__(*args,**kwargs)
 def ceil(expr):
     """
     { $ceil: <number> }
@@ -388,13 +398,13 @@ def filter(field,iter,cond):
         "as":iter,
         "cond":__get_field_expr__(cond)
     })
-def first(field):
+def first(*args, **kwargs):
     """
     { $first: <expression> }
     :param field:
     :return:
     """
-    return  __comsume_with_item__(field)
+    return __avg_consume__(*args, **kwargs)
 def floor(field):
     """
     { $floor: <number> }
@@ -544,12 +554,12 @@ def isoWeekYear(date,timezone=None):
                 k: v
             })
     return __create_item__("$isoWeekYear", ret_data)
-def last(field):
+def last(*args, **kwargs):
     """
     { $last: <expression> }
     :return:
     """
-    return __comsume_with_item__(field)
+    return __avg_consume__(*args, **kwargs)
 
 
 def let(vars,In):
@@ -629,12 +639,12 @@ def map(field,In,alias=None):
         }
     }
     return __create__(ret_data)
-def max(field):
+def max(*args,**kwargs):
     """
     { $max: <expression> }
     :return:
     """
-    return __comsume_with_item__(field)
+    return __avg_consume__(*args,**kwargs)
 def mergeObjects(*args):
     """
     { $mergeObjects: [ <document1>, <document2>, ... ] }
@@ -647,12 +657,12 @@ def meta(field):
     :return:
     """
     return __comsume_with_item__(field)
-def min(field):
+def min(*args,**kwargs):
     """
     { $min: <metaDataKeyword> }
     :return:
     """
-    return __comsume_with_item__(field)
+    return __avg_consume__(*args,**kwargs)
 def millisecond(date,timezone):
     """
     { $millisecond: <dateExpression> }
@@ -804,33 +814,33 @@ def second(date,timezone):
                 k: __get_field_expr__(v)
             })
     return __create_item__("$second", ret_data)
-def setDifference(field1,field2):
+def setDifference(*args,**kwargs):
     """
     { $setDifference: [ <expression1>, <expression2> ] }
     :return:
     """
-    return __comsume_with_array__(field1,field2)
-def setEquals(field1,field2):
+    return __avg_consume__(*args,**kwargs)
+def setEquals(*args,**kwargs):
     """
     { $setEquals: [ <expression1>, <expression2>, ... ] }
     :return:
     """
-    return __comsume_with_array__(field1, field2)
-def setIntersection(field1,field2):
+    return __avg_consume__(*args, **kwargs)
+def setIntersection(*args, **kwargs):
     """
     { $setIntersection: [ <array1>, <array2>, ... ] }
     :return:
     """
-    return __comsume_with_array__(field1, field2)
+    return __avg_consume__(*args, **kwargs)
 def setIsSubset(field1,field2):
     """
     { $setIsSubset: [ <expression1>, <expression2> ] }
     :return:
     """
     return __comsume_with_array__(field1, field2)
-def setUnion(field1,field2):
+def setUnion(*args,**kwargs):
     """{ $setUnion: [ <expression1>, <expression2>, ... ] }"""
-    return __comsume_with_array__(field1, field2)
+    return __avg_consume__(*args,**kwargs)
 def size(field):
     """
     { $size: <expression> }
@@ -864,19 +874,19 @@ def sqrt(field):
     :return:
     """
     return __comsume_with_item__(field)
-def stdDevPop(field):
+def stdDevPop(*args,**kwargs):
     """
        { $stdDevPop: <number> }
        :return:
        """
-    return __comsume_with_item__(field)
+    return __avg_consume__(*args,**kwargs)
 
-def stdDevSamp(field):
+def stdDevSamp(*args,**kwargs):
     """
            { $stdDevSamp: <number> }
            :return:
            """
-    return __comsume_with_item__(field)
+    return __avg_consume__(*args, **kwargs)
 def strcasecmp(field1,field2):
     """
     { $strcasecmp: [ <expression1>, <expression2> ] }
@@ -928,8 +938,12 @@ def substrCP(field,index,count):
         index,
         count
     )
-def sum(field):
-    return __comsume_with_item__(field)
+def sum(*args,**kwargs):
+    return __avg_consume__(*args,**kwargs)
+def stdDevSamp(*args,**kwargs):
+    return __avg_consume__(*args, **kwargs)
+def stdDevPop(*args,**kwargs):
+    return __avg_consume__(*args, **kwargs)
 def toBool(field):
     """
     {

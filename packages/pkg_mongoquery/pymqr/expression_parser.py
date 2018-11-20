@@ -84,8 +84,12 @@ def to_mongodb_expr(fx,params,forSelect=False,forNot=False,prefix=None):
                 return prefix + left.name + "." + fx.property.raw
         else:
             if fx.property.name:
+                if type(left) in [str,unicode]:
+                    return left + "." + fx.property.name
                 return left.name + "." + fx.property.name
             else:
+                if type(left) in [str,unicode]:
+                    return left + "." + fx.property.raw
                 return left.name + "." + fx.property.raw
 
     if isinstance(fx,expressions.BinaryExpression):
@@ -348,9 +352,3 @@ def to_mongodb_expr(fx,params,forSelect=False,forNot=False,prefix=None):
         for arg in fx.arguments:
             ret["$"+fx.callee.name].append(to_mongodb_expr(arg,params,True,forNot,"$"))
         return ret
-
-
-
-
-
-
