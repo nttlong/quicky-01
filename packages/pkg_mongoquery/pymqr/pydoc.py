@@ -166,16 +166,36 @@ class Fields(BaseFields):
         return __apply__("$mod", self, other)
 
     def __eq__(self, other):
-        if self.__for_filter__ and type(other) in [str, unicode]:
-            self.__tree__ = {
-                self.__name__: {
-                    "$regex": re.compile("^" + other + "$", re.IGNORECASE)
+        if self.__for_filter:
+            if type(other) in [str, unicode]:
+                self.__tree__ = {
+                    self.__name__: {
+                        "$regex": re.compile("^" + other + "$", re.IGNORECASE)
+                    }
                 }
-            }
-            return self
+                return self
+            else:
+                self.__tree__ = {
+                    self.__name__: other
+                }
+                return self
+
         return __apply__("$eq", self, other)
 
     def __ne__(self, other):
+        if self.__for_filter:
+            if type(other) in [str, unicode]:
+                self.__tree__ = {
+                    self.__name__:{"$ne": {
+                        "$regex": re.compile("^" + other + "$", re.IGNORECASE)
+                    }}
+                }
+                return self
+            else:
+                self.__tree__ = {
+                    self.__name__:{"$ne": other}
+                }
+                return self
         return __apply__("$ne", self, other)
 
     def __le__(self, other):

@@ -127,11 +127,25 @@ def switch(*args,**kwargs):
     :param kwargs:
     :return:
     """
+    import pydoc
     branches=[]
     default=__get_field_expr__(args[args.__len__()-1])
-    for i in range(0,args.__len__()-1,1):
-        branches.append(__get_field_expr__(getattr(args[i],"__tree__")))
-    import pydoc
+    # default = __get_field_expr__(args[args.__len__() - 1])
+    # list_of_args = [x for x in args if args.index(x) < args.__len__() - 1]
+    # for item in list_of_args:
+    #     if isinstance(item,pydoc.Fields):
+    #         branches.append(item.to_mongodb())
+    #     else:
+    #         branches.append(item)
+    m = args.__len__()
+    for i in pyrange(0,m-1,1):
+        item  = args[i]
+        if isinstance(item,pydoc.Fields):
+            branches.append(item.to_mongodb())
+        else:
+            branches.append(item)
+    #     branches.append(__get_field_expr__(getattr(args[i],"__tree__")))
+
     expr={
         "$switch":{
             "branches":branches,
@@ -744,6 +758,7 @@ def push(field):
     :return:
     """
     return __comsume_with_item__(field)
+pyrange = range
 def range(start,end,step=None):
     """
     { $range: [ <start>, <end>, <non-zero step> ] }
