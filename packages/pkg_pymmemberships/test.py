@@ -3,17 +3,19 @@ cnn=MongoClient(host="localhost",
                 port=27017)
 db=cnn.get_database("hrm")
 db.authenticate(name="root",password="123456")
+from pymqr import settings
+settings.setdb(db)
 import pymqr
 import pymmemberships.models.users
 from pymqr import pydoc
 import pymmemberships.users
-ret = pymmemberships.users.create({
-    "Username":"XXX",
-    "LastName":"XXX",
-    "PasswordSalt":"XX",
-    "Email":"XX",
-    "HashPassword":"XX"
-})
+ret = pymmemberships.users.create(
+    username="sys",
+    password="sys",
+    email="test@gmail.com"
+
+
+)
 m=ret
 # users=pymmemberships.models.users.users
 # if {users.Profile.B# users=pymmemberships.models.users.users

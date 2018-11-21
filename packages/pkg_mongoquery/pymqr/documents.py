@@ -2,7 +2,20 @@ __fields_types__ = "__fields_types__"  # key of field type
 __fields_docs__ = "__fields_docs__"  # key of field value
 __fields_default_value__ = "__fields_default_value__"  # key of default value field
 __model_name__ = "__model_name__"  # type: str # key of model name
-
+__map_doc__ =None
+class ___CollectionMapClassWrapper__():
+    def __init__(self,name):
+        self.name = name
+    def wrapper(self,*args,**kwargs):
+        global __map_doc__
+        if __map_doc__==None:
+            __map_doc__={}
+        __map_doc__.update({
+            args[0]:self.name
+        })
+def Collection(*args,**kwargs):
+    ret = ___CollectionMapClassWrapper__()
+    return ret.wrapper
 
 class exceptions():
     class InvalidDataType(Exception):
@@ -98,10 +111,13 @@ class BaseDocumentsInstance(object):
 class BaseDocuments(object):
     def __init__(self):
         import pydoc
+        global __map_doc__
+        if __map_doc__ == None:
+            __map_doc__ ={}
         self.__dict__ = {
             __fields_types__: {},
             __fields_docs__: pydoc.Fields(),
-            __model_name__: None
+            __model_name__:__map_doc__.get(type(self))
         }
 
     def __getattr__(self, field):
@@ -138,6 +154,11 @@ class BaseDocuments(object):
     def get_model_name(self):
         return self.__dict__.get("__model_name__", None)
 
+    def load(self,*args,**kwargs):
+        if args.__len__()>0:
+            return self.object(args[0])
+        else:
+            return self.object(kwargs)
     def object(self, data=None):
         import pydoc
         from inspect import isfunction

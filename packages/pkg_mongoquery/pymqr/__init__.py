@@ -41,14 +41,7 @@ def __filters__():
     """
     import pydoc
     return pydoc.Fields(None,True)
-def mongodb_functions():
-    """
-    Get list of mongodb functions
 
-    :rtype: object
-    """
-    import pyfuncs
-    return pyfuncs
 def compile(exr):
     """
     :rtype: dict
@@ -57,7 +50,7 @@ def compile(exr):
     if not isinstance(exr,pydoc.Fields):
         raise Exception("invalid data type")
     return exr.__tree__
-funcs=mongodb_functions()
+import pyfuncs as funcs
 docs=__docs__()
 filters = __filters__()
 from pymodel import Index,IndexOption,FieldInfo

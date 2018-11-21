@@ -3,6 +3,7 @@ from pymqr import pydoc
 from pymqr import documents
 import datetime
 
+@documents.Collection("sys.users")
 class Users(documents.BaseDocuments):
     class ChangePasswordInfo(documents.BaseEmbededDoc):
         def __init__(self):
