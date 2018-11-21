@@ -79,7 +79,10 @@ def to_mongodb_expr(fx,params,forSelect=False,forNot=False,prefix=None):
         left = to_mongodb_expr(fx.object, params, forSelect)
         if prefix!=None:
             if fx.property.name:
-                return prefix + left.name + "." + fx.property.name
+                if type(left) in [str,unicode]:
+                    return prefix + left + "." + fx.property.name
+                else:
+                    return prefix + left.name + "." + fx.property.name
             else:
                 return prefix + left.name + "." + fx.property.raw
         else:
