@@ -18,6 +18,36 @@ from . import helpers
 from . import dict_utils
 from pymongo.client_session import ClientSession
 _cache_create_key_for_collection=None
+def __parse_set_to_project__(data):
+    ret ={}
+    import pymqr
+
+    if isinstance(data,set):
+        selectors = list(data)
+        index = 0
+        for item in selectors:
+            if isinstance(item,pymqr.pydoc.Fields):
+                if item.__dict__.has_key('__alias__'):
+                    ret.update({
+                        item.__dict__['__alias__']:pymqr.pydoc.get_field_expr(item)
+                    })
+                else:
+                    ret.update({
+                        pymqr.pydoc.get_field_expr(item,True):1
+                    })
+            elif type(item) in [str,unicode]:
+                ret.update({
+                    item: 1
+                })
+            else:
+                raise Exception("params at {0} with data type {1} is invalid\n"
+                                "The valid data type is 'str', 'unicode' or {2}".format(
+                    index,type(item),pymqr.pydoc.Fields
+                ))
+        return ret
+
+
+
 def get_current_schema():
     # type: () -> str
     """
@@ -847,6 +877,8 @@ class COLL():
         return self._none_schema_name
 
     def get_collection_name(self):
+        if self.schema == None:
+            return self._none_schema_name
         if not self._never_use_schema or self.schema !=None or self.schema == "":
             return self.schema+"."+self._none_schema_name
         else:
@@ -1280,21 +1312,8 @@ class AGGREGATE():
         self.qr = qr
         self.name = name
         self._pipe=[]
-    def get_selected_fields(self):
-        # type: () -> list
-        """
-        Get current selected fields of aggregate pipeline
-        :return:
-        """
-        if self._selected_fields==None:
-            self._selected_fields=self._coll._model.get_fields()
-            if self._selected_fields.count("_id") == 0:
-                self._selected_fields.append("_id")
-        ret =[]
-        for x in self._selected_fields:
-            if ret.count(x) == 0:
-                ret.append(x)
-        return ret
+        self.full_fill = True
+
     def descibe_fields(self,tabs,fields):
         # type: (str,list) -> str
         """
@@ -1308,14 +1327,13 @@ class AGGREGATE():
             _fields += tabs+ x + "\n"
         return  _fields
     def check_fields(self,field):
-        # type: (str) -> bool
-        """
-        Check a field if it is in list of current selected fields
-        :param field:
-        :return: if field was found return True else False
-        """
-        ret=[x for x in self.get_selected_fields() if x==field]
-        return ret.__len__()>0
+        pass
+        # # type: (str) -> bool
+        # """
+        # Check a field if it is in list of current selected fields
+        # :param field:
+        # :return: if field was found return True else False
+        # """
 
     def project(self,*args,**kwargs):
         # type: (dict|tuple) -> AGGREGATE
@@ -1350,6 +1368,13 @@ class AGGREGATE():
             if args.__len__()>1:
 
                 params=args[1]
+            elif isinstance(args[0],set):
+                self._pipe.append({
+                    "$project": __parse_set_to_project__(args[0])
+                })
+                self.full_fill = False
+                return self
+
             else:
                 params = args[0]
 
@@ -1380,21 +1405,10 @@ class AGGREGATE():
         for key in kwargs.keys():
             if key != "_id":
                 if kwargs[key]==1:
-                    if not self.check_fields(key):
-                        raise (Exception("What is '" + key + "'?:\n" +
-                                         " \n Your selected fields now is bellow list: \n" +
-                                         self.descibe_fields("\t\t\t", self.get_selected_fields())))
                     _project.update({
                         key: 1
                     })
-                    _next_step_fields.append(key)
-                    _next_step_fields.extend([x for x in self._selected_fields if x.__len__()>key.__len__() and x[0:key.__len__()+1]==key+"."])
                 else:
-                    unknown_fields = self._coll._model.validate_expression(kwargs[key],self.get_selected_fields())
-                    if unknown_fields.__len__()>0:
-                        raise (Exception("What is bellow list of fields?:\n"+self.descibe_fields("\t\t",unknown_fields)+
-                                         " \n Your selected fields now is bellow list: \n"+
-                                         self.descibe_fields("\t\t\t",self.get_selected_fields())))
                     _project.update({
                         key: expr.get_calc_expr(kwargs[key],*params)
                     })
@@ -1431,25 +1445,14 @@ class AGGREGATE():
         __id={}
         if type(_id) is dict:
             for key in _id.keys():
-                unknown_fields = self._coll._model.validate_expression(_id[key], self.get_selected_fields())
-                if unknown_fields.__len__()>0:
-                    raise (Exception("What is bellow list of fields?:\n"+self.descibe_fields("\t\t",unknown_fields)+
-                                     " \n Your selected fields now is bellow list: \n"+
-                                     self.descibe_fields("\t\t\t",self.get_selected_fields())))
-                _next_step_fields.append("_id")
-                _next_step_fields.append("_id."+key)
+
                 __id.update({
                     key:expr.get_calc_expr(_id[key],*args,**kwargs)
                 })
         else:
-            if not self.check_fields(_id):
-                raise (Exception("What is '"+_id+"'?:\n"  +
-                                 " \n Your selected fields now is bellow list: \n" +
-                                 self.descibe_fields("\t\t\t", self.get_selected_fields())))
 
             __id="$"+_id
             _next_step_fields.append("_id")
-            # _next_step_fields.append("_id."+_id)
 
         _group = {
             "$group": {
@@ -1461,11 +1464,6 @@ class AGGREGATE():
 
 
         for key in selectors.keys():
-            unknown_fields = self._coll._model.validate_expression(selectors[key], self.get_selected_fields())
-            if unknown_fields.__len__() > 0:
-                raise (Exception("What is bellow list of fields?:\n" + self.descibe_fields("\t\t", unknown_fields) +
-                                 " \n Your selected fields now is bellow list: \n" +
-                                 self.descibe_fields("\t\t\t", self.get_selected_fields())))
             _group["$group"].update({
                 key:expr.get_calc_expr(selectors[key],*args,**kwargs)
             })
@@ -1503,11 +1501,9 @@ class AGGREGATE():
         :param field_name: the field name for "unwind" without prefix "$"
         :return:
         """
-        if self.get_selected_fields().count(field_name)==0:
-            msg_detail=""
-            for x in self.get_selected_fields():
-                msg_detail+=x+"\n"
-            raise (Exception("What is '{0}'? \n Your selected fields now are: \n {1}".format(field_name,msg_detail)))
+        import pymqr
+        if isinstance(field_name,pymqr.pydoc.Fields):
+            field_name = pymqr.pydoc.get_field_expr(field_name,True)
         if field_name[0:1]!="$":
             field_name="$"+field_name
         self._pipe.append({
@@ -1531,16 +1527,12 @@ class AGGREGATE():
         """Beware! You could not use any Aggregation Pipeline Operators, just use this function with Field Logic comparasion such as:
         and,or, contains,==,!=,>,<,..
         """
-        unknown_fields=self._coll._model.validate_expression(expression,self.get_selected_fields(), *args,**kwargs)
-        if unknown_fields.__len__() > 0:
-            err_msg = ""
-            for x in unknown_fields:
-                err_msg += x + "\n"
-            err_msg_fields = ""
-            for x in self.get_selected_fields():
-                err_msg_fields += x + "\n"
-            raise (Exception(
-                "What is bellow list of fields?:\n" + err_msg + " \n Your selected fields now is bellow list: \n" + err_msg_fields))
+        import pymqr
+        if isinstance(expression,pymqr.pydoc.Fields):
+            self._pipe.append({
+                "$match": pymqr.pydoc.get_field_expr(expression,True)
+            })
+            return self
         by_params=False
         # if args==():
         #     args=kwargs
@@ -1584,11 +1576,14 @@ class AGGREGATE():
         :param kwargs:
         :return:
         """
-        if self.get_selected_fields().count(local_field)==0:
-            msm_details=""
-            for x in self.get_selected_fields():
-                msm_details+=x+"\n"
-            raise (Exception("What is '{0}'?, Your selected fields are:\n {1}".format(local_field,msm_details)))
+        import pymqr
+        if isinstance(local_field,pymqr.pydoc.Fields):
+            local_field = pymqr.pydoc.get_field_expr(local_field,True)
+        if isinstance(foreign_field,pymqr.pydoc.Fields):
+            foreign_field = pymqr.pydoc.get_field_expr(foreign_field,True)
+        if isinstance(alias,pymqr.pydoc.Fields):
+            alias = pymqr.pydoc.get_field_expr(alias,True)
+
 
 
         if args==() and kwargs=={}:
@@ -1620,15 +1615,7 @@ class AGGREGATE():
         else:
             source_model = get_model(source)
 
-        self._selected_fields = self.get_selected_fields()
-        self._selected_fields.append(alias)
-        if source_model.get_fields().count(foreign_field)==0:
-            msm_details=""
-            for x in source_model.get_fields():
-                msm_details+=x+"\n"
-            raise (Exception("What is '{0}'?\n '{0}'  is not in '{1}'.\n All fields of '{1}' are bellow:\n {2}".format(foreign_field,source,msm_details)))
-        for x in source_model.get_fields():
-            self._selected_fields.append(alias+"."+x)
+
         self._pipe.append({
             "$lookup":{
                 "from":kwargs["source"],
@@ -1648,15 +1635,7 @@ class AGGREGATE():
         _sort={
 
         }
-        for key in kwargs.keys():
-            if self.get_selected_fields().count(key)==0:
-                msg_detail=""
-                for x in self.get_selected_fields():
-                    msg_detail+=x+"\n"
-                raise (Exception("\n"
-                                 "What is '{0}'?\n"
-                                 "Your selected fields are:\n"
-                                 "{1}".format(key,msg_detail)))
+
         _sort = (lambda x, y: y if y != {} else x[0])(args, kwargs)
         self._pipe.append({
             "$sort":_sort
@@ -1767,21 +1746,11 @@ class AGGREGATE():
 
         ret=[]
         if sys.version_info[0]<=2:
-            for doc in coll_ret:
-                for key in self.get_selected_fields():
-                    if not doc.has_key(key):
-                        doc.update({
-                            key:None
-                        })
-                ret.append(doc)
+            return list(coll_ret)
+
         else:
-            for doc in coll_ret:
-                for key in self.get_selected_fields():
-                    if not doc.__contains__(key):
-                        doc.update({
-                            key:None
-                        })
-                ret.append(doc)
+            return list(coll_ret)
+
 
         # ret=list(coll.aggregate(self._pipe))
         self._pipe=[]
@@ -1853,8 +1822,7 @@ class AGGREGATE():
         return self.__copy__()
     def replace_root(self,field):
         self.check_fields(field)
-        fields = [x[field.__len__()+1:x.__len__()] for x in self.get_selected_fields() if x.__len__()>field.__len__() and x[0:field.__len__()+1] ==field+"."]
-        self._selected_fields = fields
+
         self._pipe.append({
             "$replaceRoot":{"newRoot":(lambda x : "$"+x if x[0] != "$" else x)(field)}
         })
@@ -1902,7 +1870,7 @@ def connect(*args,**kwargs):
 
                 _db[key] = {
                     "database": db,
-                    "codec_options": codec_options,
+                    # "codec_options": codec_options,
                     "version": version,
                     "versions": version.split('.')
                 }
@@ -2054,3 +2022,5 @@ class GRIDFS(object):
                     raise ex
                 elif exec_mode.get_mode() == "return":
                     return None, ex
+
+

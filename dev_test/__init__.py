@@ -7,7 +7,7 @@ from . import importer
 importer.add_path(""
                   "")
 global db_config
-import json_from_file
+# import json_from_file
 
 from quicky.db import database
 db_config = json_from_file.load(os.getcwd()+os.sep+"dev_test"+os.sep+"db.json")

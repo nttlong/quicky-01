@@ -6,20 +6,40 @@ db.authenticate(name="root",password="123456")
 import pymqr
 import pymmemberships.models.users
 from pymqr import pydoc
+import pymmemberships.users
+ret = pymmemberships.users.create({
+    "Username":"XXX",
+    "LastName":"XXX",
+    "PasswordSalt":"XX",
+    "Email":"XX",
+    "HashPassword":"XX"
+})
+m=ret
+# users=pymmemberships.models.users.users
+# if {users.Profile.B# users=pymmemberships.models.users.users
+# if {users.Profile.BirthDate.Code,"Username"} in users:
+#     print "A"
+# irthDate.Code,"Username"} in users:
+#     print "A"
 
-users=pymmemberships.models.users.users
+
 # x=users()
-x=users<<dict(
-    Username="system",
-    PasswordSalt="dsad"
-)
-user= {
-    users.Username:"system",
-    users.PasswordSalt:"12344",
-    users.HashPassword:12345,
+# x=users<<dict(
+#     Username="system",
+#     PasswordSalt="dsad",
+#     Email = "dasdas",
+#     HashPassword= "dasdas"
+#
+# )
+# x.doc()
+# user= {
+#     users.Username:"system",
+#     users.PasswordSalt:"12344",
+#     users.HashPassword:12345,
+#
+# }
+# print x.filter().Username==1
 
-}
-x= users
 # ret=pymqr.query(db,users).insert(user).commit()
 # print ret
 # filter = pydoc.filters.Name=="123"

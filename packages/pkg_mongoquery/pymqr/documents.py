@@ -1,103 +1,292 @@
+__fields_types__ = "__fields_types__"  # key of field type
+__fields_docs__ = "__fields_docs__"  # key of field value
+__fields_default_value__ = "__fields_default_value__"  # key of default value field
+__model_name__ = "__model_name__"  # type: str # key of model name
+
+
+class exceptions():
+    class InvalidDataType(Exception):
+        def __init__(self, field_name, expectect_data_type, receive_data_type):
+            self.message = "The data type of {0} is {1}, not {2}".format(field_name, expectect_data_type,
+                                                                         receive_data_type)
+            self.field_name = field_name
+            self.expectect_data_type = expectect_data_type
+            self.receive_data_type = receive_data_type
+            super(Exception, self).__init__(self.message)
+
+    class MissingData(Exception):
+        def __init__(self, field_name):
+            self.message = "{0} is require".format(field_name)
+            self.field_name = field_name
+            super(Exception, self).__init__(self.message)
+
+
+class __GOBBLE__():
+    @staticmethod
+    def get_dict_fields(data):
+        if isinstance(data, dict):
+            if not data.has_key(__fields_docs__):
+                data.update({__fields_docs__: {}})
+            return data[__fields_docs__]
+        else:
+            raise Exception("invalid param")
+
+    @staticmethod
+    def get_dict_fields_type(data):
+        if isinstance(data, dict):
+            if not data.has_key(__fields_types__):
+                data.update({__fields_types__: {}})
+            return data[__fields_types__]
+        else:
+            raise Exception("invalid param")
+
+    @staticmethod
+    def get_dict_default_value(data):
+        if isinstance(data, dict):
+            if not data.has_key(__fields_default_value__):
+                data.update({__fields_default_value__: {}})
+            return data[__fields_default_value__]
+        else:
+            raise Exception("invalid param")
+
+    @staticmethod
+    def set_attr_field(param, key, value):
+        if isinstance(value, BaseEmbededDoc):
+            for k, v in value.__dict__.items():
+                param.update({
+                    key + "." + k: v
+                })
+                __GOBBLE__.gobble_attr_field(param, key + "." + k, v)
+
+    @staticmethod
+    def dictionary(value):
+        if isinstance(value, dict):
+            import pydoc
+            ret_val = {}
+            for k, v in value.items():
+                _k = k
+                if isinstance(k, pydoc.Fields):
+                    _k = pydoc.get_field_expr(k, True)
+                ret_val.update({_k: __GOBBLE__.dictionary(v)})
+            return ret_val
+        else:
+            return value
 
 
 class BaseDocumentsInstance(object):
     def __setattr__(self, key, value):
         if not self.__dict__["__type__"].has_key(key):
-            raise Exception("'{0}' is not found ".format(key))
-        if value!=None and type(value)!=self.__dict__["__type__"][key]:
-            raise Exception("type of {0} is not {1}".format(value,self.__dict__["__type__"][key]))
+            raise exceptions.MissingData(key)
+        if value != None and type(value) != self.__dict__["__type__"][key]:
+            raise exceptions.InvalidDataType(key, self.__dict__["__type__"][key], type(value))
         self.__dict__.update({
-            key:value
+            key: value
         })
 
-    def __setitem__(self, key, value):
-        x=item
-class BaseDocuments (object):
+    def doc(self):
+        import pydoc
+        return pydoc.Fields()
+
+    def filter(self):
+        import pydoc
+        return pydoc.Fields(None, True)
+
+    # def __setitem__(self, key, value):
+    #     x=item
+
+
+class BaseDocuments(object):
     def __init__(self):
         import pydoc
         self.__dict__ = {
-            "__fields_types__": {},
-            "__fields_docs__": pydoc.Fields (),
-            "__model_name__": None
+            __fields_types__: {},
+            __fields_docs__: pydoc.Fields(),
+            __model_name__: None
         }
+
     def __getattr__(self, field):
+        import pydoc
         # if not self.__dict__["__fields_types__"].has_key(field):
         #     raise Exception("{0} was not found ".format(field))
-        items = field.split ('.')
-        ret = self.__dict__["__fields_docs__"]
-        for item in items:
-            ret = getattr (ret, item)
-        return ret
+        items = field.split('.')
+        ret = __GOBBLE__.get_dict_fields(self.__dict__)
+        if ret.has_key(field):
+            return ret[field]
+        else:
+            ret.update({
+                field: pydoc.Fields(field)
+            })
+            return ret[field]
+
     def __setattr__(self, key, value):
         import pydoc
-        if not self.__dict__.has_key ("__fields_types__"):
-            self.__dict__.update ({
-                "__fields_types__": {}
-            })
-        if not self.__dict__.has_key ("__fields_docs__"):
-            self.__dict__.update ({
-                "__fields_docs__": pydoc.fields ()
-            })
+        _value = value
+        _default = None
+        if isinstance(value, tuple):
+            _value, _default = value
+        _fields_type_ = __GOBBLE__.get_dict_fields_type(self.__dict__)
+        _fields_default_ = __GOBBLE__.get_dict_default_value(self.__dict__)
+        _fields_ = __GOBBLE__.get_dict_fields(self.__dict__)
+        _fields_type_.update({key: _value})
+        _fields_default_.update({key: _default})
 
-        self.__dict__["__fields_types__"].update ({
-            key: value
-        })
-        if isinstance (value, BaseEmbededDoc):
-            for k, v in value.__dict__.items ():
-                self.__dict__["__fields_types__"].update ({
-                    key + "." + k: v
-                })
-                ___consume_attr_field__ (self.__dict__["__fields_types__"], key + "." + k, v)
     def set_model_name(self, name):
-        self.__dict__.update ({
+        self.__dict__.update({
             "__model_name__": name
         })
+
     def get_model_name(self):
-        return self.__dict__.get ("__model_name__", None)
-    def object(self,value=None):
-        if value == None:
+        return self.__dict__.get("__model_name__", None)
+
+    def object(self, data=None):
+        import pydoc
+        from inspect import isfunction
+        if data == None:
             value = {}
-        data= self.__dict__["__fields_types__"]
-        ret_data ={
-            "__type__":data
+        else:
+            value = data
+        value = __GOBBLE__.dictionary(value)
+
+        field_types = __GOBBLE__.get_dict_fields_type(self.__dict__)
+        field_defaults = __GOBBLE__.get_dict_default_value(self.__dict__)
+
+        ret_data = {
+            "__type__": field_types
         }
-        for k,v in data.items():
-            if issubclass(self.__dict__["__fields_types__"][k],BaseEmbededDoc):
-                x= self.__dict__["__fields_types__"][k]()
-                child = x.object(value.get(k,None))
-                ret_data.update ({
-                    k: child
-                })
+        for k, v in field_types.items():
+            if issubclass(field_types[k], BaseEmbededDoc):
+                data_value = value.get(k, None)
+
+                try:
+                    x = field_types[k]()  # create new instance
+                    if data_value == None:
+                        default_values = __GOBBLE__.get_dict_default_value(self.__dict__)
+                        if default_values.has_key(k):
+                            default_value = __GOBBLE__.dictionary(default_values[k])
+                            if isfunction(default_value):
+                                child = x.object(default_values[k]())
+                            else:
+                                child = x.object(default_value)
+                            ret_data.update({
+                                k: child
+                            })
+                        else:
+                            child = x.object()
+                            ret_data.update({
+                                k: child
+                            })
+                    else:
+                        child = x.object(data_value)
+                        ret_data.update({
+                            k: child
+                        })
+                except exceptions.MissingData as ex:
+                    raise exceptions.MissingData(k + "." + ex.field_name)
+
+                    # if self.__dict__.has_key("__name__"):
+                    #     x.__dict__.update({"__name__": self.__dict__["__name__"]+"."+ k})
+                    # else:
+                    #     x.__dict__.update({"__name__": k})
+                    # child = x.object(value.get(k,None))
+                    # ret_data.update ({
+                    #     k: child
+                    # })
             else:
-                _v = value.get(k,None)
-                if _v!=None:
-                    if isinstance(_v,dict):
-                        raise Exception ("type of {0} is {1}".format (k, type(v)))
-                    if self.__dict__["__fields_types__"].has_key(k):
-                        _t = self.__dict__["__fields_types__"][k]
-                        if not type(_v) is _t :
-                            raise Exception("type of {0} is not {1}".format(k,_t))
-                ret_data.update ({
-                    k: _v
-                })
-        ret= BaseDocumentsInstance()
+                _v = value.get(k, None)
+                _d = field_defaults[k]
+                if _v != None and isinstance(_v, dict):
+                    raise Exception("type of {0} is {1}".format(k, type(v)))
+                if _v == None:
+                    if v == list:
+                        ret_data.update({
+                            k: []
+                        })
+
+                    elif _d == None and not hasattr(self, "__name__") and issubclass(v, BaseDocuments):
+                        raise Exception("'{0}' can not be empty".format(k))
+                    else:
+                        if isfunction(_d):
+                            ret_data.update({
+                                k: _d()
+                            })
+                        else:
+                            if not issubclass(v, BaseDocuments) and _d == None:
+                                field_name = k
+
+                                if self.__dict__.has_key("__name__"):
+                                    field_name = self.__dict__["__name__"] + "." + field_name
+                                raise exceptions.MissingData(field_name)
+                            ret_data.update({
+                                k: _d
+                            })
+                else:
+                    import types
+                    if isfunction(_v) or isinstance(_v, types.BuiltinFunctionType):
+                        _v = _v()
+                    if type(_v) != field_types[k]:
+                        field_name = k
+                        if self.__dict__.has_key("__name__"):
+                            field_name = self.__dict__["__name__"] + "." + k
+                        raise exceptions.InvalidDataType(field_name, field_types[k], type(_v))
+                    ret_data.update({
+                        k: _v
+                    })
+
+        ret = BaseDocumentsInstance()
         ret.__dict__.update(ret_data)
-        return ret
-    def __lshift__(self, other):
-        ret = BaseDocuments()
-        ret.__dict__={}
         ret.__dict__.update({
-            "__fields_types__":self.__dict__["__fields_types__"]
+            "__docs__": self
         })
-        ret.object(other)
         return ret
 
-class BaseEmbededDoc (BaseDocuments):
+    def __lshift__(self, other):
+        if other == {}:
+            raise Exception("Can not fill data into {0} with empty dict".format(type(self)))
+        return self.object(other)
+
+    def __is_contains_field__(self, item):
+        import pydoc
+        _field_ = item
+        if isinstance(item, pydoc.Fields):
+            _field_ = pydoc.get_field_expr(item, True)
+        items = _field_.split('.')
+        if items.__len__() == 1:
+            return __GOBBLE__.get_dict_fields_type(self.__dict__).has_key(items[0])
+        else:
+            next_field = ".".join([x for x in items if items.index(x) > 0])
+            child_object = __GOBBLE__.get_dict_fields_type(self.__dict__)[items[0]]()
+            return child_object.__is_contains_field__(next_field)
+
+    def __contains__(self, item):
+        _is_check_one_of_ = False
+        _fields = item
+        if isinstance(item, set):
+            _fields = list(item)
+            _is_check_one_of_ = True
+        if isinstance(item, tuple):
+            _fields = list(item)
+        if not isinstance(_fields, list):
+            _fields = [_fields]
+        if _is_check_one_of_:
+            ok = False
+            index = 0
+            while index < _fields.__len__():
+                if self.__is_contains_field__(_fields[index]):
+                    return True
+                else:
+                    index += 1
+            return False
+        else:
+            ok = True
+            index = 0
+            while index < _fields.__len__():
+                ok = ok and self.__is_contains_field__(_fields[index])
+                if not ok:
+                    return ok
+                else:
+                    index += 1
+            return ok
+
+
+class BaseEmbededDoc(BaseDocuments):
     pass
-def ___consume_attr_field__(param, key, value):
-    if isinstance (value, BaseEmbededDoc):
-        for k, v in value.__dict__.items ():
-            param.update ({
-                key + "." + k: v
-            })
-            ___consume_attr_field__ (param, key + "." + k, v)
