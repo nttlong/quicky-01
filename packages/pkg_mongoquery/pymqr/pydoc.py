@@ -174,6 +174,12 @@ class Fields(BaseFields):
                     }
                 }
                 return self
+            elif self.__tree__!=None and self.__tree__!={}:
+                self.__tree__ = {
+                    "$eq":[self.__tree__,get_field_expr(other,True)]
+                }
+                return self
+
             else:
                 self.__tree__ = {
                     self.__name__: other
