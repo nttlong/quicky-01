@@ -1,9 +1,9 @@
 import pymqr
-from pymqr import pydoc
+from pymqr import pydocs
 from pymqr import documents
 import datetime
 
-@documents.Collection("sys.users")
+
 class Users(documents.BaseDocuments):
     class ChangePasswordInfo(documents.BaseEmbededDoc):
         def __init__(self):
@@ -30,9 +30,9 @@ class Users(documents.BaseDocuments):
         self.PasswordChangeList=list
         self.Logins=(list,[])
         self.Profile=(Users.Profiles,{
-             pydoc.document.LastName:"",
-             pydoc.document.FirstName:"",
-             pydoc.document.BirthDate:datetime.datetime.now
+             pydocs.document.LastName:"",
+             pydocs.document.FirstName:"",
+             pydocs.document.BirthDate:datetime.datetime.now
 
         })
 

@@ -7,7 +7,7 @@ from pymqr import settings
 settings.setdb(db)
 import pymqr
 import pymmemberships.models.users
-from pymqr import pydoc
+from pymqr import pydocs
 import pymmemberships.users
 ret = pymmemberships.users.create(
     username="sys",
@@ -16,7 +16,8 @@ ret = pymmemberships.users.create(
 
 
 )
-m=ret
+
+m=pydocs.document.x=="hhhh"
 # users=pymmemberships.models.users.users
 # if {users.Profile.B# users=pymmemberships.models.users.users
 # if {users.Profile.BirthDate.Code,"Username"} in users:
