@@ -12,8 +12,8 @@ def __avg_consume__(*args,**kwargs):
             ret[fn].append(__get_field_expr__(item))
         return __create__(ret)
 def __get_field_expr__(x):
-    import pydoc
-    if isinstance(x,pydoc.Fields):
+    import pydocs
+    if isinstance(x,pydocs.Fields):
         if x.__tree__==None:
             return "$"+x.__name__
         else:
@@ -21,8 +21,8 @@ def __get_field_expr__(x):
     else:
         return x
 def __create__(expr):
-    import pydoc
-    ret = pydoc.Fields()
+    import pydocs
+    ret = pydocs.Fields()
     setattr(ret, "__tree__", expr)
     return ret
 def __create_array__(fn,*args):
@@ -56,8 +56,8 @@ def __comsume_with_item__(item):
 
 
 def regex(field, partern, ignore_case=True):
-    import pydoc
-    if  isinstance(field,pydoc.Fields):
+    import pydocs
+    if  isinstance(field,pydocs.Fields):
         if ignore_case:
             field.__tree__={
                 field.__name__:{
@@ -73,16 +73,16 @@ def regex(field, partern, ignore_case=True):
             }
             return field
 def concat(*args,**kwargs):
-    import pydoc
+    import pydocs
     expr = {
         "$concat": []
     }
     for item in args:
-        if isinstance(item, pydoc.Fields):
+        if isinstance(item, pydocs.Fields):
             expr["$concat"].append(__get_field_expr__(item))
         else:
             expr["$concat"].append(item)
-    ret = pydoc.Fields()
+    ret = pydocs.Fields()
     setattr(ret, "__tree__", expr)
     return ret
 def iif(test,true_case,flase_case):
@@ -93,7 +93,7 @@ def iif(test,true_case,flase_case):
     :param flase_case:
     :return:
     """
-    import pydoc
+    import pydocs
     expr={
         "$cond":{
             "if":__get_field_expr__(test),
@@ -101,7 +101,7 @@ def iif(test,true_case,flase_case):
             "else":__get_field_expr__(flase_case)
         }
     }
-    ret = pydoc.Fields()
+    ret = pydocs.Fields()
     setattr(ret, "__tree__", expr)
     return ret
 def case(test,result):
@@ -111,13 +111,13 @@ def case(test,result):
     :param result:
     :return:
     """
-    import pydoc
+    import pydocs
     expr = {
         "case":__get_field_expr__(test),
         "then":__get_field_expr__(result)
 
     }
-    ret = pydoc.Fields()
+    ret = pydocs.Fields()
     setattr(ret, "__tree__", expr)
     return ret
 def switch(*args,**kwargs):
@@ -127,20 +127,20 @@ def switch(*args,**kwargs):
     :param kwargs:
     :return:
     """
-    import pydoc
+    import pydocs
     branches=[]
     default=__get_field_expr__(args[args.__len__()-1])
     # default = __get_field_expr__(args[args.__len__() - 1])
     # list_of_args = [x for x in args if args.index(x) < args.__len__() - 1]
     # for item in list_of_args:
-    #     if isinstance(item,pydoc.Fields):
+    #     if isinstance(item,pydocs.Fields):
     #         branches.append(item.to_mongodb())
     #     else:
     #         branches.append(item)
     m = args.__len__()
     for i in pyrange(0,m-1,1):
         item  = args[i]
-        if isinstance(item,pydoc.Fields):
+        if isinstance(item,pydocs.Fields):
             branches.append(item.to_mongodb())
         else:
             branches.append(item)
@@ -152,7 +152,7 @@ def switch(*args,**kwargs):
             "default":default
         }
     }
-    ret = pydoc.Fields()
+    ret = pydocs.Fields()
     setattr(ret, "__tree__", expr)
     return ret
 def abs(expr):
@@ -409,7 +409,7 @@ def filter(field,iter,cond):
     """
     return __create_item__("$filter", {
         "input":__get_field_expr__(field),
-        "as":__get_field_expr__(iter),
+        "as":__get_field_expr__(iter,True),
         "cond":__get_field_expr__(cond)
     })
 def first(*args, **kwargs):
@@ -648,7 +648,7 @@ def map(field,In,alias):
     ret_data={
         "$map":{
             "input":__get_field_expr__(field),
-            "as":__get_field_expr__(alias),
+            "as":__get_field_expr__(alias,True),
             "in":__get_field_expr__(In)
         }
     }

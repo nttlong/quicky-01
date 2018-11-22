@@ -166,7 +166,7 @@ class Fields(BaseFields):
         return __apply__("$mod", self, other)
 
     def __eq__(self, other):
-        if self.__for_filter:
+        if self.__dict__.has_key("__for_filter__"):
             if type(other) in [str, unicode]:
                 self.__tree__ = {
                     self.__name__: {

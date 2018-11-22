@@ -16,14 +16,14 @@ class PipelineStage(object):
 
 class Project(PipelineStage):
     def __parse__(self, data):
-        import pydoc
+        import pydocs
         import expression_parser
         ret = {}
         if isinstance(data, dict):
             for k, v in data.items():
-                if isinstance(v, pydoc.Fields):
+                if isinstance(v, pydocs.Fields):
                     ret.update({
-                        k: pydoc.get_field_expr(v)
+                        k: pydocs.get_field_expr(v)
                     })
                 elif isinstance(v, dict):
                     ret.update({
@@ -35,20 +35,20 @@ class Project(PipelineStage):
                     ret.update({
                         k: expression_parser.to_mongobd()
                     })
-                elif isinstance(v, pydoc.Fields):
+                elif isinstance(v, pydocs.Fields):
                     if v.__dict__.has_key("__alias__"):
                         ret.update({
-                            v.__dict__["__alias__"]: pydoc.get_field_expr(v)
+                            v.__dict__["__alias__"]: pydocs.get_field_expr(v)
                         })
                     else:
                         ret.update({
-                            pydoc.get_field_expr(v, True): 1
+                            pydocs.get_field_expr(v, True): 1
                         })
         return ret
 
     def __init__(self, *args, **kwargs):
 
-        import pydoc
+        import pydocs
         import expression_parser
         self.__stage__ = {}
         data = kwargs
@@ -66,14 +66,14 @@ class Project(PipelineStage):
                     })
                 elif isinstance(item, dict):
                     self.__stage__.update(self.__parse__(item))
-                elif isinstance(item, pydoc.Fields):
+                elif isinstance(item, pydocs.Fields):
 
                     if item.__dict__.has_key("__alias__"):
                         self.__stage__.update({
-                            item.__dict__["__alias__"]: pydoc.get_field_expr(item)
+                            item.__dict__["__alias__"]: pydocs.get_field_expr(item)
                         })
                     else:
-                        right = pydoc.get_field_expr(item, True)
+                        right = pydocs.get_field_expr(item, True)
                         if type(right) in [str, unicode]:
                             self.__stage__.update({
                                 right: 1
@@ -96,25 +96,25 @@ class Project(PipelineStage):
                 self.__stage__.update({
                     k: expression_parser.to_mongobd(_v, *_p)
                 })
-            elif isinstance(v, pydoc.Fields):
+            elif isinstance(v, pydocs.Fields):
                 if v.__dict__.has_key("__alias__"):
                     self.__stage__.update({
-                        k: pydoc.get_field_expr(v, True)
+                        k: pydocs.get_field_expr(v, True)
                     })
                 else:
                     self.__stage__.update({
-                        k: pydoc.get_field_expr(v, True)
+                        k: pydocs.get_field_expr(v, True)
                     })
 
     def __add_item__(self, item):
-        import pydoc
+        import pydocs
         if item.__dict__.has_key("__alias__"):
             self.stage.update({
-                item.__dict__["__alias__"]: pydoc.get_field_expr(item)
+                item.__dict__["__alias__"]: pydocs.get_field_expr(item)
             })
         else:
             self.stage.update({
-                pydoc.get_field_expr(item, True): 1
+                pydocs.get_field_expr(item, True): 1
             })
         return self
 
@@ -127,10 +127,10 @@ class Project(PipelineStage):
 
 class Match(PipelineStage):
     def __init__(self, expr, *args, **kwargs):
-        import pydoc
+        import pydocs
         import expression_parser
-        if isinstance(expr, pydoc.Fields):
-            self.__stage__ = pydoc.get_field_expr(expr, True)
+        if isinstance(expr, pydocs.Fields):
+            self.__stage__ = pydocs.get_field_expr(expr, True)
         elif type(expr) in [str, unicode]:
             self.__stage__ = expression_parser.to_mongobd_match(expr, *args, **kwargs)
 
@@ -141,7 +141,7 @@ class AddFields(Project):
 
 class Lookup(PipelineStage):
     def __init__(self, coll, local_field_or_let, foreign_field_or_pipeline, alias):
-        import pydoc
+        import pydocs
         import expression_parser
         import pyquery
         pipeline = None
@@ -153,8 +153,8 @@ class Lookup(PipelineStage):
             pipeline = foreign_field_or_pipeline
             let = local_field_or_let
             is_use_pipeline = True
-        elif isinstance(foreign_field_or_pipeline, pydoc.Fields):
-            foreign_field = pydoc.get_field_expr(foreign_field_or_pipeline, True)
+        elif isinstance(foreign_field_or_pipeline, pydocs.Fields):
+            foreign_field = pydocs.get_field_expr(foreign_field_or_pipeline, True)
             local_field = local_field_or_let
         elif type(foreign_field_or_pipeline) in [str, unicode]:
             foreign_field = foreign_field_or_pipeline
@@ -165,21 +165,21 @@ class Lookup(PipelineStage):
             self.__lookup_with_pipeline(coll, let, pipeline, alias)
 
     def __lookup__(self, coll, localField, foreignField, alias):
-        import pydoc
+        import pydocs
         import expression_parser
         _CC = coll
         _LF = localField
         _FF = foreignField
-        if isinstance(alias,pydoc.Fields):
-            alias = pydoc.get_field_expr(alias,True)
+        if isinstance(alias,pydocs.Fields):
+            alias = pydocs.get_field_expr(alias,True)
         if type(coll) not in [str, unicode]:
             raise Exception("'coll' must be 'str' or 'unicode'")
         if type(alias) not in [str, unicode]:
             raise Exception("'alias' must be 'str' or 'unicode'")
-        if isinstance(localField, pydoc.Fields):
-            _LF = pydoc.get_field_expr(_LF, True)
-        if isinstance(foreignField, pydoc.Fields):
-            _FF = pydoc.get_field_expr(_FF, True)
+        if isinstance(localField, pydocs.Fields):
+            _LF = pydocs.get_field_expr(_LF, True)
+        if isinstance(foreignField, pydocs.Fields):
+            _FF = pydocs.get_field_expr(_FF, True)
         self.__stage__ = {
             "from": coll,
             "localField": _LF,
@@ -189,11 +189,11 @@ class Lookup(PipelineStage):
 
     def __lookup_with_pipeline(self, coll, let, pipeline, alias):
         import pyquery
-        import pydoc
+        import pydocs
         import expression_parser
         _l = let
-        if isinstance(alias,pydoc.Fields):
-            alias = pydoc.get_field_expr(alias,True)
+        if isinstance(alias,pydocs.Fields):
+            alias = pydocs.get_field_expr(alias,True)
         if type(coll) not in [str, unicode]:
             raise Exception("'coll' must be 'str' or 'unicode'")
         if type(alias) not in [str, unicode]:
@@ -204,8 +204,8 @@ class Lookup(PipelineStage):
             _l = let[0]
             _params = tuple([x for x in let if let.index(x) > 0])
             _l = expression_parser.to_mongobd(_l, *_params)
-        elif isinstance(let, pydoc.Fields):
-            _l = pydoc.get_field_expr(_l, True)
+        elif isinstance(let, pydocs.Fields):
+            _l = pydocs.get_field_expr(_l, True)
         elif type(let) in [str, unicode]:
             _l = expression_parser.to_mongobd(_l)
         self.__stage__ = {
@@ -219,7 +219,7 @@ class Lookup(PipelineStage):
 
 class Unwind(PipelineStage):
     def __init__(self, expr, includeArrayIndex=None, preserveNullAndEmptyArrays=None):
-        import pydoc
+        import pydocs
         """
         {
           $unwind:
@@ -236,9 +236,9 @@ class Unwind(PipelineStage):
             self.__stage__ = {
                 "path": "$" + expr
             }
-        elif isinstance(expr, pydoc.Fields):
+        elif isinstance(expr, pydocs.Fields):
             self.__stage__ = {
-                "path": pydoc.get_field_expr(expr)
+                "path": pydocs.get_field_expr(expr)
             }
         if includeArrayIndex != None:
             self.__stage__.update({
@@ -252,7 +252,7 @@ class Unwind(PipelineStage):
 
 class BucketAuto(PipelineStage):
     def __init__(self, groupBy, buckets, output, granularity=None, *args, **kwargs):
-        import pydoc
+        import pydocs
         import expression_parser
         _groupBy = groupBy
         _buckets = buckets
@@ -261,12 +261,12 @@ class BucketAuto(PipelineStage):
 
         if type(groupBy) in [str, unicode]:
             _groupBy = expression_parser.to_mongobd(groupBy, *args, **kwargs)
-        elif isinstance(groupBy, pydoc.Fields):
-            _groupBy = pydoc.get_field_expr(groupBy)
+        elif isinstance(groupBy, pydocs.Fields):
+            _groupBy = pydocs.get_field_expr(groupBy)
         if type(output) in [str, unicode]:
             _output = output
-        elif isinstance(output, pydoc.Fields):
-            _output = pydoc.get_field_expr(output)
+        elif isinstance(output, pydocs.Fields):
+            _output = pydocs.get_field_expr(output)
         self.__stage__ = {
             "groupBy": _groupBy,
             "buckets": _buckets,
@@ -280,7 +280,7 @@ class BucketAuto(PipelineStage):
 
 class Bukcet(PipelineStage):
     def __init__(self, groupBy, boundaries, default, output, *args, **kwargs):
-        import pydoc
+        import pydocs
         import expression_parser
         _groupBy = groupBy
         _boundaries = boundaries
@@ -289,16 +289,16 @@ class Bukcet(PipelineStage):
 
         if type(groupBy) in [str, unicode]:
             _groupBy = expression_parser.to_mongobd(groupBy, *args, **kwargs)
-        elif isinstance(groupBy, pydoc.Fields):
-            _groupBy = pydoc.get_field_expr(groupBy)
+        elif isinstance(groupBy, pydocs.Fields):
+            _groupBy = pydocs.get_field_expr(groupBy)
         if type(output) in [str, unicode]:
             _output = output
-        elif isinstance(output, pydoc.Fields):
-            _output = pydoc.get_field_expr(output)
+        elif isinstance(output, pydocs.Fields):
+            _output = pydocs.get_field_expr(output)
         if type(default) in [str, unicode]:
             _default = expression_parser.to_mongobd(default, *args, **kwargs)
-        elif isinstance(default, pydoc.Fields):
-            _default = pydoc.get_field_expr(default)
+        elif isinstance(default, pydocs.Fields):
+            _default = pydocs.get_field_expr(default)
         self.__stage__ = {
             "groupBy": _groupBy,
             "boundaries": boundaries,
@@ -309,12 +309,12 @@ class Bukcet(PipelineStage):
 
 class Count(PipelineStage):
     def __init__(self, field=None, *args, **kwargs):
-        import pydoc
+        import pydocs
         import expression_parser
         if field == None:
             field = "ret"
-        if isinstance(field, pydoc.Fields):
-            self.__stage__ = pydoc.get_field_expr(field, True)
+        if isinstance(field, pydocs.Fields):
+            self.__stage__ = pydocs.get_field_expr(field, True)
         else:
             self.__stage__ = field
 
@@ -337,14 +337,14 @@ class Facet(PipelineStage):
 
 class Group(PipelineStage):
     def __init__(self, _id=None, *args, **kwargs):
-        import pydoc
+        import pydocs
         import expression_parser
         __id = _id
 
         if type(_id) in [str, unicode]:
             __id = expression_parser.to_mongobd(_id, *args, **kwargs)
-        elif isinstance(_id, pydoc.Fields):
-            __id = pydoc.get_field_expr(_id)
+        elif isinstance(_id, pydocs.Fields):
+            __id = pydocs.get_field_expr(_id)
         elif isinstance(_id,tuple):
             _id ==Project(*_id, **kwargs).stage
         elif isinstance(_id,dict):
@@ -363,7 +363,7 @@ class Group(PipelineStage):
                     _selector.update({
                         item:expression_parser.to_mongobd(item)
                     })
-                elif isinstance(item,pydoc.Fields):
+                elif isinstance(item,pydocs.Fields):
                     _selector.update({
                         item.to_mongodb()
                     })
@@ -373,27 +373,27 @@ class Group(PipelineStage):
 
 class ReplaceRoot(PipelineStage):
     def __init__(self, expr, *args, **kwargs):
-        import pydoc
+        import pydocs
         import expression_parser
         if type(expr) in [str, unicode]:
             self.__stage__ = {"newRoot": expression_parser.to_mongobd(expr, *args, **kwargs)}
-        elif isinstance(expr, pydoc.Fields):
-            self.__stage__ = {"newRoot": pydoc.get_field_expr(expr)}
+        elif isinstance(expr, pydocs.Fields):
+            self.__stage__ = {"newRoot": pydocs.get_field_expr(expr)}
         elif isinstance(expr, dict):
             data = {}
             for k, v in expr.items():
                 _k = k
-                if isinstance(k, pydoc.Fields):
-                    _k = pydoc.get_field_expr(k, True)
+                if isinstance(k, pydocs.Fields):
+                    _k = pydocs.get_field_expr(k, True)
                 data.update({
-                    _k: pydoc.get_field_expr(v)
+                    _k: pydocs.get_field_expr(v)
                 })
             self.__stage__ = {"newRoot": data}
 
 
 class Sort(PipelineStage):
     def __init__(self, *args, **kwargs):
-        import pydoc
+        import pydocs
         import expression_parser
         data = {}
         if args.__len__() > 0:
@@ -405,9 +405,9 @@ class Sort(PipelineStage):
                     data.update({
                         k: v
                     })
-                elif isinstance(k, pydoc.Fields):
+                elif isinstance(k, pydocs.Fields):
                     data.update({
-                        pydoc.get_field_expr(k, True): v
+                        pydocs.get_field_expr(k, True): v
                     })
         self.__stage__ = data
 
