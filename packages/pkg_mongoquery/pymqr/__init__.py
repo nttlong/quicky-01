@@ -32,22 +32,22 @@ def __docs__():
     create Mongodb parable expresion
     :return:
     """
-    import pydoc
-    return pydoc.Fields()
+    import pydocs
+    return pydocs.Fields()
 def __filters__():
     """
     create Mongodb filterable expression
     :return:
     """
-    import pydoc
-    return pydoc.Fields(None,True)
+    import pydocs
+    return pydocs.Fields(None,True)
 
 def compile(exr):
     """
     :rtype: dict
     """
-    import pydoc
-    if not isinstance(exr,pydoc.Fields):
+    import pydocs
+    if not isinstance(exr,pydocs.Fields):
         raise Exception("invalid data type")
     return exr.__tree__
 import pyfuncs as funcs
@@ -57,4 +57,4 @@ from pymodel import Index,IndexOption,FieldInfo
 def create_index(fields,options):
     import pymodel
     return pymodel.Index(fields,options)
-from pydoc import BSON_select, BSON_doc
+from pydocs import BSON_select, BSON_doc

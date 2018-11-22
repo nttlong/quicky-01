@@ -74,12 +74,12 @@ class __GOBBLE__():
     @staticmethod
     def dictionary(value):
         if isinstance(value, dict):
-            import pydoc
+            import pydocs
             ret_val = {}
             for k, v in value.items():
                 _k = k
-                if isinstance(k, pydoc.Fields):
-                    _k = pydoc.get_field_expr(k, True)
+                if isinstance(k, pydocs.Fields):
+                    _k = pydocs.get_field_expr(k, True)
                 ret_val.update({_k: __GOBBLE__.dictionary(v)})
             return ret_val
         else:
@@ -97,12 +97,12 @@ class BaseDocumentsInstance(object):
         })
 
     def doc(self):
-        import pydoc
-        return pydoc.Fields()
+        import pydocs
+        return pydocs.Fields()
 
     def filter(self):
-        import pydoc
-        return pydoc.Fields(None, True)
+        import pydocs
+        return pydocs.Fields(None, True)
 
     # def __setitem__(self, key, value):
     #     x=item
@@ -110,18 +110,18 @@ class BaseDocumentsInstance(object):
 
 class BaseDocuments(object):
     def __init__(self):
-        import pydoc
+        import pydocs
         global __map_doc__
         if __map_doc__ == None:
             __map_doc__ ={}
         self.__dict__ = {
             __fields_types__: {},
-            __fields_docs__: pydoc.Fields(),
+            __fields_docs__: pydocs.Fields(),
             __model_name__:__map_doc__.get(type(self))
         }
 
     def __getattr__(self, field):
-        import pydoc
+        import pydocs
         # if not self.__dict__["__fields_types__"].has_key(field):
         #     raise Exception("{0} was not found ".format(field))
         items = field.split('.')
@@ -130,12 +130,12 @@ class BaseDocuments(object):
             return ret[field]
         else:
             ret.update({
-                field: pydoc.Fields(field)
+                field: pydocs.Fields(field)
             })
             return ret[field]
 
     def __setattr__(self, key, value):
-        import pydoc
+        import pydocs
         _value = value
         _default = None
         if isinstance(value, tuple):
@@ -160,7 +160,7 @@ class BaseDocuments(object):
         else:
             return self.object(kwargs)
     def object(self, data=None):
-        import pydoc
+        import pydocs
         from inspect import isfunction
         if data == None:
             value = {}
@@ -266,10 +266,10 @@ class BaseDocuments(object):
         return self.object(other)
 
     def __is_contains_field__(self, item):
-        import pydoc
+        import pydocs
         _field_ = item
-        if isinstance(item, pydoc.Fields):
-            _field_ = pydoc.get_field_expr(item, True)
+        if isinstance(item, pydocs.Fields):
+            _field_ = pydocs.get_field_expr(item, True)
         items = _field_.split('.')
         if items.__len__() == 1:
             return __GOBBLE__.get_dict_fields_type(self.__dict__).has_key(items[0])

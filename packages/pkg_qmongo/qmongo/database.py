@@ -26,14 +26,14 @@ def __parse_set_to_project__(data):
         selectors = list(data)
         index = 0
         for item in selectors:
-            if isinstance(item,pymqr.pydoc.Fields):
+            if isinstance(item,pymqr.pydocs.Fields):
                 if item.__dict__.has_key('__alias__'):
                     ret.update({
-                        item.__dict__['__alias__']:pymqr.pydoc.get_field_expr(item)
+                        item.__dict__['__alias__']:pymqr.pydocs.get_field_expr(item)
                     })
                 else:
                     ret.update({
-                        pymqr.pydoc.get_field_expr(item,True):1
+                        pymqr.pydocs.get_field_expr(item,True):1
                     })
             elif type(item) in [str,unicode]:
                 ret.update({
@@ -42,7 +42,7 @@ def __parse_set_to_project__(data):
             else:
                 raise Exception("params at {0} with data type {1} is invalid\n"
                                 "The valid data type is 'str', 'unicode' or {2}".format(
-                    index,type(item),pymqr.pydoc.Fields
+                    index,type(item),pymqr.pydocs.Fields
                 ))
         return ret
 
@@ -1519,8 +1519,8 @@ class AGGREGATE():
         :return:
         """
         import pymqr
-        if isinstance(field_name,pymqr.pydoc.Fields):
-            field_name = pymqr.pydoc.get_field_expr(field_name,True)
+        if isinstance(field_name,pymqr.pydocs.Fields):
+            field_name = pymqr.pydocs.get_field_expr(field_name,True)
         if field_name[0:1]!="$":
             field_name="$"+field_name
         self._pipe.append({
@@ -1545,9 +1545,9 @@ class AGGREGATE():
         and,or, contains,==,!=,>,<,..
         """
         import pymqr
-        if isinstance(expression,pymqr.pydoc.Fields):
+        if isinstance(expression,pymqr.pydocs.Fields):
             self._pipe.append({
-                "$match": pymqr.pydoc.get_field_expr(expression,True)
+                "$match": pymqr.pydocs.get_field_expr(expression,True)
             })
             return self
         by_params=False
@@ -1594,12 +1594,12 @@ class AGGREGATE():
         :return:
         """
         import pymqr
-        if isinstance(local_field,pymqr.pydoc.Fields):
-            local_field = pymqr.pydoc.get_field_expr(local_field,True)
-        if isinstance(foreign_field,pymqr.pydoc.Fields):
-            foreign_field = pymqr.pydoc.get_field_expr(foreign_field,True)
-        if isinstance(alias,pymqr.pydoc.Fields):
-            alias = pymqr.pydoc.get_field_expr(alias,True)
+        if isinstance(local_field,pymqr.pydocs.Fields):
+            local_field = pymqr.pydocs.get_field_expr(local_field,True)
+        if isinstance(foreign_field,pymqr.pydocs.Fields):
+            foreign_field = pymqr.pydocs.get_field_expr(foreign_field,True)
+        if isinstance(alias,pymqr.pydocs.Fields):
+            alias = pymqr.pydocs.get_field_expr(alias,True)
 
 
 

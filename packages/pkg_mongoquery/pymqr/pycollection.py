@@ -2,11 +2,11 @@ import mobject
 def __build_data__(data):
     ret ={}
     if isinstance(data,dict):
-        import pydoc
+        import pydocs
         for k,v in data.items():
-            if isinstance(k,pydoc.Fields):
+            if isinstance(k,pydocs.Fields):
                 ret.update({
-                    pydoc.get_field_expr(k,True):__build_data__(v)
+                    pydocs.get_field_expr(k,True):__build_data__(v)
                 })
             else:
                 ret.update ({

@@ -3,8 +3,8 @@ import pyquery
 import pymongo
 from pymongo import MongoClient
 import pyfuncs
-import pydoc
-Fields=pydoc.Fields()
+import pydocs
+Fields=pydocs.Fields()
 # print pyfuncs.toDouble(X.name)
 
 # fields=pydoc.Fields()

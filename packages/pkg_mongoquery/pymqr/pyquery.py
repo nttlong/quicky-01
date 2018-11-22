@@ -1,7 +1,7 @@
 import expression_parser
 import mobject
 import pycollection
-import pydoc
+import pydocs
 import pyfuncs
 
 
@@ -91,8 +91,8 @@ class query ():
         # type:()->pycollection.entity
         if type (expr) is [str, unicode]:
             return pycollection.entity (self, expression_parser.to_mongobd_match (expr, *args, **kwargs))
-        elif isinstance (expr, pydoc.Fields):
-            return pycollection.entity (self, pydoc.get_field_expr (expr))
+        elif isinstance (expr, pydocs.Fields):
+            return pycollection.entity (self, pydocs.get_field_expr (expr))
 
     def insert(self, *args, **kwargs):
         # type:()->pycollection.entity

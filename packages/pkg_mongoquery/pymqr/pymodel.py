@@ -1,10 +1,10 @@
-import pydoc
+import pydocs
 
 __models__ = None
 
-import pydoc
+import pydocs
 
-fields = pydoc.fields ()
+fields = pydocs.fields ()
 
 
 
@@ -34,7 +34,7 @@ class ModelDefinition (BaseModelDefinition):
         return self
 class PartialFilterExpression (object):
     def __init__(self, expr, *args, **kwargs):
-        self.__data__ = pydoc.compile (expr, *args, **kwargs)
+        self.__data__ = pydocs.compile (expr, *args, **kwargs)
 class IndexOption (object):
     def __init__(self,
                  background=True,
@@ -59,7 +59,7 @@ class IndexOption (object):
 class Index (object):
     def __init__(self, fields, options=None):
         # type: (str|dict|pydoc.Fields|tuple(pydoc.Fields)|tuple(str)|list(pydoc.Fields)|list(str), IndexOption) -> object
-        import pydoc
+        import pydocs
         self.fields = {}
         if isinstance (fields, tuple) or isinstance (fields, list):
             for item in fields:
@@ -67,13 +67,13 @@ class Index (object):
                     self.fields.update ({
                         item: 1
                     })
-                elif isinstance (pydoc.Fields):
+                elif isinstance (pydocs.Fields):
                     self.fields.update ({
-                        pydoc.get_field_expr (item, True): 1
+                        pydocs.get_field_expr (item, True): 1
                     })
-        if isinstance (fields, pydoc.Fields):
+        if isinstance (fields, pydocs.Fields):
             self.fields.update ({
-                pydoc.get_field_expr (fields, True): 1
+                pydocs.get_field_expr (fields, True): 1
             })
         elif type (fields) in [str, unicode]:
             self.fields.update ({
@@ -101,8 +101,8 @@ def __extract_fields__(fields):
     ret = {}
     for k, v in fields.items ():
         _k = k
-        if isinstance (k, pydoc.Fields):
-            _k = pydoc.get_field_expr (k, True)
+        if isinstance (k, pydocs.Fields):
+            _k = pydocs.get_field_expr (k, True)
         if isinstance (v, type):
             ret.update ({
                 _k: FieldInfo (v)
@@ -132,8 +132,8 @@ def create_model(name, required, indexes, fields):
         else:
             instance_model.required = []
             for item in required:
-                if isinstance (item, pydoc.Fields):
-                    instance_model.required.append (pydoc.get_field_expr (item, True))
+                if isinstance (item, pydocs.Fields):
+                    instance_model.required.append (pydocs.get_field_expr (item, True))
                 else:
                     instance_model.indexes.append (item)
     instance_model.fields = __extract_fields__ (fields)
@@ -270,7 +270,7 @@ class BaseDocument(object):
     def __init__(self,name,data_type):
         self.__dict__ = {
             "__type__": {},
-            "__doc__": pydoc.Fields (),
+            "__doc__": pydocs.Fields (),
             "__data_type__":data_type
         }
         self.__name__ = name
@@ -285,7 +285,7 @@ class Document(BaseDocument):
         else:
             return owner.__dict__.get (item)
     def field(self):
-        return pydoc.Fields()
+        return pydocs.Fields()
     def object(self):
         return __create_instance_from_type__(self,None)
 
