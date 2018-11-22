@@ -315,6 +315,9 @@ class Fields(BaseFields):
             return {
                 get_field_expr(self, True): other
             }
+    def var(self):
+        self.__name__ = "$"+self.__name__
+        return self
     def asc(self):
         return {
             get_field_expr(self,True):1

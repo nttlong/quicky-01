@@ -104,39 +104,7 @@ class query ():
         import pyaggregatebuilders
         self.stages (pyaggregatebuilders.Project (*args, **kwargs))
         return self
-        # """
-        # :param selectors:
-        # :param args:
-        # :param kwargs:
-        # :return:
-        # """
-        # _project={}
-        # if(isinstance(selectors,dict)):
-        #     for k,v in selectors.items():
-        #         if isinstance(k,pydoc.Fields):
-        #             if type(v) in [str,unicode]:
-        #                 _project.update({
-        #                     k.__name__: expression_parser.to_mongobd(v, *args, **kwargs)
-        #                 })
-        #             elif isinstance(v,pydoc.Fields):
-        #                 _project.update({
-        #                     k.__name__: pydoc.get_field_expr(v)
-        #                 })
-        #             else:
-        #                 _project.update({
-        #                     k.__name__:v
-        #                 })
-        #         else:
-        #             _project.update({
-        #                 k:expression_parser.to_mongobd(v,*args,**kwargs)
-        #             })
-        #     self.pipeline.append({
-        #         "$project":_project
-        #     })
-        #     return self
-        # else:
-        #     raise Exception("selector must be dict")
-
+       
     def addFields(self, fields, *args, **kwargs):
         """
         :param selectors:
@@ -235,11 +203,10 @@ class query ():
         ))
         return self
 
-    def group(self, selectors, _id=None, *args, **kwargs):
+    def group(self,_id=None,*args, **kwargs):
         import pyaggregatebuilders
         self.stages (pyaggregatebuilders.Group (
             _id,
-            selectors,
             *args,
             **kwargs
         ))

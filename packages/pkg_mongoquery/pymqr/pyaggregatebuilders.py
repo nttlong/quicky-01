@@ -170,6 +170,8 @@ class Lookup(PipelineStage):
         _CC = coll
         _LF = localField
         _FF = foreignField
+        if isinstance(alias,pydoc.Fields):
+            alias = pydoc.get_field_expr(alias,True)
         if type(coll) not in [str, unicode]:
             raise Exception("'coll' must be 'str' or 'unicode'")
         if type(alias) not in [str, unicode]:
@@ -190,6 +192,8 @@ class Lookup(PipelineStage):
         import pydoc
         import expression_parser
         _l = let
+        if isinstance(alias,pydoc.Fields):
+            alias = pydoc.get_field_expr(alias,True)
         if type(coll) not in [str, unicode]:
             raise Exception("'coll' must be 'str' or 'unicode'")
         if type(alias) not in [str, unicode]:
@@ -332,7 +336,7 @@ class Facet(PipelineStage):
 
 
 class Group(PipelineStage):
-    def __init__(self, _id, selector, *args, **kwargs):
+    def __init__(self, _id=None, *args, **kwargs):
         import pydoc
         import expression_parser
         __id = _id
@@ -341,23 +345,29 @@ class Group(PipelineStage):
             __id = expression_parser.to_mongobd(_id, *args, **kwargs)
         elif isinstance(_id, pydoc.Fields):
             __id = pydoc.get_field_expr(_id)
+        elif isinstance(_id,tuple):
+            _id ==Project(*_id, **kwargs).stage
+        elif isinstance(_id,dict):
+            self.__stage__ = expression_parser.to_mongobd(_id,*args,**kwargs)
+            if not self.__stage__.has_key("_id"):
+                self.__stage__.update({"_id":None})
+            return self
+
+
         _selector = {
             "_id": __id
         }
-        if not isinstance(selector, dict):
-            raise Exception("'selector' must be 'dict'")
-        for k, v in selector.items():
-            _k = k
-            if isinstance(k, pydoc.Fields):
-                _k = pydoc.get_field_expr(k, True)
-            if type(v) in [str, unicode]:
-                _selector.update({
-                    _k: expression_parser.to_mongobd(v, *args, **kwargs)
-                })
-            elif isinstance(v, pydoc.Fields):
-                _selector.update({
-                    _k: pydoc.get_field_expr(v)
-                })
+        if args.__len__()>0:
+            for item in args:
+                if type(item) in [str,unicode]:
+                    _selector.update({
+                        item:expression_parser.to_mongobd(item)
+                    })
+                elif isinstance(item,pydoc.Fields):
+                    _selector.update({
+                        item.to_mongodb()
+                    })
+
         self.__stage__ = _selector
 
 

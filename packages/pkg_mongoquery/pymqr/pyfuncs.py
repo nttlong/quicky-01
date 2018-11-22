@@ -409,7 +409,7 @@ def filter(field,iter,cond):
     """
     return __create_item__("$filter", {
         "input":__get_field_expr__(field),
-        "as":iter,
+        "as":__get_field_expr__(iter),
         "cond":__get_field_expr__(cond)
     })
 def first(*args, **kwargs):
@@ -640,7 +640,7 @@ def ltrim(field,chars=None):
                 k: __get_field_expr__(v)
             })
     return __create_item__("$trim", ret_data)
-def map(field,In,alias=None):
+def map(field,In,alias):
     """
     { $map: { input: <expression>, as: <string>, in: <expression> } }
     :return:
@@ -648,7 +648,7 @@ def map(field,In,alias=None):
     ret_data={
         "$map":{
             "input":__get_field_expr__(field),
-            "as":alias,
+            "as":__get_field_expr__(alias),
             "in":__get_field_expr__(In)
         }
     }
