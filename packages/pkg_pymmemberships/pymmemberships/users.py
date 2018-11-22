@@ -11,7 +11,7 @@ class UserParam(documents.BaseDocuments):
         self.password=str
         self.email = str
 userparam = UserParam()
-usermodel = users.users
+usermodel = users.Users
 def create(*args,**kwargs):
     _user=userparam.load(*args,**kwargs)
     _user_data = query(settings.getdb(),usermodel)\

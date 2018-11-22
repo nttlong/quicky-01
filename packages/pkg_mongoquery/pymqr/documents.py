@@ -2,19 +2,19 @@ __fields_types__ = "__fields_types__"  # key of field type
 __fields_docs__ = "__fields_docs__"  # key of field value
 __fields_default_value__ = "__fields_default_value__"  # key of default value field
 __model_name__ = "__model_name__"  # type: str # key of model name
-__map_doc__ =None
 class ___CollectionMapClassWrapper__():
     def __init__(self,name):
         self.name = name
     def wrapper(self,*args,**kwargs):
-        global __map_doc__
-        if __map_doc__==None:
-            __map_doc__={}
-        __map_doc__.update({
-            args[0]:self.name
+
+        ret = args[0].__new__(BaseDocuments,self.name,args[0].__dict__)
+        ret.__dict__.update ({
+            "__collection_name__": self.name
         })
+        return ret
+
 def Collection(*args,**kwargs):
-    ret = ___CollectionMapClassWrapper__()
+    ret = ___CollectionMapClassWrapper__(args[0])
     return ret.wrapper
 
 class exceptions():
@@ -111,13 +111,10 @@ class BaseDocumentsInstance(object):
 class BaseDocuments(object):
     def __init__(self):
         import pydocs
-        global __map_doc__
-        if __map_doc__ == None:
-            __map_doc__ ={}
+
         self.__dict__ = {
             __fields_types__: {},
-            __fields_docs__: pydocs.Fields(),
-            __model_name__:__map_doc__.get(type(self))
+            __fields_docs__: pydocs.Fields()
         }
 
     def __getattr__(self, field):
@@ -146,13 +143,10 @@ class BaseDocuments(object):
         _fields_type_.update({key: _value})
         _fields_default_.update({key: _default})
 
-    def set_model_name(self, name):
-        self.__dict__.update({
-            "__model_name__": name
-        })
 
-    def get_model_name(self):
-        return self.__dict__.get("__model_name__", None)
+
+    def get_collection_name(self):
+        return self.__dict__.get("__collection_name__", None)
 
     def load(self,*args,**kwargs):
         if args.__len__()>0:

@@ -3,8 +3,8 @@ from pymqr import pydocs
 from pymqr import documents
 import datetime
 
-
-class Users(documents.BaseDocuments):
+@documents.Collection("sys.users")
+class Users(object):
     class ChangePasswordInfo(documents.BaseEmbededDoc):
         def __init__(self):
             self.OldPassword=str
@@ -38,6 +38,6 @@ class Users(documents.BaseDocuments):
 
 
 # model = pymqr.create_model(
-users=Users()
-users.set_model_name("users")
+# users=Users()
+# users.set_model_name("users")
 
