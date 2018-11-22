@@ -166,7 +166,7 @@ class __obj_model__(object):
         self.__QR__ = None
         self.fields = __obj_fields__()
         import pymqr
-        self.doc = pymqr.pydoc.Fields
+        self.doc = pymqr.pydocs.Fields
         self.__aggregate__=None
         # self.views = s_obj_views(self)
     def __create_field__(self,name,type="text",is_require=False):
