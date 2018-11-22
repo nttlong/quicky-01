@@ -1313,7 +1313,22 @@ class AGGREGATE():
         self.name = name
         self._pipe=[]
         self.full_fill = True
-
+    def get_selected_fields(self):
+        pass
+        # # type: () -> list
+        # """
+        # Get current selected fields of aggregate pipeline
+        # :return:
+        # """
+        # if self._selected_fields==None:
+        #     self._selected_fields=self._coll._model.get_fields()
+        #     if self._selected_fields.count("_id") == 0:
+        #         self._selected_fields.append("_id")
+        # ret =[]
+        # for x in self._selected_fields:
+        #     if ret.count(x) == 0:
+        #         ret.append(x)
+        # return ret
     def descibe_fields(self,tabs,fields):
         # type: (str,list) -> str
         """
@@ -1334,6 +1349,8 @@ class AGGREGATE():
         # :param field:
         # :return: if field was found return True else False
         # """
+        # ret=[x for x in self.get_selected_fields() if x==field]
+        # return ret.__len__()>0
 
     def project(self,*args,**kwargs):
         # type: (dict|tuple) -> AGGREGATE
@@ -1870,7 +1887,7 @@ def connect(*args,**kwargs):
 
                 _db[key] = {
                     "database": db,
-                    # "codec_options": codec_options,
+                    "codec_options": codec_options,
                     "version": version,
                     "versions": version.split('.')
                 }

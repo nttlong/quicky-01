@@ -1,3 +1,5 @@
+from pymqr import query
+import qmongo
 class listofviews(dict):
     def __setitem__(self, item, value):
         print "You are changing the value of %s to %s!!"%(item, value)
@@ -25,6 +27,16 @@ def create_mongodb_view(aggregate,name):
     if not isinstance(aggregate,AGGREGATE):
         raise (Exception("It looks like you create view from object is not '{0}'".format("qmomgo.database.AGGREGATE")))
     global _cach_view
+    def __fix_lookup_with_pipeline__(schema,arg):
+        if isinstance(arg,dict):
+            if arg.has_key("pipeline"):
+                _list_of_lookup_ = [x for x in arg["pipeline"] if x.has_key("$lookup")]
+                for item in _list_of_lookup_:
+                    item["$lookup"].update({
+                        "from": schema + "." + item["$lookup"]["from"]
+                    })
+                    __fix_lookup_with_pipeline__(schema,item)
+
     def __create_mongodb_view__(self,sourcename):
         def excec_command():
             import json
@@ -47,7 +59,16 @@ def create_mongodb_view(aggregate,name):
             view_name = self._none_schema_name
             if self.schema != None and self.schema !="":
                 view_name = "{0}.{1}".format(self.schema, self._none_schema_name)
+            _list_of_lookup_ = [x for x in self.__initial_pipe__ if x.has_key("$lookup")]
+            for item in _list_of_lookup_:
+                item["$lookup"].update({
+                    "from": self.schema+ "."+ item["$lookup"]["from"]
+                })
+                __fix_lookup_with_pipeline__(self.schema,item)
 
+            if _list_of_lookup_.__len__()>0:
+                import pprint
+                pprint.pprint(_list_of_lookup_)
             command_object = (
                 view_name,
                 sourcename,
@@ -58,14 +79,16 @@ def create_mongodb_view(aggregate,name):
             param_text = param_text[1:param_text.__len__() - 1]
             command_text = "db.createView(" + param_text + ")"
             self.qr.db.eval(command_text)
-        if not __cach_has_exec_command_create_view__.has_key("{0}.{1}".format(self.schema,self._none_schema_name)):
+
+        hash_key_cache = "{0}.{1}".format(qmongo.get_schema(), self._none_schema_name)
+        if not __cach_has_exec_command_create_view__.has_key(hash_key_cache):
             excec_command()
+            __cach_has_exec_command_create_view__.update({
+                hash_key_cache:True
+            })
     if not _cach_view.has_key(name):
         view_model_fields={}
-        for field in aggregate.get_selected_fields():
-            view_model_fields.update(
-                {field:helpers.create_field("text", False)}
-            )
+
 
         helpers.define_model(
             name,
@@ -86,7 +109,6 @@ def create_mongodb_view(aggregate,name):
             setattr(ret,"__source_name__",aggregate._coll._none_schema_name)
             setattr(ret, "__initial_pipe__", [x.copy() for x in aggregate._pipe])
         _cach_view[name] = ret
-        import qmongo
         if not hasattr(qmongo,"views"):
             setattr(qmongo,"views",__views__())
         _views = getattr(qmongo,"views")

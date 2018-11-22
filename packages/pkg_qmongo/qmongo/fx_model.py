@@ -165,6 +165,8 @@ class __obj_model__(object):
         self.__name__=name
         self.__QR__ = None
         self.fields = __obj_fields__()
+        import pymqr
+        self.doc = pymqr.pydoc.Fields
         self.__aggregate__=None
         # self.views = s_obj_views(self)
     def __create_field__(self,name,type="text",is_require=False):
@@ -258,8 +260,13 @@ class __obj_model__(object):
         self.aggregate.left_join(source.__name__,local_field,foreign_field, alias)
         return self
     def insert(self,*args,**kwargs):
+        data=kwargs
+        if args.__len__()>0:
+            data=args[0];
         from . fx_model import s_obj
         ret = self.coll.insert(*args,**kwargs)
+        if type(data) is dict:
+            return ret
         ret_obj = s_obj(ret)
         ret_obj.is_error =False
         if ret.has_key("error"):
@@ -282,6 +289,8 @@ class __obj_model__(object):
         return ret_obj
     def update(self,data,*args,**kwargs):
         ret = self.coll.update(data,*args,**kwargs)
+        if type(data) is dict:
+            return ret
         if type(ret) is tuple:
             ret_obj = s_obj(ret[0])
             ret_error = s_obj(ret[1])
@@ -301,6 +310,8 @@ class __obj_model__(object):
             ret_obj = s_obj(ret[0])
             ret_error = s_obj(ret[1])
             return ret_obj,ret_error
+        else:
+            return ret
         ret_obj = s_obj(ret)
         ret_obj.is_error = False
         if ret.get("error", None) != None:
