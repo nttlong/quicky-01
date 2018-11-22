@@ -57,4 +57,4 @@ from pymodel import Index,IndexOption,FieldInfo
 def create_index(fields,options):
     import pymodel
     return pymodel.Index(fields,options)
-from pydocs import BSON_select, BSON_doc
+from pydoc import BSON_select, BSON_doc

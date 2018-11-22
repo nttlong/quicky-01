@@ -407,9 +407,11 @@ def filter(field,iter,cond):
     { $filter: { input: <array>, as: <string>, cond: <expression> } }
     :return:
     """
+    import pydocs
+
     return __create_item__("$filter", {
         "input":__get_field_expr__(field),
-        "as":__get_field_expr__(iter,True),
+        "as":pydocs.get_field_expr(iter,True),
         "cond":__get_field_expr__(cond)
     })
 def first(*args, **kwargs):
