@@ -1,9 +1,9 @@
 from setuptools import setup
-import pyparams
+import pyparams_validator
 setup(
-    name='pyparams',
-    version=pyparams.get_version(),
-    packages=['pyparams'],
+    name='pyparams_validators',
+    version=pyparams_validator.get_version(),
+    packages=['pyparams_validator'],
     url='',
     license='',
     author='nttlong',

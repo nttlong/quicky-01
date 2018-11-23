@@ -2,8 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="332fdd95-2f4c-4aec-825c-aea55fbd62e7" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/pyparams/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/pyparams/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/setup.py" beforeDir="false" afterPath="$PROJECT_DIR$/setup.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../pkg_pymmemberships/pymmemberships/users.py" beforeDir="false" afterPath="$PROJECT_DIR$/../pkg_pymmemberships/pymmemberships/users.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -206,7 +205,7 @@
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
       <window_info anchor="bottom" id="Run" order="2" weight="0.32937366" />
-      <window_info anchor="bottom" id="Debug" order="3" visible="true" weight="0.4287257" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.4287257" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />

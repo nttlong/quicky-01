@@ -4,6 +4,7 @@ from pymqr import settings
 from . models import users
 from pymqr import query
 from pymqr import funcs
+import pyparams
 
 class UserParam(documents.BaseDocuments):
     def __init__(self):
