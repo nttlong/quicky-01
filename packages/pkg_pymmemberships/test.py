@@ -12,48 +12,7 @@ import pymmemberships.users
 ret = pymmemberships.users.create(
     username="sys",
     password="sys",
-    email="test@gmail.com"
-
-
+    email="XXX"
 )
-
-m=pydocs.document.x=="hhhh"
-# users=pymmemberships.models.users.users
-# if {users.Profile.B# users=pymmemberships.models.users.users
-# if {users.Profile.BirthDate.Code,"Username"} in users:
-#     print "A"
-# irthDate.Code,"Username"} in users:
-#     print "A"
-
-
-# x=users()
-# x=users<<dict(
-#     Username="system",
-#     PasswordSalt="dsad",
-#     Email = "dasdas",
-#     HashPassword= "dasdas"
-#
-# )
-# x.doc()
-# user= {
-#     users.Username:"system",
-#     users.PasswordSalt:"12344",
-#     users.HashPassword:12345,
-#
-# }
-# print x.filter().Username==1
-
-# ret=pymqr.query(db,users).insert(user).commit()
-# print ret
-# filter = pydoc.filters.Name=="123"
-# # filter = filter | "name==123"
-# # import datetime
-# # items=pymqr.query(db,users).where(
-# #     pymqr.funcs.expr(users.Logins(5).SessionID=="123456")
-# # ).pull(pymqr.docs.SessionID=="12345").commit()
-# print pydoc.filters.to_mongodb()
-
-
-
-
+pymmemberships.users.login("XXXX",123)
 

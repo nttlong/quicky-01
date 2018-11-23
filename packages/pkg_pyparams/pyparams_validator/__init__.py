@@ -132,11 +132,10 @@ class __field_info__():
 class __types_wrapper__(object):
     def __init__(self,*args,**kwargs):
         self.param_by_index = False
-        data = kwargs
         _data_ = None
         if args.__len__()==1 and isinstance(args[0],dict):
             _data_ = __GOBBLE__.consume_data(args[0],None)
-        else:
+        elif args.__len__()>0:
             _data_ = {}
             index = 0
             for item in args:
@@ -146,8 +145,10 @@ class __types_wrapper__(object):
                 index += 1
             _data_ = __GOBBLE__.consume_data(_data_, None)
             self.param_by_index = True
-        self.data = _data_["data"]
+        else:
+            _data_ = __GOBBLE__.consume_data(kwargs, None)
         self.fields = _data_["fields"]
+        self.data = _data_["data"]
 
     def validate(self,*args,**kwargs):
         data = kwargs
