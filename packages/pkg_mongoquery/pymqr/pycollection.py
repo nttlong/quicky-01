@@ -45,6 +45,7 @@ class entity():
     def find_one(self):
         ret = self.owner.coll.find_one(self.__where__)
         self.__where__ = None
+        return ret
 
     @property
     def item(self):

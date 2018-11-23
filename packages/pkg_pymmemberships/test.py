@@ -10,7 +10,7 @@ import pymmemberships.models.users
 from pymqr import pydocs
 import pymmemberships.users
 ret = pymmemberships.users.create(
-    username="sys",
+    username="sys1",
     password="sys",
     email="XXX"
 )

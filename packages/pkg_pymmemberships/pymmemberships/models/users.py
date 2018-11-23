@@ -5,7 +5,13 @@ import datetime
 
 from pymqr.documents import BaseDocuments
 
-
+@documents.EmbededDocument()
+class Profiles (object):
+    def __init__(self):
+        self.FirstName = str
+        self.LastName = str
+        self.Geder = (bool, True)
+        self.BirthDate = datetime.datetime
 @documents.Collection("sys.users")
 class Users(object):
     class ChangePasswordInfo():
@@ -18,12 +24,7 @@ class Users(object):
             self.LoginTime=datetime.datetime
             self.SessionID=(str,'unknown')
             self.LoginTimeUTC = datetime.datetime
-    class Profiles():
-        def __init__(self):
-            self.FirstName=str
-            self.LastName=str
-            self.Geder=(bool,True)
-            self.BirthDate=datetime.datetime
+
 
     def __init__(self):
         self.Username=str

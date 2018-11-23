@@ -6,17 +6,21 @@ class ___CollectionMapClassWrapper__():
     def __init__(self,name):
         self.name = name
     def wrapper(self,*args,**kwargs):
-
         ret = args[0].__new__(BaseDocuments,self.name,args[0].__dict__)
         ret.__dict__.update ({
             "__collection_name__": self.name
         })
         return ret
 
+
 def Collection(*args,**kwargs):
     ret = ___CollectionMapClassWrapper__(args[0])
     return ret.wrapper
-
+def EmbededDocument(*args,**kwargs):
+    def wrapper(*args,**kwargs):
+        ret = args[0].__new__(BaseDocuments,None,args[0].__dict__)
+        return ret
+    return wrapper
 class exceptions():
     class InvalidDataType(Exception):
         def __init__(self, field_name, expectect_data_type, receive_data_type):

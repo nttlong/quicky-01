@@ -17,8 +17,11 @@ def create(user):
         ret = qr.insert({
             users.Users.Username:user.username,
             users.Users.PasswordSalt:user.password,
-            users.Users.Email:user.email
-        })
+            users.Users.Email:user.email,
+            users.Users.Profile:{
+                users.Profiles.FirstName:"test"
+            }
+        }).commit()
 
         x= data
 
