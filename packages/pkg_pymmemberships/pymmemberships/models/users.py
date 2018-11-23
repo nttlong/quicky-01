@@ -3,19 +3,22 @@ from pymqr import pydocs
 from pymqr import documents
 import datetime
 
+from pymqr.documents import BaseDocuments
+
+
 @documents.Collection("sys.users")
 class Users(object):
-    class ChangePasswordInfo(documents.BaseEmbededDoc):
+    class ChangePasswordInfo():
         def __init__(self):
             self.OldPassword=str
             self.Time=(datetime.datetime,datetime.datetime.now)
             self.TimeUtc=datetime.datetime
-    class LoginInfo(documents.BaseEmbededDoc):
+    class LoginInfo():
         def __init__(self):
             self.LoginTime=datetime.datetime
             self.SessionID=(str,'unknown')
             self.LoginTimeUTC = datetime.datetime
-    class Profiles(documents.BaseEmbededDoc):
+    class Profiles():
         def __init__(self):
             self.FirstName=str
             self.LastName=str

@@ -10,8 +10,16 @@ import pyparams_validator
     email = (str,True)
 )
 def create(user):
-    data= query(settings.getdb(),users.Users).where(users.Users.Username==user.username).object
+
+    qr = query(settings.getdb(),users.Users)
+    data= qr.where(users.Users.Username==user.username).object
     if data.is_empty():
+        ret = qr.insert({
+            users.Users.Username:user.username,
+            users.Users.PasswordSalt:user.password,
+            users.Users.Email:user.email
+        })
+
         x= data
 
 

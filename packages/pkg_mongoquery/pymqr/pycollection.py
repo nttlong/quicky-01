@@ -5,6 +5,9 @@ def __build_data__(data):
         import pydocs
         for k,v in data.items():
             if isinstance(k,pydocs.Fields):
+                field_name = pydocs.get_field_expr(k,True)
+                if type(field_name) not in [str,unicode]:
+                    raise Exception("{0} is not str".format(field_name))
                 ret.update({
                     pydocs.get_field_expr(k,True):__build_data__(v)
                 })
@@ -40,7 +43,9 @@ class entity():
     def find(self):
         return self.owner.coll.find(self.__where__)
     def find_one(self):
-        return self.owner.coll.find_one(self.__where__)
+        ret = self.owner.coll.find_one(self.__where__)
+        self.__where__ = None
+
     @property
     def item(self):
         return self.find_one()

@@ -119,35 +119,9 @@ class BaseDocuments(object):
 
     def __getattr__(self, field):
         import pydocs
-        # if not self.__dict__["__fields_types__"].has_key(field):
-        #     raise Exception("{0} was not found ".format(field))
-        items = field.split('.')
-        ret = __GOBBLE__.get_dict_fields(self.__dict__)
-        if ret.has_key(field):
-            return ret[field]
-        else:
-            ret.update({
-                field: pydocs.Fields(field)
-            })
-            return ret[field]
-
-    def __setattr__(self, key, value):
-        import pydocs
-        _value = value
-        _default = None
-        if isinstance(value, tuple):
-            _value, _default = value
-        _fields_type_ = __GOBBLE__.get_dict_fields_type(self.__dict__)
-        _fields_default_ = __GOBBLE__.get_dict_default_value(self.__dict__)
-        _fields_ = __GOBBLE__.get_dict_fields(self.__dict__)
-        _fields_type_.update({key: _value})
-        _fields_default_.update({key: _default})
-
-
-
+        return pydocs.Fields(field)
     def get_collection_name(self):
         return self.__dict__.get("__collection_name__", None)
-
     def load(self,*args,**kwargs):
         if args.__len__()>0:
             return self.object(args[0])
