@@ -1,8 +1,8 @@
 from setuptools import setup
-
+import pyparams
 setup(
     name='pyparams',
-    version='0.0.0.0',
+    version=pyparams.get_version(),
     packages=['pyparams'],
     url='',
     license='',
