@@ -54,7 +54,7 @@ class __validator_class__(object):
                 require=require
             )
         })
-class dynamic_object(__validator_class__):
+class pobject(__validator_class__):
     def __init__(self,*args,**kwargs):
 
         data = kwargs
@@ -69,19 +69,19 @@ class dynamic_object(__validator_class__):
                 if k[0:2] != "__" and k.count('.') == 0:
                     self.__properties__.update({k:1})
                     if type(v) is dict:
-                        setattr(self,k,dynamic_object(v))
+                        setattr(self,k,pobject(v))
                     elif type(v) is list:
                         values = []
                         for x in v:
                             if type(x) is dict:
-                                values.append(dynamic_object(x))
+                                values.append(pobject(x))
                             else:
                                 values.append(x)
                         setattr(self,k,values)
                     else:
                         setattr(self, k, v)
             self.__dict__.update({"__validator__": True})
-    def to_dict(self):
+    def __to_dict__(self):
         keys = [x for x in self.__dict__.keys() if x[0:2] != "__"]
         if keys == []:
             return None
@@ -109,8 +109,15 @@ class dynamic_object(__validator_class__):
                 self.__dict__.update({item:{}})
                 return self.__dict__[item]
 
-        return super(dynamic_object, self).__getattr__(item)
+        return super(pobject, self).__getattr__(item)
     def __setattr__(self, key, value):
-        super(dynamic_object, self).__setattr__(key, value)
-    def is_empty(self):
+        super(pobject, self).__setattr__(key, value)
+    def __is_emty__(self):
         return self.__dict__ == {}
+    def to_dict(self):
+        object = self.__to_dict__()
+        return object
+    def is_empty(self):
+        return self.__is_emty__()
+
+

@@ -9,8 +9,14 @@ import pyparams_validator
     password = (str,True),
     email = (str,True)
 )
-def create(*args,**kwargs):
-    users.Users.aggregate()
+def create(user):
+    data= query(settings.getdb(),users.Users).where(users.Users.Username==user.username).object
+    if data.is_empty():
+        x= data
+
+
+
+
 @pyparams_validator.types(str,str)
 def login(username,password):
     pass

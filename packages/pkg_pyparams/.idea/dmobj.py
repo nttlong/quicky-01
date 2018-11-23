@@ -81,7 +81,7 @@ class dynamic_object(__validator_class__):
                     else:
                         setattr(self, k, v)
             self.__dict__.update({"__validator__": True})
-    def to_dict(self):
+    def __to_dict__(self):
         keys = [x for x in self.__dict__.keys() if x[0:2] != "__"]
         if keys == []:
             return None
@@ -112,5 +112,5 @@ class dynamic_object(__validator_class__):
         return super(dynamic_object, self).__getattr__(item)
     def __setattr__(self, key, value):
         super(dynamic_object, self).__setattr__(key, value)
-    def is_empty(self):
+    def __is_emty__(self):
         return self.__dict__ == {}

@@ -24,7 +24,7 @@ class query ():
                     if type (args[1]) in [str, unicode]:
                         self.coll = args[0].get_collection (args[1])
                     if issubclass (type (args[1]), documents.BaseDocuments):
-                        self.coll = args[0].get_collection (args[1].get_model_name ())
+                        self.coll = args[0].get_collection (args[1].get_collection_name ())
             elif args.__len__ () == 1 and \
                     hasattr (args[0], "aggregate") and \
                     hasattr (args[0], "database"):
@@ -80,8 +80,8 @@ class query ():
                 self.pipeline.append ({
                     "$replaceRoot": item.stage
                 })
-            elif isinstance(item,pyaggregatebuilders.Sort):
-                self.pipeline.append({
+            elif isinstance (item, pyaggregatebuilders.Sort):
+                self.pipeline.append ({
                     "$sort": item.stage
                 })
 
@@ -104,7 +104,7 @@ class query ():
         import pyaggregatebuilders
         self.stages (pyaggregatebuilders.Project (*args, **kwargs))
         return self
-       
+
     def addFields(self, fields, *args, **kwargs):
         """
         :param selectors:
@@ -134,22 +134,26 @@ class query ():
             pyaggregatebuilders.Match (expr, *args, **kwargs)
         )
         return self
-    def sort(self,*args,**kwargs):
+
+    def sort(self, *args, **kwargs):
         import pyaggregatebuilders
-        self.stages(
-            pyaggregatebuilders.Sort(*args, **kwargs)
+        self.stages (
+            pyaggregatebuilders.Sort (*args, **kwargs)
         )
         return self
-    def limit(self,num):
-        self.stages({
-            "$limit":num
+
+    def limit(self, num):
+        self.stages ({
+            "$limit": num
         })
         return self
-    def skip(self,num):
-        self.stages({
-            "$skip":num
+
+    def skip(self, num):
+        self.stages ({
+            "$skip": num
         })
         return self
+
     def lookup(self, coll, local_field_or_let, foreign_field_or_pipeline, alias):
         import pyaggregatebuilders
         self.stages (pyaggregatebuilders.Lookup (
@@ -203,7 +207,7 @@ class query ():
         ))
         return self
 
-    def group(self,_id=None,*args, **kwargs):
+    def group(self, _id=None, *args, **kwargs):
         import pyaggregatebuilders
         self.stages (pyaggregatebuilders.Group (
             _id,
@@ -220,13 +224,17 @@ class query ():
             **kwargs
         ))
         return self
+
     def __iter__(self):
-        return list(self.items)
+        return list (self.items)
+
     def __rshift__(self, other):
-        other = list(self.objects)
+        other = list (self.objects)
+
     def reset(self):
         self.pipeline = []
         return self
+
     def find(self):
         return self.coll.find ()
 
@@ -236,6 +244,7 @@ class query ():
     def find_to_object(self):
         ret = self.find_one ()
         return mobject.dynamic_object (ret)
+
     def find_to_objects(self):
         ret = self.find ()
         for item in ret:
