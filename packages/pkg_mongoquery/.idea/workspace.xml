@@ -2,22 +2,27 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d480f0af-f98e-4019-82ef-b02a3f9467dc" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/setup.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../test_mqr.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../mqr/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../mqr/compilers.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../mqr/expr_parser.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../mqr/expression_parser.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../mqr/expressions.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../mqr/mobject.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../mqr/pyaggregatebuilders.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../mqr/pycollection.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../mqr/pydoc.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../mqr/pyfuncs.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../mqr/pymodel.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../mqr/pyquery.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../mqr/test.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../mqr/test01.py" beforeDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../lms_colls/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../models/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../models/categories/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../models/categories/acadame.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../models/categories/award.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../models/categories/certificate.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../models/core/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../models/core/auth_user.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../models/core/employees.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../models/core/roles.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../models/emps/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../models/emps/emp_working.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../models/emps/emps.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../models/emps/emps_experience.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../models/test.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pymqr/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/pymqr/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pymqr/documents.py" beforeDir="false" afterPath="$PROJECT_DIR$/pymqr/documents.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pymqr/pymodel.py" beforeDir="false" afterPath="$PROJECT_DIR$/pymqr/pymodel.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../pkg_pymmemberships/test.py" beforeDir="false" afterPath="$PROJECT_DIR$/../pkg_pymmemberships/test.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../pkg_pyparams/pyparams_validator/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/../pkg_pyparams/pyparams_validator/__init__.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -29,28 +34,75 @@
     <session id="1570769873">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="1" />
+          <entry key="project.closed" value="2" />
+          <entry key="project.open.time.0" value="2" />
           <entry key="project.open.time.2" value="1" />
-          <entry key="project.opened" value="1" />
+          <entry key="project.opened" value="3" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
-          <entry key="py" value="1" />
+          <entry key="py" value="4" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
-          <entry key="Python" value="1" />
+          <entry key="Python" value="4" />
         </counts>
       </usages-collector>
     </session>
   </component>
   <component name="FileEditorManager">
-    <leaf>
-      <file pinned="false" current-in-tab="true">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/setup.py">
           <provider selected="true" editor-type-id="text-editor" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/pymqr/__init__.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="272">
+              <caret line="53" column="23" selection-start-line="53" selection-start-column="23" selection-end-line="53" selection-end-column="23" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/pymqr/pymodel.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state>
+              <folding>
+                <element signature="e#126#2662#0" />
+                <element signature="e#2710#5449#0" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/pymqr/documents.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="512">
+              <caret line="321" lean-forward="true" selection-start-line="321" selection-end-line="321" />
+              <folding>
+                <element signature="e#340#641#0" />
+                <element signature="e#680#748#0" />
+                <element signature="e#790#1002#0" />
+                <element signature="e#1041#1254#0" />
+                <element signature="e#1279#2040#0" />
+                <element signature="e#2120#2347#0" />
+                <element signature="e#2411#2641#0" />
+                <element signature="e#2707#2961#0" />
+                <element signature="e#3032#3274#0" />
+                <element signature="e#3329#3703#0" />
+                <element signature="e#3761#4004#0" />
+                <element signature="e#6493#7577#0" />
+                <element signature="e#7638#7799#0" />
+                <element signature="e#8271#8418#0" />
+              </folding>
+            </state>
+          </provider>
         </entry>
       </file>
     </leaf>
@@ -65,6 +117,14 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
   </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/pymqr/__init__.py" />
+        <option value="$PROJECT_DIR$/pymqr/documents.py" />
+      </list>
+    </option>
+  </component>
   <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="66" />
     <option name="y" value="27" />
@@ -77,6 +137,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -84,15 +145,19 @@
               <item name="pkg_mongoquery" type="b2602c69:ProjectViewProjectNode" />
               <item name="pkg_mongoquery" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="pkg_mongoquery" type="b2602c69:ProjectViewProjectNode" />
+              <item name="pkg_mongoquery" type="462c0819:PsiDirectoryNode" />
+              <item name="pymqr" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../../python/pymqr" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -121,15 +186,11 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1295" height="735" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info id="Favorites" side_tool="true" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.24939272" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.39352226" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info anchor="bottom" id="Code comment" />
-      <window_info anchor="bottom" id="Version Control" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Python Console" />
-      <window_info anchor="bottom" id="Terminal" />
-      <window_info anchor="bottom" id="Event Log" side_tool="true" />
+      <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
       <window_info anchor="bottom" id="Run" order="2" />
@@ -137,12 +198,17 @@
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="right" id="Embedded Web Browser" />
-      <window_info anchor="right" id="R Packages" />
-      <window_info anchor="right" id="R Graphics" />
+      <window_info anchor="bottom" id="Code comment" order="7" />
+      <window_info anchor="bottom" id="Version Control" order="8" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" />
+      <window_info anchor="bottom" id="Terminal" order="10" />
+      <window_info anchor="bottom" id="Python Console" order="11" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="right" id="R Graphics" order="3" />
+      <window_info anchor="right" id="R Packages" order="4" />
+      <window_info anchor="right" id="Embedded Web Browser" order="5" />
     </layout>
   </component>
   <component name="VcsContentAnnotationSettings">
@@ -151,6 +217,46 @@
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/setup.py">
       <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pymqr/pymodel.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <folding>
+            <element signature="e#126#2662#0" />
+            <element signature="e#2710#5449#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pymqr/__init__.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="272">
+          <caret line="53" column="23" selection-start-line="53" selection-start-column="23" selection-end-line="53" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pymqr/documents.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="512">
+          <caret line="321" lean-forward="true" selection-start-line="321" selection-end-line="321" />
+          <folding>
+            <element signature="e#340#641#0" />
+            <element signature="e#680#748#0" />
+            <element signature="e#790#1002#0" />
+            <element signature="e#1041#1254#0" />
+            <element signature="e#1279#2040#0" />
+            <element signature="e#2120#2347#0" />
+            <element signature="e#2411#2641#0" />
+            <element signature="e#2707#2961#0" />
+            <element signature="e#3032#3274#0" />
+            <element signature="e#3329#3703#0" />
+            <element signature="e#3761#4004#0" />
+            <element signature="e#6493#7577#0" />
+            <element signature="e#7638#7799#0" />
+            <element signature="e#8271#8418#0" />
+          </folding>
+        </state>
+      </provider>
     </entry>
   </component>
 </project>

@@ -2,13 +2,16 @@ __fields_types__ = "__fields_types__"  # key of field type
 __fields_docs__ = "__fields_docs__"  # key of field value
 __fields_default_value__ = "__fields_default_value__"  # key of default value field
 __model_name__ = "__model_name__"  # type: str # key of model name
+import uuid
+import datetime
 class ___CollectionMapClassWrapper__():
     def __init__(self,name):
         self.name = name
     def wrapper(self,*args,**kwargs):
         ret = args[0].__new__(BaseDocuments,self.name,args[0].__dict__)
         ret.__dict__.update ({
-            "__collection_name__": self.name
+            "__collection_name__": self.name,
+            "__origin__":args[0]()
         })
         return ret
 
@@ -19,6 +22,17 @@ def Collection(*args,**kwargs):
 def EmbededDocument(*args,**kwargs):
     def wrapper(*args,**kwargs):
         ret = args[0].__new__(BaseDocuments,None,args[0].__dict__)
+        ret.__dict__.update ({
+            "__origin__": args[0] ()
+        })
+        return ret
+    return wrapper
+def EmbededArray(*args,**kwargs):
+    def wrapper(*args,**kwargs):
+        ret = args[0].__new__(BaseEmbedArray,None,args[0].__dict__)
+        ret.__dict__.update ({
+            "__origin__": args[0] ()
+        })
         return ret
     return wrapper
 class exceptions():
@@ -88,28 +102,52 @@ class __GOBBLE__():
             return ret_val
         else:
             return value
-
-
-class BaseDocumentsInstance(object):
-    def __setattr__(self, key, value):
-        if not self.__dict__["__type__"].has_key(key):
-            raise exceptions.MissingData(key)
-        if value != None and type(value) != self.__dict__["__type__"][key]:
-            raise exceptions.InvalidDataType(key, self.__dict__["__type__"][key], type(value))
-        self.__dict__.update({
-            key: value
-        })
-
-    def doc(self):
+    @staticmethod
+    def get_fields_info(data):
+        if isinstance(data,dict):
+            ret = {}
+            for k,v in data.items():
+                if not (k.__len__()>2 and k[0:2] == "__" and k[k.__len__():k.__len__()-2] =="__"):
+                    ret.update({k:v})
+            return ret
+    @staticmethod
+    def get_from_dict(data):
         import pydocs
-        return pydocs.Fields()
+        ret = {}
+        if isinstance(data,dict):
+            for k,v in data.items():
+                _k = k
+                if isinstance(k,pydocs.Fields):
+                    _k = pydocs.get_field_expr(k,True)
+                ret.update({
+                    _k: __GOBBLE__.get_from_dict(v)
+                })
+        else:
+            return data
+        return ret
 
-    def filter(self):
-        import pydocs
-        return pydocs.Fields(None, True)
 
-    # def __setitem__(self, key, value):
-    #     x=item
+
+# class BaseDocumentsInstance(object):
+#     def __setattr__(self, key, value):
+#         if not self.__dict__["__type__"].has_key(key):
+#             raise exceptions.MissingData(key)
+#         if value != None and type(value) != self.__dict__["__type__"][key]:
+#             raise exceptions.InvalidDataType(key, self.__dict__["__type__"][key], type(value))
+#         self.__dict__.update({
+#             key: value
+#         })
+#
+#     def doc(self):
+#         import pydocs
+#         return pydocs.Fields()
+#
+#     def filter(self):
+#         import pydocs
+#         return pydocs.Fields(None, True)
+#
+#     # def __setitem__(self, key, value):
+#     #     x=item
 
 
 class BaseDocuments(object):
@@ -123,7 +161,20 @@ class BaseDocuments(object):
 
     def __getattr__(self, field):
         import pydocs
-        return pydocs.Fields(field)
+        ret = pydocs.Fields(field)
+        if hasattr(self.__origin__,field):
+            org = getattr(self.__origin__,field)
+            if isinstance(org,list) and org.__len__()>0:
+                ret.__dict__.update ({
+                    "__origin__": org[0]
+                })
+            else:
+                ret.__dict__.update({
+                    "__origin__":org
+                })
+        return ret
+
+
     def get_collection_name(self):
         return self.__dict__.get("__collection_name__", None)
     def load(self,*args,**kwargs):
@@ -131,111 +182,97 @@ class BaseDocuments(object):
             return self.object(args[0])
         else:
             return self.object(kwargs)
-    def object(self, data=None):
+    def create(self):
         import pydocs
+        import types
         from inspect import isfunction
-        if data == None:
-            value = {}
-        else:
-            value = data
-        value = __GOBBLE__.dictionary(value)
 
-        field_types = __GOBBLE__.get_dict_fields_type(self.__dict__)
+
+
+        field_types = __GOBBLE__.get_fields_info(self.__dict__["__origin__"].__dict__)
         field_defaults = __GOBBLE__.get_dict_default_value(self.__dict__)
+        ret ={}
+        ret_type ={}
 
-        ret_data = {
-            "__type__": field_types
-        }
+
         for k, v in field_types.items():
-            if issubclass(field_types[k], BaseEmbededDoc):
-                data_value = value.get(k, None)
+            data_type = v
+            is_require = False
+            if isinstance(v,tuple):
+                fn = None
 
-                try:
-                    x = field_types[k]()  # create new instance
-                    if data_value == None:
-                        default_values = __GOBBLE__.get_dict_default_value(self.__dict__)
-                        if default_values.has_key(k):
-                            default_value = __GOBBLE__.dictionary(default_values[k])
-                            if isfunction(default_value):
-                                child = x.object(default_values[k]())
-                            else:
-                                child = x.object(default_value)
-                            ret_data.update({
-                                k: child
-                            })
-                        else:
-                            child = x.object()
-                            ret_data.update({
-                                k: child
-                            })
-                    else:
-                        child = x.object(data_value)
-                        ret_data.update({
-                            k: child
-                        })
-                except exceptions.MissingData as ex:
-                    raise exceptions.MissingData(k + "." + ex.field_name)
+                if v.__len__()==1:
+                    v=v[0]
+                if v.__len__()>1:
+                    is_require =v[1]
+                    data_type =v[0]
+                if v.__len__() > 2:
+                    fn = v[2]
+                    if isinstance(fn,types.BuiltinFunctionType):
+                        fn = fn()
+                    elif isfunction(fn):
+                        fn = fn()
+                if is_require and fn == None:
+                    if data_type in [int,float]:
+                        fn =0
+                    elif data_type in [str,unicode]:
+                        fn = ""
+                    elif data_type == bool:
+                        fn =False
+                    elif data_type == uuid.UUID:
+                        fn = uuid.uuid4()
+                    elif data_type == datetime.datetime:
+                        fn = datetime.datetime.now()
 
-                    # if self.__dict__.has_key("__name__"):
-                    #     x.__dict__.update({"__name__": self.__dict__["__name__"]+"."+ k})
-                    # else:
-                    #     x.__dict__.update({"__name__": k})
-                    # child = x.object(value.get(k,None))
-                    # ret_data.update ({
-                    #     k: child
-                    # })
-            else:
-                _v = value.get(k, None)
-                _d = field_defaults[k]
-                if _v != None and isinstance(_v, dict):
-                    raise Exception("type of {0} is {1}".format(k, type(v)))
-                if _v == None:
-                    if v == list:
-                        ret_data.update({
-                            k: []
-                        })
+                ret.update ({
+                    k: fn
+                })
+                ret_type.update ({
+                    k: (data_type,is_require)
+                })
+            if isinstance(v,BaseDocuments):
+                ret.update({
+                    k:v.object()
+                })
+                ret_type.update({
+                    k:(BaseDocuments,False)
+                })
+            if isinstance(v,BaseEmbedArray):
+                ret.update({
+                    k:[]
+                })
+                ret_type.update({
+                    k:(BaseDocuments,False)
+                })
+            if isinstance(v,list):
+                ret.update({
+                    k:[]
+                })
+                ret_type.update({
+                    k:(BaseDocuments,False)
+                })
+            if isinstance(v,type):
+                ret.update ({
+                    k: None
+                })
+                ret_type.update ({
+                    k: (v,False)
+                })
 
-                    elif _d == None and not hasattr(self, "__name__") and issubclass(v, BaseDocuments):
-                        raise Exception("'{0}' can not be empty".format(k))
-                    else:
-                        if isfunction(_d):
-                            ret_data.update({
-                                k: _d()
-                            })
-                        else:
-                            if not issubclass(v, BaseDocuments) and _d == None:
-                                field_name = k
-
-                                if self.__dict__.has_key("__name__"):
-                                    field_name = self.__dict__["__name__"] + "." + field_name
-                                raise exceptions.MissingData(field_name)
-                            ret_data.update({
-                                k: _d
-                            })
-                else:
-                    import types
-                    if isfunction(_v) or isinstance(_v, types.BuiltinFunctionType):
-                        _v = _v()
-                    if type(_v) != field_types[k]:
-                        field_name = k
-                        if self.__dict__.has_key("__name__"):
-                            field_name = self.__dict__["__name__"] + "." + k
-                        raise exceptions.InvalidDataType(field_name, field_types[k], type(_v))
-                    ret_data.update({
-                        k: _v
-                    })
-
-        ret = BaseDocumentsInstance()
-        ret.__dict__.update(ret_data)
-        ret.__dict__.update({
-            "__docs__": self
+        import mobject
+        ret_obj = mobject.dynamic_object(ret)
+        ret_obj.__dict__.update({
+            "__properties_types__":ret_type
         })
-        return ret
+        return ret_obj
 
     def __lshift__(self, other):
         if other == {}:
             raise Exception("Can not fill data into {0} with empty dict".format(type(self)))
-        return self.object(other)
+        import mobject
+        ret = self.create()
+        ret.__dict__.update(__GOBBLE__.get_from_dict(other))
+        return  ret
 
     def __is_contains_field__(self, item):
         import pydocs
@@ -280,6 +317,5 @@ class BaseDocuments(object):
                     index += 1
             return ok
 
-
-class BaseEmbededDoc(BaseDocuments):
+class BaseEmbedArray(BaseDocuments):
     pass

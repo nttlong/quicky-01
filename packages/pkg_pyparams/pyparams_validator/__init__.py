@@ -199,7 +199,7 @@ class __types_wrapper__ (object):
 
             _data_ = dmobj.pobject(data)
             return self.__caller__ (_data_)
-        return self.build_input_params_and_run (*args, **kwargs)
+        return self.__caller__ (*args, **kwargs)
 
     def execute(self, *args, **kwargs):
         if self.param_by_index:

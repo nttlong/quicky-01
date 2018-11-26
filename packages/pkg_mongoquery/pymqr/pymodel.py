@@ -1,309 +1,126 @@
-import pydocs
+# encoding=utf8
 
-__models__ = None
+import sys
+reload(sys)
+sys.setdefaultencoding('utf8')
+import datetime
+class __validator_class__(object):
+    def __init__(self):
+        # self.__properties__ ={}
+        self.__data_type__ = None
+        self.__require__ = False
+        self.__dict__.update({"__properties__":{}})
+        self.__dict__.update({"__validator__": False})
 
-import pydocs
-
-fields = pydocs.fields ()
-
-
-
-
-class BaseModelDefinition (object):
-    def __init__(self, name):
-        # type: (object) -> object
-        """
-        :type name: str
-
-        """
-        self.name = name
-        global __models__
-        if __models__ == None:
-            __models__ = {}
-        __models__.update ({
-            name: {}
-        })
-
-
-class ModelDefinition (BaseModelDefinition):
-    def set_indexes(self, indexes):
-        self.indexes = indexes
-        self.fields = {}
-        self.name = "";
-        self.required = None
-        return self
-class PartialFilterExpression (object):
-    def __init__(self, expr, *args, **kwargs):
-        self.__data__ = pydocs.compile (expr, *args, **kwargs)
-class IndexOption (object):
-    def __init__(self,
-                 background=True,
-                 unique=False,
-                 name=None,
-                 partialFilterExpression=None,
-                 sparse=None,
-                 expireAfterSeconds=None):
-
-        self.background = background
-        if unique != None:
-            self.unique = unique
-        if name != None:
-            self.name = name
-        if partialFilterExpression != None:
-            if isinstance (partialFilterExpression, PartialFilterExpression):
-                self.partialFilterExpression = partialFilterExpression.__data__
-        if sparse != None:
-            self.sparse = True
-
-        self.expireAfterSeconds = 10
-class Index (object):
-    def __init__(self, fields, options=None):
-        # type: (str|dict|pydoc.Fields|tuple(pydoc.Fields)|tuple(str)|list(pydoc.Fields)|list(str), IndexOption) -> object
-        import pydocs
-        self.fields = {}
-        if isinstance (fields, tuple) or isinstance (fields, list):
-            for item in fields:
-                if type (item) in [str, unicode]:
-                    self.fields.update ({
-                        item: 1
-                    })
-                elif isinstance (pydocs.Fields):
-                    self.fields.update ({
-                        pydocs.get_field_expr (item, True): 1
-                    })
-        if isinstance (fields, pydocs.Fields):
-            self.fields.update ({
-                pydocs.get_field_expr (fields, True): 1
-            })
-        elif type (fields) in [str, unicode]:
-            self.fields.update ({
-                fields: 1
-            })
-
-        if isinstance (options, IndexOption):
-            self.options = options
-class FieldInfo (object):
-    def __init__(self, fieldType, required=None, detail=None):
-        self.fieldType = None
-        self.required = required
-        self.detail = detail
-
-
-        if not isinstance (fieldType, type):
-            raise Exception ("'fieldType' must be type, not value")
-        self.fieldType = fieldType
-        if detail != None:
-            if not isinstance (detail, dict):
-                raise Exception ("'detail' must be dict")
-            ret = __extract_fields__ (detail)
-            self.detail = ret
-def __extract_fields__(fields):
-    ret = {}
-    for k, v in fields.items ():
-        _k = k
-        if isinstance (k, pydocs.Fields):
-            _k = pydocs.get_field_expr (k, True)
-        if isinstance (v, type):
-            ret.update ({
-                _k: FieldInfo (v)
-            })
-        elif isinstance (v, dict):
-            ret.update ({
-                k: FieldInfo (object, None, __extract_fields__ (v))
-            })
-        elif isinstance (v, FieldInfo):
-            ret.update ({
-                _k: v
-            })
-
-    return ret
-def create_model(name, required, indexes, fields):
-    # type: (str, list, object) -> object
-    if type (name) not in [str, unicode]:
-        raise Exception ("'{0}' must be str or unicode".format ("name"))
-    instance_model = ModelDefinition (name)
-    global __models__
-
-    if isinstance (indexes, list):
-        instance_model.set_indexes (indexes)
-    if required != None:
-        if not isinstance (required, list):
-            raise Exception ("'{0}' must be None or list".format ("required"))
-        else:
-            instance_model.required = []
-            for item in required:
-                if isinstance (item, pydocs.Fields):
-                    instance_model.required.append (pydocs.get_field_expr (item, True))
-                else:
-                    instance_model.indexes.append (item)
-    instance_model.fields = __extract_fields__ (fields)
-    if __models__ == None:
-        __models__ = {}
-        __models__.update ({
-            name: instance_model
-        })
-    doc = Document(name,None)
-    __create_doc__(doc,instance_model.fields)
-    setattr(documents,name,doc)
-
-    return instance_model
-def get_model(name):
-    global __models__
-    if __models__ == None:
-        return None
-    return __models__.get (name, None)
-
-import mobject
-documents = mobject.dynamic_object({})
-__doc_dict__ = {}
-def __create_instance_from_type__(data,data_type):
-    ret =DocumentInstance(data.__name__)
-    for k,v in data.__dict__.items():
-        if not (k.__len__()>2 and k[0:2]=="__" and k[k.__len__()-2:k.__len__()]=="__"):
-            if isinstance(v,Document):
-                master_data_type,data_type = getattr(data,k).__dict__["__dict__"]["__data_type__"]
-                if master_data_type == list:
-                    setattr (ret, k,([], __create_instance_from_type__ (v, data_type)))
-                else:
-                    setattr(ret,k,(master_data_type,__create_instance_from_type__(v,data_type)))
-            elif isinstance(v,tuple):
-                setattr (ret, k, v[0])
-            else:
-                setattr(ret,k,v)
-    ret.__dict__.update({
-        "__is_init_complete__":True
-    })
-    return ret
-
-class BaseDocumentInstance(object):
-    def __init__(self,name,*args,**kwargs):
-        self.__dict__ = {
-            "__type__":{},
-            "__is_in_init__":True,
-            "__name__":name
-        }
-
-        self.__is_in_init__ = True
-class DocumentInstance(BaseDocumentInstance):
-    def __setattr__(self, key, value):
-        ancestor = super(DocumentInstance,self)
-        if key =="__dict__":
-            ancestor.__dict__.update(value)
-            return
-        if key in [ "__type__", "__is_in_init__"]:
-            ancestor.__dict__.update({
-                key:value
-            })
-        is_init_complete = ancestor.__dict__.get ("__is_init_complete__", False)
-        if isinstance(value,tuple):
-            if value[0]==[]:
-                if ancestor.__dict__.get ("__type__", None) == None:
-                    ancestor.__dict__.update ({
-                        "__type__": {}
-                    })
-                ancestor.__dict__["__type__"].update ({
-                    key: list
-                })
-                ancestor.__dict__.update ({
-                    key: []
-                })
-                return
-
-        if isinstance(value,DocumentInstance):
-            if not is_init_complete:
-                if ancestor.__dict__.get("__type__",None) == None:
-                    ancestor.__dict__.update({
-                        "__type__":{}
-                    })
-                ancestor.__dict__["__type__"].update ({
-                    key: dict
-                })
-            ancestor.__dict__.update({
-                key:value
-            })
-
-        else:
-
-            if not is_init_complete:
-                if ancestor.__dict__.get("__type__",None) == None:
-                    ancestor.__dict__.update({
-                        "__type__":{}
-                    })
-                ancestor.__dict__.update ({
-                    key: None
-                })
-                if value == list:
-                    x= value
-                ancestor.__dict__["__type__"].update({
-                    key:value
-                })
-
-            else:
-                if not ancestor.__dict__["__type__"].has_key(key):
-                    raise Exception("'{0}' was not found".format(key))
-                data_type = ancestor.__dict__["__type__"][key]
-                if type(value) is data_type:
-                    if data_type == dict:
-                        if isinstance(value,DocumentInstance):
-                            ancestor.__dict__.update ({
-                                key: __create_instance_from_type__ (value)
-                            })
-                        else:
-                            raise Exception("{0} must be DocumentInstance of {0}".format(ancestor.__dict__["__name__"]+"."+key))
-                    elif type == list:
-                        ret_list =[]
-                        for item in value:
-                            ret_list.append(__create_instance_from_type__)
-                    else:
-                        ancestor.__dict__.update ({
-                            key: value
-                        })
-                else:
-                    raise Exception("{0} is not {1}".format(value,data_type))
-
-
-
-
-
-
-class BaseDocument(object):
-    def __init__(self,name,data_type):
-        self.__dict__ = {
-            "__type__": {},
-            "__doc__": pydocs.Fields (),
-            "__data_type__":data_type
-        }
-        self.__name__ = name
-class Document(BaseDocument):
-    def __setattr__(self, key, value):
-        ancestor = super(Document,self)
-        ancestor.__dict__.update({key:value})
+        # self.__validator__= False
     def __getattr__(self, item):
-        owner = super (Document, self)
-        if item == "__dict__":
-            return owner.__getattribute__ (item)
-        else:
-            return owner.__dict__.get (item)
-    def field(self):
-        return pydocs.Fields()
-    def object(self):
-        return __create_instance_from_type__(self,None)
+        if self.__dict__.get("__validator__",False):
+            if not self.__dict__.get("__properties__",{}).has_key(item):
+                raise (Exception("'{0}' was not found".format(item)))
+        return super(__validator_class__, self).__getattr__(item)
+    def __setattr__(self, key, value):
+        if key[0:2] == "__":
+            super(__validator_class__, self).__setattr__(key, value)
+            return
+        if self.__dict__.get("__validator__",False):
+            if not self.__properties__.has_key(key):
+                raise (Exception("'{0}' was not found".format(key)))
+        if value == None:
+            super(__validator_class__, self).__setattr__(key, value)
+            return
+        __data_type__ = self.__dict__.get("__properties__",{}).get('type',None)
+        if __data_type__ == "object" and not type(value) is dynamic_object:
+            raise Exception("'{0}' is invalid data type, expected type is {1}, but the value is {2}".format(key,__data_type__,value))
+        if __data_type__ == "text" and not type(value) in [str,unicode]:
+            raise Exception(
+                "'{0}' is invalid data type, expected type is {1}, but the value is {2}".format(key, self.__data_type__,
+                                                                                                value))
+        if __data_type__ == "date" and not type(value) is datetime.datetime:
+            raise Exception(
+                "'{0}' is invalid data type, expected type is {1}, but the value is {2}".format(key, self.__data_type__,
+                                                                                                value))
+        if __data_type__ == "bool" and not type(value) is bool:
+            raise Exception(
+                "'{0}' is invalid data type, expected type is {1}, but the value is {2}".format(key, self.__data_type__,
+                                                                                                value))
+
+        super(__validator_class__, self).__setattr__(key, value)
+    def __set_config__(self,property,type,require):
+        self.__properties__.update({
+            property:dict(
+                type=type,
+                require=require
+            )
+        })
+class dynamic_object(__validator_class__):
+    def __init__(self,*args,**kwargs):
+
+        data = kwargs
+        if args.__len__()>0:
+            data = args[0]
+        if data == None:
+            self = None
+            return
+        if data != {}:
+            self.__dict__.update({"__validator__": False})
+            for k,v in data.items():
+                if k[0:2] != "__" and k.count('.') == 0:
+                    self.__properties__.update({k:1})
+                    if type(v) is dict:
+                        setattr(self,k,dynamic_object(v))
+                    elif type(v) is list:
+                        values = []
+                        for x in v:
+                            if type(x) is dict:
+                                values.append(dynamic_object(x))
+                            else:
+                                values.append(x)
+                        setattr(self,k,values)
+                    else:
+                        setattr(self, k, v)
+            self.__dict__.update({"__validator__": True})
+    def to_dict(self):
+        keys = [x for x in self.__dict__.keys() if x[0:2] != "__"]
+        if keys == []:
+            return None
+        ret = {}
+        for k in keys:
+            v= self.__dict__[k]
+            if hasattr(v,"__to_dict__"):
+                ret.update({k:v.__to_dict__()})
+            elif type(v) is list:
+                lst = []
+                for x in v:
+                    if hasattr(x,"__to_dict__"):
+                        lst.append(x.__to_dict__())
+                    else:
+                        lst.append(x)
+                ret.update({k: lst})
+            else:
+                ret.update({k:v})
+        return ret
+    def __getattr__(self, item):
+        if item =="__properties__":
+            if self.__dict__.has_key(item):
+                return self.__dict__[item]
+            else:
+                self.__dict__.update({item:{}})
+                return self.__dict__[item]
+
+        return super(dynamic_object, self).__getattr__(item)
+    def __setattr__(self, key, value):
+        properties_types = self.__dict__.get("__properties_types__",{})
+        if properties_types!= {}:
+            if not properties_types.has_key(key):
+                raise Exception("'{0}' was not found")
+            if properties_types[key][1] and value!=None:
+                if properties_types[key][0] != type(value):
+                    raise Exception ("'{0}' is invalid data type. The exprected "
+                                     "data type is {1}, but receive {2} with value {3}".format(
+                        key,properties_types[key][0],type(value),value
+                    ))
 
 
-
-
-def __create_doc__(doc,fields):
-    for k,v in fields.items():
-        sub_type = object
-        if isinstance(v.detail,type):
-            sub_type=v.detail
-        setattr (doc, k, (v.fieldType,sub_type))
-        if v.detail != None:
-            sub_doc = Document(doc.__name__+"."+k,(v.fieldType,sub_type))
-            _p = getattr(doc,k)
-            __create_doc__(sub_doc,v.detail)
-            setattr(doc,k,sub_doc)
-
-
-
-
+        super(dynamic_object, self).__setattr__(key, value)
+    def is_empty(self):
+        return self.__dict__ == {}

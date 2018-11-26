@@ -14,5 +14,5 @@ ret = pymmemberships.users.create(
     password="sys",
     email="XXX"
 )
-pymmemberships.users.login("XXXX",123)
+pymmemberships.users.login("XXXX","12345")
 
