@@ -93,6 +93,8 @@ class query ():
             return pycollection.entity (self, expression_parser.to_mongobd_match (expr, *args, **kwargs))
         elif isinstance (expr, pydocs.Fields):
             return pycollection.entity (self, pydocs.get_field_expr (expr))
+        else:
+            raise Exception("invalid data type {0}".format(type(expr)))
 
     def insert(self, *args, **kwargs):
         # type:()->pycollection.entity
@@ -290,7 +292,15 @@ class query ():
     @property
     def objects(self):
         for item in self.items:
-            yield mobject.dynamic_object (item)
+            yield mobject.dynamic_object(item)
+
+    @property
+    def object(self):
+        ret= list(self.items)
+        if ret.__len__()>0:
+            return mobject.dynamic_object(ret[0])
+        else:
+            return mobject.dynamic_object({})
 
     def get_page(self, page_size, page_index):
         _pipeline = [x for x in self.pipeline]

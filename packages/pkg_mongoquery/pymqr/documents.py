@@ -223,6 +223,8 @@ class BaseDocuments(object):
                         fn = uuid.uuid4()
                     elif data_type == datetime.datetime:
                         fn = datetime.datetime.now()
+                    elif isinstance(v[0],BaseDocuments):
+                        fn = v[0].create()
 
                 ret.update ({
                     k: fn

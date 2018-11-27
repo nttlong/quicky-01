@@ -1,5 +1,3 @@
-from enum import Enum
-
 class rec_process():
     def __init__(self):
         self.max_unop_len=0

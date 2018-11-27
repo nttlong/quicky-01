@@ -3,6 +3,12 @@ def __build_data__(data):
     ret ={}
     if isinstance(data,dict):
         import pydocs
+        invalid_items = [x for x,y in data.items() if type(x) not in [str,unicode,pydocs.Fields]]
+        if invalid_items.__len__()>0:
+            raise Exception("{0} with type {4} is invalid data type of key."
+                            " The valid data type of key is"
+                            "{1},{2} or {3}"
+                            .format(invalid_items[0], str,unicode,pydocs.Fields,type(invalid_items[0])))
         for k,v in data.items():
             if isinstance(k,pydocs.Fields):
                 field_name = pydocs.get_field_expr(k,True)
@@ -11,10 +17,16 @@ def __build_data__(data):
                 ret.update({
                     pydocs.get_field_expr(k,True):__build_data__(v)
                 })
+            elif hasattr(v,"to_dict"):
+                ret.update ({
+                    pydocs.get_field_expr(k,True): __build_data__ (v.to_dict())
+                })
             else:
                 ret.update ({
                     k: __build_data__ (v)
                 })
+    elif hasattr(data,"to_dict"):
+        return __build_data__(data.to_dict())
     else:
         return data
     return ret
@@ -85,11 +97,26 @@ class entity():
     def commit(self):
         if self.__insert_data__!=None:
             if type(self.__insert_data__) is list:
-                return self.__do_insert_many__(self.__insert_data__)
+                try:
+                    ret = self.__do_insert_many__(self.__insert_data__)
+                    return self.__insert_data__, None,ret
+                except Exception as ex:
+                    return self.__insert_data__, ex, None
+
+
             else:
-                return self.__do_insert_one__(self.__insert_data__)
+                try:
+                    ret = self.__do_insert_one__(self.__insert_data__)
+                    return self.__insert_data__, None, ret
+                except Exception as ex:
+                    return self.__insert_data__,ex,None
         elif self.__data__!=None:
-            return self.__do_update_data__(self.__data__)
+            try:
+                ret = self.__do_update_data__(self.__data__)
+                return self.__data__,None,ret
+            except Exception as ex:
+                return self.__data__, ex, None
+
         else:
             return None,"Nothing to commit"
     def set(self,*args,**kwargs):
@@ -99,7 +126,7 @@ class entity():
         if self.__data__== None:
             self.__data__={}
         self.__data__.update({
-            "$set": _data
+            "$set": __build_data__(_data)
         })
         return self
     def push(self,*args,**kwargs):
@@ -109,7 +136,7 @@ class entity():
         if self.__data__== None:
             self.__data__={}
         self.__data__.update({
-            "$push": _data
+            "$push":  __build_data__(_data)
         })
         return self
     def pull(self,expr,*args,**kwargs):
@@ -128,7 +155,7 @@ class entity():
         if self.__data__== None:
             self.__data__={}
         self.__data__.update({
-            "$inc": _data
+            "$inc": __build_data__(_data)
         })
         return self
     def mul(self,*args,**kwargs):
@@ -141,8 +168,14 @@ class entity():
             "$mul": _data
         })
         return self
-    def __add__(self, other):
-        print other
+    def delete(self):
+        ret = None
+        try:
+            ret = self.owner.coll.detele_many (self.__where__)
+            return self.__where__,None,ret
+        except Exception as ex:
+            return None,ex,ret
+
 
 
 

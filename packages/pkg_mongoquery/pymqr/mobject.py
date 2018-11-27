@@ -4,6 +4,7 @@ import sys
 reload(sys)
 sys.setdefaultencoding('utf8')
 import datetime
+
 class __validator_class__(object):
     def __init__(self):
         # self.__properties__ ={}
@@ -22,9 +23,27 @@ class __validator_class__(object):
         if key[0:2] == "__":
             super(__validator_class__, self).__setattr__(key, value)
             return
+        if self.__dict__.get("__properties_types__",{})!= {}:
+            types = self.__dict__.get("__properties_types__")
+            if not types.has_key(key):
+                raise Exception("'{0}' was not found".format(key))
+            v = types[key]
+            if v[1] and value == None:
+                raise Exception("{0} is require".format(key))
+            elif type(value) != v[0]:
+                raise Exception("{0} is invalid data type, "
+                                "expected {1} but receive {2} with {3}".format(
+                    key,v[0],type(value),value
+                ))
+            super (__validator_class__, self).__setattr__ (key, value)
+            return
         if self.__dict__.get("__validator__",False):
             if not self.__properties__.has_key(key):
                 raise (Exception("'{0}' was not found".format(key)))
+
+
+
+
         if value == None:
             super(__validator_class__, self).__setattr__(key, value)
             return
@@ -56,6 +75,7 @@ class __validator_class__(object):
         })
 class dynamic_object(__validator_class__):
     def __init__(self,*args,**kwargs):
+        import pydocs
 
         data = kwargs
         if args.__len__()>0:
@@ -65,7 +85,11 @@ class dynamic_object(__validator_class__):
             return
         if data != {}:
             self.__dict__.update({"__validator__": False})
-            for k,v in data.items():
+            for _k,v in data.items():
+                k = _k
+                if isinstance(_k,pydocs.Fields):
+                    k = pydocs.get_field_expr(_k,True)
+
                 if k[0:2] != "__" and k.count('.') == 0:
                     self.__properties__.update({k:1})
                     if type(v) is dict:
@@ -81,6 +105,7 @@ class dynamic_object(__validator_class__):
                     else:
                         setattr(self, k, v)
             self.__dict__.update({"__validator__": True})
+
     def to_dict(self):
         keys = [x for x in self.__dict__.keys() if x[0:2] != "__"]
         if keys == []:
@@ -89,12 +114,12 @@ class dynamic_object(__validator_class__):
         for k in keys:
             v= self.__dict__[k]
             if hasattr(v,"__to_dict__"):
-                ret.update({k:v.__to_dict__()})
+                ret.update({k:v.to_dict()})
             elif type(v) is list:
                 lst = []
                 for x in v:
-                    if hasattr(x,"__to_dict__"):
-                        lst.append(x.__to_dict__())
+                    if hasattr(x,"to_dict"):
+                        lst.append(x.to_dict())
                     else:
                         lst.append(x)
                 ret.update({k: lst})
@@ -114,3 +139,70 @@ class dynamic_object(__validator_class__):
         super(dynamic_object, self).__setattr__(key, value)
     def is_empty(self):
         return self.__dict__ == {}
+    def __set_data_field_value__(self,other):
+        import pymqr.pydocs
+        if not isinstance (other, tuple):
+            raise Exception ("Incorect data the data must be (key,value) \n"
+                             "key is str, unicode or {0}".format (pymqr.pydocs.Fields))
+        key = other[0]
+        if isinstance (key, pymqr.pydocs.Fields):
+            import pymqr
+            key = pymqr.pydocs.get_field_expr (key, True)
+        items = key.split ('.')
+        ptr = self
+
+        ptr_name = ""
+        for i in range (0, items.__len__ () - 1, 1):
+            ptr_name = items[i]
+            ptr.__dict__.update ({"__validator__": False})
+            if not hasattr (ptr, ptr_name):
+                setattr (ptr, ptr_name, dynamic_object ())
+
+            _ptr = getattr (ptr, ptr_name)
+            if _ptr == None:
+                _ptr = dynamic_object ()
+                setattr (ptr, ptr_name, _ptr)
+            ptr.__dict__.update ({"__validator__": True})
+            ptr = _ptr
+        ptr.__dict__.update ({"__validator__": True})
+        setattr (ptr, items[items.__len__ () - 1], other[1])
+    def __lshift__(self, other):
+        """
+
+        :param other:
+        :return:
+        """
+        if isinstance(other,tuple):
+            self.__set_data_field_value__(other)
+        elif isinstance(other,set):
+            for item in list(other):
+                self.__set_data_field_value__ (item)
+    def filter_to_oject(self, *args,**kwargsk):
+        import pydocs
+
+        other = args
+
+        field_list = []
+        for item in list(other):
+            if isinstance(item,pydocs.Fields):
+                field_list.append(pydocs.get_field_expr(item,True))
+            else:
+                field_list.append(item)
+        ret = {}
+        filter = set(self.__dict__).intersection(field_list)
+        for item in list(filter):
+            ret.update({
+                item:self.__dict__.get(item,None)
+            })
+        return dynamic_object(ret)
+
+    def __ilshift__(self, other):
+        x=1
+
+
+
+
+
+
+
+
